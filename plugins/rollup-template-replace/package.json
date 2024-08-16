@@ -1,0 +1,21 @@
+{
+  "name": "rollup-plugin-template-replace",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "startracex",
+  "license": "MIT",
+  "dependencies": {
+    "magic-string": "^0.30.11",
+    "rollup-pluginutils": "^2.8.2",
+    "template-extractor": "workspace:^"
+  },
+  "devDependencies": {
+    "rollup": "^4.21.3"
+  }
+}
