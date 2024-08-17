@@ -1,24 +1,24 @@
 {
+  "npm.packageManager": "pnpm",
   "files.exclude": {
     ".editorconfig": true,
     ".idea": true,
     ".git": true,
-    ".github": true,
-    ".npmrc": true,
-    ".prettierrc": true,
-    "node_modules": true,
+    "**/.turbo": true,
     "pnpm-lock.yaml": true,
     "LICENSE": true,
-    "src/[!_]*.ts": true,
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "**/*.js.map": {
+      "when": "$(basename)"
+    },
+    "**/*.d.ts.map": {
+      "when": "$(basename)"
+    },
+    "**/*.js": {
+      "when": "$(basename).d.ts",
+    }
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "dprint.dprint"
   },
   "color-highlight.markerType": "underline",
   "lit-plugin.rules.no-invalid-css": "off"
