@@ -1,4 +1,5 @@
 {
+  "root": true,
   "env": {
     "browser": true,
     "es2021": true
@@ -10,7 +11,8 @@
   ],
   "parser": "@typescript-eslint/parser",
   "ignorePatterns": [
-    "**/*.js"
+    "**/*.js",
+    "**/*.d.ts"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -25,11 +27,13 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/prefer-for-of": "off",
     "@typescript-eslint/no-this-alias": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
     "array-callback-return": "warn",
     "camelcase": "warn",
     "curly": "warn",
     "eqeqeq": "warn",
     "no-console": "error",
+    "no-duplicate-imports": "warn",
     "no-lone-blocks": "warn",
     "no-unexpected-multiline": "warn",
     "no-unused-vars": "off",
