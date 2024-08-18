@@ -1,37 +1,11 @@
 {
+  "extends": "@godown/tsconfig/base.json",
   "compilerOptions": {
-    "target": "ES2021",
+    "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "types": [],
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
-    "allowSyntheticDefaultImports": true,
-    "noImplicitThis": true,
-    "allowJs": false,
-    "rootDir": "./src",
-    "outDir": "./public",
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "inlineSources": true,
-    "importHelpers": true,
-    "sourceRoot": "https://github.com/startracex/godown/tree/main/src",
-    "jsx": "preserve",
-    "jsxFactory": "factory",
-    "jsxFragmentFactory": "fragment"
-  },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true
+  }
 }
