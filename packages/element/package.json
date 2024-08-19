@@ -7,7 +7,9 @@
   "scripts": {
     "check-types": "tsc --noEmit",
     "clean": "tsc --build --clean",
-    "build": "tsc"
+    "build": "tsc",
+    "fmt": "dprint fmt",
+    "lint": "eslint --fix"
   },
   "repository": {
     "type": "git",
