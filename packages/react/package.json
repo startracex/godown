@@ -1,0 +1,34 @@
+{
+  "name": "@godown/react",
+  "version": "0.0.0",
+  "description": "React components for godown",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc --watch",
+    "check-types": "tsc --noEmit",
+    "clean": "tsc --build --clean",
+    "build": "tsc",
+    "fmt": "dprint fmt",
+    "lint": "eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/startracex/godown.git",
+    "directory": "packages/react"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@lit/react": "^1.0.5",
+    "godown": "workspace:^",
+    "react": "^18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "*.{js,d.ts}"
+  ]
+}

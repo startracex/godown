@@ -1,0 +1,45 @@
+{
+  "name": "godown",
+  "version": "2.7.7",
+  "description": "Simple, stylized, semantic web components",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "development": "./dev/index.js",
+      "default": "./index.js"
+    },
+    "./*": {
+      "development": "./dev/*",
+      "default": "./*"
+    },
+    "./*.json": "./*.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/startracex/godown.git",
+    "directory": "packages/components"
+  },
+  "keywords": [],
+  "author": "startracex",
+  "license": "MIT",
+  "dependencies": {
+    "@godown/colors": "workspace:^",
+    "@godown/element": "workspace:^",
+    "@godown/f7-icon": "workspace:^",
+    "lit": "^3.0.0",
+    "tslib": "^2.7.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "**/*.{js,d.ts}+(|.map)",
+    "custom-elements.json",
+    "web-types.json",
+    "vscode.{css,html}-custom-data.json"
+  ],
+  "custom-elements": "./custom-elements.json",
+  "customElements": "./custom-elements.json",
+  "web-types": "./web-types.json"
+}
