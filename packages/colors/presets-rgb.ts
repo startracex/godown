@@ -3,7 +3,9 @@ const rgb = (r: number, g: number, b: number) => (
     r,
     g,
     b,
-    toString: () => `${r} ${g} ${b}`,
+    toString() {
+      return `${this.r} ${this.g} ${this.b}`;
+    },
   }
 );
 
