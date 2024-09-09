@@ -1,0 +1,10 @@
+{
+  "extends": "@godown/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "dev",
+    "rootDir": "src"
+  },
+  "include": [
+    "src",
+  ]
+}
