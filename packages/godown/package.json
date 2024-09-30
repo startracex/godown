@@ -15,6 +15,16 @@
     },
     "./*.json": "./*.json"
   },
+  "scripts": {
+    "dev": "tsc --watch",
+    "check-types": "tsc --noEmit",
+    "clean": "tsc --build tsconfig.prod.json --clean",
+    "build": "tsx build.ts",
+    "build:ts": "tsc",
+    "fmt": "dprint fmt",
+    "lint": "eslint --fix",
+    "manifest": "tsx manifest.ts"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/startracex/godown.git",
