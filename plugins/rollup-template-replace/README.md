@@ -25,6 +25,7 @@ Example, use a CSS preprocessor to process the modified text.
 replace({
   match: (tag) => tag === "css",
   callback: (input) => postcss(/* postcss plugins */).process(input).css.trim(),
+  replace: (_, index)=> `--__REPLACE__${index}__`, 
 })
 ```
 
@@ -43,7 +44,7 @@ after replacement
 ```js
 css`
   .class {
-    __REPLACE_0__: __REPLACE_1__;
+    --__REPLACE__0__: --__REPLACE__1__;
   }
 `;
 ```
@@ -52,7 +53,7 @@ callback input (content between `` ` ``)
 
 ```css
 .class {
-  __REPLACE_0__: __REPLACE_1__;
+  --__REPLACE__0__: --__REPLACE__1__;
 }
 ```
 
