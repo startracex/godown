@@ -20,7 +20,7 @@ export function templateReplacement(oldContent: string, {
   match,
 }: ReplacementOptions) {
   const templates = extractSourceFile(oldContent).filter(
-    ({ tag, children }) => (children && children.length && (match ? match(tag) : tag)),
+    ({ tag }) => (match ? match(tag) : tag),
   );
 
   if (!templates.length) {
@@ -40,41 +40,51 @@ export function templateReplacement(oldContent: string, {
 
     const { start, end } = template;
 
-    const replaced = replaceText(
-      template.text,
-      template.children.map(
-        (child) => {
-          const replacedValue = replace(child.text, replaceIndex, child, template);
-          replaceIndex++;
-          replaceMap.set(replacedValue, child.text);
-          return {
-            text: replacedValue,
-            start: child.start - start - ("${".length),
-            end: child.end - start + ("}".length),
-          };
-        },
-      ),
-    );
+    if (!template.children) {
+      // no expressions
 
-    let processContent = replaced;
+      let text = template.text;
+      if (callback) {
+        text = withQuote(callback(trimQuote(text)));
+      }
+      replacePositions.push({
+        text,
+        start,
+        end,
+      });
+    } else {
+      const replaced = replaceText(
+        template.text,
+        template.children.map(
+          (child) => {
+            const replacedValue = replace(child.text, replaceIndex, child, template);
+            replaceIndex++;
+            replaceMap.set(replacedValue, child.text);
+            return {
+              text: replacedValue,
+              start: child.start - start - ("${".length),
+              end: child.end - start + ("}".length),
+            };
+          },
+        ),
+      );
 
-    if (callback) {
-      const qStart = processContent.indexOf("`");
-      const qEnd = processContent.lastIndexOf("`");
-      const sliceStart = qStart === -1 ? 0 : qStart + 1;
-      const sliceEnd = qEnd === -1 ? processContent.length : qEnd - 1;
-      processContent = "`" + callback(processContent.slice(sliceStart, sliceEnd)) + "`";
+      let processContent = replaced;
+
+      if (callback) {
+        processContent = withQuote(callback(trimQuote(processContent)));
+      }
+
+      replaceMap.forEach((value, key) => {
+        processContent = processContent.replaceAll(key, "${" + value + "}");
+      });
+
+      replacePositions.push({
+        text: processContent,
+        start,
+        end,
+      });
     }
-
-    replaceMap.forEach((value, key) => {
-      processContent = processContent.replaceAll(key, "${" + value + "}");
-    });
-
-    replacePositions.push({
-      text: processContent,
-      start,
-      end,
-    });
   }
 
   return replaceText(oldContent, replacePositions);
@@ -98,7 +108,7 @@ export default function (
       const code = templateReplacement(oldContent, {
         callback: options.callback,
         match: options.match || ((tag) => options.tags.includes(tag)),
-        replace: options.replace || ((text, index, parent) => "__REPLACE_" + index + "__"),
+        replace: options.replace || ((_, index) => "--__REPLACE__" + index + "__"),
       });
       return {
         code: code,
@@ -116,4 +126,12 @@ export function replaceText(raw: string, pos: { text: string; start: number; end
     index = end;
   });
   return result + raw.slice(index);
+}
+
+function trimQuote(s: string) {
+  return s.slice(1, -1);
+}
+
+function withQuote(s: string) {
+  return "`" + s + "`";
 }
