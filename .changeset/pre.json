@@ -1,0 +1,18 @@
+{
+  "mode": "pre",
+  "tag": "canary",
+  "initialVersions": {
+    "@godown/common": "0.0.0",
+    "@godown/colors": "0.0.0",
+    "@godown/element": "0.0.0",
+    "@godown/f7-icon": "0.0.0",
+    "godown": "2.7.7",
+    "@godown/react": "0.0.0",
+    "template-extractor": "0.0.0",
+    "cem-plugin-define": "0.1.0",
+    "cem-plugin-fix-module": "0.0.0",
+    "rollup-plugin-template-replace": "0.0.0",
+    "@godown/tsconfig": "0.0.0"
+  },
+  "changesets": []
+}
