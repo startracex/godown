@@ -15,6 +15,7 @@
     "@godown/tsconfig": "0.0.0"
   },
   "changesets": [
-    "angry-pumpkins-itch"
+    "angry-pumpkins-itch",
+    "blue-rocks-own"
   ]
 }
