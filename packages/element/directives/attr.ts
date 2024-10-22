@@ -25,7 +25,6 @@ class AttrDirective extends Directive {
     if (part.type === PartType.ELEMENT) {
       for (const name in value) {
         updateAttribute(part.element, name, value[name]);
-        return value;
       }
       return noChange;
     }
@@ -58,11 +57,12 @@ const svgInitials = {
 };
 
 const withInitials = (attrDirective: (a: DirectiveParams) => any, i: DirectiveParams) => {
-  return (a: DirectiveParams) =>
-    attrDirective({
+  return (a: DirectiveParams) => {
+    return attrDirective({
       ...i,
       ...a,
     });
+  };
 };
 
 export const svgAttr = withInitials(attr, svgInitials);
