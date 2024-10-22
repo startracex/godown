@@ -1,8 +1,8 @@
-import { HandlerEvent } from "@godown/element";
+import { type HandlerEvent } from "@godown/element";
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { css, html } from "lit";
+import { css, html, type PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
@@ -117,18 +117,19 @@ class Dialog extends SuperOpenable {
     this.show();
   }
 
-  private _submitEvent: EventListenerOrEventListenerObject | undefined;
-  private _keydownEvent: EventListenerOrEventListenerObject | undefined;
-
-  protected updated() {
-    if (this.open) {
-      this._submitEvent = this.events.add(this, "submit", this._handelSubmit);
-      if (this.key) {
-        this._keydownEvent = this.events.add(document, "keydown", this._handleKeydown.bind(this));
+  protected updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("open")) {
+      let submitEvent: EventListenerOrEventListenerObject;
+      let keydownEvent: EventListenerOrEventListenerObject;
+      if (this.open) {
+        submitEvent = this.events.add(this, "submit", this._handelSubmit);
+        if (this.key) {
+          keydownEvent = this.events.add(document, "keydown", this._handleKeydown.bind(this));
+        }
+      } else {
+        this.events.remove(this, "submit", submitEvent);
+        this.events.remove(document, "keydown", keydownEvent);
       }
-    } else {
-      this._submitEvent = this.events.remove(this, "submit", this._submitEvent);
-      this._keydownEvent = this.events.remove(document, "keydown", this._keydownEvent);
     }
   }
 

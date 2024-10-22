@@ -264,12 +264,12 @@ class Range extends SuperInput {
       e.preventDefault();
       e.stopPropagation();
       const move = this.createMousemoveListener(mouseMoveCallback);
-      document.addEventListener("mousemove", move);
+      this.events.add(document, "mousemove", move);
       const stop = () => {
-        document.removeEventListener("mousemove", move);
-        document.removeEventListener("mouseup", stop);
+        this.events.remove(document, "mousemove", move);
+        this.events.remove(document, "mouseup", stop);
       };
-      document.addEventListener("mouseup", stop);
+      this.events.add(document, "mouseup", stop);
     };
   }
 
