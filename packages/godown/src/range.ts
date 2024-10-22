@@ -8,6 +8,6 @@ export * from "./components/range.js";
 
 declare global {
   interface HTMLElementTagNameMap {
-    "godown-range-input": Range;
+    "godown-range": Range;
   }
 }
