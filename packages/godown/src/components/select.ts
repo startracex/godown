@@ -184,6 +184,9 @@ class Select extends Input {
       this.defaultText = this.text;
       this.defaultChecked = checked;
     }
+    if (!this.text) {
+      this.text = "";
+    }
   }
 
   reset(): void {
