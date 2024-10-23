@@ -2,10 +2,10 @@ import { HandlerEvent } from "@godown/element";
 import { godown } from "@godown/element/decorators/godown.js";
 import { part } from "@godown/element/decorators/part.js";
 import { styles } from "@godown/element/decorators/styles.js";
-import { htmlSlot } from "@godown/element/directives/index.js";
+import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import svgCaretDown from "@godown/f7-icon/icons/chevron-down.js";
 import { css, html, nothing } from "lit";
-import { property } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 import Input from "./input.js";
@@ -57,7 +57,6 @@ const protoName = "select";
     [part="content"] {
       position: absolute;
       width: 100%;
-      visibility: hidden;
     }
 
     [direction="bottom"] {
@@ -89,16 +88,17 @@ class Select extends Input {
   @part("content")
   _content: HTMLElement;
 
-  @property({ type: Boolean })
-  visible: boolean;
-
   @property()
   direction: "top" | "bottom" | undefined;
 
   @property({ type: Boolean })
   multiple: boolean;
 
-  protected autoDirection: "top" | "bottom";
+  @property({ type: Boolean })
+  visible: boolean;
+
+  @state()
+  protected autoDirection: "top" | "bottom" = "bottom";
   protected lastChecked: HTMLElement;
   protected defaultText: string;
   protected defaultChecked: HTMLElement[];
@@ -125,9 +125,9 @@ class Select extends Input {
       html`<label for="${this.makeId}" part="suffix">
         <i part="space"></i><i part="icon">${svgCaretDown()}</i><i part="space"></i>
       </label>`,
-      html`<div part="content" direction="${this.direction || this.autoDirection}" style="visibility:${
-        this.visible ? "visible" : "hidden"
-      }">${htmlSlot()}</div>`,
+      html`<label for="${this.makeId}" part="content" 
+      style="visibility:${this.visible ? "visible" : "hidden"}"
+      direction="${this.direction || this.autoDirection}">${htmlSlot()}</label>`,
     ]}
     </div>`;
   }
@@ -141,30 +141,33 @@ class Select extends Input {
         this.autoDirection = "bottom";
       }
     }
-    if (!this.visible) {
-      const event = this.events.add(document, "click", (e: HandlerEvent) => {
-        const { target } = e;
-        if (!this.contains(target as Node)) {
-          this.events.remove(document, "click", event);
-          this.visible = false;
-        } else if (target !== this) {
-          const value = this.optionValue(target);
-          if (value) {
-            const operation = this.select(value, target.textContent);
-            if (!this.multiple) {
-              updateChecked(this.lastChecked, 0);
-            }
-            updateChecked(target, operation);
-            this.lastChecked = target;
-          }
-          this.visible = this.multiple;
-          if (!this.visible) {
-            this.events.remove(document, "click", event);
-          }
-        }
-      });
-    }
     this.visible = true;
+  }
+
+  protected firstUpdated() {
+    this.events.add(this._content, "click", (e: HandlerEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const { target } = e;
+      const value = this.optionValue(target);
+      if (value) {
+        const operation = this.select(value, target.textContent);
+        if (!this.multiple) {
+          updateChecked(this.lastChecked, 0);
+        }
+        updateChecked(target, operation);
+        this.lastChecked = target;
+      }
+      this._input.focus();
+    });
+    this.events.add(document, "click", (e: HandlerEvent) => {
+      // e.preventDefault();
+      e.stopPropagation();
+      const composed1 = e.composedPath()[0] as HTMLElement;
+      if (composed1 && !this.shadowRoot.contains(composed1)) {
+        this.blur();
+      }
+    });
   }
 
   protected _connectedInit() {
