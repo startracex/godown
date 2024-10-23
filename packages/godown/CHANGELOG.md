@@ -1,5 +1,12 @@
 # godown
 
+## 3.0.0-canary.3
+
+### Patch Changes
+
+- 047a8d2: fix target error of the event listener for select
+- b5acc29: update styles
+
 ## 3.0.0-canary.2
 
 ### Patch Changes
