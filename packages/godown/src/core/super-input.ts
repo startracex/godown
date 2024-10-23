@@ -17,8 +17,11 @@ const fieldStyle = css`
     height: inherit;
   }
 
-  .input-field input {
+  .input-field [part="input"] {
     background: transparent;
+    height: 100%;
+    width: 100%;
+    color: inherit;
   }
 
   .input-field:focus-within,
@@ -26,24 +29,20 @@ const fieldStyle = css`
     box-shadow: var(${cssGlobalVars.input}-box-shadow);
   }
 
-  .input-field i {
+  .input-field [part="icon"] {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .input-field label {
+  .input-field [part="prefix"],
+  .input-field [part="suffix"] {
     height: 100%;
     display: flex;
   }
 
   .input-field [part="space"]{
     width: var(${cssGlobalVars.input}-space);
-  }
-
-  input::-ms-reveal,
-  input::-ms-clear {
-    display: none;
   }
 `;
 
@@ -67,6 +66,11 @@ const inputStyle = css`
 
 input:disabled {
   cursor: inherit;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
 }
 `;
 
@@ -189,14 +193,14 @@ class SuperInput extends GlobalStyle {
     const PASSWORD = "password";
     return html`<label for=${this.makeId} part="suffix">${
       this.type === "password"
-        ? html`<i
-            part="icon"
-            @mousedown="${() => this._changeInputType("text")}"
-            @mouseup="${() => this._changeInputType(PASSWORD)}"
-            @mouseleave="${() => this._changeInputType(PASSWORD)}"
-          >
-          <i part="space"></i>
-          ${iconEyeSlashFill()}</i>`
+        ? html`
+        <i part="space"></i>
+        <i
+          part="icon"
+          @mousedown="${() => this._changeInputType("text")}"
+          @mouseup="${() => this._changeInputType(PASSWORD)}"
+          @mouseleave="${() => this._changeInputType(PASSWORD)}"
+        >${iconEyeSlashFill()}</i>`
         : htmlSlot("suffix")
     }
     <i part="space"></i>

@@ -50,9 +50,8 @@ const cssScope = scopePrefix(protoName);
     }
 
     input {
-      margin: 0;
+      opacity: 0;
       height: 100%;
-      outline: none;
       appearance: none;
     }
 

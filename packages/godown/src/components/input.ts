@@ -26,22 +26,6 @@ const protoName = "input";
       border-radius: var(${cssGlobalVars.input}-radius);
       display: block;
     }
-
-    [part="root"] {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      cursor: inherit;
-    }
-
-    input {
-      height: 100%;
-      width: 100%;
-      margin: 0;
-      color: inherit;
-      cursor: inherit;
-      border-radius: inherit;
-    }
   `,
 )
 class Input extends SuperInput {
