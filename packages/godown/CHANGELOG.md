@@ -1,5 +1,11 @@
 # godown
 
+## 3.0.0-canary.4
+
+### Patch Changes
+
+- 89ccdd0: update alert
+
 ## 3.0.0-canary.3
 
 ### Patch Changes
