@@ -10,7 +10,6 @@ import "@godown/f7-icon";
 
 ```html
 <f7-icon name="airplane"></f7-icon>
-<f7-icon icon="airplane"></f7-icon>
 ```
 
 ### Template result of lit-html 
@@ -89,10 +88,24 @@ The target module needs to export a function by default.
 ```js
 import F7Icon from "@godown/f7-icon";
 
-const airplane = new F7Icon();
-airplane.toURL = function (name: string) {
+const i = new F7Icon();
+i.toURL = function (name: string) {
   return "specified URL or string";
 };
+```
+
+Example CDNs
+
+```js
+i.toURL =
+/* esm.sh */
+(name) => `https://esm.sh/@godown/f7-icon/icons/${name}.js`;
+
+/* jsDelivr */
+// (name) => `https://esm.run/@godown/f7-icon/icons/${name}.js`;
+
+/*  unpkg */ 
+// (name) => `https://unpkg.com/@godown/f7-icon/icons/${name}.js?module`;
 ```
 
 ### Lazy loading
