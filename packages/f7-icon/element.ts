@@ -13,16 +13,8 @@ class IconElement extends GodownElement {
   @property()
   loading: "lazy" | "eager" = "lazy";
 
-  @alias("icon", {
-    set(value) {
-      this.name = value;
-    },
-  })
-  @property({
-    reflect: true,
-  })
+  @property()
   name: string;
-  icon: string;
 
   @state()
   module: any;
@@ -30,7 +22,7 @@ class IconElement extends GodownElement {
   protected allowLoad: boolean;
 
   load(id: string) {
-    if (this.allowLoad) {
+    if (this.name && this.allowLoad) {
       import(this.toURL(id) + "").then((i) => this.module = i);
     }
   }
