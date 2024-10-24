@@ -128,6 +128,7 @@ const calls = {
     [part="root"] {
       --color: var(${cssScope}--color);
       color: var(--color);
+      width: 100%;
       transition: 0.25s;
       display: flex;
       justify-content: space-between;
@@ -193,6 +194,7 @@ class Alert extends GlobalStyle {
   @property()
   color: "white" | "black" | "gray" | "green" | "teal" | "blue" | "red" | "purple" | "orange" | "yellow" | "pink";
 
+  defaultColor = "blue";
   /**
    * Close delay, if 0, it will not be closed automatically.
    */
@@ -214,7 +216,7 @@ class Alert extends GlobalStyle {
   /**
    * Set true to hide the close button.
    *
-   * The behavior may change due to the {@linkcode variant} property
+   * The behavior may change due to the {@linkcode variant} property.
    */
   @property({
     type: Boolean,
@@ -230,7 +232,7 @@ class Alert extends GlobalStyle {
   variant: "blockquote" | "dark" | "light" = "dark";
 
   protected render() {
-    const color = this.call ? this.color || calls[this.call].color : this.color;
+    const color = this.call ? this.color || calls[this.call].color : this.color || this.defaultColor;
     const icon = this.call ? calls[this.call].icon() : htmlSlot("icon");
     return html`<div part="root" variant="${this.variant}" color="${color}">
       <div part="icon">${icon}</div>
