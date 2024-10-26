@@ -2,12 +2,10 @@ import { godown } from "@godown/element/decorators/godown.js";
 import { part } from "@godown/element/decorators/part.js";
 import { styles } from "@godown/element/decorators/styles.js";
 import { classList } from "@godown/element/directives/class-list.js";
-import { conditionIf } from "@godown/element/directives/condition-if.js";
-import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { joinProperties } from "@godown/element/tools/css.js";
 import { isNil } from "@godown/element/tools/lib.js";
 import { css, html } from "lit";
-import { property, state } from "lit/decorators.js";
+import { property, queryAll, state } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
 import SuperInput from "../core/super-input.js";
@@ -16,11 +14,11 @@ const protoName = "range";
 const cssScope = scopePrefix(protoName);
 
 /**
- * {@linkcode Range} is similar to <input type="range">.
+ * {@linkcode Range} is similar to `<input type="range">`.
  *
- * Value accepts a number, or an array of two numbers.
+ * Value accepts number, or array.
  *
- * Number have one handle, array have two.
+ * Number has 1 handle, the array has the number of its elements and the minimum is 2.
  *
  * @category input
  */
@@ -41,13 +39,10 @@ const cssScope = scopePrefix(protoName);
       width: fit-content;
     }
 
-     :host(:not([disabled])) i:active {
+    :host(:not([disabled])) .last-focus {
+      z-index: 1;
       ${cssScope}-handle-scale:1.05;
       background: var(${cssScope}-handle-active);
-    }
-
-    .last-focus {
-      z-index: 1;
     }
 
     [part="root"] {
@@ -55,8 +50,8 @@ const cssScope = scopePrefix(protoName);
       position: relative;
       border-radius: inherit;
       width: 100%;
-      --start: 0%;
-      --end: 50%;
+      --from: 0%;
+      --to: 50%;
       height: var(${cssScope}-track-width);
     }
 
@@ -68,9 +63,9 @@ const cssScope = scopePrefix(protoName);
       pointer-events: none;
       border-radius: inherit;
       justify-content: space-between;
-      left: min(var(--start), var(--end));
+      left: min(var(--from), var(--to));
       background: var(${cssGlobalVars.active});
-      width: max(calc(var(--end) - var(--start)), calc(var(--start) - var(--end)));
+      width: max(calc(var(--to) - var(--from)), calc(var(--from) - var(--to)));
     }
 
     [part="handle"] {
@@ -101,29 +96,19 @@ const cssScope = scopePrefix(protoName);
 
     .vertical [part="track"] {
       width: 100%;
-      height: max(calc(var(--end) - var(--start)), calc(var(--start) - var(--end)));
-      top: min(var(--start), var(--end));
+      height: max(calc(var(--to) - var(--from)), calc(var(--from) - var(--to)));
+      top: min(var(--from), var(--to));
       left: 0;
     }
   `,
   css`
-    .start {
-      left: var(--start);
+    [part="handle"] {
+      left: var(--handle);
       top: 0;
     }
 
-    .end {
-      left: var(--end);
-      top: 0;
-    }
-
-    .vertical .start {
-      top: var(--start);
-      left: 0;
-    }
-
-    .vertical .end {
-      top: var(--end);
+    .vertical [part="handle"] {
+      top: var(--handle);
       left: 0;
     }
   `,
@@ -134,17 +119,22 @@ class Range extends SuperInput {
    */
   @property({ type: Number })
   min = 0;
+
   /**
    * Maximum value.
    */
   @property({ type: Number })
   max = 100;
+
   /**
    * Sliding step length.
    */
   @property({ type: Number })
-  step = 1;
+  step: number;
 
+  /**
+   * Display vertically
+   */
   @property({ type: Boolean, reflect: true })
   vertical: boolean;
 
@@ -152,18 +142,21 @@ class Range extends SuperInput {
    * When `this.range` is true, it should be [number, number], otherwise number.
    */
   @property({ type: Array })
-  value: number | [number, number];
+  value: number | number[];
   /**
    * The default of `this.value`.
    */
   @property({ type: Array })
-  default: number | [number, number];
+  default: typeof this.value;
 
   @part("root")
   _root: HTMLElement;
 
+  @queryAll("[part=handle]")
+  _handles: NodeListOf<HTMLElement>;
+
   @state()
-  lastFocus: undefined | 1 | 2;
+  lastFocus?: number;
 
   /**
    * Returns true when the second number is greater than the first number
@@ -173,19 +166,39 @@ class Range extends SuperInput {
   }
 
   /**
-   * Enable range sliding.
+   * If value is array.
    */
   get range(): boolean {
     return Array.isArray(this.value);
   }
 
-  get rangeValue(): [number, number] {
-    return (this.range ? this.value : [0, this.value]) as [number, number];
+  /**
+   * Return values in the form of an array.
+   */
+  get rangeValue(): number[] {
+    return (this.range ? this.value : [this.value]) as number[];
+  }
+
+  /**
+   * @param len Minimum result length.
+   * @param value Fill value.
+   * @returns Array with length of len.
+   */
+  padValue(len: number, value = 0): number[] {
+    const { rangeValue } = this;
+    const miss = len - rangeValue.length;
+    if (miss > 0) {
+      return new Array(miss).fill(value).concat(rangeValue);
+    }
+    return rangeValue;
   }
 
   protected render() {
-    const [from, to] = this.rangeValue;
+    const rangeValue = this.padValue(2);
+    const from = Math.min(...rangeValue);
+    const to = Math.max(...rangeValue);
     const gap = this.max - this.min;
+
     return html`<div
       part="root"
       class="${
@@ -197,52 +210,120 @@ class Range extends SuperInput {
     }"
       @mousedown="${this.disabled ? null : this._handleMousedownRoot}"
       style="${
-      joinProperties({ "--start": `${((from - this.min) / gap) * 100}%`, "--end": `${((to - this.min) / gap) * 100}%` })
-    }">
-      <div part="track"></div>
-    ${
-      conditionIf(
-        this.range,
-        html`<i
-        part="handle"
-        class="${classList({ "last-focus": this.lastFocus === 1 }, "start")}"
-        @mousedown="${this.disabled ? null : this._handleMousedownStart}">
-        ${htmlSlot("start")}
-      </i>`,
-      )
+      joinProperties({
+        "--from": `${((from - this.min) / gap) * 100}%`,
+        "--to": `${((to - this.min) / gap) * 100}%`,
+        ...(this.range
+          ? Object.fromEntries(
+            rangeValue.map((value, index) => [
+              `--handle-${index}`,
+              `${((value - this.min) / gap) * 100}%`,
+            ]),
+          )
+          : {}),
+      })
+    }"><div part="track"></div>
+      ${
+      this.range
+        ? (this.value as number[]).map((_, index) => this.renderHandle(index))
+        : this.renderHandle(0)
     }
-      <i
-        part="handle"
-        class="${classList({ "last-focus": this.lastFocus === 2 }, "end")}"
-        @mousedown="${this.disabled ? null : this._handleMousedownEnd}">
-        ${htmlSlot("end")}
-      </i>
     </div>`;
   }
 
-  protected _handleMousedownStart(e: MouseEvent) {
-    this.lastFocus = 1;
-    this.createMousedownListener(this.setStart)(e);
-  }
-  protected _handleMousedownEnd(e: MouseEvent) {
-    this.lastFocus = 2;
-    this.createMousedownListener(this.setEnd)(e);
+  protected renderHandle(index: number) {
+    const { range } = this;
+    const end = !range || index === (this.value as number[]).length - 1;
+    return html`<i
+      tabindex="0"
+      part="handle"
+      class="${classList({ "last-focus": this.lastFocus === index })}"
+      @mousedown="${this.disabled ? null : this.createMouseDown(index)}"
+      @focus="${this.disabled ? null : () => this.focusHandle(index)}"
+      @blur="${this.disabled ? null : this.blurHandle}"
+      style="--handle:var(--${
+      /* In single-handle mod or end, it is max value */
+      (!range && end) ? `to` : `handle-${index}`})"
+      ></i>
+      `;
   }
 
-  setStart(value: number) {
-    const i = this.value[1];
-    this.value = this.range ? [value, i] : value;
+  private _keydownEvent: EventListenerOrEventListenerObject;
+
+  focusHandle(index: number) {
+    this.lastFocus = index;
+    const handleItem = this._handles.item(index);
+    handleItem?.focus();
+    if (!this._keydownEvent) {
+      this._keydownEvent = this.events.add(document, "keydown", this.createKeydownEvent(index));
+    }
+  }
+
+  blurHandle() {
+    this.lastFocus = undefined;
+    this._keydownEvent = this.events.remove(document, "keydown", this._keydownEvent);
+  }
+
+  protected createKeydownEvent(index: number) {
+    if (!this.range) {
+      index = 0;
+    }
+    return (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+        e.preventDefault();
+        this.createSetValue(index)(old => old - this.step);
+      } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+        e.preventDefault();
+        this.createSetValue(index)(old => old + this.step);
+      }
+    };
+  }
+
+  createMouseDown(index) {
+    return (e) => {
+      this.focusHandle(index);
+      this.createMousedownListener(this.createSetValue(index))(e);
+    };
+  }
+
+  protected _handleMousedownEnd(e: MouseEvent) {
+    this.lastFocus = 0;
+    this.createMousedownListener(this.setEnd)(e);
+    this.focusHandle(0);
+  }
+
+  createSetValue(index?: number) {
+    return (numberOrModifier: number | ((value: number) => number)) => {
+      const number = typeof numberOrModifier === "number"
+        ? this.normalizeValue(numberOrModifier)
+        : numberOrModifier(this.rangeValue[index]);
+      let newValue: any = number;
+      if (this.range) {
+        newValue = [...this.rangeValue];
+        newValue[index] = number;
+      }
+      this.value = newValue;
+    };
   }
 
   setEnd(value: number) {
-    const i = this.value[0];
-    this.value = this.range ? [i, value] : value;
+    this.createSetValue((this.value as any)?.length - 1 || 0)(value);
   }
 
+  /**
+   * Compute value from event.
+   */
   protected _computeValue(e: MouseEvent) {
     const rect = this._root.getBoundingClientRect();
     const div = this.vertical ? (e.clientY - rect.top) / rect.height : (e.clientX - rect.left) / rect.width;
-    let value = Math.round((div * (this.max - this.min)) / this.step) * this.step;
+    const value = Math.round((div * (this.max - this.min)) / this.step) * this.step;
+    return this.normalizeValue(value);
+  }
+
+  /**
+   * Ensure that the values do not exceed the range of max and min.
+   */
+  protected normalizeValue(value: number) {
     if (value > this.max) { value -= this.step; }
     else if (value < this.min) { value += this.step; }
     return value;
@@ -250,13 +331,18 @@ class Range extends SuperInput {
 
   protected _handleMousedownRoot(e: MouseEvent) {
     const value = this._computeValue(e);
-    if (!this.range || Math.abs(value - this.value[0]) > Math.abs(value - this.value[1])) {
-      this.setEnd(value);
-      this._handleMousedownEnd(e);
-    } else {
-      this.setStart(value);
-      this._handleMousedownStart(e);
-    }
+    const index = this.range
+      ? this.rangeValue.reduce((acc, item, index) => {
+        const diff = Math.abs(value - item);
+        const prevDiff = Math.abs(value - this.rangeValue[acc]);
+        return diff < prevDiff ? index : acc;
+      }, 0)
+      : 0;
+
+    const set = this.createSetValue(index);
+    set(value);
+    this.createMousedownListener(set)(e);
+    this.focusHandle(index);
   }
 
   protected createMousedownListener(mouseMoveCallback: (arg0: number) => void) {
@@ -286,15 +372,14 @@ class Range extends SuperInput {
   protected _connectedInit() {
     const gap = this.max - this.min;
     this.step ||= gap / 100;
-    if (!isNil(this.default) && isNil(this.value)) {
-      this.value = this.default;
-    } else if (isNil(this.default) && !isNil(this.value)) {
-      this.default = this.value;
-    } else {
-      const mid = Math.round(gap / 2 / this.step) * this.step;
-      this.default = this.range ? [0, mid] : mid;
-      this.value = this.default;
+    if (isNil(this.value)) {
+      if (!isNil(this.default)) {
+        this.value = this.default;
+      } else {
+        this.value = Math.round(gap / 2 / this.step) * this.step;
+      }
     }
+    this.default ??= this.value;
   }
 
   reset() {
@@ -312,7 +397,7 @@ class Range extends SuperInput {
     this.value = this.toSorted();
   }
 
-  toSorted(): number | [number, number] {
+  toSorted(): typeof this.value {
     if (this.range) {
       const [a, b] = this.value as [number, number];
       return a > b ? [b, a] : [a, b];
