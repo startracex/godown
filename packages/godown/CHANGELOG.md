@@ -1,5 +1,13 @@
 # godown
 
+## 3.0.0-canary.5
+
+### Patch Changes
+
+- 999e5d6: fix dialog event remove error
+- e17d9b2: call super in the focus and blur
+- be33b22: add multi-handle control and keyboard support for range
+
 ## 3.0.0-canary.4
 
 ### Patch Changes
