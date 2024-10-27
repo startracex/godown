@@ -1,5 +1,14 @@
 # @godown/react
 
+## 3.0.0-canary.5
+
+### Patch Changes
+
+- Updated dependencies [999e5d6]
+- Updated dependencies [e17d9b2]
+- Updated dependencies [be33b22]
+  - godown@3.0.0-canary.5
+
 ## 3.0.0-canary.4
 
 ### Patch Changes
