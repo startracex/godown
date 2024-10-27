@@ -16,7 +16,8 @@
   },
   "excludes": [
     "**/node_modules",
-    "**/*.d.ts"
+    "**/*.d.ts",
+    "**/CHANGELOG.md"
   ],
   "includes": [
     "**/*.ts",
