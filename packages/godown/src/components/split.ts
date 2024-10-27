@@ -157,6 +157,7 @@ class Split extends SuperInput {
 
   focus() {
     this.focusAt(this.current);
+    super.focus();
   }
 
   focusAt(i: number) {
@@ -167,6 +168,7 @@ class Split extends SuperInput {
   blur() {
     this._input.blur();
     this.current = -1;
+    super.blur();
   }
 
   reset() {

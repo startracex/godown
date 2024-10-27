@@ -236,10 +236,12 @@ class Button extends GlobalStyle {
       return;
     }
     this.active = true;
+    super.focus();
   }
 
   blur() {
     this.active = false;
+    super.blur();
   }
 
   firstUpdated() {

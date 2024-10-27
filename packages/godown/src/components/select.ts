@@ -263,6 +263,7 @@ class Select extends Input {
   blur() {
     this._input.blur();
     this.visible = false;
+    super.blur();
   }
 
   optionValue(option: HTMLElement): string {
