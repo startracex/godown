@@ -117,18 +117,19 @@ class Dialog extends SuperOpenable {
     this.show();
   }
 
+  private _submitEvent: EventListenerOrEventListenerObject;
+  private _keydownEvent: EventListenerOrEventListenerObject;
+
   protected updated(changedProperties: PropertyValues) {
     if (changedProperties.has("open")) {
-      let submitEvent: EventListenerOrEventListenerObject;
-      let keydownEvent: EventListenerOrEventListenerObject;
       if (this.open) {
-        submitEvent = this.events.add(this, "submit", this._handelSubmit);
+        this._submitEvent = this.events.add(this, "submit", this._handelSubmit);
         if (this.key) {
-          keydownEvent = this.events.add(document, "keydown", this._handleKeydown.bind(this));
+          this._keydownEvent = this.events.add(document, "keydown", this._handleKeydown.bind(this));
         }
       } else {
-        this.events.remove(this, "submit", submitEvent);
-        this.events.remove(document, "keydown", keydownEvent);
+        this.events.remove(this, "submit", this._submitEvent);
+        this.events.remove(document, "keydown", this._keydownEvent);
       }
     }
   }
