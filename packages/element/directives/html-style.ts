@@ -1,8 +1,7 @@
-import { html } from "lit";
+import { html, nothing } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 import { joinRules } from "../tools/css.js";
-import { conditionIf } from "./condition-if.js";
 
 /**
  * Style element directive.
@@ -11,9 +10,11 @@ import { conditionIf } from "./condition-if.js";
  * @param media Style media attribute.
  */
 export const htmlStyle = (style?: string | Record<string, any>, media?: string) => {
+  if (!style) {
+    return nothing;
+  }
   const styleString = typeof style === "string" ? style : joinRules(style);
-  return conditionIf(
-    styleString,
-    html`<style media="${ifDefined(media)}">${styleString}</style>`,
-  );
+  return styleString
+    ? html`<style media="${ifDefined(media)}">${styleString}</style>`
+    : nothing;
 };
