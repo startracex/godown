@@ -166,7 +166,7 @@ class GodownElement extends LitElement {
    * )
    * ```
    */
-  adoptStyles(...styles: LikeString[]): number {
+  adoptStyles(...styles: { toString(): string; }[]): number {
     const stack = this.shadowRoot.adoptedStyleSheets;
     if (styles.length) {
       const sheet = new CSSStyleSheet();
@@ -178,10 +178,6 @@ class GodownElement extends LitElement {
 }
 
 export { GodownElement, GodownElement as default };
-
-export interface LikeString {
-  toString(): string;
-}
 
 export type HandlerEvent<T = HTMLElement, E = Event> =
   & E
