@@ -3,7 +3,7 @@ import ts from "typescript";
 export interface ExtractResult {
   tag?: string;
   type: "TaggedTemplateExpression" | "TemplateExpression" | "TemplateSpan";
-  kind: ts.TemplateExpression["kind"] | ts.TemplateExpression["kind"] | ts.TemplateSpan["kind"];
+  kind: ts.TemplateExpression["kind"] | ts.TemplateSpan["kind"];
   text: string;
   start: number;
   end: number;
