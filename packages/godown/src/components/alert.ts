@@ -2,7 +2,8 @@ import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
 import { conditionIf } from "@godown/element/directives/condition-if.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { constructCSS } from "@godown/element/tools/css.js";
+import { htmlStyle } from "@godown/element/directives/html-style.js";
+import { constructCSSObject, toVar } from "@godown/element/tools/css.js";
 import iconCheckAltCircle from "@godown/f7-icon/icons/checkmark-alt-circle.js";
 import iconExclamationCircle from "@godown/f7-icon/icons/exclamationmark-circle.js";
 import iconInfoCircle from "@godown/f7-icon/icons/info-circle.js";
@@ -11,7 +12,7 @@ import iconQuestionCircle from "@godown/f7-icon/icons/question-circle.js";
 import iconSlashCircle from "@godown/f7-icon/icons/slash-circle.js";
 import iconXmark from "@godown/f7-icon/icons/xmark.js";
 import iconXmarkCircle from "@godown/f7-icon/icons/xmark-circle.js";
-import { css, html, unsafeCSS } from "lit";
+import { css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -25,7 +26,7 @@ const genDark = (key: string) => {
   return [cssGlobalVars._colors[key][5], cssGlobalVars._colors[key][9]];
 };
 
-const darkStyles = constructCSS(
+const darkStyles = constructCSSObject(
   vars,
   {
     green: genDark("green"),
@@ -40,15 +41,15 @@ const darkStyles = constructCSS(
     white: [cssGlobalVars._colors.lightgray[2], cssGlobalVars._colors.darkgray[7]],
     black: [cssGlobalVars._colors.darkgray[8], cssGlobalVars._colors.lightgray[5]],
   },
-  (color) => `[color=${color}]`,
-  (prop) => `var(${prop})`,
+  () => `:host`,
+  (prop) => toVar(prop),
 );
 
 const genLight = (key: string) => {
   return [cssGlobalVars._colors[key][6], cssGlobalVars._colors[key][0]];
 };
 
-const lightStyles = constructCSS(
+const lightStyles = constructCSSObject(
   vars,
   {
     green: genLight("green"),
@@ -63,8 +64,8 @@ const lightStyles = constructCSS(
     white: [cssGlobalVars._colors.lightgray[0], cssGlobalVars._colors.darkgray[0]],
     black: [cssGlobalVars._colors.darkgray[7], cssGlobalVars._colors.lightgray[3]],
   },
-  (color) => `[variant="light"][color=${color}]`,
-  (prop) => `var(${prop})`,
+  () => `:host`,
+  (prop) => toVar(prop),
 );
 
 const calls = {
@@ -105,6 +106,8 @@ const calls = {
 /**
  * {@linkcode Alert} renders a alert.
  *
+ * Color defaults to blue.
+ *
  * @slot - Alert content.
  * @slot title - Alert title.
  * @slot icon - Alert icon.
@@ -112,8 +115,6 @@ const calls = {
  */
 @godown(protoName)
 @styles(
-  unsafeCSS(darkStyles),
-  unsafeCSS(lightStyles),
   css`
     :host {
       border-radius: var(${cssScope}--border-radius);
@@ -194,7 +195,6 @@ class Alert extends GlobalStyle {
   @property()
   color: "white" | "black" | "gray" | "green" | "teal" | "blue" | "red" | "purple" | "orange" | "yellow" | "pink";
 
-  defaultColor = "blue";
   /**
    * Close delay, if 0, it will not be closed automatically.
    */
@@ -218,9 +218,7 @@ class Alert extends GlobalStyle {
    *
    * The behavior may change due to the {@linkcode variant} property.
    */
-  @property({
-    type: Boolean,
-  })
+  @property({ type: Boolean })
   hideClose = false;
 
   /**
@@ -232,21 +230,24 @@ class Alert extends GlobalStyle {
   variant: "blockquote" | "dark" | "light" = "dark";
 
   protected render() {
-    const color = this.call ? this.color || calls[this.call].color : this.color || this.defaultColor;
+    const color = calls[this.call]?.color || this.color;
     const icon = this.call ? calls[this.call].icon() : htmlSlot("icon");
-    return html`<div part="root" variant="${this.variant}" color="${color}">
+    return [
+      html`<div part="root" variant="${this.variant}">
       <div part="icon">${icon}</div>
       <div part="content">
         <strong part="title">${this.title || htmlSlot("title")}</strong>
         ${this.content || htmlSlot()}
       </div>
-    ${
-      conditionIf(
-        !this.hideClose && this.variant !== "blockquote",
-        html`<div part="close" @click="${this.close}">${iconXmark()}</div>`,
-      )
-    }
-    </div>`;
+      ${
+        conditionIf(
+          !this.hideClose && this.variant !== "blockquote",
+          html`<div part="close" tabindex=0 @click="${this.close}">${iconXmark()}</div>`,
+        )
+      }
+    </div>`,
+      htmlStyle(this.variant === "light" ? lightStyles[color] : darkStyles[color]),
+    ];
   }
 
   close() {

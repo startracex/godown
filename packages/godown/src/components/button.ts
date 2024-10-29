@@ -3,8 +3,8 @@ import { part } from "@godown/element/decorators/part.js";
 import { styles } from "@godown/element/decorators/styles.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
-import { constructCSSObject } from "@godown/element/tools/css.js";
-import { css, html, unsafeCSS } from "lit";
+import { constructCSSObject, toVar } from "@godown/element/tools/css.js";
+import { css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -14,10 +14,6 @@ const cssScope = scopePrefix(protoName);
 
 const whiteFont = cssGlobalVars._colors.lightgray[0];
 const blackFont = cssGlobalVars._colors.darkgray[6];
-
-const toVar = (s) => {
-  return unsafeCSS(`var(${s})`);
-};
 
 const colors = constructCSSObject(
   ["color", "background", "gradients"].map((k) => `${cssScope}--${k}`),
@@ -79,11 +75,13 @@ const colors = constructCSSObject(
     ],
   },
   () => `:host`,
-  toVar,
+  (prop) => toVar(prop),
 );
 
 /**
- * {@linkcode Button}.
+ * {@linkcode Button} renders a button.
+ *
+ * Color defaults to black.
  *
  * @category input
  */
@@ -218,8 +216,6 @@ class Button extends GlobalStyle {
   @part("root")
   _root: HTMLElement;
 
-  static colors = colors;
-
   protected render() {
     const color = this.nextColor();
     return [
@@ -227,7 +223,7 @@ class Button extends GlobalStyle {
         <span part="modal-root"></span>
         <div part="slot">${this.text || htmlSlot()}</div>
       </div>`,
-      htmlStyle(Button.colors[color]),
+      htmlStyle(colors[color]),
     ];
   }
 
