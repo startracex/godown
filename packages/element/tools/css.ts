@@ -8,8 +8,8 @@ import { isNil } from "./lib.js";
 export function constructCSS<K extends string, V extends string | number | CSSResult>(
   vars: string[],
   props: Record<K, V[]>,
-  selectorFunc?: (raw: string) => string,
-  propertyFunc?: (raw: V) => any,
+  selectorFunc?: (raw?: string, index?: number) => string,
+  propertyFunc?: (raw?: V, index?: number) => any,
 ): string {
   return Object.values(constructCSSObject(vars, props, selectorFunc, propertyFunc)).join("");
 }
@@ -29,20 +29,20 @@ export function constructCSSObject<
 >(
   vars: string[],
   props: Record<K, V[]>,
-  selectorFunc?: (raw: string) => string,
-  propertyFunc?: (raw: V) => any,
+  selectorFunc?: (raw?: string, index?: number) => string,
+  propertyFunc?: (raw?: V, index?: number) => any,
 ): R {
   const cssObject = {} as R;
-  Object.keys(props).forEach((sel) => {
+  Object.keys(props).forEach((sel, index0) => {
     const rules = vars.reduce((acc: string[], key, index) => {
       let value = props[sel][index] as V;
-      value = (propertyFunc ? propertyFunc(value) : value) as V;
+      value = (propertyFunc ? propertyFunc(value, index) : value) as V;
       if (!isNil(value)) {
         acc.push(`${key}:${value}`);
       }
       return acc;
     }, []);
-    cssObject[sel] = `${selectorFunc ? selectorFunc(sel) : sel}{${rules.join(";")}}`;
+    cssObject[sel] = `${selectorFunc ? selectorFunc(sel, index0) : sel}{${rules.join(";")}}`;
   });
   return cssObject;
 }
@@ -70,4 +70,12 @@ export function joinProperties(props: Props): string {
     const value = props[key];
     return isNil(value) ? css : css + `${key}:${value};`;
   }, "");
+}
+
+export function toVar(a: LikeString, b?: LikeString) {
+  return a ? `var(${a}${b ? `,${b}` : ""})` : "";
+}
+
+interface LikeString {
+  toString(): string;
 }
