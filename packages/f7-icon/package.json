@@ -1,6 +1,6 @@
 {
   "name": "@godown/f7-icon",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Icon wrapper for F7",
   "type": "module",
   "main": "./f7-icon.js",
