@@ -1,4 +1,10 @@
+# @godown/f7-icon
+
 IconWrapper for [F7](https://framework7.io/icons/).
+
+```sh
+npm i @godown/f7-icon
+```
 
 ## Usage
 
@@ -47,23 +53,11 @@ export default {
 };
 ```
 
-### Type help
-
-#### Node 16 Resolution
-
-package.json exports
-
-#### Triple-Slash Directives
-
-```ts
-/// <reference types="@godown/f7-icon/types/all.d.ts"/>
-```
-
 ### Icon size
 
 Width and height defaults to 1em.
 
-font-size or width and height can change the icon's size.
+*font-size* or *width and height* can change the icon's size.
 
 ```html
 <f7-icon name="airplane" style="font-size:2em;"></f7-icon>
@@ -81,9 +75,29 @@ customElements.define("my-icon", IconElement)
 <my-icon name="airplane"></my-icon>
 ```
 
+## Type hint
+
+### Node 16 Resolution
+
+package.json exports
+
+### Triple-Slash Directives
+
+```ts
+/// <reference types="@godown/f7-icon/types/all.d.ts"/>
+```
+
+## Importing and loading
+
 ### Specify the URL
 
-The target module needs to export a function by default.
+This component imports icons through *dynamic import*.
+
+The target module needs to export a function by **default**.
+
+`toURL` is defaults to `` (name) => `./icons/${name}.js` ``.
+
+The base of the import URL defaults to the `import.meta.url` of the **element declaration file (./element.js)**.
 
 ```js
 import F7Icon from "@godown/f7-icon";
@@ -94,7 +108,9 @@ i.toURL = function (name: string) {
 };
 ```
 
-Example CDNs
+Example CDNs.
+
+If the icons are not **built jointly**, or use an icon library with a **different base** than component, this could be useful.
 
 ```js
 i.toURL =
