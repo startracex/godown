@@ -1,6 +1,6 @@
 {
   "name": "godown",
-  "version": "3.0.0-canary.5",
+  "version": "3.0.0-canary.6",
   "description": "Simple, stylized, semantic web components",
   "type": "module",
   "main": "index.js",
