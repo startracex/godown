@@ -1,5 +1,11 @@
 # godown
 
+## 3.0.0-canary.6
+
+### Patch Changes
+
+- 43d9bb2: unify the styling models of alert and button
+
 ## 3.0.0-canary.5
 
 ### Patch Changes
