@@ -5,7 +5,7 @@ import postcss from "postcss";
 
 import { autoprefixer, minify } from "../../common/postcss-plugins";
 import { build, commonInput, commonOutput } from "../../common/rollup-creator";
-import { minifyLiterals, templateReplacement, ts2 } from "../../common/rollup-plugins";
+import { minifyLiterals, templateReplace, ts2 } from "../../common/rollup-plugins";
 
 const dir = ".";
 
@@ -16,7 +16,7 @@ await build(
     ...commonInput,
     input,
     plugins: [
-      templateReplacement(
+      templateReplace(
         {
           tags: ["css"],
           callback(input) {
