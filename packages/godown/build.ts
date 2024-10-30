@@ -2,10 +2,11 @@ import "./manifest";
 
 import { globSync } from "fs";
 import postcss from "postcss";
+import templateReplace from "rollup-plugin-template-replace";
 
 import { autoprefixer, minify } from "../../common/postcss-plugins";
 import { build, commonInput, commonOutput } from "../../common/rollup-creator";
-import { minifyLiterals, templateReplace, ts2 } from "../../common/rollup-plugins";
+import { minifyLiterals, ts2 } from "../../common/rollup-plugins";
 
 const dir = ".";
 

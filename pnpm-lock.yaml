@@ -187,10 +187,6 @@ importers:
       template-extractor:
         specifier: workspace:^
         version: link:../../packages/template-extractor
-    devDependencies:
-      rollup:
-        specifier: ^4.21.3
-        version: 4.24.3
 
   tsconfig: {}
 

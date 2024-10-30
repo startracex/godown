@@ -14,7 +14,7 @@ export interface ReplacementOptions {
   callback?: (input: string) => string;
 }
 
-export function templateReplacement(oldContent: string, {
+export function doReplace(oldContent: string, {
   replace,
   callback,
   match,
@@ -100,12 +100,12 @@ export default function (
 ): Plugin {
   const filter = createFilter(options.include, options.exclude);
   return {
-    name: "postcss-process",
+    name: "template-replace",
     transform(oldContent: string, id: string) {
       if (!filter(id)) {
         return;
       }
-      const code = templateReplacement(oldContent, {
+      const code = doReplace(oldContent, {
         callback: options.callback,
         match: options.match || ((tag) => options.tags.includes(tag)),
         replace: options.replace || ((_, index) => "--__REPLACE__" + index + "__"),
