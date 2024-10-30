@@ -31,10 +31,7 @@ export async function build<
   O extends OutputOptions,
   C extends (time?: number, output?: O, input?: I) => void,
 >(
-  i: I & {
-    input: string | string[];
-    callback?: C;
-  },
+  i: I & { callback?: C; },
   o?: O | O[],
   c?: C,
 ) {
