@@ -193,7 +193,19 @@ class Alert extends GlobalStyle {
    * Overrides the color of the call.
    */
   @property()
-  color: "white" | "black" | "gray" | "green" | "teal" | "blue" | "red" | "purple" | "orange" | "yellow" | "pink";
+  color:
+    | "white"
+    | "black"
+    | "gray"
+    | "green"
+    | "teal"
+    | "blue"
+    | "red"
+    | "purple"
+    | "orange"
+    | "yellow"
+    | "pink"
+    | "none" = "blue";
 
   /**
    * Close delay, if 0, it will not be closed automatically.
