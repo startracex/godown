@@ -143,6 +143,9 @@ importers:
       '@godown/f7-icon':
         specifier: workspace:^
         version: link:../f7-icon
+      fmtime:
+        specifier: ^0.0.3
+        version: 0.0.3
       lit:
         specifier: ^3.0.0
         version: 3.2.1
@@ -1349,6 +1352,9 @@ packages:
 
   flatted@3.3.1:
     resolution: {integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==}
+
+  fmtime@0.0.3:
+    resolution: {integrity: sha512-QU6QRjz3DUPdoJ+zzJ2LN30h2rP4lcTj1mTV3waZZ/Qs+XI3DwD/xwurFg13/tCQu4yniQ42r1cr/y+KTdXxNw==}
 
   follow-redirects@1.15.9:
     resolution: {integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==}
@@ -3431,6 +3437,8 @@ snapshots:
       rimraf: 3.0.2
 
   flatted@3.3.1: {}
+
+  fmtime@0.0.3: {}
 
   follow-redirects@1.15.9: {}
 
