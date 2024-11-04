@@ -34,7 +34,7 @@ function updateChecked(element: HTMLElement | null, operation: 0 | 1) {
 const protoName = "select";
 
 /**
- * {@linkcode Select} is similar to <select>.
+ * {@linkcode Select} is similar to `<select>`.
  *
  * Elements with the value attribute/property can be used as options.
  *

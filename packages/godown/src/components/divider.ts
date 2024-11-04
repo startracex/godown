@@ -7,7 +7,7 @@ import { GlobalStyle } from "../core/global-style.js";
 const protoName = "divider";
 
 /**
- * {@linkcode Divider} similar to <hr>.
+ * {@linkcode Divider} similar to `<hr>`.
  *
  * This component does not render content.
  *

@@ -8,7 +8,7 @@ import { cssGlobalVars, GlobalStyle } from "../core/global-style.js";
 const protoName = "progress";
 
 /**
- * {@linkcode Progress} similar to <progress>.
+ * {@linkcode Progress} similar to `<progress>`.
  *
  * @category feedback
  */

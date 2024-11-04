@@ -13,7 +13,7 @@ const protoName = "details";
 const cssScope = scopePrefix(protoName);
 
 /**
- * {@linkcode Details} similar to <details>.
+ * {@linkcode Details} similar to `<details>`.
  *
  * @category display
  */

@@ -12,7 +12,7 @@ const protoName = "dialog";
 const cssScope = scopePrefix(protoName);
 
 /**
- * {@linkcode Dialog} similar to <dialog>.
+ * {@linkcode Dialog} similar to `<dialog>`.
  *
  * Like dialog, it listens for submit events and closes itself when the target method is "dialog".
  *
