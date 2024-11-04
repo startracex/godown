@@ -1,5 +1,12 @@
 # godown
 
+## 3.0.0-canary.7
+
+### Patch Changes
+
+- 85adb54: use fmtime instead of Time.fmt
+- 4125ddb: alert color defaults to blue
+
 ## 3.0.0-canary.6
 
 ### Patch Changes
