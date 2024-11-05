@@ -11,6 +11,14 @@ import SuperInput from "../core/super-input.js";
 const protoName = "split";
 const cssScope = scopePrefix(protoName);
 
+const loop = <T>(len: number, fn: (index?: number) => T) => {
+  const result: T[] = new Array(len);
+  for (let index = 0; index < len; index++) {
+    result[index] = fn(index);
+  }
+  return result;
+};
+
 /**
  * {@linkcode Split} renders multiple input boxes.
  *
@@ -80,19 +88,17 @@ class Split extends SuperInput {
   @state()
   current = -1;
   @state()
-  currentValue: (string | null)[] = [];
+  currentValue: (string | void)[] = [];
 
   protected render() {
     return html`
       <div part="root">
     ${
-      this.currentValue
-        .map((value: string, index: number) =>
-          html`<span part="input-box"
+      loop(this.len, (index: number) =>
+        html`<span part="input-box"
           @click="${this.disabled ? null : () => this.focusAt(index)}"
           class="${classList({ focus: this.current === index }) || nothing}"
-        >${value}</span>`
-        )
+        >${this.currentValue[index]}</span>`)
     }
         <input
           part="input"
