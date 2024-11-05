@@ -74,12 +74,6 @@ class Select extends Input {
   value: string | string[];
 
   /**
-   * Open content.
-   */
-  @property({ type: Boolean, reflect: true })
-  open = false;
-
-  /**
    * Selected texts.
    */
   @property()

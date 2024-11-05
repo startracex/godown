@@ -38,9 +38,6 @@ class Input extends SuperInput {
   @property()
   variant: "default" | "outline" = "default";
 
-  @property()
-  accept: string;
-
   @part("input")
   _input: HTMLInputElement;
 

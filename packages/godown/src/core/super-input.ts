@@ -90,9 +90,6 @@ class SuperInput extends GlobalStyle {
   placeholder: string;
 
   @property({ reflect: true })
-  label: string;
-
-  @property({ reflect: true })
   name: string;
 
   @property()
