@@ -38,6 +38,7 @@ const protoName = "carousel";
 
     [part="root"],
     [part="move-root"] {
+      height: 100%;
       width: 100%;
       display: flex;
       position: relative;

@@ -42,7 +42,7 @@ const cssScope = scopePrefix(protoName);
       overflow: hidden;
       box-sizing: border-box;
       border-radius: 0.25em;
-      transition: .15s ease-in-out;
+      transition: box-shadow .1s ease-in-out;
     }
     
     :host([shadow="hover"]:hover),
