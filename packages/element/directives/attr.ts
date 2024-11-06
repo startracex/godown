@@ -56,14 +56,11 @@ const svgInitials = {
   "xmlns:xlink": "http://www.w3.org/1999/xlink",
 };
 
-const withInitials = (attrDirective: (a: DirectiveParams) => any, i: DirectiveParams) => {
-  return (a: DirectiveParams) => {
-    return attrDirective({
-      ...i,
-      ...a,
-    });
-  };
-};
+export const withInitials = (attrDirective: (a: DirectiveParams) => any, i: DirectiveParams) => (a: DirectiveParams) =>
+  attrDirective({
+    ...i,
+    ...a,
+  });
 
 export const svgAttr = withInitials(attr, svgInitials);
 export const svgAttrToString = withInitials(attrToString, svgInitials);
