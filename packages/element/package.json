@@ -9,7 +9,7 @@
     "clean": "tsc --build --clean",
     "build": "tsc",
     "fmt": "dprint fmt",
-    "lint": "eslint --fix"
+    "lint": "eslint . --fix"
   },
   "repository": {
     "type": "git",

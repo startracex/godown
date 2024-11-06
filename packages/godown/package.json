@@ -22,7 +22,7 @@
     "build": "tsc && tsx build.ts",
     "build:ts": "tsc",
     "fmt": "dprint fmt",
-    "lint": "eslint --fix",
+    "lint": "eslint . --fix",
     "manifest": "tsx manifest.ts"
   },
   "repository": {
