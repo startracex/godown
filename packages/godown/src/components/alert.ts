@@ -1,6 +1,5 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
-import { conditionIf } from "@godown/element/directives/condition-if.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
 import { constructCSSObject, toVar } from "@godown/element/tools/css.js";
@@ -252,10 +251,9 @@ class Alert extends GlobalStyle {
         ${this.content || htmlSlot()}
       </div>
       ${
-        conditionIf(
-          !this.hideClose && this.variant !== "blockquote",
-          html`<div part="close" tabindex=0 @click="${this.close}">${iconXmark()}</div>`,
-        )
+        !this.hideClose && this.variant !== "blockquote"
+          ? html`<div part="close" tabindex=0 @click="${this.close}">${iconXmark()}</div>`
+          : ""
       }
     </div>`,
       htmlStyle(this.variant === "light" ? lightStyles[color] : darkStyles[color]),

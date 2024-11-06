@@ -1,7 +1,6 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
 import { classList } from "@godown/element/directives/class-list.js";
-import { conditionIf } from "@godown/element/directives/condition-if.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { css, html } from "lit";
 import { property } from "lit/decorators.js";
@@ -68,14 +67,17 @@ class NavLayout extends GlobalStyle {
   sticky: boolean;
 
   protected render() {
-    return [
-      conditionIf(
-        !this.noHeader,
-        html`<header part="header" class="${classList({ sticky: this.sticky })}">${htmlSlot("header")}</header>`,
-      ),
-      html`<main part="main">${htmlSlot()}</main>`,
-      conditionIf(!this.noFooter, html`<footer part="footer">${htmlSlot("footer")}</footer> `),
-    ];
+    return html`${
+      !this.noHeader
+        ? html`<header part="header" class="${classList({ sticky: this.sticky })}">${htmlSlot("header")}</header>`
+        : ""
+    }
+    <main part="main">${htmlSlot()}</main>
+    ${
+      !this.noFooter
+        ? html`<footer part="footer">${htmlSlot("footer")}</footer>`
+        : ""
+    }`;
   }
 }
 

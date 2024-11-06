@@ -1,6 +1,5 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
-import { conditionIf } from "@godown/element/directives/condition-if.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import iconPhoto from "@godown/f7-icon/icons/photo.js";
 import { css, html } from "lit";
@@ -109,7 +108,7 @@ class Skeleton extends GlobalStyle {
       return htmlSlot();
     }
     return html`<div part="root" class="${this.animation}">
-    ${conditionIf(this.type === "image", iconPhoto())}
+    ${this.type === "image" ? iconPhoto() : ""}
     ${htmlSlot("loading")}</div>`;
   }
 }

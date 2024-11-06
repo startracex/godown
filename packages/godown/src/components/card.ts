@@ -1,6 +1,5 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
-import { conditionIf } from "@godown/element/directives/condition-if.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { css, html } from "lit";
 import { property } from "lit/decorators.js";
@@ -76,9 +75,9 @@ class Card extends GlobalStyle {
   protected render() {
     const hr = html`<hr part="divider">`;
     return [
-      conditionIf(this.header, [htmlSlot("header"), hr]),
+      this.header ? [htmlSlot("header"), hr] : "",
       htmlSlot(),
-      conditionIf(this.footer, [hr, htmlSlot("footer")]),
+      this.footer ? [hr, htmlSlot("footer")] : "",
     ];
   }
 }
