@@ -130,7 +130,7 @@ class Router<C = unknown> extends GlobalStyle {
   connectedCallback() {
     super.connectedCallback();
     Router.routerInstances.add(this);
-    this.pathname = window.location.pathname;
+    this.pathname ??= location.pathname;
 
     if (this.type !== "field") {
       const mutationObserver = new MutationObserver(this.collectSlottedRoutes);
