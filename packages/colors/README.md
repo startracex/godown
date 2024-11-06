@@ -15,29 +15,29 @@ import presetsRGB from "@godown/colors/presets-rgb.js";
 {
   r: 0,
   g: 219,
-  b: 212, 
+  b: 212,
   toString(): "0 219 212",
 }
 */
-presetsRGB.teal[5]
+presetsRGB.teal[5];
 ```
 
 ## Colors
 
 Full range
 
-* teal
-* blue
-* green
-* red
-* purple
-* orange
-* yellow
-* pink
+- teal
+- blue
+- green
+- red
+- purple
+- orange
+- yellow
+- pink
 
 Half range
 
-* darkgray
-* lightgray
+- darkgray
+- lightgray
 
 Each color has 10 gradients.
