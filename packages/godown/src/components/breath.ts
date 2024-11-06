@@ -47,6 +47,7 @@ const cssScope = scopePrefix(defineName);
       width: fit-content;
       font-size: 2em;
       align-items: center;
+      direction: ltr;
     }
 
     ::selection {
@@ -125,7 +126,7 @@ class Breath extends GlobalStyle {
       + (() => {
         let style1 = "";
         for (let number = 1; number <= len; number++) {
-          const delay = -1 * duration / len * (len - (number - 2));
+          const delay = -duration / len * (len - number + 1);
           const defaultNumber = ((number - 1) % 3) + 1;
           style1 +=
             `.rel:nth-child(${number}) .colorful{animation-delay:${delay}s;background:var(${cssScope}--${number},var(${cssScope}--${defaultNumber}));}`;
