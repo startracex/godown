@@ -16,5 +16,9 @@
   "license": "MIT",
   "dependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.3"
-  }
+  },
+  "files": [
+    "index.{js,ts,d.ts}",
+    "lib"
+  ]
 }

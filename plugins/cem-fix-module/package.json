@@ -13,5 +13,8 @@
     "plugin"
   ],
   "author": "startracex",
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "index.{js,ts,d.ts}"
+  ]
 }

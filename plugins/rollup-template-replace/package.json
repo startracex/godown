@@ -14,5 +14,8 @@
     "magic-string": "^0.30.11",
     "rollup-pluginutils": "^2.8.2",
     "template-extractor": "workspace:^"
-  }
+  },
+  "files": [
+    "index.{js,ts,d.ts}"
+  ]
 }
