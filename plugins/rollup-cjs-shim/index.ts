@@ -34,7 +34,7 @@ function cjsReplace({
   generateSourceMap = null,
 }: {
   replacements?: ReplaceParams[];
-  generateSourceMap?: (code: string) =>  SourceMapInput;
+  generateSourceMap?: (code: string) => SourceMapInput;
 } = {}): Plugin {
   return {
     name: "cjs-replace",
@@ -49,14 +49,17 @@ function cjsReplace({
 
 function doReplace(code: string, params: ReplaceParams[]) {
   return params.reduce((currentCode, { search, regex, parts, replacement, effects: effect }) => {
+    let newCode: string;
     if (search) {
-      return currentCode.replace(search as any, replacement);
+      newCode = currentCode.replace(search as any, replacement);
+    } else {
+      if (!regex) {
+        const re = parts.join("\\s*");
+        regex = new RegExp(re, "g");
+      }
+      newCode = currentCode.replace(regex, replacement);
     }
-    if (!regex) {
-      const re = parts.join("\\s*");
-      regex = new RegExp(re, "g");
-    }
-    let newCode = currentCode.replace(regex, replacement);
+
     if (newCode !== currentCode && effect) {
       newCode = doReplace(newCode, effect);
     }
