@@ -10,6 +10,10 @@
       "types": "./types/icon.d.ts",
       "default": "./icons/*"
     },
+    "./lib/*": {
+      "require": "./lib/*.cjs",
+      "default": "./lib/*.js"
+    },
     "./*": "./*"
   },
   "scripts": {
@@ -34,10 +38,10 @@
   },
   "files": [
     "icons/",
-    "lib/*.{js,d.ts}+(|.map)",
-    "types/*.d.ts",
-    "f7-icon.{js,d.ts}+(|.map)",
-    "element.{js,d.ts}+(|.map)",
+    "lib/",
+    "types/",
+    "f7-icon.{ts,js,d.ts}+(|.map)",
+    "element.{ts,js,d.ts}+(|.map)",
     "includes.json"
   ]
 }

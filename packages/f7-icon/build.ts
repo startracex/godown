@@ -2,8 +2,11 @@ import { createRequire } from "node:module";
 
 import { IconSet } from "@iconify/tools/lib/icon-set";
 import { iconToSVG } from "@iconify/utils/lib/svg/build";
-import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { existsSync, globSync, mkdirSync, writeFileSync } from "fs";
+import { cjsReplace } from "rollup-plugin-cjs-shim";
 
+import { build, commonInput } from "../../common/rollup-creator.js";
+import { commonjs } from "../../common/rollup-plugins.js";
 import format from "./lib/format.js";
 
 const set = new IconSet(createRequire(import.meta.url)("@iconify-json/f7/icons.json"));
@@ -37,3 +40,22 @@ Object.entries({
     name => `declare module "@godown/f7-icon/icons/${name}.js" { var i: I; export default i; }`,
   ).join("\n"),
 }).map(entry => writeFileSync(entry[0], entry[1] + "\n"));
+
+build(
+  {
+    ...commonInput,
+    input: globSync("lib/*.js"),
+    output: {
+      dir: ".",
+      sourcemap: true,
+      format: "cjs",
+      entryFileNames: "[name].cjs",
+      preserveModules: true,
+      preserveModulesRoot: ".",
+    },
+    plugins: [
+      cjsReplace(),
+      commonjs(),
+    ],
+  },
+);
