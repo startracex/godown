@@ -10,6 +10,11 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   publish-and-release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
