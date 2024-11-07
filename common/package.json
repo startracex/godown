@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.3",
+    "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-node-resolve": "^15.2.4",
     "@rollup/plugin-terser": "^0.4.4",
     "autoprefixer": "^10.4.20",

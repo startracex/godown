@@ -28,6 +28,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "postcss": "^8.4.47",
     "rollup": "^4.24.3",
+    "rollup-plugin-cjs-shim": "workspace:^",
     "rollup-plugin-template-replace": "workspace:^",
     "tsx": "^4.19.2",
     "turbo": "^2.2.3",
