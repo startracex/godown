@@ -7,7 +7,10 @@
   "scripts": {
     "build": "tsc"
   },
-  "keywords": [],
+  "keywords": [
+    "rollup",
+    "plugin"
+  ],
   "author": "startracex",
   "license": "MIT",
   "dependencies": {
