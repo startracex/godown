@@ -26,8 +26,8 @@
     "access": "public"
   },
   "files": [
-    "element.{js,d.ts}+(|.map)",
-    "config.{js,d.ts}+(|.map)",
+    "element.{ts,js,d.ts}+(|.map)",
+    "config.{ts,js,d.ts}+(|.map)",
     "tools",
     "decorators",
     "directives"

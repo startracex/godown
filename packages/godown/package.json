@@ -48,7 +48,8 @@
     "**/*.{js,d.ts}+(|.map)",
     "custom-elements.json",
     "web-types.json",
-    "vscode.{css,html}-custom-data.json"
+    "vscode.{css,html}-custom-data.json",
+    "src"
   ],
   "custom-elements": "./custom-elements.json",
   "customElements": "./custom-elements.json",
