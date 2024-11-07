@@ -1,5 +1,9 @@
-interface WithModule { module?: string; }
-interface InheritedFromWithModule { inheritedFrom?: WithModule; }
+interface WithModule {
+  module?: string;
+}
+interface InheritedFromWithModule {
+  inheritedFrom?: WithModule;
+}
 
 interface ManifestModule {
   path?: string;

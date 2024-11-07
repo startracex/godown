@@ -25,8 +25,8 @@ Example, use a CSS preprocessor to process the modified text.
 replace({
   match: (tag) => tag === "css",
   callback: (input) => postcss(/* postcss plugins */).process(input).css.trim(),
-  replace: (_, index)=> `--__REPLACE__${index}__`, 
-})
+  replace: (_, index) => `--__REPLACE__${index}__`,
+});
 ```
 
 before replacement

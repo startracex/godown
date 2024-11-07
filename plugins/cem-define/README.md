@@ -11,7 +11,7 @@ export default {
   plugins: [
     jsDocDefine(
       /* Specify the doc tag. */
-      "define"
+      "define",
     ),
     moduleDeclarationDefine(),
   ],
@@ -27,7 +27,7 @@ class MyElement extends HTMLElement {}
 
 /**
  * Using jsDocDefine:
- * 
+ *
  * Specify the element name and identifier through a JSDoc.
  *
  * @define my-element {@link MyElement}
@@ -35,7 +35,7 @@ class MyElement extends HTMLElement {}
 
 /**
  * Using moduleDeclarationDefine:
- * 
+ *
  * Globally Declare the element name and type in HTMLElementTagNameMap.
  */
 declare global {
