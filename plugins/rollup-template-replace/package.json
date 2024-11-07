@@ -18,6 +18,11 @@
     "rollup-pluginutils": "^2.8.2",
     "template-extractor": "workspace:^"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/startracex/godown.git",
+    "directory": "plugins/rollup-template-replace"
+  },
   "files": [
     "index.{js,ts,d.ts}"
   ]
