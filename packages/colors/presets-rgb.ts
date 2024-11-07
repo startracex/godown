@@ -155,3 +155,5 @@ export const presetsRGB = {
   yellow,
   pink,
 };
+
+export { blue, darkgray, green, lightgray, orange, pink, purple, red, rgb, teal, yellow };
