@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-cjs-shim",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "es module to common js code helper",
   "type": "module",
   "main": "index.js",

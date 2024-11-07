@@ -1,6 +1,6 @@
 {
   "name": "cem-plugin-fix-module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Fix module paths",
   "type": "module",
   "main": "index.js",
