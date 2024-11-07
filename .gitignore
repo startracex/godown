@@ -20,3 +20,4 @@ dev/
 **/custom-elements.json
 
 packages/f7-icon/includes.json
+*storybook.log

@@ -1,0 +1,18 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
+import { presets } from "@godown/colors/presets";
+
+<Meta title="Colors"/>
+
+# Colors
+
+<ColorPalette>
+  {Object.entries(presets).map(([key, colors]) => <ColorItem key={key} title={key} colors={Object.fromEntries(colors.map((color, index) => [index, color]))}/>)}
+</ColorPalette>
+
+<style>
+{`
+  #storybook-docs {
+    min-width: 700px;
+  }
+`}
+</style>

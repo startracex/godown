@@ -1,0 +1,42 @@
+import { Meta, Source, Subtitle, Title } from "@storybook/blocks";
+import { version } from "godown/package.json";
+
+<Meta title="Getting starter"/>
+
+# Getting starter
+
+<Subtitle>Documentations for godown@{version}</Subtitle>
+
+## Install
+
+Install {version}
+
+<Source language="bash" code={`npm i godown@${version}`} dark/>
+
+Install next
+
+```bash
+npm i godown@next
+```
+
+## Import
+
+### No named import
+
+```ts
+import "godown/button.js";
+```
+
+```html
+<godown-button>Click me</godown-button>
+```
+
+### Named import
+
+```ts
+import Button from "godown/button.js";
+
+new Button({
+  innerText: `Click me`,
+});
+```
