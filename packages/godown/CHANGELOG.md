@@ -1,5 +1,14 @@
 # godown
 
+## 3.0.0-canary.8
+
+### Patch Changes
+
+- 949c0a9: update render for split
+- aff58ec: fix styles, computeStyle for breath
+- 6acf567: update components styles
+- 1af48c7: remove legacy properties
+
 ## 3.0.0-canary.7
 
 ### Patch Changes
