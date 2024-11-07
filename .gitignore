@@ -4,6 +4,8 @@ test/
 .turbo/
 build/
 dev/
+**/*.cjs
+**/*.cjs.map
 **/*.d.ts
 **/*.d.ts.map
 **/*.js

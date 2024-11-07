@@ -12,6 +12,7 @@
   "parser": "@typescript-eslint/parser",
   "ignorePatterns": [
     "**/*.js",
+    "**/*.cjs",
     "**/*.d.ts"
   ],
   "parserOptions": {
