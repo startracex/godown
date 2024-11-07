@@ -12,20 +12,26 @@
     "cem-plugin-define": "0.1.0",
     "cem-plugin-fix-module": "0.0.0",
     "rollup-plugin-template-replace": "0.0.0",
-    "@godown/tsconfig": "0.0.0"
+    "@godown/tsconfig": "0.0.0",
+    "rollup-plugin-cjs-shim": "0.0.0",
+    "@godown/storybook": "0.0.0"
   },
   "changesets": [
     "angry-pumpkins-itch",
     "blue-rocks-own",
+    "brave-dingos-tan",
     "cyan-balloons-check",
     "gorgeous-poems-shake",
     "grumpy-dogs-share",
     "hot-emus-type",
+    "itchy-pots-cheer",
     "mean-months-peel",
+    "odd-weeks-guess",
     "proud-garlics-try",
     "quick-paws-doubt",
     "serious-toes-wink",
     "short-eels-draw",
+    "stupid-pets-do",
     "tidy-seas-prove"
   ]
 }
