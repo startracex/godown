@@ -18,7 +18,7 @@ export const defaultReplacements: ReplaceParams[] = [
     replacement: "__filename",
   },
   {
-    parts: "(const|var|let)? require = createRequire\\(import\\.meta\\.url\\);?".split(" "),
+    parts: "(const|var|let) require = createRequire\\(import\\.meta\\.url\\);?".split(" "),
     replacement: "",
     effects: [
       {
@@ -26,6 +26,10 @@ export const defaultReplacements: ReplaceParams[] = [
         replacement: "",
       },
     ],
+  },
+  {
+    parts: "(const|var|let) global = globalThis;?".split(" "),
+    replacement: "",
   },
 ];
 

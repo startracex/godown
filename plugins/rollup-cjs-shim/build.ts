@@ -1,6 +1,5 @@
 import { build } from "../../common/rollup-creator.ts";
 import { commonjs } from "../../common/rollup-plugins.ts";
-import cjsReplace from "./index.ts";
 
 build({
   input: "index.js",
@@ -11,7 +10,6 @@ build({
     exports: "named",
   },
   plugins: [
-    cjsReplace(),
     commonjs(),
   ],
 });
