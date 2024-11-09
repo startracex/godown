@@ -13,6 +13,13 @@
     "check-types": {},
     "clean": {},
     "lint": {},
-    "fmt": {}
+    "fmt": {},
+    "godown#dev": {
+      "dependsOn": [
+        "@godown/f7-icon#build",
+        "@godown/colors#build",
+        "@godown/element#build"
+      ]
+    }
   }
 }

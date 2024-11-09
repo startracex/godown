@@ -19,10 +19,10 @@
     "storybook": "^8.4.2"
   },
   "scripts": {
-    "dev": "pnpm run storybook",
+    "dev": "storybook dev -p 6006",
     "fmt": "dprint fmt",
     "lint": "eslint . --fix",
-    "storybook": "storybook dev -p 6006 --no-open",
+    "storybook": "pnpm run dev --no-open",
     "storybook-build": "storybook build -o build"
   },
   "dependencies": {

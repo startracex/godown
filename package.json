@@ -8,7 +8,7 @@
     "check": "turbo run lint fmt",
     "check-types": "turbo run check-types",
     "clean": "turbo run clean",
-    "dev": "vite",
+    "dev": "turbo run dev",
     "fmt": "turbo run fmt",
     "lint": "turbo run lint",
     "release": "changeset publish",

@@ -2,6 +2,8 @@
 
 Web components library.
 
+[See readme for godown package](./packages/godown/README.md)
+
 ## Development
 
 Install dependencies
@@ -36,20 +38,22 @@ pnpm build
 
 ## Packages
 
-* `godown` Web components.
+- `godown` Web components library.
 
-* `@godown/react` React components for godown.
+- `@godown/react` React components for godown.
 
-* `@godown/element` Component base class for godown.
+- `@godown/element` Component base class for godown.
 
-* `@godown/colors` Color gradients for godown.
+- `@godown/colors` Color gradients for godown.
 
-* `@godown/f7-icon` Icon wrapper, web component, plugin for F7.
+- `@godown/f7-icon` Icon wrapper, web component, plugin for F7.
 
-* `template-extractor` Extract strings templates in TypeScript source file .
+- `template-extractor` Extract strings templates in TypeScript source file .
 
-* `rollup-template-replace` Rollup plugin with template-extractor.
+- `rollup-plugin-template-replace` Rollup plugin with template-extractor.
 
-* `cem-define` Enhance custom-element-manifest's custom-element-definition exports.
+- `rollup-plugin-cjs-shim` Rollup plugin cjs-shim.
 
-* `cem-fix-module` Fix custom-element-manifest's module paths.
+- `cem-define` Enhance custom-element-manifest's custom-element-definition exports.
+
+- `cem-fix-module` Fix custom-element-manifest's module paths.
