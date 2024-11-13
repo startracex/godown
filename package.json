@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "build": "turbo run build",
+    "build:docs": "pnpm run --filter @godown/storybook storybook-build",
+    "build:main": "turbo run build --filter godown",
+    "build:plugins": "turbo run build --filter ./plugins/*",
     "check": "turbo run lint fmt",
     "check-types": "turbo run check-types",
     "clean": "turbo run clean",
     "dev": "turbo run dev",
     "fmt": "turbo run fmt",
     "lint": "turbo run lint",
-    "release": "changeset publish",
     "version": "changeset version"
   },
   "devDependencies": {
