@@ -26,6 +26,7 @@
     "dprint": "^0.47.5",
     "eslint": "^8.57.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "glob": "^11.0.0",
     "postcss": "^8.4.47",
     "rollup": "^4.24.3",
     "rollup-plugin-cjs-shim": "workspace:^",
@@ -40,7 +41,7 @@
   "license": "MIT",
   "description": "Simple, stylized, semantic web components",
   "engines": {
-    "node": ">=22"
+    "node": ">=20"
   },
   "packageManager": "pnpm@9.12.3"
 }

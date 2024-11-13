@@ -1,4 +1,5 @@
-import { GlobOptions, globSync, rmSync } from "fs";
+import { rmSync } from "fs";
+import { type GlobOptions, globSync } from "glob";
 import { join } from "path";
 
 /**

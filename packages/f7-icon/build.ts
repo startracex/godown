@@ -2,7 +2,8 @@ import { createRequire } from "node:module";
 
 import { IconSet } from "@iconify/tools/lib/icon-set";
 import { iconToSVG } from "@iconify/utils/lib/svg/build";
-import { existsSync, globSync, mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { globSync } from "glob";
 import { cjsReplace } from "rollup-plugin-cjs-shim";
 
 import { build, commonInput } from "../../common/rollup-creator.js";

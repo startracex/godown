@@ -1,6 +1,6 @@
 import "./manifest";
 
-import { globSync } from "fs";
+import { globSync } from "glob";
 import postcss from "postcss";
 import templateReplace from "rollup-plugin-template-replace";
 

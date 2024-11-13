@@ -1,6 +1,6 @@
 import { moduleDeclarationDefine } from "cem-plugin-define";
 import fixModule from "cem-plugin-fix-module";
-import { globSync } from "fs";
+import { globSync } from "glob";
 
 import { analyze } from "../../common/cem";
 import { jb, vs } from "../../common/cem-plugins";
