@@ -2,6 +2,7 @@ import { type Gradients, presetsRGB } from "@godown/colors/presets-rgb.js";
 import { travel } from "@godown/colors/travel.js";
 import GodownElement from "@godown/element";
 import GodownConfig from "@godown/element/config.js";
+import { joinProperties } from "@godown/element/tools/css.js";
 import { trim } from "@godown/element/tools/lib.js";
 import { css, CSSResult, unsafeCSS } from "lit";
 
@@ -47,15 +48,16 @@ GlobalStyle.styles = [
       }, presetsRGB).join("")
       + "}",
   ),
-  css`
-    :host {
-      ${cssGlobalVars.background}: var(${cssGlobalVars._colors.darkgray[9]});
-      ${cssGlobalVars.foreground}: var(${cssGlobalVars._colors.lightgray[0]});
-      ${cssGlobalVars.active}: var(${cssGlobalVars._colors.blue[6]});
-      ${cssGlobalVars.passive}: var(${cssGlobalVars._colors.darkgray[6]});
-      ${cssGlobalVars.clipBackground}: linear-gradient(180deg, var(${cssGlobalVars.foreground}), var(${cssGlobalVars.passive}));
-    }
-  `,
+  unsafeCSS(
+    ":host{"
+      + joinProperties({
+        [cssGlobalVars.background + ""]: `var(${cssGlobalVars._colors.darkgray[9]})`,
+        [cssGlobalVars.foreground + ""]: `var(${cssGlobalVars._colors.lightgray[0]})`,
+        [cssGlobalVars.active + ""]: `var(${cssGlobalVars._colors.blue[6]})`,
+        [cssGlobalVars.passive + ""]: `var(${cssGlobalVars._colors.darkgray[6]})`,
+      })
+      + "}",
+  ),
   css`
     * {
       border: 0;
