@@ -30,7 +30,7 @@ Lint
 pnpm lint
 ```
 
-Build all packages
+Build publish packages
 
 ```sh
 pnpm build
