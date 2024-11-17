@@ -1,7 +1,7 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { css, html } from "lit";
+import { css } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -26,58 +26,53 @@ const cssScope = scopePrefix(protoName);
 @styles(
   css`
     :host {
-      ${cssScope}--shadow-width: .0375em;
-      ${cssScope}--shadow-color: transparent;
       ${cssScope}--background: var(${cssGlobalVars.background});
-      ${cssScope}--divider-width: 100%;
-      ${cssScope}--divider-height: var(${cssScope}--shadow-width);
-      ${cssScope}--divider-background: var(${cssGlobalVars.passive});
+      ${cssScope}--border-width: .0375em;
+      ${cssScope}--border-color: transparent;
+      ${cssScope}--border-background: var(${cssGlobalVars.passive});
       ${cssScope}--padding: .75em;
       color: var(${cssGlobalVars.foreground});
       background: var(${cssScope}--background);
+      border-width: var(${cssScope}--border-width);
       display: block;
       flex-shrink: 0;
       position: relative;
       overflow: hidden;
       box-sizing: border-box;
-      border-radius: 0.25em;
-      transition: box-shadow .1s ease-in-out;
-    }
-    
-    :host([shadow="hover"]:hover),
-    :host([shadow="always"]) {
-      ${cssScope}--shadow-color: var(${cssScope}--divider-background);
-      box-shadow: inset 0 0 0px var(${cssScope}--shadow-width) var(${cssScope}--shadow-color);
-    }
-
-   [part="divider"] {
-      margin: auto;
-      width: var(${cssScope}--divider-width);
-      height: var(${cssScope}--divider-height);
-      background: var(${cssScope}--divider-background);
     }
 
     slot {
       display: block;
       padding: var(${cssScope}--padding);
     }
+
+    :host,
+    slot {
+      border-color: var(${cssScope}--border-background);
+      border-style: solid;
+    }
+
+    [name="footer"]{
+      border-top-width: var(${cssScope}--border-width);
+    }
+
+    [name="header"]{
+      border-bottom-width: var(${cssScope}--border-width);
+    }
   `,
 )
 class Card extends GlobalStyle {
-  @property({ reflect: true })
-  shadow: "none" | "always" | "hover" = "hover";
-
   @property({ type: Boolean })
   footer = false;
+
   @property({ type: Boolean })
   header = false;
 
   protected render() {
-    const hr = html`<hr part="divider">`;
     return [
-      this.header ? [htmlSlot("header"), hr] : "",
+      this.header ? htmlSlot("header") : "",
       htmlSlot(),
-      this.footer ? [hr, htmlSlot("footer")] : "",
+      this.footer ? htmlSlot("footer") : "",
     ];
   }
 }
