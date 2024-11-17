@@ -256,9 +256,13 @@ class Router<C = unknown> extends GlobalStyle {
 
   static updateAll() {
     this.routerInstances.forEach((i) => {
-      i.pathname = window.location.pathname;
+      i.handlePopstate();
     });
   }
+
+  handlePopstate = this.events.add(window, "popstate", () => {
+    this.pathname = location.pathname;
+  }) as () => void;
 }
 
 export default Router;
