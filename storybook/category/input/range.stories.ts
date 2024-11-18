@@ -17,6 +17,7 @@ export default {
     value: [0, 50],
     min: 0,
     max: 100,
+    vertical: false,
   },
 } as RendererMeta<typeof render>;
 
