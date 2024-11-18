@@ -16,26 +16,31 @@ const protoName = "time";
 @godown(protoName)
 @styles(css`:host{text-align: center;}`)
 class Time extends GlobalStyle {
+
   /**
-   * Cancels the next character formatting.
+   * Escape symbol.
    */
   @property()
   escape = "%";
+
   /**
    * Format strings.
    */
   @property()
   format = "YYYY-MM-DD hh:mm:ss UTFZ";
+
   /**
    * Time.
    */
   @property({ type: Object })
   time = new Date();
+
   /**
    * If there is a value, update every gap or timeout.
    */
   @property({ type: Number })
   timeout = 0;
+
   /**
    * The number of milliseconds that change with each update.
    */

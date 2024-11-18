@@ -12,8 +12,6 @@ const protoName = "form";
  * {@linkcode Form} Gets child element key-value object,
  * which will be nested if the child element is the same as this element.
  *
- * @slot - Child elements.
- *
  * @category form
  */
 @godown(protoName)

@@ -26,13 +26,17 @@ class Grid extends GlobalStyle {
   gap: string;
 
   /**
-   * CSS property `grid-template-columns`, if {@linkcode isNumerical} divide equally.
+   * CSS property `grid-template-columns`.
+   *
+   * If columns is numerical, divide columns equally.
    */
   @property()
   columns: string | number;
 
   /**
-   * CSS property `grid-template-rows`, if {@linkcode isNumerical} divide equally.
+   * CSS property `grid-template-rows`.
+   *
+   * If rows is numerical, divide rows equally.
    */
   @property()
   rows: string | number;

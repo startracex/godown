@@ -11,7 +11,7 @@ import SuperInput from "../core/super-input.js";
 const protoName = "input";
 
 /**
- * {@linkcode Input} used for text input.
+ * {@linkcode Input} renders a text input.
  *
  * @category input
  */

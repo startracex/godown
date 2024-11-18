@@ -16,7 +16,7 @@ const cssScope = scopePrefix(protoName);
  *
  * Like dialog, it listens for submit events and closes itself when the target method is "dialog".
  *
- * It listens for the keydown event and also closes itself when the {@linkcode key} contained in the key is pressed
+ * It listens for the keydown event and also closes itself when the {@linkcode key} contained in the key is pressed.
  *
  * @category feedback
  */
@@ -87,13 +87,18 @@ const cssScope = scopePrefix(protoName);
   `,
 )
 class Dialog extends SuperOpenable {
+  /**
+   * Direction of the opening animation.
+   */
   @property()
   direction: Direction9 = "center";
+
   /**
    * Enable modal, blocking event penetration.
    */
   @property({ type: Boolean, reflect: true })
   modal = false;
+
   /**
    * Close key.
    */

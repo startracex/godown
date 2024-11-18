@@ -81,7 +81,13 @@ const colors = constructCSSObject(
 /**
  * {@linkcode Button} renders a button.
  *
- * Color defaults to black.
+ * Create modal animation upon clicking.
+ *
+ * Available colors (background): none, black, gray, white, blue, green, red, orange, pink, purple, yellow, teal.
+ *
+ * Default color is `black`.
+ *
+ * Set the color to `none` to prevent applying styles.
  *
  * @category input
  */
