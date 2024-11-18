@@ -6,11 +6,40 @@ export default {
   component: "godown-time",
   tags: ["autodocs"],
   render,
-  argTypes: {},
+  argTypes: {
+    gap: {
+      control: {
+        type: "number",
+      },
+      table: {
+        type: {
+          summary: "number",
+          detail: "number of milliseconds to wait before updating the time",
+        },
+        defaultValue: {
+          summary: "undefined",
+        },
+      },
+    },
+    timeout: {
+      control: {
+        type: "number",
+        step: 1000,
+      },
+      table: {
+        type: {
+          summary: "number",
+          detail: "number of milliseconds gap of update timeout",
+        },
+        defaultValue: {
+          summary: "undefined",
+        },
+      },
+    },
+  },
   args: {
     format: "YYYY-MM-DD hh:mm:ss UTFZ",
     timeout: 1000,
-    gap: 0,
   },
 } as RendererMeta<typeof render>;
 
