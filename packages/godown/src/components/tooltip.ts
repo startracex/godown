@@ -23,7 +23,7 @@ const cssScope = scopePrefix(protoName);
 @styles(
   css`
     :host {
-      ${cssScope}--tip-background: var(${cssGlobalVars.background});
+      ${cssScope}--tip-background: inherit;
       display: inline-block;
       width: fit-content;
     }

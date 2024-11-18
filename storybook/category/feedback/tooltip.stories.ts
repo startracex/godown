@@ -37,3 +37,9 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const WithBackground = {
+  args: {
+    style: "--godown-tooltip--tip-background: rgb(102 55 0);",
+  },
+};
