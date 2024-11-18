@@ -46,15 +46,13 @@ GlobalStyle.styles = [
         const colorKey = scopePrefix("color", 2) + endKey;
         return `${colorKey}:rgb(${rgb});`;
       }, presetsRGB).join("")
-      + "}",
-  ),
-  unsafeCSS(
-    ":host{"
       + joinProperties({
         [cssGlobalVars.background + ""]: `var(${cssGlobalVars._colors.darkgray[9]})`,
         [cssGlobalVars.foreground + ""]: `var(${cssGlobalVars._colors.lightgray[0]})`,
         [cssGlobalVars.active + ""]: `var(${cssGlobalVars._colors.blue[6]})`,
         [cssGlobalVars.passive + ""]: `var(${cssGlobalVars._colors.darkgray[6]})`,
+        [cssGlobalVars.clipBackground + ""]:
+          `linear-gradient(to bottom, var(${cssGlobalVars.foreground}), var(${cssGlobalVars.passive}))`,
       })
       + "}",
   ),
