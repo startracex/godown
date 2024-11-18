@@ -12,8 +12,8 @@ import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js
 const protoName = "button";
 const cssScope = scopePrefix(protoName);
 
-const whiteFont = cssGlobalVars._colors.lightgray[0];
-const blackFont = cssGlobalVars._colors.darkgray[6];
+const whiteFont = cssGlobalVars.white;
+const blackFont = cssGlobalVars.black;
 
 const colors = constructCSSObject(
   ["color", "background", "gradients"].map((k) => `${cssScope}--${k}`),
@@ -21,7 +21,7 @@ const colors = constructCSSObject(
     black: [
       whiteFont, // color
       cssGlobalVars._colors.darkgray[7], // background
-      cssGlobalVars._colors.darkgray[4], // gradients
+      cssGlobalVars._colors.darkgray[5], // gradients
     ],
     gray: [
       whiteFont, // color
@@ -174,7 +174,7 @@ const colors = constructCSSObject(
     @keyframes kf {
       0% {
         transform: scale(0) translate(-50%, -50%);
-        opacity: var(${cssScope}--modal-opacity, 0.18);
+        opacity: var(${cssScope}--modal-opacity, 0.1);
       }
       80% {
         transform: scale(1) translate(-50%, -50%);
