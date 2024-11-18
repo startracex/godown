@@ -24,6 +24,7 @@ const cssScope = scopePrefix(protoName);
       ${cssScope}-width: 3em;
       ${cssScope}-height: calc(var(${cssScope}-width) / 2);
       ${cssScope}-handle-size: 1.25em;
+      ${cssScope}-handle-space: .125em;
       ${cssScope}-transition: .2s ease-in-out;
       background: var(${cssGlobalVars.input}-background);
       width: var(${cssScope}-width);
@@ -72,7 +73,7 @@ const cssScope = scopePrefix(protoName);
     }
 
     :host([checked]) span {
-      transform: translateX(100%);
+      left: 50%;
     }
 
     .rect .true {
@@ -83,13 +84,13 @@ const cssScope = scopePrefix(protoName);
       background: var(${cssGlobalVars.passive});
     }
 
-    .round span::after{
+    .round span{
       --size: var(${cssScope}-handle-size);
-      content:"";
       border-radius: 100%;
       background: var(--godown--input-control);
       width: var(--size);
       height: var(--size);
+      margin: var(${cssScope}-handle-space);
     }
 
     .round {
@@ -142,8 +143,7 @@ class Switch extends SuperInput {
         id="${this.makeId}"
         type="checkbox"
       >
-      <span class="${this.checked}">
-      </span>
+      <span part="handle" class="${this.checked}"></span>
     </div>`;
   }
 
