@@ -20,7 +20,6 @@ const cssScope = scopePrefix(protoName);
 @styles(css`
     :host {
       ${cssScope}--cursor-width: .05em;
-      font-family: monospace;
       white-space: nowrap;
     }
 
