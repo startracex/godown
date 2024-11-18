@@ -28,11 +28,19 @@ export default {
         "bottom-right",
       ],
     },
+    type: {
+      control: "select",
+      options: [
+        "hover",
+        "focus",
+      ],
+    },
   },
   args: {
     tip: "Tooltip visible",
     propagation: false,
     align: "center",
+    type: "hover",
   },
 } as RendererMeta<typeof render>;
 

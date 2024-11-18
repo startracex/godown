@@ -4,7 +4,7 @@ import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
+import { scopePrefix } from "../core/global-style.js";
 import SuperOpenable, { type Direction8 } from "../core/super-openable.js";
 
 const protoName = "tooltip";
@@ -44,9 +44,7 @@ const cssScope = scopePrefix(protoName);
       user-select: none;
     }
 
-    :host([open]) [part="tip"],
-    :host(:hover) [part="tip"],
-    [part="tip"]:hover {
+    :host([open]) [part="tip"] {
       visibility: visible;
     }
 
@@ -95,6 +93,18 @@ class Tooltip extends SuperOpenable {
   @property({ type: Boolean })
   propagation: boolean;
 
+  /**
+   * How can tips be triggered.
+   *
+   * If `focus`, element will be focusable, open tip when focused.
+   *
+   * If `hover`, element will open tip when hovered.
+   *
+   * @default "hover"
+   */
+  @property()
+  type: "hover" | "focus" = "hover";
+
   static aligns = {
     start: "flex-start",
     end: "flex-end",
@@ -105,9 +115,18 @@ class Tooltip extends SuperOpenable {
 
   protected render() {
     const align = Tooltip.aligns[this.align] || "inherit";
-    return html`<div part="root" style="justify-content:${align};align-items:${align}">
+    const isFocusable = this.type === "focus";
+    return html`<div part="root"
+      tabindex="${isFocusable ? 0 : -1}"
+      @focus="${isFocusable ? () => this.open = true : null}"
+      @blur="${isFocusable ? () => this.open = false : null}"
+      @mouseenter="${isFocusable ? null : () => this.open = true}"
+      @mouseleave="${isFocusable ? null : () => this.open = false}"
+      style="justify-content:${align};align-items:${align}">
       ${htmlSlot()}
-      <div part="tip" direction="${this.direction}" style="pointer-events:${this.propagation ? "none" : "all"}">
+      <div part="tip"
+      direction="${this.direction}"
+      style="pointer-events:${this.propagation ? "none" : "all"}">
     ${
       this.tip
         ? html`<span class="passive">${this.tip}</span>`
