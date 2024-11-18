@@ -69,7 +69,6 @@ const protoName = "select";
   `,
 )
 class Select extends Input {
-  _cache = new WeakMap<HTMLElement, boolean>();
   // @ts-ignore
   value: string | string[];
 
@@ -80,7 +79,7 @@ class Select extends Input {
   text: string;
 
   @part("content")
-  _content: HTMLElement;
+  protected _content: HTMLElement;
 
   @property()
   direction: "top" | "bottom" | undefined;
@@ -93,6 +92,7 @@ class Select extends Input {
 
   @state()
   protected autoDirection: "top" | "bottom" = "bottom";
+
   protected lastChecked: HTMLElement;
   protected defaultText: string;
   protected defaultChecked: HTMLElement[];

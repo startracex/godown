@@ -43,17 +43,18 @@ class Dragbox extends GlobalStyle {
     return this.offsetParent?.clientHeight ?? document.body.offsetHeight;
   }
 
-  drag: boolean;
-  t: number;
-  l: number;
-  cx: number;
-  cy: number;
+  private drag: boolean;
+  private t: number;
+  private l: number;
+  private cx: number;
+  private cy: number;
 
   /**
    * Position x.
    */
   @property()
   x = "auto";
+
   /**
    * Position y.
    */
@@ -78,8 +79,8 @@ class Dragbox extends GlobalStyle {
     this._handleMouseLeave = this.events.add(document, "mouseleave", this._handleDragEnd.bind(this));
   }
 
-  _handleMouseMove: EventListenerFunc;
-  _handleMouseLeave: EventListenerFunc;
+  protected _handleMouseMove: EventListenerFunc;
+  protected _handleMouseLeave: EventListenerFunc;
 
   protected _handleDragEnd() {
     this.drag = false;

@@ -91,12 +91,14 @@ class Skeleton extends GlobalStyle {
    */
   @property()
   type: "text" | "image";
+
   /**
    * Animation type.
    * opacity animation only effect on slotted element and image icon.
    */
   @property()
   animation: "position" | "opacity" = "position";
+
   /**
    * If false, render slot only.
    */

@@ -27,6 +27,7 @@ const protoName = "form";
 class Form<T = object> extends GlobalStyle {
   @property()
   name = "";
+
   get value(): T {
     return Form.buildValue(this._slot.assignedElements()) as T;
   }

@@ -102,7 +102,7 @@ class SuperInput extends GlobalStyle {
   default: any;
 
   @part("input")
-  _input: HTMLInputElement;
+  protected _input: HTMLInputElement;
 
   /**
    * Returns true when the input is compositing.
@@ -117,7 +117,7 @@ class SuperInput extends GlobalStyle {
     return this.default;
   }
 
-  makeId = Math.random().toString(36).slice(1);
+  protected makeId = Math.random().toString(36).slice(1);
 
   namevalue(): [string, any] {
     return [this.name, this.value];

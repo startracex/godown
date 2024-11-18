@@ -76,11 +76,13 @@ class Carousel extends GlobalStyle {
    */
   @property({ type: Number })
   index = 0;
+
   /**
    * If autoChange > 0, the rotation will be automated.
    */
   @property({ type: Number })
   autoChange = 0;
+
   /**
    * Element width.
    */
@@ -88,13 +90,13 @@ class Carousel extends GlobalStyle {
   width: string;
 
   @part("move-root")
-  _moveRoot: HTMLElement;
+  protected _moveRoot: HTMLElement;
 
-  intervalID: number;
+  protected intervalID: number;
 
-  _cloneFirst: HTMLElement | undefined;
+  private _cloneFirst: HTMLElement | undefined;
 
-  _cloneLast: HTMLElement | undefined;
+  private _cloneLast: HTMLElement | undefined;
 
   protected render() {
     return [

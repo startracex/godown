@@ -61,11 +61,13 @@ class Progress extends GlobalStyle {
    */
   @property({ type: Number })
   max = 1;
+
   /**
    * Minimum.
    */
   @property({ type: Number })
   min = 0;
+
   /**
    * Input value.
    */

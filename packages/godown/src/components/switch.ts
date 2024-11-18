@@ -129,7 +129,7 @@ class Switch extends SuperInput {
   value = "on";
 
   @query("input")
-  _input: HTMLInputElement;
+  protected _input: HTMLInputElement;
 
   protected render() {
     return html`<div part="root" class="${this.round ? "round" : "rect"}">

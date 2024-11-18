@@ -42,7 +42,7 @@ class Time extends GlobalStyle {
   @property({ type: Number })
   gap = 0;
 
-  timeoutId: number;
+  protected timeoutId: number;
 
   protected render(): string {
     return fmtime(this.format, this.time, this.escape);

@@ -87,6 +87,7 @@ class Details extends SuperOpenable {
    */
   @property({ type: Boolean })
   fill = false;
+
   /**
    * Summary text.
    */
@@ -94,7 +95,7 @@ class Details extends SuperOpenable {
   summary = "";
 
   @query("dd")
-  _dd: HTMLDataListElement;
+  protected _dd: HTMLDataListElement;
 
   protected render() {
     return html`<dl part="root">

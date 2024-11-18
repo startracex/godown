@@ -150,10 +150,10 @@ class Range extends SuperInput {
   default: typeof this.value;
 
   @part("root")
-  _root: HTMLElement;
+  protected _root: HTMLElement;
 
   @queryAll("[part=handle]")
-  _handles: NodeListOf<HTMLElement>;
+  protected _handles: NodeListOf<HTMLElement>;
 
   @state()
   lastFocus?: number;

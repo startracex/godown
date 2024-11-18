@@ -185,26 +185,31 @@ class Button extends GlobalStyle {
    */
   @property({ type: Boolean, reflect: true })
   disabled: boolean;
+
   /**
    * Invert font and background color.
    */
   @property({ type: Boolean, reflect: true })
   ghost: boolean;
+
   /**
    * Whether this element is active or not.
    */
   @property({ type: Boolean, reflect: true })
   active: boolean;
+
   /**
    * Enables rounded corners to appear capsule shaped.
    */
   @property({ type: Boolean, reflect: true })
   round: boolean;
+
   /**
    * The primary color.
    */
   @property({ reflect: true })
   color: "none" | keyof typeof colors = "black";
+
   /**
    * Text inside.
    */
@@ -212,9 +217,9 @@ class Button extends GlobalStyle {
   text: string;
 
   @part("modal-root")
-  _modalRoot: HTMLElement;
+  protected _modalRoot: HTMLElement;
   @part("root")
-  _root: HTMLElement;
+  protected _root: HTMLElement;
 
   protected render() {
     const color = this.nextColor();

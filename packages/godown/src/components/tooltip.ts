@@ -76,11 +76,13 @@ class Tooltip extends SuperOpenable {
    */
   @property()
   tip: string;
+
   /**
    * Direction of opening the tip.
    */
   @property()
   direction: Direction8 = "top";
+
   /**
    * Content alignment.
    */

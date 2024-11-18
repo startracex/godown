@@ -79,6 +79,7 @@ class Split extends SuperInput {
    */
   @property({ type: Number })
   len = 6;
+
   /**
    * Focus index.
    */
@@ -87,6 +88,7 @@ class Split extends SuperInput {
 
   @state()
   current = -1;
+
   @state()
   currentValue: (string | void)[] = [];
 

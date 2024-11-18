@@ -23,21 +23,25 @@ class Flex extends GlobalStyle {
    */
   @property({ attribute: "flex-flow" })
   flexFlow: string;
+
   /**
    * CSS property `gap`.
    */
   @property()
   gap: string;
+
   /**
    * CSS property `justify-content`.
    */
   @property()
   content: string;
+
   /**
    * CSS property `align-items`.
    */
   @property()
   items: string;
+
   /**
    * If true, set flex-direction to "column".
    */

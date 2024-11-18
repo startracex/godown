@@ -91,6 +91,7 @@ class Breath extends GlobalStyle {
    */
   @property()
   text: string | string[];
+
   /**
    * Effect duration, ending in s or ms.
    */

@@ -53,45 +53,53 @@ class Typewriter extends GlobalStyle {
    */
   @property()
   text = "";
+
   /**
    * Start immediately after {@linkcode Typewriter.firstUpdated}.
    */
   @property({ type: Boolean })
   stopped = false;
+
   /**
    * If true, hide the cursor
    */
   @property({ type: Boolean })
   ended = false;
+
   /**
    * Maximum random time.
    */
   @property({ type: Number })
   max = 100;
+
   /**
    * Minimum random time.
    */
   @property({ type: Number })
   min = 50;
+
   /**
    * Fixed time.
    */
   @property({ type: Number })
   delay = 0;
+
   /**
    * The index at the beginning.
    */
   @property({ type: Number })
   index = 0;
+
   /**
    * Internal text.
    */
   @state()
   content = "";
 
-  timeoutID: number;
+  protected timeoutID: number;
+
   @query("i")
-  _i: HTMLElement;
+  protected _i: HTMLElement;
 
   /**
    * {@linkcode Typewriter.text} length.

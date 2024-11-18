@@ -97,6 +97,7 @@ class Router<C = unknown> extends GlobalStyle {
     this.__routes = value;
     this.collectFieldRoutes(value);
   }
+
   get routes() {
     return this.__routes;
   }

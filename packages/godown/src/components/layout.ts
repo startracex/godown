@@ -13,11 +13,8 @@ const protoName = "layout";
  * {@linkcode NavLayout} renders slot and optional top header, bottom footer.
  *
  * @slot - The main content of the layout.
- *
  * @slot header - The header of the layout.
- *
  * @slot footer - The footer of the layout.
- *
  * @category layout
  */
 @godown(protoName)
@@ -54,6 +51,7 @@ class NavLayout extends GlobalStyle {
    */
   @property({ type: Boolean })
   noHeader: boolean;
+
   /**
    * If true, hide the footer slot.
    */

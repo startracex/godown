@@ -30,6 +30,7 @@ const protoName = "input";
 )
 class Input extends SuperInput {
   type: "text" | "search" | "tel" | "url" | "email" | "password" = "text";
+
   value: string;
 
   /**
@@ -39,7 +40,7 @@ class Input extends SuperInput {
   variant: "default" | "outline" = "default";
 
   @part("input")
-  _input: HTMLInputElement;
+  protected _input: HTMLInputElement;
 
   protected render() {
     return html`<div part="root" class="${classList("input-field", this.variant)}">

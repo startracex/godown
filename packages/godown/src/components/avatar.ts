@@ -58,6 +58,7 @@ class Avatar extends GlobalStyle {
    */
   @property()
   src: string | undefined | null;
+
   /**
    * If the image is not available, the {@linkcode Avatar.format} will be displayed.
    */

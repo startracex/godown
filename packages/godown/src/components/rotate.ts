@@ -49,7 +49,7 @@ const cssScope = scopePrefix(protoName);
 )
 class Rotate extends GlobalStyle {
   @part("root")
-  _root: HTMLElement;
+  protected _root: HTMLElement;
 
   protected render() {
     return html`<div part="root">

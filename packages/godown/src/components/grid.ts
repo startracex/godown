@@ -24,21 +24,25 @@ class Grid extends GlobalStyle {
    */
   @property()
   gap: string;
+
   /**
    * CSS property `grid-template-columns`, if {@linkcode isNumerical} divide equally.
    */
   @property()
   columns: string | number;
+
   /**
    * CSS property `grid-template-rows`, if {@linkcode isNumerical} divide equally.
    */
   @property()
   rows: string | number;
+
   /**
    * CSS property `place-content` (`align-content justify-content`).
    */
   @property()
   content: string;
+
   /**
    * CSS property `place-items` (`align-items justify-items`).
    */
