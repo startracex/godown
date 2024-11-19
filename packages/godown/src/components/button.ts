@@ -217,10 +217,10 @@ class Button extends GlobalStyle {
   color: "none" | keyof typeof colors = "black";
 
   /**
-   * Text inside.
+   * Content text.
    */
   @property()
-  text: string;
+  content: string;
 
   @part("modal-root")
   protected _modalRoot: HTMLElement;
@@ -229,13 +229,12 @@ class Button extends GlobalStyle {
 
   protected render() {
     const color = this.nextColor();
-    return [
-      html`<div part="root">
-        <span part="modal-root"></span>
-        <div part="slot">${this.text || htmlSlot()}</div>
-      </div>`,
-      htmlStyle(colors[color]),
-    ];
+    return html`<div part="root">
+      <span part="modal-root"></span>
+      <div part="slot">
+        ${[this.content || htmlSlot(), htmlStyle(colors[color])]}
+      </div>
+    </div>`;
   }
 
   focus() {

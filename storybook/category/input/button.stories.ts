@@ -24,13 +24,15 @@ export default {
         "none",
       ],
     },
+    content: {
+      control: "text",
+    },
   },
   args: {
     color: "black",
     disabled: false,
     round: false,
     ghost: false,
-    text: "",
   },
 } as RendererMeta<typeof render>;
 
