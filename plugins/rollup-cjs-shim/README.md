@@ -20,7 +20,7 @@ export default {
 - `import.meta.dirname` => \_\_dirname
 - `const/var/let require = createRequire(import.meta.url)` =>
   - `import { createRequire } from "module"` =>
-- `(const|var|let) global = globalThis` =>
+- `const/var/let global = globalThis` =>
 
 example input
 
