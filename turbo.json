@@ -8,6 +8,9 @@
     "build": {
       "dependsOn": [
         "^build"
+      ],
+      "outputs": [
+        "**/*.js"
       ]
     },
     "check-types": {},
