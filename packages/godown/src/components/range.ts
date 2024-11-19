@@ -133,7 +133,7 @@ class Range extends SuperInput {
   step: number;
 
   /**
-   * Display vertically
+   * Display vertically.
    */
   @property({ type: Boolean, reflect: true })
   vertical: boolean;
@@ -159,7 +159,7 @@ class Range extends SuperInput {
   lastFocus?: number;
 
   /**
-   * Returns true when the second number is greater than the first number
+   * Returns true when the second number is greater than the first number.
    */
   get reverse() {
     return this.range ? this.value[0] > this.value[1] : false;
@@ -279,8 +279,8 @@ class Range extends SuperInput {
     };
   }
 
-  createMouseDown(index) {
-    return (e) => {
+  createMouseDown(index: number) {
+    return (e: MouseEvent) => {
       this.focusHandle(index);
       this.createMousedownListener(this.createSetValue(index))(e);
     };
@@ -292,7 +292,7 @@ class Range extends SuperInput {
     this.focusHandle(0);
   }
 
-  createSetValue(index?: number) {
+  createSetValue(index: number) {
     return (numberOrModifier: number | ((value: number) => number)) => {
       const number = typeof numberOrModifier === "number"
         ? this.normalizeValue(numberOrModifier)
@@ -386,21 +386,13 @@ class Range extends SuperInput {
     this.value = this.default;
   }
 
-  swap() {
-    if (this.range) {
-      const [a, b] = this.value as [number, number];
-      this.value = [b, a];
-    }
-  }
-
   sort() {
-    this.value = this.toSorted();
+    return this.value = this.toSorted();
   }
 
-  toSorted(): typeof this.value {
+  toSorted() {
     if (this.range) {
-      const [a, b] = this.value as [number, number];
-      return a > b ? [b, a] : [a, b];
+      return [...this.value as number[]].sort((a, b) => a - b);
     }
     return this.value;
   }
