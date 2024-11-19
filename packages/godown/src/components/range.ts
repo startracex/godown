@@ -139,12 +139,15 @@ class Range extends SuperInput {
   vertical: boolean;
 
   /**
-   * When `this.range` is true, it should be [number, number], otherwise number.
+   * Value, or each of values, will render a handle.
+   *
+   * Accepts number or array of numbers.
    */
   @property({ type: Array })
   value: number | number[];
+
   /**
-   * The default of `this.value`.
+   * The default of `{@linkcode this.value}`.
    */
   @property({ type: Array })
   default: typeof this.value;
