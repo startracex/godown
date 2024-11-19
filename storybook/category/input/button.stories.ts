@@ -44,14 +44,15 @@ export default {
 
 export const Primary = {};
 
-export const Ghost = {
+export const WithColor = {
   args: {
-    ghost: true,
+    color: "blue",
   },
 };
 
-export const WithColor = {
+export const Ghost = {
   args: {
+    ghost: true,
     color: "blue",
   },
 };
