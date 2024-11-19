@@ -27,6 +27,8 @@ const protoName = "router";
  *
  * If no routes are matched, the default value (no named slot) will be rendered.
  *
+ * @slot - Display slot when there is no match.
+ * @slot * - Matching slot will be displayed.
  * @category navigation
  */
 @godown(protoName)
@@ -50,31 +52,37 @@ class Router<C = unknown> extends GlobalStyle {
    */
   @state()
   component: C | TemplateResult = null;
+
   /**
    * Dynamic parameters record.
    */
   @state()
   params: Record<string, string> = {};
+
   /**
    * Value of matched path in routes.
    */
   @state()
   path: string;
+
   /**
    * Current pathname (equals to location.pathname).
    */
   @property()
   pathname = "";
+
   /**
    * Path prefix.
    */
   @property()
   baseURL = "";
+
   /**
    * Rendered content when there is no match.
    */
   @state()
   default: TemplateResult = htmlSlot();
+
   /**
    * The type of routing sources.
    *
@@ -84,6 +92,7 @@ class Router<C = unknown> extends GlobalStyle {
    */
   @property()
   type: "united" | "slotted" | "field" = "united";
+
   /**
    * Cache accessed records.
    *
@@ -159,8 +168,7 @@ class Router<C = unknown> extends GlobalStyle {
   }
 
   /**
-   * @param params value of useRouter()
-   * @param first whether this path is loaded for the first time.
+   * Callback function when the route changes.
    */
   routeChangeCallback: (params: {
     pathname: string;
@@ -183,9 +191,7 @@ class Router<C = unknown> extends GlobalStyle {
   }
 
   /**
-   * Find components from {@linkcode __fieldRouteTree} matching query.
-   * @param query Query string.
-   * @returns Components or null.
+   * Get component from {@linkcode routes} by query.
    */
   fieldComponent(query?: string) {
     query ||= this.useWhich(this.pathname);
@@ -204,9 +210,7 @@ class Router<C = unknown> extends GlobalStyle {
   }
 
   /**
-   * Find components from {@linkcode __slottedRouteTree} matching query.
-   * @param query Query string.
-   * @returns Named slot element template result or null.
+   * Get component from slotted elements by query.
    */
   slottedComponent(usedRouteTemplate?: string) {
     const slottedPaths = this._slottedNames;

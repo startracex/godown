@@ -14,6 +14,7 @@ const cssScope = scopePrefix(protoName);
  * Renders as an image if it has a src property,
  * otherwise falls back to name or nameless slot.
  *
+ * @slot - Display content if no `src` or `name` provided.
  * @category display
  */
 @godown(protoName)

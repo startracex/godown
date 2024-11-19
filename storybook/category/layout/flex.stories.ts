@@ -1,3 +1,4 @@
+import { booleanArgs } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./flex";
 
@@ -7,15 +8,42 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    vertical: {
-      control: "boolean",
+    vertical: booleanArgs,
+    gap: {
+      control: "text",
+      table: {
+        type: {
+          summary: "string",
+        },
+      },
     },
-    gap: { control: "text" },
-    flexFlow: { control: "text" },
-    content: { control: "text" },
-    items: { control: "text" },
+    flexFlow: {
+      control: "text",
+      table: {
+        type: {
+          summary: "string",
+        },
+      },
+    },
+    content: {
+      control: "text",
+      table: {
+        type: {
+          summary: "string",
+        },
+      },
+    },
+    items: {
+      control: "text",
+      table: {
+        type: {
+          summary: "string",
+        },
+      },
+    },
   },
   args: {
+    vertical: false,
     gap: "1em",
   },
 } as RendererMeta<typeof render>;

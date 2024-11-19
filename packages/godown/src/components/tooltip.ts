@@ -15,7 +15,7 @@ const cssScope = scopePrefix(protoName);
  *
  * If it has the tip property, ignore the slot tip.
  *
- * @slot tip - Tip element.
+ * @slot tip - Tip element if no `tim` provided.
  * @slot - Content.
  * @category feedback
  */

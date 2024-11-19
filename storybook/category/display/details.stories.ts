@@ -1,3 +1,4 @@
+import { booleanArgs, stringArgs } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./details";
 
@@ -7,12 +8,8 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    summary: {
-      control: "text",
-    },
-    open: {
-      control: "boolean",
-    },
+    summary: stringArgs,
+    open: booleanArgs,
   },
   args: {
     summary: "Summary",

@@ -16,7 +16,6 @@ const protoName = "time";
 @godown(protoName)
 @styles(css`:host{text-align: center;}`)
 class Time extends GlobalStyle {
-
   /**
    * Escape symbol.
    */

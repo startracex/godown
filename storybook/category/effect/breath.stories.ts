@@ -1,3 +1,4 @@
+import { stringArgs } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./breath";
 import page from "./breath.mdx";
@@ -7,7 +8,20 @@ export default {
   component: "godown-breath",
   tags: ["autodocs"],
   render,
-  argTypes: {},
+  argTypes: {
+    text: {
+      ...stringArgs,
+      table: {
+        defaultValue: undefined,
+      },
+    },
+    duration: {
+      ...stringArgs,
+      table: {
+        defaultValue: undefined,
+      },
+    },
+  },
   args: {
     text: "Hello world",
     duration: "3s",

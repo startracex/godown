@@ -21,6 +21,7 @@ const cssScope = scopePrefix(defineName);
  *
  * Inspired by Vercel home page (2023).
  *
+ * @slot - Breathing parts.
  * @category effect
  */
 @godown(defineName)

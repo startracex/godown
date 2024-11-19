@@ -47,22 +47,22 @@ const protoName = "layout";
 )
 class NavLayout extends GlobalStyle {
   /**
-   * If true, hide the header slot.
+   * If true, remove the header slot.
    */
   @property({ type: Boolean })
-  noHeader: boolean;
+  noHeader = false;
 
   /**
-   * If true, hide the footer slot.
+   * If true, remove the footer slot.
    */
   @property({ type: Boolean })
-  noFooter: boolean;
+  noFooter = false;
 
   /**
    * If true, header will sticky.
    */
   @property({ type: Boolean })
-  sticky: boolean;
+  sticky = false;
 
   protected render() {
     return html`${

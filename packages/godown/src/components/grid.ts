@@ -14,6 +14,7 @@ const protoName = "grid";
 /**
  * {@linkcode Grid} provides gird layout.
  *
+ * @slot - Grid items.
  * @category layout
  */
 @godown(protoName)

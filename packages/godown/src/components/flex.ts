@@ -13,6 +13,7 @@ const protoName = "flex";
 /**
  * {@linkcode Flex} provides flex layout.
  *
+ * @slot - Flex items.
  * @category layout
  */
 @godown(protoName)

@@ -57,21 +57,12 @@ const protoName = "progress";
   }
 `)
 class Progress extends GlobalStyle {
-  /**
-   * Maximum.
-   */
   @property({ type: Number })
   max = 1;
 
-  /**
-   * Minimum.
-   */
   @property({ type: Number })
   min = 0;
 
-  /**
-   * Input value.
-   */
   @property({ type: Number })
   value: number;
 

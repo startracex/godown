@@ -23,6 +23,9 @@ export default {
         "pink",
         "none",
       ],
+      table: {
+        defaultValue: { summary: "blue" },
+      },
     },
     variant: {
       control: "select",
@@ -44,6 +47,9 @@ export default {
         "help",
         "deprecated",
       ],
+      table: {
+        type: { summary: "string" },
+      },
     },
   },
   args: {

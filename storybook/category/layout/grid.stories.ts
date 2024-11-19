@@ -9,14 +9,40 @@ export default {
   argTypes: {
     columns: {
       control: "number",
+      table: {
+        type: {
+          summary: "number | string",
+        },
+      },
     },
     rows: {
       control: "number",
     },
     gap: { control: "text" },
-    flexFlow: { control: "text" },
-    content: { control: "text" },
-    items: { control: "text" },
+    flexFlow: {
+      control: "text",
+      table: {
+        type: {
+          summary: "string",
+        },
+      },
+    },
+    content: {
+      control: "text",
+      table: {
+        type: {
+          summary: "string",
+        },
+      },
+    },
+    items: {
+      control: "text",
+      table: {
+        type: {
+          summary: "string",
+        },
+      },
+    },
   },
   args: {
     columns: 5,

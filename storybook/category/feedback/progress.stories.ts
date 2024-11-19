@@ -10,6 +10,27 @@ export default {
     value: {
       control: "number",
       min: 0,
+      table: {
+        defaultValue: {
+          summary: "null",
+        },
+      },
+    },
+    max: {
+      control: "number",
+      table: {
+        defaultValue: {
+          summary: "100",
+        },
+      },
+    },
+    min: {
+      control: "number",
+      table: {
+        defaultValue: {
+          summary: "0",
+        },
+      },
     },
   },
   args: {

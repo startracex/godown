@@ -19,7 +19,9 @@ class Link extends SuperAnchor {
   /**
    * If "push", call `history.pushState`.
    *
-   * If "replace", call `history.replaceState`
+   * If "replace", call `history.replaceState`.
+   *
+   * If "normal", behave like a normal anchor.
    */
   @property()
   type: "push" | "replace" | "normal" = "normal";

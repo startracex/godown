@@ -1,3 +1,4 @@
+import { booleanArgs } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./divider";
 
@@ -7,11 +8,11 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    vertical: {
-      control: "boolean",
-    },
+    vertical: booleanArgs,
   },
-  args: {},
+  args: {
+    vertical: false,
+  },
 } as RendererMeta<typeof render>;
 
 export const Primary = {};

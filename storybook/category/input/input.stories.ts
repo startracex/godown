@@ -17,16 +17,26 @@ export default {
         "email",
         "password",
       ],
+      table: {
+        defaultValue: { summary: "text" },
+      },
     },
     variant: {
       control: "select",
       options: ["default", "outline"],
+      table: {
+        defaultValue: { summary: "default" },
+      },
+    },
+    placeholder: {
+      table: {
+        type: { summary: "string" },
+      },
     },
   },
   args: {
     type: "text",
     variant: "default",
-    placeholder: "",
     name: "",
   },
 } as RendererMeta<typeof render>;

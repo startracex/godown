@@ -5,7 +5,7 @@ import { html } from "lit";
 
 import { Godown } from "../../types";
 
-export default (args: Pick<Godown.Router, "pathname">) => {
+export default (args: Pick<Godown.Router, "baseURL" | "pathname" | "type">) => {
   return html`
   Current pathname: ${args.pathname}
 <godown-router ${attr(args)}>

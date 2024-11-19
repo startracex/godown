@@ -14,6 +14,14 @@ export default {
         "replace",
         "normal",
       ],
+      table: {
+        type: {
+          summary: "string",
+        },
+        defaultValue: {
+          summary: "normal",
+        },
+      },
     },
   },
   args: {

@@ -22,6 +22,7 @@ const protoName = "carousel";
  *
  * If no width, it will be the width of the first element.
  *
+ * @slot - Carousel items, should maintain the same size.
  * @category display
  */
 @godown(protoName)

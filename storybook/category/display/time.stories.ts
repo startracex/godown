@@ -13,11 +13,8 @@ export default {
       },
       table: {
         type: {
+          detail: "number of milliseconds gap of update timeout",
           summary: "number",
-          detail: "number of milliseconds to wait before updating the time",
-        },
-        defaultValue: {
-          summary: "undefined",
         },
       },
     },
@@ -29,10 +26,7 @@ export default {
       table: {
         type: {
           summary: "number",
-          detail: "number of milliseconds gap of update timeout",
-        },
-        defaultValue: {
-          summary: "undefined",
+          detail: "number of milliseconds to wait before updating the time",
         },
       },
     },

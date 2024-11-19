@@ -12,7 +12,7 @@ export default (args: Pick<Godown.Card, "footer" | "header">) => {
     Header
   </div>
   <div>
-    main content
+    Main content
   </div>
   <div slot="footer">
     Footer

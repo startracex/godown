@@ -23,6 +23,12 @@ export default {
         "white",
         "none",
       ],
+      table: {
+        defaultValue: { summary: "black" },
+        type: {
+          summary: "string",
+        },
+      },
     },
     content: {
       control: "text",

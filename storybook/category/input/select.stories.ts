@@ -1,3 +1,4 @@
+import { booleanArgs } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./select";
 
@@ -7,13 +8,28 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
+    disabled: booleanArgs,
     direction: {
       control: "select",
       options: [
         "top",
         "bottom",
       ],
+      table: {
+        type: {
+          summary: "top | bottom",
+        },
+      },
     },
+    placeholder: {
+      control: {
+        type: "text",
+      },
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    multiple: booleanArgs,
   },
   args: {
     disabled: false,

@@ -15,6 +15,9 @@ const cssScope = scopePrefix(protoName);
 /**
  * {@linkcode Details} similar to `<details>`.
  *
+ * @slot summary - Details summary if no `summary` is provided.
+ * @slot - Details content.
+ * @fires change - Fired when the details is toggled.
  * @category display
  */
 @godown(protoName)

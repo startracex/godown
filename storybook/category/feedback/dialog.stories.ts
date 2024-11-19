@@ -1,3 +1,4 @@
+import { booleanArgs } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./dialog";
 
@@ -20,7 +21,13 @@ export default {
         "bottom-right",
         "center",
       ],
+      table: {
+        defaultValue: { summary: "center" },
+        type: { summary: "string" },
+      },
     },
+    open: booleanArgs,
+    modal: booleanArgs,
   },
   args: {
     open: false,

@@ -1,3 +1,4 @@
+import { booleanArgs } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./split";
 
@@ -8,9 +9,15 @@ export default {
   render,
   argTypes: {
     len: {
-      control: "number",
-      min: 1,
+      control: {
+        type: "number",
+        min: 1,
+      },
+      table: {
+        defaultValue: { summary: "6" },
+      },
     },
+    disabled: booleanArgs,
   },
   args: {
     len: 6,

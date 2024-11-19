@@ -108,21 +108,25 @@ class Switch extends SuperInput {
    */
   @property({ type: Boolean, reflect: true })
   round = false;
+
   /**
    * Whether this element is selected or not.
    */
   @property({ type: Boolean, reflect: true })
   checked = false;
+
   /**
-   * Whether this element is disabled or not.
+   * Disable this element.
    */
   @property({ type: Boolean, reflect: true })
   disabled = false;
+
   /**
-   * Parsed by JSON.parse to checked.
+   * Default checked state.
    */
   @property()
   default = "false";
+
   /**
    * Input value.
    */
