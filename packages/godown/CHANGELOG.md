@@ -1,5 +1,21 @@
 # godown
 
+## 3.0.0-canary.9
+
+### Patch Changes
+
+- 9f3e8b1: update styles for switch
+- c7b74e5: remove default tip background for tooltip
+- 405a9d2: update styles for button
+- f258a33: support multi character input for split
+- 6ca93fc: add type property for tooltip
+- 4b8f146: card always display border
+- 6f7d068: remove range.swap, fix range.toSorted
+- f6766a6: remove typewriter font-family
+- bf94fa2: listen popstate for router
+- c256594: time.timeout, time.gap defaults to undefined
+- 2bfdaf9: rename text to content for button
+
 ## 3.0.0-canary.8
 
 ### Patch Changes
