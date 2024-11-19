@@ -1,5 +1,6 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { isNil } from "@godown/element/tools/lib.js";
 import { css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -71,13 +72,13 @@ class Progress extends GlobalStyle {
   /**
    * Input value.
    */
-  @property({ type: Number, reflect: true })
-  value = null;
+  @property({ type: Number })
+  value: number;
 
   protected render() {
     let width = 20;
     let className: string;
-    if (this.value !== null) {
+    if (!isNil(this.value)) {
       width = this.parsePercent(this.value);
       className = "static";
     }

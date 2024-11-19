@@ -46,7 +46,7 @@ class Flex extends GlobalStyle {
    * If true, set flex-direction to "column".
    */
   @property({ type: Boolean })
-  vertical: boolean;
+  vertical = false;
 
   protected render() {
     return [
