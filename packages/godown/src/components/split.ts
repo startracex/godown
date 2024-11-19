@@ -125,7 +125,32 @@ class Split extends SuperInput {
     if (this.compositing) {
       return;
     }
-    if (e.data === null) {
+
+    this.fillInput(e.data);
+    this.value = this.currentValue.join("");
+
+    this.dispatchEvent(new CustomEvent("input", { detail: this.value, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent("change", { detail: this.value, composed: true }));
+  }
+
+  /**
+   * Fill input with data.
+   *
+   * If data is null
+   *  - If current value is null, move to before.
+   *  - If current value is not null, delete it.
+   *
+   * If data is not null
+   *  - If current value is null, input data.
+   *  - If current value is not null, input data and move to after.
+   *
+   * If data is multiple characters,
+   *   Fill input with data[0] and call fillInput with data.slice(1).
+   *
+   * @param data Input event data.
+   */
+  protected fillInput(data: string | null) {
+    if (data === null) {
       // delete
 
       if (this.currentValue[this.current] !== null) {
@@ -139,28 +164,32 @@ class Split extends SuperInput {
         const lastNotNull = this.currentValue.findLastIndex(a => a !== null);
         this.current = this.current - 1 < 0 ? lastNotNull < 0 ? 0 : lastNotNull : this.current - 1;
       }
-    } else {
-      // input
-
-      this.currentValue[this.current] = e.data;
-      if (this.current + 1 >= this.len) {
-        // index overflow
-
-        this.current = this.currentValue.indexOf(null);
-        if (this.current === -1) {
-          this.blur();
-        }
-      } else {
-        // go to after
-
-        this.current += 1;
-      }
+      return;
     }
 
-    this.value = this.currentValue.join("");
+    const multiple = data.length > 1;
 
-    this.dispatchEvent(new CustomEvent("input", { detail: this.value, bubbles: true, composed: true }));
-    this.dispatchEvent(new CustomEvent("change", { detail: this.value, composed: true }));
+    // input
+    this.currentValue[this.current] = data[0];
+    if (this.current + 1 >= this.len) {
+      // index overflow
+
+      this.current = this.currentValue.indexOf(null);
+      if (this.current === -1) {
+        this.blur();
+      }
+    } else {
+      // go to after
+
+      this.current += 1;
+    }
+
+    if (multiple) {
+      const after = data.slice(1);
+      if (after) {
+        this.fillInput(after);
+      }
+    }
   }
 
   focus() {
