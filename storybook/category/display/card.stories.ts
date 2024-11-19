@@ -18,3 +18,22 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const WithHeader = {
+  args: {
+    header: true,
+  },
+};
+
+export const WithFooter = {
+  args: {
+    footer: true,
+  },
+};
+
+export const WithHeaderAndFooter = {
+  args: {
+    header: true,
+    footer: true,
+  },
+};

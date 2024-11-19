@@ -15,3 +15,9 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const Round = {
+  args: {
+    round: true,
+  },
+};

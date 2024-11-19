@@ -29,3 +29,15 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const Text = {
+  args: {
+    type: "text",
+  },
+};
+
+export const Image = {
+  args: {
+    type: "image",
+  },
+};

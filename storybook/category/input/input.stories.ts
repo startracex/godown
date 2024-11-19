@@ -42,3 +42,21 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const WithPlaceholder = {
+  args: {
+    placeholder: "Input placeholder",
+  },
+};
+
+export const WithType = {
+  args: {
+    type: "password",
+  },
+};
+
+export const WithOutlineVariant = {
+  args: {
+    variant: "outline",
+  },
+};

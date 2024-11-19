@@ -49,3 +49,9 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const Vertical = {
+  args: {
+    vertical: true,
+  },
+};

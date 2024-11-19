@@ -38,3 +38,15 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const WithGap = {
+  args: {
+    gap: -1000,
+  },
+};
+
+export const WithFormat = {
+  args: {
+    format: "YYYY-MM-DD",
+  },
+};

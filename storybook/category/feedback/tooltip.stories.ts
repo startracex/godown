@@ -46,6 +46,24 @@ export default {
 
 export const Primary = {};
 
+export const WithDirection = {
+  args: {
+    direction: "bottom",
+  },
+};
+
+export const WithPropagation = {
+  args: {
+    propagation: true,
+  },
+};
+
+export const WithFocus = {
+  args: {
+    type: "focus",
+  },
+};
+
 export const WithBackground = {
   args: {
     style: "--godown-tooltip--tip-background: rgb(102 55 0);",

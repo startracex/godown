@@ -20,3 +20,21 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const NoHeader = {
+  args: {
+    noHeader: true,
+  },
+};
+
+export const NoFooter = {
+  args: {
+    noFooter: true,
+  },
+};
+
+export const Sticky = {
+  args: {
+    sticky: true,
+  },
+};

@@ -18,3 +18,9 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const Opened = {
+  args: {
+    open: true,
+  },
+};

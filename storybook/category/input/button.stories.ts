@@ -43,3 +43,15 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const Ghost = {
+  args: {
+    ghost: true,
+  },
+};
+
+export const WithColor = {
+  args: {
+    color: "blue",
+  },
+};

@@ -41,3 +41,9 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const WithValue = {
+  args: {
+    value: 70,
+  },
+};

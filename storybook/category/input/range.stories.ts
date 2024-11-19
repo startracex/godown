@@ -42,3 +42,21 @@ export default {
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const Vertical = {
+  args: {
+    vertical: true,
+  },
+};
+
+export const SignalControl = {
+  args: {
+    value: 70,
+  },
+};
+
+export const MultipleControl = {
+  args: {
+    value: [20, 40, 80, 90],
+  },
+};

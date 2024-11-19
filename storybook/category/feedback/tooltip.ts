@@ -5,8 +5,8 @@ import { html } from "lit";
 
 import { Godown } from "../../types";
 
-export default (args: Pick<Godown.Tooltip, "tip" | "propagation" | "direction" | "align">) => {
+export default (args: Pick<Godown.Tooltip, "tip" | "propagation" | "direction" | "align" | "type">) => {
   return html`<godown-tooltip ${attr(args)}>
-  Hover me
+  ${args.type === "hover" ? "Hover" : "Click"} me
 </godown-tooltip>`;
 };
