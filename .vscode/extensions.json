@@ -1,7 +1,10 @@
 {
   "recommendations": [
-    "vincaslt.highlight-matching-tag",
+    "dbaeumer.vscode-eslint",
+    "dprint.dprint",
+    "editorconfig.editorconfig",
     "naumovs.color-highlight",
-    "runem.lit-plugin"
+    "runem.lit-plugin",
+    "vincaslt.highlight-matching-tag"
   ]
 }
