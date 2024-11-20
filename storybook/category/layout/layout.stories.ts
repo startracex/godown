@@ -1,4 +1,4 @@
-import { booleanArgs } from "../../args";
+import { booleanArg } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./layout";
 
@@ -8,9 +8,9 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    noHeader: booleanArgs,
-    noFooter: booleanArgs,
-    sticky: booleanArgs,
+    noHeader: booleanArg,
+    noFooter: booleanArg,
+    sticky: booleanArg,
   },
   args: {
     noHeader: false,

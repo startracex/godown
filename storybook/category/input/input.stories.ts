@@ -1,3 +1,4 @@
+import { ArgHelper } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./input";
 
@@ -7,37 +8,23 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    type: {
-      control: "select",
-      options: [
-        "text",
-        "search",
-        "tel",
-        "url",
-        "email",
-        "password",
-      ],
-      table: {
-        defaultValue: { summary: "text" },
-      },
-    },
-    variant: {
-      control: "select",
-      options: ["default", "outline"],
-      table: {
-        defaultValue: { summary: "default" },
-      },
-    },
-    placeholder: {
-      table: {
-        type: { summary: "string" },
-      },
-    },
+    type: new ArgHelper().options([
+      "text",
+      "search",
+      "tel",
+      "url",
+      "email",
+      "password",
+    ]).arg,
+    variant: new ArgHelper().options([
+      "default",
+      "outline",
+    ]).arg,
+    placeholder: new ArgHelper().type("text").arg,
   },
   args: {
     type: "text",
     variant: "default",
-    name: "",
   },
 } as RendererMeta<typeof render>;
 

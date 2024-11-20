@@ -1,3 +1,4 @@
+import { ArgHelper } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./grid";
 
@@ -7,42 +8,12 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    columns: {
-      control: "number",
-      table: {
-        type: {
-          summary: "number | string",
-        },
-      },
-    },
-    rows: {
-      control: "number",
-    },
-    gap: { control: "text" },
-    flexFlow: {
-      control: "text",
-      table: {
-        type: {
-          summary: "string",
-        },
-      },
-    },
-    content: {
-      control: "text",
-      table: {
-        type: {
-          summary: "string",
-        },
-      },
-    },
-    items: {
-      control: "text",
-      table: {
-        type: {
-          summary: "string",
-        },
-      },
-    },
+    columns: new ArgHelper().type("number | string").control("number").arg,
+    content: new ArgHelper().type("string").control("text").arg,
+    gap: new ArgHelper().type("string").control("text").arg,
+    flexFlow: new ArgHelper().type("string").control("text").arg,
+    items: new ArgHelper().type("string").control("text").arg,
+    rows: new ArgHelper().type("string").control("text").arg,
   },
   args: {
     columns: 5,

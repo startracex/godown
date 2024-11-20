@@ -1,4 +1,4 @@
-import { booleanArgs } from "../../args";
+import { ArgHelper, booleanArg } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./split";
 
@@ -8,16 +8,8 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    len: {
-      control: {
-        type: "number",
-        min: 1,
-      },
-      table: {
-        defaultValue: { summary: "6" },
-      },
-    },
-    disabled: booleanArgs,
+    len: new ArgHelper().type("number").control("number", { min: 1 }).default("6").arg,
+    disabled: booleanArg,
   },
   args: {
     len: 6,

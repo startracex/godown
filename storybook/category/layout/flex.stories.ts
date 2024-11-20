@@ -1,4 +1,4 @@
-import { booleanArgs } from "../../args";
+import { ArgHelper, booleanArg } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./flex";
 
@@ -8,39 +8,11 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    vertical: booleanArgs,
-    gap: {
-      control: "text",
-      table: {
-        type: {
-          summary: "string",
-        },
-      },
-    },
-    flexFlow: {
-      control: "text",
-      table: {
-        type: {
-          summary: "string",
-        },
-      },
-    },
-    content: {
-      control: "text",
-      table: {
-        type: {
-          summary: "string",
-        },
-      },
-    },
-    items: {
-      control: "text",
-      table: {
-        type: {
-          summary: "string",
-        },
-      },
-    },
+    vertical: booleanArg,
+    gap: new ArgHelper().type("string").control("text").arg,
+    flexFlow: new ArgHelper().type("string").control("text").arg,
+    content: new ArgHelper().type("string").control("text").arg,
+    items: new ArgHelper().type("string").control("text").arg,
   },
   args: {
     vertical: false,

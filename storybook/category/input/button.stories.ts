@@ -1,3 +1,4 @@
+import { ArgHelper } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./button";
 
@@ -7,32 +8,21 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    color: {
-      control: "select",
-      options: [
-        "teal",
-        "blue",
-        "green",
-        "red",
-        "purple",
-        "orange",
-        "yellow",
-        "pink",
-        "black",
-        "gray",
-        "white",
-        "none",
-      ],
-      table: {
-        defaultValue: { summary: "black" },
-        type: {
-          summary: "string",
-        },
-      },
-    },
-    content: {
-      control: "text",
-    },
+    color: new ArgHelper().options([
+      "teal",
+      "blue",
+      "green",
+      "red",
+      "purple",
+      "orange",
+      "yellow",
+      "pink",
+      "black",
+      "gray",
+      "white",
+      "none",
+    ]).arg,
+    content: new ArgHelper().type("string").control("text").arg,
   },
   args: {
     color: "black",

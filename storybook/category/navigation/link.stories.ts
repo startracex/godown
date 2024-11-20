@@ -1,3 +1,4 @@
+import { ArgHelper } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./link";
 
@@ -7,22 +8,11 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    type: {
-      control: "select",
-      options: [
-        "push",
-        "replace",
-        "normal",
-      ],
-      table: {
-        type: {
-          summary: "string",
-        },
-        defaultValue: {
-          summary: "normal",
-        },
-      },
-    },
+    type: new ArgHelper().options([
+      "push",
+      "replace",
+      "normal",
+    ]).arg,
   },
   args: {
     href: "/index",

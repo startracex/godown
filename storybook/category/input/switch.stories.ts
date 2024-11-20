@@ -1,3 +1,4 @@
+import { booleanArg } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./switch";
 
@@ -6,10 +7,14 @@ export default {
   component: "godown-switch",
   tags: ["autodocs"],
   render,
-  argTypes: {},
+  argTypes: {
+    checked: booleanArg,
+    disabled: booleanArg,
+    round: booleanArg,
+  },
   args: {
-    disabled: false,
     checked: false,
+    disabled: false,
     round: false,
   },
 } as RendererMeta<typeof render>;

@@ -1,4 +1,4 @@
-import { booleanArgs } from "../../args";
+import { ArgHelper, booleanArg } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./select";
 
@@ -8,28 +8,13 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    disabled: booleanArgs,
-    direction: {
-      control: "select",
-      options: [
-        "top",
-        "bottom",
-      ],
-      table: {
-        type: {
-          summary: "top | bottom",
-        },
-      },
-    },
-    placeholder: {
-      control: {
-        type: "text",
-      },
-      table: {
-        type: { summary: "string" },
-      },
-    },
-    multiple: booleanArgs,
+    disabled: booleanArg,
+    direction: new ArgHelper().options([
+      "top",
+      "bottom",
+    ]).arg,
+    placeholder: new ArgHelper().type("string").control("text").arg,
+    multiple: booleanArg,
   },
   args: {
     disabled: false,

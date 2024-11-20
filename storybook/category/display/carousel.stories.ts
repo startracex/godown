@@ -1,6 +1,6 @@
 import { render } from "lit";
 
-import { numberArgs } from "../../args";
+import { numberArg } from "../../args";
 import { RendererMeta } from "../../types";
 import { carousel } from "./carousel";
 
@@ -10,8 +10,8 @@ export default {
   tags: ["autodocs"],
   render: (args: any) => carousel(args),
   argTypes: {
-    index: numberArgs,
-    autoChange: numberArgs,
+    index: numberArg,
+    autoChange: numberArg,
   },
   args: {
     index: 1,

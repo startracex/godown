@@ -1,4 +1,4 @@
-import { booleanArgs } from "../../args";
+import { ArgHelper, booleanArg } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./text";
 
@@ -8,18 +8,8 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    underline: {
-      options: ["none", "hover", "active", "always"],
-      control: {
-        type: "select",
-      },
-      table: {
-        defaultValue: {
-          summary: "none",
-        },
-      },
-    },
-    clip: booleanArgs,
+    underline: new ArgHelper().options(["none", "hover", "active", "always"]).arg,
+    clip: booleanArg,
   },
   args: {
     underline: "none",

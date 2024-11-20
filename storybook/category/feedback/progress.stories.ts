@@ -1,3 +1,4 @@
+import { ArgHelper } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./progress";
 
@@ -7,34 +8,14 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    value: {
-      control: "number",
+    value: new ArgHelper().type("number").control("number", {
+      max: 100,
       min: 0,
-      table: {
-        defaultValue: {
-          summary: "null",
-        },
-      },
-    },
-    max: {
-      control: "number",
-      table: {
-        defaultValue: {
-          summary: "100",
-        },
-      },
-    },
-    min: {
-      control: "number",
-      table: {
-        defaultValue: {
-          summary: "0",
-        },
-      },
-    },
+    }).arg,
+    max: new ArgHelper().type("number").control("number").default("100").arg,
+    min: new ArgHelper().type("number").control("number").default("0").arg,
   },
   args: {
-    value: null,
     max: 100,
     min: 0,
   },

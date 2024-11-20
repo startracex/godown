@@ -1,4 +1,4 @@
-import { booleanArgs } from "../../args";
+import { ArgHelper, booleanArg } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./dialog";
 
@@ -8,31 +8,24 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    direction: {
-      control: "select",
-      options: [
-        "left",
-        "right",
-        "top",
-        "bottom",
-        "top-left",
-        "top-right",
-        "bottom-left",
-        "bottom-right",
-        "center",
-      ],
-      table: {
-        defaultValue: { summary: "center" },
-        type: { summary: "string" },
-      },
-    },
-    open: booleanArgs,
-    modal: booleanArgs,
+    direction: new ArgHelper().options([
+      "center",
+      "left",
+      "right",
+      "top",
+      "bottom",
+      "top-left",
+      "top-right",
+      "bottom-left",
+      "bottom-right",
+    ]).arg,
+    open: booleanArg,
+    modal: booleanArg,
   },
   args: {
-    open: false,
-    modal: false,
     direction: "center",
+    modal: false,
+    open: false,
   },
 } as RendererMeta<typeof render>;
 

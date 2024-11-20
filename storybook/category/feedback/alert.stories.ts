@@ -1,3 +1,4 @@
+import { ArgHelper, booleanArg } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./alert";
 
@@ -7,9 +8,18 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    color: {
-      control: "select",
-      options: [
+    call: new ArgHelper().options([
+      "tip",
+      "success",
+      "info",
+      "warning",
+      "danger",
+      "error",
+      "help",
+      "deprecated",
+    ], null).arg,
+    color: new ArgHelper().options(
+      [
         "white",
         "black",
         "gray",
@@ -23,41 +33,21 @@ export default {
         "pink",
         "none",
       ],
-      table: {
-        defaultValue: { summary: "blue" },
-      },
-    },
-    variant: {
-      control: "select",
-      options: [
-        "blockquote",
-        "dark",
-        "light",
-      ],
-    },
-    call: {
-      control: "select",
-      options: [
-        "tip",
-        "success",
-        "info",
-        "warning",
-        "danger",
-        "error",
-        "help",
-        "deprecated",
-      ],
-      table: {
-        type: { summary: "string" },
-      },
-    },
+      "blue",
+    ).arg,
+    variant: new ArgHelper().options([
+      "blockquote",
+      "dark",
+      "light",
+    ], "dark").arg,
+    hideClose: booleanArg,
   },
   args: {
     color: "blue",
+    variant: "dark",
+    content: "",
     hideClose: false,
     title: "Title",
-    content: "",
-    variant: "dark",
   },
 } as RendererMeta<typeof render>;
 

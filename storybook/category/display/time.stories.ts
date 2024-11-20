@@ -1,3 +1,4 @@
+import { ArgHelper } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./time";
 
@@ -7,29 +8,8 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    gap: {
-      control: {
-        type: "number",
-      },
-      table: {
-        type: {
-          detail: "number of milliseconds gap of update timeout",
-          summary: "number",
-        },
-      },
-    },
-    timeout: {
-      control: {
-        type: "number",
-        step: 1000,
-      },
-      table: {
-        type: {
-          summary: "number",
-          detail: "number of milliseconds to wait before updating the time",
-        },
-      },
-    },
+    gap: new ArgHelper().type("number").type("number").arg,
+    timeout: new ArgHelper().type("number").type("number").arg,
   },
   args: {
     format: "YYYY-MM-DD hh:mm:ss UTFZ",

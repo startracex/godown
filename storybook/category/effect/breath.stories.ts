@@ -1,4 +1,4 @@
-import { stringArgs } from "../../args";
+import { ArgHelper } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./breath";
 import page from "./breath.mdx";
@@ -9,18 +9,8 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    text: {
-      ...stringArgs,
-      table: {
-        defaultValue: undefined,
-      },
-    },
-    duration: {
-      ...stringArgs,
-      table: {
-        defaultValue: undefined,
-      },
-    },
+    text: new ArgHelper().type("string").arg,
+    duration: new ArgHelper().type("string").arg,
   },
   args: {
     text: "Hello world",

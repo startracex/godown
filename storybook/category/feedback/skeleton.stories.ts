@@ -1,3 +1,4 @@
+import { ArgHelper } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./skeleton";
 
@@ -7,20 +8,14 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    type: {
-      control: "select",
-      options: [
-        "text",
-        "image",
-      ],
-    },
-    animation: {
-      control: "select",
-      options: [
-        "position",
-        "opacity",
-      ],
-    },
+    type: new ArgHelper().options([
+      "text",
+      "image",
+    ]).arg,
+    animation: new ArgHelper().options([
+      "position",
+      "opacity",
+    ]).arg,
   },
   args: {
     type: "text",

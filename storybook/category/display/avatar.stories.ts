@@ -1,4 +1,4 @@
-import { booleanArgs, stringArgs } from "../../args";
+import { booleanArg, stringArg } from "../../args";
 import { matrixToBase64, stringToMatrix } from "../../hex-image";
 import { RendererMeta } from "../../types";
 import render from "./avatar";
@@ -9,8 +9,8 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    name: stringArgs,
-    round: booleanArgs,
+    name: stringArg,
+    round: booleanArg,
   },
   args: {
     name: "S",
