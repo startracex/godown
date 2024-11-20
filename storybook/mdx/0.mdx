@@ -1,9 +1,9 @@
 import { Meta, Source, Subtitle, Title } from "@storybook/blocks";
 import { version } from "godown/package.json";
 
-<Meta title="Getting starter"/>
+<Meta title="Getting started" />
 
-# Getting starter
+# Getting started
 
 <Subtitle>Documentations for godown@{version}</Subtitle>
 
@@ -11,13 +11,7 @@ import { version } from "godown/package.json";
 
 Install {version}
 
-<Source language="bash" code={`npm i godown@${version}`} dark/>
-
-Install next
-
-```bash
-npm i godown@next
-```
+<Source language="bash" code={`npm i godown@${version}`} dark />
 
 ## Import
 
@@ -37,6 +31,6 @@ import "godown/button.js";
 import Button from "godown/button.js";
 
 new Button({
-  innerText: `Click me`,
+  content: `Click me`,
 });
 ```

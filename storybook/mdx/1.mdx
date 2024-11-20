@@ -1,16 +1,26 @@
 import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
 import { presets } from "@godown/colors/presets";
 
-<Meta title="Colors"/>
+<Meta title="Colors" />
 
 # Colors
 
 <ColorPalette>
-  {Object.entries(presets).map(([key, colors]) => <ColorItem key={key} title={key} colors={Object.fromEntries(colors.map((color, index) => [index, color]))}/>)}
+  {Object.entries(presets).map(([key, colors]) => (
+    <ColorItem
+      key={key}
+      title={key[0].toUpperCase() + key.slice(1)}
+      colors={Object.fromEntries(colors.map((color, index) => [index, color]))}
+    />
+  ))}
+  <ColorItem title="Active" colors={{ "blue 6": presets.blue[6] }} />
+  <ColorItem title="Passive" colors={{ "darkgray 6": presets.darkgray[6] }} />
+  <ColorItem title="Black" colors={["rgb(0 0 0)"]} />
+  <ColorItem title="White" colors={["rgb(255 255 255)"]} />
 </ColorPalette>
 
 <style>
-{`
+  {`
   #storybook-docs {
     min-width: 700px;
   }
