@@ -91,7 +91,7 @@ class Tooltip extends SuperOpenable {
    * If true, allow penetration of the tip.
    */
   @property({ type: Boolean })
-  propagation: boolean;
+  propagation = false;
 
   /**
    * How can tips be triggered.
