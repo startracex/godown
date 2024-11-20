@@ -65,5 +65,9 @@ export default {
     background: none;
     border: none;
   }
+  #storybook-docs table tbody button {
+    white-space: nowrap;
+    cursor: pointer;
+  }
 </style>`,
 } satisfies StorybookConfig;
