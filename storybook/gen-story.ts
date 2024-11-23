@@ -9,20 +9,24 @@ type CategoryType =
   | "effect"
   | "navigation";
 
+const camel = (str: string) => {
+  return str.slice(0, 1).toUpperCase() + str.slice(1);
+};
+
 const formatStories = (category: CategoryType, name: string) => {
-  const name0 = name.slice(0, 1).toUpperCase() + name.slice(1);
-  return `import { ${name} } from "./${name}";
+  return `import { RendererMeta } from "../../types";
+import render from "./${name}";
 
 export default {
-  title: "${category}/${name0}",
+  title: "${category}/${camel(name)}",
   component: "godown-${name}",
   tags: ["autodocs"],
-  render: (args: any) => ${name}(args),
+  render,
   argTypes: {
   },
   args: {
   },
-};
+} as RendererMeta<typeof render>;
 
 export const Primary = {};
 `;
@@ -34,7 +38,9 @@ const formatRender = (name: string) => {
 import { attr } from "@godown/element/directives/attr";
 import { html } from "lit";
 
-export const ${name} = (args) => {
+import { Godown } from "../../types";
+
+export default (args: Godown.${camel(name)}) => {
   return html\`
 <godown-${name} \${attr(args)}></godown-${name}>
   \`;
