@@ -8,7 +8,21 @@ Simple, stylized, semantic web components.
 npm i godown
 ```
 
-## Usages
+## Import
+
+Import all components.
+
+```js
+import Alert from "godown/alert.js";
+```
+
+Import one component.
+
+```js
+import { Alert } from "godown";
+```
+
+## Usage
 
 ### HTML
 
@@ -19,11 +33,7 @@ npm i godown
 ### JS
 
 ```js
-// import all
 import { Alert } from "godown";
-
-// import one
-import Alert from "godown/alert.js";
 
 const alert = new Alert();
 alert.title = "Alert";
@@ -33,11 +43,12 @@ document.body.appendChild(alert);
 
 ### React
 
-react is now in the standalone package (@godown/react)
+React components is now in the standalone package (@godown/react).
+
+This package only provides empty conversion.
 
 ```jsx
-import { Alert } from "@godown/react"; // import all
-// import { Alert } from "@godown/react/alert.js";  // import one
+import { Alert } from "@godown/react";
 
 export default function () {
   return <Alert title="Alert" />;
@@ -110,3 +121,21 @@ Element-scoped css variables will start with `--${tagName}--`.
 ```html
 <godown-button style="--godown-button--focus-scale: .95;"></godown-button>
 ```
+
+### Undefined
+
+Undefined elements in the `./components` sub path.
+
+```ts
+import Button "godown/components/button.js";
+
+customElements.define("my-button", Button);
+```
+
+```html
+<my-button>Click me</my-button>
+```
+
+### Conditional import
+
+Under "development" condition, the template will not be compressed.
