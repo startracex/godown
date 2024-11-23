@@ -8,12 +8,12 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    columns: new ArgHelper().type("number | string").control("number").arg,
+    columns: new ArgHelper().type("string | number").control("number").arg,
     content: new ArgHelper().type("string").control("text").arg,
     gap: new ArgHelper().type("string").control("text").arg,
     flexFlow: new ArgHelper().type("string").control("text").arg,
     items: new ArgHelper().type("string").control("text").arg,
-    rows: new ArgHelper().type("string").control("text").arg,
+    rows: new ArgHelper().type("string | number").control("number").arg,
   },
   args: {
     columns: 5,
