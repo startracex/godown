@@ -153,7 +153,7 @@ const colors = constructCSSObject(
       transition-duration: inherit;
     }
 
-    [part="slot"] {
+    [part="content"] {
       padding: var(${cssScope}--padding);
     }
 
@@ -231,7 +231,7 @@ class Button extends GlobalStyle {
     const color = this.nextColor();
     return html`<div part="root">
       <span part="modal-root"></span>
-      <div part="slot">
+      <div part="content">
         ${[this.content || htmlSlot(), htmlStyle(colors[color])]}
       </div>
     </div>`;
