@@ -104,7 +104,7 @@ const cssScope = scopePrefix(protoName);
 )
 class Switch extends SuperInput {
   /**
-   * Border style.
+   * Display rounded.
    */
   @property({ type: Boolean, reflect: true })
   round = false;

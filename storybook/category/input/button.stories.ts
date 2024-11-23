@@ -46,3 +46,9 @@ export const Ghost = {
     color: "blue",
   },
 };
+
+export const WithCustomColor = {
+  args: {
+    style: "background: #3d4051; color: #e2e8f0;",
+  },
+};

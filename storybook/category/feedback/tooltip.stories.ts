@@ -60,6 +60,6 @@ export const WithFocus = {
 
 export const WithBackground = {
   args: {
-    style: "--godown-tooltip--tip-background: rgb(102 55 0);",
+    style: "--godown-tooltip--tip-background: #007cc7;",
   },
 };

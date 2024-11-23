@@ -8,12 +8,12 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    footer: booleanArg,
     header: booleanArg,
+    footer: booleanArg,
   },
   args: {
-    footer: false,
     header: false,
+    footer: false,
   },
 } as RendererMeta<typeof render>;
 
@@ -35,5 +35,17 @@ export const WithHeaderAndFooter = {
   args: {
     header: true,
     footer: true,
+  },
+};
+
+export const WithCustomPadding = {
+  args: {
+    style: "--godown-card--padding: 4px;",
+  },
+};
+
+export const WithCustomColor = {
+  args: {
+    style: "background: #0e1122; color: #c3d1e3;",
   },
 };

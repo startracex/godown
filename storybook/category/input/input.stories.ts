@@ -47,3 +47,9 @@ export const WithOutlineVariant = {
     variant: "outline",
   },
 };
+
+export const WithCustomColor = {
+  args: {
+    style: "background: #0e1122; color: #c3d1e3; --godown--active: #c3d1e3",
+  },
+};

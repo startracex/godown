@@ -58,11 +58,14 @@ class Avatar extends GlobalStyle {
   src: string | undefined | null;
 
   /**
-   * If the image is not available, the {@linkcode Avatar.format} will be displayed.
+   * If the image is not available, display name (call {@linkcode Avatar.format}).
    */
   @property()
   name = "";
 
+  /**
+   * Display rounded.
+   */
   @property({ type: Boolean })
   round = false;
 

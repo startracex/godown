@@ -193,7 +193,7 @@ class Button extends GlobalStyle {
   disabled: boolean;
 
   /**
-   * Invert font and background color.
+   * Display ghost.
    */
   @property({ type: Boolean, reflect: true })
   ghost: boolean;
@@ -205,7 +205,7 @@ class Button extends GlobalStyle {
   active: boolean;
 
   /**
-   * Enables rounded corners to appear capsule shaped.
+   * Display rounded.
    */
   @property({ type: Boolean, reflect: true })
   round: boolean;
