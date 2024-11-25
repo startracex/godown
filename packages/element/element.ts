@@ -108,7 +108,7 @@ class GodownElement extends LitElement {
   @property({ reflect: true })
   set stylex(sx: string) {
     sx = sx.trim();
-    if (!/^(([\s\S]+)\{)(([\s\S]+)\})$/.test(sx)) {
+    if (!/^[\s\S]*{[\s\S]*}$/.test(sx)) {
       sx = `:host{${sx}}`;
     }
     if (!this.shadowRoot) {
