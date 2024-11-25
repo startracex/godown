@@ -1,4 +1,4 @@
-import { booleanArg, stringArg } from "../../args";
+import { ArgHelper, booleanArg, stringArg } from "../../args";
 import { matrixToBase64, stringToMatrix } from "../../hex-image";
 import { RendererMeta } from "../../types";
 import render from "./avatar";
@@ -11,11 +11,11 @@ export default {
   argTypes: {
     name: stringArg,
     round: booleanArg,
+    src: new ArgHelper().type("string").control("text").arg,
   },
   args: {
     name: "S",
     round: false,
-    src: "",
   },
 } as RendererMeta<typeof render>;
 
