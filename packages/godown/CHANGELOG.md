@@ -1,5 +1,12 @@
 # godown
 
+## 3.0.0-canary.10
+
+### Patch Changes
+
+- d14cb08: tooltip.propagation defaults to false
+- 2d924be: update button render result part from "slot" to "content"
+
 ## 3.0.0-canary.9
 
 ### Patch Changes
