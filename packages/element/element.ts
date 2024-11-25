@@ -78,6 +78,43 @@ class GodownElement extends LitElement {
   assign: void | Record<string, any>;
 
   /**
+   * ```css
+   * :host([contents]) {
+   *   display: contents;
+   * }
+   * ```
+   */
+  @property({ type: Boolean, reflect: true })
+  contents?: boolean;
+
+  /**
+   * Contents root of the element.
+   */
+  contentsRoot?: HTMLElement;
+
+  getBoundingClientRect(): DOMRect {
+    let root: Element | void;
+    return this.contents
+        // root is contentsRoot or first Element of shadowRoot
+        && (root = this.contentsRoot || this.shadowRoot.firstElementChild)
+        // root is not the element itself
+        && root !== this
+      ? root.getBoundingClientRect()
+      : super.getBoundingClientRect();
+  }
+
+  getClientRects(): DOMRectList {
+    let root: Element | void;
+    return this.contents
+        // root is contentsRoot or first Element of shadowRoot
+        && (root = this.contentsRoot || this.shadowRoot.firstElementChild)
+        // root is not the element itself
+        && root !== this
+      ? root.getClientRects()
+      : super.getClientRects();
+  }
+
+  /**
    * css: current stylex property.
    * index: index of injected style.
    * lazy: stylex property that will be applied after connectedCallback.
