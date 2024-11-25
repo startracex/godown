@@ -32,13 +32,13 @@ const cssScope = scopePrefix(protoName);
       border-radius:50%;
     }
 
-    [part="image"] {
+    [part=image] {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    [part="root"] {
+    [part=root] {
       overflow: hidden;
       position: relative;
       border-radius: inherit;

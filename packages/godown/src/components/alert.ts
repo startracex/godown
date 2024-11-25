@@ -125,7 +125,7 @@ const calls = {
       width: 100%;
     }
 
-    [part="root"] {
+    [part=root] {
       --color: var(${cssScope}--color);
       color: var(--color);
       width: 100%;
@@ -138,7 +138,7 @@ const calls = {
       background: var(${cssScope}--background);
     }
 
-    [variant="blockquote"] {
+    [variant=blockquote] {
       border-radius: 0;
       border-left: var(${cssScope}--blockquote-width) solid var(--color);
       border-bottom: none;
@@ -147,34 +147,34 @@ const calls = {
       background: transparent;
     }
 
-    [part="content"]{
+    [part=content]{
       color: var(--color);
     }
 
-    [part="root"] {
+    [part=root] {
       display: grid;
       align-items: center;
       grid-template-columns: auto 1fr auto;
       grid-template-rows: auto 1fr;
     }
 
-    [part="title"] {
+    [part=title] {
       line-height: 2em;
     }
 
-    [part="icon"] {
+    [part=icon] {
       display: inline-grid;
       align-items: center;
       height: 2em;
     }
 
-    [part="icon"] svg {
+    [part=icon] svg {
       margin-right: .5em;
       width: 1.25em;
       height: 1.25em;
     }
 
-    [part="content"] {
+    [part=content] {
       grid-row: span 2 / span 2;
       line-height: 1.5em;
     }

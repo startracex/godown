@@ -40,7 +40,7 @@ const loop = <T>(len: number, fn: (index?: number) => T) => {
       ${cssScope}--gap: .25em;
     }
 
-    [part="root"] {
+    [part=root] {
       gap: var(${cssScope}--gap);
       width: 100%;
       position: relative;
@@ -50,7 +50,7 @@ const loop = <T>(len: number, fn: (index?: number) => T) => {
       border-radius: inherit;
     }
 
-    [part="input-box"] {
+    [part=input-box] {
       width: var(${cssScope}--size);
       height: var(${cssScope}--size);
       vertical-align: top;
@@ -59,7 +59,7 @@ const loop = <T>(len: number, fn: (index?: number) => T) => {
       border-radius: inherit;
     }
 
-    [part="input"] {
+    [part=input] {
       width: 100%;
       height: 100%;
       opacity: 0;

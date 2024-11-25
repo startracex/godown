@@ -17,7 +17,7 @@ const fieldStyle = css`
     height: inherit;
   }
 
-  .input-field [part="input"] {
+  .input-field [part=input] {
     background: transparent;
     height: 100%;
     width: 100%;
@@ -29,19 +29,19 @@ const fieldStyle = css`
     box-shadow: var(${cssGlobalVars.input}-box-shadow);
   }
 
-  .input-field [part="icon"] {
+  .input-field [part=icon] {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .input-field [part="prefix"],
-  .input-field [part="suffix"] {
+  .input-field [part=prefix],
+  .input-field [part=suffix] {
     height: 100%;
     display: flex;
   }
 
-  .input-field [part="space"]{
+  .input-field [part=space]{
     width: var(${cssGlobalVars.input}-space);
   }
 `;

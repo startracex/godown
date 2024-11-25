@@ -32,7 +32,7 @@ const protoName = "layout";
       z-index: 1;
     }
 
-    [part="main"] {
+    [part=main] {
       position: relative;
       flex: 1;
       width: 100%;

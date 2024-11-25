@@ -42,7 +42,7 @@ const cssScope = scopePrefix(protoName);
     margin: calc(-1 * var(${cssScope}--offset));
   }
 
-  [part="slot"]{
+  [part=slot]{
     z-index: 2;
   }
 `,

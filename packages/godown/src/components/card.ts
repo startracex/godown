@@ -52,11 +52,11 @@ const cssScope = scopePrefix(protoName);
       border-style: solid;
     }
 
-    [name="footer"]{
+    [name=footer]{
       border-top-width: var(${cssScope}--border-width);
     }
 
-    [name="header"]{
+    [name=header]{
       border-bottom-width: var(${cssScope}--border-width);
     }
   `,

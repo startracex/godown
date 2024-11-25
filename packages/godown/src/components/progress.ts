@@ -24,14 +24,14 @@ const protoName = "progress";
     color: var(${cssGlobalVars.active});
   }
 
-  [part="root"] {
+  [part=root] {
     height: inherit;
     z-index: 1;
     position: relative;
     border-radius: inherit;
   }
 
-  [part="value"] {
+  [part=value] {
     position: absolute;
     z-index: 2;
     top: 0;
@@ -52,7 +52,7 @@ const protoName = "progress";
     }
   }
 
-  .static [part="value"] {
+  .static [part=value] {
     animation: none;
   }
 `)

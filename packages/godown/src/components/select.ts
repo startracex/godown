@@ -50,20 +50,20 @@ const protoName = "select";
 @godown(protoName)
 @styles(
   css`
-    [part="input"] {
+    [part=input] {
       text-overflow: ellipsis;
     }
 
-    [part="content"] {
+    [part=content] {
       position: absolute;
       width: 100%;
     }
 
-    [direction="bottom"] {
+    [direction=bottom] {
       top: 100%;
     }
 
-    [direction="top"] {
+    [direction=top] {
       bottom: 100%;
     }
   `,

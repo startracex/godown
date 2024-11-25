@@ -36,7 +36,7 @@ const cssScope = scopePrefix(protoName);
       overflow: hidden;
     }
 
-    [part="root"] {
+    [part=root] {
       height: 100%;
       min-height: inherit;
       text-align: center;

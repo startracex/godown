@@ -34,18 +34,18 @@ const cssScope = scopePrefix(protoName);
       border-radius: 0;
     }
 
-    [part="root"],
+    [part=root],
     span {
       transition: var(${cssScope}-transition);
     }
 
-    [part="root"] {
+    [part=root] {
       border-radius: inherit;
       position: relative;
       height: inherit;
     }
 
-    [part="root"],
+    [part=root],
     input {
       width: 100%;
     }

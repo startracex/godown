@@ -39,14 +39,14 @@ const cssScope = scopePrefix(protoName);
       visibility: visible;
     }
 
-    :host([open][modal]) [part="modal"] {
+    :host([open][modal]) [part=modal] {
       pointer-events: all;
       visibility: visible;
       opacity: var(${cssScope}--opacity-modal);
 
     }
 
-    [part="modal"] {
+    [part=modal] {
       visibility: hidden;
       opacity: 0;
       width: 100%;
@@ -55,7 +55,7 @@ const cssScope = scopePrefix(protoName);
       background: var(${cssScope}--background-modal);
     }
 
-    [part="root"] {
+    [part=root] {
       width: 100%;
       height: 100%;
       display: flex;
@@ -69,19 +69,19 @@ const cssScope = scopePrefix(protoName);
       position: absolute;
     }
 
-    [direction^="top"] {
+    [direction^=top] {
       top: 0;
     }
 
-    [direction^="bottom"] {
+    [direction^=bottom] {
       bottom: 0;
     }
 
-    [direction$="right"] {
+    [direction$=right] {
       right: 0%;
     }
 
-    [direction$="left"] {
+    [direction$=left] {
       left: 0%;
     }
   `,

@@ -28,14 +28,14 @@ const cssScope = scopePrefix(protoName);
       width: fit-content;
     }
 
-    [part="root"] {
+    [part=root] {
       display: flex;
       position: relative;
       transition: inherit;
       border-radius: inherit;
     }
 
-    [part="tip"] {
+    [part=tip] {
       width: fit-content;
       height: fit-content;
       position: absolute;
@@ -44,7 +44,7 @@ const cssScope = scopePrefix(protoName);
       user-select: none;
     }
 
-    :host([open]) [part="tip"] {
+    :host([open]) [part=tip] {
       visibility: visible;
     }
 
@@ -53,16 +53,16 @@ const cssScope = scopePrefix(protoName);
     }
   `,
   css`
-    [direction^="top"] {
+    [direction^=top] {
       bottom: 100%;
     }
-    [direction^="bottom"] {
+    [direction^=bottom] {
       top: 100%;
     }
-    [direction$="right"] {
+    [direction$=right] {
       left: 100%;
     }
-    [direction$="left"] {
+    [direction$=left] {
       right: 100%;
     }
   `,

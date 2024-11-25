@@ -45,7 +45,7 @@ const cssScope = scopePrefix(protoName);
       background: var(${cssScope}-handle-active);
     }
 
-    [part="root"] {
+    [part=root] {
       min-height:inherit;
       position: relative;
       border-radius: inherit;
@@ -55,7 +55,7 @@ const cssScope = scopePrefix(protoName);
       height: var(${cssScope}-track-width);
     }
 
-    [part="track"] {
+    [part=track] {
       height: 100%;
       min-height:inherit;
       display: flex;
@@ -68,7 +68,7 @@ const cssScope = scopePrefix(protoName);
       width: max(calc(var(--to) - var(--from)), calc(var(--from) - var(--to)));
     }
 
-    [part="handle"] {
+    [part=handle] {
       width: 1em;
       height: 1em;
       display: flex;
@@ -94,7 +94,7 @@ const cssScope = scopePrefix(protoName);
       transform: translate(-25%, -50%);
     }
 
-    .vertical [part="track"] {
+    .vertical [part=track] {
       width: 100%;
       height: max(calc(var(--to) - var(--from)), calc(var(--from) - var(--to)));
       top: min(var(--from), var(--to));
@@ -102,12 +102,12 @@ const cssScope = scopePrefix(protoName);
     }
   `,
   css`
-    [part="handle"] {
+    [part=handle] {
       left: var(--handle);
       top: 0;
     }
 
-    .vertical [part="handle"] {
+    .vertical [part=handle] {
       top: var(--handle);
       left: 0;
     }

@@ -33,12 +33,12 @@ const protoName = "carousel";
       transition: .3s;
     }
 
-    [part="root"] {
+    [part=root] {
       overflow: hidden;
     }
 
-    [part="root"],
-    [part="move-root"] {
+    [part=root],
+    [part=move-root] {
       height: 100%;
       width: 100%;
       display: flex;
@@ -46,8 +46,8 @@ const protoName = "carousel";
       transition: inherit;
     }
 
-    [part="prev"],
-    [part="next"] {
+    [part=prev],
+    [part=next] {
       height: 100%;
       width: 1.5em;
       z-index: 1;
@@ -58,11 +58,11 @@ const protoName = "carousel";
       user-select: none;
     }
 
-    [part="prev"] {
+    [part=prev] {
       left: 0;
     }
 
-    [part="next"] {
+    [part=next] {
       right: 0;
     }
 

@@ -27,7 +27,7 @@ const cssScope = scopePrefix(protoName);
       overflow-wrap: break-word;
     }
 
-    [part="root"] {
+    [part=root] {
       white-space: nowrap;
       width: 100%;
       vertical-align: bottom;
@@ -38,11 +38,11 @@ const cssScope = scopePrefix(protoName);
       color: var(${cssScope}--color);
     }
 
-    [part="root"]:hover {
+    [part=root]:hover {
       color: var(${cssScope}--color-hover, var(${cssScope}--color));
     }
 
-    [part="root"]:active {
+    [part=root]:active {
       color: var(${cssScope}--color-active, var(${cssScope}--color));
     }
 

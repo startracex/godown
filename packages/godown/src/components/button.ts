@@ -142,7 +142,7 @@ const colors = constructCSSObject(
       cursor: pointer;
     }
 
-    [part="root"] {
+    [part=root] {
       width: 100%;
       height: 100%;
       overflow: hidden;
@@ -153,7 +153,7 @@ const colors = constructCSSObject(
       transition-duration: inherit;
     }
 
-    [part="content"] {
+    [part=content] {
       padding: var(${cssScope}--padding);
     }
 
