@@ -14,9 +14,9 @@ class GodownElement extends LitElement {
 
   static protoName?: string;
 
-  static define(tagName = this.elementTagName) {
+  static define(tagName = this.elementTagName, options?: ElementDefinitionOptions) {
     if (!this.isDefined()) {
-      (this.godownConfig || customElements).define(tagName, this);
+      (this.godownConfig || customElements).define(tagName, this, options);
     }
   }
 
@@ -96,7 +96,7 @@ class GodownElement extends LitElement {
     let root: Element | void;
     return this.contents
         // root is contentsRoot or first Element of shadowRoot
-        && (root = this.contentsRoot || this.shadowRoot.firstElementChild)
+        && (root = this.contentsRoot || this.shadowRoot?.firstElementChild)
         // root is not the element itself
         && root !== this
       ? root.getBoundingClientRect()
@@ -107,7 +107,7 @@ class GodownElement extends LitElement {
     let root: Element | void;
     return this.contents
         // root is contentsRoot or first Element of shadowRoot
-        && (root = this.contentsRoot || this.shadowRoot.firstElementChild)
+        && (root = this.contentsRoot || this.shadowRoot?.firstElementChild)
         // root is not the element itself
         && root !== this
       ? root.getClientRects()
