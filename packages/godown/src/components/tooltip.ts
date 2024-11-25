@@ -48,9 +48,8 @@ const cssScope = scopePrefix(protoName);
       visibility: visible;
     }
 
-    .passive{
+    .passive {
       background: var(${cssScope}--tip-background);
-      padding: 0 .5em;
     }
   `,
   css`
