@@ -1,4 +1,5 @@
 import { LitElement, type PropertyValues } from "lit";
+import { property } from "lit/decorators.js";
 
 import GodownConfig from "./config.js";
 import { deepQuerySelector, deepQuerySelectorAll } from "./tools/dom.js";
@@ -25,6 +26,24 @@ class GodownElement extends LitElement {
 
   static getDefined(): CustomElementConstructor {
     return customElements.get(this.elementTagName);
+  }
+
+  get observedRecord(): Record<string, any> {
+    return Object.fromEntries(this.scopedObservedAttributes.map(key => [key, this[key]]));
+  }
+
+  /**
+   * Returns observedAttributes excluding in GodownElement.
+   */
+  get scopedObservedAttributes(): string[] {
+    return this.globalObservedAttributes.filter((key) => !GodownElement.observedAttributes.includes(key));
+  }
+
+  /**
+   * Returns observedAttributes.
+   */
+  get globalObservedAttributes(): string[] {
+    return (this.constructor as any).observedAttributes;
   }
 
   /**
@@ -86,12 +105,12 @@ class GodownElement extends LitElement {
    * <custom-element stylex="--key:value;"></custom-element>
    * ```
    */
+  @property({ reflect: true })
   set stylex(sx: string) {
     sx = sx.trim();
     if (!/^(([\s\S]+)\{)(([\s\S]+)\})$/.test(sx)) {
       sx = `:host{${sx}}`;
     }
-    this.setAttribute("stylex", sx);
     if (!this.shadowRoot) {
       this.__stylex.lazy = sx;
       return;
