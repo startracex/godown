@@ -10,7 +10,7 @@
       "types": "./types/icon.d.ts",
       "default": "./icons/*"
     },
-    "./lib/*": {
+    "./lib/*.js": {
       "require": "./lib/*.cjs",
       "default": "./lib/*.js"
     },
