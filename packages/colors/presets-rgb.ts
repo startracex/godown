@@ -1,4 +1,9 @@
-const rgb = (r: number, g: number, b: number) => (
+const rgb = (r: number, g: number, b: number): {
+  r: number;
+  g: number;
+  b: number;
+  toString(): string;
+} => (
   {
     r,
     g,
@@ -143,7 +148,18 @@ const pink: PresetsValues = [
   rgb(50, 11, 25),
 ];
 
-export const presetsRGB = {
+export const presetsRGB: {
+  darkgray: PresetsValues;
+  lightgray: PresetsValues;
+  teal: PresetsValues;
+  blue: PresetsValues;
+  green: PresetsValues;
+  red: PresetsValues;
+  purple: PresetsValues;
+  orange: PresetsValues;
+  yellow: PresetsValues;
+  pink: PresetsValues;
+} = {
   darkgray,
   lightgray,
   teal,

@@ -2,7 +2,8 @@
   "extends": "@godown/tsconfig/base.json",
   "compilerOptions": {
     "declarationMap": false,
-    "sourceMap": false
+    "sourceMap": false,
+    "isolatedDeclarations": true
   },
   "include": [
     "*.ts"
