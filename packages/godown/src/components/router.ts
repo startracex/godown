@@ -33,8 +33,8 @@ const protoName = "router";
  */
 @godown(protoName)
 @styles(css`:host{display:contents;}`)
-class Router<C = unknown> extends GlobalStyle {
-  static routerInstances = new Set<Router>();
+class Router extends GlobalStyle {
+  static routerInstances: Set<Router> = new Set<Router>();
 
   private __fieldRouteTree: RouteTree = new RouteTree();
   private __slottedRouteTree: RouteTree = new RouteTree();
@@ -43,7 +43,7 @@ class Router<C = unknown> extends GlobalStyle {
     & Record<string, any>
     & {
       path: string;
-      component?: C;
+      component?: unknown;
     }
   )[];
 
@@ -51,7 +51,7 @@ class Router<C = unknown> extends GlobalStyle {
    * Render result.
    */
   @state()
-  component: C | TemplateResult = null;
+  component: unknown | TemplateResult = null;
 
   /**
    * Dynamic parameters record.
@@ -174,7 +174,7 @@ class Router<C = unknown> extends GlobalStyle {
     pathname: string;
     params: Record<string, string>;
     path: string;
-    component: C | TemplateResult;
+    component: unknown | TemplateResult;
   }, first: boolean) => void = null;
 
   protected updated(changedProperties: PropertyValueMap<this>) {
