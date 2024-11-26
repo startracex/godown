@@ -1,6 +1,6 @@
 # godown
 
-Simple, stylized, semantic web components.
+`Non Composite` Web Components Library.
 
 ## Install
 

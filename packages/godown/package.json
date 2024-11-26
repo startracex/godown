@@ -1,7 +1,7 @@
 {
   "name": "godown",
   "version": "3.0.0-canary.10",
-  "description": "Simple, stylized, semantic web components",
+  "description": "Non Composite Web Components Library",
   "type": "module",
   "main": "index.js",
   "exports": {
