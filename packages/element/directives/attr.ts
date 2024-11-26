@@ -15,16 +15,16 @@ type DirectiveParams = Record<string, string | boolean | number | null | undefin
 
 class AttrDirective extends Directive {
   // eslint-disable-next-line
-  render(value: DirectiveParams) {
+  render(value: DirectiveParams, caller?: (element: Element, name: string, value: any) => void) {
   }
 
-  update(part: ElementPart, [value]) {
+  update(part: ElementPart, [value, caller]: Parameters<this["render"]>) {
     if (!value) {
       return noChange;
     }
     if (part.type === PartType.ELEMENT) {
       for (const name in value) {
-        updateAttribute(part.element, name, value[name]);
+        (caller || updateAttribute)(part.element, name, value[name]);
       }
       return noChange;
     }
