@@ -22,7 +22,7 @@ export const alias = <T, K extends keyof T, P extends keyof T>(
     set?: Rejection | ((this: T, value: T[K]) => void);
   } & Omit<PropertyDescriptor, "get" | "set"> = {},
 ) =>
-(constructor: T, propertyKey: P) => {
+(constructor: T, propertyKey: P): void => {
   const defaultGet = function (this: any) {
     return this[propertyKey];
   };

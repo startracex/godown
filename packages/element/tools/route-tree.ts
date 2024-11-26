@@ -21,7 +21,7 @@ export class RouteTree {
   /**
    * Match type of the current part.
    */
-  protected matchType = matchType.strict;
+  protected matchType: matchType = matchType.strict;
   /**
    * Whether the children are sorted.
    */
@@ -29,7 +29,7 @@ export class RouteTree {
 
   protected children: RouteTree[] = [];
 
-  insert(pattern: string, parts?: string[], height = 0) {
+  insert(pattern: string, parts?: string[], height = 0): void {
     if (!parts) {
       parts = RouteTree.split(pattern);
     }
@@ -181,7 +181,7 @@ export class RouteTree {
     return s.split("/").filter((a) => a);
   }
 
-  sort() {
+  sort(): void {
     const { children } = this;
     if (children.length) {
       children.sort((a, b) => {

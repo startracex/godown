@@ -1,6 +1,9 @@
 {
   "extends": "@godown/tsconfig/base.json",
-
+  "compilerOptions": {
+    "isolatedDeclarations": true,
+    "isolatedModules": true
+  },
   "include": [
     "**/*.ts"
   ],

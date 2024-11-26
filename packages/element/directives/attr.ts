@@ -1,9 +1,9 @@
 import { noChange } from "lit";
-import { Directive, directive, type ElementPart, PartType } from "lit/directive.js";
+import { Directive, directive, type DirectiveResult, type ElementPart, PartType } from "lit/directive.js";
 
 import { isNil } from "../tools/lib.js";
 
-export const updateAttribute = (element: Element, name: string, value: any) => {
+export const updateAttribute = (element: Element, name: string, value: any): void => {
   if (isNil(value) || value === false) {
     element.removeAttribute(name);
   } else if (
@@ -19,10 +19,10 @@ type DirectiveParams = Record<string, string | boolean | number | null | undefin
 
 class AttrDirective extends Directive {
   // eslint-disable-next-line
-  render(value: DirectiveParams, caller?: (element: Element, name: string, value: any) => void) {
+  render(value: DirectiveParams, caller?: (element: Element, name: string, value: any) => void): void {
   }
 
-  update(part: ElementPart, [value, caller]: Parameters<this["render"]>) {
+  update(part: ElementPart, [value, caller]: Parameters<this["render"]>): symbol {
     if (!value) {
       return noChange;
     }
@@ -38,13 +38,16 @@ class AttrDirective extends Directive {
  * A directive that sets element attributes.
  * @param value An object with attribute names and values.
  */
-export const attr = directive(AttrDirective);
+export const attr: (
+  value: DirectiveParams,
+  caller?: (element: Element, name: string, value: any) => void,
+) => DirectiveResult<typeof AttrDirective> = directive(AttrDirective);
 
 const append = (a: string, b: string) => {
   return a ? a + " " + b : b;
 };
 
-export const attrToString = (a: DirectiveParams) => {
+export const attrToString = (a: DirectiveParams): string => {
   return Object.entries(a).reduce((acc, [key, value]) => {
     if (isNil(value) || value === false) {
       return acc;
@@ -60,11 +63,12 @@ const svgInitials = {
   "xmlns:xlink": "http://www.w3.org/1999/xlink",
 };
 
-export const withInitials = (attrDirective: (a: DirectiveParams) => any, i: DirectiveParams) => (a: DirectiveParams) =>
-  attrDirective({
-    ...i,
-    ...a,
-  });
+export const withInitials =
+  (attrDirective: (a: DirectiveParams) => any, i: DirectiveParams) => (a: DirectiveParams): any =>
+    attrDirective({
+      ...i,
+      ...a,
+    });
 
-export const svgAttr = withInitials(attr, svgInitials);
-export const svgAttrToString = withInitials(attrToString, svgInitials);
+export const svgAttr: (a: DirectiveParams) => DirectiveResult<typeof AttrDirective> = withInitials(attr, svgInitials);
+export const svgAttrToString: (a: DirectiveParams) => string = withInitials(attrToString, svgInitials);

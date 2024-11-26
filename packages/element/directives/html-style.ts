@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+import { html, nothing, type TemplateResult } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 import { joinRules } from "../tools/css.js";
@@ -9,7 +9,7 @@ import { joinRules } from "../tools/css.js";
  * @param style String of CSS style.
  * @param media Style media attribute.
  */
-export const htmlStyle = (style?: string | Record<string, any>, media?: string) => {
+export const htmlStyle = (style?: string | Record<string, any>, media?: string): TemplateResult<1> | typeof nothing => {
   if (!style) {
     return nothing;
   }

@@ -14,7 +14,7 @@ class GodownElement extends LitElement {
 
   static protoName?: string;
 
-  static define(tagName = this.elementTagName, options?: ElementDefinitionOptions) {
+  static define(tagName: string = this.elementTagName, options?: ElementDefinitionOptions): void {
     if (!this.isDefined()) {
       (this.godownConfig || customElements).define(tagName, this, options);
     }
@@ -169,7 +169,7 @@ class GodownElement extends LitElement {
     };
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
     if (this.assign) {
       Object.assign(this, this.assign);
@@ -182,19 +182,19 @@ class GodownElement extends LitElement {
     }
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     this.events.removeAll();
   }
 
-  mount(arg?: PropertyValues) {
+  mount(arg?: PropertyValues): void {
     this.firstUpdated(arg);
   }
 
-  unmount() {
+  unmount(): void {
     this.disconnectedCallback();
   }
 
-  remount(arg?: PropertyValues) {
+  remount(arg?: PropertyValues): void {
     this.unmount();
     this.connectedCallback();
     this.mount(arg);

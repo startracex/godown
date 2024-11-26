@@ -1,7 +1,7 @@
 /**
  * Returns true if the value is null or undefined.
  */
-export function isNil(value: any) {
+export function isNil(value: any): boolean {
   // eslint-disable-next-line eqeqeq
   return value == null;
 }
@@ -9,14 +9,14 @@ export function isNil(value: any) {
 /**
  * Returns true if the value is a number.
  */
-export function isNumerical(value?: string | number) {
+export function isNumerical(value?: string | number): boolean {
   return !isNaN(+value);
 }
 
 /**
  * Returns a random number between m and n.
  */
-export function random(m = 0, n = 1) {
+export function random(m = 0, n = 1): number {
   const max = Math.max(m, n);
   const min = Math.min(m, n);
   return Math.random() * (max - min) + min;
@@ -25,7 +25,7 @@ export function random(m = 0, n = 1) {
 /**
  * trimRight remove all characters from the right of a string that are present in a given string.
  */
-export const trimRight = (s: string, spec = " ") => {
+export const trimRight = (s: string, spec = " "): string => {
   if (s === "" || spec === "") {
     return s;
   }
@@ -39,7 +39,7 @@ export const trimRight = (s: string, spec = " ") => {
 /**
  * trimLeft remove all characters from the left of a string that are present in a given string.
  */
-export const trimLeft = (s: string, spec = " ") => {
+export const trimLeft = (s: string, spec = " "): string => {
   if (s === "" || spec === "") {
     return s;
   }
@@ -50,7 +50,7 @@ export const trimLeft = (s: string, spec = " ") => {
   return s.slice(start);
 };
 
-export const trim = (s: string, spec?: string) => {
+export const trim = (s: string, spec?: string): string => {
   return trimRight(trimLeft(s, spec), spec);
 };
 

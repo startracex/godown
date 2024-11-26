@@ -5,7 +5,7 @@ const append = (a: any, b: string) => {
 /**
  * Returns a string of space-separated class names based on the input arguments.
  */
-export const classList = (...args: (string | string[] | Record<string, any>)[]) => {
+export const classList = (...args: (string | string[] | Record<string, any>)[]): string => {
   return args.reduce<string>((acc, cur) => {
     if (Array.isArray(cur)) {
       return append(acc, cur.join(" "));
@@ -20,6 +20,6 @@ export const classList = (...args: (string | string[] | Record<string, any>)[]) 
   }, "");
 };
 
-export const clean = (str: string) => {
+export const clean = (str: string): string => {
   return [...new Set(str.split(/\s+/))].join(" ");
 };

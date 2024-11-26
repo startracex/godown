@@ -1,4 +1,4 @@
-import { query } from "lit/decorators.js";
+import { query, QueryDecorator } from "lit/decorators.js";
 
 /**
  * Alias for `query(`[part=${partName}]`, cache)`
@@ -6,4 +6,4 @@ import { query } from "lit/decorators.js";
  * Default cache.
  * @param partName - The name of the part to query.
  */
-export const part = (partName: string, cache = true) => query(`[part=${partName}]`, cache);
+export const part = (partName: string, cache = true): QueryDecorator => query(`[part=${partName}]`, cache);

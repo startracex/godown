@@ -12,7 +12,7 @@ type LitStyles = CSSResultGroup | CSSResultGroup[];
 export const styles = (...s: LitStyles[]) => {
   return (constructor: {
     styles?: LitStyles;
-  }) => {
+  }): void => {
     const protoStyles: CSSResultGroup[] = [];
 
     for (

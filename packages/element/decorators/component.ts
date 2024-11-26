@@ -25,7 +25,7 @@ export const component = ({
     elementTagName?: string;
     styles?: ComponentDecoratorsOption["styles"];
   },
-) => {
+): void => {
   constructor.elementTagName = tagName;
 
   if (s) {

@@ -4,13 +4,13 @@ class GodownConfig {
   assign: null | Record<string, any> = null;
   prefix = "godown";
   suffix = "";
-  components = new Map<string, CustomElementConstructor>();
+  components: Map<string, CustomElementConstructor> = new Map<string, CustomElementConstructor>();
 
   constructor(init?: Partial<GodownConfig & Record<PropertyKey, any>>) {
     if (init) { Object.assign(this, init); }
   }
 
-  tag(origin: string) {
+  tag(origin: string): string {
     return [
       this.prefix,
       origin,
@@ -18,7 +18,7 @@ class GodownConfig {
     ].filter(s => s).join("-");
   }
 
-  define(name: string, constructor: CustomElementConstructor, options?: ElementDefinitionOptions) {
+  define(name: string, constructor: CustomElementConstructor, options?: ElementDefinitionOptions): void {
     customElements.define(name, constructor, options);
     this.components.set(name, constructor);
   }

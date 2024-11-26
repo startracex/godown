@@ -72,7 +72,7 @@ export function joinProperties(props: Props): string {
   }, "");
 }
 
-export function toVar(a: LikeString, b?: LikeString) {
+export function toVar(a: LikeString, b?: LikeString): string {
   return a ? `var(${a}${b ? `,${b}` : ""})` : "";
 }
 
