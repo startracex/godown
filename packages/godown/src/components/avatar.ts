@@ -1,6 +1,9 @@
-import { godown, styles } from "@godown/element/decorators/index.js";
-import { htmlSlot } from "@godown/element/directives/index.js";
-import { css, html } from "lit";
+import { godown } from "@godown/element/decorators/godown.js";
+import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
+import { htmlSlot } from "@godown/element/directives/html-slot.js";
+import { omit } from "@godown/element/tools/lib.js";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -69,8 +72,8 @@ class Avatar extends GlobalStyle {
   @property({ type: Boolean })
   round = false;
 
-  protected render() {
-    return html`<div part="root">${this._renderAvatar()}</div>`;
+  protected render(): TemplateResult<1> {
+    return html`<div part="root" ${attr(omit(this.observedRecord, "src"))}>${this._renderAvatar()}</div>`;
   }
 
   private _renderAvatar() {
@@ -83,11 +86,11 @@ class Avatar extends GlobalStyle {
     return htmlSlot();
   }
 
-  format() {
+  format(): string {
     return this.name;
   }
 
-  _handleError() {
+  _handleError(): void {
     this.src = undefined;
   }
 }

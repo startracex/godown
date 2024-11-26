@@ -1,8 +1,9 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { classList } from "@godown/element/directives/class-list.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -56,7 +57,7 @@ const cssScope = scopePrefix(protoName);
       text-decoration: none;
     }
 
-    .clip{
+    [clip] {
       background: var(${cssGlobalVars.clipBackground});
       display: inline-block;
       color: transparent;
@@ -78,14 +79,11 @@ class Text extends GlobalStyle {
   @property({ type: Boolean })
   clip: boolean;
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     return html`<span
       part="root"
-      class="${
-      classList(this.underline, {
-        clip: this.clip,
-      })
-    }"
+      ${attr(this.observedRecord)}
+      class="${classList(this.underline)}"
     >
       ${htmlSlot()}
     </span>`;

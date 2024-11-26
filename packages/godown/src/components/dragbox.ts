@@ -1,8 +1,9 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { EventListenerFunc } from "@godown/element/tools/events.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "../core/global-style.js";
@@ -61,15 +62,21 @@ class Dragbox extends GlobalStyle {
   @property()
   y = "auto";
 
-  protected render() {
-    return html`<div @mousedown="${this._handleDragStart}" @mouseup="${this._handleDragEnd}">${htmlSlot()}</div>`;
+  protected render(): TemplateResult<1> {
+    return html`<div
+    part="root"
+    ${attr(this.observedRecord)}
+    @mousedown="${this._handleDragStart}"
+    @mouseup="${this._handleDragEnd}">
+    ${htmlSlot()}
+  </div>`;
   }
 
-  protected firstUpdated() {
+  protected firstUpdated(): void {
     this.reset();
   }
 
-  protected _handleDragStart(e: MouseEvent) {
+  protected _handleDragStart(e: MouseEvent): void {
     this.cx = e.clientX;
     this.cy = e.clientY;
     this.t = this.offsetTop;
@@ -82,13 +89,13 @@ class Dragbox extends GlobalStyle {
   protected _handleMouseMove: EventListenerFunc;
   protected _handleMouseLeave: EventListenerFunc;
 
-  protected _handleDragEnd() {
+  protected _handleDragEnd(): void {
     this.drag = false;
     this.events.remove(document, "mousemove", this._handleMouseMove);
     this.events.remove(document, "mouseleave", this._handleMouseLeave);
   }
 
-  protected _handleDrag(e: MouseEvent) {
+  protected _handleDrag(e: MouseEvent): void {
     if (!this.drag) {
       return;
     }
@@ -111,7 +118,7 @@ class Dragbox extends GlobalStyle {
     }
   }
 
-  reset() {
+  reset(): void {
     const { x, y, style, offsetsWidth, offsetsHeight, offsetWidth, offsetHeight, offsetLeft, offsetTop } = this;
     style.left = x || "0";
     style.top = y || "0";

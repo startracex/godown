@@ -5,7 +5,7 @@ import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
 import iconChevronLeft from "@godown/f7-icon/icons/chevron-left.js";
 import iconChevronRight from "@godown/f7-icon/icons/chevron-right.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "../core/global-style.js";
@@ -99,18 +99,16 @@ class Carousel extends GlobalStyle {
 
   private _cloneLast: HTMLElement | undefined;
 
-  protected render() {
-    return [
-      html`<div part="root">
+  protected render(): TemplateResult<1> {
+    return html`<div part="root" ${attr(this.observedRecord)}>
         <i part="prev" @click="${this.prev}">${iconChevronLeft()}</i>
         <div part="move-root" style="transform:${`translateX(-${this.index + 1}00%)`}">${htmlSlot()}</div>
         <i part="next" @click="${this.next}">${iconChevronRight()}</i>
-    </div>`,
-      htmlStyle(`:host{width:${this.width};}`),
-    ];
+        ${htmlStyle(`:host{width:${this.width};}`)}
+    </div>`;
   }
 
-  protected async firstUpdated() {
+  protected async firstUpdated(): Promise<void> {
     await this.updateComplete;
 
     if (this.children.length) {
@@ -127,15 +125,15 @@ class Carousel extends GlobalStyle {
     this.checkInterval();
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     clearInterval(this.intervalID);
   }
 
-  show(i: number) {
+  show(i: number): void {
     this.index = i;
   }
 
-  next() {
+  next(): void {
     if (this.index === this.childElementCount - 3) {
       this._doTranslateX("0", true);
       this.show(0);
@@ -145,7 +143,7 @@ class Carousel extends GlobalStyle {
     this.checkInterval();
   }
 
-  prev() {
+  prev(): void {
     if (this.index === 0) {
       this._doTranslateX(`-${this.childElementCount - 1}00%`, true);
       this.show(this.children.length - 3);
@@ -155,7 +153,7 @@ class Carousel extends GlobalStyle {
     this.checkInterval();
   }
 
-  protected _doTranslateX(xValue: string, noTransition?: boolean) {
+  protected _doTranslateX(xValue: string, noTransition?: boolean): void {
     this._moveRoot.style.transform = `translateX(${xValue})`;
     if (noTransition) {
       this._moveRoot.style.transition = `none`;
@@ -163,7 +161,7 @@ class Carousel extends GlobalStyle {
     this._moveRoot.getBoundingClientRect();
   }
 
-  checkInterval() {
+  checkInterval(): void {
     if (this.autoChange) {
       if (this.intervalID) {
         clearInterval(this.intervalID);

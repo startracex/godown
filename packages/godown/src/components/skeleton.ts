@@ -1,8 +1,9 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import iconPhoto from "@godown/f7-icon/icons/photo.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -49,7 +50,7 @@ const cssScope = scopePrefix(protoName);
       margin: calc(var(--size) * 0.05);
     }
 
-    .position {
+    [animation=position] {
       background-image: linear-gradient(
         var(${cssScope}--deg),
         var(${cssScope}--from) 36%,
@@ -70,7 +71,7 @@ const cssScope = scopePrefix(protoName);
       }
     }
 
-    .opacity {
+    [animation=opacity] {
       animation-name: op;
       animation-direction: alternate;
     }
@@ -105,11 +106,11 @@ class Skeleton extends GlobalStyle {
   @state()
   loading = true;
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     if (!this.loading) {
       return htmlSlot();
     }
-    return html`<div part="root" class="${this.animation}">
+    return html`<div part="root" ${attr(this.observedRecord)}>
     ${this.type === "image" ? iconPhoto() : ""}
     ${htmlSlot("loading")}</div>`;
   }

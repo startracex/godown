@@ -1,7 +1,7 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { css } from "lit";
+import { css, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "../core/global-style.js";
@@ -30,13 +30,13 @@ class Form<T = object> extends GlobalStyle {
     return Form.buildValue(this._slot.assignedElements()) as T;
   }
 
-  nameValue = this.namevalue;
+  nameValue: () => [string, T] = this.namevalue;
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     return htmlSlot();
   }
 
-  reset() {
+  reset(): void {
     this.deepQuerySelectorAll<HTMLElement & { reset?: () => void; }>("*").forEach((el) => {
       if (el.tagName === this.tagName) {
         return;

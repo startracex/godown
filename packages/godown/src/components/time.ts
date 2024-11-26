@@ -1,7 +1,8 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import fmtime from "fmtime";
-import { css, type PropertyValues } from "lit";
+import { css, html, type PropertyValues, TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "../core/global-style.js";
@@ -32,27 +33,29 @@ class Time extends GlobalStyle {
    * Time.
    */
   @property({ type: Object })
-  time = new Date();
+  time: Date = new Date();
 
   /**
    * If there is a value, update every gap or timeout.
    */
   @property({ type: Number })
-  timeout;
+  timeout: any;
 
   /**
    * The number of milliseconds that change with each update.
    */
   @property({ type: Number })
-  gap;
+  gap: any;
 
   protected timeoutId: number;
 
-  protected render(): string {
-    return fmtime(this.format, this.time, this.escape);
+  protected render(): TemplateResult<1> {
+    return html`<span part="root" ${attr(this.observedRecord)}>
+      ${fmtime(this.format, this.time, this.escape)}
+    </span>`;
   }
 
-  protected firstUpdated() {
+  protected firstUpdated(): void {
     if (this.timeout) {
       this.timeoutId = this.startTimeout();
     }
@@ -67,11 +70,11 @@ class Time extends GlobalStyle {
     }
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     clearInterval(this.timeoutId);
   }
 
-  startTimeout() {
+  startTimeout(): number {
     return window.setInterval(() => {
       this.time = new Date(this.time.getTime() + (this.gap || this.timeout));
     }, Math.abs(this.timeout));

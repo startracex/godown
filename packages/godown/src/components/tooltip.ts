@@ -1,7 +1,8 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { scopePrefix } from "../core/global-style.js";
@@ -51,18 +52,22 @@ const cssScope = scopePrefix(protoName);
     .passive {
       background: var(${cssScope}--tip-background);
     }
+
+    [propagation] [part=tip]{
+      pointer-events: none;
+    }
   `,
   css`
-    [direction^=top] {
+    [direction^=top] [part=tip] {
       bottom: 100%;
     }
-    [direction^=bottom] {
+    [direction^=bottom] [part=tip] {
       top: 100%;
     }
-    [direction$=right] {
+    [direction$=right] [part=tip] {
       left: 100%;
     }
-    [direction$=left] {
+    [direction$=left] [part=tip] {
       right: 100%;
     }
   `,
@@ -112,10 +117,12 @@ class Tooltip extends SuperOpenable {
     "flex-end": "flex-end",
   };
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     const align = Tooltip.aligns[this.align] || "inherit";
     const isFocusable = this.type === "focus";
-    return html`<div part="root"
+    return html`<div 
+      part="root"
+      ${attr(this.observedRecord)}
       tabindex="${isFocusable ? 0 : -1}"
       @focus="${isFocusable ? () => this.open = true : null}"
       @blur="${isFocusable ? () => this.open = false : null}"
@@ -123,9 +130,7 @@ class Tooltip extends SuperOpenable {
       @mouseleave="${isFocusable ? null : () => this.open = false}"
       style="justify-content:${align};align-items:${align}">
       ${htmlSlot()}
-      <div part="tip"
-      direction="${this.direction}"
-      style="pointer-events:${this.propagation ? "none" : "all"}">
+      <div part="tip">
     ${
       this.tip
         ? html`<span class="passive">${this.tip}</span>`

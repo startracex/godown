@@ -1,10 +1,11 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { part } from "@godown/element/decorators/part.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { classList } from "@godown/element/directives/class-list.js";
 import { joinProperties } from "@godown/element/tools/css.js";
 import { isNil } from "@godown/element/tools/lib.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
@@ -85,16 +86,16 @@ const cssScope = scopePrefix(protoName);
     }
   `,
   css`
-    .vertical {
+    [vertical] {
       height: 100%;
       width: var(${cssScope}-track-width);
     }
 
-    .vertical i {
+    [vertical] i {
       transform: translate(-25%, -50%);
     }
 
-    .vertical [part=track] {
+    [vertical] [part=track] {
       width: 100%;
       height: max(calc(var(--to) - var(--from)), calc(var(--from) - var(--to)));
       top: min(var(--from), var(--to));
@@ -107,7 +108,7 @@ const cssScope = scopePrefix(protoName);
       top: 0;
     }
 
-    .vertical [part=handle] {
+    [vertical] [part=handle] {
       top: var(--handle);
       left: 0;
     }
@@ -164,7 +165,7 @@ class Range extends SuperInput {
   /**
    * Returns true when the second number is greater than the first number.
    */
-  get reverse() {
+  get reverse(): boolean {
     return this.range ? this.value[0] > this.value[1] : false;
   }
 
@@ -196,7 +197,7 @@ class Range extends SuperInput {
     return rangeValue;
   }
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     const rangeValue = this.padValue(2);
     const from = Math.min(...rangeValue);
     const to = Math.max(...rangeValue);
@@ -204,13 +205,7 @@ class Range extends SuperInput {
 
     return html`<div
       part="root"
-      class="${
-      classList({
-        vertical: this.vertical,
-        range: this.range,
-        reverse: this.reverse,
-      })
-    }"
+      ${attr(this.observedRecord)}
       @mousedown="${this.disabled ? null : this._handleMousedownRoot}"
       style="${
       joinProperties({
@@ -234,7 +229,7 @@ class Range extends SuperInput {
     </div>`;
   }
 
-  protected renderHandle(index: number) {
+  protected renderHandle(index: number): TemplateResult<1> {
     const { range } = this;
     const end = !range || index === (this.value as number[]).length - 1;
     return html`<i
@@ -253,7 +248,7 @@ class Range extends SuperInput {
 
   private _keydownEvent: EventListenerOrEventListenerObject;
 
-  focusHandle(index: number) {
+  focusHandle(index: number): void {
     this.lastFocus = index;
     const handleItem = this._handles.item(index);
     handleItem?.focus();
@@ -262,7 +257,7 @@ class Range extends SuperInput {
     }
   }
 
-  blurHandle() {
+  blurHandle(): void {
     this.lastFocus = undefined;
     this._keydownEvent = this.events.remove(document, "keydown", this._keydownEvent);
   }
@@ -271,7 +266,7 @@ class Range extends SuperInput {
     if (!this.range) {
       index = 0;
     }
-    return (e: KeyboardEvent) => {
+    return (e: KeyboardEvent): void => {
       if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
         e.preventDefault();
         this.createSetValue(index)(old => old - this.step);
@@ -283,20 +278,20 @@ class Range extends SuperInput {
   }
 
   createMouseDown(index: number) {
-    return (e: MouseEvent) => {
+    return (e: MouseEvent): void => {
       this.focusHandle(index);
       this.createMousedownListener(this.createSetValue(index))(e);
     };
   }
 
-  protected _handleMousedownEnd(e: MouseEvent) {
+  protected _handleMousedownEnd(e: MouseEvent): void {
     this.lastFocus = 0;
     this.createMousedownListener(this.setEnd)(e);
     this.focusHandle(0);
   }
 
   createSetValue(index: number) {
-    return (numberOrModifier: number | ((value: number) => number)) => {
+    return (numberOrModifier: number | ((value: number) => number)): void => {
       const number = typeof numberOrModifier === "number"
         ? this.normalizeValue(numberOrModifier)
         : numberOrModifier(this.rangeValue[index]);
@@ -309,14 +304,14 @@ class Range extends SuperInput {
     };
   }
 
-  setEnd(value: number) {
+  setEnd(value: number): void {
     this.createSetValue((this.value as any)?.length - 1 || 0)(value);
   }
 
   /**
    * Compute value from event.
    */
-  protected _computeValue(e: MouseEvent) {
+  protected _computeValue(e: MouseEvent): number {
     const rect = this._root.getBoundingClientRect();
     const div = this.vertical ? (e.clientY - rect.top) / rect.height : (e.clientX - rect.left) / rect.width;
     const value = Math.round((div * (this.max - this.min)) / this.step) * this.step;
@@ -326,13 +321,13 @@ class Range extends SuperInput {
   /**
    * Ensure that the values do not exceed the range of max and min.
    */
-  protected normalizeValue(value: number) {
+  protected normalizeValue(value: number): number {
     if (value > this.max) { value -= this.step; }
     else if (value < this.min) { value += this.step; }
     return value;
   }
 
-  protected _handleMousedownRoot(e: MouseEvent) {
+  protected _handleMousedownRoot(e: MouseEvent): void {
     const value = this._computeValue(e);
     const index = this.range
       ? this.rangeValue.reduce((acc, item, index) => {
@@ -349,7 +344,7 @@ class Range extends SuperInput {
   }
 
   protected createMousedownListener(mouseMoveCallback: (arg0: number) => void) {
-    return (e: MouseEvent) => {
+    return (e: MouseEvent): void => {
       e.preventDefault();
       e.stopPropagation();
       const move = this.createMousemoveListener(mouseMoveCallback);
@@ -363,7 +358,7 @@ class Range extends SuperInput {
   }
 
   protected createMousemoveListener(callback: (arg0: number) => void) {
-    return (e: MouseEvent) => {
+    return (e: MouseEvent): void => {
       const value = this._computeValue(e);
       if (value > this.max || value < this.min) {
         return;
@@ -372,7 +367,7 @@ class Range extends SuperInput {
     };
   }
 
-  protected _connectedInit() {
+  protected _connectedInit(): void {
     const gap = this.max - this.min;
     this.step ||= gap / 100;
     if (isNil(this.value)) {
@@ -385,15 +380,15 @@ class Range extends SuperInput {
     this.default ??= this.value;
   }
 
-  reset() {
+  reset(): void {
     this.value = this.default;
   }
 
-  sort() {
+  sort(): number | number[] {
     return this.value = this.toSorted();
   }
 
-  toSorted() {
+  toSorted(): number | number[] {
     if (this.range) {
       return [...this.value as number[]].sort((a, b) => a - b);
     }

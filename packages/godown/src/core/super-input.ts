@@ -3,7 +3,7 @@ import { styles } from "@godown/element/decorators/styles.js";
 import { htmlSlot } from "@godown/element/directives/index.js";
 import { type HandlerEvent } from "@godown/element/element.js";
 import iconEyeSlashFill from "@godown/f7-icon/icons/eye-slash-fill.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle } from "./global-style.js";
@@ -117,20 +117,20 @@ class SuperInput extends GlobalStyle {
     return this.default;
   }
 
-  protected makeId = Math.random().toString(36).slice(1);
+  protected makeId: string = Math.random().toString(36).slice(1);
 
   namevalue(): [string, any] {
     return [this.name, this.value];
   }
 
-  nameValue = this.namevalue;
+  nameValue: () => [string, any] = this.namevalue;
 
-  reset() {
+  reset(): void {
     this.value = this.default;
     this._input.value = this.default;
   }
 
-  protected _handleInput(e: HandlerEvent<HTMLInputElement>) {
+  protected _handleInput(e: HandlerEvent<HTMLInputElement>): void {
     e.stopPropagation();
     if (this.compositing) {
       return;
@@ -146,17 +146,17 @@ class SuperInput extends GlobalStyle {
     this.dispatchEvent(new CustomEvent("change", { detail: this.value, composed: true }));
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
     this._connectedInit();
   }
 
-  protected _connectedInit() {
+  protected _connectedInit(): void {
     this.default ??= this.value || "";
     this.value ??= this.default;
   }
 
-  protected _compositionInit() {
+  protected _compositionInit(): void {
     if (this._input) {
       this.events.add(this._input, "compositionstart", () => this.compositing = true);
       this.events.add(this._input, "compositionend", (e: HandlerEvent<HTMLInputElement>) => {
@@ -166,27 +166,27 @@ class SuperInput extends GlobalStyle {
     }
   }
 
-  protected _changeInputType(t: typeof this.type) {
+  protected _changeInputType(t: typeof this.type): void {
     if (this._input) {
       this._input.type = t;
     }
   }
 
-  focus(options?: FocusOptions) {
+  focus(options?: FocusOptions): void {
     this._input?.focus(options);
   }
 
-  protected firstUpdated() {
+  protected firstUpdated(): void {
     this._compositionInit();
   }
 
-  protected _renderPrefix() {
+  protected _renderPrefix(): TemplateResult<1> {
     return html`<label for=${this.makeId} part="prefix">
     <i part="space"></i>
     ${htmlSlot("prefix")}</label>`;
   }
 
-  protected _renderSuffix() {
+  protected _renderSuffix(): TemplateResult<1> {
     const PASSWORD = "password";
     return html`<label for=${this.makeId} part="suffix">${
       this.type === "password"

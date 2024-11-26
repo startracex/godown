@@ -1,7 +1,8 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { isNil } from "@godown/element/tools/lib.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle } from "../core/global-style.js";
@@ -66,14 +67,14 @@ class Progress extends GlobalStyle {
   @property({ type: Number })
   value: number;
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     let width = 20;
     let className: string;
     if (!isNil(this.value)) {
       width = this.parsePercent(this.value);
       className = "static";
     }
-    return html`<div part="root" class="${className}">
+    return html`<div part="root" ${attr(this.observedRecord)} class="${className}">
       <i part="value" style="width:${width}%;"></i>
     </div>`;
   }

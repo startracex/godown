@@ -36,7 +36,7 @@ class Divider extends GlobalStyle {
   @property({ type: Boolean, reflect: true })
   vertical = false;
 
-  connectedCallback() {
+  connectedCallback(): void {
     this.createRenderRoot();
   }
 }

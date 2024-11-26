@@ -1,7 +1,8 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { css } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -68,12 +69,14 @@ class Card extends GlobalStyle {
   @property({ type: Boolean })
   header = false;
 
-  protected render() {
-    return [
+  protected render(): TemplateResult<1> {
+    return html`<div part="root" ${attr(this.observedRecord)}>
+    ${[
       this.header ? htmlSlot("header") : "",
       htmlSlot(),
       this.footer ? htmlSlot("footer") : "",
-    ];
+    ]}
+    </div>`;
   }
 }
 

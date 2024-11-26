@@ -13,15 +13,25 @@ export class GlobalStyle extends GodownElement {
 
 const cssvar = trim(GlobalStyle.godownConfig.prefix, "-");
 
-export function scopePrefix(scope: string, len = 1) {
+export function scopePrefix(scope: string, len = 1): CSSResult {
   return variablePrefix(cssvar + "-".repeat(len) + scope);
 }
 
-export function variablePrefix(variable: string) {
+export function variablePrefix(variable: string): CSSResult {
   return unsafeCSS("--" + variable);
 }
 
-export const cssGlobalVars = {
+export const cssGlobalVars: {
+  foreground: CSSResult;
+  background: CSSResult;
+  clipBackground: CSSResult;
+  active: CSSResult;
+  passive: CSSResult;
+  _colors: PresetsGradientsCSSResult;
+  input: CSSResult;
+  white: CSSResult;
+  black: CSSResult;
+} = {
   foreground: scopePrefix("foreground", 2),
   background: scopePrefix("background", 2),
   clipBackground: scopePrefix("clip-background", 2),

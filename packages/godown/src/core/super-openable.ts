@@ -10,19 +10,19 @@ class SuperOpenable extends GlobalStyle {
   @property({ type: Boolean, reflect: true })
   open = false;
 
-  toggle(to = !this.open) {
+  toggle(to: boolean = (!this.open) satisfies boolean): void {
     this.open = to;
   }
 
-  close() {
+  close(): void {
     this.open = false;
   }
 
-  show() {
+  show(): void {
     this.open = true;
   }
 
-  protected updated(changedProperties: PropertyValueMap<this>) {
+  protected updated(changedProperties: PropertyValueMap<this>): void {
     const open = changedProperties.get("open");
     if (open !== undefined) {
       this.dispatchEvent(new CustomEvent("change", { detail: this.open }));
@@ -30,7 +30,7 @@ class SuperOpenable extends GlobalStyle {
   }
 
   // eslint-disable-next-line
-  protected _handelClick(_: MouseEvent) {
+  protected _handelClick(_: MouseEvent): void {
     this.toggle();
   }
 }

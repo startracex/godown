@@ -1,6 +1,7 @@
 import { styles } from "@godown/element/decorators/index.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 
@@ -39,14 +40,16 @@ class SuperAnchor extends GlobalStyle {
   @property()
   target: "_blank" | "_self" | "_parent" | "_top" = "_self";
 
-  protected render() {
-    return html`<a part="root" href="${ifDefined(this.href)}" target="${this.target}" @click=${this._handleClick}>
+  protected render(): TemplateResult<1> {
+    return html`<a part="root" ${attr(this.observedRecord)} href="${
+      ifDefined(this.href)
+    }" target="${this.target}" @click=${this._handleClick}>
       ${htmlSlot()}
     </a>`;
   }
 
   // eslint-disable-next-line
-  protected _handleClick(_: MouseEvent) {}
+  protected _handleClick(_: MouseEvent): void {}
 }
 
 export default SuperAnchor;

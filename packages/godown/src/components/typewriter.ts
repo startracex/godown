@@ -3,7 +3,7 @@ import { styles } from "@godown/element/decorators/styles.js";
 import { classList } from "@godown/element/directives/class-list.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { random } from "@godown/element/tools/lib.js";
-import { css, html, type PropertyValueMap } from "lit";
+import { css, html, type PropertyValueMap, TemplateResult } from "lit";
 import { property, query, state } from "lit/decorators.js";
 
 import { GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -103,11 +103,11 @@ class Typewriter extends GlobalStyle {
   /**
    * {@linkcode Typewriter.text} length.
    */
-  get len() {
+  get len(): number {
     return this.text.length;
   }
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     return html`${htmlSlot()}${this.content}<i part="cursor" class="${
       classList({
         hidden: this.ended,
@@ -115,7 +115,7 @@ class Typewriter extends GlobalStyle {
     }"></i>`;
   }
 
-  protected firstUpdated() {
+  protected firstUpdated(): void {
     if (!this.text) {
       this.text = this._slot?.assignedNodes()[0]?.textContent.trim() || "";
     }
@@ -124,13 +124,13 @@ class Typewriter extends GlobalStyle {
     }
   }
 
-  protected updated(changedProperties: PropertyValueMap<this>) {
+  protected updated(changedProperties: PropertyValueMap<this>): void {
     if (changedProperties.has("index")) {
       this.dispatchEvent(new CustomEvent(this.index === this.len ? "done" : "write", { detail: this.content }));
     }
   }
 
-  write(at = this.index) {
+  write(at: number = this.index): void {
     this.content = this.text.slice(0, at + 1);
     const timeout = this.delay || random(this.max, this.min);
     this.timeoutID = window.setTimeout(() => {
@@ -142,11 +142,11 @@ class Typewriter extends GlobalStyle {
     }, timeout);
   }
 
-  stop() {
+  stop(): void {
     clearTimeout(this.timeoutID);
   }
 
-  end() {
+  end(): void {
     this.ended = true;
   }
 }

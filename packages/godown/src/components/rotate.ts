@@ -2,7 +2,7 @@ import { godown } from "@godown/element/decorators/godown.js";
 import { part } from "@godown/element/decorators/part.js";
 import { styles } from "@godown/element/decorators/styles.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 
 import { GlobalStyle, scopePrefix } from "../core/global-style.js";
 
@@ -51,19 +51,19 @@ class Rotate extends GlobalStyle {
   @part("root")
   protected _root: HTMLElement;
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     return html`<div part="root">
       <div part="slot" @mousemove="${this._handleRotate}">${htmlSlot()}</div>
       <i @mouseleave="${this.reset}"></i>
     </div>`;
   }
 
-  reset() {
+  reset(): void {
     this._root.style.removeProperty("transform");
     this._root.style.removeProperty("transition");
   }
 
-  protected _handleRotate(e: MouseEvent) {
+  protected _handleRotate(e: MouseEvent): void {
     const { rotateX, rotateY } = this._computeOffset(e);
     this._root.style.setProperty("transform", `rotateX(${rotateX}rad) rotateY(${rotateY}rad)`);
     this._root.style.setProperty("transition", "0s");
@@ -77,7 +77,10 @@ class Rotate extends GlobalStyle {
    * @param e Mouse move event.
    * @returns rotateX, rotateY
    */
-  _computeOffset(e: MouseEvent) {
+  _computeOffset(e: MouseEvent): {
+    rotateX: number;
+    rotateY: number;
+  } {
     const { left, top, width, height } = this._root.getBoundingClientRect();
     const { clientX, clientY } = e;
     const offsetX = clientX - left;

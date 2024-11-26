@@ -3,7 +3,7 @@ import { styles } from "@godown/element/decorators/styles.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
 import { joinRules } from "@godown/element/tools/css.js";
-import { css } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "../core/global-style.js";
@@ -49,8 +49,8 @@ class Flex extends GlobalStyle {
   @property({ type: Boolean })
   vertical = false;
 
-  protected render() {
-    return [
+  protected render(): TemplateResult<1> {
+    return html`${[
       htmlSlot(),
       htmlStyle(
         joinRules({
@@ -63,7 +63,7 @@ class Flex extends GlobalStyle {
           },
         }),
       ),
-    ];
+    ]}`;
   }
 }
 

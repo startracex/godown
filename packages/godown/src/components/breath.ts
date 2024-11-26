@@ -1,7 +1,7 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -99,15 +99,15 @@ class Breath extends GlobalStyle {
   @property()
   duration: string;
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     const texts = this.getTexts();
-    return [
+    return html`${[
       texts.map(this.renderText),
       htmlStyle(this.computeStyle(texts.length)),
-    ];
+    ]}`;
   }
 
-  protected renderText(text: string) {
+  protected renderText(text: string): TemplateResult<1> {
     return html`<span class="rel">
       <span class="nocolor">${text}</span>
       <span class="colorful">${text}</span>
@@ -118,7 +118,7 @@ class Breath extends GlobalStyle {
     return Array.isArray(this.text) ? this.text : (this.text || this.textContent).split(/\s+/).filter((x) => x);
   }
 
-  protected computeStyle(len: number) {
+  protected computeStyle(len: number): string {
     const gap = 100 / 2 / len;
     const duration = this.parseDuration() || len * 2 + 2;
 
@@ -138,7 +138,7 @@ class Breath extends GlobalStyle {
     );
   }
 
-  protected parseDuration() {
+  protected parseDuration(): number {
     const { duration } = this;
     if (duration) {
       if (duration.endsWith("s")) {

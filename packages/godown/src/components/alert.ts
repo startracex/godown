@@ -1,5 +1,6 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
 import { constructCSSObject, toVar } from "@godown/element/tools/css.js";
@@ -11,7 +12,7 @@ import iconQuestionCircle from "@godown/f7-icon/icons/question-circle.js";
 import iconSlashCircle from "@godown/f7-icon/icons/slash-circle.js";
 import iconXmark from "@godown/f7-icon/icons/xmark.js";
 import iconXmarkCircle from "@godown/f7-icon/icons/xmark-circle.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -240,32 +241,30 @@ class Alert extends GlobalStyle {
   @property()
   variant: "blockquote" | "dark" | "light" = "dark";
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     const color = calls[this.call]?.color || this.color;
     const icon = this.call ? calls[this.call].icon() : htmlSlot("icon");
-    return [
-      html`<div part="root" variant="${this.variant}">
+    return html`<div part="root" ${attr(this.observedRecord)}>
       <div part="icon">${icon}</div>
       <div part="content">
         <strong part="title">${this.title || htmlSlot("title")}</strong>
         ${this.content || htmlSlot()}
       </div>
       ${
-        !this.hideClose && this.variant !== "blockquote"
-          ? html`<div part="close" tabindex=0 @click="${this.close}">${iconXmark()}</div>`
-          : ""
-      }
-    </div>`,
-      htmlStyle(this.variant === "light" ? lightStyles[color] : darkStyles[color]),
-    ];
+      !this.hideClose && this.variant !== "blockquote"
+        ? html`<div part="close" tabindex=0 @click="${this.close}">${iconXmark()}</div>`
+        : ""
+    }
+    ${htmlStyle(this.variant === "light" ? lightStyles[color] : darkStyles[color])}
+    </div>`;
   }
 
-  close() {
+  close(): void {
     this.remove();
     this.dispatchEvent(new CustomEvent("close", { bubbles: true, composed: true }));
   }
 
-  protected firstUpdated() {
+  protected firstUpdated(): void {
     if (this.autoclose) {
       setTimeout(() => this.close(), this.autoclose);
     }

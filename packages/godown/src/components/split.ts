@@ -1,8 +1,9 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { classList } from "@godown/element/directives/class-list.js";
 import { type HandlerEvent } from "@godown/element/element.js";
-import { css, html, nothing } from "lit";
+import { css, html, nothing, type TemplateResult } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
@@ -92,9 +93,9 @@ class Split extends SuperInput {
   @state()
   currentValue: (string | void)[] = [];
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     return html`
-      <div part="root">
+    <div part="root" ${attr(this.observedRecord)}>
     ${
       loop(this.len, (index: number) =>
         html`<span part="input-box"
@@ -120,7 +121,7 @@ class Split extends SuperInput {
     this.reset();
   }
 
-  protected _handleInput(e: HandlerEvent<HTMLInputElement, InputEvent>) {
+  protected _handleInput(e: HandlerEvent<HTMLInputElement, InputEvent>): void {
     e.stopPropagation();
     if (this.compositing) {
       return;
@@ -149,7 +150,7 @@ class Split extends SuperInput {
    *
    * @param data Input event data.
    */
-  protected fillInput(data: string | null) {
+  protected fillInput(data: string | null): void {
     if (data === null) {
       // delete
 
@@ -192,23 +193,23 @@ class Split extends SuperInput {
     }
   }
 
-  focus() {
+  focus(): void {
     this.focusAt(this.current);
     super.focus();
   }
 
-  focusAt(i: number) {
+  focusAt(i: number): void {
     this.current = i;
     this._input.focus();
   }
 
-  blur() {
+  blur(): void {
     this._input.blur();
     this.current = -1;
     super.blur();
   }
 
-  reset() {
+  reset(): void {
     this.current = -1;
     this.value = this.default;
     this.currentValue = this.value.split("").concat(Array(this.len - this.value.length).fill(null));

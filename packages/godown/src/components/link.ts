@@ -26,7 +26,7 @@ class Link extends SuperAnchor {
   @property()
   type: "push" | "replace" | "normal" = "normal";
 
-  protected _handleClick(e: MouseEvent) {
+  protected _handleClick(e: MouseEvent): void {
     if (this.type === "push" || this.type === "replace") {
       e.preventDefault();
       (history[`${this.type}State`])(null, "", this.href);

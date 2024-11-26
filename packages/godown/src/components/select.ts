@@ -2,9 +2,10 @@ import { HandlerEvent } from "@godown/element";
 import { godown } from "@godown/element/decorators/godown.js";
 import { part } from "@godown/element/decorators/part.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import svgCaretDown from "@godown/f7-icon/icons/chevron-down.js";
-import { css, html, nothing } from "lit";
+import { css, html, nothing, type TemplateResult } from "lit";
 import { property, state } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 
@@ -57,14 +58,19 @@ const protoName = "select";
     [part=content] {
       position: absolute;
       width: 100%;
+      visibility: hidden;
     }
 
-    [direction=bottom] {
+    [direction=bottom] [part=content] {
       top: 100%;
     }
 
-    [direction=top] {
+    [direction=top] [part=content] {
       bottom: 100%;
+    }
+
+    [visible] [part=content] {
+      visibility: visible
     }
   `,
 )
@@ -98,8 +104,13 @@ class Select extends Input {
   protected defaultChecked: HTMLElement[];
   private _store: { value: string; text: string; }[] = [];
 
-  protected render() {
-    return html`<div part="root" class="input-field"> 
+  protected render(): TemplateResult<1> {
+    return html`<div part="root" ${
+      attr({
+        ...this.observedRecord,
+        direction: this.direction || this.autoDirection,
+      })
+    } class="input-field"> 
     ${[
       this._renderPrefix(),
       html`<input
@@ -119,14 +130,12 @@ class Select extends Input {
       html`<label for="${this.makeId}" part="suffix">
         <i part="space"></i><i part="icon">${svgCaretDown()}</i><i part="space"></i>
       </label>`,
-      html`<label for="${this.makeId}" part="content" 
-      style="visibility:${this.visible ? "visible" : "hidden"}"
-      direction="${this.direction || this.autoDirection}">${htmlSlot()}</label>`,
+      html`<label for="${this.makeId}" part="content">${htmlSlot()}</label>`,
     ]}
     </div>`;
   }
 
-  protected _handleFocus() {
+  protected _handleFocus(): void {
     if (!this.direction) {
       const { top, bottom } = this.getBoundingClientRect();
       if (window.innerHeight - bottom < this._content.clientHeight && top > this._content.clientHeight) {
@@ -138,7 +147,7 @@ class Select extends Input {
     this.visible = true;
   }
 
-  protected firstUpdated() {
+  protected firstUpdated(): void {
     this.events.add(this._content, "click", (e: HandlerEvent) => {
       e.preventDefault();
       e.stopPropagation();
@@ -164,7 +173,7 @@ class Select extends Input {
     });
   }
 
-  protected _connectedInit() {
+  protected _connectedInit(): void {
     if (!this.value) {
       const checked = [...this.querySelectorAll<HTMLElement>("[checked]")];
       const list = this.multiple
@@ -193,7 +202,7 @@ class Select extends Input {
     this.defaultChecked.forEach(element => updateChecked(element, 1));
   }
 
-  select(value: string, text?: string) {
+  select(value: string, text?: string): 0 | 1 {
     text ||= value;
     let operation: 0 | 1 = 0;
     if (this.multiple) {
@@ -221,7 +230,7 @@ class Select extends Input {
     return operation;
   }
 
-  filter(query?: string) {
+  filter(query?: string): void {
     query = query?.trim();
     [...this.children].forEach((element: HTMLElement) => {
       this.filterCallback(
@@ -235,11 +244,11 @@ class Select extends Input {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  filterCallback(element: HTMLElement, match: boolean, query: string) {
+  filterCallback(element: HTMLElement, match: boolean, query: string): void {
     element.style.display = match ? "" : "none";
   }
 
-  protected _handleInput(e: HandlerEvent<HTMLInputElement>) {
+  protected _handleInput(e: HandlerEvent<HTMLInputElement>): void {
     e.stopPropagation();
     if (this.compositing) {
       return;
@@ -249,12 +258,12 @@ class Select extends Input {
     this.dispatchEvent(new CustomEvent("input", { detail: this.namevalue() }));
   }
 
-  focus(options?: FocusOptions) {
+  focus(options?: FocusOptions): void {
     this._input.focus(options);
     this.visible = true;
   }
 
-  blur() {
+  blur(): void {
     this._input.blur();
     this.visible = false;
     super.blur();

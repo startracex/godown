@@ -4,7 +4,7 @@ import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
 import { joinRules } from "@godown/element/tools/css.js";
 import { isNumerical } from "@godown/element/tools/lib.js";
-import { css } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "../core/global-style.js";
@@ -54,8 +54,8 @@ class Grid extends GlobalStyle {
   @property()
   items: string;
 
-  protected render() {
-    return [
+  protected render(): TemplateResult<1> {
+    return html`${[
       htmlSlot(),
       htmlStyle(
         joinRules({
@@ -68,7 +68,7 @@ class Grid extends GlobalStyle {
           },
         }),
       ),
-    ];
+    ]}`;
   }
 }
 

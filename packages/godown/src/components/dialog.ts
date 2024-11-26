@@ -1,8 +1,9 @@
 import { type HandlerEvent } from "@godown/element";
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { css, html, type PropertyValues } from "lit";
+import { css, html, type PropertyValues, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
@@ -64,24 +65,24 @@ const cssScope = scopePrefix(protoName);
       justify-content: center;
     }
 
-    [direction] {
+    [part=container] {
       pointer-events: all;
       position: absolute;
     }
 
-    [direction^=top] {
+    [direction^=top] [part=container] {
       top: 0;
     }
 
-    [direction^=bottom] {
+    [direction^=bottom] [part=container] {
       bottom: 0;
     }
 
-    [direction$=right] {
+    [direction$=right] [part=container] {
       right: 0%;
     }
 
-    [direction$=left] {
+    [direction$=left] [part=container] {
       left: 0%;
     }
   `,
@@ -107,14 +108,14 @@ class Dialog extends SuperOpenable {
 
   private _modalInvoke: boolean;
 
-  protected render() {
-    return html`<div part="root">
+  protected render(): TemplateResult<1> {
+    return html`<div part="root" ${attr(this.observedRecord)}>
       <div part="modal"></div>
-      <div part="container" direction="${this.direction}">${htmlSlot()}</div>
+      <div part="container">${htmlSlot()}</div>
     </div>`;
   }
 
-  showModal() {
+  showModal(): void {
     if (!this.modal) {
       this.modal = true;
       this._modalInvoke = true;
@@ -125,7 +126,7 @@ class Dialog extends SuperOpenable {
   private _submitEvent: EventListenerOrEventListenerObject;
   private _keydownEvent: EventListenerOrEventListenerObject;
 
-  protected updated(changedProperties: PropertyValues) {
+  protected updated(changedProperties: PropertyValues): void {
     if (changedProperties.has("open")) {
       if (this.open) {
         this._submitEvent = this.events.add(this, "submit", this._handelSubmit);
@@ -139,7 +140,7 @@ class Dialog extends SuperOpenable {
     }
   }
 
-  protected _handleKeydown(e: KeyboardEvent) {
+  protected _handleKeydown(e: KeyboardEvent): void {
     e.preventDefault();
     const keys = this.key.split(/[\s,]/);
     if (keys.includes(e.key) || keys.includes(e.code)) {
@@ -147,13 +148,13 @@ class Dialog extends SuperOpenable {
     }
   }
 
-  protected _handelSubmit(e: HandlerEvent<HTMLFormElement>) {
+  protected _handelSubmit(e: HandlerEvent<HTMLFormElement>): void {
     if (e.target.method === "dialog") {
       this.close();
     }
   }
 
-  close() {
+  close(): void {
     if (this._modalInvoke) {
       this.modal = false;
       this._modalInvoke = false;

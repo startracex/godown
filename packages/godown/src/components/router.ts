@@ -107,15 +107,18 @@ class Router extends GlobalStyle {
     this.collectFieldRoutes(value);
   }
 
-  get routes() {
+  get routes(): (Record<string, any> & {
+    path: string;
+    component?: unknown;
+  })[] {
     return this.__routes;
   }
 
-  clear() {
+  clear(): void {
     this.__cacheRecord.clear();
   }
 
-  protected render() {
+  protected render(): unknown {
     this.params = {};
     if (this.cache) {
       const cached = this.__cacheRecord.get(this.pathname);
@@ -137,7 +140,7 @@ class Router extends GlobalStyle {
     return this.component ?? this.default ?? null;
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
     Router.routerInstances.add(this);
     this.pathname ??= location.pathname;
@@ -153,12 +156,17 @@ class Router extends GlobalStyle {
     }
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     super.disconnectedCallback();
     Router.routerInstances.delete(this);
   }
 
-  useRouter() {
+  useRouter(): {
+    pathname: string;
+    params: Record<string, string>;
+    path: string;
+    component: unknown;
+  } {
     return {
       pathname: this.pathname,
       params: this.params,
@@ -177,7 +185,7 @@ class Router extends GlobalStyle {
     component: unknown | TemplateResult;
   }, first: boolean) => void = null;
 
-  protected updated(changedProperties: PropertyValueMap<this>) {
+  protected updated(changedProperties: PropertyValueMap<this>): void {
     const shouldDispatch = changedProperties.has("pathname") || changedProperties.has("path");
     if (shouldDispatch) {
       const ur = this.useRouter();
@@ -193,7 +201,7 @@ class Router extends GlobalStyle {
   /**
    * Get component from {@linkcode routes} by query.
    */
-  fieldComponent(query?: string) {
+  fieldComponent(query?: string): unknown {
     query ||= this.useWhich(this.pathname);
     this.path = query;
 
@@ -212,7 +220,7 @@ class Router extends GlobalStyle {
   /**
    * Get component from slotted elements by query.
    */
-  slottedComponent(usedRouteTemplate?: string) {
+  slottedComponent(usedRouteTemplate?: string): TemplateResult<1> {
     const slottedPaths = this._slottedNames;
     usedRouteTemplate ||= this.__slottedRouteTree.useWhich(this.pathname);
     this.path = usedRouteTemplate;
@@ -232,7 +240,7 @@ class Router extends GlobalStyle {
   /**
    * Reset the route tree, clear cache, collect routes from child elements.
    */
-  collectSlottedRoutes() {
+  collectSlottedRoutes(): void {
     this.__slottedRouteTree = new RouteTree();
     this.clear();
     this._slottedNames.forEach(slotName => {
@@ -243,7 +251,7 @@ class Router extends GlobalStyle {
   /**
    * Reset the route tree, clear cache, collect routes from value.
    */
-  collectFieldRoutes(value: typeof this.routes) {
+  collectFieldRoutes(value: typeof this.routes): void {
     this.__fieldRouteTree = new RouteTree();
     this.clear();
     value.forEach(({ path }) => {
@@ -251,15 +259,15 @@ class Router extends GlobalStyle {
     });
   }
 
-  useWhich(path: string) {
+  useWhich(path: string): string {
     return this.__fieldRouteTree.useWhich(this.baseURL + path);
   }
 
-  parseParams(routeTemplate: string, path: string) {
+  parseParams(routeTemplate: string, path: string): Record<string, string> {
     return this.__fieldRouteTree.parseParams(path, routeTemplate);
   }
 
-  static updateAll() {
+  static updateAll(): void {
     this.routerInstances.forEach((i) => {
       i.handlePopstate();
     });

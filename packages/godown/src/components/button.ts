@@ -1,10 +1,11 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { part } from "@godown/element/decorators/part.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
 import { constructCSSObject, toVar } from "@godown/element/tools/css.js";
-import { css, html } from "lit";
+import { css, html, TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -15,7 +16,8 @@ const cssScope = scopePrefix(protoName);
 const whiteFont = cssGlobalVars.white;
 const blackFont = cssGlobalVars.black;
 
-const colors = constructCSSObject(
+type Colors = "teal" | "blue" | "green" | "red" | "purple" | "orange" | "yellow" | "pink" | "gray" | "white" | "black";
+const colors: Record<Colors, string> = constructCSSObject(
   ["color", "background", "gradients"].map((k) => `${cssScope}--${k}`),
   {
     black: [
@@ -227,9 +229,9 @@ class Button extends GlobalStyle {
   @part("root")
   protected _root: HTMLElement;
 
-  protected render() {
+  protected render(): TemplateResult<1> {
     const color = this.nextColor();
-    return html`<div part="root">
+    return html`<div part="root" ${attr(this.observedRecord)}>
       <span part="modal-root"></span>
       <div part="content">
         ${[this.content || htmlSlot(), htmlStyle(colors[color])]}
@@ -237,7 +239,7 @@ class Button extends GlobalStyle {
     </div>`;
   }
 
-  focus() {
+  focus(): void {
     if (this.disabled) {
       return;
     }
@@ -245,16 +247,16 @@ class Button extends GlobalStyle {
     super.focus();
   }
 
-  blur() {
+  blur(): void {
     this.active = false;
     super.blur();
   }
 
-  firstUpdated() {
+  firstUpdated(): void {
     this.events.add(this, "click", this._handelClick, true);
   }
 
-  protected _handelClick(e: MouseEvent) {
+  protected _handelClick(e: MouseEvent): void {
     if (this.disabled) {
       e.stopPropagation();
       e.preventDefault();
@@ -263,7 +265,7 @@ class Button extends GlobalStyle {
     this._handleModal(e);
   }
 
-  protected _handleModal(e: MouseEvent) {
+  protected _handleModal(e: MouseEvent): void {
     const modal = document.createElement("i");
     const rect = this.getBoundingClientRect();
     const h = rect.height;
@@ -278,7 +280,7 @@ class Button extends GlobalStyle {
     modal.addEventListener("animationend", () => modal.remove(), { once: true });
   }
 
-  nextColor() {
+  nextColor(): Colors | "none" {
     return this.color;
   }
 }

@@ -1,6 +1,7 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
-import { css, html } from "lit";
+import { attr } from "@godown/element/directives/attr.js";
+import { css, html, type TemplateResult } from "lit";
 import { property, query } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
@@ -136,8 +137,8 @@ class Switch extends SuperInput {
   @query("input")
   protected _input: HTMLInputElement;
 
-  protected render() {
-    return html`<div part="root" class="${this.round ? "round" : "rect"}">
+  protected render(): TemplateResult<1> {
+    return html`<div part="root" ${attr(this.observedRecord)} class="${this.round ? "round" : "rect"}">
       <input
         part="input"
         @change="${this._handleChange}"
@@ -151,12 +152,12 @@ class Switch extends SuperInput {
     </div>`;
   }
 
-  reset() {
+  reset(): void {
     this.checked = this.default === "true";
     this._input.checked = this.checked;
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
     if (this.checked) {
       this.default = "true";
@@ -166,7 +167,7 @@ class Switch extends SuperInput {
     }
   }
 
-  protected _handleChange() {
+  protected _handleChange(): void {
     this.checked = this._input.checked;
     this.dispatchEvent(new CustomEvent("input", { detail: this.checked, bubbles: true, composed: true }));
     this.dispatchEvent(new CustomEvent("change", { detail: this.checked, composed: true }));

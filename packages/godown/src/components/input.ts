@@ -1,8 +1,9 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { part } from "@godown/element/decorators/part.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { classList } from "@godown/element/directives/class-list.js";
-import { css, html, nothing } from "lit";
+import { css, html, nothing, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars } from "../core/global-style.js";
@@ -42,8 +43,8 @@ class Input extends SuperInput {
   @part("input")
   protected _input: HTMLInputElement;
 
-  protected render() {
-    return html`<div part="root" class="${classList("input-field", this.variant)}">
+  protected render(): TemplateResult<1> {
+    return html`<div part="root" ${attr(this.observedRecord)} class="${classList("input-field", this.variant)}">
     ${[
       this._renderPrefix(),
       html`<input
@@ -63,7 +64,7 @@ class Input extends SuperInput {
     </div>`;
   }
 
-  reset() {
+  reset(): void {
     this._input.value = this.default;
     this.value = this.default;
   }

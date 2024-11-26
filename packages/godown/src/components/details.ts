@@ -1,8 +1,9 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import svgCaretDown from "@godown/f7-icon/icons/chevron-down.js";
-import { css, html } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property, query } from "lit/decorators.js";
 
 import { scopePrefix } from "../core/global-style.js";
@@ -100,8 +101,8 @@ class Details extends SuperOpenable {
   @query("dd")
   protected _dd: HTMLDataListElement;
 
-  protected render() {
-    return html`<dl part="root">
+  protected render(): TemplateResult<1> {
+    return html`<dl part="root" ${attr(this.observedRecord)}>
       <dt part="title" @click="${this._handelClick}">
         <span part="summary">${this.summary || htmlSlot("summary")} </span>
         <span><i part="icon">${svgCaretDown()}</i></span>
