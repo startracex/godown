@@ -9,7 +9,10 @@ const importSpec = (specifier: string | URL, base: string | URL) =>
     : new URL(specifier, base || undefined) + "";
 
 class IconElement extends GodownElement {
-  static styles = css`:host{width:1em;height:1em;vertical-align:middle;display:inline-block}svg{height:100%;width:100%;display:block}`;
+  static styles = [
+    css`:host([contents]){display:contents}:host([contents]) svg{display:inline-block}`,
+    css`:host{width:1em;height:1em;vertical-align:middle;display:inline-block}:host(:not([contents])) svg{height:100%;width:100%;display:block}`,
+  ];
 
   @state()
   toURL: (this: IconElement, name: string) => string | URL = (id) => `./icons/${id}.js`;
