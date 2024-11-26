@@ -1,6 +1,7 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { part } from "@godown/element/decorators/part.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
 import iconChevronLeft from "@godown/f7-icon/icons/chevron-left.js";
@@ -101,10 +102,16 @@ class Carousel extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)}>
-        <i part="prev" @click="${this.prev}">${iconChevronLeft()}</i>
-        <div part="move-root" style="transform:${`translateX(-${this.index + 1}00%)`}">${htmlSlot()}</div>
-        <i part="next" @click="${this.next}">${iconChevronRight()}</i>
-        ${htmlStyle(`:host{width:${this.width};}`)}
+      <i part="prev" @click="${this.prev}">
+        ${iconChevronLeft()}
+      </i>
+      <div part="move-root" style="transform:${`translateX(-${this.index + 1}00%)`}">
+        ${htmlSlot()}
+      </div>
+      <i part="next" @click="${this.next}">
+        ${iconChevronRight()}
+      </i>
+      ${htmlStyle(`:host{width:${this.width};}`)}
     </div>`;
   }
 

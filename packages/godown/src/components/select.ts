@@ -128,9 +128,13 @@ class Select extends Input {
         @input="${this._handleInput}"
       >`,
       html`<label for="${this.makeId}" part="suffix">
-        <i part="space"></i><i part="icon">${svgCaretDown()}</i><i part="space"></i>
+        <i part="space"></i>
+        <i part="icon">${svgCaretDown()}</i>
+        <i part="space"></i>
       </label>`,
-      html`<label for="${this.makeId}" part="content">${htmlSlot()}</label>`,
+      html`<label for="${this.makeId}" part="content">
+        ${htmlSlot()}
+      </label>`,
     ]}
     </div>`;
   }

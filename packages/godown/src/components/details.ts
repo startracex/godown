@@ -104,8 +104,12 @@ class Details extends SuperOpenable {
   protected render(): TemplateResult<1> {
     return html`<dl part="root" ${attr(this.observedRecord)}>
       <dt part="title" @click="${this._handelClick}">
-        <span part="summary">${this.summary || htmlSlot("summary")} </span>
-        <span><i part="icon">${svgCaretDown()}</i></span>
+        <span part="summary">
+          ${this.summary || htmlSlot("summary")}
+        </span>
+        <span>
+          <i part="icon">${svgCaretDown()}</i>
+        </span>
       </dt>
       <dd part="details" @click=${this.fill ? () => this.toggle() : null}>
         <div style="min-height: 0;">${htmlSlot()}</div>

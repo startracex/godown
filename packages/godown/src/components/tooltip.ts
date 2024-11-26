@@ -61,12 +61,15 @@ const cssScope = scopePrefix(protoName);
     [direction^=top] [part=tip] {
       bottom: 100%;
     }
+
     [direction^=bottom] [part=tip] {
       top: 100%;
     }
+
     [direction$=right] [part=tip] {
       left: 100%;
     }
+
     [direction$=left] [part=tip] {
       right: 100%;
     }
@@ -131,11 +134,12 @@ class Tooltip extends SuperOpenable {
       style="justify-content:${align};align-items:${align}">
       ${htmlSlot()}
       <div part="tip">
-    ${
+      ${
       this.tip
         ? html`<span class="passive">${this.tip}</span>`
         : htmlSlot("tip")
-    }</div>
+    }
+      </div>
     </div>`;
   }
 }

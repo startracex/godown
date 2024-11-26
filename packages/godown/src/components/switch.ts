@@ -138,7 +138,10 @@ class Switch extends SuperInput {
   protected _input: HTMLInputElement;
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(this.observedRecord)} class="${this.round ? "round" : "rect"}">
+    return html`<div part="root"
+      ${attr(this.observedRecord)}
+      class="${this.round ? "round" : "rect"}"
+    >
       <input
         part="input"
         @change="${this._handleChange}"

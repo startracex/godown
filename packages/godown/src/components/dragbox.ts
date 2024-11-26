@@ -64,12 +64,12 @@ class Dragbox extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     return html`<div
-    part="root"
-    ${attr(this.observedRecord)}
-    @mousedown="${this._handleDragStart}"
-    @mouseup="${this._handleDragEnd}">
-    ${htmlSlot()}
-  </div>`;
+      part="root"
+      ${attr(this.observedRecord)}
+      @mousedown="${this._handleDragStart}"
+      @mouseup="${this._handleDragEnd}">
+      ${htmlSlot()}
+    </div>`;
   }
 
   protected firstUpdated(): void {

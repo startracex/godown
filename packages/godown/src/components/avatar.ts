@@ -73,7 +73,9 @@ class Avatar extends GlobalStyle {
   round = false;
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(omit(this.observedRecord, "src"))}>${this._renderAvatar()}</div>`;
+    return html`<div part="root" ${attr(omit(this.observedRecord, "src"))}>
+      ${this._renderAvatar()}
+    </div>`;
   }
 
   private _renderAvatar() {

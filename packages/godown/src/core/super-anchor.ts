@@ -41,9 +41,11 @@ class SuperAnchor extends GlobalStyle {
   target: "_blank" | "_self" | "_parent" | "_top" = "_self";
 
   protected render(): TemplateResult<1> {
-    return html`<a part="root" ${attr(this.observedRecord)} href="${
-      ifDefined(this.href)
-    }" target="${this.target}" @click=${this._handleClick}>
+    return html`<a part="root"
+      ${attr(this.observedRecord)}
+      href="${ifDefined(this.href)}"
+      target="${this.target}"
+      @click=${this._handleClick}>
       ${htmlSlot()}
     </a>`;
   }
