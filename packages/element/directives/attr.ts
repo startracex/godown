@@ -6,7 +6,11 @@ import { isNil } from "../tools/lib.js";
 export const updateAttribute = (element: Element, name: string, value: any) => {
   if (isNil(value) || value === false) {
     element.removeAttribute(name);
-  } else {
+  } else if (
+    value === true
+    || typeof value === "string"
+    || (typeof value === "number" && !isNaN(value))
+  ) {
     element.setAttribute(name, value === true ? "" : String(value));
   }
 };
