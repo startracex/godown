@@ -124,11 +124,7 @@ class Carousel extends GlobalStyle {
       this.insertBefore(this._cloneFirst, this.firstElementChild);
       this.show(this.index);
     }
-    if (this.autoChange) {
-      this.intervalID = window.setInterval(() => {
-        this.next();
-      }, this.autoChange);
-    }
+    this.checkInterval();
   }
 
   disconnectedCallback() {
@@ -146,6 +142,7 @@ class Carousel extends GlobalStyle {
     } else {
       this.show(this.index + 1);
     }
+    this.checkInterval();
   }
 
   prev() {
@@ -155,6 +152,7 @@ class Carousel extends GlobalStyle {
     } else {
       this.show(this.index - 1);
     }
+    this.checkInterval();
   }
 
   protected _doTranslateX(xValue: string, noTransition?: boolean) {
@@ -163,6 +161,17 @@ class Carousel extends GlobalStyle {
       this._moveRoot.style.transition = `none`;
     }
     this._moveRoot.getBoundingClientRect();
+  }
+
+  checkInterval() {
+    if (this.autoChange) {
+      if (this.intervalID) {
+        clearInterval(this.intervalID);
+      }
+      this.intervalID = window.setInterval(() => {
+        this.next();
+      }, this.autoChange);
+    }
   }
 }
 
