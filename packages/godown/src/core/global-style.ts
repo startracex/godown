@@ -92,5 +92,13 @@ GlobalStyle.styles = [
     svg {
       user-select: none;
     }
-  `,
+
+    :host([contents]) {
+      display: contents;
+    }
+
+    :where(:host([contents]) [part=root]) {
+      all: inherit;
+    }
+`,
 ];
