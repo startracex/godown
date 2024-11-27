@@ -2,7 +2,7 @@ import "godown/alert.js";
 
 # Contents
 
-<godown-alert call="warning" hideclose style={{margin:  "1.8em 0 2em"}}>Not currently supported</godown-alert>
+<godown-alert call="warning" hideclose style={{margin:  "1.8em 0 2em"}}>Experimental support</godown-alert>
 
 Set the `display` property of the host element to `contents`.
 
@@ -14,4 +14,33 @@ The contentsRoot of the shadowRoot inherits the original styles of the host.
 
 ```html
 <godown-button contents>Contents</godown-button>
+```
+
+## How it works
+
+In shadowRoot, the element with `part="root"` or first element child is considered root.
+
+The host element display will be content.
+
+All styles of the root element inherit, but display is [revert](https://developer.mozilla.org/docs/Web/CSS/revert).
+
+Apply the following style:
+
+```css
+:host([contents]) {
+  display: contents;
+}
+
+:where(:host([contents]) [part=root]) {
+  all: inherit;
+  display: revert;
+}
+```
+
+`getBoundingClientRect` and `getClientRects` will redirect to the root element.
+
+```js
+const button = document.querySelector("godown-button[contents]");
+button.getBoundingClientRect(); // root element
+HTMLElement.prototype.getBoundingClientRect.call(button); // host element
 ```
