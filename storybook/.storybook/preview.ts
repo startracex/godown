@@ -1,5 +1,6 @@
 import { themes } from "@storybook/theming";
 import { type Preview } from "@storybook/web-components";
+import { ArgHelper } from "../args";
 
 export default {
   parameters: {
@@ -16,6 +17,9 @@ export default {
   globalTypes: {},
   initialGlobals: {
     dir: "ltr",
+  },
+  argTypes: {
+    contents: new ArgHelper().type("boolean").control("boolean").category("experimental").arg,
   },
   args: {},
   decorators: (fn, c) => {
