@@ -86,7 +86,20 @@ export class ArgHelper {
   }
 
   disable() {
-    this.arg.disabled = true;
+    this.arg.table.disable = true;
+    return this;
+  }
+
+  category(cat: string) {
+    this.arg.table.category = cat;
+    return this;
+  }
+
+  table(t: InputType["table"]) {
+    this.arg.table = {
+      ...this.arg.table,
+      ...t,
+    };
     return this;
   }
 }
