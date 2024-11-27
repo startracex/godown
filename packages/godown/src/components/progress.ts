@@ -19,10 +19,14 @@ const protoName = "progress";
   :host {
     width: 100%;
     height: 0.5em;
-    display: inline-block;
     border-radius: 0.25em;
     background: var(${cssGlobalVars.passive});
     color: var(${cssGlobalVars.active});
+  }
+
+  :host,
+  [part=root] {
+    display: block;
   }
 
   [part=root] {

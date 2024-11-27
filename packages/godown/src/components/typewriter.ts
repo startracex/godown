@@ -1,5 +1,6 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { classList } from "@godown/element/directives/class-list.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { random } from "@godown/element/tools/lib.js";
@@ -20,7 +21,11 @@ const cssScope = scopePrefix(protoName);
 @styles(css`
     :host {
       ${cssScope}--cursor-width: .05em;
-      white-space: nowrap;
+    }
+
+    :host,
+    :host([contents]) [part=root] {
+      display: inline-block;
     }
 
     i {
@@ -108,11 +113,11 @@ class Typewriter extends GlobalStyle {
   }
 
   protected render(): TemplateResult<1> {
-    return html`${htmlSlot()}${this.content}<i part="cursor" class="${
-      classList({
-        hidden: this.ended,
-      })
-    }"></i>`;
+    return html`<div part="root" ${attr(this.observedRecord)}>
+      ${htmlSlot()}
+      ${this.content}
+      <i part="cursor" class="${classList({ hidden: this.ended })}"></i>
+    </div>`;
   }
 
   protected firstUpdated(): void {

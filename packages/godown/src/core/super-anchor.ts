@@ -19,13 +19,11 @@ import { GlobalStyle } from "./global-style.js";
     cursor: pointer;
   }
 
-  a {
+  [part=root] {
     width: 100%;
-    display: flex;
     color: inherit;
+    display: inline-block;
     text-decoration: inherit;
-    justify-content: space-between;
-    align-items: center;
   }
 `)
 class SuperAnchor extends GlobalStyle {

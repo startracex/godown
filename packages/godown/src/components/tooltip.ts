@@ -25,12 +25,15 @@ const cssScope = scopePrefix(protoName);
   css`
     :host {
       ${cssScope}--tip-background: inherit;
-      display: inline-block;
       width: fit-content;
+    }
+    
+    :host,
+    [part=root] {
+      display: inline-flex;
     }
 
     [part=root] {
-      display: flex;
       position: relative;
       transition: inherit;
       border-radius: inherit;
@@ -53,7 +56,7 @@ const cssScope = scopePrefix(protoName);
       background: var(${cssScope}--tip-background);
     }
 
-    [propagation] [part=tip]{
+    [propagation] [part=tip] {
       pointer-events: none;
     }
   `,

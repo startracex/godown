@@ -116,7 +116,8 @@ const calls = {
 @godown(protoName)
 @styles(
   css`
-    :host {
+    :host,
+    :where(:host([contents]) [part=root]) {
       border-radius: var(${cssScope}--border-radius);
       ${cssScope}--border-radius: .25em;
       ${cssScope}--border-width: .075em;

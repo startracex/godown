@@ -41,7 +41,7 @@ const fieldStyle = css`
     display: flex;
   }
 
-  .input-field [part=space]{
+  .input-field [part=space] {
     width: var(${cssGlobalVars.input}-space);
   }
 `;

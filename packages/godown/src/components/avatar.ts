@@ -23,15 +23,25 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(
   css`
-    :host {
+    :host{
       ${cssScope}--size: 2em;
       width: var(${cssScope}--size);
       height: var(${cssScope}--size);
-      display: inline-block;
       vertical-align: bottom;
     }
 
-    :host([round]){
+    :host,
+    [part=root] {
+      display: inline-flex;
+    }
+
+    :host([contents]) [part=root] {
+      display: inline-flex;
+      width: inherit;
+      height: inherit;
+    }
+
+    :host([round]) {
       border-radius:50%;
     }
 
@@ -47,7 +57,6 @@ const cssScope = scopePrefix(protoName);
       border-radius: inherit;
       width: 100%;
       height: 100%;
-      display: flex;
       align-items: center;
       justify-content: center;
     }

@@ -1,5 +1,6 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
 import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
@@ -42,13 +43,20 @@ const cssScope = scopePrefix(defineName);
   `,
   css`
     :host {
-      display: flex;
       margin: auto;
-      width: -moz-fit-content;
       width: fit-content;
       font-size: 2em;
       align-items: center;
       direction: ltr;
+    }
+
+    :host,
+    :host([contents]) [part=root] {
+      display: flex;
+    }
+
+    [part=root] {
+      display: contents;
     }
 
     ::selection {
@@ -69,7 +77,7 @@ const cssScope = scopePrefix(defineName);
       box-sizing: border-box;
       display: inline-block;
       animation-iteration-count: infinite;
-      -webkit-text-fill-color: transparent;
+      color: transparent;
       -webkit-background-clip: text !important;
       background-clip: text !important;
     }
@@ -101,10 +109,12 @@ class Breath extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     const texts = this.getTexts();
-    return html`${[
+    return html`<div part="root" ${attr(this.observedRecord)}>
+    ${[
       texts.map(this.renderText),
       htmlStyle(this.computeStyle(texts.length)),
-    ]}`;
+    ]}
+    </div>`;
   }
 
   protected renderText(text: string): TemplateResult<1> {

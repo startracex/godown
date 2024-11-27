@@ -99,6 +99,7 @@ GlobalStyle.styles = [
 
     :where(:host([contents]) [part=root]) {
       all: inherit;
+      display: revert;
     }
 `,
 ];

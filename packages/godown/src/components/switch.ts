@@ -21,6 +21,12 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(
   css`
+    :host,
+    :host([contents]) [part=root] {
+      width: var(${cssScope}-width);
+      height: var(${cssScope}-height);
+    }
+
     :host {
       ${cssScope}-width: 3em;
       ${cssScope}-height: calc(var(${cssScope}-width) / 2);
@@ -28,8 +34,6 @@ const cssScope = scopePrefix(protoName);
       ${cssScope}-handle-space: .125em;
       ${cssScope}-transition: .2s ease-in-out;
       background: var(${cssGlobalVars.input}-background);
-      width: var(${cssScope}-width);
-      height: var(${cssScope}-height);
       display: inline-block;
       vertical-align: bottom;
       border-radius: 0;
@@ -45,14 +49,10 @@ const cssScope = scopePrefix(protoName);
       position: relative;
       height: inherit;
     }
-
-    [part=root],
-    input {
-      width: 100%;
-    }
-
+    
     input {
       opacity: 0;
+      width: 100%;
       height: 100%;
       appearance: none;
     }

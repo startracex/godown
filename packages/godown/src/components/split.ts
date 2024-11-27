@@ -41,6 +41,10 @@ const loop = <T>(len: number, fn: (index?: number) => T) => {
       ${cssScope}--gap: .25em;
     }
 
+    :host([contents]) [part=root] {
+      width: fit-content;
+    }
+
     [part=root] {
       gap: var(${cssScope}--gap);
       width: 100%;

@@ -1,5 +1,6 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
 import { joinRules } from "@godown/element/tools/css.js";
@@ -18,7 +19,16 @@ const protoName = "grid";
  * @category layout
  */
 @godown(protoName)
-@styles(css`:host{display:grid;}`)
+@styles(css`
+    :host,
+    :host([contents]) [part=root] {
+      display: grid;
+    }
+
+    [part=root] {
+      display: contents;
+    }
+`)
 class Grid extends GlobalStyle {
   /**
    * CSS property `gap`.
@@ -55,7 +65,8 @@ class Grid extends GlobalStyle {
   items: string;
 
   protected render(): TemplateResult<1> {
-    return html`${[
+    return html`<div part="root" ${attr(this.observedRecord)}>
+    ${[
       htmlSlot(),
       htmlStyle(
         joinRules({
@@ -68,7 +79,8 @@ class Grid extends GlobalStyle {
           },
         }),
       ),
-    ]}`;
+    ]}
+    </div>`;
   }
 }
 

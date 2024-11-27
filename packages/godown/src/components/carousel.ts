@@ -111,7 +111,7 @@ class Carousel extends GlobalStyle {
       <i part="next" @click="${this.next}">
         ${iconChevronRight()}
       </i>
-      ${htmlStyle(`:host{width:${this.width};}`)}
+      ${htmlStyle(`:host,:host([contents]) [part=root]{width:${this.width};}`)}
     </div>`;
   }
 

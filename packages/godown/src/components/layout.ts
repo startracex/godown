@@ -1,6 +1,6 @@
 import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
-import { classList } from "@godown/element/directives/class-list.js";
+import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
@@ -20,13 +20,18 @@ const protoName = "layout";
 @godown(protoName)
 @styles(
   css`
-    :host {
+    :host,
+    :host([contents]) [part=root] {
       min-height: 100%;
       display: flex;
       flex-direction: column;
     }
 
-    .sticky {
+    [part=root] {
+      display: contents;
+    }
+
+    [sticky] header {
       position: sticky;
       top: 0;
       z-index: 1;
@@ -65,9 +70,10 @@ class NavLayout extends GlobalStyle {
   sticky = false;
 
   protected render(): TemplateResult<1> {
-    return html`${
+    return html`<div part="root" ${attr(this.observedRecord)}>
+    ${
       !this.noHeader
-        ? html`<header part="header" class="${classList({ sticky: this.sticky })}">${htmlSlot("header")}</header>`
+        ? html`<header part="header">${htmlSlot("header")}</header>`
         : ""
     }
     <main part="main">${htmlSlot()}</main>
@@ -75,7 +81,8 @@ class NavLayout extends GlobalStyle {
       !this.noFooter
         ? html`<footer part="footer">${htmlSlot("footer")}</footer>`
         : ""
-    }`;
+    }
+    </div>`;
   }
 }
 

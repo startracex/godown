@@ -31,7 +31,7 @@ const cssScope = scopePrefix(protoName);
       ${cssScope}-track-width: .5em;
       background: var(${cssGlobalVars.input}-background);
       width: var(${cssGlobalVars.input}-width);
-      display: inline-block;
+      display: block;
       margin: 0.25em 0;
     }
 
@@ -47,7 +47,7 @@ const cssScope = scopePrefix(protoName);
     }
 
     [part=root] {
-      min-height:inherit;
+      min-height: inherit;
       position: relative;
       border-radius: inherit;
       width: 100%;
@@ -87,7 +87,7 @@ const cssScope = scopePrefix(protoName);
   `,
   css`
     [vertical] {
-      height: 100%;
+      height: inherit;
       width: var(${cssScope}-track-width);
     }
 
