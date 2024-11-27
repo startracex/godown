@@ -40,12 +40,12 @@ export const WithHeaderAndFooter = {
 
 export const WithCustomPadding = {
   args: {
-    style: "--godown-card--padding: 4px;",
+    stylex: "--godown-card--padding: 4px;",
   },
 };
 
 export const WithCustomColor = {
   args: {
-    style: "background: #0e1122; color: #c3d1e3;",
+    stylex: "background: #0e1122; color: #c3d1e3;",
   },
 };
