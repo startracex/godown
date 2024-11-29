@@ -1,26 +1,23 @@
 /**
  * Returns true if the value is null or undefined.
  */
-export function isNil(value: any): boolean {
+export const isNil = (value: any): boolean =>
   // eslint-disable-next-line eqeqeq
-  return value == null;
-}
+  value == null;
 
 /**
  * Returns true if the value is a number.
  */
-export function isNumerical(value?: string | number): boolean {
-  return !isNaN(+value);
-}
+export const isNumerical = (value?: string | number): boolean => !isNaN(+value);
 
 /**
  * Returns a random number between m and n.
  */
-export function random(m = 0, n = 1): number {
+export const random = (m = 0, n = 1): number => {
   const max = Math.max(m, n);
   const min = Math.min(m, n);
   return Math.random() * (max - min) + min;
-}
+};
 
 /**
  * trimRight remove all characters from the right of a string that are present in a given string.
