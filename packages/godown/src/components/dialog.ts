@@ -33,7 +33,7 @@ const cssScope = scopePrefix(protoName);
       visibility: hidden;
       position: fixed;
       z-index: 1;
-      inset:0;
+      inset: 0;
     }
 
     :host([open]) {
@@ -79,11 +79,11 @@ const cssScope = scopePrefix(protoName);
     }
 
     [direction$=right] [part=container] {
-      right: 0%;
+      right: 0;
     }
 
     [direction$=left] [part=container] {
-      left: 0%;
+      left: 0;
     }
   `,
 )

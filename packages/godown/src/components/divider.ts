@@ -36,7 +36,7 @@ const protoName = "divider";
     background: currentColor;
   }
 
-  [part=root]{ 
+  [part=root] { 
     display: contents;
   }
 `,

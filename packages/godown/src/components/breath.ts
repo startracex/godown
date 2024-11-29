@@ -81,10 +81,12 @@ const cssScope = scopePrefix(defineName);
       -webkit-background-clip: text !important;
       background-clip: text !important;
     }
+
     .colorful {
       opacity: 0;
       animation-name: colorfulN;
     }
+
     .nocolor {
       position: absolute;
       top: 0;
