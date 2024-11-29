@@ -5,7 +5,5 @@
     "rootDir": "src",
     "isolatedDeclarations": true
   },
-  "include": [
-    "src",
-  ]
+  "include": ["src"]
 }

@@ -1,14 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "./tsconfig.json",
+  "extends": "@godown/tsconfig/base.json",
   "compilerOptions": {
     "moduleResolution": "Node10",
     "module": "ESNext",
     "customConditions": null,
+    "rootDir": "src",
     "outDir": "."
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "exclude": []
 }
