@@ -16,6 +16,7 @@ export default {
   args: {
     name: "S",
     round: false,
+    stylex: "background-color: #007cc7;",
   },
 } as RendererMeta<typeof render>;
 
