@@ -5,7 +5,7 @@ export const commonInput: Pick<InputOptions, "external" | "onwarn"> = {
     "@",
     "lit",
     "tslib",
-    "fmtime"
+    "fmtime",
   ].map(s => new RegExp(`^${s}`)),
 
   onwarn(warning, warn) {

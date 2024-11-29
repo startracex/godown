@@ -62,7 +62,7 @@ export async function analyze(config: Options = {}) {
   const context = { dev: mergedOptions.dev, thirdPartyCEMs };
 
   const customElementsManifest = create({ modules, plugins, context });
-  
+
   const outDirResolved = path.resolve(cwd, mergedOptions.outdir);
 
   if (!config.noWrite) {

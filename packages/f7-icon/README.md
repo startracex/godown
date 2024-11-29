@@ -18,15 +18,15 @@ import "@godown/f7-icon";
 <f7-icon name="airplane"></f7-icon>
 ```
 
-### Template result of lit-html 
+### Template result of lit-html
 
 ```js
-import { html } from "lit"
+import { html } from "lit";
 import Airplane from "@godown/f7-icon/icons/airplane.js";
 
 html`
   ${Airplane()}
-  ${Airplane({ /* attributes */ })}
+  ${Airplane({/* attributes */})}
   <svg viewBox="${Airplane.viewBox}" width="1em" height="1em">
     ${Airplane.body}
   </svg>
@@ -57,7 +57,7 @@ export default {
 
 Width and height defaults to 1em.
 
-*font-size* or *width and height* can change the icon's size.
+_font-size_ or _width and height_ can change the icon's size.
 
 ```html
 <f7-icon name="airplane" style="font-size:2em;"></f7-icon>
@@ -68,7 +68,7 @@ Width and height defaults to 1em.
 
 ```js
 import IconElement from "@godown/f7-icon/element.js";
-customElements.define("my-icon", IconElement)
+customElements.define("my-icon", IconElement);
 ```
 
 ```html
@@ -91,7 +91,7 @@ package.json exports
 
 ### Specify the URL
 
-This component imports icons through *dynamic import*.
+This component imports icons through _dynamic import_.
 
 The target module needs to export a function by **default**.
 
@@ -114,13 +114,13 @@ If the icons are not **built jointly**, or use an icon library with a **differen
 
 ```js
 i.toURL =
-/* esm.sh */
-(name) => `https://esm.sh/@godown/f7-icon/icons/${name}.js`;
+  /* esm.sh */
+  (name) => `https://esm.sh/@godown/f7-icon/icons/${name}.js`;
 
 /* jsDelivr */
 // (name) => `https://esm.run/@godown/f7-icon/icons/${name}.js`;
 
-/*  unpkg */ 
+/*  unpkg */
 // (name) => `https://unpkg.com/@godown/f7-icon/icons/${name}.js?module`;
 ```
 

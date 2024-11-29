@@ -16,6 +16,6 @@
     "moduleDetection": "force",
     "declaration": false,
     "noEmit": true,
-    "jsx": "react",
+    "jsx": "react"
   }
 }
