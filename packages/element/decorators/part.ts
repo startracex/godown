@@ -1,4 +1,4 @@
-import { query, QueryDecorator } from "lit/decorators.js";
+import { query, type QueryDecorator } from "lit/decorators.js";
 
 /**
  * Alias for `query(`[part=${partName}]`, cache)`

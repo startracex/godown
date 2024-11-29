@@ -1,4 +1,4 @@
-import { html, svg, TemplateResult } from "lit";
+import { html, svg, type TemplateResult } from "lit";
 
 import { svgAttr } from "./attr.js";
 
