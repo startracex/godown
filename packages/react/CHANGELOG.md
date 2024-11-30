@@ -1,5 +1,14 @@
 # @godown/react
 
+## 3.0.0-canary.11
+
+### Patch Changes
+
+- bc68bf5: fix type mismatch in createComponent for react
+- Updated dependencies [a0db037]
+- Updated dependencies [7538ea8]
+  - godown@3.0.0-canary.11
+
 ## 3.0.0-canary.10
 
 ### Patch Changes
