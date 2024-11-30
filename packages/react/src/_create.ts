@@ -6,7 +6,7 @@ export default function <
   }),
   E extends Record<string, string>,
 >(elementClass: G, events?: E) {
-  return createComponent({
+  return createComponent<G["prototype"]>({
     elementClass: elementClass as unknown as typeof HTMLElement,
     tagName: elementClass.elementTagName,
     react: React,
