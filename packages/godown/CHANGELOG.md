@@ -1,5 +1,15 @@
 # godown
 
+## 3.0.0-canary.11
+
+### Minor Changes
+
+- 7538ea8: basic support for contents
+
+### Patch Changes
+
+- a0db037: reset interval during switching in carousel
+
 ## 3.0.0-canary.10
 
 ### Patch Changes
