@@ -43,18 +43,15 @@ export const attr: (
   caller?: (element: Element, name: string, value: any) => void,
 ) => DirectiveResult<typeof AttrDirective> = directive(AttrDirective);
 
-const append = (a: string, b: string) => {
-  return a ? a + " " + b : b;
-};
+const append = (a: string, b: string) => a ? a + " " + b : b;
 
-export const attrToString = (a: DirectiveParams): string => {
-  return Object.entries(a).reduce((acc, [key, value]) => {
+export const attrToString = (a: DirectiveParams): string =>
+  Object.entries(a).reduce((acc, [key, value]) => {
     if (isNil(value) || value === false) {
       return acc;
     }
     return append(acc, key + (value === true ? "" : `="${value}"`));
   }, "");
-};
 
 const svgInitials = {
   width: "1em",
