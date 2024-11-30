@@ -21,6 +21,11 @@
     "build": "tsc && tsx build.ts",
     "clean": "tsc --build --clean"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/startracex/godown.git",
+    "directory": "packages/f7-icon"
+  },
   "keywords": [
     "icons",
     "framework7",
