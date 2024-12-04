@@ -26,11 +26,19 @@ class Link extends SuperAnchor {
   @property()
   type: "push" | "replace" | "normal" = "normal";
 
+  /**
+   * Suppress the update of the {@linkcode Router}.
+   */
+  @property({ type: Boolean })
+  suppress = false;
+
   protected _handleClick(e: MouseEvent): void {
     if (this.type === "push" || this.type === "replace") {
       e.preventDefault();
       (history[`${this.type}State`])(null, "", this.href);
-      Router.updateAll();
+      if (!this.suppress) {
+        Router.updateAll();
+      }
     }
   }
 }

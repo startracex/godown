@@ -17,6 +17,7 @@ export default {
   args: {
     href: "/index",
     type: "normal",
+    suppress: false,
   },
 } as RendererMeta<typeof render>;
 
