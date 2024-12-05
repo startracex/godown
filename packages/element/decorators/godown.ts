@@ -1,4 +1,4 @@
-import GodownElement from "../element.js";
+import type GodownElement from "../element.js";
 import { component } from "./component.js";
 
 /**
