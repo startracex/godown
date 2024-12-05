@@ -4,6 +4,7 @@ interface ComponentDecoratorsOption {
   tagName: string;
   styles?: Parameters<typeof styles>[0];
   autoDefine?: boolean;
+  registry?: Partial<typeof customElements>;
 }
 
 /**
@@ -14,11 +15,13 @@ interface ComponentDecoratorsOption {
  * @param param0.styles styles of the custom element
  * @param param0.superStyles  if true, extend the styles from the super class
  * @param param0.autoDefine if true, define the element
+ * @param param0.registry custom element registry
  */
 export const component = ({
   tagName,
   styles: s,
   autoDefine = false,
+  registry = customElements,
 }: ComponentDecoratorsOption) =>
 (
   constructor: typeof HTMLElement & {
@@ -31,7 +34,7 @@ export const component = ({
   if (s) {
     styles(s)(constructor);
   }
-  if (autoDefine && !customElements.get(tagName)) {
-    customElements.define(tagName, constructor);
+  if (autoDefine && !registry.get(tagName)) {
+    registry.define(tagName, constructor);
   }
 };
