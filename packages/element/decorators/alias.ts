@@ -18,8 +18,8 @@ type Rejection = null | false;
 export const alias = <T, K extends keyof T, P extends keyof T>(
   aliasForKey: K,
   { get, set, ...descriptor }: {
-    get?: Rejection | ((this: T) => T[K]);
-    set?: Rejection | ((this: T, value: T[K]) => void);
+    get?: Rejection | ((this: Omit<T, K>) => T[K]);
+    set?: Rejection | ((this: Omit<T, K>, value: T[K]) => void);
   } & Omit<PropertyDescriptor, "get" | "set"> = {},
 ) =>
 (constructor: T, propertyKey: P): void => {
