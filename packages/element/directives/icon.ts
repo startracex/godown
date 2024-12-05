@@ -3,7 +3,7 @@ import { html, svg, type TemplateResult } from "lit";
 import { svgAttr } from "./attr.js";
 
 export const icon = (
-  viewBox: string | string[],
+  viewBox: string | (string | number)[],
 ) => (
   <A extends IconAttributesParams>(strings: TemplateStringsArray, ...values: any[]): IconRenderer<A> => {
     const body = svg(strings, values);
