@@ -30,7 +30,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "glob": "^11.0.0",
     "postcss": "^8.4.49",
-    "rollup": "^4.28.0",
+    "rollup": "catalog:",
     "rollup-plugin-cjs-shim": "workspace:^",
     "rollup-plugin-template-replace": "workspace:^",
     "tsx": "^4.19.2",

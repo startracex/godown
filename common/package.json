@@ -12,7 +12,7 @@
     "custom-element-jet-brains-integration": "^1.6.2",
     "custom-element-vs-code-integration": "^1.4.1",
     "postcss-minify": "^1.1.0",
-    "rollup": "^4.27.2",
+    "rollup": "catalog:",
     "rollup-plugin-minify-html-literals": "^1.2.6",
     "rollup-plugin-typescript2": "0.32.1",
     "typescript": "5.4.5"

@@ -21,9 +21,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lit/react": "^1.0.5",
+    "@lit/react": "catalog:",
     "godown": "workspace:^",
-    "react": "^18"
+    "react": "catalog:"
   },
   "publishConfig": {
     "access": "public"

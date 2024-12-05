@@ -38,8 +38,8 @@
     "@iconify-json/f7": "^1.2.1",
     "@iconify/tools": "^4.0.7",
     "@iconify/utils": "^2.1.33",
-    "@lit/reactive-element": "^2.0.0",
-    "tslib": "^2.7.0"
+    "@lit/reactive-element": "catalog:",
+    "tslib": "catalog:"
   },
   "files": [
     "icons/",

@@ -20,8 +20,8 @@
   "author": "startracex",
   "license": "MIT",
   "dependencies": {
-    "lit": "^3.0.0",
-    "tslib": "^2.7.0"
+    "lit": "catalog:",
+    "tslib": "catalog:"
   },
   "publishConfig": {
     "access": "public"

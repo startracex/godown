@@ -39,8 +39,8 @@
     "@godown/element": "workspace:^",
     "@godown/f7-icon": "workspace:^",
     "fmtime": "^0.0.3",
-    "lit": "^3.0.0",
-    "tslib": "^2.7.0"
+    "lit": "catalog:",
+    "tslib": "catalog:"
   },
   "publishConfig": {
     "access": "public"
