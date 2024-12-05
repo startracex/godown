@@ -1,6 +1,6 @@
 import { styles } from "./styles.js";
 
-interface ComponentDecoratorsOption {
+interface Option {
   tagName: string;
   styles?: Parameters<typeof styles>[0];
   autoDefine?: boolean;
@@ -22,11 +22,11 @@ export const component = ({
   styles: s,
   autoDefine = false,
   registry = customElements,
-}: ComponentDecoratorsOption) =>
+}: Option) =>
 (
   constructor: typeof HTMLElement & {
     elementTagName?: string;
-    styles?: ComponentDecoratorsOption["styles"];
+    styles?: Option["styles"];
   },
 ): void => {
   constructor.elementTagName = tagName;
