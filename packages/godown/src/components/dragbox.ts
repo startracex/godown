@@ -44,7 +44,7 @@ class Dragbox extends GlobalStyle {
     return this.offsetParent?.clientHeight ?? document.body.offsetHeight;
   }
 
-  private drag: boolean;
+  private drag = false;
   private t: number;
   private l: number;
   private cx: number;

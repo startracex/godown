@@ -196,25 +196,25 @@ class Button extends GlobalStyle {
    * Whether to disable this element.
    */
   @property({ type: Boolean, reflect: true })
-  disabled: boolean;
+  disabled = false;
 
   /**
    * Display ghost.
    */
   @property({ type: Boolean, reflect: true })
-  ghost: boolean;
+  ghost = false;
 
   /**
    * Whether this element is active or not.
    */
   @property({ type: Boolean, reflect: true })
-  active: boolean;
+  active = false;
 
   /**
    * Display rounded.
    */
   @property({ type: Boolean, reflect: true })
-  round: boolean;
+  round = false;
 
   /**
    * The primary color.

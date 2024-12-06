@@ -137,7 +137,7 @@ class Range extends SuperInput {
    * Display vertically.
    */
   @property({ type: Boolean, reflect: true })
-  vertical: boolean;
+  vertical = false;
 
   /**
    * Value, or each of values, will render a handle.

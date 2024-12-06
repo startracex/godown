@@ -77,7 +77,7 @@ class Text extends GlobalStyle {
    * Set background-clip to text.
    */
   @property({ type: Boolean })
-  clip: boolean;
+  clip = false;
 
   protected render(): TemplateResult<1> {
     return html`<span

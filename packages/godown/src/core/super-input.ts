@@ -76,12 +76,12 @@ input::-ms-clear {
 
 @styles(fieldStyle, inputStyle)
 class SuperInput extends GlobalStyle {
-  autofocus: boolean;
+  autofocus = false;
   @property()
   autocomplete: string | boolean;
 
   @property({ type: Boolean, reflect: true })
-  disabled: boolean;
+  disabled = false;
 
   @property({ reflect: true })
   type: InputType;
@@ -107,7 +107,7 @@ class SuperInput extends GlobalStyle {
   /**
    * Returns true when the input is compositing.
    */
-  compositing: boolean;
+  compositing = false;
 
   set defaultValue(value: typeof this.default) {
     this.default = value;

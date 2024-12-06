@@ -106,7 +106,7 @@ class Dialog extends SuperOpenable {
   @property()
   key = "Escape";
 
-  private _modalInvoke: boolean;
+  private _modalInvoke = false;
 
   protected render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)}>

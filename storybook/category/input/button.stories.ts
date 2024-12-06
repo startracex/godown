@@ -1,4 +1,4 @@
-import { ArgHelper } from "../../args";
+import { ArgHelper, booleanArg } from "../../args";
 import { RendererMeta } from "../../types";
 import render from "./button";
 
@@ -23,6 +23,9 @@ export default {
       "none",
     ]).arg,
     content: new ArgHelper().type("string").control("text").arg,
+    disabled: booleanArg,
+    round: booleanArg,
+    ghost: booleanArg,
   },
   args: {
     color: "black",

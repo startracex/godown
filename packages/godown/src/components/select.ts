@@ -91,10 +91,10 @@ class Select extends Input {
   direction: "top" | "bottom" | undefined;
 
   @property({ type: Boolean })
-  multiple: boolean;
+  multiple = false;
 
   @property({ type: Boolean })
-  visible: boolean;
+  visible = false;
 
   @state()
   protected autoDirection: "top" | "bottom" = "bottom";
