@@ -18,8 +18,8 @@
     "directory": "packages/react"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "startracex",
+  "license": "MIT",
   "dependencies": {
     "@lit/react": "catalog:",
     "godown": "workspace:^",
