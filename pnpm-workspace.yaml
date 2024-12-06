@@ -7,8 +7,6 @@ packages:
 catalog:
   "@lit/react": ^1.0.5
   "@lit/reactive-element": ^2.0.0
-  "@types/node": ^22.10.1
-  "@types/react": ^18.3.13
   lit: ^3.0.0
   react: ^18.0.0
   rollup: ^4.28.0
