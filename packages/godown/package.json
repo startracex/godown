@@ -31,7 +31,10 @@
     "url": "https://github.com/startracex/godown.git",
     "directory": "packages/godown"
   },
-  "keywords": [],
+  "keywords": [
+    "web-components",
+    "custom-elements"
+  ],
   "author": "startracex",
   "license": "MIT",
   "dependencies": {
