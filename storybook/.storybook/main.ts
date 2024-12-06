@@ -46,6 +46,7 @@ export default {
     `${head}
 <style>
   :root {
+    font-family: sans-serif;
     font-size: 20px;
     color-scheme: dark;
   }
