@@ -4,6 +4,12 @@
   "description": "React components for godown",
   "type": "module",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json",
+    "./*.js": "./*.js",
+    "./*": "./*.js"
+  },
   "scripts": {
     "dev": "tsc --watch",
     "check-types": "tsc --noEmit",
