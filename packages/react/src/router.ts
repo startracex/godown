@@ -6,6 +6,8 @@ import { type IntrinsicTag } from "./lib/intrinsic.js";
 
 export default create(component);
 
+export * from "godown/router.js";
+
 declare global {
   namespace JSX {
     interface IntrinsicElements {
