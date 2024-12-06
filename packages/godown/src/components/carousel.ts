@@ -35,6 +35,7 @@ const protoName = "carousel";
     }
 
     [part=root] {
+      direction: ltr;
       overflow: hidden;
     }
 
