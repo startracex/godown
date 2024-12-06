@@ -41,6 +41,14 @@ const fieldStyle = css`
     height: 100%;
     display: flex;
   }
+
+  .input-field [part=suffix] [part=icon] {
+    padding-inline-end: var(${cssGlobalVars.input}-space);
+  }
+
+  .input-field [part=prefix] [part=icon] {
+    padding-inline-start: var(${cssGlobalVars.input}-space);
+  }
 `;
 
 const inputStyle = css`
