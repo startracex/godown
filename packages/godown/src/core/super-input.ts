@@ -22,6 +22,7 @@ const fieldStyle = css`
     height: 100%;
     width: 100%;
     color: inherit;
+    padding: 0 var(${cssGlobalVars.input}-space);
   }
 
   .input-field:focus-within,
@@ -39,10 +40,6 @@ const fieldStyle = css`
   .input-field [part=suffix] {
     height: 100%;
     display: flex;
-  }
-
-  .input-field [part=space] {
-    width: var(${cssGlobalVars.input}-space);
   }
 `;
 
@@ -182,7 +179,6 @@ class SuperInput extends GlobalStyle {
 
   protected _renderPrefix(): TemplateResult<1> {
     return html`<label for=${this.makeId} part="prefix">
-    <i part="space"></i>
     ${htmlSlot("prefix")}</label>`;
   }
 
@@ -191,7 +187,6 @@ class SuperInput extends GlobalStyle {
     return html`<label for=${this.makeId} part="suffix">${
       this.type === "password"
         ? html`
-        <i part="space"></i>
         <i
           part="icon"
           @mousedown="${() => this._changeInputType("text")}"
@@ -200,7 +195,6 @@ class SuperInput extends GlobalStyle {
         >${iconEyeSlashFill()}</i>`
         : htmlSlot("suffix")
     }
-    <i part="space"></i>
   </label>`;
   }
 }
