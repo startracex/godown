@@ -120,7 +120,7 @@ const colors: Record<Colors, string> = constructCSSObject(
   css`
     :host {
       ${cssScope}--padding-x: .5em;
-      ${cssScope}--padding-y: .15em;
+      ${cssScope}--padding-y: min(calc(var(${cssScope}--padding-x) / 2), .25em);
       ${cssScope}--padding: var(${cssScope}--padding-y) var(${cssScope}--padding-x);
       ${cssScope}--modal-animation-duration: 1s;
       ${cssScope}--ghost-width: .08em;
