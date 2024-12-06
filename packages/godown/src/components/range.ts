@@ -27,23 +27,23 @@ const cssScope = scopePrefix(protoName);
 @styles(
   css`
     :host {
-      ${cssScope}-handle-active: var(${cssGlobalVars._colors.blue[7]});
-      ${cssScope}-track-width: .5em;
+      ${cssScope}--handle-active: var(${cssGlobalVars.active});
+      ${cssScope}--track-width: .5em;
+      ${cssScope}--length: var(${cssGlobalVars.input}-width);
       background: var(${cssGlobalVars.input}-background);
-      width: var(${cssGlobalVars.input}-width);
+      width: var(${cssScope}--length);
       display: block;
-      margin: 0.25em 0;
     }
 
     :host([vertical]) {
-      height: var(${cssGlobalVars.input}-width);
+      height: var(${cssScope}--length);
       width: fit-content;
     }
 
     :host(:not([disabled])) .last-focus {
       z-index: 1;
-      ${cssScope}-handle-scale:1.05;
-      background: var(${cssScope}-handle-active);
+      ${cssScope}--handle-scale:1.05;
+      background: var(${cssScope}--handle-active);
     }
 
     [part=root] {
@@ -53,7 +53,7 @@ const cssScope = scopePrefix(protoName);
       width: 100%;
       --from: 0%;
       --to: 50%;
-      height: var(${cssScope}-track-width);
+      height: var(${cssScope}--track-width);
     }
 
     [part=track] {
@@ -80,7 +80,7 @@ const cssScope = scopePrefix(protoName);
       border: 0.1em solid;
       border-radius: 50%;
       transform-origin: 0% 25%;
-      transform: scale(var(${cssScope}-handle-scale, 1)) translate(-50%, -25%);
+      transform: scale(var(${cssScope}--handle-scale, 1)) translate(-50%, -25%);
       background: var(${cssGlobalVars.active});
       border-color: var(${cssGlobalVars.input}-control);
     }
@@ -88,7 +88,7 @@ const cssScope = scopePrefix(protoName);
   css`
     [vertical] {
       height: inherit;
-      width: var(${cssScope}-track-width);
+      width: var(${cssScope}--track-width);
     }
 
     [vertical] i {
