@@ -6,3 +6,20 @@ export type IntrinsicElement<T extends HTMLElement> = React.DetailedHTMLProps<
   T
 >;
 export type IntrinsicTag<T extends keyof HTMLElementTagNameMap> = IntrinsicElement<HTMLElementTagNameMap[T]>;
+
+/**
+ * With React 19:
+ *
+ * ```ts
+ * import { type IntrinsicMap } from "@godown/react/lib/intrinsic.js";
+ *
+ * declare module "react" {
+ *   namespace JSX {
+ *     interface IntrinsicElements extends IntrinsicMap {}
+ *   }
+ * }
+ * ```
+ */
+export type IntrinsicMap<K extends keyof HTMLElementTagNameMap = keyof HTMLElementTagNameMap> = {
+  [P in K]: IntrinsicTag<P>;
+};
