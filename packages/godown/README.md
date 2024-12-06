@@ -45,10 +45,10 @@ document.body.appendChild(alert);
 
 React components is now in the standalone package (@godown/react).
 
-This package only provides empty conversion.
+React package provides empty conversion.
 
 ```jsx
-import { Alert } from "@godown/react";
+import Alert from "@godown/react/alert";
 
 export default function () {
   return <Alert title="Alert" />;
