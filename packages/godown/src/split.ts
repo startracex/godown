@@ -8,6 +8,6 @@ export * from "./components/split.js";
 
 declare global {
   interface HTMLElementTagNameMap {
-    "godown-split-input": Split;
+    "godown-split": Split;
   }
 }
