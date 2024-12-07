@@ -25,6 +25,7 @@ const cssScope = scopePrefix(protoName);
     :host([contents]) [part=root] {
       width: var(${cssScope}-width);
       height: var(${cssScope}-height);
+      display: inline-block;
     }
 
     :host {
@@ -34,7 +35,6 @@ const cssScope = scopePrefix(protoName);
       ${cssScope}-handle-space: .125em;
       ${cssScope}-transition: .2s ease-in-out;
       background: var(${cssGlobalVars.input}-background);
-      display: inline-block;
       vertical-align: bottom;
       border-radius: 0;
     }
@@ -71,6 +71,7 @@ const cssScope = scopePrefix(protoName);
 
     :host([round]) {
       border-radius: calc(var(${cssScope}-height) / 2);
+      background: var(${cssGlobalVars.passive});
     }
 
     :host([checked]) span {
@@ -92,10 +93,6 @@ const cssScope = scopePrefix(protoName);
       width: var(--size);
       height: var(--size);
       margin: var(${cssScope}-handle-space);
-    }
-
-    .round {
-      background: var(${cssGlobalVars.passive});
     }
 
     :host([checked]) .round {

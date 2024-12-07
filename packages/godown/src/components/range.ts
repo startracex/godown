@@ -35,6 +35,10 @@ const cssScope = scopePrefix(protoName);
       display: block;
     }
 
+    :host([contents]) [part=root] {
+      width: inherit;
+    }
+
     :host([vertical]) {
       height: var(${cssScope}--length);
       width: fit-content;

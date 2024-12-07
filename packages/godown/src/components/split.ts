@@ -50,7 +50,7 @@ const loop = <T>(len: number, fn: (index?: number) => T) => {
       width: 100%;
       position: relative;
       vertical-align: top;
-      display: inline-flex;
+      display: flex;
       justify-content: space-between;
       border-radius: inherit;
     }
