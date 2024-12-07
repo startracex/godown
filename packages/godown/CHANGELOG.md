@@ -1,5 +1,16 @@
 # godown
 
+## 3.0.0-canary.12
+
+### Patch Changes
+
+- 9b96bd3: boolean field defaults to false
+- 12d8d10: add suppress property for link
+- 674cfbd: fix styles for range, split, switch
+- 74b25d4: using padding instead of space placeholders in the inputs
+- 539fd1f: fx tag name error in the declaration
+- 12c6a95: update styles of range
+
 ## 3.0.0-canary.11
 
 ### Minor Changes
