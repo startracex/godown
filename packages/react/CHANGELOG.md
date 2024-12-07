@@ -1,5 +1,18 @@
 # @godown/react
 
+## 3.0.0-canary.12
+
+### Patch Changes
+
+- 1bab803: add JSX.IntrinsicElements declarations
+- Updated dependencies [9b96bd3]
+- Updated dependencies [12d8d10]
+- Updated dependencies [674cfbd]
+- Updated dependencies [74b25d4]
+- Updated dependencies [539fd1f]
+- Updated dependencies [12c6a95]
+  - godown@3.0.0-canary.12
+
 ## 3.0.0-canary.11
 
 ### Patch Changes
