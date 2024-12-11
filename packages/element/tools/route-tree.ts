@@ -3,11 +3,11 @@ import { trim } from "./lib.js";
 /**
  * 0 is strict match, other values are wide matches.
  */
-enum matchType {
-  strict,
-  single,
-  multi,
-}
+const matchType = {
+  strict: 0,
+  single: 1,
+  multi: 2,
+};
 
 export class RouteTree {
   /**
@@ -21,7 +21,7 @@ export class RouteTree {
   /**
    * Match type of the current part.
    */
-  protected matchType: matchType = matchType.strict;
+  protected matchType: number = matchType.strict;
   /**
    * Whether the children are sorted.
    */
@@ -114,7 +114,7 @@ export class RouteTree {
     key: string;
     carry: number;
     multi: boolean;
-    matchType: matchType;
+    matchType: number;
   } {
     if (key) {
       if (key.length > 2) {
