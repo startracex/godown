@@ -13,7 +13,7 @@ export class RouteTree {
   /**
    * Raw pattern.
    */
-  protected pattern?: string;
+  pattern?: string;
   /**
    * A part in the pattern.
    */
@@ -85,16 +85,9 @@ export class RouteTree {
   }
 
   /**
-   * Returns the pattern of the route that matches the given string.
-   */
-  useWhich(s: string): string | null {
-    return this.search(RouteTree.split(s))?.pattern || null;
-  }
-
-  /**
    * Returns dynamic matching parameters.
    */
-  parseParams(path: string, pattern: string): Record<string, string> {
+  static parseParams(path: string, pattern: string): Record<string, string> {
     const pathSplit = RouteTree.split(path);
     const patternSplit = RouteTree.split(pattern);
     const params: Record<string, string> = {};

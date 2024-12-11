@@ -202,7 +202,7 @@ class Router extends GlobalStyle {
    * Get component from {@linkcode routes} by query.
    */
   fieldComponent(query?: string): unknown {
-    query ||= this.useWhich(this.pathname);
+    query ||= this.__fieldRouteTree.search(RouteTree.split(this.pathname)).pattern || null;
     this.path = query;
 
     if (!query) {
@@ -222,7 +222,7 @@ class Router extends GlobalStyle {
    */
   slottedComponent(usedRouteTemplate?: string): TemplateResult<1> {
     const slottedPaths = this._slottedNames;
-    usedRouteTemplate ||= this.__slottedRouteTree.useWhich(this.pathname);
+    usedRouteTemplate ||= this.__slottedRouteTree.search(RouteTree.split(this.pathname)).pattern || null;
     this.path = usedRouteTemplate;
 
     if (!usedRouteTemplate) {
@@ -259,12 +259,8 @@ class Router extends GlobalStyle {
     });
   }
 
-  useWhich(path: string): string {
-    return this.__fieldRouteTree.useWhich(this.baseURL + path);
-  }
-
-  parseParams(routeTemplate: string, path: string): Record<string, string> {
-    return this.__fieldRouteTree.parseParams(path, routeTemplate);
+  parseParams(routeTemplate: string, path: string = this.pathname): Record<string, string> {
+    return RouteTree.parseParams(path, routeTemplate);
   }
 
   static updateAll(): void {
