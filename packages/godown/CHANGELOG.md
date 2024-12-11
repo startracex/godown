@@ -1,5 +1,11 @@
 # godown
 
+## 3.0.0-canary.13
+
+### Patch Changes
+
+- baedbde: refactor RouteTree access modifiers and methods
+
 ## 3.0.0-canary.12
 
 ### Patch Changes
