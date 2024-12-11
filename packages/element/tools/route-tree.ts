@@ -94,17 +94,20 @@ export class RouteTree {
   /**
    * Returns dynamic matching parameters.
    */
-  parseParams(s: string, pattern: string): Record<string, string> {
-    const sSplit = RouteTree.split(s);
+  parseParams(path: string, pattern: string): Record<string, string> {
+    const pathSplit = RouteTree.split(path);
     const patternSplit = RouteTree.split(pattern);
     const params: Record<string, string> = {};
-    for (const index in patternSplit) {
-      const { key, carry, multi } = RouteTree.dynamic(patternSplit[index]);
+    for (let index = 0; index < patternSplit.length; index++) {
+      const part = patternSplit[index];
+      const { key, carry, multi } = RouteTree.dynamic(part);
       if (!key) {
         continue;
       }
-      params[key.slice(carry)] = sSplit[index];
-      if (multi) {
+      if (!multi) {
+        params[key.slice(carry)] = pathSplit[index];
+      } else {
+        params[key.slice(carry)] = pathSplit.slice(index).join("/");
         break;
       }
     }
