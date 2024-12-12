@@ -93,13 +93,10 @@ export class RouteTree {
     const params: Record<string, string> = {};
     for (let index = 0; index < patternSplit.length; index++) {
       const part = patternSplit[index];
-      const { key, carry, multi } = RouteTree.dynamic(part);
-      if (!key) {
-        continue;
-      }
-      if (!multi) {
+      const { key, carry, matchType: m } = RouteTree.dynamic(part);
+      if (m === matchType.single) {
         params[key.slice(carry)] = pathSplit[index];
-      } else {
+      } else if (m === matchType.multi) {
         params[key.slice(carry)] = pathSplit.slice(index).join("/");
         break;
       }
@@ -113,23 +110,25 @@ export class RouteTree {
   static dynamic(key: string): {
     key: string;
     carry: number;
-    multi: boolean;
     matchType: number;
   } {
     if (key) {
-      if (key.length > 2) {
-        if (key[0] === "{" && key[key.length - 1] === "}" || key[0] === "[" && key[key.length - 1] === "]") {
-          key = key.slice(1, -1);
-          return RouteTree.dynamic(key);
-        }
+      if (
+        key.startsWith("{") && key.endsWith("}")
+        || key.startsWith("[") && key.endsWith("]")
+      ) {
+        key = key.slice(1, -1);
+        const result = RouteTree.dynamic(key);
+        result.matchType ||= matchType.single;
+        return result;
       }
+
       if (key.length > 1) {
         const s1 = key[0];
         if (s1 === ":") {
           return {
             key,
             carry: 1,
-            multi: false,
             matchType: matchType.single,
           };
         }
@@ -137,28 +136,22 @@ export class RouteTree {
           return {
             key,
             carry: 1,
-            multi: true,
             matchType: matchType.multi,
           };
         }
-        if (key.length > 3) {
-          const s3 = key.slice(0, 3);
-          if (s3 === "...") {
-            return {
-              key,
-              carry: 3,
-              multi: true,
-              matchType: matchType.multi,
-            };
-          }
+        if (key.startsWith("...")) {
+          return {
+            key,
+            carry: 3,
+            matchType: matchType.multi,
+          };
         }
       }
     }
 
     return {
-      key: undefined,
+      key: key,
       carry: 0,
-      multi: false,
       matchType: matchType.strict,
     };
   }
