@@ -9,7 +9,6 @@ export default {
   render,
   argTypes: {
     pathname: stringArg,
-    baseURL: stringArg,
     type: new ArgHelper().options([
       "united",
       "slotted",

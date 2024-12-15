@@ -72,12 +72,6 @@ class Router extends GlobalStyle {
   pathname: string;
 
   /**
-   * Path prefix.
-   */
-  @property()
-  baseURL = "";
-
-  /**
    * Rendered content when there is no match.
    */
   @state()
