@@ -69,7 +69,7 @@ class Router extends GlobalStyle {
    * Current pathname (equals to location.pathname).
    */
   @property()
-  pathname = "";
+  pathname: string;
 
   /**
    * Path prefix.
