@@ -103,6 +103,7 @@ class Router extends GlobalStyle {
 
   get routes(): (Record<string, any> & {
     path: string;
+    render?: (ur: ReturnType<Router["useRouter"]>) => unknown;
     component?: unknown;
   })[] {
     return this.__routes;
@@ -208,6 +209,11 @@ class Router extends GlobalStyle {
     if (!route) {
       return null;
     }
+
+    if ("render" in route) {
+      return route.render?.(this.useRouter()) || null;
+    }
+
     return route.component;
   }
 
