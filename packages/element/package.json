@@ -27,10 +27,6 @@
     "access": "public"
   },
   "files": [
-    "element.{ts,js,d.ts}+(|.map)",
-    "config.{ts,js,d.ts}+(|.map)",
-    "tools",
-    "decorators",
-    "directives"
+    "**/*.{ts,js,d.ts}+(|.map)"
   ]
 }
