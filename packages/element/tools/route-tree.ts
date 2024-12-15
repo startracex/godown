@@ -48,7 +48,11 @@ export class RouteTree {
     spec.insert(pattern, parts, height + 1);
   }
 
-  search(parts: string[], height = 0): RouteTree | null {
+  search(parts: string | string[], height = 0): RouteTree | null {
+    if (typeof parts === "string") {
+      parts = RouteTree.split(parts);
+    }
+
     if (!this.sorted) {
       this.sort();
     }
