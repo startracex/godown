@@ -138,4 +138,4 @@ customElements.define("my-button", Button);
 
 ### Conditional import
 
-Under "development" condition, the template will not be compressed.
+Under "development" condition, codes and templates will not be compressed.
