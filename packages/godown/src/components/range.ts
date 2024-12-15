@@ -45,8 +45,7 @@ const cssScope = scopePrefix(protoName);
     }
 
     :host(:not([disabled])) .last-focus {
-      z-index: 1;
-      ${cssScope}--handle-scale:1.05;
+      ${cssScope}--handle-scale: 1.05;
       background: var(${cssScope}--handle-active);
     }
 
@@ -166,6 +165,8 @@ class Range extends SuperInput {
   @state()
   lastFocus?: number;
 
+  protected _focusStack: number[] = [];
+
   /**
    * Returns true when the second number is greater than the first number.
    */
@@ -243,7 +244,7 @@ class Range extends SuperInput {
       @mousedown="${this.disabled ? null : this.createMouseDown(index)}"
       @focus="${this.disabled ? null : () => this.focusHandle(index)}"
       @blur="${this.disabled ? null : this.blurHandle}"
-      style="--handle:var(--${
+      style="z-index:${this._focusStack.indexOf(index) + 1};--handle:var(--${
       /* In single-handle mod or end, it is max value */
       (!range && end) ? `to` : `handle-${index}`})"
       ></i>
@@ -254,6 +255,11 @@ class Range extends SuperInput {
 
   focusHandle(index: number): void {
     this.lastFocus = index;
+    const indexOfFocusStack = this._focusStack.indexOf(index);
+    if (indexOfFocusStack !== -1) {
+      this._focusStack.splice(indexOfFocusStack, 1);
+    }
+    this._focusStack.push(index);
     const handleItem = this._handles.item(index);
     handleItem?.focus();
     if (!this._keydownEvent) {
