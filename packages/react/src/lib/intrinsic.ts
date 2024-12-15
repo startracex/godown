@@ -8,7 +8,7 @@ export type IntrinsicElement<T extends HTMLElement> = React.DetailedHTMLProps<
 export type IntrinsicTag<T extends keyof HTMLElementTagNameMap> = IntrinsicElement<HTMLElementTagNameMap[T]>;
 
 /**
- * With React 19:
+ * With @types/react 18.3.15+:
  *
  * ```ts
  * import { type IntrinsicMap } from "@godown/react/lib/intrinsic.js";
