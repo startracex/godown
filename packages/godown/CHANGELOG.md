@@ -1,5 +1,12 @@
 # godown
 
+## 3.0.0-canary.14
+
+### Patch Changes
+
+- 37045dd: fix ignoring null values when obtaining pattern
+- 0452da3: z-index of the handle of range will be in ascending order according to the operation sequence
+
 ## 3.0.0-canary.13
 
 ### Patch Changes
