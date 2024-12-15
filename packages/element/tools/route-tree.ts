@@ -1,15 +1,12 @@
 import { trim } from "./lib.js";
 
-/**
- * 0 is strict match, other values are wide matches.
- */
-const matchType = {
-  strict: 0,
-  single: 1,
-  multi: 2,
-};
-
 export class RouteTree {
+  static matchType = {
+    strict: 0,
+    single: 1,
+    multi: 2,
+  };
+
   /**
    * Raw pattern.
    */
@@ -21,7 +18,7 @@ export class RouteTree {
   /**
    * Match type of the current part.
    */
-  protected matchType: number = matchType.strict;
+  protected matchType: number = RouteTree.matchType.strict;
   /**
    * Whether the children are sorted.
    */
@@ -58,7 +55,7 @@ export class RouteTree {
 
     if (
       parts.length === height
-      || RouteTree.dynamic(this.part).matchType === matchType.multi
+      || RouteTree.dynamic(this.part).matchType === RouteTree.matchType.multi
     ) {
       if (!this.pattern) {
         return null;
@@ -94,9 +91,9 @@ export class RouteTree {
     for (let index = 0; index < patternSplit.length; index++) {
       const part = patternSplit[index];
       const { key, carry, matchType: m } = RouteTree.dynamic(part);
-      if (m === matchType.single) {
+      if (m === RouteTree.matchType.single) {
         params[key.slice(carry)] = pathSplit[index];
-      } else if (m === matchType.multi) {
+      } else if (m === RouteTree.matchType.multi) {
         params[key.slice(carry)] = pathSplit.slice(index).join("/");
         break;
       }
@@ -119,7 +116,7 @@ export class RouteTree {
       ) {
         key = key.slice(1, -1);
         const result = RouteTree.dynamic(key);
-        result.matchType ||= matchType.single;
+        result.matchType ||= RouteTree.matchType.single;
         return result;
       }
 
@@ -129,21 +126,21 @@ export class RouteTree {
           return {
             key,
             carry: 1,
-            matchType: matchType.single,
+            matchType: RouteTree.matchType.single,
           };
         }
         if (s1 === "*") {
           return {
             key,
             carry: 1,
-            matchType: matchType.multi,
+            matchType: RouteTree.matchType.multi,
           };
         }
         if (key.startsWith("...")) {
           return {
             key,
             carry: 3,
-            matchType: matchType.multi,
+            matchType: RouteTree.matchType.multi,
           };
         }
       }
@@ -152,7 +149,7 @@ export class RouteTree {
     return {
       key: key,
       carry: 0,
-      matchType: matchType.strict,
+      matchType: RouteTree.matchType.strict,
     };
   }
 
