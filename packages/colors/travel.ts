@@ -8,4 +8,4 @@ export const travel = <
     rgb: S[keyof S],
   ) => T,
   src: S,
-): T[] => Object.entries(src).map(([k, v]) => v.map((rgb, index) => fn(k, index, rgb))).flat();
+): T[] => Object.entries(src).flatMap(([k, v]) => v.map((rgb, index) => fn(k, index, rgb)));
