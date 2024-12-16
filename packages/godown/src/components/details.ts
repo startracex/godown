@@ -4,7 +4,7 @@ import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import svgCaretDown from "@godown/f7-icon/icons/chevron-down.js";
 import { css, html, type TemplateResult } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 
 import { scopePrefix } from "../core/global-style.js";
 import SuperOpenable from "../core/super-openable.js";
@@ -27,7 +27,6 @@ const cssScope = scopePrefix(protoName);
     :host {
       ${cssScope}--icon-deg-open: 0deg;
       ${cssScope}--icon-deg-close: 90deg;
-      ${cssScope}--icon-deg: 0deg;
       ${cssScope}--icon-space: 0.3em;
       ${cssScope}--summary-direction: row;
       ${cssScope}--transition: .3s;
@@ -36,13 +35,13 @@ const cssScope = scopePrefix(protoName);
       transition: var(${cssScope}--transition);
     }
 
-    dl {
+    [part=root] {
       height: 100%;
       position: relative;
       overflow: hidden;
     }
 
-    dt {
+    [part=title] {
       height: 100%;
       display: flex;
       flex-wrap: nowrap;
@@ -52,7 +51,7 @@ const cssScope = scopePrefix(protoName);
       flex-direction: var(${cssScope}--summary-direction);
     }
 
-    dd {
+    [part=details] {
       display: grid;
       overflow: hidden;
       grid-template-rows: 0fr;
@@ -60,29 +59,27 @@ const cssScope = scopePrefix(protoName);
       transition-property: grid-template-rows;
     }
 
-    i {
-      display: flex;
-      backface-visibility: hidden;
-      padding: var(${cssScope}--icon-space);
-      transition: var(${cssScope}--transition);
-      transform: rotate(var(${cssScope}--icon-deg));
-    }
-
-    :host([open]) dd {
+    :host([open]) [part=details] {
       grid-template-rows: 1fr;
     }
 
-    :host([float]) dd {
+    :host([float]) [part=details] {
       top: 100%;
       position: absolute;
     }
 
-    i {
+    [part=icon] {
+      display: flex;
+      backface-visibility: hidden;
+      padding: var(${cssScope}--icon-space);
+      transition: var(${cssScope}--transition);
       transform: rotate(var(${cssScope}--icon-deg-close));
     }
-    :host([open]) i {
+
+    :host([open]) [part=icon] {
       transform: rotate(var(${cssScope}--icon-deg-open));
     }
+
   `,
 )
 class Details extends SuperOpenable {
@@ -97,9 +94,6 @@ class Details extends SuperOpenable {
    */
   @property()
   summary = "";
-
-  @query("dd")
-  protected _dd: HTMLDataListElement;
 
   protected render(): TemplateResult<1> {
     return html`<dl part="root" ${attr(this.observedRecord)}>

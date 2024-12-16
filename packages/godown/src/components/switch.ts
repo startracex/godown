@@ -40,7 +40,7 @@ const cssScope = scopePrefix(protoName);
     }
 
     [part=root],
-    span {
+    [part=handle] {
       transition: var(${cssScope}-transition);
     }
 
@@ -50,14 +50,14 @@ const cssScope = scopePrefix(protoName);
       height: inherit;
     }
     
-    input {
+    [part=input] {
       opacity: 0;
       width: 100%;
       height: 100%;
       appearance: none;
     }
 
-    span {
+    [part=handle] {
       height: 100%;
       display: inline-flex;
       align-items: center;
@@ -74,7 +74,7 @@ const cssScope = scopePrefix(protoName);
       background: var(${cssGlobalVars.passive});
     }
 
-    :host([checked]) span {
+    :host([checked]) [part=handle] {
       left: 50%;
     }
 
@@ -86,7 +86,7 @@ const cssScope = scopePrefix(protoName);
       background: var(${cssGlobalVars.passive});
     }
 
-    .round span{
+    .round [part=handle] {
       --size: var(${cssScope}-handle-size);
       border-radius: 100%;
       background: var(--godown--input-control);
