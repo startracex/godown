@@ -1,8 +1,8 @@
+import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 
 import { IconSet } from "@iconify/tools/lib/icon-set";
 import { iconToSVG } from "@iconify/utils/lib/svg/build";
-import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { globSync } from "glob";
 import { cjsReplace } from "rollup-plugin-cjs-shim";
 

@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "node:fs";
 
 export function minJSON(path: string) {
   const data = JSON.parse(readFileSync(path).toString());

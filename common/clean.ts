@@ -1,6 +1,7 @@
-import { rmSync } from "fs";
+import { rmSync } from "node:fs";
+import { join } from "node:path";
+
 import { type GlobOptions, globSync } from "glob";
-import { join } from "path";
 
 /**
  * Converts the input ts pattern to an array of output files and then removes them.

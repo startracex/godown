@@ -1,8 +1,9 @@
+import fs from "node:fs";
+import path from "node:path";
+
 import { create } from "@custom-elements-manifest/analyzer/src/create.js";
 import { addFrameworkPlugins } from "@custom-elements-manifest/analyzer/src/utils/cli-helpers.js";
 import { findExternalManifests } from "@custom-elements-manifest/analyzer/src/utils/find-external-manifests.js";
-import fs from "fs";
-import path from "path";
 import ts from "typescript";
 
 const defaults: Options = {

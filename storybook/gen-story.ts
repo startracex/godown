@@ -1,5 +1,5 @@
-import { existsSync, writeFileSync } from "fs";
-import { join } from "path/posix";
+import { existsSync, writeFileSync } from "node:fs";
+import { join } from "node:path/posix";
 
 type CategoryType =
   | "display"
