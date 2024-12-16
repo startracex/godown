@@ -27,6 +27,6 @@
     "access": "public"
   },
   "files": [
-    "**/*.{ts,js,d.ts}+(|.map)"
+    "**/*.{ts,js}+(|.map)"
   ]
 }
