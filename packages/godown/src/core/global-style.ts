@@ -1,12 +1,9 @@
 import { type Gradients, presetsRGB } from "@godown/colors/presets-rgb.js";
 import { travel } from "@godown/colors/travel.js";
 import GodownElement from "@godown/element";
-import GodownConfig from "@godown/element/config.js";
 import { joinProperties } from "@godown/element/tools/css.js";
 import { trim } from "@godown/element/tools/lib.js";
 import { css, type CSSResult, unsafeCSS } from "lit";
-
-GodownElement.godownConfig ||= new GodownConfig();
 
 export class GlobalStyle extends GodownElement {
 }
