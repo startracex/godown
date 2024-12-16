@@ -10,7 +10,7 @@ import { GlobalStyle } from "../core/global-style.js";
 const protoName = "layout";
 
 /**
- * {@linkcode NavLayout} renders slot and optional top header, bottom footer.
+ * {@linkcode Layout} renders slot and optional top header, bottom footer.
  *
  * @slot - The main content of the layout.
  * @slot header - The header of the layout.
@@ -50,7 +50,7 @@ const protoName = "layout";
     }
   `,
 )
-class NavLayout extends GlobalStyle {
+class Layout extends GlobalStyle {
   /**
    * If true, remove the header slot.
    */
@@ -78,4 +78,4 @@ class NavLayout extends GlobalStyle {
   }
 }
 
-export default NavLayout;
+export default Layout;
