@@ -402,3 +402,4 @@ class Range extends SuperInput {
 }
 
 export default Range;
+export { Range };

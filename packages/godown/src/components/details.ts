@@ -110,3 +110,4 @@ class Details extends SuperOpenable {
 }
 
 export default Details;
+export { Details };

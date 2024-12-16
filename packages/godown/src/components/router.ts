@@ -275,3 +275,4 @@ class Router extends GlobalStyle {
 }
 
 export default Router;
+export { Router };

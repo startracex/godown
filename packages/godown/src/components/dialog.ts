@@ -164,3 +164,4 @@ class Dialog extends SuperOpenable {
 }
 
 export default Dialog;
+export { Dialog };

@@ -82,3 +82,4 @@ class Flex extends GlobalStyle {
 }
 
 export default Flex;
+export { Flex };

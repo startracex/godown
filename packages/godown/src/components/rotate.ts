@@ -93,3 +93,4 @@ class Rotate extends GlobalStyle {
 }
 
 export default Rotate;
+export { Rotate };

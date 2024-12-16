@@ -105,3 +105,4 @@ class Avatar extends GlobalStyle {
 }
 
 export default Avatar;
+export { Avatar };

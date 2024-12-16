@@ -176,3 +176,4 @@ class Switch extends SuperInput {
 }
 
 export default Switch;
+export { Switch };

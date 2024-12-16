@@ -143,3 +143,4 @@ class Tooltip extends SuperOpenable {
 }
 
 export default Tooltip;
+export { Tooltip };

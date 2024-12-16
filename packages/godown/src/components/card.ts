@@ -77,3 +77,4 @@ class Card extends GlobalStyle {
 }
 
 export default Card;
+export { Card };

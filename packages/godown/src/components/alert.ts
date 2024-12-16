@@ -280,3 +280,4 @@ class Alert extends GlobalStyle {
 }
 
 export default Alert;
+export { Alert };

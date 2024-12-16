@@ -176,3 +176,4 @@ class Carousel extends GlobalStyle {
 }
 
 export default Carousel;
+export { Carousel };

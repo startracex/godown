@@ -118,3 +118,4 @@ class Skeleton extends GlobalStyle {
 }
 
 export default Skeleton;
+export { Skeleton };

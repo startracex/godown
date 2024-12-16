@@ -80,3 +80,4 @@ class Form<T = object> extends GlobalStyle {
 }
 
 export default Form;
+export { Form };

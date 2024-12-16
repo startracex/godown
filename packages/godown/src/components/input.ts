@@ -71,3 +71,4 @@ class Input extends SuperInput {
 }
 
 export default Input;
+export { Input };

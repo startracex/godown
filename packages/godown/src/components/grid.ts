@@ -87,3 +87,4 @@ class Grid extends GlobalStyle {
 }
 
 export default Grid;
+export { Grid };

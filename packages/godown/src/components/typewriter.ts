@@ -159,3 +159,4 @@ class Typewriter extends GlobalStyle {
 }
 
 export default Typewriter;
+export { Typewriter };

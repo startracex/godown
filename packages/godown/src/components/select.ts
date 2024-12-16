@@ -279,3 +279,4 @@ class Select extends Input {
 }
 
 export default Select;
+export { Select };

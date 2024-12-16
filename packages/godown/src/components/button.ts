@@ -290,3 +290,4 @@ class Button extends GlobalStyle {
 }
 
 export default Button;
+export { Button };

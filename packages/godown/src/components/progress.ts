@@ -100,3 +100,4 @@ class Progress extends GlobalStyle {
 }
 
 export default Progress;
+export { Progress };

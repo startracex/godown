@@ -44,3 +44,4 @@ class Link extends SuperAnchor {
 }
 
 export default Link;
+export { Link };

@@ -158,3 +158,4 @@ class Breath extends GlobalStyle {
 }
 
 export default Breath;
+export { Breath };

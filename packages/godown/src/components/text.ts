@@ -89,3 +89,4 @@ class Text extends GlobalStyle {
 }
 
 export default Text;
+export { Text };

@@ -133,3 +133,4 @@ class Dragbox extends GlobalStyle {
 }
 
 export default Dragbox;
+export { Dragbox };

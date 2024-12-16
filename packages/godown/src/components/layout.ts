@@ -79,3 +79,4 @@ class Layout extends GlobalStyle {
 }
 
 export default Layout;
+export { Layout };

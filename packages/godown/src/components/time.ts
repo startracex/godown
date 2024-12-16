@@ -80,3 +80,4 @@ class Time extends GlobalStyle {
 }
 
 export default Time;
+export { Time };

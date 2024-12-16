@@ -54,3 +54,4 @@ class Divider extends GlobalStyle {
 }
 
 export default Divider;
+export { Divider };
