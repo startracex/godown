@@ -14,8 +14,10 @@
       "when": "$(basename)"
     },
     "**/*.js": {
-      "when": "$(basename).d.ts",
-    }
+      "when": "$(basename).d.ts"
+    },
+    "**/*.cjs.map": true,
+    "**/*.cjs": true
   },
   "[typescript]": {
     "editor.defaultFormatter": "dprint.dprint"
