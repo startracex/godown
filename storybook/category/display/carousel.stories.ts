@@ -1,14 +1,12 @@
-import { render } from "lit";
-
 import { numberArg } from "../../args";
 import type { RendererMeta } from "../../types";
-import { carousel } from "./carousel";
+import render from "./carousel";
 
 export default {
   title: "display/Carousel",
   component: "godown-carousel",
   tags: ["autodocs"],
-  render: (args: any) => carousel(args),
+  render: (args: any) => render(args),
   argTypes: {
     index: numberArg,
     autoChange: numberArg,

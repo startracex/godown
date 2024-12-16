@@ -5,7 +5,7 @@ import { html } from "lit";
 
 import type { Godown } from "../../types";
 
-export const carousel = (args: Pick<Godown.Carousel, "index" | "autoChange">) =>
+export default (args: Pick<Godown.Carousel, "index" | "autoChange">) =>
   html`
 <godown-carousel ${attr(args)}>
 
