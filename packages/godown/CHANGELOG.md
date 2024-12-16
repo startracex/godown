@@ -1,5 +1,18 @@
 # godown
 
+## 3.0.0-canary.15
+
+### Minor Changes
+
+- 67268b6: field routing can accept render function
+
+### Patch Changes
+
+- a1ce927: remove baseURL for router
+- 2683a8b: pathname of router defaults to undefined
+- a9137cf: Router.path should be undefined instead of null when there is a mismatch
+- eb66e63: rename Breath.computeStyle to \_computeStyle
+
 ## 3.0.0-canary.14
 
 ### Patch Changes
