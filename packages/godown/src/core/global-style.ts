@@ -98,5 +98,5 @@ GlobalStyle.styles = [
       all: inherit;
       display: revert;
     }
-`,
+  `,
 ];
