@@ -16,7 +16,7 @@ class GodownElement extends LitElement {
 
   static define(tagName: string = this.elementTagName, options?: ElementDefinitionOptions): void {
     if (!this.isDefined()) {
-      (this.godownConfig || customElements).define(tagName, this, options);
+      this.godownConfig.define(tagName, this, options);
     }
   }
 
@@ -25,7 +25,7 @@ class GodownElement extends LitElement {
   }
 
   static getDefined(): CustomElementConstructor {
-    return customElements.get(this.elementTagName);
+    return this.godownConfig.get(this.elementTagName);
   }
 
   get observedRecord(): Record<string, any> {
