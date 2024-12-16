@@ -1,6 +1,6 @@
 {
   "name": "@godown/element",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Component base class for godown",
   "type": "module",
   "main": "element.js",
