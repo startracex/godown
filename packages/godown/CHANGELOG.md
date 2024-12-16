@@ -1,5 +1,12 @@
 # godown
 
+## 3.0.0-canary.16
+
+### Minor Changes
+
+- 362231c: add event dispatch
+- 8904374: remove reassignment of GodownElement.godownConfig
+
 ## 3.0.0-canary.15
 
 ### Minor Changes
