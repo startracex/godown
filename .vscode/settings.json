@@ -23,5 +23,6 @@
     "editor.defaultFormatter": "dprint.dprint"
   },
   "color-highlight.markerType": "underline",
-  "lit-plugin.rules.no-invalid-css": "off"
+  "lit-plugin.rules.no-invalid-css": "off",
+  "lit-plugin.rules.no-incompatible-type-binding": "off"
 }
