@@ -1,6 +1,7 @@
+import { createRequire } from "node:module";
+
 import { IconSet } from "@iconify/tools/lib/icon-set";
 import { type IconifyIconBuildResult, iconToSVG } from "@iconify/utils/lib/svg/build";
-import { createRequire } from "module";
 
 import format from "./format.js";
 

@@ -1,4 +1,4 @@
-import { type CSSResultGroup } from "lit";
+import type { CSSResultGroup } from "lit";
 
 type LitStyles = CSSResultGroup | CSSResultGroup[];
 

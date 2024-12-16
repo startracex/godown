@@ -1,4 +1,4 @@
-import { type CSSResult } from "lit";
+import type { CSSResult } from "lit";
 
 import { isNil } from "./lib.js";
 

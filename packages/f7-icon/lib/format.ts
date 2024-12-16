@@ -1,4 +1,4 @@
-import { type IconifyIconBuildResult } from "@iconify/utils/lib/svg/build";
+import type { IconifyIconBuildResult } from "@iconify/utils/lib/svg/build";
 
 export default function (result: IconifyIconBuildResult) {
   return (
