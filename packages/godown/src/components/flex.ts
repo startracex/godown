@@ -18,7 +18,8 @@ const protoName = "flex";
  * @category layout
  */
 @godown(protoName)
-@styles(css`
+@styles(
+  css`
     :host,
     :host([contents]) [part=root] {
       display: flex;
@@ -27,7 +28,8 @@ const protoName = "flex";
     [part=root] {
       display: contents;
     }
-`)
+  `,
+)
 class Flex extends GlobalStyle {
   /**
    * CSS property `flex-flow` (`flex-direction flex-wrap`).

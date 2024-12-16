@@ -18,7 +18,8 @@ const cssScope = scopePrefix(protoName);
  * @category effect
  */
 @godown(protoName)
-@styles(css`
+@styles(
+  css`
     :host {
       ${cssScope}--cursor-width: .05em;
     }
@@ -50,7 +51,8 @@ const cssScope = scopePrefix(protoName);
     .hidden {
       visibility: hidden;
     }
-  `)
+  `,
+)
 class Typewriter extends GlobalStyle {
   /**
    * Raw text.

@@ -15,52 +15,54 @@ const protoName = "progress";
  * @category feedback
  */
 @godown(protoName)
-@styles(css`
-  :host {
-    width: 100%;
-    height: 0.5em;
-    border-radius: 0.25em;
-    background: var(${cssGlobalVars.passive});
-    color: var(${cssGlobalVars.active});
-  }
+@styles(
+  css`
+    :host {
+      width: 100%;
+      height: 0.5em;
+      border-radius: 0.25em;
+      background: var(${cssGlobalVars.passive});
+      color: var(${cssGlobalVars.active});
+    }
 
-  :host,
-  [part=root] {
-    display: block;
-  }
+    :host,
+    [part=root] {
+      display: block;
+    }
 
-  [part=root] {
-    height: inherit;
-    z-index: 1;
-    position: relative;
-    border-radius: inherit;
-  }
+    [part=root] {
+      height: inherit;
+      z-index: 1;
+      position: relative;
+      border-radius: inherit;
+    }
 
-  [part=value] {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    height: 100%;
-    border-radius: inherit;
-    transition: all 0.3s;
-    animation: progress 1.8s ease-in-out infinite alternate;
-    background: currentColor;
-  }
-
-  @keyframes progress {
-    from {
+    [part=value] {
+      position: absolute;
+      z-index: 2;
+      top: 0;
       left: 0;
+      height: 100%;
+      border-radius: inherit;
+      transition: all 0.3s;
+      animation: progress 1.8s ease-in-out infinite alternate;
+      background: currentColor;
     }
-    to {
-      left: 80%;
-    }
-  }
 
-  .static [part=value] {
-    animation: none;
-  }
-`)
+    @keyframes progress {
+      from {
+        left: 0;
+      }
+      to {
+        left: 80%;
+      }
+    }
+
+    .static [part=value] {
+      animation: none;
+    }
+  `,
+)
 class Progress extends GlobalStyle {
   @property({ type: Number })
   max = 1;

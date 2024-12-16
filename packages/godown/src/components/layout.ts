@@ -71,17 +71,9 @@ class NavLayout extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)}>
-    ${
-      !this.noHeader
-        ? html`<header part="header">${htmlSlot("header")}</header>`
-        : ""
-    }
-    <main part="main">${htmlSlot()}</main>
-    ${
-      !this.noFooter
-        ? html`<footer part="footer">${htmlSlot("footer")}</footer>`
-        : ""
-    }
+      ${!this.noHeader ? html`<header part="header">${htmlSlot("header")}</header>` : ""}
+      <main part="main">${htmlSlot()}</main>
+      ${!this.noFooter ? html`<footer part="footer">${htmlSlot("footer")}</footer>` : ""}
     </div>`;
   }
 }

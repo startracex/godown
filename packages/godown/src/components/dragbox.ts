@@ -67,7 +67,8 @@ class Dragbox extends GlobalStyle {
       part="root"
       ${attr(this.observedRecord)}
       @mousedown="${this._handleDragStart}"
-      @mouseup="${this._handleDragEnd}">
+      @mouseup="${this._handleDragEnd}"
+    >
       ${htmlSlot()}
     </div>`;
   }

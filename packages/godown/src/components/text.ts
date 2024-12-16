@@ -18,7 +18,8 @@ const cssScope = scopePrefix(protoName);
  * @category display
  */
 @godown(protoName)
-@styles(css`
+@styles(
+  css`
     :host {
       ${cssScope}--color: currentColor;
       ${cssScope}--color-hover: currentColor;
@@ -65,7 +66,8 @@ const cssScope = scopePrefix(protoName);
       background-clip: text;
       -webkit-background-clip: text;
     }
-`)
+  `,
+)
 class Text extends GlobalStyle {
   /**
    * Underline behavior.
@@ -80,11 +82,7 @@ class Text extends GlobalStyle {
   clip = false;
 
   protected render(): TemplateResult<1> {
-    return html`<span
-      part="root"
-      ${attr(this.observedRecord)}
-      class="${classList(this.underline)}"
-    >
+    return html`<span part="root" ${attr(this.observedRecord)} class="${classList(this.underline)}">
       ${htmlSlot()}
     </span>`;
   }

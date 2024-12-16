@@ -71,11 +71,7 @@ class Card extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)}>
-    ${[
-      this.header ? htmlSlot("header") : "",
-      htmlSlot(),
-      this.footer ? htmlSlot("footer") : "",
-    ]}
+      ${[this.header ? htmlSlot("header") : "", htmlSlot(), this.footer ? htmlSlot("footer") : ""]}
     </div>`;
   }
 }

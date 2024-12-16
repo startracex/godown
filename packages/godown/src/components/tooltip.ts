@@ -126,23 +126,18 @@ class Tooltip extends SuperOpenable {
   protected render(): TemplateResult<1> {
     const align = Tooltip.aligns[this.align] || "inherit";
     const isFocusable = this.type === "focus";
-    return html`<div 
+    return html`<div
       part="root"
       ${attr(this.observedRecord)}
       tabindex="${isFocusable ? 0 : -1}"
-      @focus="${isFocusable ? () => this.open = true : null}"
-      @blur="${isFocusable ? () => this.open = false : null}"
-      @mouseenter="${isFocusable ? null : () => this.open = true}"
-      @mouseleave="${isFocusable ? null : () => this.open = false}"
-      style="justify-content:${align};align-items:${align}">
+      @focus="${isFocusable ? () => (this.open = true) : null}"
+      @blur="${isFocusable ? () => (this.open = false) : null}"
+      @mouseenter="${isFocusable ? null : () => (this.open = true)}"
+      @mouseleave="${isFocusable ? null : () => (this.open = false)}"
+      style="justify-content:${align};align-items:${align}"
+    >
       ${htmlSlot()}
-      <div part="tip">
-      ${
-      this.tip
-        ? html`<span class="passive">${this.tip}</span>`
-        : htmlSlot("tip")
-    }
-      </div>
+      <div part="tip">${this.tip ? html`<span class="passive">${this.tip}</span>` : htmlSlot("tip")}</div>
     </div>`;
   }
 }

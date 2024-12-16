@@ -218,19 +218,14 @@ class Range extends SuperInput {
         "--to": `${((to - this.min) / gap) * 100}%`,
         ...(this.range
           ? Object.fromEntries(
-            rangeValue.map((value, index) => [
-              `--handle-${index}`,
-              `${((value - this.min) / gap) * 100}%`,
-            ]),
+            rangeValue.map((value, index) => [`--handle-${index}`, `${((value - this.min) / gap) * 100}%`]),
           )
           : {}),
       })
-    }"><div part="track"></div>
-      ${
-      this.range
-        ? (this.value as number[]).map((_, index) => this.renderHandle(index))
-        : this.renderHandle(0)
-    }
+    }"
+    >
+      <div part="track"></div>
+      ${this.range ? (this.value as number[]).map((_, index) => this.renderHandle(index)) : this.renderHandle(0)}
     </div>`;
   }
 

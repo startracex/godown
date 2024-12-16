@@ -7,25 +7,27 @@ import { ifDefined } from "lit/directives/if-defined.js";
 
 import { GlobalStyle } from "./global-style.js";
 
-@styles(css`
-  :host {
-    display: inline-block;
-    color: currentColor;
-    text-decoration: none;
-    cursor: default;
-  }
+@styles(
+  css`
+    :host {
+      display: inline-block;
+      color: currentColor;
+      text-decoration: none;
+      cursor: default;
+    }
 
-  :host([href]) {
-    cursor: pointer;
-  }
+    :host([href]) {
+      cursor: pointer;
+    }
 
-  [part=root] {
-    width: 100%;
-    color: inherit;
-    display: inline-block;
-    text-decoration: inherit;
-  }
-`)
+    [part=root] {
+      width: 100%;
+      color: inherit;
+      display: inline-block;
+      text-decoration: inherit;
+    }
+  `,
+)
 class SuperAnchor extends GlobalStyle {
   /**
    * A element href.
@@ -39,11 +41,13 @@ class SuperAnchor extends GlobalStyle {
   target: "_blank" | "_self" | "_parent" | "_top" = "_self";
 
   protected render(): TemplateResult<1> {
-    return html`<a part="root"
+    return html`<a
+      part="root"
       ${attr(this.observedRecord)}
       href="${ifDefined(this.href)}"
       target="${this.target}"
-      @click=${this._handleClick}>
+      @click=${this._handleClick}
+    >
       ${htmlSlot()}
     </a>`;
   }

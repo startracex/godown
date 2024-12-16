@@ -99,12 +99,17 @@ class Split extends SuperInput {
 
   protected render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)}>
-    ${
-      loop(this.len, (index: number) =>
-        html`<span part="input-box"
-          @click="${this.disabled ? null : () => this.focusAt(index)}"
-          class="${classList({ focus: this.current === index }) || nothing}"
-        >${this.currentValue[index]}</span>`)
+      ${
+      loop(
+        this.len,
+        (index: number) =>
+          html`<span
+            part="input-box"
+            @click="${this.disabled ? null : () => this.focusAt(index)}"
+            class="${classList({ focus: this.current === index }) || nothing}"
+            >${this.currentValue[index]}</span
+          >`,
+      )
     }
       <input
         part="input"
@@ -115,8 +120,7 @@ class Split extends SuperInput {
       /* Ensure that input always has a value of length this.len */
       this.value.padStart(this.len, " ")}"
       >
-    </div>
-    `;
+    </div> `;
   }
 
   connectedCallback(): void {

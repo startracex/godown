@@ -79,7 +79,6 @@ const cssScope = scopePrefix(protoName);
     :host([open]) [part=icon] {
       transform: rotate(var(${cssScope}--icon-deg-open));
     }
-
   `,
 )
 class Details extends SuperOpenable {
@@ -98,9 +97,7 @@ class Details extends SuperOpenable {
   protected render(): TemplateResult<1> {
     return html`<dl part="root" ${attr(this.observedRecord)}>
       <dt part="title" @click="${this._handelClick}">
-        <span part="summary">
-          ${this.summary || htmlSlot("summary")}
-        </span>
+        <span part="summary">${this.summary || htmlSlot("summary")}</span>
         <span>
           <i part="icon">${svgCaretDown()}</i>
         </span>

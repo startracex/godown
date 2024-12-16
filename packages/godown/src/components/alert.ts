@@ -248,17 +248,15 @@ class Alert extends GlobalStyle {
     return html`<div part="root" ${attr(this.observedRecord)}>
       <div part="icon">${icon}</div>
       <div part="content">
-        <strong part="title">
-          ${this.title || htmlSlot("title")}
-        </strong>
+        <strong part="title">${this.title || htmlSlot("title")}</strong>
         ${this.content || htmlSlot()}
       </div>
       ${
       !this.hideClose && this.variant !== "blockquote"
-        ? html`<div part="close" tabindex=0 @click="${this.close}">${iconXmark()}</div>`
+        ? html`<div part="close" tabindex="0" @click="${this.close}">${iconXmark()}</div>`
         : ""
     }
-    ${htmlStyle(this.variant === "light" ? lightStyles[color] : darkStyles[color])}
+      ${htmlStyle(this.variant === "light" ? lightStyles[color] : darkStyles[color])}
     </div>`;
   }
 

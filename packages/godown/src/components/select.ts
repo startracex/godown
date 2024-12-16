@@ -105,34 +105,36 @@ class Select extends Input {
   private _store: { value: string; text: string; }[] = [];
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${
+    return html`<div
+      part="root"
+      ${
       attr({
         ...this.observedRecord,
         direction: this.direction || this.autoDirection,
       })
-    } class="input-field"> 
-    ${[
+    }
+      class="input-field"
+    >
+      ${[
       this._renderPrefix(),
       html`<input
-        part="input"
-        dir="${ifDefined(this.dir)}"
-        id="${this.makeId}"
-        .value="${this.text}"
-        type="${this.type}"
-        placeholder="${this.placeholder || nothing}"
-        ?autofocus="${this.autofocus}"
-        autocapitalize="${this.autocapitalize || nothing}"
-        autocomplete="${this.autocomplete || nothing}"
-        ?disabled="${this.disabled}"
-        @focus="${this._handleFocus}"
-        @input="${this._handleInput}"
-      >`,
+          part="input"
+          dir="${ifDefined(this.dir)}"
+          id="${this.makeId}"
+          .value="${this.text}"
+          type="${this.type}"
+          placeholder="${this.placeholder || nothing}"
+          ?autofocus="${this.autofocus}"
+          autocapitalize="${this.autocapitalize || nothing}"
+          autocomplete="${this.autocomplete || nothing}"
+          ?disabled="${this.disabled}"
+          @focus="${this._handleFocus}"
+          @input="${this._handleInput}"
+        >`,
       html`<label for="${this.makeId}" part="suffix">
-        <i part="icon">${svgCaretDown()}</i>
-      </label>`,
-      html`<label for="${this.makeId}" part="content">
-        ${htmlSlot()}
-      </label>`,
+          <i part="icon">${svgCaretDown()}</i>
+        </label>`,
+      html`<label for="${this.makeId}" part="content"> ${htmlSlot()} </label>`,
     ]}
     </div>`;
   }

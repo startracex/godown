@@ -19,7 +19,8 @@ const protoName = "grid";
  * @category layout
  */
 @godown(protoName)
-@styles(css`
+@styles(
+  css`
     :host,
     :host([contents]) [part=root] {
       display: grid;
@@ -28,7 +29,8 @@ const protoName = "grid";
     [part=root] {
       display: contents;
     }
-`)
+  `,
+)
 class Grid extends GlobalStyle {
   /**
    * CSS property `gap`.
@@ -66,7 +68,7 @@ class Grid extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)}>
-    ${[
+      ${[
       htmlSlot(),
       htmlStyle(
         joinRules({

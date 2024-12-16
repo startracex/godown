@@ -50,9 +50,7 @@ class Time extends GlobalStyle {
   protected timeoutId: number;
 
   protected render(): TemplateResult<1> {
-    return html`<span part="root" ${attr(this.observedRecord)}>
-      ${fmtime(this.format, this.time, this.escape)}
-    </span>`;
+    return html`<span part="root" ${attr(this.observedRecord)}> ${fmtime(this.format, this.time, this.escape)} </span>`;
   }
 
   protected firstUpdated(): void {

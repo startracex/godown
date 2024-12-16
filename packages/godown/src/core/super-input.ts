@@ -9,46 +9,46 @@ import { property } from "lit/decorators.js";
 import { cssGlobalVars, GlobalStyle } from "./global-style.js";
 
 const fieldStyle = css`
-  .input-field {
-    display: flex;
-    position: relative;
-    align-items: center;
-    border-radius: inherit;
-    height: inherit;
-  }
+.input-field {
+  display: flex;
+  position: relative;
+  align-items: center;
+  border-radius: inherit;
+  height: inherit;
+}
 
-  .input-field [part=input] {
-    background: transparent;
-    height: 100%;
-    width: 100%;
-    color: inherit;
-    padding: 0 var(${cssGlobalVars.input}-space);
-  }
+.input-field [part=input] {
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  color: inherit;
+  padding: 0 var(${cssGlobalVars.input}-space);
+}
 
-  .input-field:focus-within,
-  .input-field.outline {
-    box-shadow: var(${cssGlobalVars.input}-box-shadow);
-  }
+.input-field:focus-within,
+.input-field.outline {
+  box-shadow: var(${cssGlobalVars.input}-box-shadow);
+}
 
-  .input-field [part=icon] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.input-field [part=icon] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .input-field [part=prefix],
-  .input-field [part=suffix] {
-    height: 100%;
-    display: flex;
-  }
+.input-field [part=prefix],
+.input-field [part=suffix] {
+  height: 100%;
+  display: flex;
+}
 
-  .input-field [part=suffix] [part=icon] {
-    padding-inline-end: var(${cssGlobalVars.input}-space);
-  }
+.input-field [part=suffix] [part=icon] {
+  padding-inline-end: var(${cssGlobalVars.input}-space);
+}
 
-  .input-field [part=prefix] [part=icon] {
-    padding-inline-start: var(${cssGlobalVars.input}-space);
-  }
+.input-field [part=prefix] [part=icon] {
+  padding-inline-start: var(${cssGlobalVars.input}-space);
+}
 `;
 
 const inputStyle = css`

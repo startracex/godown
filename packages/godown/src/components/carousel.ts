@@ -103,15 +103,9 @@ class Carousel extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)}>
-      <i part="prev" @click="${this.prev}">
-        ${iconChevronLeft()}
-      </i>
-      <div part="move-root" style="transform:${`translateX(-${this.index + 1}00%)`}">
-        ${htmlSlot()}
-      </div>
-      <i part="next" @click="${this.next}">
-        ${iconChevronRight()}
-      </i>
+      <i part="prev" @click="${this.prev}"> ${iconChevronLeft()} </i>
+      <div part="move-root" style="transform:${`translateX(-${this.index + 1}00%)`}">${htmlSlot()}</div>
+      <i part="next" @click="${this.next}"> ${iconChevronRight()} </i>
       ${htmlStyle(`:host,:host([contents]) [part=root]{width:${this.width};}`)}
     </div>`;
   }

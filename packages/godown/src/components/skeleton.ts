@@ -111,8 +111,9 @@ class Skeleton extends GlobalStyle {
       return htmlSlot();
     }
     return html`<div part="root" ${attr(this.observedRecord)}>
-    ${this.type === "image" ? iconPhoto() : ""}
-    ${htmlSlot("loading")}</div>`;
+      ${this.type === "image" ? iconPhoto() : ""}
+      ${htmlSlot("loading")}
+    </div>`;
   }
 }
 
