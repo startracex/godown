@@ -7,14 +7,14 @@ export const classList = (...args: (string | string[] | Record<string, any>)[]):
   args.reduce<string>((acc, cur) => {
     if (Array.isArray(cur)) {
       return append(acc, cur.join(" "));
-    } else if (typeof cur === "object") {
+    }
+    if (typeof cur === "object") {
       const s1 = Object.entries(cur).reduce((acc1, [key, value]) => {
         return value ? append(acc1, key) : acc1;
       }, "");
       return append(acc, s1);
-    } else {
-      return append(acc, cur);
     }
+    return append(acc, cur);
   }, "");
 
 export const clean = (str: string): string => {
