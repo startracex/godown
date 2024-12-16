@@ -289,12 +289,6 @@ class Range extends SuperInput {
     };
   }
 
-  protected _handleMousedownEnd(e: MouseEvent): void {
-    this.lastFocus = 0;
-    this.createMousedownListener(this.setEnd)(e);
-    this.focusHandle(0);
-  }
-
   createSetValue(index: number) {
     return (numberOrModifier: number | ((value: number) => number)): void => {
       const number = typeof numberOrModifier === "number"
@@ -307,10 +301,6 @@ class Range extends SuperInput {
       }
       this.value = newValue;
     };
-  }
-
-  setEnd(value: number): void {
-    this.createSetValue((this.value as any)?.length - 1 || 0)(value);
   }
 
   /**
