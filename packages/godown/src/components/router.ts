@@ -197,7 +197,7 @@ class Router extends GlobalStyle {
    * Get component from {@linkcode routes} by query.
    */
   fieldComponent(query?: string): unknown {
-    query ||= this.__fieldRouteTree.search(this.pathname)?.pattern || null;
+    query ||= this.__fieldRouteTree.search(this.pathname)?.pattern;
     this.path = query;
 
     if (!query) {
@@ -220,20 +220,20 @@ class Router extends GlobalStyle {
   /**
    * Get component from slotted elements by query.
    */
-  slottedComponent(usedRouteTemplate?: string): TemplateResult<1> {
+  slottedComponent(query?: string): TemplateResult<1> {
     const slottedPaths = this._slottedNames;
-    usedRouteTemplate ||= this.__slottedRouteTree.search(this.pathname)?.pattern || null;
-    this.path = usedRouteTemplate;
+    query ||= this.__slottedRouteTree.search(this.pathname)?.pattern;
+    this.path = query;
 
-    if (!usedRouteTemplate) {
+    if (!query) {
       return null;
     }
 
-    this.path = slottedPaths.find((s) => s === usedRouteTemplate);
+    this.path = slottedPaths.find((s) => s === query);
     if (!this.path) {
       return null;
     }
-    this.params = this.parseParams(usedRouteTemplate, this.pathname);
+    this.params = this.parseParams(query, this.pathname);
     return htmlSlot(this.path);
   }
 
