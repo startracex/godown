@@ -16,6 +16,7 @@ const cssScope = scopePrefix(protoName);
  * The switch is rectangular by default,
  * set the round property to rounded switch.
  *
+ * @fires change - Fires when the switch is switched.
  * @category input
  */
 @godown(protoName)
@@ -166,7 +167,6 @@ class Switch extends SuperInput {
 
   protected _handleChange(): void {
     this.checked = this._input.checked;
-    this.dispatchEvent(new CustomEvent("input", { detail: this.checked, bubbles: true, composed: true }));
     this.dispatchEvent(new CustomEvent("change", { detail: this.checked, composed: true }));
   }
 

@@ -111,6 +111,7 @@ const calls = {
  * @slot - Alert content.
  * @slot title - Alert title.
  * @slot icon - Alert icon.
+ * @fires close - Fires when the alert is closed.
  * @category feedback
  */
 @godown(protoName)

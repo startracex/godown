@@ -148,6 +148,7 @@ class SuperInput extends GlobalStyle {
         composed: true,
       }),
     );
+    this.dispatchEvent(new CustomEvent("input", { detail: this.value, composed: true, bubbles: true }));
     this.dispatchEvent(new CustomEvent("change", { detail: this.value, composed: true }));
   }
 

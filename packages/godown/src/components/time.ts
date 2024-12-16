@@ -12,6 +12,7 @@ const protoName = "time";
 /**
  * {@linkcode Time} renders a formatting time.
  *
+ * @fires time - Fires when the time changes.
  * @category display
  */
 @godown(protoName)
@@ -74,6 +75,7 @@ class Time extends GlobalStyle {
 
   startTimeout(): number {
     return window.setInterval(() => {
+      this.dispatchEvent(new CustomEvent("time", { detail: this.time, composed: true }));
       this.time = new Date(this.time.getTime() + (this.gap || this.timeout));
     }, Math.abs(this.timeout));
   }

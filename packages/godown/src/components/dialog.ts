@@ -19,6 +19,7 @@ const cssScope = scopePrefix(protoName);
  *
  * It listens for the keydown event and also closes itself when the {@linkcode key} contained in the key is pressed.
  *
+ * @fires change - Fires when the open changes.
  * @category feedback
  */
 @godown(protoName)

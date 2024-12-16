@@ -45,6 +45,9 @@ const protoName = "select";
  *
  * Input will filter the element.
  *
+ * @fires input - Fires when the input value changes.
+ * @fires change - Fires when the input value changes.
+ * @fires select - Fires when select an option.
  * @slot - Options.
  * @category input
  */
@@ -229,7 +232,7 @@ class Select extends Input {
         operation = 1;
       }
     }
-    this.dispatchEvent(new CustomEvent("change", { detail: this.namevalue() }));
+    this.dispatchEvent(new CustomEvent("select", { detail: this.value, composed: true }));
     this.filter();
     return operation;
   }
@@ -259,7 +262,8 @@ class Select extends Input {
     }
     const s = this._input.value;
     this.filter(this.multiple ? betweenAt(this._input.selectionStart, s, ",") : s);
-    this.dispatchEvent(new CustomEvent("input", { detail: this.namevalue() }));
+    this.dispatchEvent(new CustomEvent("input", { detail: this.value, composed: true, bubbles: true }));
+    this.dispatchEvent(new CustomEvent("change", { detail: this.value, composed: true }));
   }
 
   focus(options?: FocusOptions): void {

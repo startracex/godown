@@ -27,6 +27,10 @@ const loop = <T>(len: number, fn: (index?: number) => T) => {
  *
  * Delete: will move the focus box forward until the first and no inputs for each.
  *
+ * @fires input - Fires when the input value changes.
+ * @fires change - Fires when the input value changes.
+ * @fires focus - Fires when the input is focused.
+ * @fires blur - Fires when the input is blurred.
  * @category input
  */
 @godown(protoName)
@@ -137,8 +141,7 @@ class Split extends SuperInput {
     this.fillInput(e.data);
     this.value = this.currentValue.join("");
 
-    this.dispatchEvent(new CustomEvent("input", { detail: this.value, bubbles: true, composed: true }));
-    this.dispatchEvent(new CustomEvent("change", { detail: this.value, composed: true }));
+    this.dispatchEvent(new CustomEvent("input", { detail: this.value, composed: true, bubbles: true }));
   }
 
   /**
@@ -208,12 +211,14 @@ class Split extends SuperInput {
   focusAt(i: number): void {
     this.current = i;
     this._input.focus();
+    this.dispatchEvent(new CustomEvent("focus", { detail: i, bubbles: true, composed: true }));
   }
 
   blur(): void {
     this._input.blur();
     this.current = -1;
     super.blur();
+    this.dispatchEvent(new CustomEvent("blur", { bubbles: true, composed: true }));
   }
 
   reset(): void {

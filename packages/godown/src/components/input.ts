@@ -14,6 +14,8 @@ const protoName = "input";
 /**
  * {@linkcode Input} renders a text input.
  *
+ * @fires input - Fires when the input value changes.
+ * @fires change - Fires when the input value changes.
  * @category input
  */
 @godown(protoName)

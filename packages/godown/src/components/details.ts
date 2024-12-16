@@ -18,7 +18,7 @@ const cssScope = scopePrefix(protoName);
  *
  * @slot summary - Details summary if no `summary` is provided.
  * @slot - Details content.
- * @fires change - Fired when the details is toggled.
+ * @fires change - Fired when the open changes.
  * @category display
  */
 @godown(protoName)

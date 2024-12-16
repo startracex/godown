@@ -24,6 +24,7 @@ const protoName = "carousel";
  * If no width, it will be the width of the first element.
  *
  * @slot - Carousel items, should maintain the same size.
+ * @fires change - Fired when the index changes.
  * @category display
  */
 @godown(protoName)
@@ -133,6 +134,7 @@ class Carousel extends GlobalStyle {
 
   show(i: number): void {
     this.index = i;
+    this.dispatchEvent(new CustomEvent("change", { detail: i, composed: true }));
   }
 
   next(): void {

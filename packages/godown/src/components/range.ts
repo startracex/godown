@@ -21,6 +21,11 @@ const cssScope = scopePrefix(protoName);
  *
  * Number has 1 handle, the array has the number of its elements and the minimum is 2.
  *
+ * @fires input - Fires when the input value changes.
+ * @fires change - Fires when the input value changes.
+ * @fires range - Fires when the value changes.
+ * @fires focus - Fires when the handle is focused.
+ * @fires blur - Fires when the handle is blurred.
  * @category input
  */
 @godown(protoName)
@@ -260,11 +265,13 @@ class Range extends SuperInput {
     if (!this._keydownEvent) {
       this._keydownEvent = this.events.add(document, "keydown", this.createKeydownEvent(index));
     }
+    this.dispatchEvent(new CustomEvent("focus", { detail: index }));
   }
 
   blurHandle(): void {
     this.lastFocus = undefined;
     this._keydownEvent = this.events.remove(document, "keydown", this._keydownEvent);
+    this.dispatchEvent(new CustomEvent("blur"));
   }
 
   protected createKeydownEvent(index: number) {
@@ -300,6 +307,7 @@ class Range extends SuperInput {
         newValue[index] = number;
       }
       this.value = newValue;
+      this.dispatchEvent(new CustomEvent("range", { detail: this.value }));
     };
   }
 

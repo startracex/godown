@@ -25,7 +25,7 @@ class SuperOpenable extends GlobalStyle {
   protected updated(changedProperties: PropertyValueMap<this>): void {
     const open = changedProperties.get("open");
     if (open !== undefined) {
-      this.dispatchEvent(new CustomEvent("change", { detail: this.open }));
+      this.dispatchEvent(new CustomEvent("change", { detail: this.open, composed: true }));
     }
   }
 
