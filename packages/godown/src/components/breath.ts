@@ -150,13 +150,14 @@ class Breath extends GlobalStyle {
     );
   }
 
-  protected parseDuration(): number {
+  protected parseDuration(): number | undefined {
     const { duration } = this;
     if (duration) {
       if (duration.endsWith("s")) {
-        return parseFloat(duration.slice(0, -1));
-      } else if (duration.endsWith("ms")) {
-        return parseFloat(duration.slice(0, -2)) / 1000;
+        return Number.parseFloat(duration.slice(0, -1));
+      }
+      if (duration.endsWith("ms")) {
+        return Number.parseFloat(duration.slice(0, -2)) / 1000;
       }
     }
   }
