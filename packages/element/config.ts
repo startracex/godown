@@ -1,3 +1,7 @@
+import { trimLeft, trimRight } from "./tools/lib.js";
+
+const separator = "-";
+
 class GodownConfig {
   assign: null | Record<string, any> = null;
   prefix = "godown";
@@ -10,11 +14,7 @@ class GodownConfig {
   }
 
   tag(origin: string): string {
-    return [
-      this.prefix,
-      origin,
-      this.suffix,
-    ].filter(s => s).join("-");
+    return trimRight(this.prefix, separator) + separator + origin + separator + trimLeft(this.suffix, separator);
   }
 
   define(name: string, constructor: CustomElementConstructor, options?: ElementDefinitionOptions): void {
