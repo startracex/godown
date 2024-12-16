@@ -41,7 +41,7 @@ const darkStyles = constructCSSObject(
     white: [cssGlobalVars._colors.lightgray[2], cssGlobalVars._colors.darkgray[7]],
     black: [cssGlobalVars._colors.darkgray[8], cssGlobalVars._colors.lightgray[5]],
   },
-  () => `:host`,
+  () => ":host",
   (prop) => toVar(prop),
 );
 
@@ -64,7 +64,7 @@ const lightStyles = constructCSSObject(
     white: [cssGlobalVars._colors.lightgray[0], cssGlobalVars._colors.darkgray[0]],
     black: [cssGlobalVars._colors.darkgray[7], cssGlobalVars._colors.lightgray[3]],
   },
-  () => `:host`,
+  () => ":host",
   (prop) => toVar(prop),
 );
 

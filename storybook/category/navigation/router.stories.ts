@@ -1,5 +1,5 @@
 import { ArgHelper, stringArg } from "../../args";
-import { RendererMeta } from "../../types";
+import type { RendererMeta } from "../../types";
 import render from "./router";
 
 export default {

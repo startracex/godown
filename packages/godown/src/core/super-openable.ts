@@ -1,4 +1,4 @@
-import { type PropertyValueMap } from "lit";
+import type { PropertyValueMap } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "./global-style.js";

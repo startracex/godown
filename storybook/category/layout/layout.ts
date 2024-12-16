@@ -4,7 +4,7 @@ import "./layout.css";
 import { attr } from "@godown/element/directives/attr";
 import { html } from "lit";
 
-import { Godown } from "../../types";
+import type { Godown } from "../../types";
 
 export default (args: Pick<Godown.Layout, "noFooter" | "noHeader" | "sticky">) => {
   return html`

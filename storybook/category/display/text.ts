@@ -3,7 +3,7 @@ import "godown/text.js";
 import { attr } from "@godown/element/directives/attr";
 import { html } from "lit";
 
-import { Godown } from "../../types";
+import type { Godown } from "../../types";
 
 export default (args: Pick<Godown.Text, "underline" | "clip">) => {
   return html`

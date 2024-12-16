@@ -164,7 +164,7 @@ class Carousel extends GlobalStyle {
   protected _doTranslateX(xValue: string, noTransition?: boolean): void {
     this._moveRoot.style.transform = `translateX(${xValue})`;
     if (noTransition) {
-      this._moveRoot.style.transition = `none`;
+      this._moveRoot.style.transition = "none";
     }
     this._moveRoot.getBoundingClientRect();
   }

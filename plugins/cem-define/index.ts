@@ -1,4 +1,4 @@
-import { type Plugin } from "@custom-elements-manifest/analyzer";
+import type { Plugin } from "@custom-elements-manifest/analyzer";
 
 import { analyzeJSDoc } from "./lib/jsdoc.js";
 import { analyzeModuleDeclaration } from "./lib/module-declaration.js";

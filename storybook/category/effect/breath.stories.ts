@@ -1,6 +1,7 @@
 import { ArgHelper } from "../../args";
-import { RendererMeta } from "../../types";
+import type { RendererMeta } from "../../types";
 import render from "./breath";
+// @ts-ignore
 import page from "./breath.mdx";
 
 export default {

@@ -1,4 +1,4 @@
-import { type InputType } from "@storybook/csf";
+import type { InputType } from "@storybook/csf";
 
 export const booleanArg = {
   control: { type: "boolean" },

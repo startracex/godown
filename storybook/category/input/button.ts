@@ -3,7 +3,7 @@ import "godown/button.js";
 import { attr } from "@godown/element/directives/attr";
 import { html } from "lit";
 
-import { Godown } from "../../types";
+import type { Godown } from "../../types";
 
 export default (args: Pick<Godown.Button, "color" | "disabled" | "round" | "ghost" | "content" | "disabled">) => {
   return html`

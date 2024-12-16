@@ -3,7 +3,7 @@ import "godown/range.js";
 import { attr } from "@godown/element/directives/attr";
 import { html } from "lit";
 
-import { Godown } from "../../types";
+import type { Godown } from "../../types";
 
 export default (args: Pick<Godown.Range, "vertical" | "value" | "name" | "max" | "min" | "step" | "disabled">) => {
   const excludeValue = { ...args, value: undefined };

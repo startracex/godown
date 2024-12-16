@@ -2,7 +2,7 @@ import { godown } from "@godown/element/decorators/godown.js";
 import { styles } from "@godown/element/decorators/styles.js";
 import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { EventListenerFunc } from "@godown/element/tools/events.js";
+import type { EventListenerFunc } from "@godown/element/tools/events.js";
 import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 

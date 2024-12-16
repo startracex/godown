@@ -4,7 +4,7 @@ import { attr } from "@godown/element/directives/attr";
 import { html } from "lit";
 import { createRef, ref } from "lit/directives/ref.js";
 
-import { Godown } from "../../types";
+import type { Godown } from "../../types";
 
 export default (args: Pick<Godown.Dialog, "open">) => {
   const dialogRef = createRef<HTMLElement & { open: boolean; }>();

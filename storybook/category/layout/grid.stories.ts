@@ -1,5 +1,5 @@
 import { ArgHelper } from "../../args";
-import { RendererMeta } from "../../types";
+import type { RendererMeta } from "../../types";
 import render from "./grid";
 
 export default {

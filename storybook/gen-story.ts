@@ -14,7 +14,7 @@ const camel = (str: string) => {
 };
 
 const formatStories = (category: CategoryType, name: string) => {
-  return `import { RendererMeta } from "../../types";
+  return `import type { RendererMeta } from "../../types";
 import render from "./${name}";
 
 export default {
@@ -38,7 +38,7 @@ const formatRender = (name: string) => {
 import { attr } from "@godown/element/directives/attr";
 import { html } from "lit";
 
-import { Godown } from "../../types";
+import type { Godown } from "../../types";
 
 export default (args: Godown.${camel(name)}) => {
   return html\`

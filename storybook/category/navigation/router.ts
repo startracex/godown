@@ -3,7 +3,7 @@ import "godown/router.js";
 import { attr } from "@godown/element/directives/attr";
 import { html } from "lit";
 
-import { Godown } from "../../types";
+import type { Godown } from "../../types";
 
 export default (args: Pick<Godown.Router, "baseURL" | "pathname" | "type">) => {
   return html`

@@ -1,5 +1,5 @@
 import { booleanArg, stringArg } from "../../args";
-import { RendererMeta } from "../../types";
+import type { RendererMeta } from "../../types";
 import render from "./details";
 
 export default {

@@ -1,4 +1,4 @@
-import { HandlerEvent } from "@godown/element";
+import type { HandlerEvent } from "@godown/element";
 import { godown } from "@godown/element/decorators/godown.js";
 import { part } from "@godown/element/decorators/part.js";
 import { styles } from "@godown/element/decorators/styles.js";

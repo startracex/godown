@@ -246,7 +246,7 @@ class Range extends SuperInput {
       @blur="${this.disabled ? null : this.blurHandle}"
       style="z-index:${this._focusStack.indexOf(index) + 1};--handle:var(--${
       /* In single-handle mod or end, it is max value */
-      (!range && end) ? `to` : `handle-${index}`})"
+      (!range && end) ? "to" : `handle-${index}`})"
       ></i>
       `;
   }

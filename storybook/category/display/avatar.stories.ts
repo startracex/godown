@@ -1,6 +1,6 @@
 import { ArgHelper, booleanArg, stringArg } from "../../args";
 import { matrixToBase64, stringToMatrix } from "../../hex-image";
-import { RendererMeta } from "../../types";
+import type { RendererMeta } from "../../types";
 import render from "./avatar";
 
 export default {

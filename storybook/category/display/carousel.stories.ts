@@ -1,7 +1,7 @@
 import { render } from "lit";
 
 import { numberArg } from "../../args";
-import { RendererMeta } from "../../types";
+import type { RendererMeta } from "../../types";
 import { carousel } from "./carousel";
 
 export default {

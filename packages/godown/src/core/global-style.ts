@@ -4,7 +4,7 @@ import GodownElement from "@godown/element";
 import GodownConfig from "@godown/element/config.js";
 import { joinProperties } from "@godown/element/tools/css.js";
 import { trim } from "@godown/element/tools/lib.js";
-import { css, CSSResult, unsafeCSS } from "lit";
+import { css, type CSSResult, unsafeCSS } from "lit";
 
 GodownElement.godownConfig ||= new GodownConfig();
 
@@ -18,7 +18,7 @@ export function scopePrefix(scope: string, len = 1): CSSResult {
 }
 
 export function variablePrefix(variable: string): CSSResult {
-  return unsafeCSS("--" + variable);
+  return unsafeCSS(`--${variable}`);
 }
 
 export const cssGlobalVars: {

@@ -4,7 +4,7 @@ import { attr } from "@godown/element/directives/attr.js";
 import { classList } from "@godown/element/directives/class-list.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { random } from "@godown/element/tools/lib.js";
-import { css, html, type PropertyValueMap, TemplateResult } from "lit";
+import { css, html, type PropertyValueMap, type TemplateResult } from "lit";
 import { property, query, state } from "lit/decorators.js";
 
 import { GlobalStyle, scopePrefix } from "../core/global-style.js";

@@ -5,7 +5,7 @@ import { attr } from "@godown/element/directives/attr.js";
 import { htmlSlot } from "@godown/element/directives/html-slot.js";
 import { htmlStyle } from "@godown/element/directives/html-style.js";
 import { constructCSSObject, toVar } from "@godown/element/tools/css.js";
-import { css, html, TemplateResult } from "lit";
+import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
@@ -76,7 +76,7 @@ const colors: Record<Colors, string> = constructCSSObject(
       cssGlobalVars._colors.teal[4], // gradients
     ],
   },
-  () => `:host`,
+  () => ":host",
   (prop) => toVar(prop),
 );
 

@@ -3,7 +3,7 @@ import "godown/card.js";
 import { attr } from "@godown/element/directives/attr";
 import { html } from "lit";
 
-import { Godown } from "../../types";
+import type { Godown } from "../../types";
 
 export default (args: Pick<Godown.Card, "footer" | "header">) => {
   return html`

@@ -1,5 +1,5 @@
 import { ArgHelper, booleanArg } from "../../args";
-import { RendererMeta } from "../../types";
+import type { RendererMeta } from "../../types";
 import render from "./button";
 
 export default {

@@ -1,4 +1,4 @@
-import { type Plugin, type SourceMapInput } from "rollup";
+import type { Plugin, SourceMapInput } from "rollup";
 
 export interface ReplaceParams {
   search?: string | RegExp | { [Symbol.replace](string: string, replaceValue: string): string; };
