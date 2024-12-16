@@ -231,6 +231,10 @@ class GodownElement extends LitElement {
     }
     return stack.length - 1;
   }
+
+  dispatchCustomEvent(type: string, detail?: any, options?: EventInit): void {
+    this.dispatchEvent(new CustomEvent(type, { detail, composed: true, ...options }));
+  }
 }
 
 export { GodownElement, GodownElement as default };
