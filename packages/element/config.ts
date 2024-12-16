@@ -1,5 +1,4 @@
 class GodownConfig {
-  protected reflect = false;
   assign: null | Record<string, any> = null;
   prefix = "godown";
   suffix = "";
