@@ -1,5 +1,6 @@
 export { default as Alert } from "./alert.js";
 export { default as Avatar } from "./avatar.js";
+export { default as Badge } from "./badge.js";
 export { default as Breath } from "./breath.js";
 export { default as Button } from "./button.js";
 export { default as Card } from "./card.js";
