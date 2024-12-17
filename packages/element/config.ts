@@ -1,4 +1,4 @@
-import { trimLeft, trimRight } from "./tools/lib.js";
+import { trim, trimLeft, trimRight } from "./tools/lib.js";
 
 const separator = "-";
 
@@ -14,7 +14,10 @@ class GodownConfig {
   }
 
   tag(origin: string): string {
-    return trimRight(this.prefix, separator) + separator + origin + separator + trimLeft(this.suffix, separator);
+    return trim(
+      trimRight(this.prefix, separator) + separator + origin + separator + trimLeft(this.suffix, separator),
+      "-",
+    );
   }
 
   define(name: string, constructor: CustomElementConstructor, options?: ElementDefinitionOptions): void {
