@@ -134,7 +134,6 @@ const colors: Record<Colors, string> = constructCSSObject(
         var(${cssScope}--gradients, var(${cssScope}--background))
       );
       border-radius: 0.3em;
-      width: -moz-fit-content;
       width: fit-content;
       transition: 0.1s;
       display: block;
