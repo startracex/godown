@@ -270,10 +270,9 @@ class Button extends GlobalStyle {
 
   protected _handleModal(e: MouseEvent): void {
     const modal = document.createElement("i");
-    const rect = this.getBoundingClientRect();
-    const h = rect.height;
-    const w = rect.width;
-    const size = `${Math.sqrt(h * h + w * w) * 2}px`;
+    const rect = this._root.getBoundingClientRect();
+    const { height, width } = rect;
+    const size = `${Math.sqrt(height * height + width * width) * 2}px`;
     modal.style.height = size;
     modal.style.width = size;
     modal.style.left = `${e.clientX - rect.left}px`;
