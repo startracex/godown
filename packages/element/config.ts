@@ -16,7 +16,7 @@ class GodownConfig {
   tag(origin: string): string {
     return trim(
       trimRight(this.prefix, separator) + separator + origin + separator + trimLeft(this.suffix, separator),
-      "-",
+      separator,
     );
   }
 
