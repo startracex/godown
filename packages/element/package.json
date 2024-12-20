@@ -3,7 +3,7 @@
   "version": "0.3.1",
   "description": "Component base class for godown",
   "type": "module",
-  "main": "element.js",
+  "main": "index.js",
   "scripts": {
     "check-types": "tsc --noEmit",
     "clean": "tsc --build --clean",
