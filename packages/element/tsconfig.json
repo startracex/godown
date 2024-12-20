@@ -2,9 +2,11 @@
   "extends": "@godown/tsconfig/base.json",
   "compilerOptions": {
     "isolatedDeclarations": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "outDir": "."
   },
   "include": [
-    "**/*.ts"
-  ]
+    "src/**/*.ts"
+  ],
+  "exclude": []
 }
