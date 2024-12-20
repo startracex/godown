@@ -12,6 +12,8 @@ type Rejection = null | false;
 /**
  * Decorator adds an aliased property to the class.
  *
+ * Stage 2 only.
+ *
  * @param aliasForKey A key of the class to be aliased.
  * @param descriptor Property descriptor.
  */
@@ -22,7 +24,7 @@ export const alias = <T, K extends keyof T, P extends keyof T>(
     set?: Rejection | ((this: Omit<T, K>, value: T[K]) => void);
   } & Omit<PropertyDescriptor, "get" | "set"> = {},
 ) =>
-(constructor: T, propertyKey: P): void => {
+(proto: T, propertyKey: P): void => {
   const defaultGet = function (this: any) {
     return this[propertyKey];
   };
@@ -36,7 +38,7 @@ export const alias = <T, K extends keyof T, P extends keyof T>(
   const resolveSet = resolve(set, defaultSet);
   const resolveGet = resolve(get, defaultGet);
 
-  Object.defineProperty(constructor, aliasForKey, {
+  Object.defineProperty(proto, aliasForKey, {
     ...(
       allowAccessors && resolveGet
         ? { get: resolveGet }
