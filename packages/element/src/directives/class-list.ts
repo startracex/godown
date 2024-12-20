@@ -20,3 +20,5 @@ export const classList = (...args: (string | string[] | Record<string, any>)[]):
 export const clean = (str: string): string => {
   return [...new Set(str.split(/\s+/))].join(" ");
 };
+
+export default classList;

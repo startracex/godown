@@ -18,3 +18,5 @@ export const htmlStyle = (style?: string | Record<string, any>, media?: string):
     ? html`<style media="${ifDefined(media)}">${styleString}</style>`
     : nothing;
 };
+
+export default htmlStyle;

@@ -52,3 +52,5 @@ export const alias = <T, K extends keyof T, P extends keyof T>(
     ...descriptor,
   });
 };
+
+export default alias;

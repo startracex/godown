@@ -22,3 +22,5 @@ export interface IconRenderer<A = IconAttributesParams> {
   body: TemplateResult<2>;
   viewBox: string;
 }
+
+export default icon;

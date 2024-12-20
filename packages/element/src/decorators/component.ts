@@ -38,3 +38,5 @@ export const component = ({
     registry.define(tagName, constructor);
   }
 };
+
+export default component;
