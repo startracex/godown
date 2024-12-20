@@ -228,3 +228,4 @@ class Split extends SuperInput {
 }
 
 export default Split;
+export { Split };
