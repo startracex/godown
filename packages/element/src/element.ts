@@ -74,7 +74,21 @@ class GodownElement extends LitElement {
     return this._slottedAll.map((c) => c.getAttribute("slot")).filter((v) => v);
   }
 
+  /**
+   * Events storage for the element.
+   *
+   * @example
+   * ```ts
+   * const handleClick = this.events.add("click", () => {});
+   * this.events.remove("click", handleClick);
+   * this.events.removeAll();
+   * ```
+   */
   events: Events;
+
+  /**
+   * Assigns properties to the element when the element is constructed.
+   */
   assign: void | Record<string, any>;
 
   /**
