@@ -1,9 +1,4 @@
-import { godown } from "@godown/element/decorators/godown.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { attr } from "@godown/element/directives/attr.js";
-import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { htmlStyle } from "@godown/element/directives/html-style.js";
-import { constructCSSObject, toVar } from "@godown/element/tools/css.js";
+import { attr, constructCSSObject, godown, htmlSlot, htmlStyle, styles, toVar } from "@godown/element";
 import iconCheckAltCircle from "@godown/f7-icon/icons/checkmark-alt-circle.js";
 import iconExclamationCircle from "@godown/f7-icon/icons/exclamationmark-circle.js";
 import iconInfoCircle from "@godown/f7-icon/icons/info-circle.js";

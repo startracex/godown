@@ -5,8 +5,7 @@ Component base class for godown.
 ## Usage
 
 ```js
-import GodownElement from "@godown/element";
-import component from "@godown/element/decorators/component.js";
+import { GodownElement, component } from "@godown/element";
 
 @component({
   tagName: "my-element",
@@ -23,11 +22,8 @@ class MyElement extents GodownElement {
 
 ## With config.
 
-```js
-import GodownElement from "@godown/element";
-import GodownConfig from "@godown/element/config.js";
-import godown from "@godown/element/decorators/godown.js";
-import styles from "@godown/element/decorators/styles.js";
+```ts
+import { GodownElement, GodownConfig, godown, styles } from "@godown/element";
 
 @godown("element")
 @styles(/* ...styles */)

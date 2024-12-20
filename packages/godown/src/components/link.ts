@@ -1,4 +1,4 @@
-import { godown } from "@godown/element/decorators/godown.js";
+import { godown } from "@godown/element";
 import { property } from "lit/decorators.js";
 
 import SuperAnchor from "../core/super-anchor.js";

@@ -1,9 +1,4 @@
-import { godown } from "@godown/element/decorators/godown.js";
-import { part } from "@godown/element/decorators/part.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { attr } from "@godown/element/directives/attr.js";
-import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { htmlStyle } from "@godown/element/directives/html-style.js";
+import { attr, godown, htmlSlot, htmlStyle, part, styles } from "@godown/element";
 import iconChevronLeft from "@godown/f7-icon/icons/chevron-left.js";
 import iconChevronRight from "@godown/f7-icon/icons/chevron-right.js";
 import { css, html, type TemplateResult } from "lit";

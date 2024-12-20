@@ -1,10 +1,4 @@
-import { godown } from "@godown/element/decorators/godown.js";
-import { part } from "@godown/element/decorators/part.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { attr } from "@godown/element/directives/attr.js";
-import { classList } from "@godown/element/directives/class-list.js";
-import { joinProperties } from "@godown/element/tools/css.js";
-import { isNil } from "@godown/element/tools/lib.js";
+import { attr, classList, godown, isNil, joinProperties, part, styles } from "@godown/element";
 import { css, html, type TemplateResult } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 

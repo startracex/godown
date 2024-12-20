@@ -1,10 +1,4 @@
-import { godown } from "@godown/element/decorators/godown.js";
-import { part } from "@godown/element/decorators/part.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { attr } from "@godown/element/directives/attr.js";
-import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { htmlStyle } from "@godown/element/directives/html-style.js";
-import { constructCSSObject, toVar } from "@godown/element/tools/css.js";
+import { attr, constructCSSObject, godown, htmlSlot, htmlStyle, part, styles, toVar } from "@godown/element";
 import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 

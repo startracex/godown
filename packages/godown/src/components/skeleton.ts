@@ -1,7 +1,4 @@
-import { godown } from "@godown/element/decorators/godown.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { attr } from "@godown/element/directives/attr.js";
-import { htmlSlot } from "@godown/element/directives/html-slot.js";
+import { attr, godown, htmlSlot, styles } from "@godown/element";
 import iconPhoto from "@godown/f7-icon/icons/photo.js";
 import { css, html, type TemplateResult } from "lit";
 import { property, state } from "lit/decorators.js";

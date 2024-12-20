@@ -1,7 +1,4 @@
-import { godown } from "@godown/element/decorators/godown.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { htmlSlot } from "@godown/element/directives/html-slot.js";
-import { RouteTree } from "@godown/element/tools/route-tree.js";
+import { godown, htmlSlot, RouteTree, styles } from "@godown/element";
 import { css, type PropertyValueMap, type TemplateResult } from "lit";
 import { property, state } from "lit/decorators.js";
 

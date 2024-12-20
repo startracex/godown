@@ -1,9 +1,4 @@
-import type { HandlerEvent } from "@godown/element";
-import { godown } from "@godown/element/decorators/godown.js";
-import { part } from "@godown/element/decorators/part.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { attr } from "@godown/element/directives/attr.js";
-import { htmlSlot } from "@godown/element/directives/html-slot.js";
+import { attr, godown, type HandlerEvent, htmlSlot, part, styles } from "@godown/element";
 import svgCaretDown from "@godown/f7-icon/icons/chevron-down.js";
 import { css, html, nothing, type TemplateResult } from "lit";
 import { property, state } from "lit/decorators.js";

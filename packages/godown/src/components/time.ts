@@ -1,6 +1,4 @@
-import { godown } from "@godown/element/decorators/godown.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { attr } from "@godown/element/directives/attr.js";
+import { attr, godown, styles } from "@godown/element";
 import fmtime from "fmtime";
 import { css, html, type PropertyValues, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";

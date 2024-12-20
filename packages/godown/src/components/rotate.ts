@@ -1,7 +1,4 @@
-import { godown } from "@godown/element/decorators/godown.js";
-import { part } from "@godown/element/decorators/part.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { htmlSlot } from "@godown/element/directives/html-slot.js";
+import { godown, htmlSlot, part, styles } from "@godown/element";
 import { css, html, type TemplateResult } from "lit";
 
 import { GlobalStyle, scopePrefix } from "../core/global-style.js";

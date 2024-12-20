@@ -1,8 +1,4 @@
-import { godown } from "@godown/element/decorators/godown.js";
-import { part } from "@godown/element/decorators/part.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { attr } from "@godown/element/directives/attr.js";
-import { classList } from "@godown/element/directives/class-list.js";
+import { attr, classList, godown, part, styles } from "@godown/element";
 import { css, html, nothing, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 

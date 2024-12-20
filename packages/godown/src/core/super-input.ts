@@ -1,7 +1,4 @@
-import { part } from "@godown/element/decorators/part.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { htmlSlot } from "@godown/element/directives/index.js";
-import type { HandlerEvent } from "@godown/element/element.js";
+import { type HandlerEvent, htmlSlot, part, styles } from "@godown/element";
 import iconEyeSlashFill from "@godown/f7-icon/icons/eye-slash-fill.js";
 import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";

@@ -1,8 +1,4 @@
-import type { HandlerEvent } from "@godown/element";
-import { godown } from "@godown/element/decorators/godown.js";
-import { styles } from "@godown/element/decorators/styles.js";
-import { attr } from "@godown/element/directives/attr.js";
-import { htmlSlot } from "@godown/element/directives/html-slot.js";
+import { attr, godown, type HandlerEvent, htmlSlot, styles } from "@godown/element";
 import { css, html, type PropertyValues, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 

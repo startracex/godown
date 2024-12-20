@@ -1,5 +1,4 @@
-import { godown, styles } from "@godown/element/decorators/index.js";
-import { attr } from "@godown/element/directives/attr.js";
+import { attr, godown, styles } from "@godown/element";
 import { css, html, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
