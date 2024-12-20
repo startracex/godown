@@ -1,18 +1,27 @@
 export type EventMap = WindowEventMap & DocumentEventMap;
 export type EventNames = keyof EventMap;
 export type EventHandler = GlobalEventHandlersEventMap[keyof GlobalEventHandlersEventMap];
-export type EventListenerFunc = EventListenerOrEventListenerObject;
+export type EventListenerFunc<T = HTMLElement, E = Event> =
+  | EventListenerOrEventListenerObject
+  | ((e: HandlerEvent<T, E>, ...args: any[]) => any);
 export type EventAddOptions = boolean | AddEventListenerOptions;
+
+export type HandlerEvent<T = HTMLElement, E = Event> = E & {
+  target: T;
+} & Record<string, any>;
 
 export class Events {
   private m = new Map<EventNames, Map<EventTarget, Set<EventListenerFunc>>>();
 
-  add<E extends EventTarget = HTMLElement>(
-    src: E,
+  add<
+    T extends EventTarget = HTMLElement,
+    F extends EventListenerFunc<T> = EventListenerFunc<T>,
+  >(
+    src: T,
     type: EventNames,
-    listener: EventListenerFunc,
+    listener: F,
     options?: EventAddOptions,
-  ): EventListenerOrEventListenerObject {
+  ): F {
     const eType = this.m.get(type) || new Map<any, Set<EventListenerFunc>>();
     const eElem = eType.get(src) || new Set<EventListenerFunc>();
 

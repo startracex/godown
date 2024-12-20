@@ -238,10 +238,3 @@ class GodownElement extends LitElement {
 }
 
 export { GodownElement, GodownElement as default };
-
-export type HandlerEvent<T = HTMLElement, E = Event> =
-  & E
-  & {
-    target: T;
-  }
-  & Record<string, any>;
