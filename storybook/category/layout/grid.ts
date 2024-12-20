@@ -1,11 +1,8 @@
-import "godown/grid.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Grid } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Grid, "rows" | "columns" | "content" | "items" | "gap">) =>
+export default (args: Pick<Grid, "rows" | "columns" | "content" | "items" | "gap">) =>
   html`
 <godown-grid ${attr(args)}>
 

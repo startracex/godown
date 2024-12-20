@@ -1,10 +1,7 @@
-import "godown/typewriter.js";
-
-import { attr } from "@godown/element/directives";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Typewriter } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Typewriter, "text" | "delay">) => {
+export default (args: Pick<Typewriter, "text" | "delay">) => {
   return html`<godown-typewriter ${attr(args)}></godown-typewriter>`;
 };

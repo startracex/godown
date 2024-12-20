@@ -1,11 +1,8 @@
-import "godown/router.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Router } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Router, "baseURL" | "pathname" | "type">) => {
+export default (args: Pick<Router, "pathname" | "type">) => {
   return html`
   Current pathname: ${args.pathname}
 <godown-router ${attr(args)}>

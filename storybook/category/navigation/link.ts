@@ -1,12 +1,8 @@
-import "godown/link.js";
-import "godown/router.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Link } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Link, "href" | "type">) => {
+export default (args: Pick<Link, "href" | "type">) => {
   return html`
 <godown-link ${attr(args)}>Go to ${args.href}</godown-link>
 ${

@@ -1,11 +1,8 @@
-import "godown/switch.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Switch } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Switch, "checked" | "disabled" | "round">) => {
+export default (args: Pick<Switch, "checked" | "disabled" | "round">) => {
   return html`
 <godown-switch ${attr(args)}></godown-switch>
   `;

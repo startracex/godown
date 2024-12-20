@@ -1,11 +1,8 @@
-import "godown/alert.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Alert } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Alert, "color" | "call" | "title" | "variant">) => {
+export default (args: Pick<Alert, "color" | "call" | "title" | "variant">) => {
   return html`<godown-alert ${attr(args)}>
   Alert content
 </godown-alert>`;

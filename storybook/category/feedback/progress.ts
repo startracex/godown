@@ -1,10 +1,7 @@
-import "godown/progress.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Progress } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Progress, "value" | "max" | "min">) => {
+export default (args: Pick<Progress, "value" | "max" | "min">) => {
   return html`<godown-progress ${attr(args)}></godown-progress>`;
 };

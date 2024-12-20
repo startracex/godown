@@ -1,11 +1,8 @@
-import "godown/select.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Select } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Select, "direction" | "variant" | "multiple" | "disabled">) => {
+export default (args: Pick<Select, "direction" | "variant" | "multiple" | "disabled">) => {
   return html`
 <godown-select ${attr(args)} style="margin-${args.direction || "bottom"}: 8em;">
 

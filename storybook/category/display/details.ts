@@ -1,11 +1,8 @@
-import "godown/details.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Details } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Details, "open" | "summary">) => {
+export default (args: Pick<Details, "open" | "summary">) => {
   return html`
 <godown-details ${attr(args)}>
   <div>Details expanded</div>

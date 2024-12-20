@@ -35,7 +35,7 @@ export const Primary = {};
 const formatRender = (name: string) => {
   return `import "godown/${name}.js";
 
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
 import { html } from "lit";
 
 import type { Godown } from "../../types";

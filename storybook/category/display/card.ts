@@ -1,11 +1,8 @@
-import "godown/card.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Card } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Card, "footer" | "header">) => {
+export default (args: Pick<Card, "footer" | "header">) => {
   return html`
 <godown-card ${attr(args)}>
   <div slot="header">

@@ -1,11 +1,8 @@
-import "godown/carousel.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Carousel } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Carousel, "index" | "autoChange">) =>
+export default (args: Pick<Carousel, "index" | "autoChange">) =>
   html`
 <godown-carousel ${attr(args)}>
 

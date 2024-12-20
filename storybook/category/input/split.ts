@@ -1,11 +1,8 @@
-import "godown/split.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Split } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Split, "len" | "disabled">) => {
+export default (args: Pick<Split, "len" | "disabled">) => {
   return html`
 <godown-split ${attr(args)}></godown-split>
   `;

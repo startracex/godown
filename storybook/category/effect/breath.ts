@@ -1,11 +1,8 @@
-import "godown/breath.js";
-
-import { attr } from "@godown/element/directives/attr";
-import { omit } from "@godown/element/tools/lib";
+import { attr } from "@godown/element/directives/attr.js";
+import { omit } from "@godown/element/tools/lib.js";
+import type { Breath } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Breath, "text" | "duration">) => {
+export default (args: Pick<Breath, "text" | "duration">) => {
   return html`<godown-breath ${attr(omit(args, "text"))} .text=${args.text}></godown-breath>`;
 };

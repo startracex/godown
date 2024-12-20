@@ -1,11 +1,8 @@
-import "godown/flex.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Flex } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Flex, "content" | "items" | "gap" | "vertical">) =>
+export default (args: Pick<Flex, "content" | "items" | "gap" | "vertical">) =>
   html`
 <godown-flex ${attr(args)}>
 

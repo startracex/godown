@@ -1,11 +1,8 @@
-import "godown/tooltip.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Tooltip } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Tooltip, "tip" | "propagation" | "direction" | "align" | "type">) => {
+export default (args: Pick<Tooltip, "tip" | "propagation" | "direction" | "align" | "type">) => {
   return html`<godown-tooltip ${attr(args)}>
   ${args.type === "hover" ? "Hover" : "Click"} me
 </godown-tooltip>`;

@@ -1,12 +1,11 @@
 import "godown/layout.js";
 import "./layout.css";
 
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Layout } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Layout, "noFooter" | "noHeader" | "sticky">) => {
+export default (args: Pick<Layout, "noFooter" | "noHeader" | "sticky">) => {
   return html`
 <div class="container">
   <godown-layout ${attr(args)}>

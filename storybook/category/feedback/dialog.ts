@@ -1,12 +1,9 @@
-import "godown/dialog.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Dialog } from "godown";
 import { html } from "lit";
 import { createRef, ref } from "lit/directives/ref.js";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Dialog, "open">) => {
+export default (args: Pick<Dialog, "open">) => {
   const dialogRef = createRef<HTMLElement & { open: boolean; }>();
   return html`
   <div style="height:200px">

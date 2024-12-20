@@ -1,11 +1,8 @@
-import "godown/text.js";
-
-import { attr } from "@godown/element/directives/attr";
+import { attr } from "@godown/element/directives/attr.js";
+import type { Text } from "godown";
 import { html } from "lit";
 
-import type { Godown } from "../../types";
-
-export default (args: Pick<Godown.Text, "underline" | "clip">) => {
+export default (args: Pick<Text, "underline" | "clip">) => {
   return html`
 <godown-text ${attr(args)}>
   <div> Reason has always existed, but not always in a reasonable form. </div>
