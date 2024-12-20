@@ -29,7 +29,7 @@ class GodownConfig {
     return this.registry.get(name);
   }
 
-  getName(constructor: CustomElementConstructor): string {
+  getName(constructor: CustomElementConstructor): string | null {
     const { getName } = this.registry;
     if (getName) {
       return getName(constructor);
