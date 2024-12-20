@@ -23,7 +23,7 @@ export const random = (m = 0, n = 1): number => {
  * trimRight remove all characters from the right of a string that are present in a given string.
  */
 export const trimRight = (s: string, spec = " "): string => {
-  if (s === "" || spec === "") {
+  if (!s || !spec) {
     return s;
   }
   let end = s.length;
@@ -37,7 +37,7 @@ export const trimRight = (s: string, spec = " "): string => {
  * trimLeft remove all characters from the left of a string that are present in a given string.
  */
 export const trimLeft = (s: string, spec = " "): string => {
-  if (s === "" || spec === "") {
+  if (!s || !spec) {
     return s;
   }
   let start = 0;
