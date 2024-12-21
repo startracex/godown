@@ -1,0 +1,32 @@
+{
+  "name": "rollup-plugin-prune-imports",
+  "version": "0.0.0",
+  "description": "A Rollup plugin to prune module imports",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "fmt": "dprint fmt",
+    "lint": "eslint . --fix"
+  },
+  "keywords": [
+    "rollup",
+    "plugin",
+    "prune",
+    "import"
+  ],
+  "author": "startracex",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/startracex/godown.git",
+    "directory": "plugins/rollup-prune-import"
+  },
+  "dependencies": {
+    "@rollup/pluginutils": "^5.1.4",
+    "magic-string": "^0.30.12"
+  },
+  "files": [
+    "**/*.{js,d.ts}"
+  ]
+}
