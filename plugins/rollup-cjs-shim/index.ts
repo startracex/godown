@@ -41,7 +41,7 @@ function cjsReplace({
   generateSourceMap?: (code: string) => SourceMapInput;
 } = {}): Plugin {
   return {
-    name: "cjs-replace",
+    name: "cjs-shim",
     transform(code: string) {
       return {
         code: doReplace(code, replacements),
