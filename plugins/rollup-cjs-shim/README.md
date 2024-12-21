@@ -1,4 +1,21 @@
-es module to common js code helper
+# rollup-plugin-cjs-shim
+
+Rollup plugin to shim CJS modules.
+
+Shims:
+
+- Replaces `import.meta.url` to `__filename`
+- Replaces `import.meta.dirname` to `__dirname`
+- Removes `createRequire`
+- Removes `global = globalThis`
+
+## Installation
+
+```sh
+npm i -D rollup-plugin-cjs-shim
+```
+
+## Usage
 
 rollup.config.js
 
@@ -16,13 +33,9 @@ export default {
 };
 ```
 
-- `import.meta.filename` => \_\_filename
-- `import.meta.dirname` => \_\_dirname
-- `const/var/let require = createRequire(import.meta.url)` =>
-  - `import { createRequire } from "module"` =>
-- `const/var/let global = globalThis` =>
+## Example
 
-example input
+Input
 
 ```js
 import { createRequire } from "module";
@@ -30,11 +43,10 @@ export const filename = import.meta.filename;
 export const dirname = import.meta.dirname;
 
 const require = createRequire(import.meta.url);
-
 require("./package.json");
 ```
 
-output
+Output
 
 ```js
 "use strict";
@@ -48,7 +60,7 @@ exports.dirname = dirname;
 exports.filename = filename;
 ```
 
-add replacement
+## Custom Replacements
 
 ```js
 import cjsShim, { defaultReplacements } from "rollup-plugin-cjs-shim";
