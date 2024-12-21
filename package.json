@@ -17,10 +17,10 @@
     "version": "changeset version"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.10",
+    "@changesets/cli": "^2.27.11",
     "@godown/tsconfig": "workspace:*",
-    "@types/node": "^22.10.1",
-    "@types/react": "^18.3.14",
+    "@types/node": "^22.10.2",
+    "@types/react": "19.0.2",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "cem-plugin-define": "workspace:^",
@@ -32,12 +32,13 @@
     "postcss": "^8.4.49",
     "rollup": "catalog:",
     "rollup-plugin-cjs-shim": "workspace:^",
+    "rollup-plugin-prune-imports": "workspace:^",
     "rollup-plugin-template-replace": "workspace:^",
     "tsx": "^4.19.2",
     "turbo": "^2.3.3",
     "typescript": "^5.7.2",
     "typescript545": "npm:typescript@5.4.5",
-    "vite": "^6.0.3"
+    "vite": "^6.0.5"
   },
   "author": "startracex",
   "license": "MIT",
@@ -45,5 +46,5 @@
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@9.15.1"
 }
