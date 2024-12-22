@@ -1,7 +1,6 @@
 import { attr, htmlSlot, styles } from "@godown/element";
-import { css, html, type TemplateResult } from "lit";
+import { css, html, nothing, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
-import { ifDefined } from "lit/directives/if-defined.js";
 
 import { GlobalStyle } from "./global-style.js";
 
@@ -42,7 +41,7 @@ class SuperAnchor extends GlobalStyle {
     return html`<a
       part="root"
       ${attr(this.observedRecord)}
-      href="${ifDefined(this.href)}"
+      href="${this.href || nothing}"
       target="${this.target}"
       @click=${this._handleClick}
     >

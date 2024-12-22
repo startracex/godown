@@ -1,5 +1,4 @@
 import { html, nothing, type TemplateResult } from "lit";
-import { ifDefined } from "lit/directives/if-defined.js";
 
 import { joinRules } from "../tools/css.js";
 
@@ -15,7 +14,7 @@ export const htmlStyle = (style?: string | Record<string, any>, media?: string):
   }
   const styleString = typeof style === "string" ? style : joinRules(style);
   return styleString
-    ? html`<style media="${ifDefined(media)}">${styleString}</style>`
+    ? html`<style media="${media || nothing}">${styleString}</style>`
     : nothing;
 };
 

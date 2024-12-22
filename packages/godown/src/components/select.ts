@@ -2,7 +2,6 @@ import { attr, godown, type HandlerEvent, htmlSlot, part, styles } from "@godown
 import svgCaretDown from "@godown/f7-icon/icons/chevron-down.js";
 import { css, html, nothing, type TemplateResult } from "lit";
 import { property, state } from "lit/decorators.js";
-import { ifDefined } from "lit/directives/if-defined.js";
 
 import Input from "./input.js";
 
@@ -117,7 +116,7 @@ class Select extends Input {
       this._renderPrefix(),
       html`<input
           part="input"
-          dir="${ifDefined(this.dir)}"
+          dir="${this.dir || nothing}"
           id="${this.makeId}"
           .value="${this.text}"
           type="${this.type}"
