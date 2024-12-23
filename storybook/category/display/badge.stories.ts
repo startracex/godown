@@ -37,7 +37,7 @@ export const WithMax = {
 export const WithCustomColor = {
   args: {
     dot: true,
-    stylex: "--godown-badge--badge-background: lightgreen;",
+    stylex: "--godown-badge--background: lightgreen;",
   },
 };
 
