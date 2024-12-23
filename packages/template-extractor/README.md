@@ -36,16 +36,16 @@ ${`Template Span`}
     "tag": "",
     "type": "TemplateExpression",
     "kind": 228,
-    "text": "\n`\nTemplate \n${`Template Span`}\n`",
+    "text": "`\nTemplate \n${`Template Span`}\n`",
     "start": 0,
-    "end": 33,
+    "end": 32,
     "children": [
       {
         "type": "TemplateSpan",
         "kind": 239,
         "text": "`Template Span`",
-        "start": 15,
-        "end": 30
+        "start": 14,
+        "end": 29
       }
     ]
   },
@@ -54,15 +54,15 @@ ${`Template Span`}
     "type": "TaggedTemplateExpression",
     "kind": 228,
     "text": "`\nTagged Template\n${`Template Span`}\n`",
-    "start": 42,
-    "end": 80,
+    "start": 41,
+    "end": 79,
     "children": [
       {
         "type": "TemplateSpan",
         "kind": 239,
         "text": "`Template Span`",
-        "start": 62,
-        "end": 77
+        "start": 61,
+        "end": 76
       }
     ]
   }
