@@ -1,5 +1,15 @@
 # @godown/react
 
+## 3.0.0-canary.17
+
+### Patch Changes
+
+- bee9bda: optimize the create type
+- 6c1ef91: fix export naming
+- Updated dependencies [b784fc9]
+- Updated dependencies [1a4540c]
+  - godown@3.0.0-canary.17
+
 ## 3.0.0-canary.16
 
 ### Patch Changes

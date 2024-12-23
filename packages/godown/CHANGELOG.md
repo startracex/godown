@@ -1,5 +1,12 @@
 # godown
 
+## 3.0.0-canary.17
+
+### Minor Changes
+
+- b784fc9: add badge component
+- 1a4540c: add heading component
+
 ## 3.0.0-canary.16
 
 ### Minor Changes
