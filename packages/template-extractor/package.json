@@ -1,7 +1,7 @@
 {
   "name": "template-extractor",
-  "version": "0.0.0",
-  "description": "extract templates",
+  "version": "0.0.1",
+  "description": "Extract templates from TypeScript",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,8 @@
     "directory": "packages/template-extractor"
   },
   "keywords": [
+    "typescript",
+    "extract",
     "template"
   ],
   "author": "startracex",
