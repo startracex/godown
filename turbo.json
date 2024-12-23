@@ -10,7 +10,8 @@
         "^build"
       ],
       "outputs": [
-        "**/*.js"
+        "**/*.js",
+        "**/*.d.ts"
       ]
     },
     "check-types": {},
