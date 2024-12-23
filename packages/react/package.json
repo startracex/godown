@@ -37,6 +37,6 @@
     "access": "public"
   },
   "files": [
-    "*.{js,d.ts}"
+    "**/*.{js,d.ts}"
   ]
 }
