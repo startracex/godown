@@ -1,4 +1,4 @@
-import { type InputOptions, type OutputOptions, rollup, type RollupOptions, RollupOutput } from "rollup";
+import { type InputOptions, type OutputOptions, rollup } from "rollup";
 
 export const commonInput: Pick<InputOptions, "external" | "onwarn"> = {
   external: ["@", "lit", "tslib", "fmtime"].map((s) => new RegExp(`^${s}`)),
