@@ -18,7 +18,7 @@ function pruneImports(options: {
   const entryFilter = createFilter(options.prune?.include, options.prune?.exclude);
   const skip = new Set();
   return {
-    name: "prune-import",
+    name: "prune-imports",
     transform(code, id) {
       // filter for include
       if (filter(id)) {
