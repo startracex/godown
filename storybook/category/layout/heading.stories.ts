@@ -23,7 +23,6 @@ export default {
     as: "h1",
     anchor: "#",
     side: "left",
-    stylex: "margin: 24px;",
   },
 } as RendererMeta<typeof render>;
 
