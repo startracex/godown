@@ -41,7 +41,7 @@ export const WithCustomColor = {
   },
 };
 
-export const WithAvatar = {
+export const WithOffset = {
   args: {
     dot: true,
     stylex: "--godown-badge--offset: 12.5%;",
