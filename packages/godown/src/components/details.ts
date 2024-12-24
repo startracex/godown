@@ -39,6 +39,7 @@ const cssScope = scopePrefix(protoName);
     }
 
     [part=title] {
+      direction: ltr;
       height: 100%;
       display: flex;
       flex-wrap: nowrap;
