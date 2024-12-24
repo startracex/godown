@@ -1,5 +1,19 @@
 # godown
 
+## 3.0.0-canary.18
+
+### Minor Changes
+
+- d067545: add side property for heading
+
+### Patch Changes
+
+- 8953fc1: remove href if heading has no id
+- 65373bb: remove unused properties for typewriter
+- ef638ee: set user-select of badge to none
+- 34ecc65: fix badge offset to use percentage
+- 5a6ffac: set title part dir of details to ltr
+
 ## 3.0.0-canary.17
 
 ### Minor Changes
