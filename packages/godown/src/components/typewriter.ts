@@ -1,4 +1,4 @@
-import { attr, classList, godown, htmlSlot, random, styles } from "@godown/element";
+import { attr, godown, htmlSlot, random, styles } from "@godown/element";
 import { css, html, type PropertyValueMap, type TemplateResult } from "lit";
 import { property, query, state } from "lit/decorators.js";
 
@@ -20,7 +20,7 @@ const cssScope = scopePrefix(protoName);
     }
 
     :host,
-    :host([contents]) [part=root] {
+    :host([contents]) [part="root"] {
       display: inline-block;
     }
 
@@ -42,10 +42,6 @@ const cssScope = scopePrefix(protoName);
     slot {
       display: none;
     }
-
-    .hidden {
-      visibility: hidden;
-    }
   `,
 )
 class Typewriter extends GlobalStyle {
@@ -53,13 +49,7 @@ class Typewriter extends GlobalStyle {
    * Raw text.
    */
   @property()
-  text = "";
-
-  /**
-   * Start immediately after {@linkcode Typewriter.firstUpdated}.
-   */
-  @property({ type: Boolean })
-  stopped = false;
+  content = "";
 
   /**
    * If true, hide the cursor
@@ -91,11 +81,8 @@ class Typewriter extends GlobalStyle {
   @property({ type: Number })
   index = 0;
 
-  /**
-   * Internal text.
-   */
   @state()
-  content = "";
+  contentInternal = "";
 
   protected timeoutID: number;
 
@@ -103,37 +90,34 @@ class Typewriter extends GlobalStyle {
   protected _i: HTMLElement;
 
   /**
-   * {@linkcode Typewriter.text} length.
+   * {@linkcode Typewriter.content} length.
    */
   get len(): number {
-    return this.text.length;
+    return this.content.length;
   }
 
   protected render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)}>
-      ${htmlSlot()}
-      ${this.content}
-      <i part="cursor" class="${classList({ hidden: this.ended })}"></i>
+      ${htmlSlot()} ${this.contentInternal}
+      <i part="cursor" ?hidden="${this.ended}"></i>
     </div>`;
   }
 
   protected firstUpdated(): void {
-    if (!this.text) {
-      this.text = this._slot?.assignedNodes()[0]?.textContent.trim() || "";
-    }
-    if (!this.stopped && this.len) {
+    this.content ||= this._slot?.assignedNodes()[0]?.textContent.trim() || "";
+    if (!this.ended && this.len) {
       this.write();
     }
   }
 
   protected updated(changedProperties: PropertyValueMap<this>): void {
     if (changedProperties.has("index")) {
-      this.dispatchEvent(new CustomEvent(this.index === this.len ? "done" : "write", { detail: this.content }));
+      this.dispatchEvent(new CustomEvent(this.index === this.len ? "done" : "write", { detail: this.contentInternal }));
     }
   }
 
   write(at: number = this.index): void {
-    this.content = this.text.slice(0, at + 1);
+    this.contentInternal = this.content.slice(0, at + 1);
     const timeout = this.delay || random(this.max, this.min);
     this.timeoutID = setTimeout(() => {
       const nx = at + 1;
