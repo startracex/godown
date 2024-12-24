@@ -1,5 +1,3 @@
-import "./manifest";
-
 import { globSync } from "glob";
 import postcss from "postcss";
 import templateReplace from "rollup-plugin-template-replace";
@@ -41,5 +39,10 @@ await build(
   {
     ...commonOutput,
     dir,
+  },
+).then(
+  () => {
+    import("./manifest");
+    import("./build_cdn.ts");
   },
 );
