@@ -92,12 +92,13 @@ class Badge extends GlobalStyle {
   }
 
   render(): TemplateResult<1> {
-    if (this.value === 0 && !this.dot) {
-      return htmlSlot();
-    }
     return html`<div part="root" ${attr(this.observedRecord)}>
       ${htmlSlot()}
-      <div part="badge">${this.dot ? "" : this.formatValue(this.value)}</div>
+      ${
+      this.value || this.dot
+        ? html`<div part="badge">${this.dot ? "" : this.formatValue(this.value)}</div>`
+        : ""
+    }
     </div>`;
   }
 }
