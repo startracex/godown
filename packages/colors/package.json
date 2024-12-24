@@ -1,6 +1,6 @@
 {
   "name": "@godown/colors",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Color gradients for godown",
   "type": "module",
   "main": "presets.js",

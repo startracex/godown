@@ -1,5 +1,75 @@
 # godown
 
+## 3.0.0
+
+### Major Changes
+
+- 13804c2: updated components
+
+### Minor Changes
+
+- b784fc9: add badge component
+- 362231c: add event dispatch
+- 67268b6: field routing can accept render function
+- 1a4540c: add heading component
+- 7538ea8: basic support for contents
+- d067545: add side property for heading
+- 8904374: remove reassignment of GodownElement.godownConfig
+
+### Patch Changes
+
+- d14cb08: tooltip.propagation defaults to false
+- 796104a: add missing release files
+- 949c0a9: update render for split
+- 9f3e8b1: update styles for switch
+- c7b74e5: remove default tip background for tooltip
+- 405a9d2: update styles for button
+- 8953fc1: remove href if heading has no id
+- 9b96bd3: boolean field defaults to false
+- 047a8d2: fix target error of the event listener for select
+- a1ce927: remove baseURL for router
+- 65373bb: remove unused properties for typewriter
+- f258a33: support multi character input for split
+- 6ca93fc: add type property for tooltip
+- 999e5d6: fix dialog event remove error
+- baedbde: refactor RouteTree access modifiers and methods
+- 85adb54: use fmtime instead of Time.fmt
+- e17d9b2: call super in the focus and blur
+- 4b8f146: card always display border
+- 6f7d068: remove range.swap, fix range.toSorted
+- aff58ec: fix styles, computeStyle for breath
+- ef638ee: set user-select of badge to none
+- 37045dd: fix ignoring null values when obtaining pattern
+- f6766a6: remove typewriter font-family
+- 7251d5f: fix text checking for select
+- 12d8d10: add suppress property for link
+- 2683a8b: pathname of router defaults to undefined
+- 6acf567: update components styles
+- b5acc29: update styles
+- 89ccdd0: update alert
+- 674cfbd: fix styles for range, split, switch
+- 74b25d4: using padding instead of space placeholders in the inputs
+- 34ecc65: fix badge offset to use percentage
+- be33b22: add multi-handle control and keyboard support for range
+- bf94fa2: listen popstate for router
+- 539fd1f: fx tag name error in the declaration
+- 43d9bb2: unify the styling models of alert and button
+- a0db037: reset interval during switching in carousel
+- a9137cf: Router.path should be undefined instead of null when there is a mismatch
+- 5a6ffac: set title part dir of details to ltr
+- 2d924be: update button render result part from "slot" to "content"
+- 12c6a95: update styles of range
+- 1af48c7: remove legacy properties
+- c256594: time.timeout, time.gap defaults to undefined
+- 2bfdaf9: rename text to content for button
+- 4125ddb: alert color defaults to blue
+- 0452da3: z-index of the handle of range will be in ascending order according to the operation sequence
+- eb66e63: rename Breath.computeStyle to \_computeStyle
+- Updated dependencies [aedcd0f]
+  - @godown/element@1.0.0
+  - @godown/colors@1.0.0
+  - @godown/f7-icon@1.0.0
+
 ## 3.0.0-canary.18
 
 ### Minor Changes
