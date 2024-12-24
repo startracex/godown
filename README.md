@@ -1,8 +1,15 @@
 # godown
 
-Web components library.
+Non Composite Web Components Library.
 
 [See readme for godown package](./packages/godown/README.md)
+
+## Features
+
+- 🌙 Dark mode first
+- 🏗️ No composite
+- 🎨 High customization
+- 📐 Similar standard
 
 ## Development
 
@@ -15,45 +22,51 @@ pnpm i
 Start development server
 
 ```sh
-pnpm dev
+pnpm run dev
 ```
 
 Format
 
 ```sh
-pnpm fmt
+pnpm run fmt
 ```
 
 Lint
 
 ```sh
-pnpm lint
+pnpm run lint
 ```
 
 Build publish packages
 
 ```sh
-pnpm build
+pnpm run build
 ```
 
 ## Packages
 
+### Libraries
+
 - `godown` Web components library.
-
-- `@godown/react` React components for godown.
-
-- `@godown/element` Component base class for godown.
 
 - `@godown/colors` Color gradients for godown.
 
+- `@godown/element` Component base class for godown.
+
 - `@godown/f7-icon` Icon wrapper, web component, plugin for F7.
 
-- `template-extractor` Extract strings templates in TypeScript source file .
+- `@godown/react` React components for godown.
 
-- `rollup-plugin-template-replace` Rollup plugin with template-extractor.
+- `template-extractor` Extract strings templates in TypeScript source file.
 
-- `rollup-plugin-cjs-shim` Rollup plugin cjs-shim.
+### Plugins
 
 - `cem-define` Enhance custom-element-manifest's custom-element-definition exports.
 
 - `cem-fix-module` Fix custom-element-manifest's module paths.
+
+- `rollup-plugin-cjs-shim` Rollup plugin to shim CJS modules.
+
+- `rollup-plugin-prune-imports` Rollup plugin to prune module imports.
+
+- `rollup-plugin-template-replace` Rollup plugin with template-extractor.
