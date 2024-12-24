@@ -19,7 +19,7 @@ const cssScope = scopePrefix(protoName);
   css`
     :host {
       ${cssScope}--background: var(${cssGlobalVars.active});
-      ${cssScope}--offset: 0;
+      ${cssScope}--offset: 0%;
       ${cssScope}--offset-x: var(${cssScope}--offset);
       ${cssScope}--offset-y: var(${cssScope}--offset);
     }
