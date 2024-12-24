@@ -1,5 +1,5 @@
 import { attr, godown, htmlSlot, styles } from "@godown/element";
-import { css, html, type TemplateResult } from "lit";
+import { css, html, nothing, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "../core/global-style.js";
@@ -60,7 +60,7 @@ class Heading extends GlobalStyle {
     return html`<div part="root" ${attr(this.observedRecord)}>
       ${
       this.wrapHeading(
-        this.id ? html`<a href="#${this.id}"><i part="anchor">${this.anchor}</i></a>` : "",
+        this.id ? html`<a href="${this.id ? "#" + this.id : nothing}"><i part="anchor">${this.anchor}</i></a>` : "",
         html`<p>${htmlSlot()}</p>`,
       )
     }
