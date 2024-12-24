@@ -6,7 +6,8 @@
     "module": "ESNext",
     "customConditions": null,
     "rootDir": "src",
-    "outDir": "."
+    "outDir": ".",
+    "types": []
   },
   "include": ["src"],
   "exclude": []
