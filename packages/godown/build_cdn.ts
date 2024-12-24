@@ -63,7 +63,7 @@ const buildInto: (InputOptions & { output: OutputOptions[]; })[] = [
     ],
   },
   {
-    input: "build/godown.js",
+    input: "index.js",
     plugins: [
       nodeResolve(),
       terser({
