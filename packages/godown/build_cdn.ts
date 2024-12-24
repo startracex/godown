@@ -80,7 +80,7 @@ const buildInto: (InputOptions & { output: OutputOptions[]; })[] = [
  * @license MIT
  * @version ${packageJSON.version}
  */
-  `,
+`,
         indent: false,
       },
       {
@@ -92,7 +92,7 @@ const buildInto: (InputOptions & { output: OutputOptions[]; })[] = [
  * @license MIT
  * @version ${packageJSON.version}
  */
-  `,
+`,
         indent: false,
       },
       {
