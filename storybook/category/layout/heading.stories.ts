@@ -17,10 +17,12 @@ export default {
       "h6",
     ]).arg,
     anchor: new ArgHelper().type("string").control("text").default("#").arg,
+    side: new ArgHelper().options(["left", "right"]).arg,
   },
   args: {
     as: "h1",
     anchor: "#",
+    side: "left",
     stylex: "margin: 24px;",
   },
 } as RendererMeta<typeof render>;

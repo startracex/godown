@@ -22,21 +22,22 @@ const protoName = "heading";
       text-align: start;
     }
 
-    [part=root] {
-      position: relative;
-    }
-
-    a {
-      color: inherit;
-      position: absolute;
-      inset: 0;
-    }
-
     [part=anchor] {
       position: absolute;
       text-align: center;
       min-width: 1.25em;
       right: 100%;
+    }
+
+    [side=left] [part=anchor] {
+      right: 100%;
+    }
+    [side=right] [part=anchor] {
+      left: 100%;
+    }
+
+    a {
+      color: inherit;
     }
 
     h1,
@@ -45,7 +46,10 @@ const protoName = "heading";
     h4,
     h5,
     h6 {
+      direction: ltr;
       font-size: revert;
+      position: relative;
+      width: fit-content;
     }
   `,
 )
@@ -62,15 +66,21 @@ class Heading extends GlobalStyle {
   @property({ type: String })
   anchor = "#";
 
+  /**
+   * The anchor side.
+   */
+  @property()
+  side: "left" | "right" = "left";
+
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(this.observedRecord)}>
+    return html`<a part="root" href="${this.id ? "#" + this.id : nothing}" ${attr(this.observedRecord)}>
       ${
       this.wrapHeading(
-        this.id ? html`<a href="${this.id ? "#" + this.id : nothing}"><i part="anchor">${this.anchor}</i></a>` : "",
-        html`<p>${htmlSlot()}</p>`,
+        htmlSlot(),
+        this.id ? html`<i part="anchor">${this.anchor}</i>` : "",
       )
     }
-    </div> `;
+    </a> `;
   }
 
   protected wrapHeading(...children: any[]): TemplateResult<1> {
