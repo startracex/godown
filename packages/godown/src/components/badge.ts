@@ -35,11 +35,14 @@ const cssScope = scopePrefix(protoName);
 
     [part=badge] {
       position: absolute;
-      border-radius: calc(infinity * 1px);
-      background: var(${cssScope}--background);
       font-size: 75%;
       padding: 0 0.5em;
+      user-select: none;
+      border-radius: calc(infinity * 1px);
       transform: translate(-50%, -50%);
+      left: var(--left);
+      top: var(--top);
+      background: var(${cssScope}--background);
     }
 
     [part=badge]:empty {
@@ -64,11 +67,6 @@ const cssScope = scopePrefix(protoName);
 
     [position$=left] {
       --left: calc(0% + var(${cssScope}--offset-x));
-    }
-
-    [part=badge] {
-      left: var(--left);
-      top: var(--top);
     }
   `,
 )
