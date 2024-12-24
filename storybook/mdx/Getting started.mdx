@@ -9,6 +9,6 @@ import { version } from "godown/package.json";
 
 Install {version}
 
-<Source language="bash" code={`npm i godown@${version}`} dark />
+<Source language="bash" code={`npm i godown@${version.includes("-") ? version : "latest"}`} dark />
 
 {/* PLACEHOLDER ../../../packages/godown/README.md "## Import" */}
