@@ -72,7 +72,7 @@ const cssScope = scopePrefix(protoName);
   `,
 )
 class Badge extends GlobalStyle {
-  @property({ type: String })
+  @property()
   position: Position = "top-right";
 
   @property({ type: Number })
