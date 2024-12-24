@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "dev",
     "rootDir": "src",
-    "isolatedDeclarations": true
+    "isolatedDeclarations": true,
+    "types": []
   },
   "include": ["src"]
 }

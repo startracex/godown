@@ -72,7 +72,7 @@ class Time extends GlobalStyle {
   }
 
   startTimeout(): number {
-    return window.setInterval(() => {
+    return setInterval(() => {
       this.dispatchEvent(new CustomEvent("time", { detail: this.time, composed: true }));
       this.time = new Date(this.time.getTime() + (this.gap || this.timeout));
     }, Math.abs(this.timeout));

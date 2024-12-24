@@ -165,7 +165,7 @@ class Carousel extends GlobalStyle {
       if (this.intervalID) {
         clearInterval(this.intervalID);
       }
-      this.intervalID = window.setInterval(() => {
+      this.intervalID = setInterval(() => {
         this.next();
       }, this.autoChange);
     }
