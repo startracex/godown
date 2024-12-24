@@ -2,4 +2,4 @@
 "godown": patch
 ---
 
-remove href if there heading has no id
+remove href if heading has no id
