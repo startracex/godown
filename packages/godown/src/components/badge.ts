@@ -12,6 +12,7 @@ const cssScope = scopePrefix(protoName);
 /**
  * {@linkcode Badge} renders a badge.
  *
+ * @slot - Badge content.
  * @category display
  */
 @godown(protoName)
@@ -77,6 +78,9 @@ class Badge extends GlobalStyle {
   @property({ type: Number })
   value = 0;
 
+  /**
+   * If `true`, render a dot badge.
+   */
   @property({ type: Boolean })
   dot = false;
 

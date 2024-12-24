@@ -11,7 +11,7 @@ const protoName = "heading";
  *
  * If the id is provided, the anchor will be displayed.
  *
- * @slot - The content of the heading.
+ * @slot - Heading content.
  * @category layout
  */
 @godown(protoName)
@@ -50,9 +50,15 @@ const protoName = "heading";
   `,
 )
 class Heading extends GlobalStyle {
+  /**
+   * The heading level.
+   */
   @property({ type: String })
   as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = "h1";
 
+  /**
+   * The anchor prefix.
+   */
   @property({ type: String })
   anchor = "#";
 
