@@ -1,7 +1,6 @@
 import autoprefixer from "autoprefixer/lib/autoprefixer";
-import type { Plugin } from "postcss";
-import _minify from "postcss-minify";
+import cssnano from "cssnano";
 
-const minify = _minify as Plugin;
+const minify = cssnano;
 
-export { autoprefixer, minify };
+export { autoprefixer, cssnano, minify };

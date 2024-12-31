@@ -2,7 +2,7 @@ import { globSync } from "glob";
 import postcss from "postcss";
 import templateReplace from "rollup-plugin-template-replace";
 
-import { autoprefixer, minify } from "../../common/postcss-plugins";
+import { autoprefixer, cssnano } from "../../common/postcss-plugins";
 import { build, commonInput, commonOutput } from "../../common/rollup-creator";
 import { minifyLiterals, terser, ts2 } from "../../common/rollup-plugins";
 
@@ -18,8 +18,9 @@ await build(
       templateReplace(
         {
           tags: ["css"],
-          callback(input) {
-            return postcss(autoprefixer(["since 2021"]), minify).process(input).css.trim();
+          async callback(input) {
+            const result = await postcss(autoprefixer(["since 2021"]), cssnano).process(input, { from: undefined });
+            return result.css;
           },
         },
       ),
