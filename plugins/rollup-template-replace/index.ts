@@ -11,17 +11,11 @@ interface RollupFilterOptions {
 export interface ReplacementOptions {
   match?: (tag: string) => boolean;
   replace?: (text?: string, index?: number, child?: ExtractResult, parent?: ExtractResult) => string;
-  callback?: (input: string) => string;
+  callback?: (input: string) => string | Promise<string>;
 }
 
-export function doReplace(oldContent: string, {
-  replace,
-  callback,
-  match,
-}: ReplacementOptions) {
-  const templates = extractSourceFile(oldContent).filter(
-    ({ tag }) => (match ? match(tag) : tag),
-  );
+export async function doReplace(oldContent: string, { replace, callback, match }: ReplacementOptions) {
+  const templates = extractSourceFile(oldContent).filter(({ tag }) => (match ? match(tag) : tag));
 
   if (!templates.length) {
     return oldContent;
@@ -45,7 +39,8 @@ export function doReplace(oldContent: string, {
 
       let text = template.text;
       if (callback) {
-        text = withQuote(callback(trimQuote(text)));
+        const r = await callback(trimQuote(text));
+        text = withQuote(r);
       }
       replacePositions.push({
         text,
@@ -55,24 +50,22 @@ export function doReplace(oldContent: string, {
     } else {
       const replaced = replaceText(
         template.text,
-        template.children.map(
-          (child) => {
-            const replacedValue = replace(child.text, replaceIndex, child, template);
-            replaceIndex++;
-            replaceMap.set(replacedValue, child.text);
-            return {
-              text: replacedValue,
-              start: child.start - start - ("${".length),
-              end: child.end - start + ("}".length),
-            };
-          },
-        ),
+        template.children.map((child) => {
+          const replacedValue = replace(child.text, replaceIndex, child, template);
+          replaceIndex++;
+          replaceMap.set(replacedValue, child.text);
+          return {
+            text: replacedValue,
+            start: child.start - start - "${".length,
+            end: child.end - start + "}".length,
+          };
+        }),
       );
 
       let processContent = replaced;
 
       if (callback) {
-        processContent = withQuote(callback(trimQuote(processContent)));
+        processContent = withQuote(await callback(trimQuote(processContent)));
       }
 
       replaceMap.forEach((value, key) => {
@@ -101,11 +94,11 @@ export default function (
   const filter = createFilter(options.include, options.exclude);
   return {
     name: "template-replace",
-    transform(oldContent: string, id: string) {
+    async transform(oldContent: string, id: string) {
       if (!filter(id)) {
         return;
       }
-      const code = doReplace(oldContent, {
+      const code = await doReplace(oldContent, {
         callback: options.callback,
         match: options.match || ((tag) => options.tags.includes(tag)),
         replace: options.replace || ((_, index) => "--__REPLACE__" + index + "__"),
