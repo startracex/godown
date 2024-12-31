@@ -122,7 +122,7 @@ export function replaceText(raw: string, pos: { text: string; start: number; end
 }
 
 function trimQuote(s: string) {
-  return s.slice(1, -1);
+  return s.slice(s.indexOf("`") + 1, s.lastIndexOf("`"));
 }
 
 function withQuote(s: string) {
