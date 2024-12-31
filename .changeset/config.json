@@ -2,15 +2,10 @@
   "$schema": "https://unpkg.com/@changesets/config@latest/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [
-    [
-      "godown",
-      "@godown/react"
-    ]
-  ],
+  "fixed": [["godown", "@godown/react"]],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@godown/storybook"]
+  "ignore": ["@godown/tsconfig", "@godown/common", "@godown/storybook"]
 }
