@@ -4,7 +4,7 @@ Rollup plugin to shim CJS modules.
 
 Shims:
 
-- Replaces `import.meta.url` to `__filename`
+- Replaces `import.meta.filename` to `__filename`
 - Replaces `import.meta.dirname` to `__dirname`
 - Removes `createRequire`
 - Removes `global = globalThis`
@@ -20,7 +20,6 @@ npm i -D rollup-plugin-cjs-shim
 rollup.config.js
 
 ```js
-import commonjs from "@rollup/plugin-commonjs";
 import cjsShim from "rollup-plugin-cjs-shim";
 
 export default {
@@ -29,7 +28,7 @@ export default {
     file: "index.cjs",
     format: "cjs",
   },
-  plugins: [cjsShim(), commonjs()],
+  plugins: [cjsShim()],
 };
 ```
 
@@ -58,19 +57,4 @@ require("./package.json");
 
 exports.dirname = dirname;
 exports.filename = filename;
-```
-
-## Custom Replacements
-
-```js
-import cjsShim, { defaultReplacements } from "rollup-plugin-cjs-shim";
-
-cjsShim({
-  replacements: [
-    ...defaultReplacements,
-    {
-      // replacement
-    },
-  ],
-});
 ```
