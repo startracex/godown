@@ -106,7 +106,7 @@ const colors: Record<Colors, string> = constructCSSObject(
 
     :host([ghost]) {
       ${cssScope}--modal-background: var(${cssScope}--ghost-color);
-      box-shadow:inset 0px 0px 0px var(${cssScope}--ghost-width) var(${cssScope}--ghost-color);
+      box-shadow: inset 0px 0px 0px var(${cssScope}--ghost-width) var(${cssScope}--ghost-color);
       color: var(${cssScope}--ghost-color);
       background: transparent;
     }
@@ -137,11 +137,11 @@ const colors: Record<Colors, string> = constructCSSObject(
       cursor: pointer;
     }
 
-    :host([contents]) [part=root] {
+    :host([contents]) [part="root"] {
       width: fit-content;
     }
 
-    [part=root] {
+    [part="root"] {
       width: 100%;
       height: 100%;
       overflow: hidden;
@@ -152,7 +152,7 @@ const colors: Record<Colors, string> = constructCSSObject(
       transition-duration: inherit;
     }
 
-    [part=content] {
+    [part="content"] {
       padding: var(${cssScope}--padding);
     }
 
@@ -230,9 +230,7 @@ class Button extends GlobalStyle {
     const color = this.nextColor();
     return html`<div part="root" ${attr(this.observedRecord)}>
       <span part="modal-root"></span>
-      <div part="content">
-        ${[this.content || htmlSlot(), htmlStyle(colors[color])]}
-      </div>
+      <div part="content">${[this.content || htmlSlot(), htmlStyle(colors[color])]}</div>
     </div>`;
   }
 

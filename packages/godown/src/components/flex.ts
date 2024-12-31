@@ -13,18 +13,16 @@ const protoName = "flex";
  * @category layout
  */
 @godown(protoName)
-@styles(
-  css`
-    :host,
-    :host([contents]) [part=root] {
-      display: flex;
-    }
+@styles(css`
+  :host,
+  :host([contents]) [part="root"] {
+    display: flex;
+  }
 
-    [part=root] {
-      display: contents;
-    }
-  `,
-)
+  [part="root"] {
+    display: contents;
+  }
+`)
 class Flex extends GlobalStyle {
   /**
    * CSS property `flex-flow` (`flex-direction flex-wrap`).
@@ -58,20 +56,20 @@ class Flex extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)}>
-    ${[
-      htmlSlot(),
-      htmlStyle(
-        joinRules({
-          ":host": {
-            gap: this.gap,
-            "flex-flow": this.flexFlow,
-            "flex-direction": this.vertical && "column",
-            "align-items": this.items,
-            "justify-content": this.content,
-          },
-        }),
-      ),
-    ]}
+      ${[
+        htmlSlot(),
+        htmlStyle(
+          joinRules({
+            ":host": {
+              gap: this.gap,
+              "flex-flow": this.flexFlow,
+              "flex-direction": this.vertical && "column",
+              "align-items": this.items,
+              "justify-content": this.content,
+            },
+          }),
+        ),
+      ]}
     </div>`;
   }
 }

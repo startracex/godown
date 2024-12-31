@@ -48,11 +48,11 @@ const cssScope = scopePrefix(defineName);
     }
 
     :host,
-    :host([contents]) [part=root] {
+    :host([contents]) [part="root"] {
       display: flex;
     }
 
-    [part=root] {
+    [part="root"] {
       display: contents;
     }
 
@@ -109,7 +109,7 @@ class Breath extends GlobalStyle {
   protected render(): TemplateResult<1> {
     const texts = this.getTexts();
     return html`<div part="root" ${attr(this.observedRecord)}>
-    ${[texts.map(this.renderText), htmlStyle(this._computeStyle(texts.length))]}
+      ${[texts.map(this.renderText), htmlStyle(this._computeStyle(texts.length))]}
     </div>`;
   }
 
@@ -129,16 +129,13 @@ class Breath extends GlobalStyle {
     const duration = this.parseDuration() || len * 2 + 2;
     let style1 = "";
     for (let number = 1; number <= len; number++) {
-      const delay = -duration / len * (len - number + 1);
+      const delay = (-duration / len) * (len - number + 1);
       const defaultNumber = ((number - 1) % 3) + 1;
-      style1 +=
-        `.rel:nth-child(${number}) .colorful{animation-delay:${delay}s;background:var(${cssScope}--${number},var(${cssScope}--${defaultNumber}));}`;
+      style1 += `.rel:nth-child(${number}) .colorful{animation-delay:${delay}s;background:var(${cssScope}--${number},var(${cssScope}--${defaultNumber}));}`;
     }
-    return (
-      `.colorful{animation-duration:${duration}s;}@keyframes colorfulN{0%,${gap * 3}%{opacity:0;}${gap}%,${
-        gap * 2
-      }%{opacity:1;}}${style1}`
-    );
+    return `.colorful{animation-duration:${duration}s;}@keyframes colorfulN{0%,${gap * 3}%{opacity:0;}${gap}%,${
+      gap * 2
+    }%{opacity:1;}}${style1}`;
   }
 
   protected parseDuration(): number | undefined {

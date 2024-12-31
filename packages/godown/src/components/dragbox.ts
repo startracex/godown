@@ -12,19 +12,17 @@ const protoName = "dragbox";
  * @category wrapper
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      position: absolute;
-      display: block;
-    }
+@styles(css`
+  :host {
+    position: absolute;
+    display: block;
+  }
 
-    :host(:active) {
-      -webkit-user-select: none;
-      user-select: none;
-    }
-  `,
-)
+  :host(:active) {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+`)
 class Dragbox extends GlobalStyle {
   /**
    * Width of (`this.offsetParent` or `document.body`).

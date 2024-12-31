@@ -23,7 +23,7 @@
     "clean": "tsc --build tsconfig.prod.json --clean",
     "build": "tsc && tsx build.ts",
     "build:ts": "tsc",
-    "fmt": "dprint fmt",
+    "fmt": "prettier src --write",
     "lint": "eslint . --fix",
     "manifest": "tsx manifest.ts"
   },

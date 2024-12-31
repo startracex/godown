@@ -17,47 +17,45 @@ const cssScope = scopePrefix(protoName);
  * @category display
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      ${cssScope}--size: 2em;
-      width: var(${cssScope}--size);
-      height: var(${cssScope}--size);
-      vertical-align: bottom;
-    }
+@styles(css`
+  :host {
+    ${cssScope}--size: 2em;
+    width: var(${cssScope}--size);
+    height: var(${cssScope}--size);
+    vertical-align: bottom;
+  }
 
-    :host,
-    [part=root] {
-      display: inline-flex;
-    }
+  :host,
+  [part="root"] {
+    display: inline-flex;
+  }
 
-    :host([contents]) [part=root] {
-      display: inline-flex;
-      width: inherit;
-      height: inherit;
-    }
+  :host([contents]) [part="root"] {
+    display: inline-flex;
+    width: inherit;
+    height: inherit;
+  }
 
-    :host([round]) {
-      border-radius:50%;
-    }
+  :host([round]) {
+    border-radius: 50%;
+  }
 
-    [part=image] {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  [part="image"] {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-    [part=root] {
-      overflow: hidden;
-      position: relative;
-      border-radius: inherit;
-      width: 100%;
-      height: 100%;
-      align-items: center;
-      justify-content: center;
-    }
-  `,
-)
+  [part="root"] {
+    overflow: hidden;
+    position: relative;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+`)
 class Avatar extends GlobalStyle {
   /**
    * Image src.

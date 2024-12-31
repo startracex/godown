@@ -18,87 +18,85 @@ const cssScope = scopePrefix(protoName);
  * @category input
  */
 @godown(protoName)
-@styles(
-  css`
-    :host,
-    :host([contents]) [part=root] {
-      width: var(${cssScope}-width);
-      height: var(${cssScope}-height);
-      display: inline-block;
-    }
+@styles(css`
+  :host,
+  :host([contents]) [part="root"] {
+    width: var(${cssScope}-width);
+    height: var(${cssScope}-height);
+    display: inline-block;
+  }
 
-    :host {
-      ${cssScope}-width: 3em;
-      ${cssScope}-height: calc(var(${cssScope}-width) / 2);
-      ${cssScope}-handle-size: 1.25em;
-      ${cssScope}-handle-space: .125em;
-      ${cssScope}-transition: .2s ease-in-out;
-      background: var(${cssGlobalVars.input}-background);
-      vertical-align: bottom;
-      border-radius: 0;
-    }
+  :host {
+    ${cssScope}-width: 3em;
+    ${cssScope}-height: calc(var(${cssScope}-width) / 2);
+    ${cssScope}-handle-size: 1.25em;
+    ${cssScope}-handle-space: .125em;
+    ${cssScope}-transition: .2s ease-in-out;
+    background: var(${cssGlobalVars.input}-background);
+    vertical-align: bottom;
+    border-radius: 0;
+  }
 
-    [part=root],
-    [part=handle] {
-      transition: var(${cssScope}-transition);
-    }
+  [part="root"],
+  [part="handle"] {
+    transition: var(${cssScope}-transition);
+  }
 
-    [part=root] {
-      border-radius: inherit;
-      position: relative;
-      height: inherit;
-    }
-    
-    [part=input] {
-      opacity: 0;
-      width: 100%;
-      height: 100%;
-      appearance: none;
-    }
+  [part="root"] {
+    border-radius: inherit;
+    position: relative;
+    height: inherit;
+  }
 
-    [part=handle] {
-      height: 100%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      left: 0;
-      width: 50%;
-      pointer-events: none;
-      border-radius: inherit;
-    }
+  [part="input"] {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    appearance: none;
+  }
 
-    :host([round]) {
-      border-radius: calc(var(${cssScope}-height) / 2);
-      background: var(${cssGlobalVars.passive});
-    }
+  [part="handle"] {
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    width: 50%;
+    pointer-events: none;
+    border-radius: inherit;
+  }
 
-    :host([checked]) [part=handle] {
-      left: 50%;
-    }
+  :host([round]) {
+    border-radius: calc(var(${cssScope}-height) / 2);
+    background: var(${cssGlobalVars.passive});
+  }
 
-    .rect .true {
-      background: var(${cssGlobalVars.active});
-    }
+  :host([checked]) [part="handle"] {
+    left: 50%;
+  }
 
-    .rect .false {
-      background: var(${cssGlobalVars.passive});
-    }
+  .rect .true {
+    background: var(${cssGlobalVars.active});
+  }
 
-    .round [part=handle] {
-      --size: var(${cssScope}-handle-size);
-      border-radius: 100%;
-      background: var(--godown--input-control);
-      width: var(--size);
-      height: var(--size);
-      margin: var(${cssScope}-handle-space);
-    }
+  .rect .false {
+    background: var(${cssGlobalVars.passive});
+  }
 
-    :host([checked]) .round {
-      background: var(${cssGlobalVars.active});
-    }
-  `,
-)
+  .round [part="handle"] {
+    --size: var(${cssScope}-handle-size);
+    border-radius: 100%;
+    background: var(--godown--input-control);
+    width: var(--size);
+    height: var(--size);
+    margin: var(${cssScope}-handle-space);
+  }
+
+  :host([checked]) .round {
+    background: var(${cssGlobalVars.active});
+  }
+`)
 class Switch extends SuperInput {
   /**
    * Display rounded.
@@ -143,7 +141,7 @@ class Switch extends SuperInput {
         name="${this.name}"
         id="${this.makeId}"
         type="checkbox"
-      >
+      />
       <span part="handle" class="${this.checked}"></span>
     </div>`;
   }

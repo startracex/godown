@@ -15,18 +15,16 @@ const protoName = "input";
  * @category input
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      width: var(${cssGlobalVars.input}-width);
-      height: var(${cssGlobalVars.input}-height);
-      color: var(${cssGlobalVars.foreground});
-      background: var(${cssGlobalVars.input}-background);
-      border-radius: var(${cssGlobalVars.input}-radius);
-      display: block;
-    }
-  `,
-)
+@styles(css`
+  :host {
+    width: var(${cssGlobalVars.input}-width);
+    height: var(${cssGlobalVars.input}-height);
+    color: var(${cssGlobalVars.foreground});
+    background: var(${cssGlobalVars.input}-background);
+    border-radius: var(${cssGlobalVars.input}-radius);
+    display: block;
+  }
+`)
 class Input extends SuperInput {
   type: "text" | "search" | "tel" | "url" | "email" | "password" = "text";
 
@@ -44,8 +42,8 @@ class Input extends SuperInput {
   protected render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)} class="${classList("input-field", this.variant)}">
       ${[
-      this._renderPrefix(),
-      html`<input
+        this._renderPrefix(),
+        html`<input
           part="input"
           type="${this.type}"
           id="${this.makeId}"
@@ -56,9 +54,9 @@ class Input extends SuperInput {
           autocomplete="${this.autocomplete || nothing}"
           ?disabled="${this.disabled}"
           @input="${this._handleInput}"
-        >`,
-      this._renderSuffix(),
-    ]}
+        />`,
+        this._renderSuffix(),
+      ]}
     </div>`;
   }
 

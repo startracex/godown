@@ -19,66 +19,64 @@ const cssScope = scopePrefix(protoName);
  * @category display
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      ${cssScope}--icon-deg-open: 0deg;
-      ${cssScope}--icon-deg-close: 90deg;
-      ${cssScope}--icon-space: 0.3em;
-      ${cssScope}--summary-direction: row;
-      ${cssScope}--transition: .3s;
-      height: fit-content;
-      display: block;
-      transition: var(${cssScope}--transition);
-    }
+@styles(css`
+  :host {
+    ${cssScope}--icon-deg-open: 0deg;
+    ${cssScope}--icon-deg-close: 90deg;
+    ${cssScope}--icon-space: 0.3em;
+    ${cssScope}--summary-direction: row;
+    ${cssScope}--transition: .3s;
+    height: fit-content;
+    display: block;
+    transition: var(${cssScope}--transition);
+  }
 
-    [part=root] {
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
+  [part="root"] {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
 
-    [part=title] {
-      direction: ltr;
-      height: 100%;
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      background: inherit;
-      align-items: center;
-      flex-direction: var(${cssScope}--summary-direction);
-    }
+  [part="title"] {
+    direction: ltr;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background: inherit;
+    align-items: center;
+    flex-direction: var(${cssScope}--summary-direction);
+  }
 
-    [part=details] {
-      display: grid;
-      overflow: hidden;
-      grid-template-rows: 0fr;
-      transition: var(${cssScope}--transition);
-      transition-property: grid-template-rows;
-    }
+  [part="details"] {
+    display: grid;
+    overflow: hidden;
+    grid-template-rows: 0fr;
+    transition: var(${cssScope}--transition);
+    transition-property: grid-template-rows;
+  }
 
-    :host([open]) [part=details] {
-      grid-template-rows: 1fr;
-    }
+  :host([open]) [part="details"] {
+    grid-template-rows: 1fr;
+  }
 
-    :host([float]) [part=details] {
-      top: 100%;
-      position: absolute;
-    }
+  :host([float]) [part="details"] {
+    top: 100%;
+    position: absolute;
+  }
 
-    [part=icon] {
-      display: flex;
-      backface-visibility: hidden;
-      padding: var(${cssScope}--icon-space);
-      transition: var(${cssScope}--transition);
-      transform: rotate(var(${cssScope}--icon-deg-close));
-    }
+  [part="icon"] {
+    display: flex;
+    backface-visibility: hidden;
+    padding: var(${cssScope}--icon-space);
+    transition: var(${cssScope}--transition);
+    transform: rotate(var(${cssScope}--icon-deg-close));
+  }
 
-    :host([open]) [part=icon] {
-      transform: rotate(var(${cssScope}--icon-deg-open));
-    }
-  `,
-)
+  :host([open]) [part="icon"] {
+    transform: rotate(var(${cssScope}--icon-deg-open));
+  }
+`)
 class Details extends SuperOpenable {
   /**
    * If it is true, the summary event scope will fill the element.

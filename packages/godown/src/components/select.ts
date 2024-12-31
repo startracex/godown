@@ -46,31 +46,29 @@ const protoName = "select";
  * @category input
  */
 @godown(protoName)
-@styles(
-  css`
-    [part=input] {
-      text-overflow: ellipsis;
-    }
+@styles(css`
+  [part="input"] {
+    text-overflow: ellipsis;
+  }
 
-    [part=content] {
-      position: absolute;
-      width: 100%;
-      visibility: hidden;
-    }
+  [part="content"] {
+    position: absolute;
+    width: 100%;
+    visibility: hidden;
+  }
 
-    [direction=bottom] [part=content] {
-      top: 100%;
-    }
+  [direction="bottom"] [part="content"] {
+    top: 100%;
+  }
 
-    [direction=top] [part=content] {
-      bottom: 100%;
-    }
+  [direction="top"] [part="content"] {
+    bottom: 100%;
+  }
 
-    [visible] [part=content] {
-      visibility: visible
-    }
-  `,
-)
+  [visible] [part="content"] {
+    visibility: visible;
+  }
+`)
 class Select extends Input {
   // @ts-ignore
   value: string | string[];
@@ -99,22 +97,20 @@ class Select extends Input {
   protected lastChecked: HTMLElement;
   protected defaultText: string;
   protected defaultChecked: HTMLElement[];
-  private _store: { value: string; text: string; }[] = [];
+  private _store: { value: string; text: string }[] = [];
 
   protected render(): TemplateResult<1> {
     return html`<div
       part="root"
-      ${
-      attr({
+      ${attr({
         ...this.observedRecord,
         direction: this.direction || this.autoDirection,
-      })
-    }
+      })}
       class="input-field"
     >
       ${[
-      this._renderPrefix(),
-      html`<input
+        this._renderPrefix(),
+        html`<input
           part="input"
           dir="${this.dir || nothing}"
           id="${this.makeId}"
@@ -127,12 +123,12 @@ class Select extends Input {
           ?disabled="${this.disabled}"
           @focus="${this._handleFocus}"
           @input="${this._handleInput}"
-        >`,
-      html`<label for="${this.makeId}" part="suffix">
+        />`,
+        html`<label for="${this.makeId}" part="suffix">
           <i part="icon">${svgCaretDown()}</i>
         </label>`,
-      html`<label for="${this.makeId}" part="content"> ${htmlSlot()} </label>`,
-    ]}
+        html`<label for="${this.makeId}" part="content"> ${htmlSlot()} </label>`,
+      ]}
     </div>`;
   }
 
@@ -177,11 +173,7 @@ class Select extends Input {
   protected _connectedInit(): void {
     if (!this.value) {
       const checked = [...this.querySelectorAll<HTMLElement>("[checked]")];
-      const list = this.multiple
-        ? checked
-        : checked.length
-        ? [this.lastChecked = checked[0]]
-        : [];
+      const list = this.multiple ? checked : checked.length ? [(this.lastChecked = checked[0])] : [];
       list.forEach((element: HTMLElement) => {
         const operation = this.select(this.optionValue(element), element.textContent);
         updateChecked(element, operation);
@@ -199,23 +191,23 @@ class Select extends Input {
   reset(): void {
     this.value = this.default;
     this.text = this.defaultText;
-    this.querySelectorAll<HTMLElement>("[checked]").forEach(element => updateChecked(element, 0));
-    this.defaultChecked.forEach(element => updateChecked(element, 1));
+    this.querySelectorAll<HTMLElement>("[checked]").forEach((element) => updateChecked(element, 0));
+    this.defaultChecked.forEach((element) => updateChecked(element, 1));
   }
 
   select(value: string, text?: string): 0 | 1 {
     text ||= value;
     let operation: 0 | 1 = 0;
     if (this.multiple) {
-      const i = this._store.findIndex(s => s.value === value);
+      const i = this._store.findIndex((s) => s.value === value);
       if (i > -1) {
         this._store.splice(i, 1);
       } else {
         this._store.push({ value, text });
         operation = 1;
       }
-      this.value = this._store.map(s => s.value);
-      this.text = this._store.map(s => s.text).join(", ");
+      this.value = this._store.map((s) => s.value);
+      this.text = this._store.map((s) => s.text).join(", ");
     } else {
       if (this.value === value) {
         this.value = "";
@@ -236,9 +228,7 @@ class Select extends Input {
     [...this.children].forEach((element: HTMLElement) => {
       this.filterCallback(
         element,
-        !query
-          || contain(this.optionValue(element), query)
-          || contain(element.textContent, query),
+        !query || contain(this.optionValue(element), query) || contain(element.textContent, query),
         query,
       );
     });

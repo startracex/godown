@@ -34,7 +34,7 @@ const cssScope = scopePrefix(protoName);
       display: block;
     }
 
-    :host([contents]) [part=root] {
+    :host([contents]) [part="root"] {
       width: inherit;
     }
 
@@ -48,7 +48,7 @@ const cssScope = scopePrefix(protoName);
       background: var(${cssScope}--handle-active);
     }
 
-    [part=root] {
+    [part="root"] {
       min-height: inherit;
       position: relative;
       border-radius: inherit;
@@ -58,9 +58,9 @@ const cssScope = scopePrefix(protoName);
       height: var(${cssScope}--track-width);
     }
 
-    [part=track] {
+    [part="track"] {
       height: 100%;
-      min-height:inherit;
+      min-height: inherit;
       display: flex;
       position: absolute;
       pointer-events: none;
@@ -71,7 +71,7 @@ const cssScope = scopePrefix(protoName);
       width: max(calc(var(--to) - var(--from)), calc(var(--from) - var(--to)));
     }
 
-    [part=handle] {
+    [part="handle"] {
       width: 1em;
       height: 1em;
       display: flex;
@@ -97,7 +97,7 @@ const cssScope = scopePrefix(protoName);
       transform: translate(-25%, -50%);
     }
 
-    [vertical] [part=track] {
+    [vertical] [part="track"] {
       width: 100%;
       height: max(calc(var(--to) - var(--from)), calc(var(--from) - var(--to)));
       top: min(var(--from), var(--to));
@@ -105,12 +105,12 @@ const cssScope = scopePrefix(protoName);
     }
   `,
   css`
-    [part=handle] {
+    [part="handle"] {
       left: var(--handle);
       top: 0;
     }
 
-    [vertical] [part=handle] {
+    [vertical] [part="handle"] {
       top: var(--handle);
       left: 0;
     }
@@ -211,17 +211,15 @@ class Range extends SuperInput {
       part="root"
       ${attr(this.observedRecord)}
       @mousedown="${this.disabled ? null : this._handleMousedownRoot}"
-      style="${
-      joinProperties({
+      style="${joinProperties({
         "--from": `${((from - this.min) / gap) * 100}%`,
         "--to": `${((to - this.min) / gap) * 100}%`,
         ...(this.range
           ? Object.fromEntries(
-            rangeValue.map((value, index) => [`--handle-${index}`, `${((value - this.min) / gap) * 100}%`]),
-          )
+              rangeValue.map((value, index) => [`--handle-${index}`, `${((value - this.min) / gap) * 100}%`]),
+            )
           : {}),
-      })
-    }"
+      })}"
     >
       <div part="track"></div>
       ${this.range ? (this.value as number[]).map((_, index) => this.renderHandle(index)) : this.renderHandle(0)}
@@ -239,10 +237,10 @@ class Range extends SuperInput {
       @focus="${this.disabled ? null : () => this.focusHandle(index)}"
       @blur="${this.disabled ? null : this.blurHandle}"
       style="z-index:${this._focusStack.indexOf(index) + 1};--handle:var(--${
-      /* In single-handle mod or end, it is max value */
-      (!range && end) ? "to" : `handle-${index}`})"
-      ></i>
-      `;
+        /* In single-handle mod or end, it is max value */
+        !range && end ? "to" : `handle-${index}`
+      })"
+    ></i> `;
   }
 
   private _keydownEvent: EventListenerOrEventListenerObject;
@@ -275,10 +273,10 @@ class Range extends SuperInput {
     return (e: KeyboardEvent): void => {
       if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
         e.preventDefault();
-        this.createSetValue(index)(old => old - this.step);
+        this.createSetValue(index)((old) => old - this.step);
       } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
         e.preventDefault();
-        this.createSetValue(index)(old => old + this.step);
+        this.createSetValue(index)((old) => old + this.step);
       }
     };
   }
@@ -292,9 +290,10 @@ class Range extends SuperInput {
 
   createSetValue(index: number) {
     return (numberOrModifier: number | ((value: number) => number)): void => {
-      const number = typeof numberOrModifier === "number"
-        ? this.normalizeValue(numberOrModifier)
-        : numberOrModifier(this.rangeValue[index]);
+      const number =
+        typeof numberOrModifier === "number"
+          ? this.normalizeValue(numberOrModifier)
+          : numberOrModifier(this.rangeValue[index]);
       let newValue: any = number;
       if (this.range) {
         newValue = [...this.rangeValue];
@@ -319,8 +318,11 @@ class Range extends SuperInput {
    * Ensure that the values do not exceed the range of max and min.
    */
   protected normalizeValue(value: number): number {
-    if (value > this.max) { value -= this.step; }
-    else if (value < this.min) { value += this.step; }
+    if (value > this.max) {
+      value -= this.step;
+    } else if (value < this.min) {
+      value += this.step;
+    }
     return value;
   }
 
@@ -328,10 +330,10 @@ class Range extends SuperInput {
     const value = this._computeValue(e);
     const index = this.range
       ? this.rangeValue.reduce((acc, item, index) => {
-        const diff = Math.abs(value - item);
-        const prevDiff = Math.abs(value - this.rangeValue[acc]);
-        return diff < prevDiff ? index : acc;
-      }, 0)
+          const diff = Math.abs(value - item);
+          const prevDiff = Math.abs(value - this.rangeValue[acc]);
+          return diff < prevDiff ? index : acc;
+        }, 0)
       : 0;
 
     const set = this.createSetValue(index);
@@ -382,12 +384,12 @@ class Range extends SuperInput {
   }
 
   sort(): number | number[] {
-    return this.value = this.toSorted();
+    return (this.value = this.toSorted());
   }
 
   toSorted(): number | number[] {
     if (this.range) {
-      return [...this.value as number[]].sort((a, b) => a - b);
+      return [...(this.value as number[])].sort((a, b) => a - b);
     }
     return this.value;
   }

@@ -14,56 +14,54 @@ const cssScope = scopePrefix(protoName);
  * @category display
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      ${cssScope}--color: currentColor;
-      ${cssScope}--color-hover: currentColor;
-      ${cssScope}--color-active: currentColor;
-      display: inline-block;
-      text-overflow: ellipsis;
-      overflow-wrap: break-word;
-    }
+@styles(css`
+  :host {
+    ${cssScope}--color: currentColor;
+    ${cssScope}--color-hover: currentColor;
+    ${cssScope}--color-active: currentColor;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+  }
 
-    [part=root] {
-      white-space: nowrap;
-      width: 100%;
-      vertical-align: bottom;
-      display: inline-block;
-      text-overflow: inherit;
-      overflow-wrap: inherit;
-      overflow: hidden;
-      color: var(${cssScope}--color);
-    }
+  [part="root"] {
+    white-space: nowrap;
+    width: 100%;
+    vertical-align: bottom;
+    display: inline-block;
+    text-overflow: inherit;
+    overflow-wrap: inherit;
+    overflow: hidden;
+    color: var(${cssScope}--color);
+  }
 
-    [part=root]:hover {
-      color: var(${cssScope}--color-hover, var(${cssScope}--color));
-    }
+  [part="root"]:hover {
+    color: var(${cssScope}--color-hover, var(${cssScope}--color));
+  }
 
-    [part=root]:active {
-      color: var(${cssScope}--color-active, var(${cssScope}--color));
-    }
+  [part="root"]:active {
+    color: var(${cssScope}--color-active, var(${cssScope}--color));
+  }
 
-    .hover:hover,
-    .active:active,
-    .always {
-      text-decoration: underline;
-    }
+  .hover:hover,
+  .active:active,
+  .always {
+    text-decoration: underline;
+  }
 
-    .none {
-      text-decoration: none;
-    }
+  .none {
+    text-decoration: none;
+  }
 
-    [clip] {
-      background: var(${cssGlobalVars.clipBackground});
-      display: inline-block;
-      color: transparent;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-  `,
-)
+  [clip] {
+    background: var(${cssGlobalVars.clipBackground});
+    display: inline-block;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+`)
 class Text extends GlobalStyle {
   /**
    * Underline behavior.

@@ -12,8 +12,7 @@ const cssScope = scopePrefix(protoName);
  * @category wrapper
  */
 @godown(protoName)
-@styles(
-  css`
+@styles(css`
   :host {
     display: block;
     width: -moz-fit-content;
@@ -39,11 +38,10 @@ const cssScope = scopePrefix(protoName);
     margin: calc(-1 * var(${cssScope}--offset));
   }
 
-  [part=slot] {
+  [part="slot"] {
     z-index: 2;
   }
-`,
-)
+`)
 class Rotate extends GlobalStyle {
   @part("root")
   protected _root: HTMLElement;

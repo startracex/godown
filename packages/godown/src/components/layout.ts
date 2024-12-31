@@ -15,38 +15,36 @@ const protoName = "layout";
  * @category layout
  */
 @godown(protoName)
-@styles(
-  css`
-    :host,
-    :host([contents]) [part=root] {
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
+@styles(css`
+  :host,
+  :host([contents]) [part="root"] {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
-    [part=root] {
-      display: contents;
-    }
+  [part="root"] {
+    display: contents;
+  }
 
-    [sticky] header {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-    }
+  [sticky] header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
 
-    [part=main] {
-      position: relative;
-      flex: 1;
-      width: 100%;
-    }
+  [part="main"] {
+    position: relative;
+    flex: 1;
+    width: 100%;
+  }
 
-    header,
-    main,
-    footer {
-      width: 100%;
-    }
-  `,
-)
+  header,
+  main,
+  footer {
+    width: 100%;
+  }
+`)
 class Layout extends GlobalStyle {
   /**
    * If true, remove the header slot.

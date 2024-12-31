@@ -13,37 +13,35 @@ const cssScope = scopePrefix(protoName);
  * @category effect
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      ${cssScope}--cursor-width: .05em;
-    }
+@styles(css`
+  :host {
+    ${cssScope}--cursor-width: .05em;
+  }
 
-    :host,
-    :host([contents]) [part="root"] {
-      display: inline-block;
-    }
+  :host,
+  :host([contents]) [part="root"] {
+    display: inline-block;
+  }
 
-    i {
-      border-right: var(${cssScope}--cursor-width) solid;
-      margin-left: 0.02em;
-      animation: s 1.5s steps(1) infinite;
-    }
+  i {
+    border-right: var(${cssScope}--cursor-width) solid;
+    margin-left: 0.02em;
+    animation: s 1.5s steps(1) infinite;
+  }
 
-    @keyframes s {
-      0% {
-        border-color: currentColor;
-      }
-      50% {
-        border-color: transparent;
-      }
+  @keyframes s {
+    0% {
+      border-color: currentColor;
     }
+    50% {
+      border-color: transparent;
+    }
+  }
 
-    slot {
-      display: none;
-    }
-  `,
-)
+  slot {
+    display: none;
+  }
+`)
 class Typewriter extends GlobalStyle {
   /**
    * Raw text.

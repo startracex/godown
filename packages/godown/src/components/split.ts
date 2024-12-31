@@ -30,54 +30,52 @@ const loop = <T>(len: number, fn: (index?: number) => T) => {
  * @category input
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      color: var(${cssGlobalVars.foreground});
-      display: block;
-      border-radius: 1px;
-      width: fit-content;
-      ${cssScope}--size: 1.45em;
-      ${cssScope}--gap: .25em;
-    }
+@styles(css`
+  :host {
+    color: var(${cssGlobalVars.foreground});
+    display: block;
+    border-radius: 1px;
+    width: fit-content;
+    ${cssScope}--size: 1.45em;
+    ${cssScope}--gap: .25em;
+  }
 
-    :host([contents]) [part=root] {
-      width: fit-content;
-    }
+  :host([contents]) [part="root"] {
+    width: fit-content;
+  }
 
-    [part=root] {
-      gap: var(${cssScope}--gap);
-      width: 100%;
-      position: relative;
-      vertical-align: top;
-      display: flex;
-      justify-content: space-between;
-      border-radius: inherit;
-    }
+  [part="root"] {
+    gap: var(${cssScope}--gap);
+    width: 100%;
+    position: relative;
+    vertical-align: top;
+    display: flex;
+    justify-content: space-between;
+    border-radius: inherit;
+  }
 
-    [part=input-box] {
-      width: var(${cssScope}--size);
-      height: var(${cssScope}--size);
-      vertical-align: top;
-      text-align: center;
-      background-color: var(${cssGlobalVars.input}-background);
-      border-radius: inherit;
-    }
+  [part="input-box"] {
+    width: var(${cssScope}--size);
+    height: var(${cssScope}--size);
+    vertical-align: top;
+    text-align: center;
+    background-color: var(${cssGlobalVars.input}-background);
+    border-radius: inherit;
+  }
 
-    [part=input] {
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      background: none;
-      position: absolute;
-      z-index: -1;
-    }
+  [part="input"] {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background: none;
+    position: absolute;
+    z-index: -1;
+  }
 
-    .focus {
-      box-shadow: var(${cssGlobalVars.input}-box-shadow);
-    }
-  `,
-)
+  .focus {
+    box-shadow: var(${cssGlobalVars.input}-box-shadow);
+  }
+`)
 class Split extends SuperInput {
   /**
    * The number of input boxes.
@@ -99,8 +97,7 @@ class Split extends SuperInput {
 
   protected render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)}>
-      ${
-      loop(
+      ${loop(
         this.len,
         (index: number) =>
           html`<span
@@ -109,17 +106,17 @@ class Split extends SuperInput {
             class="${classList({ focus: this.current === index }) || nothing}"
             >${this.currentValue[index]}</span
           >`,
-      )
-    }
+      )}
       <input
         part="input"
         id="${this.makeId}"
         @blur=${this.blur}
         @input="${this._handleInput}"
         .value="${
-      /* Ensure that input always has a value of length this.len */
-      this.value.padStart(this.len, " ")}"
-      >
+          /* Ensure that input always has a value of length this.len */
+          this.value.padStart(this.len, " ")
+        }"
+      />
     </div> `;
   }
 
@@ -168,8 +165,8 @@ class Split extends SuperInput {
         // go to before
 
         this.currentValue[this.current - 1] = null;
-        const lastNotNull = this.currentValue.findLastIndex(a => a !== null);
-        this.current = this.current - 1 < 0 ? lastNotNull < 0 ? 0 : lastNotNull : this.current - 1;
+        const lastNotNull = this.currentValue.findLastIndex((a) => a !== null);
+        this.current = this.current - 1 < 0 ? (lastNotNull < 0 ? 0 : lastNotNull) : this.current - 1;
       }
       return;
     }

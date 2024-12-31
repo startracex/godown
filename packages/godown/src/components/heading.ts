@@ -15,44 +15,42 @@ const protoName = "heading";
  * @category layout
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      display: block;
-      text-align: start;
-    }
+@styles(css`
+  :host {
+    display: block;
+    text-align: start;
+  }
 
-    [part=anchor] {
-      position: absolute;
-      text-align: center;
-      min-width: 1.25em;
-      right: 100%;
-    }
+  [part="anchor"] {
+    position: absolute;
+    text-align: center;
+    min-width: 1.25em;
+    right: 100%;
+  }
 
-    [side=left] [part=anchor] {
-      right: 100%;
-    }
-    [side=right] [part=anchor] {
-      left: 100%;
-    }
+  [side="left"] [part="anchor"] {
+    right: 100%;
+  }
+  [side="right"] [part="anchor"] {
+    left: 100%;
+  }
 
-    a {
-      color: inherit;
-    }
+  a {
+    color: inherit;
+  }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      direction: ltr;
-      font-size: revert;
-      position: relative;
-      width: fit-content;
-    }
-  `,
-)
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    direction: ltr;
+    font-size: revert;
+    position: relative;
+    width: fit-content;
+  }
+`)
 class Heading extends GlobalStyle {
   /**
    * The heading level.
@@ -74,12 +72,7 @@ class Heading extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     return html`<a part="root" href="${this.id ? "#" + this.id : nothing}" ${attr(this.observedRecord)}>
-      ${
-      this.wrapHeading(
-        htmlSlot(),
-        this.id ? html`<i part="anchor">${this.anchor}</i>` : "",
-      )
-    }
+      ${this.wrapHeading(htmlSlot(), this.id ? html`<i part="anchor">${this.anchor}</i>` : "")}
     </a> `;
   }
 

@@ -29,20 +29,21 @@ const protoName = "router";
  * @category navigation
  */
 @godown(protoName)
-@styles(css`:host{display:contents;}`)
+@styles(css`
+  :host {
+    display: contents;
+  }
+`)
 class Router extends GlobalStyle {
   static routerInstances: Set<Router> = new Set<Router>();
 
   private __fieldRouteTree: RouteTree = new RouteTree();
   private __slottedRouteTree: RouteTree = new RouteTree();
   private __cacheRecord = new Map<string, ReturnType<typeof this.useRouter>>();
-  private __routes: (
-    & Record<string, any>
-    & {
-      path: string;
-      component?: unknown;
-    }
-  )[];
+  private __routes: (Record<string, any> & {
+    path: string;
+    component?: unknown;
+  })[];
 
   /**
    * Render result.
@@ -170,12 +171,15 @@ class Router extends GlobalStyle {
   /**
    * Callback function when the route changes.
    */
-  routeChangeCallback: (params: {
-    pathname: string;
-    params: Record<string, string>;
-    path: string;
-    component: unknown | TemplateResult;
-  }, first: boolean) => void = null;
+  routeChangeCallback: (
+    params: {
+      pathname: string;
+      params: Record<string, string>;
+      path: string;
+      component: unknown | TemplateResult;
+    },
+    first: boolean,
+  ) => void = null;
 
   protected updated(changedProperties: PropertyValueMap<this>): void {
     const shouldDispatch = changedProperties.has("pathname") || changedProperties.has("path");
@@ -240,7 +244,7 @@ class Router extends GlobalStyle {
   collectSlottedRoutes(): void {
     this.__slottedRouteTree = new RouteTree();
     this.clear();
-    this._slottedNames.forEach(slotName => {
+    this._slottedNames.forEach((slotName) => {
       this.__slottedRouteTree.insert(slotName);
     });
   }

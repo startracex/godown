@@ -10,7 +10,7 @@ class SuperOpenable extends GlobalStyle {
   @property({ type: Boolean, reflect: true })
   open = false;
 
-  toggle(to: boolean = (!this.open) satisfies boolean): void {
+  toggle(to: boolean = !this.open satisfies boolean): void {
     this.open = to;
   }
 
@@ -41,11 +41,6 @@ export type Direction4 = "left" | "right" | "top" | "bottom";
 
 export type Direction5 = Direction4 | "center";
 
-export type Direction8 =
-  | Direction4
-  | "top-left"
-  | "top-right"
-  | "bottom-left"
-  | "bottom-right";
+export type Direction8 = Direction4 | "top-left" | "top-right" | "bottom-left" | "bottom-right";
 
 export type Direction9 = Direction8 | Direction5;

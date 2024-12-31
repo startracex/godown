@@ -4,27 +4,25 @@ import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "./global-style.js";
 
-@styles(
-  css`
-    :host {
-      display: inline-block;
-      color: currentColor;
-      text-decoration: none;
-      cursor: default;
-    }
+@styles(css`
+  :host {
+    display: inline-block;
+    color: currentColor;
+    text-decoration: none;
+    cursor: default;
+  }
 
-    :host([href]) {
-      cursor: pointer;
-    }
+  :host([href]) {
+    cursor: pointer;
+  }
 
-    [part=root] {
-      width: 100%;
-      color: inherit;
-      display: inline-block;
-      text-decoration: inherit;
-    }
-  `,
-)
+  [part="root"] {
+    width: 100%;
+    color: inherit;
+    display: inline-block;
+    text-decoration: inherit;
+  }
+`)
 class SuperAnchor extends GlobalStyle {
   /**
    * A element href.

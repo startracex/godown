@@ -35,7 +35,7 @@ class Link extends SuperAnchor {
   protected _handleClick(e: MouseEvent): void {
     if (this.type === "push" || this.type === "replace") {
       e.preventDefault();
-      (history[`${this.type}State`])(null, "", this.href);
+      history[`${this.type}State`](null, "", this.href);
       if (!this.suppress) {
         Router.updateAll();
       }

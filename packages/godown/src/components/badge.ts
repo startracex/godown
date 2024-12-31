@@ -16,61 +16,59 @@ const cssScope = scopePrefix(protoName);
  * @category display
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      ${cssScope}--background: var(${cssGlobalVars.active});
-      ${cssScope}--offset: 0%;
-      ${cssScope}--offset-x: var(${cssScope}--offset);
-      ${cssScope}--offset-y: var(${cssScope}--offset);
-    }
+@styles(css`
+  :host {
+    ${cssScope}--background: var(${cssGlobalVars.active});
+    ${cssScope}--offset: 0%;
+    ${cssScope}--offset-x: var(${cssScope}--offset);
+    ${cssScope}--offset-y: var(${cssScope}--offset);
+  }
 
-    :host,
-    :host([contents]) [part=root] {
-      display: inline-block;
-    }
+  :host,
+  :host([contents]) [part="root"] {
+    display: inline-block;
+  }
 
-    [part=root] {
-      position: relative;
-    }
+  [part="root"] {
+    position: relative;
+  }
 
-    [part=badge] {
-      position: absolute;
-      font-size: 75%;
-      padding: 0 0.5em;
-      user-select: none;
-      border-radius: calc(infinity * 1px);
-      transform: translate(-50%, -50%);
-      left: var(--left);
-      top: var(--top);
-      background: var(${cssScope}--background);
-    }
+  [part="badge"] {
+    position: absolute;
+    font-size: 75%;
+    padding: 0 0.5em;
+    user-select: none;
+    border-radius: calc(infinity * 1px);
+    transform: translate(-50%, -50%);
+    left: var(--left);
+    top: var(--top);
+    background: var(${cssScope}--background);
+  }
 
-    [part=badge]:empty {
-      width: 0.5em;
-      height: 0.5em;
-      font-size: 100%;
-      padding: 0;
-      border-radius: 50%;
-    }
+  [part="badge"]:empty {
+    width: 0.5em;
+    height: 0.5em;
+    font-size: 100%;
+    padding: 0;
+    border-radius: 50%;
+  }
 
-    [position^=top] {
-      --top: calc(0% + var(${cssScope}--offset-y));
-    }
+  [position^="top"] {
+    --top: calc(0% + var(${cssScope}--offset-y));
+  }
 
-    [position$=right] {
-      --left: calc(100% - var(${cssScope}--offset-x));
-    }
+  [position$="right"] {
+    --left: calc(100% - var(${cssScope}--offset-x));
+  }
 
-    [position^=bottom] {
-      --top: calc(100% - var(${cssScope}--offset-y));
-    }
+  [position^="bottom"] {
+    --top: calc(100% - var(${cssScope}--offset-y));
+  }
 
-    [position$=left] {
-      --left: calc(0% + var(${cssScope}--offset-x));
-    }
-  `,
-)
+  [position$="left"] {
+    --left: calc(0% + var(${cssScope}--offset-x));
+  }
+`)
 class Badge extends GlobalStyle {
   @property()
   position: Position = "top-right";
@@ -94,11 +92,7 @@ class Badge extends GlobalStyle {
   render(): TemplateResult<1> {
     return html`<div part="root" ${attr(this.observedRecord)}>
       ${htmlSlot()}
-      ${
-      this.value || this.dot
-        ? html`<div part="badge">${this.dot ? "" : this.formatValue(this.value)}</div>`
-        : ""
-    }
+      ${this.value || this.dot ? html`<div part="badge">${this.dot ? "" : this.formatValue(this.value)}</div>` : ""}
     </div>`;
   }
 }

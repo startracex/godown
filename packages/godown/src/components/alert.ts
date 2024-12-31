@@ -110,74 +110,72 @@ const calls = {
  * @category feedback
  */
 @godown(protoName)
-@styles(
-  css`
-    :host,
-    :where(:host([contents]) [part=root]) {
-      border-radius: var(${cssScope}--border-radius);
-      ${cssScope}--border-radius: .25em;
-      ${cssScope}--border-width: .075em;
-      ${cssScope}--blockquote-width: .2em;
-      ${cssScope}--padding: .5em;
-      display: block;
-      width: 100%;
-    }
+@styles(css`
+  :host,
+  :where(:host([contents]) [part="root"]) {
+    border-radius: var(${cssScope}--border-radius);
+    ${cssScope}--border-radius: .25em;
+    ${cssScope}--border-width: .075em;
+    ${cssScope}--blockquote-width: .2em;
+    ${cssScope}--padding: .5em;
+    display: block;
+    width: 100%;
+  }
 
-    [part=root] {
-      --color: var(${cssScope}--color);
-      color: var(--color);
-      width: 100%;
-      transition: 0.25s;
-      display: flex;
-      justify-content: space-between;
-      padding: var(${cssScope}--padding);
-      border-radius: inherit;
-      border: var(${cssScope}--border-width) solid var(--color);
-      background: var(${cssScope}--background);
-    }
+  [part="root"] {
+    --color: var(${cssScope}--color);
+    color: var(--color);
+    width: 100%;
+    transition: 0.25s;
+    display: flex;
+    justify-content: space-between;
+    padding: var(${cssScope}--padding);
+    border-radius: inherit;
+    border: var(${cssScope}--border-width) solid var(--color);
+    background: var(${cssScope}--background);
+  }
 
-    [variant=blockquote] {
-      border-radius: 0;
-      border-left: var(${cssScope}--blockquote-width) solid var(--color);
-      border-bottom: none;
-      border-right: none;
-      border-top: none;
-      background: transparent;
-    }
+  [variant="blockquote"] {
+    border-radius: 0;
+    border-left: var(${cssScope}--blockquote-width) solid var(--color);
+    border-bottom: none;
+    border-right: none;
+    border-top: none;
+    background: transparent;
+  }
 
-    [part=content] {
-      color: var(--color);
-    }
+  [part="content"] {
+    color: var(--color);
+  }
 
-    [part=root] {
-      display: grid;
-      align-items: center;
-      grid-template-columns: auto 1fr auto;
-      grid-template-rows: auto 1fr;
-    }
+  [part="root"] {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr;
+  }
 
-    [part=title] {
-      line-height: 2em;
-    }
+  [part="title"] {
+    line-height: 2em;
+  }
 
-    [part=icon] {
-      display: inline-grid;
-      align-items: center;
-      height: 2em;
-    }
+  [part="icon"] {
+    display: inline-grid;
+    align-items: center;
+    height: 2em;
+  }
 
-    [part=icon] svg {
-      margin-right: .5em;
-      width: 1.25em;
-      height: 1.25em;
-    }
+  [part="icon"] svg {
+    margin-right: 0.5em;
+    width: 1.25em;
+    height: 1.25em;
+  }
 
-    [part=content] {
-      grid-row: span 2 / span 2;
-      line-height: 1.5em;
-    }
-    `,
-)
+  [part="content"] {
+    grid-row: span 2 / span 2;
+    line-height: 1.5em;
+  }
+`)
 class Alert extends GlobalStyle {
   /**
    * If it is a legal value, the icon and preset color will be rendered.
@@ -247,11 +245,9 @@ class Alert extends GlobalStyle {
         <strong part="title">${this.title || htmlSlot("title")}</strong>
         ${this.content || htmlSlot()}
       </div>
-      ${
-      !this.hideClose && this.variant !== "blockquote"
+      ${!this.hideClose && this.variant !== "blockquote"
         ? html`<div part="close" tabindex="0" @click="${this.close}">${iconXmark()}</div>`
-        : ""
-    }
+        : ""}
       ${htmlStyle(this.variant === "light" ? lightStyles[color] : darkStyles[color])}
     </div>`;
   }

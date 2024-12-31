@@ -13,13 +13,11 @@ const protoName = "form";
  * @category form
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      display: block;
-    }
-  `,
-)
+@styles(css`
+  :host {
+    display: block;
+  }
+`)
 class Form<T = object> extends GlobalStyle {
   @property()
   name = "";
@@ -35,7 +33,7 @@ class Form<T = object> extends GlobalStyle {
   }
 
   reset(): void {
-    this.deepQuerySelectorAll<HTMLElement & { reset?: () => void; }>("*").forEach((el) => {
+    this.deepQuerySelectorAll<HTMLElement & { reset?: () => void }>("*").forEach((el) => {
       if (el.tagName === this.tagName) {
         return;
       }

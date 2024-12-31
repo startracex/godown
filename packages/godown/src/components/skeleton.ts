@@ -16,73 +16,71 @@ const cssScope = scopePrefix(protoName);
  * @category feedback
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      ${cssScope}--from: var(${cssGlobalVars._colors.darkgray[9]});
-      ${cssScope}--to: var(${cssGlobalVars._colors.darkgray[7]});
-      ${cssScope}--deg: 95deg;
-      ${cssScope}--duration: 1.5s;
-      ${cssScope}--icon-size: 5em;
-      ${cssScope}--icon-margin: .25em;
-      color: var(${cssGlobalVars._colors.darkgray[5]});
-      background: var(${cssScope}--from);
-      min-height: 1.5em;
-      width: 100%;
-      flex-shrink: 0;
-      display: block;
-      overflow: hidden;
-    }
+@styles(css`
+  :host {
+    ${cssScope}--from: var(${cssGlobalVars._colors.darkgray[9]});
+    ${cssScope}--to: var(${cssGlobalVars._colors.darkgray[7]});
+    ${cssScope}--deg: 95deg;
+    ${cssScope}--duration: 1.5s;
+    ${cssScope}--icon-size: 5em;
+    ${cssScope}--icon-margin: .25em;
+    color: var(${cssGlobalVars._colors.darkgray[5]});
+    background: var(${cssScope}--from);
+    min-height: 1.5em;
+    width: 100%;
+    flex-shrink: 0;
+    display: block;
+    overflow: hidden;
+  }
 
-    [part=root] {
-      height: 100%;
-      min-height: inherit;
-      text-align: center;
-      animation: var(${cssScope}--duration) ease-in-out 0s infinite none running;
-    }
+  [part="root"] {
+    height: 100%;
+    min-height: inherit;
+    text-align: center;
+    animation: var(${cssScope}--duration) ease-in-out 0s infinite none running;
+  }
 
-    svg {
-      --size:var(${cssScope}--icon-size);
-      font-size: var(--size);
-      margin: calc(var(--size) * 0.05);
-    }
+  svg {
+    --size: var(${cssScope}--icon-size);
+    font-size: var(--size);
+    margin: calc(var(--size) * 0.05);
+  }
 
-    [animation=position] {
-      background-image: linear-gradient(
-        var(${cssScope}--deg),
-        var(${cssScope}--from) 36%,
-        var(${cssScope}--to) 50%,
-        var(${cssScope}--from) 64%
-      );
-      background-color: transparent;
-      background-size: 200% 100%;
-      animation-name: po;
-    }
+  [animation="position"] {
+    background-image: linear-gradient(
+      var(${cssScope}--deg),
+      var(${cssScope}--from) 36%,
+      var(${cssScope}--to) 50%,
+      var(${cssScope}--from) 64%
+    );
+    background-color: transparent;
+    background-size: 200% 100%;
+    animation-name: po;
+  }
 
-    @keyframes po {
-      from {
-        background-position: 150% center;
-      }
-      to {
-        background-position: -50% center;
-      }
+  @keyframes po {
+    from {
+      background-position: 150% center;
     }
+    to {
+      background-position: -50% center;
+    }
+  }
 
-    [animation=opacity] {
-      animation-name: op;
-      animation-direction: alternate;
-    }
+  [animation="opacity"] {
+    animation-name: op;
+    animation-direction: alternate;
+  }
 
-    @keyframes op {
-      50% {
-        opacity: 0.25;
-      }
-      to {
-        opacity: 1;
-      }
+  @keyframes op {
+    50% {
+      opacity: 0.25;
     }
-  `,
-)
+    to {
+      opacity: 1;
+    }
+  }
+`)
 class Skeleton extends GlobalStyle {
   /**
    * If "image", render a image placeholder.
@@ -108,8 +106,7 @@ class Skeleton extends GlobalStyle {
       return htmlSlot();
     }
     return html`<div part="root" ${attr(this.observedRecord)}>
-      ${this.type === "image" ? iconPhoto() : ""}
-      ${htmlSlot("loading")}
+      ${this.type === "image" ? iconPhoto() : ""} ${htmlSlot("loading")}
     </div>`;
   }
 }

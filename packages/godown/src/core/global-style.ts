@@ -3,8 +3,7 @@ import { travel } from "@godown/colors/travel.js";
 import { GodownElement, joinProperties, trim } from "@godown/element";
 import { css, type CSSResult, unsafeCSS } from "lit";
 
-export class GlobalStyle extends GodownElement {
-}
+export class GlobalStyle extends GodownElement {}
 
 const cssvar = trim(GlobalStyle.godownConfig.prefix, "-");
 
@@ -41,25 +40,25 @@ export const cssGlobalVars: {
 type PresetsGradientsCSSResult = Record<keyof typeof presetsRGB, Gradients<CSSResult>>;
 GlobalStyle.styles = [
   unsafeCSS(
-    ":host{"
-      + `${cssGlobalVars.black}:rgb(0 0 0);`
-      + `${cssGlobalVars.white}:rgb(255 255 255);`
-      + travel((key, gradient, rgb) => {
+    ":host{" +
+      `${cssGlobalVars.black}:rgb(0 0 0);` +
+      `${cssGlobalVars.white}:rgb(255 255 255);` +
+      travel((key, gradient, rgb) => {
         cssGlobalVars._colors[key] ||= [] as any;
         cssGlobalVars._colors[key].push(unsafeCSS(scopePrefix("color", 2) + "-" + key + "-" + gradient));
         const endKey = `-${key}-${gradient}`;
         const colorKey = scopePrefix("color", 2) + endKey;
         return `${colorKey}:rgb(${rgb});`;
-      }, presetsRGB).join("")
-      + joinProperties({
+      }, presetsRGB).join("") +
+      joinProperties({
         [cssGlobalVars.background + ""]: `var(${cssGlobalVars._colors.darkgray[9]})`,
         [cssGlobalVars.foreground + ""]: `var(${cssGlobalVars._colors.lightgray[0]})`,
         [cssGlobalVars.active + ""]: `var(${cssGlobalVars._colors.blue[6]})`,
         [cssGlobalVars.passive + ""]: `var(${cssGlobalVars._colors.darkgray[6]})`,
         [cssGlobalVars.clipBackground + ""]:
           `linear-gradient(to bottom, var(${cssGlobalVars.foreground}), var(${cssGlobalVars.passive}))`,
-      })
-      + "}",
+      }) +
+      "}",
   ),
   css`
     * {
@@ -92,7 +91,7 @@ GlobalStyle.styles = [
       display: contents;
     }
 
-    :where(:host([contents]) [part=root]) {
+    :where(:host([contents]) [part="root"]) {
       all: inherit;
       display: revert;
     }

@@ -23,52 +23,50 @@ const protoName = "carousel";
  * @category display
  */
 @godown(protoName)
-@styles(
-  css`
-    :host {
-      display: block;
-      transition: .3s;
-    }
+@styles(css`
+  :host {
+    display: block;
+    transition: 0.3s;
+  }
 
-    [part=root] {
-      direction: ltr;
-      overflow: hidden;
-    }
+  [part="root"] {
+    direction: ltr;
+    overflow: hidden;
+  }
 
-    [part=root],
-    [part=move-root] {
-      height: 100%;
-      width: 100%;
-      display: flex;
-      position: relative;
-      transition: inherit;
-    }
+  [part="root"],
+  [part="move-root"] {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: relative;
+    transition: inherit;
+  }
 
-    [part=prev],
-    [part=next] {
-      height: 100%;
-      width: 1.5em;
-      z-index: 1;
-      position: absolute;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-    }
+  [part="prev"],
+  [part="next"] {
+    height: 100%;
+    width: 1.5em;
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
 
-    [part=prev] {
-      left: 0;
-    }
+  [part="prev"] {
+    left: 0;
+  }
 
-    [part=next] {
-      right: 0;
-    }
+  [part="next"] {
+    right: 0;
+  }
 
-    slot::slotted(*) {
-      flex-shrink: 0 !important;
-    }
-  `,
-)
+  slot::slotted(*) {
+    flex-shrink: 0 !important;
+  }
+`)
 class Carousel extends GlobalStyle {
   /**
    * The index of the element is displayed for the first time.
