@@ -1,8 +1,11 @@
 {
-  "name": "@godown/storybook",
-  "version": "0.0.0",
-  "type": "module",
-  "private": true,
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "fmt": "dprint fmt",
+    "lint": "eslint . --fix",
+    "storybook": "pnpm run dev --no-open",
+    "storybook-build": "storybook build -o build"
+  },
   "devDependencies": {
     "@storybook/addon-a11y": "^8.4.7",
     "@storybook/addon-essentials": "^8.4.7",
@@ -19,17 +22,14 @@
     "react": "catalog:",
     "storybook": "^8.4.7"
   },
-  "scripts": {
-    "dev": "storybook dev -p 6006",
-    "fmt": "dprint fmt",
-    "lint": "eslint . --fix",
-    "storybook": "pnpm run dev --no-open",
-    "storybook-build": "storybook build -o build"
-  },
   "dependencies": {
     "@godown/colors": "workspace:^",
     "@godown/element": "workspace:^",
     "@godown/f7-icon": "workspace:^",
     "godown": "workspace:^"
-  }
+  },
+  "name": "@godown/storybook",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true
 }
