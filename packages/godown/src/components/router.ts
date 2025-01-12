@@ -76,13 +76,13 @@ class Router extends GlobalStyle {
    * Value of matched path in routes.
    */
   @state()
-  path: string;
+  path?: string;
 
   /**
    * Current pathname (equals to location.pathname).
    */
   @property()
-  pathname: string;
+  pathname: string = location.pathname;
 
   /**
    * Rendered content when there is no match.
@@ -146,7 +146,6 @@ class Router extends GlobalStyle {
   connectedCallback(): void {
     super.connectedCallback();
     Router.routerInstances.add(this);
-    this.pathname ??= location.pathname;
 
     if (this.type !== "field") {
       const mutationObserver = new MutationObserver(this.collectSlottedRoutes);
