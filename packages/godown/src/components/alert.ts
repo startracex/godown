@@ -249,8 +249,9 @@ class Alert extends GlobalStyle {
           <strong part="title">${this.title || htmlSlot("title")}</strong>
           ${this.content || htmlSlot()}
         </div>
-        ${!this.hideClose && this.variant !== "blockquote"
-          ? html`
+        ${this.hideClose || this.variant === "blockquote"
+          ? ""
+          : html`
               <div
                 part="close"
                 tabindex="0"
@@ -258,9 +259,8 @@ class Alert extends GlobalStyle {
               >
                 ${iconXmark()}
               </div>
-            `
-          : ""}
-        ${htmlStyle(this.variant === "light" ? lightStyles[color] : darkStyles[color])}
+            `}
+        ${htmlStyle(this.variant === "dark" ? darkStyles[color] : lightStyles[color])}
       </div>
     `;
   }
