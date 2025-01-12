@@ -32,7 +32,6 @@ await build(
       ),
       terser({
         ecma: 2021,
-        // eslint-disable-next-line camelcase
         keep_classnames: true,
       }),
     ],

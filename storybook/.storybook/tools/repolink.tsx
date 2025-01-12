@@ -1,6 +1,6 @@
-import { useStorybookState } from "@storybook/manager-api";
 import { IconButton } from "@storybook/components";
 import { GithubIcon } from "@storybook/icons";
+import { useStorybookState } from "@storybook/manager-api";
 import React, { memo } from "react";
 
 export const repoLink = memo(() => {

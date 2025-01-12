@@ -1,9 +1,8 @@
-/* eslint-disable */
 import { statSync } from "node:fs";
+import type { InputOptions, OutputOptions } from "rollup";
 import { build } from "../../common/rollup-creator";
 import { nodeResolve, terser } from "../../common/rollup-plugins";
 import packageJSON from "./package.json";
-import type { InputOptions, OutputOptions } from "rollup";
 
 const intro = (...args: string[]) => {
   return `/**
@@ -100,7 +99,7 @@ buildInto.forEach(async (into) => {
     await build(into);
   }
   into.output.forEach(({ file }) => {
-    console.log(`${file.padEnd(maxLen)} (${
+    console.info(`${file.padEnd(maxLen)} (${
       buildFlag
         ? (statSync(file).size / 1024).toFixed(1) + " KB"
         : "skipped"

@@ -5,12 +5,12 @@ import iconInfoCircle from "@godown/f7-icon/icons/info-circle.js";
 import iconLightbulb from "@godown/f7-icon/icons/lightbulb.js";
 import iconQuestionCircle from "@godown/f7-icon/icons/question-circle.js";
 import iconSlashCircle from "@godown/f7-icon/icons/slash-circle.js";
-import iconXmark from "@godown/f7-icon/icons/xmark.js";
 import iconXmarkCircle from "@godown/f7-icon/icons/xmark-circle.js";
-import { css, html, type TemplateResult } from "lit";
+import iconXmark from "@godown/f7-icon/icons/xmark.js";
+import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
+import { GlobalStyle, cssGlobalVars, scopePrefix } from "../core/global-style.js";
 
 const protoName = "alert";
 const cssScope = scopePrefix(protoName);

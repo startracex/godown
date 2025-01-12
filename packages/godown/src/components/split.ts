@@ -1,5 +1,5 @@
-import { attr, classList, godown, type HandlerEvent, styles } from "@godown/element";
-import { css, html, nothing, type TemplateResult } from "lit";
+import { type HandlerEvent, attr, classList, godown, styles } from "@godown/element";
+import { type TemplateResult, css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../core/global-style.js";

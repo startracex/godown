@@ -1,6 +1,6 @@
-import { attr, godown, type HandlerEvent, htmlSlot, part, styles } from "@godown/element";
+import { type HandlerEvent, attr, godown, htmlSlot, part, styles } from "@godown/element";
 import svgCaretDown from "@godown/f7-icon/icons/chevron-down.js";
-import { css, html, nothing, type TemplateResult } from "lit";
+import { type TemplateResult, css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import Input from "./input.js";
@@ -234,7 +234,6 @@ class Select extends Input {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   filterCallback(element: HTMLElement, match: boolean, query: string): void {
     element.style.display = match ? "" : "none";
   }

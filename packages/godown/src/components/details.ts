@@ -1,6 +1,6 @@
 import { attr, godown, htmlSlot, styles } from "@godown/element";
 import svgCaretDown from "@godown/f7-icon/icons/chevron-down.js";
-import { css, html, type TemplateResult } from "lit";
+import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { scopePrefix } from "../core/global-style.js";

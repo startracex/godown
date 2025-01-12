@@ -18,7 +18,6 @@ export const updateAttribute = (element: Element, name: string, value: any): voi
 type DirectiveParams = Record<string, string | boolean | number | null | undefined>;
 
 class AttrDirective extends Directive {
-  // eslint-disable-next-line
   render(value: DirectiveParams, caller?: (element: Element, name: string, value: any) => void): void {
   }
 

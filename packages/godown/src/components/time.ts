@@ -1,6 +1,6 @@
 import { attr, godown, styles } from "@godown/element";
 import fmtime from "fmtime";
-import { css, html, type PropertyValues, type TemplateResult } from "lit";
+import { type PropertyValues, type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "../core/global-style.js";

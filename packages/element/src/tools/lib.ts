@@ -1,9 +1,7 @@
 /**
  * Returns true if the value is null or undefined.
  */
-export const isNil = (value: any): boolean =>
-  // eslint-disable-next-line eqeqeq
-  value == null;
+export const isNil = (value: any): boolean => value == null;
 
 /**
  * Returns true if the value is a number.

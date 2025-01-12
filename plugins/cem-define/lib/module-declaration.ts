@@ -28,7 +28,6 @@ export function analyzeModuleDeclaration({
                     }
                   }
                   if (!elementTag) {
-                    // eslint-disable-next-line no-console
                     console.warn(`Computed tag name:${m.name.getText()} skipped.`);
                   }
                 }

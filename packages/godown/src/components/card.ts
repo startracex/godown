@@ -1,9 +1,8 @@
 import { attr, godown, htmlSlot, styles } from "@godown/element";
-import { css, html, type TemplateResult } from "lit";
+import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { GlobalStyle, cssGlobalVars, scopePrefix } from "../core/global-style.js";
 import type Layout from "../layout.js";
 
 const protoName = "card";

@@ -29,7 +29,6 @@ class SuperOpenable extends GlobalStyle {
     }
   }
 
-  // eslint-disable-next-line
   protected _handelClick(_: MouseEvent): void {
     this.toggle();
   }

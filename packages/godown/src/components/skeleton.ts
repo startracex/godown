@@ -1,9 +1,9 @@
 import { attr, godown, htmlSlot, styles } from "@godown/element";
 import iconPhoto from "@godown/f7-icon/icons/photo.js";
-import { css, html, type TemplateResult } from "lit";
+import { type TemplateResult, css, html } from "lit";
 import { property, state } from "lit/decorators.js";
 
-import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
+import { GlobalStyle, cssGlobalVars, scopePrefix } from "../core/global-style.js";
 
 const protoName = "skeleton";
 const cssScope = scopePrefix(protoName);

@@ -1,7 +1,7 @@
 import { attr, godown, htmlSlot, htmlStyle, part, styles } from "@godown/element";
 import iconChevronLeft from "@godown/f7-icon/icons/chevron-left.js";
 import iconChevronRight from "@godown/f7-icon/icons/chevron-right.js";
-import { css, html, type TemplateResult } from "lit";
+import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "../core/global-style.js";

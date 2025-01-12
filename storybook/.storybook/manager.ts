@@ -1,8 +1,8 @@
 import { addons, types } from "@storybook/manager-api";
 import { themes } from "@storybook/theming";
-import { repoLink } from "./tools/repolink";
 import { changeDir } from "./tools/change-dir";
 import { freshStyles } from "./tools/fresh-styles";
+import { repoLink } from "./tools/repolink";
 
 addons.setConfig({
   theme: themes.dark,

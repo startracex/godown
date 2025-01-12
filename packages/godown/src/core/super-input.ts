@@ -1,9 +1,9 @@
 import { type HandlerEvent, htmlSlot, part, styles } from "@godown/element";
 import iconEyeSlashFill from "@godown/f7-icon/icons/eye-slash-fill.js";
-import { css, html, type TemplateResult } from "lit";
+import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { cssGlobalVars, GlobalStyle } from "./global-style.js";
+import { GlobalStyle, cssGlobalVars } from "./global-style.js";
 
 const fieldStyle = css`
   .input-field {
