@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "fmt": "dprint fmt",
-    "lint": "eslint . --fix"
+    "lint": "biome lint"
   },
   "keywords": [
     "rollup",

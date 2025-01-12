@@ -24,7 +24,7 @@
     "build": "tsc && tsx build.ts",
     "build:ts": "tsc",
     "fmt": "prettier src --write",
-    "lint": "eslint . --fix",
+    "lint": "biome lint",
     "manifest": "tsx manifest.ts"
   },
   "repository": {
