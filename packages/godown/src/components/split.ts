@@ -106,7 +106,7 @@ class Split extends SuperInput {
           (index: number) => html`
             <span
               part="input-box"
-              class="${classList({ focus: this.current === index }) || nothing}"
+              class="${classList({ focus: this.current === index })}"
               @click="${this.disabled ? null : () => this.focusAt(index)}"
             >
               ${this.currentValue[index]}

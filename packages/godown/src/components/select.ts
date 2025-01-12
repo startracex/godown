@@ -115,7 +115,6 @@ class Select extends Input {
             <input
               part="input"
               type="${this.type}"
-              dir="${this.dir || nothing}"
               .value="${this.text}"
               ?autofocus="${this.autofocus}"
               ?disabled="${this.disabled}"
