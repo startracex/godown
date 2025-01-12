@@ -114,15 +114,15 @@ class Select extends Input {
           html`
             <input
               part="input"
-              dir="${this.dir || nothing}"
-              id="${this.makeId}"
-              .value="${this.text}"
               type="${this.type}"
-              placeholder="${this.placeholder || nothing}"
+              dir="${this.dir || nothing}"
+              .value="${this.text}"
               ?autofocus="${this.autofocus}"
+              ?disabled="${this.disabled}"
               autocapitalize="${this.autocapitalize || nothing}"
               autocomplete="${this.autocomplete || nothing}"
-              ?disabled="${this.disabled}"
+              placeholder="${this.placeholder || nothing}"
+              id="${this.makeId}"
               @focus="${this._handleFocus}"
               @input="${this._handleInput}"
             />

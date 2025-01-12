@@ -52,13 +52,13 @@ class Input extends SuperInput {
             <input
               part="input"
               type="${this.type}"
-              id="${this.makeId}"
               .value="${this.value}"
-              placeholder="${this.placeholder || nothing}"
               ?autofocus="${this.autofocus}"
+              ?disabled="${this.disabled}"
               autocapitalize="${this.autocapitalize || nothing}"
               autocomplete="${this.autocomplete || nothing}"
-              ?disabled="${this.disabled}"
+              placeholder="${this.placeholder || nothing}"
+              id="${this.makeId}"
               @input="${this._handleInput}"
             />
           `,

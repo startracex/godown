@@ -92,8 +92,8 @@ class Avatar extends GlobalStyle {
         <img
           part="image"
           src="${this.src}"
-          @error=${this._handleError}
           alt="${this.name}"
+          @error=${this._handleError}
         />
       `;
     }

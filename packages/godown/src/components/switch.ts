@@ -140,12 +140,12 @@ class Switch extends SuperInput {
       >
         <input
           part="input"
-          @change="${this._handleChange}"
+          type="checkbox"
           ?disabled="${this.disabled}"
           ?checked="${this.checked}"
           name="${this.name}"
           id="${this.makeId}"
-          type="checkbox"
+          @change="${this._handleChange}"
         />
         <span
           part="handle"
