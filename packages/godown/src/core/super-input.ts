@@ -184,22 +184,37 @@ class SuperInput extends GlobalStyle {
   }
 
   protected _renderPrefix(): TemplateResult<1> {
-    return html`<label for=${this.makeId} part="prefix"> ${htmlSlot("prefix")}</label>`;
+    return html`
+      <label
+        for=${this.makeId}
+        part="prefix"
+      >
+        ${htmlSlot("prefix")}
+      </label>
+    `;
   }
 
   protected _renderSuffix(): TemplateResult<1> {
     const PASSWORD = "password";
-    return html`<label for=${this.makeId} part="suffix"
-      >${this.type === "password"
-        ? html` <i
-            part="icon"
-            @mousedown="${() => this._changeInputType("text")}"
-            @mouseup="${() => this._changeInputType(PASSWORD)}"
-            @mouseleave="${() => this._changeInputType(PASSWORD)}"
-            >${iconEyeSlashFill()}</i
-          >`
-        : htmlSlot("suffix")}
-    </label>`;
+    return html`
+      <label
+        for=${this.makeId}
+        part="suffix"
+      >
+        ${this.type === "password"
+          ? html`
+              <i
+                part="icon"
+                @mousedown="${() => this._changeInputType("text")}"
+                @mouseup="${() => this._changeInputType(PASSWORD)}"
+                @mouseleave="${() => this._changeInputType(PASSWORD)}"
+              >
+                ${iconEyeSlashFill()}
+              </i>
+            `
+          : htmlSlot("suffix")}
+      </label>
+    `;
   }
 }
 

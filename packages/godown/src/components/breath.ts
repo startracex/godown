@@ -108,16 +108,23 @@ class Breath extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     const texts = this.getTexts();
-    return html`<div part="root" ${attr(this.observedRecord)}>
-      ${[texts.map(this.renderText), htmlStyle(this._computeStyle(texts.length))]}
-    </div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+      >
+        ${[texts.map(this.renderText), htmlStyle(this._computeStyle(texts.length))]}
+      </div>
+    `;
   }
 
   protected renderText(text: string): TemplateResult<1> {
-    return html`<span class="rel">
-      <span class="nocolor">${text}</span>
-      <span class="colorful">${text}</span>
-    </span>`;
+    return html`
+      <span class="rel">
+        <span class="nocolor">${text}</span>
+        <span class="colorful">${text}</span>
+      </span>
+    `;
   }
 
   protected getTexts(): string[] {

@@ -228,10 +228,15 @@ class Button extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     const color = this.nextColor();
-    return html`<div part="root" ${attr(this.observedRecord)}>
-      <span part="modal-root"></span>
-      <div part="content">${[this.content || htmlSlot(), htmlStyle(colors[color])]}</div>
-    </div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+      >
+        <span part="modal-root"></span>
+        <div part="content">${[this.content || htmlSlot(), htmlStyle(colors[color])]}</div>
+      </div>
+    `;
   }
 
   focus(): void {

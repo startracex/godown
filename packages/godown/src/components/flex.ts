@@ -55,22 +55,27 @@ class Flex extends GlobalStyle {
   vertical = false;
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(this.observedRecord)}>
-      ${[
-        htmlSlot(),
-        htmlStyle(
-          joinRules({
-            ":host": {
-              gap: this.gap,
-              "flex-flow": this.flexFlow,
-              "flex-direction": this.vertical && "column",
-              "align-items": this.items,
-              "justify-content": this.content,
-            },
-          }),
-        ),
-      ]}
-    </div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+      >
+        ${[
+          htmlSlot(),
+          htmlStyle(
+            joinRules({
+              ":host": {
+                gap: this.gap,
+                "flex-flow": this.flexFlow,
+                "flex-direction": this.vertical && "column",
+                "align-items": this.items,
+                "justify-content": this.content,
+              },
+            }),
+          ),
+        ]}
+      </div>
+    `;
   }
 }
 

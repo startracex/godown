@@ -59,22 +59,27 @@ class Grid extends GlobalStyle {
   items: string;
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(this.observedRecord)}>
-      ${[
-        htmlSlot(),
-        htmlStyle(
-          joinRules({
-            ":host": {
-              gap: this.gap,
-              "grid-template-columns": isNumerical(this.columns) ? `repeat(${this.columns},1fr)` : this.columns,
-              "grid-template-rows": isNumerical(this.rows) ? `repeat(${this.rows},1fr)` : this.rows,
-              "place-content": this.content,
-              "place-items": this.items,
-            },
-          }),
-        ),
-      ]}
-    </div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+      >
+        ${[
+          htmlSlot(),
+          htmlStyle(
+            joinRules({
+              ":host": {
+                gap: this.gap,
+                "grid-template-columns": isNumerical(this.columns) ? `repeat(${this.columns},1fr)` : this.columns,
+                "grid-template-rows": isNumerical(this.rows) ? `repeat(${this.rows},1fr)` : this.rows,
+                "place-content": this.content,
+                "place-items": this.items,
+              },
+            }),
+          ),
+        ]}
+      </div>
+    `;
   }
 }
 

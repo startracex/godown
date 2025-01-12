@@ -75,9 +75,18 @@ class Progress extends GlobalStyle {
       width = this.parsePercent(this.value);
       className = "static";
     }
-    return html`<div part="root" ${attr(this.observedRecord)} class="${className}">
-      <i part="value" style="width:${width}%;"></i>
-    </div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+        class="${className}"
+      >
+        <i
+          part="value"
+          style="width:${width}%;"
+        ></i>
+      </div>
+    `;
   }
 
   /**

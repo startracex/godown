@@ -207,40 +207,44 @@ class Range extends SuperInput {
     const to = Math.max(...rangeValue);
     const gap = this.max - this.min;
 
-    return html`<div
-      part="root"
-      ${attr(this.observedRecord)}
-      @mousedown="${this.disabled ? null : this._handleMousedownRoot}"
-      style="${joinProperties({
-        "--from": `${((from - this.min) / gap) * 100}%`,
-        "--to": `${((to - this.min) / gap) * 100}%`,
-        ...(this.range
-          ? Object.fromEntries(
-              rangeValue.map((value, index) => [`--handle-${index}`, `${((value - this.min) / gap) * 100}%`]),
-            )
-          : {}),
-      })}"
-    >
-      <div part="track"></div>
-      ${this.range ? (this.value as number[]).map((_, index) => this.renderHandle(index)) : this.renderHandle(0)}
-    </div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+        @mousedown="${this.disabled ? null : this._handleMousedownRoot}"
+        style="${joinProperties({
+          "--from": `${((from - this.min) / gap) * 100}%`,
+          "--to": `${((to - this.min) / gap) * 100}%`,
+          ...(this.range
+            ? Object.fromEntries(
+                rangeValue.map((value, index) => [`--handle-${index}`, `${((value - this.min) / gap) * 100}%`]),
+              )
+            : {}),
+        })}"
+      >
+        <div part="track"></div>
+        ${this.range ? (this.value as number[]).map((_, index) => this.renderHandle(index)) : this.renderHandle(0)}
+      </div>
+    `;
   }
 
   protected renderHandle(index: number): TemplateResult<1> {
     const { range } = this;
     const end = !range || index === (this.value as number[]).length - 1;
-    return html`<i
-      tabindex="0"
-      part="handle"
-      class="${classList({ "last-focus": this.lastFocus === index })}"
-      @mousedown="${this.disabled ? null : this.createMouseDown(index)}"
-      @focus="${this.disabled ? null : () => this.focusHandle(index)}"
-      @blur="${this.disabled ? null : this.blurHandle}"
-      style="z-index:${this._focusStack.indexOf(index) + 1};--handle:var(--${
-        /* In single-handle mod or end, it is max value */
-        !range && end ? "to" : `handle-${index}`
-      })"
-    ></i> `;
+    return html`
+      <i
+        tabindex="0"
+        part="handle"
+        class="${classList({ "last-focus": this.lastFocus === index })}"
+        @mousedown="${this.disabled ? null : this.createMouseDown(index)}"
+        @focus="${this.disabled ? null : () => this.focusHandle(index)}"
+        @blur="${this.disabled ? null : this.blurHandle}"
+        style="z-index:${this._focusStack.indexOf(index) + 1};--handle:var(--${
+          /* In single-handle mod or end, it is max value */
+          !range && end ? "to" : `handle-${index}`
+        })"
+      ></i>
+    `;
   }
 
   private _keydownEvent: EventListenerOrEventListenerObject;

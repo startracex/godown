@@ -132,18 +132,27 @@ class Switch extends SuperInput {
   protected _input: HTMLInputElement;
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(this.observedRecord)} class="${this.round ? "round" : "rect"}">
-      <input
-        part="input"
-        @change="${this._handleChange}"
-        ?disabled="${this.disabled}"
-        ?checked="${this.checked}"
-        name="${this.name}"
-        id="${this.makeId}"
-        type="checkbox"
-      />
-      <span part="handle" class="${this.checked}"></span>
-    </div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+        class="${this.round ? "round" : "rect"}"
+      >
+        <input
+          part="input"
+          @change="${this._handleChange}"
+          ?disabled="${this.disabled}"
+          ?checked="${this.checked}"
+          name="${this.name}"
+          id="${this.makeId}"
+          type="checkbox"
+        />
+        <span
+          part="handle"
+          class="${this.checked}"
+        ></span>
+      </div>
+    `;
   }
 
   reset(): void {

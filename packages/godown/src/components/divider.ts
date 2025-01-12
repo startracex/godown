@@ -46,7 +46,12 @@ class Divider extends GlobalStyle {
   vertical = false;
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(this.observedRecord)}></div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+      ></div>
+    `;
   }
 }
 

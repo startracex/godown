@@ -40,24 +40,32 @@ class Input extends SuperInput {
   protected _input: HTMLInputElement;
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(this.observedRecord)} class="${classList("input-field", this.variant)}">
-      ${[
-        this._renderPrefix(),
-        html`<input
-          part="input"
-          type="${this.type}"
-          id="${this.makeId}"
-          .value="${this.value}"
-          placeholder="${this.placeholder || nothing}"
-          ?autofocus="${this.autofocus}"
-          autocapitalize="${this.autocapitalize || nothing}"
-          autocomplete="${this.autocomplete || nothing}"
-          ?disabled="${this.disabled}"
-          @input="${this._handleInput}"
-        />`,
-        this._renderSuffix(),
-      ]}
-    </div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+        class="${classList("input-field", this.variant)}"
+      >
+        ${[
+          this._renderPrefix(),
+          html`
+            <input
+              part="input"
+              type="${this.type}"
+              id="${this.makeId}"
+              .value="${this.value}"
+              placeholder="${this.placeholder || nothing}"
+              ?autofocus="${this.autofocus}"
+              autocapitalize="${this.autocapitalize || nothing}"
+              autocomplete="${this.autocomplete || nothing}"
+              ?disabled="${this.disabled}"
+              @input="${this._handleInput}"
+            />
+          `,
+          this._renderSuffix(),
+        ]}
+      </div>
+    `;
   }
 
   reset(): void {

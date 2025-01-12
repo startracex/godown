@@ -103,10 +103,15 @@ class Dialog extends SuperOpenable {
   private _modalInvoke = false;
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(this.observedRecord)}>
-      <div part="modal"></div>
-      <div part="container">${htmlSlot()}</div>
-    </div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+      >
+        <div part="modal"></div>
+        <div part="container">${htmlSlot()}</div>
+      </div>
+    `;
   }
 
   showModal(): void {

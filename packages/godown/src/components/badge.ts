@@ -90,10 +90,19 @@ class Badge extends GlobalStyle {
   }
 
   render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(this.observedRecord)}>
-      ${htmlSlot()}
-      ${this.value || this.dot ? html`<div part="badge">${this.dot ? "" : this.formatValue(this.value)}</div>` : ""}
-    </div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+      >
+        ${htmlSlot()}
+        ${this.value || this.dot
+          ? html`
+              <div part="badge">${this.dot ? "" : this.formatValue(this.value)}</div>
+            `
+          : ""}
+      </div>
+    `;
   }
 }
 

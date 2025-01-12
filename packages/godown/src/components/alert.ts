@@ -239,17 +239,30 @@ class Alert extends GlobalStyle {
   protected render(): TemplateResult<1> {
     const color = calls[this.call]?.color || this.color;
     const icon = this.call ? calls[this.call].icon() : htmlSlot("icon");
-    return html`<div part="root" ${attr(this.observedRecord)}>
-      <div part="icon">${icon}</div>
-      <div part="content">
-        <strong part="title">${this.title || htmlSlot("title")}</strong>
-        ${this.content || htmlSlot()}
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+      >
+        <div part="icon">${icon}</div>
+        <div part="content">
+          <strong part="title">${this.title || htmlSlot("title")}</strong>
+          ${this.content || htmlSlot()}
+        </div>
+        ${!this.hideClose && this.variant !== "blockquote"
+          ? html`
+              <div
+                part="close"
+                tabindex="0"
+                @click="${this.close}"
+              >
+                ${iconXmark()}
+              </div>
+            `
+          : ""}
+        ${htmlStyle(this.variant === "light" ? lightStyles[color] : darkStyles[color])}
       </div>
-      ${!this.hideClose && this.variant !== "blockquote"
-        ? html`<div part="close" tabindex="0" @click="${this.close}">${iconXmark()}</div>`
-        : ""}
-      ${htmlStyle(this.variant === "light" ? lightStyles[color] : darkStyles[color])}
-    </div>`;
+    `;
   }
 
   close(): void {

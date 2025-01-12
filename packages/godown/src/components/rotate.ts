@@ -47,10 +47,17 @@ class Rotate extends GlobalStyle {
   protected _root: HTMLElement;
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root">
-      <div part="slot" @mousemove="${this._handleRotate}">${htmlSlot()}</div>
-      <i @mouseleave="${this.reset}"></i>
-    </div>`;
+    return html`
+      <div part="root">
+        <div
+          part="slot"
+          @mousemove="${this._handleRotate}"
+        >
+          ${htmlSlot()}
+        </div>
+        <i @mouseleave="${this.reset}"></i>
+      </div>
+    `;
   }
 
   reset(): void {

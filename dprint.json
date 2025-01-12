@@ -17,7 +17,8 @@
   "excludes": [
     "**/node_modules",
     "**/*.d.ts",
-    "**/CHANGELOG.md"
+    "**/CHANGELOG.md",
+    "packages/godown/src"
   ],
   "includes": [
     "**/*.ts",

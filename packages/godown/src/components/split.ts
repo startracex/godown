@@ -96,28 +96,35 @@ class Split extends SuperInput {
   currentValue: (string | void)[] = [];
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(this.observedRecord)}>
-      ${loop(
-        this.len,
-        (index: number) =>
-          html`<span
-            part="input-box"
-            @click="${this.disabled ? null : () => this.focusAt(index)}"
-            class="${classList({ focus: this.current === index }) || nothing}"
-            >${this.currentValue[index]}</span
-          >`,
-      )}
-      <input
-        part="input"
-        id="${this.makeId}"
-        @blur=${this.blur}
-        @input="${this._handleInput}"
-        .value="${
-          /* Ensure that input always has a value of length this.len */
-          this.value.padStart(this.len, " ")
-        }"
-      />
-    </div> `;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+      >
+        ${loop(
+          this.len,
+          (index: number) => html`
+            <span
+              part="input-box"
+              @click="${this.disabled ? null : () => this.focusAt(index)}"
+              class="${classList({ focus: this.current === index }) || nothing}"
+            >
+              ${this.currentValue[index]}
+            </span>
+          `,
+        )}
+        <input
+          part="input"
+          id="${this.makeId}"
+          @blur=${this.blur}
+          @input="${this._handleInput}"
+          .value="${
+            /* Ensure that input always has a value of length this.len */
+            this.value.padStart(this.len, " ")
+          }"
+        />
+      </div>
+    `;
   }
 
   connectedCallback(): void {

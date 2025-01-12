@@ -76,9 +76,15 @@ class Text extends GlobalStyle {
   clip = false;
 
   protected render(): TemplateResult<1> {
-    return html`<span part="root" ${attr(this.observedRecord)} class="${classList(this.underline)}">
-      ${htmlSlot()}
-    </span>`;
+    return html`
+      <span
+        part="root"
+        ${attr(this.observedRecord)}
+        class="${classList(this.underline)}"
+      >
+        ${htmlSlot()}
+      </span>
+    `;
   }
 }
 

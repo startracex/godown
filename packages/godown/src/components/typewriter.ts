@@ -95,10 +95,18 @@ class Typewriter extends GlobalStyle {
   }
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(this.observedRecord)}>
-      ${htmlSlot()} ${this.contentInternal}
-      <i part="cursor" ?hidden="${this.ended}"></i>
-    </div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+      >
+        ${htmlSlot()} ${this.contentInternal}
+        <i
+          part="cursor"
+          ?hidden="${this.ended}"
+        ></i>
+      </div>
+    `;
   }
 
   protected firstUpdated(): void {

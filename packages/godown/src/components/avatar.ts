@@ -76,15 +76,31 @@ class Avatar extends GlobalStyle {
   round = false;
 
   protected render(): TemplateResult<1> {
-    return html`<div part="root" ${attr(omit(this.observedRecord, "src"))}>${this._renderAvatar()}</div>`;
+    return html`
+      <div
+        part="root"
+        ${attr(omit(this.observedRecord, "src"))}
+      >
+        ${this._renderAvatar()}
+      </div>
+    `;
   }
 
   private _renderAvatar() {
     if (this.src) {
-      return html`<img part="image" src="${this.src}" @error=${this._handleError} alt="${this.name}" />`;
+      return html`
+        <img
+          part="image"
+          src="${this.src}"
+          @error=${this._handleError}
+          alt="${this.name}"
+        />
+      `;
     }
     if (this.name) {
-      return html`<span part="name">${this.format()}</span>`;
+      return html`
+        <span part="name">${this.format()}</span>
+      `;
     }
     return htmlSlot();
   }

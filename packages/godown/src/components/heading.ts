@@ -71,25 +71,50 @@ class Heading extends GlobalStyle {
   side: "left" | "right" = "left";
 
   protected render(): TemplateResult<1> {
-    return html`<a part="root" href="${this.id ? "#" + this.id : nothing}" ${attr(this.observedRecord)}>
-      ${this.wrapHeading(htmlSlot(), this.id ? html`<i part="anchor">${this.anchor}</i>` : "")}
-    </a> `;
+    return html`
+      <a
+        part="root"
+        href="${this.id ? "#" + this.id : nothing}"
+        ${attr(this.observedRecord)}
+      >
+        ${this.wrapHeading(
+          htmlSlot(),
+          this.id
+            ? html`
+                <i part="anchor">${this.anchor}</i>
+              `
+            : "",
+        )}
+      </a>
+    `;
   }
 
   protected wrapHeading(...children: any[]): TemplateResult<1> {
     switch (this.as) {
       case "h2":
-        return html`<h2>${children}</h2>`;
+        return html`
+          <h2>${children}</h2>
+        `;
       case "h3":
-        return html`<h3>${children}</h3>`;
+        return html`
+          <h3>${children}</h3>
+        `;
       case "h4":
-        return html`<h4>${children}</h4>`;
+        return html`
+          <h4>${children}</h4>
+        `;
       case "h5":
-        return html`<h5>${children}</h5>`;
+        return html`
+          <h5>${children}</h5>
+        `;
       case "h6":
-        return html`<h6>${children}</h6>`;
+        return html`
+          <h6>${children}</h6>
+        `;
       default:
-        return html`<h1>${children}</h1>`;
+        return html`
+          <h1>${children}</h1>
+        `;
     }
   }
 }
