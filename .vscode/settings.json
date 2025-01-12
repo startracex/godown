@@ -4,22 +4,28 @@
     ".editorconfig": true,
     ".idea": true,
     ".git": true,
-    "**/.turbo": true,
+    ".npmrc": true,
+    ".vercel": true,
+    "vercel.json": true,
     "pnpm-lock.yaml": true,
-    "LICENSE": true,
-    "**/*.js.map": {
-      "when": "$(basename)"
-    },
-    "**/*.d.ts.map": {
-      "when": "$(basename)"
-    },
+    "**/.turbo": true,
+    "**/LICENSE": true,
+    "**/*.map": true,
     "**/*.js": {
       "when": "$(basename).d.ts"
     },
-    "**/*.cjs.map": true,
+    "**/*.d.ts": {
+      "when": "$(basename).ts"
+    },
     "**/*.cjs": true
   },
   "[typescript]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[jsonc]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
   "color-highlight.markerType": "underline",

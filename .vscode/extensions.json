@@ -1,8 +1,9 @@
 {
   "recommendations": [
-    "dbaeumer.vscode-eslint",
+    "biomejs.biome",
     "dprint.dprint",
     "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
     "naumovs.color-highlight",
     "runem.lit-plugin",
     "vincaslt.highlight-matching-tag"
