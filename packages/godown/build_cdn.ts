@@ -5,6 +5,13 @@ import { nodeResolve, terser } from "../../common/rollup-plugins";
 import packageJSON from "./package.json";
 import type { InputOptions, OutputOptions } from "rollup";
 
+const intro = (...args: string[]) => {
+  return `/**
+ * @license MIT
+ * @version ${packageJSON.version}${(args.length ? "\n * " : "") + args.join("\n * ")}
+ */`;
+};
+
 const buildInto: (InputOptions & { output: OutputOptions[]; })[] = [
   {
     input: "index.js",
@@ -22,12 +29,7 @@ const buildInto: (InputOptions & { output: OutputOptions[]; })[] = [
         format: "es",
         sourcemap: true,
         indent: false,
-        intro: `/**
- * @license MIT
- * @version ${packageJSON.version}
- * Require Lit Core (import from \`"lit"\`).
- */
-`,
+        intro: intro(`Require Lit Core (import from \`"lit"\`)`),
       },
       {
         file: "build/godown.iife.js",
@@ -37,12 +39,7 @@ const buildInto: (InputOptions & { output: OutputOptions[]; })[] = [
         globals: {
           lit: "Lit",
         },
-        intro: `/**
- * @license MIT
- * @version ${packageJSON.version}
- * Require Lit Core ("Lit" in globalThis).
- */
-`,
+        intro: intro(`Require Lit Core ("Lit" in globalThis)`),
       },
       {
         file: "build/godown.umd.js",
@@ -53,12 +50,7 @@ const buildInto: (InputOptions & { output: OutputOptions[]; })[] = [
         globals: {
           lit: "Lit",
         },
-        intro: `/**
- * @license MIT
- * @version ${packageJSON.version}
- * Require Lit Core ("Lit" in globalThis).
- */
-`,
+        intro: intro(`Require Lit Core ("Lit" in globalThis)`),
       },
     ],
   },
@@ -76,11 +68,7 @@ const buildInto: (InputOptions & { output: OutputOptions[]; })[] = [
         file: "build/godown+lit.js",
         format: "es",
         sourcemap: true,
-        intro: `/**
- * @license MIT
- * @version ${packageJSON.version}
- */
-`,
+        intro: intro(),
         indent: false,
       },
       {
@@ -88,11 +76,7 @@ const buildInto: (InputOptions & { output: OutputOptions[]; })[] = [
         format: "iife",
         name: "Godown",
         sourcemap: true,
-        intro: `/**
- * @license MIT
- * @version ${packageJSON.version}
- */
-`,
+        intro: intro(),
         indent: false,
       },
       {
@@ -100,11 +84,7 @@ const buildInto: (InputOptions & { output: OutputOptions[]; })[] = [
         format: "umd",
         name: "Godown",
         sourcemap: true,
-        intro: `/**
- * @license MIT
- * @version ${packageJSON.version}
- */
-  `,
+        intro: intro(),
         indent: false,
       },
     ],
