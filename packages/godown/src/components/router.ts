@@ -68,8 +68,9 @@ class Router extends GlobalStyle {
   /**
    * Dynamic parameters record.
    */
-  @state()
-  params: Record<string, string> = {};
+  get params(): Record<string, string> {
+    return RouteTree.parseParams(this.pathname, this.path);
+  }
 
   /**
    * Value of matched path in routes.
@@ -201,7 +202,6 @@ class Router extends GlobalStyle {
       return null;
     }
 
-    this.params = this.parseParams(this.path, this.pathname);
     const route = this.routes.find((r) => r.path === query);
     if (!route) {
       return null;
@@ -230,7 +230,7 @@ class Router extends GlobalStyle {
     if (!this.path) {
       return null;
     }
-    this.params = this.parseParams(query, this.pathname);
+
     return htmlSlot(this.path);
   }
 
@@ -254,10 +254,6 @@ class Router extends GlobalStyle {
     value.forEach(({ path }) => {
       this.__fieldRouteTree.insert(path);
     });
-  }
-
-  parseParams(routeTemplate: string, path: string = this.pathname): Record<string, string> {
-    return RouteTree.parseParams(path, routeTemplate);
   }
 
   static updateAll(): void {
