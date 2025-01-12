@@ -1,8 +1,25 @@
-import { godown, htmlSlot, RouteTree, styles } from "@godown/element";
+import { godown, htmlSlot, omit, RouteTree, styles } from "@godown/element";
 import { css, type PropertyValueMap, type TemplateResult } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import { GlobalStyle } from "../core/global-style.js";
+
+interface RouteState {
+  pathname: string;
+  params: Record<string, string>;
+  path: string;
+}
+
+interface RouteResult extends RouteState {
+  component: unknown;
+}
+
+interface RouteItem {
+  [key: PropertyKey]: unknown;
+  path: string;
+  render?: (state?: RouteState) => unknown;
+  component?: unknown;
+}
 
 const protoName = "router";
 
@@ -39,11 +56,8 @@ class Router extends GlobalStyle {
 
   private __fieldRouteTree: RouteTree = new RouteTree();
   private __slottedRouteTree: RouteTree = new RouteTree();
-  private __cacheRecord = new Map<string, ReturnType<typeof this.useRouter>>();
-  private __routes: (Record<string, any> & {
-    path: string;
-    component?: unknown;
-  })[];
+  private __cacheRecord = new Map<string, RouteResult>();
+  private __routes: RouteItem[];
 
   /**
    * Render result.
@@ -99,11 +113,7 @@ class Router extends GlobalStyle {
     this.collectFieldRoutes(value);
   }
 
-  get routes(): (Record<string, any> & {
-    path: string;
-    render?: (ur: ReturnType<Router["useRouter"]>) => unknown;
-    component?: unknown;
-  })[] {
+  get routes(): RouteItem[] {
     return this.__routes;
   }
 
@@ -112,7 +122,6 @@ class Router extends GlobalStyle {
   }
 
   protected render(): unknown {
-    this.params = {};
     if (this.cache) {
       const cached = this.__cacheRecord.get(this.pathname);
       if (cached) {
@@ -130,7 +139,7 @@ class Router extends GlobalStyle {
       default:
         this.component = this.fieldComponent() ?? this.slottedComponent();
     }
-    return this.component ?? this.default ?? null;
+    return this.component ?? this.default;
   }
 
   connectedCallback(): void {
@@ -154,12 +163,7 @@ class Router extends GlobalStyle {
     Router.routerInstances.delete(this);
   }
 
-  useRouter(): {
-    pathname: string;
-    params: Record<string, string>;
-    path: string;
-    component: unknown;
-  } {
+  useRouter(): RouteResult {
     return {
       pathname: this.pathname,
       params: this.params,
@@ -171,15 +175,7 @@ class Router extends GlobalStyle {
   /**
    * Callback function when the route changes.
    */
-  routeChangeCallback: (
-    params: {
-      pathname: string;
-      params: Record<string, string>;
-      path: string;
-      component: unknown | TemplateResult;
-    },
-    first: boolean,
-  ) => void = null;
+  routeChangeCallback: (params: RouteResult, first: boolean) => void = null;
 
   protected updated(changedProperties: PropertyValueMap<this>): void {
     const shouldDispatch = changedProperties.has("pathname") || changedProperties.has("path");
@@ -212,7 +208,7 @@ class Router extends GlobalStyle {
     }
 
     if ("render" in route) {
-      return route.render?.(this.useRouter()) || null;
+      return route.render?.(omit(this.useRouter(), "component")) || null;
     }
 
     return route.component;
@@ -270,9 +266,9 @@ class Router extends GlobalStyle {
     });
   }
 
-  handlePopstate = this.events.add(window, "popstate", () => {
+  handlePopstate: () => void = this.events.add(window, "popstate", () => {
     this.pathname = location.pathname;
-  }) as () => void;
+  });
 }
 
 export default Router;
