@@ -4,10 +4,9 @@ import { createRequire } from "node:module";
 import { IconSet } from "@iconify/tools/lib/icon-set";
 import { iconToSVG } from "@iconify/utils/lib/svg/build";
 import { globSync } from "glob";
-import { cjsReplace } from "rollup-plugin-cjs-shim";
 
-import { build, commonInput } from "../../common/rollup-creator.js";
-import { commonjs } from "../../common/rollup-plugins.js";
+import { build, commonInput } from "@godown/common/rollup-creator.js";
+import { cjsShim, commonjs } from "@godown/common/rollup-plugins.js";
 import format from "./lib/format.js";
 
 const set = new IconSet(createRequire(import.meta.url)("@iconify-json/f7/icons.json"));
@@ -55,7 +54,7 @@ build(
       preserveModulesRoot: ".",
     },
     plugins: [
-      cjsReplace(),
+      cjsShim(),
       commonjs(),
     ],
   },

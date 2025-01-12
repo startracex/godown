@@ -1,5 +1,5 @@
-import { build } from "../../common/rollup-creator.ts";
-import { commonjs } from "../../common/rollup-plugins.ts";
+import { build } from "@godown/common/rollup-creator.ts";
+import { commonjs } from "@godown/common/rollup-plugins.ts";
 
 build({
   input: "index.js",

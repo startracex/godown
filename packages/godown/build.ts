@@ -1,10 +1,9 @@
 import { globSync } from "glob";
 import postcss from "postcss";
-import templateReplace from "rollup-plugin-template-replace";
 
-import { autoprefixer, cssnano } from "../../common/postcss-plugins";
-import { build, commonInput, commonOutput } from "../../common/rollup-creator";
-import { minifyLiterals, terser, ts2 } from "../../common/rollup-plugins";
+import { autoprefixer, cssnano } from "@godown/common/postcss-plugins";
+import { build, commonInput, commonOutput } from "@godown/common/rollup-creator";
+import { minifyLiterals, templateReplace, terser, ts2 } from "@godown/common/rollup-plugins";
 
 const dir = ".";
 
@@ -15,21 +14,17 @@ await build(
     ...commonInput,
     input,
     plugins: [
-      templateReplace(
-        {
-          tags: ["css"],
-          async callback(input) {
-            const result = await postcss(autoprefixer(["since 2021"]), cssnano).process(input, { from: undefined });
-            return result.css;
-          },
+      templateReplace({
+        tags: ["css"],
+        async callback(input) {
+          const result = await postcss(autoprefixer(["since 2021"]), cssnano).process(input, { from: undefined });
+          return result.css;
         },
-      ),
+      }),
       minifyLiterals(),
-      ts2(
-        {
-          tsconfig: "./tsconfig.prod.json",
-        },
-      ),
+      ts2({
+        tsconfig: "./tsconfig.prod.json",
+      }),
       terser({
         ecma: 2021,
         keep_classnames: true,
@@ -40,9 +35,7 @@ await build(
     ...commonOutput,
     dir,
   },
-).then(
-  () => {
-    import("./manifest");
-    import("./build_cdn.ts");
-  },
-);
+).then(() => {
+  import("./manifest");
+  import("./build_cdn.ts");
+});
