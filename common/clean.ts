@@ -23,7 +23,7 @@ export function cleanTSGenFiles(
     cwd: input.dir,
     ...input.options,
   }).map(
-    path => path.slice(0, -3) + ".{js,d.ts,js.map,d.ts.map}",
+    (path) => path.slice(0, -3) + ".{js,d.ts,js.map,d.ts.map}",
   );
 
   const files = globSync([...p1, ...output.addFiles], {
@@ -38,6 +38,6 @@ export function cleanTSGenFiles(
     cwd: output.dir,
   });
 
-  files.forEach(file => rmSync(join(output.dir, file)));
-  dirs.forEach(dir => rmSync(join(output.dir, dir), { recursive: true }));
+  files.forEach((file) => rmSync(join(output.dir, file)));
+  dirs.forEach((dir) => rmSync(join(output.dir, dir), { recursive: true }));
 }

@@ -8,11 +8,20 @@
     "quoteProps": "asNeeded",
     "newLineKind": "lf",
     "useBraces": "always",
-    "trailingCommas": "onlyMultiLine",
     "bracePosition": "sameLine",
+    "singleBodyPosition": "nextLine",
+    "trailingCommas": "onlyMultiLine",
+    "binaryExpression.operatorPosition": "sameLine",
+    "conditionalExpression.operatorPosition": "nextLine",
+    "arrowFunction.useParentheses": "force",
+    "typeLiteral.separatorKind": "semiColon",
+    "spaceSurroundingProperties": true,
+    "taggedTemplate.spaceBeforeLiteral": false,
     "commentLine.forceSpaceAfterSlashes": true,
     "functionExpression.spaceAfterFunctionKeyword": true,
-    "module.sortImportDeclarations": "maintain"
+    "module.sortImportDeclarations": "maintain",
+    "importDeclaration.forceSingleLine": true,
+    "exportDeclaration.forceSingleLine": false
   },
   "excludes": [
     "**/node_modules",

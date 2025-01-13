@@ -11,9 +11,9 @@ export function exports(tagName: string, className: string, {
   const exports = moduleDoc.exports || [];
   const existingExport = exports.find(
     (exportDoc: { kind: string; name: string; declaration: { name: string; }; }) =>
-      exportDoc.kind === "custom-element-definition"
-      && exportDoc.name === tagName
-      && exportDoc.declaration?.name === className,
+      exportDoc.kind === "custom-element-definition" &&
+      exportDoc.name === tagName &&
+      exportDoc.declaration?.name === className,
   );
 
   if (!existingExport) {

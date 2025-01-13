@@ -48,7 +48,7 @@ class IconElement extends GodownElement {
       this.load();
     } else {
       const handleIntersection: IntersectionObserverCallback = (entries, observer) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             this.allowLoad = true;
             this.load();

@@ -58,8 +58,8 @@ export class RouteTree {
     }
 
     if (
-      parts.length === height
-      || RouteTree.dynamic(this.part).matchType === RouteTree.matchType.multi
+      parts.length === height ||
+      RouteTree.dynamic(this.part).matchType === RouteTree.matchType.multi
     ) {
       if (!this.pattern) {
         return null;
@@ -115,8 +115,8 @@ export class RouteTree {
   } {
     if (key) {
       if (
-        key.startsWith("{") && key.endsWith("}")
-        || key.startsWith("[") && key.endsWith("]")
+        key.startsWith("{") && key.endsWith("}") ||
+        key.startsWith("[") && key.endsWith("]")
       ) {
         key = key.slice(1, -1);
         const result = RouteTree.dynamic(key);
@@ -161,7 +161,7 @@ export class RouteTree {
    * Join paths with "/" and remove the leading and trailing "/".
    */
   static join(...paths: string[]): string {
-    return paths.map(path => trim(path, "/")).join("/");
+    return paths.map((path) => trim(path, "/")).join("/");
   }
 
   /**

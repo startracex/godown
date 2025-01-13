@@ -13,7 +13,7 @@ export function analyzeModuleDeclaration({
       node1,
     ) => {
       if (ts.isModuleBlock(node1)) {
-        node1.statements.forEach(s => {
+        node1.statements.forEach((s) => {
           if (ts.isInterfaceDeclaration(s) && s.name.getText() === "HTMLElementTagNameMap") {
             s.members.forEach((m) => {
               if (ts.isPropertySignature(m)) {

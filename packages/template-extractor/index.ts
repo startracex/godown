@@ -45,9 +45,9 @@ export function extract(node: ts.Node, parent?: ts.Node): ExtractResult[] {
   }
 
   if (
-    ts.isTemplateExpression(node)
+    ts.isTemplateExpression(node) &&
     // Make sure duplicate tagged are not collected
-    && !inTagged
+    !inTagged
   ) {
     const spans = node.templateSpans;
     const children: ExtractResult[] = [];

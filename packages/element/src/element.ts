@@ -29,7 +29,7 @@ class GodownElement extends LitElement {
   }
 
   get observedRecord(): Record<string, any> {
-    return Object.fromEntries(this.scopedObservedAttributes.map(key => [key, this[key]]));
+    return Object.fromEntries(this.scopedObservedAttributes.map((key) => [key, this[key]]));
   }
 
   /**
@@ -108,22 +108,22 @@ class GodownElement extends LitElement {
 
   getBoundingClientRect(): DOMRect {
     let root: Element | void;
-    return this.contents
+    return this.contents &&
         // root is contentsRoot or first Element of shadowRoot
-        && (root = this.contentsRoot || this.shadowRoot?.firstElementChild)
+        (root = this.contentsRoot || this.shadowRoot?.firstElementChild) &&
         // root is not the element itself
-        && root !== this
+        root !== this
       ? root.getBoundingClientRect()
       : super.getBoundingClientRect();
   }
 
   getClientRects(): DOMRectList {
     let root: Element | void;
-    return this.contents
+    return this.contents &&
         // root is contentsRoot or first Element of shadowRoot
-        && (root = this.contentsRoot || this.shadowRoot?.firstElementChild)
+        (root = this.contentsRoot || this.shadowRoot?.firstElementChild) &&
         // root is not the element itself
-        && root !== this
+        root !== this
       ? root.getClientRects()
       : super.getClientRects();
   }

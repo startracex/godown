@@ -10,7 +10,9 @@ class GodownConfig {
   registry: CustomElementRegistry = customElements;
 
   constructor(init?: Partial<GodownConfig & Record<PropertyKey, any>>) {
-    if (init) { Object.assign(this, init); }
+    if (init) {
+      Object.assign(this, init);
+    }
   }
 
   tag(origin: string): string {
