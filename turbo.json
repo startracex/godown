@@ -14,7 +14,11 @@
         "**/*.d.ts"
       ]
     },
-    "check-types": {},
+    "check-types": {
+      "dependsOn": [
+        "^check-types"
+      ]
+    },
     "clean": {},
     "lint": {},
     "fmt": {},
