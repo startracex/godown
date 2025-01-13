@@ -1,5 +1,12 @@
 # godown
 
+## 3.0.1
+
+### Patch Changes
+
+- bc9f59e: convert Router.params to getter
+- 76a4535: Router.pathname defaults to location.pathname
+
 ## 3.0.0
 
 ### Major Changes
