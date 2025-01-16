@@ -21,6 +21,14 @@ interface RouteItem {
   component?: unknown;
 }
 
+const routerTypes = {
+  field: "field",
+  slotted: "slotted",
+  united: "united",
+} as const;
+
+type RouterType = keyof typeof routerTypes;
+
 const protoName = "router";
 
 /**
@@ -101,7 +109,7 @@ class Router extends GlobalStyle {
    * This property should not be changed after the rendering is complete.
    */
   @property()
-  type: "united" | "slotted" | "field" = "united";
+  type: RouterType = routerTypes.united;
 
   /**
    * Cache accessed records.
@@ -134,10 +142,10 @@ class Router extends GlobalStyle {
       }
     }
     switch (this.type) {
-      case "field":
+      case routerTypes.field:
         this.component = this.fieldComponent();
         break;
-      case "slotted":
+      case routerTypes.slotted:
         this.component = this.slottedComponent();
         break;
       default:
@@ -256,6 +264,10 @@ class Router extends GlobalStyle {
     this.routerInstances.forEach((i) => {
       i.handlePopstate();
     });
+  }
+
+  search(pathname: string): RouteTree {
+    return this.__fieldRouteTree.search(pathname) || this.__slottedRouteTree.search(pathname);
   }
 
   handlePopstate: () => void = this.events.add(window, "popstate", () => {

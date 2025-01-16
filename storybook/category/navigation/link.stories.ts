@@ -12,11 +12,12 @@ export default {
       "push",
       "replace",
       "normal",
+      "auto",
     ]).arg,
   },
   args: {
     href: "/index",
-    type: "normal",
+    type: "auto",
     suppress: false,
   },
 } as RendererMeta<typeof render>;
