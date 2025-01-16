@@ -8,11 +8,11 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    text: stringArg,
+    content: stringArg,
     delay: numberArg,
   },
   args: {
-    text: "Hello world",
+    content: "Hello world",
     delay: 0,
   },
 } as RendererMeta<typeof render>;
