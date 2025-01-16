@@ -19,7 +19,7 @@ const protoName = "carousel";
  * If no width, it will be the width of the first element.
  *
  * @slot - Carousel items, should maintain the same size.
- * @fires change - Fired when the index changes.
+ * @fires change - Fires when the index changes.
  * @category display
  */
 @godown(protoName)
