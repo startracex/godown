@@ -28,7 +28,7 @@ class SuperAnchor extends GlobalStyle {
    * A element href.
    */
   @property()
-  href: string = undefined;
+  href: string;
   /**
    * A element target.
    */
