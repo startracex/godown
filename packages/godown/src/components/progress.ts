@@ -73,6 +73,11 @@ class Progress extends GlobalStyle {
     let className: string;
     if (!isNil(this.value)) {
       width = this.parsePercent(this.value);
+      if (width > 100) {
+        width = 100;
+      } else if (width < 0) {
+        width = 0;
+      }
       className = "static";
     }
     return html`
@@ -100,7 +105,11 @@ class Progress extends GlobalStyle {
     if (s.includes("%")) {
       return parseFloat(s);
     }
-    return (parseFloat(s) / (this.max - this.min)) * 100;
+    const diff = this.max - this.min;
+    if (diff === 0) {
+      return 100;
+    }
+    return (parseFloat(s) / diff) * 100;
   }
 }
 
