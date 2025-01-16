@@ -72,7 +72,13 @@
         "noCatchAssign": "error",
         "noClassAssign": "error",
         "noCompareNegZero": "error",
-        "noConsole": "error",
+        "noConsole": {
+          "level": "error",
+          "fix": "none",
+          "options": {
+            "allow": ["info", "warn", "error"]
+          }
+        },
         "noControlCharactersInRegex": "error",
         "noDebugger": "error",
         "noDoubleEquals": "warn",

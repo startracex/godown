@@ -99,7 +99,6 @@ buildInto.forEach(async (into) => {
     await build(into);
   }
   into.output.forEach(({ file }) => {
-   // biome-ignore lint: no effect
     console.info(`${file.padEnd(maxLen)} (${
       buildFlag
         ? (statSync(file).size / 1024).toFixed(1) + " KiB"
