@@ -21,7 +21,14 @@ await build(
           return result.css;
         },
       }),
-      minifyLiterals(),
+      minifyLiterals({
+        options: {
+          minifyOptions: {
+            minifyCSS: false, // !This option will cause loss of CSS property value units
+            minifyJS: false,
+          },
+        },
+      }),
       ts2({
         tsconfig: "./tsconfig.prod.json",
       }),
