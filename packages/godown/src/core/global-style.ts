@@ -4,6 +4,7 @@ import { GodownElement, joinProperties, trim } from "@godown/element";
 import { type CSSResult, css, unsafeCSS } from "lit";
 
 export class GlobalStyle extends GodownElement {}
+export default GlobalStyle;
 
 const cssvar = trim(GlobalStyle.godownConfig.prefix, "-");
 

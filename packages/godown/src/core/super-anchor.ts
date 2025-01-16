@@ -53,3 +53,4 @@ class SuperAnchor extends GlobalStyle {
 }
 
 export default SuperAnchor;
+export { SuperAnchor };

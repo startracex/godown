@@ -223,6 +223,7 @@ class SuperInput extends GlobalStyle {
 }
 
 export default SuperInput;
+export { SuperInput };
 
 type InputType =
   | "hidden"
