@@ -4,6 +4,8 @@ import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "../core/global-style.js";
 
+const toTemplate = (s: number | string) => (isNumerical(s) ? `repeat(${s},1fr)` : s);
+
 const protoName = "grid";
 
 /**
@@ -70,8 +72,8 @@ class Grid extends GlobalStyle {
             joinRules({
               ":host": {
                 gap: this.gap,
-                "grid-template-columns": isNumerical(this.columns) ? `repeat(${this.columns},1fr)` : this.columns,
-                "grid-template-rows": isNumerical(this.rows) ? `repeat(${this.rows},1fr)` : this.rows,
+                "grid-template-columns": toTemplate(this.columns),
+                "grid-template-rows": toTemplate(this.rows),
                 "place-content": this.content,
                 "place-items": this.items,
               },
