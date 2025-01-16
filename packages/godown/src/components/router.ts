@@ -209,8 +209,6 @@ class Router extends GlobalStyle {
       return null;
     }
 
-    console.log(this.path);
-
     if ("render" in route) {
       return route.render?.(omit(this.useRouter(), "component")) || null;
     }
