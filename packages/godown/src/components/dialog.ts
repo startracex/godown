@@ -3,7 +3,7 @@ import { type PropertyValues, type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
-import SuperOpenable, { type Direction9 } from "../core/super-openable.js";
+import SuperOpenable from "../core/super-openable.js";
 
 const protoName = "dialog";
 const cssScope = scopePrefix(protoName);
@@ -84,9 +84,9 @@ const cssScope = scopePrefix(protoName);
 class Dialog extends SuperOpenable {
   /**
    * Direction of the opening animation.
+   * @deprecated
    */
-  @property()
-  direction: Direction9 = "center";
+  direction: string;
 
   /**
    * Enable modal, blocking event penetration.
