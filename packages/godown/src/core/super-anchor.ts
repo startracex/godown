@@ -35,6 +35,10 @@ class SuperAnchor extends GlobalStyle {
   @property()
   target: "_blank" | "_self" | "_parent" | "_top" = "_self";
 
+  get pathname(): string {
+    return new URL(this.href, location.href).pathname;
+  }
+
   protected render(): TemplateResult<1> {
     return html`
       <a
