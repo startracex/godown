@@ -30,7 +30,7 @@ class Time extends GlobalStyle {
    * Format strings.
    */
   @property()
-  format = "YYYY-MM-DD hh:mm:ss UTFZ";
+  format = "YYYY-MM-DD hh:mm:ss";
 
   /**
    * Time.
