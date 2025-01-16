@@ -140,15 +140,16 @@ class Dialog extends SuperOpenable {
   }
 
   protected _handleKeydown(e: KeyboardEvent): void {
-    e.preventDefault();
     const keys = this.key.split(/[\s,]/);
     if (keys.includes(e.key) || keys.includes(e.code)) {
+      e.preventDefault();
       this.close();
     }
   }
 
   protected _handelSubmit(e: HandlerEvent<HTMLFormElement>): void {
     if (e.target.method === "dialog") {
+      e.preventDefault();
       this.close();
     }
   }
