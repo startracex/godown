@@ -10,11 +10,11 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    text: new ArgHelper().type("string").arg,
+    content: new ArgHelper().type("string").arg,
     duration: new ArgHelper().type("string").arg,
   },
   args: {
-    text: "Hello world",
+    content: "Hello world",
     duration: "3s",
   },
   parameters: {

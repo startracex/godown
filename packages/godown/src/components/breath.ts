@@ -98,7 +98,7 @@ class Breath extends GlobalStyle {
    * otherwise split strings by whitespace.
    */
   @property()
-  text: string | string[];
+  content: string | string[];
 
   /**
    * Effect duration, ending in s or ms.
@@ -128,7 +128,7 @@ class Breath extends GlobalStyle {
   }
 
   protected getTexts(): string[] {
-    return Array.isArray(this.text) ? this.text : (this.text || this.textContent).split(/\s+/).filter((x) => x);
+    return Array.isArray(this.content) ? this.content : (this.content || this.textContent).split(/\s+/).filter((x) => x);
   }
 
   protected _computeStyle(len: number): string {
