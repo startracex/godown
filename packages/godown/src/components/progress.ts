@@ -96,10 +96,11 @@ class Progress extends GlobalStyle {
    * @returns Percentage without a percent sign.
    */
   parsePercent(s: string | number = "0"): number {
-    if (String(s).includes("%")) {
-      return parseFloat(String(s));
+    s = String(s);
+    if (s.includes("%")) {
+      return parseFloat(s);
     }
-    return (parseFloat(String(s)) / (this.max - this.min)) * 100;
+    return (parseFloat(s) / (this.max - this.min)) * 100;
   }
 }
 
