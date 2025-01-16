@@ -101,7 +101,7 @@ buildInto.forEach(async (into) => {
   into.output.forEach(({ file }) => {
     console.info(`${file.padEnd(maxLen)} (${
       buildFlag
-        ? (statSync(file).size / 1024).toFixed(1) + " KB"
+        ? (statSync(file).size / 1024).toFixed(1) + " KiB"
         : "skipped"
     })`);
   });
