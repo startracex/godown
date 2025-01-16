@@ -30,7 +30,7 @@ const protoName = "router";
  *
  * It has two methods to collect routes.
  *
- * 1. From field `routes`, an array, each elements require "path" and "component".
+ * 1. From field `routes`, an array, each elements require "path".
  * 2. From child elements, which have the slot attribute for matching routes.
  *
  * If only the method 1 is used, set `type` to `"field"`.
