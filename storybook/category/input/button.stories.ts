@@ -52,6 +52,7 @@ export const Ghost = {
 
 export const WithCustomColor = {
   args: {
+    color: "none",
     stylex: "background: #3d4051; color: #e2e8f0;",
   },
 };
