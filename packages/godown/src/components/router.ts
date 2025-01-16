@@ -69,6 +69,9 @@ class Router extends GlobalStyle {
    * Dynamic parameters record.
    */
   get params(): Record<string, string> {
+    if (!this.path) {
+      return {};
+    }
     return RouteTree.parseParams(this.pathname, this.path);
   }
 
@@ -205,6 +208,8 @@ class Router extends GlobalStyle {
     if (!route) {
       return null;
     }
+
+    console.log(this.path);
 
     if ("render" in route) {
       return route.render?.(omit(this.useRouter(), "component")) || null;
