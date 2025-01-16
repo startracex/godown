@@ -11,10 +11,22 @@ import { presets } from "@godown/colors/presets";
       colors={Object.fromEntries(colors.map((color, index) => [index, color]))}
     />
   ))}
-  <ColorItem title="Active" colors={{ "blue 6": presets.blue[6] }} />
-  <ColorItem title="Passive" colors={{ "darkgray 6": presets.darkgray[6] }} />
-  <ColorItem title="Black" colors={["rgb(0 0 0)"]} />
-  <ColorItem title="White" colors={["rgb(255 255 255)"]} />
+  <ColorItem
+    title="Active"
+    colors={{ "blue 6": presets.blue[6] }}
+  />
+  <ColorItem
+    title="Passive"
+    colors={{ "darkgray 6": presets.darkgray[6] }}
+  />
+  <ColorItem
+    title="Black"
+    colors={["rgb(0 0 0)"]}
+  />
+  <ColorItem
+    title="White"
+    colors={["rgb(255 255 255)"]}
+  />
 </ColorPalette>
 
 <style>

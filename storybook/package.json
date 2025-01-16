@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "fmt": "dprint fmt",
+    "fmt": "prettier **/*.mdx --write && dprint fmt",
     "lint": "biome lint",
     "storybook": "pnpm run dev --no-open",
     "storybook-build": "storybook build -o build"

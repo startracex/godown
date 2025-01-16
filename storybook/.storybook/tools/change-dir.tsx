@@ -14,7 +14,9 @@ export const changeDir = memo(() => {
     });
   }, [isRtl]);
 
-  return <IconButton onClick={changeDir} title="Change direction">
-    <ParagraphIcon />
-  </IconButton>;
+  return (
+    <IconButton onClick={changeDir} title="Change direction">
+      <ParagraphIcon />
+    </IconButton>
+  );
 });
