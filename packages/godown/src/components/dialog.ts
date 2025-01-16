@@ -100,7 +100,7 @@ class Dialog extends SuperOpenable {
   @property()
   key = "Escape";
 
-  private _modalInvoke = false;
+  private __modalInvoke = false;
 
   protected render(): TemplateResult<1> {
     return html`
@@ -117,24 +117,24 @@ class Dialog extends SuperOpenable {
   showModal(): void {
     if (!this.modal) {
       this.modal = true;
-      this._modalInvoke = true;
+      this.__modalInvoke = true;
     }
     this.show();
   }
 
-  private _submitEvent: EventListenerOrEventListenerObject;
-  private _keydownEvent: EventListenerOrEventListenerObject;
+  private __submitEvent: EventListenerOrEventListenerObject;
+  private __keydownEvent: EventListenerOrEventListenerObject;
 
   protected updated(changedProperties: PropertyValues): void {
     if (changedProperties.has("open")) {
       if (this.open) {
-        this._submitEvent = this.events.add(this, "submit", this._handelSubmit);
+        this.__submitEvent = this.events.add(this, "submit", this._handelSubmit);
         if (this.key) {
-          this._keydownEvent = this.events.add(document, "keydown", this._handleKeydown.bind(this));
+          this.__keydownEvent = this.events.add(document, "keydown", this._handleKeydown.bind(this));
         }
       } else {
-        this.events.remove(this, "submit", this._submitEvent);
-        this.events.remove(document, "keydown", this._keydownEvent);
+        this.events.remove(this, "submit", this.__submitEvent);
+        this.events.remove(document, "keydown", this.__keydownEvent);
       }
     }
   }
@@ -155,9 +155,9 @@ class Dialog extends SuperOpenable {
   }
 
   close(): void {
-    if (this._modalInvoke) {
+    if (this.__modalInvoke) {
       this.modal = false;
-      this._modalInvoke = false;
+      this.__modalInvoke = false;
     }
     this.open = false;
   }

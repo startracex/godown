@@ -164,7 +164,7 @@ class Range extends SuperInput {
   @state()
   lastFocus?: number;
 
-  protected _focusStack: number[] = [];
+  private __focusStack: number[] = [];
 
   /**
    * Returns true when the second number is greater than the first number.
@@ -223,12 +223,12 @@ class Range extends SuperInput {
         })}"
       >
         <div part="track"></div>
-        ${this.range ? (this.value as number[]).map((_, index) => this.renderHandle(index)) : this.renderHandle(0)}
+        ${this.range ? (this.value as number[]).map((_, index) => this._renderHandle(index)) : this._renderHandle(0)}
       </div>
     `;
   }
 
-  protected renderHandle(index: number): TemplateResult<1> {
+  protected _renderHandle(index: number): TemplateResult<1> {
     const { range } = this;
     const end = !range || index === (this.value as number[]).length - 1;
     return html`
@@ -239,7 +239,7 @@ class Range extends SuperInput {
         @mousedown="${this.disabled ? null : this.createMouseDown(index)}"
         @focus="${this.disabled ? null : () => this.focusHandle(index)}"
         @blur="${this.disabled ? null : this.blurHandle}"
-        style="z-index:${this._focusStack.indexOf(index) + 1};--handle:var(--${
+        style="z-index:${this.__focusStack.indexOf(index) + 1};--handle:var(--${
           /* In single-handle mod or end, it is max value */
           !range && end ? "to" : `handle-${index}`
         })"
@@ -247,26 +247,26 @@ class Range extends SuperInput {
     `;
   }
 
-  private _keydownEvent: EventListenerOrEventListenerObject;
+  private __keydownEvent: EventListenerOrEventListenerObject;
 
   focusHandle(index: number): void {
     this.lastFocus = index;
-    const indexOfFocusStack = this._focusStack.indexOf(index);
+    const indexOfFocusStack = this.__focusStack.indexOf(index);
     if (indexOfFocusStack !== -1) {
-      this._focusStack.splice(indexOfFocusStack, 1);
+      this.__focusStack.splice(indexOfFocusStack, 1);
     }
-    this._focusStack.push(index);
+    this.__focusStack.push(index);
     const handleItem = this._handles.item(index);
     handleItem?.focus();
-    if (!this._keydownEvent) {
-      this._keydownEvent = this.events.add(document, "keydown", this.createKeydownEvent(index));
+    if (!this.__keydownEvent) {
+      this.__keydownEvent = this.events.add(document, "keydown", this.createKeydownEvent(index));
     }
     this.dispatchEvent(new CustomEvent("focus", { detail: index }));
   }
 
   blurHandle(): void {
     this.lastFocus = undefined;
-    this._keydownEvent = this.events.remove(document, "keydown", this._keydownEvent);
+    this.__keydownEvent = this.events.remove(document, "keydown", this.__keydownEvent);
     this.dispatchEvent(new CustomEvent("blur"));
   }
 
@@ -321,7 +321,7 @@ class Range extends SuperInput {
   /**
    * Ensure that the values do not exceed the range of max and min.
    */
-  protected normalizeValue(value: number): number {
+  normalizeValue(value: number): number {
     if (value > this.max) {
       value -= this.step;
     } else if (value < this.min) {

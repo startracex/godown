@@ -38,11 +38,11 @@ class Dragbox extends GlobalStyle {
     return this.offsetParent?.clientHeight ?? document.body.offsetHeight;
   }
 
-  private drag = false;
-  private t: number;
-  private l: number;
-  private cx: number;
-  private cy: number;
+  private __drag = false;
+  private __t: number;
+  private __l: number;
+  private __cx: number;
+  private __cy: number;
 
   /**
    * Position x.
@@ -74,11 +74,11 @@ class Dragbox extends GlobalStyle {
   }
 
   protected _handleDragStart(e: MouseEvent): void {
-    this.cx = e.clientX;
-    this.cy = e.clientY;
-    this.t = this.offsetTop;
-    this.l = this.offsetLeft;
-    this.drag = true;
+    this.__cx = e.clientX;
+    this.__cy = e.clientY;
+    this.__t = this.offsetTop;
+    this.__l = this.offsetLeft;
+    this.__drag = true;
     this._handleMouseMove = this.events.add(document, "mousemove", this._handleDrag.bind(this));
     this._handleMouseLeave = this.events.add(document, "mouseleave", this._handleDragEnd.bind(this));
   }
@@ -87,17 +87,17 @@ class Dragbox extends GlobalStyle {
   protected _handleMouseLeave: EventListenerFunc;
 
   protected _handleDragEnd(): void {
-    this.drag = false;
+    this.__drag = false;
     this.events.remove(document, "mousemove", this._handleMouseMove);
     this.events.remove(document, "mouseleave", this._handleMouseLeave);
   }
 
   protected _handleDrag(e: MouseEvent): void {
-    if (!this.drag) {
+    if (!this.__drag) {
       return;
     }
-    const nl = e.clientX - (this.cx - this.l);
-    const nt = e.clientY - (this.cy - this.t);
+    const nl = e.clientX - (this.__cx - this.__l);
+    const nt = e.clientY - (this.__cy - this.__t);
     const { style, offsetsWidth, offsetsHeight, offsetWidth, offsetHeight } = this;
     if (nl < 0) {
       style.left = "0";

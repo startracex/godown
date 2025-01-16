@@ -89,11 +89,11 @@ class Carousel extends GlobalStyle {
   @part("move-root")
   protected _moveRoot: HTMLElement;
 
-  protected intervalID: number;
+  intervalID: number;
 
-  private _cloneFirst: HTMLElement | undefined;
+  private __cloneFirst: HTMLElement | undefined;
 
-  private _cloneLast: HTMLElement | undefined;
+  private __cloneLast: HTMLElement | undefined;
 
   protected render(): TemplateResult<1> {
     return html`
@@ -130,12 +130,12 @@ class Carousel extends GlobalStyle {
     if (this.children.length) {
       this.width ||= `${(this.firstElementChild as HTMLElement).offsetWidth}px`;
 
-      this._cloneFirst?.remove();
-      this._cloneLast?.remove();
-      this._cloneLast = this.firstElementChild.cloneNode(true) as HTMLElement;
-      this._cloneFirst = this.lastElementChild.cloneNode(true) as HTMLElement;
-      this.appendChild(this._cloneLast);
-      this.insertBefore(this._cloneFirst, this.firstElementChild);
+      this.__cloneFirst?.remove();
+      this.__cloneLast?.remove();
+      this.__cloneLast = this.firstElementChild.cloneNode(true) as HTMLElement;
+      this.__cloneFirst = this.lastElementChild.cloneNode(true) as HTMLElement;
+      this.appendChild(this.__cloneLast);
+      this.insertBefore(this.__cloneFirst, this.firstElementChild);
       this.show(this.index);
     }
     this.checkInterval();

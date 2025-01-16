@@ -86,7 +86,7 @@ class Avatar extends GlobalStyle {
     `;
   }
 
-  private _renderAvatar() {
+  protected _renderAvatar(): TemplateResult<1> {
     if (this.src) {
       return html`
         <img
@@ -109,7 +109,7 @@ class Avatar extends GlobalStyle {
     return this.name;
   }
 
-  _handleError(): void {
+  protected _handleError(): void {
     this.src = undefined;
   }
 }

@@ -79,7 +79,7 @@ class Rotate extends GlobalStyle {
    * @param e Mouse move event.
    * @returns rotateX, rotateY
    */
-  _computeOffset(e: MouseEvent): {
+  protected _computeOffset(e: MouseEvent): {
     rotateX: number;
     rotateY: number;
   } {

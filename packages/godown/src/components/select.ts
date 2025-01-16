@@ -97,7 +97,7 @@ class Select extends Input {
   protected lastChecked: HTMLElement;
   protected defaultText: string;
   protected defaultChecked: HTMLElement[];
-  private _store: { value: string; text: string }[] = [];
+  private __store: { value: string; text: string }[] = [];
 
   protected render(): TemplateResult<1> {
     return html`
@@ -214,15 +214,15 @@ class Select extends Input {
     text ||= value;
     let operation: 0 | 1 = 0;
     if (this.multiple) {
-      const i = this._store.findIndex((s) => s.value === value);
+      const i = this.__store.findIndex((s) => s.value === value);
       if (i > -1) {
-        this._store.splice(i, 1);
+        this.__store.splice(i, 1);
       } else {
-        this._store.push({ value, text });
+        this.__store.push({ value, text });
         operation = 1;
       }
-      this.value = this._store.map((s) => s.value);
-      this.text = this._store.map((s) => s.text).join(", ");
+      this.value = this.__store.map((s) => s.value);
+      this.text = this.__store.map((s) => s.text).join(", ");
     } else {
       if (this.value === value) {
         this.value = "";

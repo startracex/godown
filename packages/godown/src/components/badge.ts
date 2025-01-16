@@ -85,7 +85,7 @@ class Badge extends GlobalStyle {
   @property({ type: Number })
   max = 99;
 
-  private formatValue(value: number): string {
+  formatValue(value: number): string {
     return value > this.max ? this.max + "+" : value + "";
   }
 

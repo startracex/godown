@@ -113,12 +113,12 @@ class Breath extends GlobalStyle {
         part="root"
         ${attr(this.observedRecord)}
       >
-        ${[texts.map(this.renderText), htmlStyle(this._computeStyle(texts.length))]}
+        ${[texts.map(this._renderText), htmlStyle(this._computeStyle(texts.length))]}
       </div>
     `;
   }
 
-  protected renderText(text: string): TemplateResult<1> {
+  protected _renderText(text: string): TemplateResult<1> {
     return html`
       <span class="rel">
         <span class="nocolor">${text}</span>
@@ -145,7 +145,7 @@ class Breath extends GlobalStyle {
     }%{opacity:1;}}${style1}`;
   }
 
-  protected parseDuration(): number | undefined {
+  parseDuration(): number | undefined {
     const { duration } = this;
     if (duration) {
       if (duration.endsWith("s")) {
