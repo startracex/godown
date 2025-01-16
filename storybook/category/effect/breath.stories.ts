@@ -14,8 +14,8 @@ export default {
     duration: new ArgHelper().type("string").arg,
   },
   args: {
-    content: "Hello world",
-    duration: "3s",
+    content: "Deploy. Preview. Ship.",
+    duration: "8s",
   },
   parameters: {
     docs: {
