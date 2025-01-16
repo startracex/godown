@@ -11,7 +11,7 @@ const intro = (...args: string[]) => {
  */`;
 };
 
-const buildInto: (InputOptions & { output: OutputOptions[]; })[] = [
+const buildInto: (InputOptions & { output: OutputOptions[] })[] = [
   {
     input: "index.js",
     external: ["lit"],

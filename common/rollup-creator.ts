@@ -22,10 +22,10 @@ export const commonOutput: Pick<
   virtualDirname: "virtual",
 };
 
-export async function build<I extends InputOptions & { output?: O; }, O extends OutputOptions | OutputOptions[]>(
+export async function build<I extends InputOptions & { output?: O }, O extends OutputOptions | OutputOptions[]>(
   i: I,
   o?: O,
-): Promise<InputOptions & { output?: I["output"] extends O ? I["output"] : O; }> {
+): Promise<InputOptions & { output?: I["output"] extends O ? I["output"] : O }> {
   const bundle = await rollup(i);
   i.output ||= o;
 

@@ -3,7 +3,7 @@
     "lineWidth": 120,
     "indentWidth": 2,
     "useTabs": false,
-    "semiColons": "always",
+    "semiColons": "prefer",
     "quoteStyle": "alwaysDouble",
     "quoteProps": "asNeeded",
     "newLineKind": "lf",

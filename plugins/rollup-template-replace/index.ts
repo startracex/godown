@@ -111,7 +111,7 @@ export default function (
   };
 }
 
-export function replaceText(raw: string, pos: { text: string; start: number; end: number; }[]) {
+export function replaceText(raw: string, pos: { text: string; start: number; end: number }[]) {
   let index = 0;
   let result = "";
   pos.forEach(({ start, end, text }) => {

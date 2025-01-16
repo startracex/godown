@@ -1,7 +1,7 @@
 import type { Plugin, SourceMapInput } from "rollup";
 
 export interface ReplaceParams {
-  search?: string | RegExp | { [Symbol.replace](string: string, replaceValue: string): string; };
+  search?: string | RegExp | { [Symbol.replace](string: string, replaceValue: string): string };
   regex?: RegExp;
   replacement: string;
   parts?: string[];

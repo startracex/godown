@@ -15,7 +15,7 @@ export const icon = (
   }
 );
 
-type IconAttributesParams = Parameters<typeof svgAttr>[0] & { viewBox?: never; };
+type IconAttributesParams = Parameters<typeof svgAttr>[0] & { viewBox?: never };
 
 export interface IconRenderer<A = IconAttributesParams> {
   (attributes?: A): TemplateResult<1>;

@@ -10,7 +10,7 @@ type LitStyles = CSSResultGroup | CSSResultGroup[];
  * @param s The styles to add to the component.
  */
 export const styles = (...s: LitStyles[]) => {
-  return (constructor: { styles?: LitStyles; }): void => {
+  return (constructor: { styles?: LitStyles }): void => {
     const protoStyles: CSSResultGroup[] = [];
 
     for (

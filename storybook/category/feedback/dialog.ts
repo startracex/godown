@@ -4,7 +4,7 @@ import { html } from "lit";
 import { createRef, ref } from "lit/directives/ref.js";
 
 export default (args: Pick<Dialog, "open">) => {
-  const dialogRef = createRef<HTMLElement & { open: boolean; }>();
+  const dialogRef = createRef<HTMLElement & { open: boolean }>();
   return html`
   <div style="height:200px">
   <button @click=${() => dialogRef.value.open = !dialogRef.value.open}>

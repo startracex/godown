@@ -133,7 +133,7 @@ class GodownElement extends LitElement {
    * index: index of injected style.
    * lazy: stylex property that will be applied after connectedCallback.
    */
-  __stylex: { css?: string; index?: number; lazy?: string; };
+  __stylex: { css?: string; index?: number; lazy?: string };
 
   get stylex(): string | undefined {
     return this.__stylex.css;
@@ -236,7 +236,7 @@ class GodownElement extends LitElement {
    * )
    * ```
    */
-  adoptStyles(...styles: { toString(): string; }[]): number {
+  adoptStyles(...styles: { toString(): string }[]): number {
     const stack = this.shadowRoot.adoptedStyleSheets;
     if (styles.length) {
       const sheet = new CSSStyleSheet();
