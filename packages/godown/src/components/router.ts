@@ -175,11 +175,6 @@ class Router extends GlobalStyle {
     };
   }
 
-  /**
-   * Callback function when the route changes.
-   */
-  routeChangeCallback: (params: RouteResult, first: boolean) => void = null;
-
   protected updated(changedProperties: PropertyValueMap<this>): void {
     const shouldDispatch = changedProperties.has("pathname") || changedProperties.has("path");
     if (shouldDispatch) {
@@ -188,7 +183,6 @@ class Router extends GlobalStyle {
       if (noRecord) {
         this.__cacheRecord.set(this.pathname, ur);
       }
-      this.routeChangeCallback?.(ur, noRecord);
       this.dispatchEvent(new CustomEvent("change", { detail: ur }));
     }
   }
