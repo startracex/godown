@@ -1,6 +1,6 @@
 {
   "name": "godown",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Non Composite Web Components Library",
   "type": "module",
   "main": "index.js",

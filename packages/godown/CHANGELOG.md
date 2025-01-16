@@ -1,5 +1,14 @@
 # godown
 
+## 3.0.2
+
+### Patch Changes
+
+- 7c8917e: remove default value of deprecated property
+- 9d05f0e: fix reading undefined properties when there is no matching path in Router
+- 6b03805: the Dialog keydown listener only prevent default when matching the close key
+- 8d4ef14: omit the value of html input in observedRecord
+
 ## 3.0.1
 
 ### Patch Changes
