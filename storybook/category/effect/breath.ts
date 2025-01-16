@@ -4,5 +4,7 @@ import type { Breath } from "godown";
 import { html } from "lit";
 
 export default (args: Pick<Breath, "content" | "duration">) => {
-  return html`<godown-breath ${attr(omit(args, "content"))} .content=${args.content}></godown-breath>`;
+  return html`<godown-breath ${attr(omit(args, "content"))} content=${args.content}>
+  <!-- From a certain website slogan -->
+</godown-breath>`;
 };
