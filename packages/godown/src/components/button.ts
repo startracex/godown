@@ -114,7 +114,7 @@ const colors: Record<Colors, string> = constructCSSObject(
   css`
     :host {
       ${cssScope}--padding-x: .5em;
-      ${cssScope}--padding-y: min(calc(var(${cssScope}--padding-x) / 2), .25em);
+      ${cssScope}--padding-y: min(calc(var(${cssScope}--padding-x) / 2), .125em);
       ${cssScope}--padding: var(${cssScope}--padding-y) var(${cssScope}--padding-x);
       ${cssScope}--modal-animation-duration: 1s;
       ${cssScope}--ghost-width: .08em;
@@ -150,9 +150,6 @@ const colors: Record<Colors, string> = constructCSSObject(
       user-select: none;
       border-radius: inherit;
       transition-duration: inherit;
-    }
-
-    [part="content"] {
       padding: var(${cssScope}--padding);
     }
 
