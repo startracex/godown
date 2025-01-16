@@ -1,20 +1,12 @@
 {
+  "extends": "@godown/tsconfig/base.json",
   "compilerOptions": {
     "target": "ESNext",
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
     "module": "ESNext",
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "skipLibCheck": true,
     "moduleResolution": "Bundler",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": false,
-    "moduleDetection": "force",
     "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
     "noEmit": true,
     "jsx": "react"
   }
