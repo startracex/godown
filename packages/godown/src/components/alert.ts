@@ -44,6 +44,9 @@ const genLight = (key: string) => {
   return [cssGlobalVars._colors[key][6], cssGlobalVars._colors[key][0]];
 };
 
+/**
+ * @deprecated
+ */
 const lightStyles = constructCSSObject(
   vars,
   {
@@ -232,6 +235,8 @@ class Alert extends GlobalStyle {
    * Alert variant, if set to `blockquote`, the alert will be rendered as a blockquote.
    *
    * If variant is `"blockquote"`, hide the close button.
+   *
+   * ! __"light" will be deprecated__ in the future.
    */
   @property()
   variant: "blockquote" | "dark" | "light" = "dark";
