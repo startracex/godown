@@ -1,5 +1,19 @@
 # godown
 
+## 3.1.0
+
+### Minor Changes
+
+- 77ba16f: update naming conventions and access modifiers
+- 5fcf04f: remove timezone in Time.format template
+- 18c01a1: rename Breath property "text" to "content"
+- 94896de: remove Router.routeChangeCallback
+
+### Patch Changes
+
+- 17b6c1a: handle edge cases in Progress calculation
+- 1fa843d: add missing exports
+
 ## 3.0.2
 
 ### Patch Changes
