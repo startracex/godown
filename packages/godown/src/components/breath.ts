@@ -128,7 +128,9 @@ class Breath extends GlobalStyle {
   }
 
   protected getTexts(): string[] {
-    return Array.isArray(this.content) ? this.content : (this.content || this.textContent).split(/\s+/).filter((x) => x);
+    return Array.isArray(this.content)
+      ? this.content
+      : (this.content || this.textContent).split(/\s+/).filter((x) => x);
   }
 
   protected _computeStyle(len: number): string {
