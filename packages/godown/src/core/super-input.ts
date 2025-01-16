@@ -1,4 +1,4 @@
-import { type HandlerEvent, htmlSlot, part, styles } from "@godown/element";
+import { type HandlerEvent, htmlSlot, omit, part, styles } from "@godown/element";
 import iconEyeSlashFill from "@godown/f7-icon/icons/eye-slash-fill.js";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
@@ -96,6 +96,10 @@ class SuperInput extends GlobalStyle {
 
   @property()
   value: any;
+
+  get observedRecord(): Record<string, any> {
+    return omit(super.observedRecord, "default", "value");
+  }
 
   /**
    * default property records the default or initial value and is used to reset the input.
