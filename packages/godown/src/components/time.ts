@@ -71,8 +71,8 @@ class Time extends GlobalStyle {
 
   protected updated(changedProperties: PropertyValues): void {
     if (changedProperties.has("timeout")) {
-      clearInterval(this.timeoutId);
       if (this.timeout) {
+        clearInterval(this.timeoutId);
         this.timeoutId = this.startTimeout();
       }
     }
@@ -80,6 +80,7 @@ class Time extends GlobalStyle {
 
   disconnectedCallback(): void {
     clearInterval(this.timeoutId);
+    this.timeoutId = undefined;
   }
 
   startTimeout(): number {
