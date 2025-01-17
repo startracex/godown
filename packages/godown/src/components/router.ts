@@ -188,8 +188,7 @@ class Router extends GlobalStyle {
     const shouldDispatch = changedProperties.has("pathname") || changedProperties.has("path");
     if (shouldDispatch) {
       const ur = this.useRouter();
-      const noRecord = !this.__cacheRecord.has(this.pathname);
-      if (noRecord) {
+      if (!this.__cacheRecord.has(this.pathname) && this.path) {
         this.__cacheRecord.set(this.pathname, ur);
       }
       this.dispatchEvent(new CustomEvent("change", { detail: ur }));
