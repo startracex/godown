@@ -134,22 +134,23 @@ class Router extends GlobalStyle {
   }
 
   protected render(): unknown {
-    if (this.cache) {
-      const cached = this.__cacheRecord.get(this.pathname);
-      if (cached) {
-        Object.assign(this, cached);
-        return this.component;
-      }
+    let cached: RouteResult | undefined;
+    if (this.cache && (cached = this.__cacheRecord.get(this.pathname))) {
+      this.component = cached.component;
+      this.path = cached.path;
+      this.pathname = cached.pathname;
     }
-    switch (this.type) {
-      case routerTypes.field:
-        this.component = this.fieldComponent();
-        break;
-      case routerTypes.slotted:
-        this.component = this.slottedComponent();
-        break;
-      default:
-        this.component = this.fieldComponent() ?? this.slottedComponent();
+    if (!cached) {
+      switch (this.type) {
+        case routerTypes.field:
+          this.component = this.fieldComponent();
+          break;
+        case routerTypes.slotted:
+          this.component = this.slottedComponent();
+          break;
+        default:
+          this.component = this.fieldComponent() ?? this.slottedComponent();
+      }
     }
     return this.component ?? this.default;
   }
