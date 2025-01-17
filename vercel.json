@@ -1,5 +1,5 @@
 {
   "installCommand": "pnpm i",
-  "buildCommand": "pnpm run build:main && pnpm run build:docs",
+  "buildCommand": "pnpm run build",
   "outputDirectory": "storybook/build"
 }

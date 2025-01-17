@@ -37,7 +37,7 @@ Lint
 pnpm run lint
 ```
 
-Build publish packages
+Build packages
 
 ```sh
 pnpm run build

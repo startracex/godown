@@ -1,10 +1,7 @@
 {
   "scripts": {
     "build": "turbo run build",
-    "build:docs": "pnpm run --filter @godown/storybook storybook-build",
-    "build:main": "turbo run build --filter godown",
-    "build:plugins": "turbo run build --filter ./plugins/*",
-    "check": "turbo run lint fmt",
+    "check": "biome lint && dprint check && prettier --check packages/godown/src",
     "check-types": "turbo run check-types",
     "clean": "turbo run clean",
     "dev": "turbo run dev",
