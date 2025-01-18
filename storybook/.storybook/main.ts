@@ -1,4 +1,3 @@
-import { dirname, join } from "path";
 import { type StorybookConfig } from "@storybook/web-components-vite";
 
 export default {
@@ -7,11 +6,11 @@ export default {
     "../mdx/*.mdx",
   ],
   addons: [
-    getAbsolutePath("@storybook/addon-essentials"),
-    getAbsolutePath("@storybook/addon-a11y"),
+    "@storybook/addon-essentials",
+    "@storybook/addon-a11y",
   ],
   framework: {
-    name: getAbsolutePath("@storybook/web-components-vite"),
+    name: "@storybook/web-components-vite",
     options: {},
   },
   managerHead: (head) =>
@@ -73,7 +72,3 @@ export default {
   }
 </style>`,
 } satisfies StorybookConfig;
-
-function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, "package.json")));
-}
