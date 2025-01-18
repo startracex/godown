@@ -1,6 +1,6 @@
 import MagicString from "magic-string";
 import type { Plugin } from "rollup";
-import { createFilter } from "rollup-pluginutils";
+import { createFilter } from "@rollup/pluginutils";
 import { type ExtractResult, extractSourceFile } from "template-extractor";
 
 interface RollupFilterOptions {

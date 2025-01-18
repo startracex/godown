@@ -14,8 +14,8 @@
   "author": "startracex",
   "license": "MIT",
   "dependencies": {
+    "@rollup/pluginutils": "^5.1.4",
     "magic-string": "^0.30.11",
-    "rollup-pluginutils": "^2.8.2",
     "template-extractor": "workspace:^"
   },
   "repository": {

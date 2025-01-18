@@ -4,27 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-catalogs:
-  default:
-    '@lit/react':
-      specifier: ^1.0.5
-      version: 1.0.6
-    '@lit/reactive-element':
-      specifier: ^2.0.0
-      version: 2.0.4
-    lit:
-      specifier: ^3.0.0
-      version: 3.2.1
-    react:
-      specifier: ^18.0.0
-      version: 18.3.1
-    rollup:
-      specifier: ^4.30.1
-      version: 4.30.1
-    tslib:
-      specifier: ^2.7.0
-      version: 2.8.1
-
 importers:
 
   .:
@@ -225,12 +204,12 @@ importers:
 
   plugins/rollup-template-replace:
     dependencies:
+      '@rollup/pluginutils':
+        specifier: ^5.1.4
+        version: 5.1.4(rollup@4.30.1)
       magic-string:
         specifier: ^0.30.11
         version: 0.30.12
-      rollup-pluginutils:
-        specifier: ^2.8.2
-        version: 2.8.2
       template-extractor:
         specifier: workspace:^
         version: link:../../packages/template-extractor
@@ -1032,15 +1011,6 @@ packages:
   '@rollup/pluginutils@4.2.1':
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
     engines: {node: '>= 8.0.0'}
-
-  '@rollup/pluginutils@5.1.3':
-    resolution: {integrity: sha512-Pnsb6f32CD2W3uCaLZIzDmeFyQ2b8UWMFI7xtwUezpcGBDVDW6y9XgAWIlARiGAo6eNF5FK5aQTr0LFyNyqq5A==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
 
   '@rollup/pluginutils@5.1.4':
     resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
@@ -3762,7 +3732,7 @@ snapshots:
 
   '@rollup/plugin-commonjs@28.0.1(rollup@4.30.1)':
     dependencies:
-      '@rollup/pluginutils': 5.1.3(rollup@4.30.1)
+      '@rollup/pluginutils': 5.1.4(rollup@4.30.1)
       commondir: 1.0.1
       estree-walker: 2.0.2
       fdir: 6.4.2(picomatch@4.0.2)
@@ -3774,7 +3744,7 @@ snapshots:
 
   '@rollup/plugin-node-resolve@15.3.0(rollup@4.30.1)':
     dependencies:
-      '@rollup/pluginutils': 5.1.3(rollup@4.30.1)
+      '@rollup/pluginutils': 5.1.4(rollup@4.30.1)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-module: 1.0.0
@@ -3794,14 +3764,6 @@ snapshots:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
-
-  '@rollup/pluginutils@5.1.3(rollup@4.30.1)':
-    dependencies:
-      '@types/estree': 1.0.6
-      estree-walker: 2.0.2
-      picomatch: 4.0.2
-    optionalDependencies:
-      rollup: 4.30.1
 
   '@rollup/pluginutils@5.1.4(rollup@4.30.1)':
     dependencies:
