@@ -1,5 +1,21 @@
 # godown
 
+## 3.2.0
+
+### Minor Changes
+
+- 51e996a: add getter "pathname" for SuperAnchor
+- fb5c08c: enhance Link and Router
+
+### Patch Changes
+
+- e82fe04: prevent cache when no path matches
+- 3b8b143: remove useless undefined assignment
+- ff7fcb3: fix assigning value to getter
+- Updated dependencies [123a68b]
+  - @godown/element@1.1.0
+  - @godown/f7-icon@1.0.1
+
 ## 3.1.0
 
 ### Minor Changes
