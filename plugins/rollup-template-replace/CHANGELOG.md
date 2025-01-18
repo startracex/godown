@@ -1,5 +1,11 @@
 # rollup-plugin-template-replace
 
+## 0.2.1
+
+### Patch Changes
+
+- 51cd0e8: use @rollup/pluginutils instead of rollup-pluginutils
+
 ## 0.2.0
 
 ### Minor Changes
