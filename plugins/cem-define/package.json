@@ -15,7 +15,7 @@
   "author": "startracex",
   "license": "MIT",
   "dependencies": {
-    "@custom-elements-manifest/analyzer": "^0.10.3"
+    "@custom-elements-manifest/analyzer": "^0.10.4"
   },
   "repository": {
     "type": "git",

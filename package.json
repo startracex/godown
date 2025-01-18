@@ -26,7 +26,7 @@
     "typescript545": "npm:typescript@5.4.5",
     "vite": "^6.0.7"
   },
-  "packageManager": "pnpm@9.15.3",
+  "packageManager": "pnpm@9.15.4",
   "engines": {
     "node": ">=20"
   },

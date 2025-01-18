@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^5.1.4",
-    "magic-string": "^0.30.12"
+    "magic-string": "^0.30.17"
   },
   "files": [
     "**/*.{js,d.ts}"
