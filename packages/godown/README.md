@@ -10,13 +10,13 @@ npm i godown
 
 ## Import
 
-Import all components.
+Import one component.
 
 ```js
 import Alert from "godown/alert.js";
 ```
 
-Import one component.
+Import all components.
 
 ```js
 import { Alert } from "godown";
