@@ -20,7 +20,7 @@ export default {
     side: new ArgHelper().options(["left", "right"]).arg,
   },
   args: {
-    as: "h1",
+    as: "h2",
     anchor: "#",
     side: "left",
   },
