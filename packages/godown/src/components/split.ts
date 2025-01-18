@@ -1,4 +1,4 @@
-import { type HandlerEvent, attr, classList, godown, styles } from "@godown/element";
+import { type HandlerEvent, attr, classList, godown, styles, loop } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, state } from "lit/decorators.js";
 
@@ -7,14 +7,6 @@ import SuperInput from "../core/super-input.js";
 
 const protoName = "split";
 const cssScope = scopePrefix(protoName);
-
-const loop = <T>(len: number, fn: (index?: number) => T) => {
-  const result: T[] = new Array(len);
-  for (let index = 0; index < len; index++) {
-    result[index] = fn(index);
-  }
-  return result;
-};
 
 /**
  * {@linkcode Split} renders multiple input boxes.

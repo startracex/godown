@@ -1,4 +1,4 @@
-import { attr, classList, godown, isNil, joinProperties, part, styles } from "@godown/element";
+import { attr, classList, godown, isNil, joinProperties, loop, part, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 
@@ -223,7 +223,7 @@ class Range extends SuperInput {
         })}"
       >
         <div part="track"></div>
-        ${this.range ? (this.value as number[]).map((_, index) => this._renderHandle(index)) : this._renderHandle(0)}
+        ${loop(this.rangeValue.length, (index) => this._renderHandle(index))}
       </div>
     `;
   }
