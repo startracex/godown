@@ -6,7 +6,7 @@ import { deepQuerySelector, deepQuerySelectorAll } from "./tools/dom.js";
 import { Events } from "./tools/events.js";
 
 class GodownElement extends LitElement {
-  static godownConfig?: GodownConfig = new GodownConfig();
+  static godownConfig: GodownConfig = new GodownConfig();
 
   static elementTagName?: string;
 
