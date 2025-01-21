@@ -22,15 +22,12 @@ class AttrDirective extends Directive {
   }
 
   update(part: ElementPart, [value, caller]: Parameters<this["render"]>): symbol {
-    if (!value) {
-      return noChange;
-    }
-    if (part.type === PartType.ELEMENT) {
+    if (value && part.type === PartType.ELEMENT) {
       for (const name in value) {
         (caller || updateAttribute)(part.element, name, value[name]);
       }
-      return noChange;
     }
+    return noChange;
   }
 }
 /**
