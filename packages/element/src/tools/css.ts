@@ -47,29 +47,36 @@ export function constructCSSObject<
   return cssObject;
 }
 
-type Props = Record<
+type Properties = Record<
   string,
-  string | number | {
+  string | number | boolean | void | {
     toString(): string;
   }
 >;
 
-export function joinRules(rules: Record<string, string | Props>): string {
-  return Object.keys(rules).reduce((css, key) => {
+export function joinRules(rules: Record<string, string | Properties>): string {
+  let result = "";
+  for (const key in rules) {
     const value = rules[key];
-    if (!value) {
-      return css;
+    if (value) {
+      const properties = typeof value !== "object" ? value : joinProperties(value);
+      if (properties) {
+        result += `${key}{${properties}}`;
+      }
     }
-    const properties = (typeof value === "string") ? value : joinProperties(value);
-    return properties ? css + `${key}{${properties}}` : css;
-  }, "");
+  }
+  return result;
 }
 
-export function joinProperties(props: Props): string {
-  return Object.keys(props).reduce((css, key) => {
+export function joinProperties(props: Properties): string {
+  let result = "";
+  for (const key in props) {
     const value = props[key];
-    return isNil(value) ? css : css + `${key}:${value};`;
-  }, "");
+    if (!isNil(value) && value !== false) {
+      result += `${key}:${value};`;
+    }
+  }
+  return result;
 }
 
 export function toVar(a: LikeString, b?: LikeString): string {
