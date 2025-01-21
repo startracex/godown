@@ -63,7 +63,7 @@ class GodownElement extends LitElement {
   /**
    * Slotted elements.
    */
-  protected get _slottedAll(): HTMLElement[] {
+  protected get _slottedAll(): HTMLSlotElement[] {
     return [...this.querySelectorAll<HTMLSlotElement>("[slot]")];
   }
 
