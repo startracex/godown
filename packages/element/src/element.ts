@@ -226,24 +226,19 @@ class GodownElement extends LitElement {
    * Add styles to shadowRoot.
    *
    * @param styles CSS strings.
-   * @returns Index of injected style.
-   *
-   * @example
-   * ```
-   * this.applyStyles(
-   * "...",
-   * css`...`,
-   * )
-   * ```
+   * @returns Index of injected style or undefined if there is no shadowRoot or styles.
    */
-  adoptStyles(...styles: { toString(): string }[]): number {
+  adoptStyles(...styles: { toString(): string }[]): number | undefined {
+    if (!this.shadowRoot) {
+      return;
+    }
     const stack = this.shadowRoot.adoptedStyleSheets;
     if (styles.length) {
       const sheet = new CSSStyleSheet();
       styles.forEach((style) => sheet.insertRule(style.toString()));
       stack.push(sheet);
+      return stack.length - 1;
     }
-    return stack.length - 1;
   }
 
   dispatchCustomEvent(type: string, detail?: any, options?: EventInit): void {
