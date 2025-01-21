@@ -49,28 +49,28 @@ class GodownElement extends LitElement {
   /**
    * No named slot element.
    */
-  get _slot(): HTMLSlotElement {
+  protected get _slot(): HTMLSlotElement {
     return this.shadowRoot.querySelector<HTMLSlotElement>("slot:not([name])");
   }
 
   /**
    * All slot elements.
    */
-  get _slotAll(): HTMLSlotElement[] {
+  protected get _slotAll(): HTMLSlotElement[] {
     return [...this.shadowRoot.querySelectorAll<HTMLSlotElement>("slot")];
   }
 
   /**
    * Slotted elements.
    */
-  get _slottedAll(): HTMLElement[] {
+  protected get _slottedAll(): HTMLElement[] {
     return [...this.querySelectorAll<HTMLSlotElement>("[slot]")];
   }
 
   /**
    * Named slotted elements' slot attribute.
    */
-  get _slottedNames(): string[] {
+  protected get _slottedNames(): string[] {
     return this._slottedAll.map((c) => c.getAttribute("slot")).filter((v) => v);
   }
 
@@ -133,7 +133,7 @@ class GodownElement extends LitElement {
    * index: index of injected style.
    * lazy: stylex property that will be applied after connectedCallback.
    */
-  __stylex: { css?: string; index?: number; lazy?: string };
+  private __stylex: { css?: string; index?: number; lazy?: string };
 
   get stylex(): string | undefined {
     return this.__stylex.css;
