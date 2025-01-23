@@ -20,7 +20,7 @@ class MyElement extents GodownElement {
 <my-element></my-element>
 ```
 
-## With config.
+## With config
 
 ```ts
 import { GodownElement, GodownConfig, godown, styles } from "@godown/element";
