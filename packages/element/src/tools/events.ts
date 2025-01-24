@@ -1,10 +1,10 @@
-export type EventMap = WindowEventMap & DocumentEventMap;
-export type EventNames = keyof EventMap;
-export type EventHandler = GlobalEventHandlersEventMap[keyof GlobalEventHandlersEventMap];
+type EventMap = WindowEventMap & DocumentEventMap;
+type EventNames = keyof EventMap;
+type EventAddOptions = boolean | AddEventListenerOptions;
+
 export type EventListenerFunc<T = HTMLElement, E = Event> =
   | EventListenerOrEventListenerObject
   | ((e: HandlerEvent<T, E>, ...args: any[]) => any);
-export type EventAddOptions = boolean | AddEventListenerOptions;
 
 export type HandlerEvent<T = HTMLElement, E = Event> = E & {
   target: T;
