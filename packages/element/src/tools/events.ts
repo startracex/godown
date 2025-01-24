@@ -11,23 +11,28 @@ export type HandlerEvent<T = HTMLElement, E = Event> = E & {
 } & Record<string, any>;
 
 export class Events {
-  private m = new Map<EventNames, Map<EventTarget, Set<EventListenerFunc>>>();
+  private inner = new Map<string, Map<EventTarget, Set<EventListenerFunc>>>();
 
   add<
     T extends EventTarget = HTMLElement,
     F extends EventListenerFunc<T> = EventListenerFunc<T>,
+    N extends string = EventNames,
   >(
     src: T,
-    type: EventNames,
+    type: N,
     listener: F,
     options?: EventAddOptions,
   ): F {
-    const eType = this.m.get(type) || new Map<any, Set<EventListenerFunc>>();
-    const eElem = eType.get(src) || new Set<EventListenerFunc>();
+    if (!src || !listener) {
+      return;
+    }
 
-    eElem.add(listener);
-    eType.set(src, eElem);
-    this.m.set(type, eType);
+    const typeMap = this.inner.get(type) || new Map<EventTarget, Set<EventListenerFunc>>();
+    const elementSet = typeMap.get(src) || new Set<EventListenerFunc>();
+
+    elementSet.add(listener);
+    typeMap.set(src, elementSet);
+    this.inner.set(type, typeMap);
 
     src.addEventListener(type, listener, options);
     return listener;
@@ -39,34 +44,37 @@ export class Events {
     listener: EventListenerFunc,
     option?: EventListenerOptions,
   ): undefined {
-    if (listener) {
-      const eType = this.m.get(type);
-      if (eType) {
-        const eElem = eType.get(src);
-        if (eElem) {
-          eElem.delete(listener);
-          if (!eElem.size) {
-            eType.delete(src);
-            if (!eType.size) {
-              this.m.delete(type);
-            }
+    if (!src || !listener) {
+      return;
+    }
+
+    const typeMap = this.inner.get(type);
+    if (typeMap) {
+      const elementSet = typeMap.get(src);
+      if (elementSet) {
+        elementSet.delete(listener);
+        if (!elementSet.size) {
+          typeMap.delete(src);
+          if (!typeMap.size) {
+            this.inner.delete(type);
           }
         }
       }
-      src.removeEventListener(type, listener, option);
     }
+
+    src.removeEventListener(type, listener, option);
   }
 
   removeAll(): undefined {
-    this.m.forEach((typeMap, type) => {
+    this.inner.forEach((typeMap, type) => {
       typeMap.forEach((eventListeners, src) => {
         eventListeners.forEach((listener) => {
           src.removeEventListener(type, listener);
         });
       });
       typeMap.clear();
-      this.m.delete(type);
     });
+    this.inner.clear();
   }
 }
 
