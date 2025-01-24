@@ -1,4 +1,4 @@
-import { attr, godown, htmlSlot, htmlStyle, part, styles } from "@godown/element";
+import { attr, godown, htmlSlot, part, styles } from "@godown/element";
 import iconChevronLeft from "@godown/f7-icon/icons/chevron-left.js";
 import iconChevronRight from "@godown/f7-icon/icons/chevron-right.js";
 import { type TemplateResult, css, html } from "lit";
@@ -8,15 +8,15 @@ import { GlobalStyle } from "../core/global-style.js";
 
 const protoName = "carousel";
 
+function getWidth(e) {
+  return e.getBoundingClientRect().width;
+}
+
 /**
  * {@linkcode Carousel} make the content display as a carousel.
  *
  * When this component is `firstUpdated`,
  * clone the first and last element and make the matching element visible when switching index.
- *
- * Child elements should maintain the same size.
- *
- * If no width, it will be the width of the first element.
  *
  * @slot - Carousel items, should maintain the same size.
  * @fires change - Fires when the index changes.
@@ -80,12 +80,6 @@ class Carousel extends GlobalStyle {
   @property({ type: Number })
   autoChange = 0;
 
-  /**
-   * Element width.
-   */
-  @property()
-  width: string;
-
   @part("move-root")
   protected _moveRoot: HTMLElement;
 
@@ -94,6 +88,8 @@ class Carousel extends GlobalStyle {
   private __cloneFirst: HTMLElement | undefined;
 
   private __cloneLast: HTMLElement | undefined;
+
+  protected _offset: number;
 
   protected render(): TemplateResult<1> {
     return html`
@@ -107,47 +103,56 @@ class Carousel extends GlobalStyle {
         >
           ${iconChevronLeft()}
         </i>
-        <div
-          part="move-root"
-          style="transform:${`translateX(-${this.index + 1}00%)`}"
-        >
-          ${htmlSlot()}
-        </div>
+        <div part="move-root">${htmlSlot()}</div>
         <i
           part="next"
           @click="${this.next}"
         >
           ${iconChevronRight()}
         </i>
-        ${htmlStyle(`:host,:host([contents]) [part=root]{width:${this.width};}`)}
       </div>
     `;
   }
 
-  protected async firstUpdated(): Promise<void> {
-    await this.updateComplete;
-
+  connectedCallback(): void {
+    super.connectedCallback();
     if (this.children.length) {
-      this.width ||= `${(this.firstElementChild as HTMLElement).offsetWidth}px`;
-
       this.__cloneFirst?.remove();
       this.__cloneLast?.remove();
       this.__cloneLast = this.firstElementChild.cloneNode(true) as HTMLElement;
       this.__cloneFirst = this.lastElementChild.cloneNode(true) as HTMLElement;
       this.appendChild(this.__cloneLast);
       this.insertBefore(this.__cloneFirst, this.firstElementChild);
-      this.show(this.index);
     }
-    this.checkInterval();
+  }
+
+  protected async firstUpdated(): Promise<void> {
+    await this.updateComplete;
+    this.show(this.index, true);
   }
 
   disconnectedCallback(): void {
     clearInterval(this.intervalID);
   }
 
-  show(i: number): void {
+  attributeChangedCallback(name: string, _old: string | null, value: string | null): void {
+    super.attributeChangedCallback(name, _old, value);
+    if (name === "index" && this.isConnected) {
+      this.show(this.index);
+    }
+  }
+
+  show(i: number, n?: boolean): void {
+    i = this.normalizeIndex(i);
     this.index = i;
+    this._offset = 0;
+    for (let childIndex = 0; childIndex <= i; childIndex++) {
+      this._offset -= getWidth(this.children[childIndex]);
+    }
+    this._offset += (getWidth(this) - getWidth(this.children[i + 1])) / 2;
     this.dispatchEvent(new CustomEvent("change", { detail: i, composed: true }));
+    this._doTranslateX(`${this._offset}px`, n);
+    this.checkInterval();
   }
 
   next(): void {
@@ -157,7 +162,6 @@ class Carousel extends GlobalStyle {
     } else {
       this.show(this.index + 1);
     }
-    this.checkInterval();
   }
 
   prev(): void {
@@ -167,26 +171,29 @@ class Carousel extends GlobalStyle {
     } else {
       this.show(this.index - 1);
     }
-    this.checkInterval();
   }
 
   protected _doTranslateX(xValue: string, noTransition?: boolean): void {
     this._moveRoot.style.transform = `translateX(${xValue})`;
-    if (noTransition) {
-      this._moveRoot.style.transition = "none";
-    }
-    this._moveRoot.getBoundingClientRect();
+    this._moveRoot.style.transition = noTransition ? "none" : "";
   }
 
   checkInterval(): void {
-    if (this.autoChange) {
-      if (this.intervalID) {
-        clearInterval(this.intervalID);
-      }
+    clearInterval(this.intervalID);
+    if (this.autoChange > 0) {
       this.intervalID = setInterval(() => {
         this.next();
       }, this.autoChange);
     }
+  }
+
+  normalizeIndex(i: number): number {
+    if (i < 0) {
+      return 0;
+    } else if (i > this.children.length - 3) {
+      return this.children.length - 3;
+    }
+    return i;
   }
 }
 
