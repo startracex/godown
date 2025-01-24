@@ -4,6 +4,7 @@ import { property } from "lit/decorators.js";
 import GodownConfig from "./config.js";
 import { deepQuerySelector, deepQuerySelectorAll } from "./tools/dom.js";
 import { Events } from "./tools/events.js";
+import { Observers } from "./tools/observers.js";
 
 class GodownElement extends LitElement {
   static godownConfig: GodownConfig = new GodownConfig();
@@ -85,6 +86,8 @@ class GodownElement extends LitElement {
    * ```
    */
   events: Events;
+
+  observers: Observers;
 
   /**
    * Assigns properties to the element when the element is constructed.
@@ -176,6 +179,7 @@ class GodownElement extends LitElement {
   constructor(init?: Record<PropertyKey, any>) {
     super();
     this.events = new Events();
+    this.observers = new Observers();
     this.__stylex = {};
     this.assign = {
       ...(GodownElement.godownConfig?.assign || {}),
@@ -198,6 +202,7 @@ class GodownElement extends LitElement {
 
   disconnectedCallback(): void {
     this.events.removeAll();
+    this.observers.removeAll();
   }
 
   mount(arg?: PropertyValues): void {
