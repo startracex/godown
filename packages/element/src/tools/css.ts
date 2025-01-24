@@ -47,12 +47,7 @@ export function constructCSSObject<
   return cssObject;
 }
 
-type Properties = Record<
-  string,
-  string | number | boolean | void | {
-    toString(): string;
-  }
->;
+type Properties<T = LikeString> = Record<string, T> | [T, T][];
 
 export function joinRules(rules: Record<string, string | Properties>): string {
   let result = "";
@@ -70,9 +65,8 @@ export function joinRules(rules: Record<string, string | Properties>): string {
 
 export function joinProperties(props: Properties): string {
   let result = "";
-  for (const key in props) {
-    const value = props[key];
-    if (!isNil(value) && value !== false) {
+  for (const [key, value] of Array.isArray(props) ? props : Object.entries(props)) {
+    if (key && (value || value === 0 || value === "")) {
       result += `${key}:${value};`;
     }
   }
