@@ -4,7 +4,7 @@ interface Option {
   tagName: string;
   styles?: Parameters<typeof styles>[0];
   autoDefine?: boolean;
-  registry?: Partial<typeof customElements>;
+  registry?: CustomElementRegistry;
 }
 
 /**

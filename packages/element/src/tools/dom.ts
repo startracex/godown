@@ -23,12 +23,12 @@ export function deepQuerySelectorAll<E extends Element = HTMLElement>(
 export function deepQuerySelector<E extends Element = HTMLElement>(
   selectors: string,
   root: E | ParentNode = document.body,
-): E {
+): E | null {
   if (!root || !selectors) {
     return null;
   }
 
-  let result: E;
+  let result: E | null;
   if (root instanceof Element && root.shadowRoot) {
     result = deepQuerySelector<E>(selectors, root.shadowRoot);
     if (result) {

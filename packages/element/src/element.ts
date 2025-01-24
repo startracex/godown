@@ -24,7 +24,7 @@ class GodownElement extends LitElement {
     return !!this.getDefined();
   }
 
-  static getDefined(): CustomElementConstructor {
+  static getDefined(): CustomElementConstructor | undefined {
     return this.godownConfig.get(this.elementTagName);
   }
 
@@ -49,15 +49,15 @@ class GodownElement extends LitElement {
   /**
    * No named slot element.
    */
-  protected get _slot(): HTMLSlotElement {
-    return this.shadowRoot.querySelector<HTMLSlotElement>("slot:not([name])");
+  protected get _slot(): HTMLSlotElement | null {
+    return this.shadowRoot ? this.shadowRoot.querySelector<HTMLSlotElement>("slot:not([name])") : null;
   }
 
   /**
    * All slot elements.
    */
   protected get _slotAll(): HTMLSlotElement[] {
-    return [...this.shadowRoot.querySelectorAll<HTMLSlotElement>("slot")];
+    return this.shadowRoot ? [...this.shadowRoot.querySelectorAll<HTMLSlotElement>("slot")] : [];
   }
 
   /**
@@ -71,7 +71,7 @@ class GodownElement extends LitElement {
    * Named slotted elements' slot attribute.
    */
   protected get _slottedNames(): string[] {
-    return this._slottedAll.map((c) => c.getAttribute("slot")).filter((v) => v);
+    return this._slottedAll.map((c) => c.getAttribute("slot")!).filter((v) => v);
   }
 
   /**
@@ -89,7 +89,7 @@ class GodownElement extends LitElement {
   /**
    * Assigns properties to the element when the element is constructed.
    */
-  assign: void | Record<string, any>;
+  assign: null | Record<string, any>;
 
   /**
    * ```css
@@ -107,7 +107,7 @@ class GodownElement extends LitElement {
   contentsRoot?: HTMLElement;
 
   getBoundingClientRect(): DOMRect {
-    let root: Element | void;
+    let root: Element | null | undefined;
     return this.contents &&
         // root is contentsRoot or first Element of shadowRoot
         (root = this.contentsRoot || this.shadowRoot?.firstElementChild) &&
@@ -118,7 +118,7 @@ class GodownElement extends LitElement {
   }
 
   getClientRects(): DOMRectList {
-    let root: Element | void;
+    let root: Element | null | undefined;
     return this.contents &&
         // root is contentsRoot or first Element of shadowRoot
         (root = this.contentsRoot || this.shadowRoot?.firstElementChild) &&
@@ -214,7 +214,7 @@ class GodownElement extends LitElement {
     this.mount(arg);
   }
 
-  deepQuerySelector<E extends Element = HTMLElement>(selectors: string): E {
+  deepQuerySelector<E extends Element = HTMLElement>(selectors: string): E | null {
     return deepQuerySelector<E>(selectors, this);
   }
 

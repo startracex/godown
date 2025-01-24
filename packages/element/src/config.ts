@@ -27,7 +27,7 @@ class GodownConfig {
     this.components.set(name, constructor);
   }
 
-  get(name: string): CustomElementConstructor {
+  get(name: string): CustomElementConstructor | undefined {
     return this.registry.get(name);
   }
 
