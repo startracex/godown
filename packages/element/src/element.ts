@@ -5,6 +5,7 @@ import GodownConfig from "./config.js";
 import { deepQuerySelector, deepQuerySelectorAll } from "./tools/dom.js";
 import { Events } from "./tools/events.js";
 import { Observers } from "./tools/observers.js";
+import { Timeouts } from "./tools/timeouts.js";
 
 class GodownElement extends LitElement {
   static godownConfig: GodownConfig = new GodownConfig();
@@ -88,6 +89,8 @@ class GodownElement extends LitElement {
   events: Events;
 
   observers: Observers;
+
+  timeouts: Timeouts;
 
   /**
    * Assigns properties to the element when the element is constructed.
@@ -180,6 +183,7 @@ class GodownElement extends LitElement {
     super();
     this.events = new Events();
     this.observers = new Observers();
+    this.timeouts = new Timeouts();
     this.__stylex = {};
     this.assign = {
       ...(GodownElement.godownConfig?.assign || {}),
@@ -203,6 +207,7 @@ class GodownElement extends LitElement {
   disconnectedCallback(): void {
     this.events.removeAll();
     this.observers.removeAll();
+    this.timeouts.removeAll();
   }
 
   mount(arg?: PropertyValues): void {
