@@ -2,24 +2,22 @@ export function deepQuerySelectorAll<E extends Element = HTMLElement>(
   selectors: string,
   root: E | ParentNode = document.body,
 ): E[] {
-  const result: E[] = [];
-
   if (!root || !selectors) {
-    return result;
+    return [];
   }
 
-  if ((root as E).shadowRoot) {
-    result.push(...deepQuerySelectorAll<E>(selectors, (root as E).shadowRoot));
+  const result = new Set<E>();
+  if (root instanceof Element && root.shadowRoot) {
+    deepQuerySelectorAll<E>(selectors, root.shadowRoot).forEach((el) => result.add(el));
   }
 
-  const a = root.querySelectorAll<E>(selectors);
-  result.push(...Array.from(a));
+  root.querySelectorAll<E>(selectors).forEach((el) => result.add(el));
 
   for (const child of root.children) {
-    result.push(...deepQuerySelectorAll<E>(selectors, child));
+    deepQuerySelectorAll<E>(selectors, child).forEach((el) => result.add(el));
   }
 
-  return [...new Set(result)];
+  return Array.from(result);
 }
 
 export function deepQuerySelector<E extends Element = HTMLElement>(
@@ -29,17 +27,24 @@ export function deepQuerySelector<E extends Element = HTMLElement>(
   if (!root || !selectors) {
     return null;
   }
-  if ((root as E).shadowRoot) {
-    return deepQuerySelector<E>(selectors, (root as E).shadowRoot);
+
+  let result: E;
+  if (root instanceof Element && root.shadowRoot) {
+    result = deepQuerySelector<E>(selectors, root.shadowRoot);
+    if (result) {
+      return result;
+    }
   }
-  const a = root.querySelector<E>(selectors);
-  if (a) {
-    return a;
+
+  result = root.querySelector<E>(selectors);
+  if (result) {
+    return result;
   }
+
   for (const child of root.children) {
-    const b = deepQuerySelector<E>(selectors, child);
-    if (b) {
-      return b;
+    result = deepQuerySelector<E>(selectors, child);
+    if (result) {
+      return result;
     }
   }
   return null;
