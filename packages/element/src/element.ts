@@ -16,6 +16,12 @@ class GodownElement extends LitElement {
 
   static protoName?: string;
 
+  /**
+   * Defines a custom element with the specified tag name and options.
+   * If the element is not already defined, it will be registered with the GodownConfig.
+   * @param tagName - The tag name to use for the custom element, defaulting to the {@link elementTagName} static property.
+   * @param options - Element definition options.
+   */
   static define(tagName: string = this.elementTagName, options?: ElementDefinitionOptions): void {
     if (!this.isDefined()) {
       this.godownConfig.define(tagName, this, options);
@@ -30,47 +36,57 @@ class GodownElement extends LitElement {
     return this.godownConfig.get(this.elementTagName);
   }
 
+  /**
+   * Returns an object containing the current values of the observed attributes.
+   * @returns An object where the keys are the observed attribute names and the values are the current values of those attributes.
+   */
   get observedRecord(): Record<string, any> {
     return Object.fromEntries(this.scopedObservedAttributes.map((key) => [key, this[key]]));
   }
 
   /**
-   * Returns observedAttributes excluding in GodownElement.
+   * Returns the observedAttributes defined on the class, excluding those defined in the GodownElement class.
+   * @returns An array of attribute names that will be observed, excluding those defined in the GodownElement class.
    */
   get scopedObservedAttributes(): string[] {
     return this.globalObservedAttributes.filter((key) => !GodownElement.observedAttributes.includes(key));
   }
 
   /**
-   * Returns observedAttributes.
+   * Returns the observedAttributes defined on the class.
+   * @returns An array of attribute names that will be observed.
    */
   get globalObservedAttributes(): string[] {
     return (this.constructor as any).observedAttributes;
   }
 
   /**
-   * No named slot element.
+   * Returns the first unnamed slot element in the shadow root.
+   * @returns The unnamed slot element, or `null` if not found.
    */
   protected get _slot(): HTMLSlotElement | null {
     return this.shadowRoot ? this.shadowRoot.querySelector<HTMLSlotElement>("slot:not([name])") : null;
   }
 
   /**
-   * All slot elements.
+   * Returns all slot elements in the shadow root.
+   * @returns An array of all slot elements in the shadow root.
    */
   protected get _slotAll(): HTMLSlotElement[] {
     return this.shadowRoot ? [...this.shadowRoot.querySelectorAll<HTMLSlotElement>("slot")] : [];
   }
 
   /**
-   * Slotted elements.
+   * Returns all slotted elements.
+   * @returns An array of all slotted elements.
    */
   protected get _slottedAll(): HTMLSlotElement[] {
     return [...this.querySelectorAll<HTMLSlotElement>("[slot]")];
   }
 
   /**
-   * Named slotted elements' slot attribute.
+   * Returns names of all slotted elements.
+   * @returns An array of slot names.
    */
   protected get _slottedNames(): string[] {
     return this._slottedAll.map((c) => c.getAttribute("slot")!).filter((v) => v);
@@ -79,39 +95,52 @@ class GodownElement extends LitElement {
   /**
    * Events storage for the element.
    *
-   * @example
-   * ```ts
-   * const handleClick = this.events.add("click", () => {});
-   * this.events.remove("click", handleClick);
-   * this.events.removeAll();
-   * ```
+   * All listeners will be removed when the element is disconnected.
    */
   events: Events;
 
+  /**
+   * Observers storage for the element.
+   *
+   * All observers will be removed when the element is disconnected.
+   */
   observers: Observers;
 
+  /**
+   * Timeouts storage for the element.
+   *
+   * All timeouts will be removed when the element is disconnected.
+   */
   timeouts: Timeouts;
 
   /**
-   * Assigns properties to the element when the element is constructed.
+   * Assigns properties to the element when the element is connected.
    */
   assign: null | Record<string, any>;
 
   /**
+   * Indicates whether the element's contents should be displayed as if the element itself was not there.
+   * When set to `true`, the element will be rendered with `display: contents` (apply the following style):
    * ```css
    * :host([contents]) {
    *   display: contents;
    * }
-   * ```
    */
   @property({ type: Boolean, reflect: true })
   contents?: boolean;
 
   /**
-   * Contents root of the element.
+   * When {@link contents} is set to `true`, {@link getBoundingClientRect} and {@link getClientRects} will return the bounding
+   * client rectangle of it, instead of the element itself.
+   * Defaults to undefined, to fall back to the first element in the shadow root.
    */
   contentsRoot?: HTMLElement;
 
+  /**
+   * Returns the bounding client rectangle of the element or its contents root.
+   * If the element has the `contents` property set, it will return the bounding client rectangle of the first element in the shadow root or the `contentsRoot` element, instead of the element itself.
+   * @returns The bounding client rectangle of the element or its contents root.
+   */
   getBoundingClientRect(): DOMRect {
     let root: Element | null | undefined;
     return this.contents &&
@@ -123,6 +152,11 @@ class GodownElement extends LitElement {
       : super.getBoundingClientRect();
   }
 
+  /**
+   * Returns the client rects of the element or its contents root.
+   * If the element has the `contents` property set, it will return the client rects of the first element in the shadow root or the `contentsRoot` element, instead of the element itself.
+   * @returns The client rects of the element or its contents root.
+   */
   getClientRects(): DOMRectList {
     let root: Element | null | undefined;
     return this.contents &&
@@ -137,10 +171,13 @@ class GodownElement extends LitElement {
   /**
    * css: current stylex property.
    * index: index of injected style.
-   * lazy: stylex property that will be applied after connectedCallback.
+   * lazy: style will be applied after connectedCallback.
    */
   private __stylex: { css?: string; index?: number; lazy?: string };
 
+  /**
+   * Returns the stylex property value.
+   */
   get stylex(): string | undefined {
     return this.__stylex.css;
   }
@@ -224,19 +261,31 @@ class GodownElement extends LitElement {
     this.mount(arg);
   }
 
+  /**
+   * Performs a deep query selector on the current element, searching within its shadow DOM if present.
+   *
+   * @param selectors - The CSS selectors to use for the query.
+   * @returns The first element that matches the specified selectors, or null if no matches are found.
+   */
   deepQuerySelector<E extends Element = HTMLElement>(selectors: string): E | null {
     return deepQuerySelector<E>(selectors, this);
   }
 
+  /**
+   * Performs a deep query selector all on the current element, searching within its shadow DOM if present.
+   *
+   * @param selectors - The CSS selectors to use for the query.
+   * @returns An array of all elements that match the specified selectors.
+   */
   deepQuerySelectorAll<E extends Element = HTMLElement>(selectors: string): E[] {
     return deepQuerySelectorAll<E>(selectors, this);
   }
 
   /**
-   * Add styles to shadowRoot.
+   * Adds the provided CSS styles to the element's shadow DOM adopted style sheets.
    *
-   * @param styles CSS strings.
-   * @returns Index of injected style or undefined if there is no shadowRoot or styles.
+   * @param styles - An array of CSS strings to be added to the adopted style sheets.
+   * @returns The index of the injected style sheet, or `undefined` if there is no shadow root or no styles were provided.
    */
   adoptStyles(...styles: { toString(): string }[]): number | undefined {
     if (!this.shadowRoot) {
