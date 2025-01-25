@@ -160,10 +160,9 @@ class Router extends GlobalStyle {
     Router.routerInstances.add(this);
 
     if (this.type !== "field") {
-      const mutationObserver = new MutationObserver(this.collectSlottedRoutes);
-      mutationObserver.observe(this, {
-        attributeFilter: ["slot"],
+      this.observers.add(this, MutationObserver, this.collectSlottedRoutes, {
         attributes: true,
+        attributeFilter: ["slot"],
         subtree: true,
       });
       this.collectSlottedRoutes();
