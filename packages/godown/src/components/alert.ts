@@ -40,32 +40,6 @@ const darkStyles = constructCSSObject(
   (prop) => toVar(prop),
 );
 
-const genLight = (key: string) => {
-  return [cssGlobalVars._colors[key][6], cssGlobalVars._colors[key][0]];
-};
-
-/**
- * @deprecated
- */
-const lightStyles = constructCSSObject(
-  vars,
-  {
-    green: genLight("green"),
-    blue: genLight("blue"),
-    orange: genLight("orange"),
-    red: genLight("red"),
-    yellow: genLight("yellow"),
-    purple: genLight("purple"),
-    teal: genLight("teal"),
-    pink: genLight("pink"),
-    gray: [cssGlobalVars._colors.darkgray[5], cssGlobalVars._colors.lightgray[7]],
-    white: [cssGlobalVars._colors.lightgray[0], cssGlobalVars._colors.darkgray[0]],
-    black: [cssGlobalVars._colors.darkgray[7], cssGlobalVars._colors.lightgray[3]],
-  },
-  () => ":host",
-  (prop) => toVar(prop),
-);
-
 const calls = {
   tip: {
     color: "teal",
@@ -116,67 +90,58 @@ const calls = {
 @styles(css`
   :host,
   :where(:host([contents]) [part="root"]) {
-    border-radius: var(${cssScope}--border-radius);
     ${cssScope}--border-radius: .25em;
     ${cssScope}--border-width: .075em;
     ${cssScope}--blockquote-width: .2em;
-    ${cssScope}--padding: .5em;
+    ${cssScope}--blockquote-background: transparent;
+    ${cssScope}--gap: .5em;
+    border-radius: var(${cssScope}--border-radius);
     display: block;
     width: 100%;
   }
 
   [part="root"] {
-    --color: var(${cssScope}--color);
-    color: var(--color);
-    width: 100%;
-    transition: 0.25s;
-    display: flex;
-    justify-content: space-between;
-    padding: var(${cssScope}--padding);
+    color: var(${cssScope}--color, currentColor);
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr;
+    border-color: currentColor;
     border-radius: inherit;
-    border: var(${cssScope}--border-width) solid var(--color);
+    border-style: solid;
+    border-width: var(${cssScope}--border-width);
+    padding: var(${cssScope}--gap);
     background: var(${cssScope}--background);
   }
 
   [variant="blockquote"] {
     border-radius: 0;
-    border-left: var(${cssScope}--blockquote-width) solid var(--color);
-    border-bottom: none;
-    border-right: none;
-    border-top: none;
-    background: transparent;
+    border-width: 0;
+    border-left-width: var(${cssScope}--blockquote-width);
+    background: var(${cssScope}--blockquote-background);
   }
 
-  [part="content"] {
-    color: var(--color);
-  }
-
-  [part="root"] {
+  [part~="icon"] {
     display: grid;
-    align-items: center;
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto 1fr;
-  }
-
-  [part="title"] {
-    line-height: 2em;
-  }
-
-  [part="icon"] {
-    display: inline-grid;
     align-items: center;
     height: 2em;
   }
 
-  [part="icon"] svg {
-    margin-right: 0.5em;
+  .start svg {
+    margin-inline-end: var(${cssScope}--gap);
+  }
+
+  .end svg {
+    margin-inline-start: var(${cssScope}--gap);
+  }
+
+  svg {
     width: 1.25em;
     height: 1.25em;
   }
 
   [part="content"] {
     grid-row: span 2 / span 2;
-    line-height: 1.5em;
   }
 `)
 class Alert extends GlobalStyle {
@@ -235,11 +200,9 @@ class Alert extends GlobalStyle {
    * Alert variant, if set to `blockquote`, the alert will be rendered as a blockquote.
    *
    * If variant is `"blockquote"`, hide the close button.
-   *
-   * ! __"light" will be deprecated__ in the future.
    */
   @property()
-  variant: "blockquote" | "dark" | "light" = "dark";
+  variant: "blockquote" | "dark" = "dark";
 
   protected render(): TemplateResult<1> {
     const color = calls[this.call]?.color || this.color;
@@ -249,7 +212,12 @@ class Alert extends GlobalStyle {
         part="root"
         ${attr(this.observedRecord)}
       >
-        <div part="icon">${icon}</div>
+        <div
+          part="icon"
+          class="start"
+        >
+          ${icon}
+        </div>
         <div part="content">
           <strong part="title">${this.title || htmlSlot("title")}</strong>
           ${this.content || htmlSlot()}
@@ -258,14 +226,15 @@ class Alert extends GlobalStyle {
           ? ""
           : html`
               <div
-                part="close"
+                part="icon close"
+                class="end"
                 tabindex="0"
                 @click="${this.close}"
               >
                 ${iconXmark()}
               </div>
             `}
-        ${htmlStyle(this.variant === "dark" ? darkStyles[color] : lightStyles[color])}
+        ${htmlStyle(darkStyles[color])}
       </div>
     `;
   }
