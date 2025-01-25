@@ -1,7 +1,7 @@
 /**
  * Returns true if the value is null or undefined.
  */
-export const isNil = (value: any): boolean => value == null;
+export const isNil = (value: any): value is null | undefined => value == null;
 
 /**
  * Returns true if the value is a number.
