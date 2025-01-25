@@ -1,4 +1,4 @@
-import { type HandlerEvent, attr, classList, godown, styles, loop } from "@godown/element";
+import { type HandlerEvent, attr, tokenList, godown, styles, loop } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, state } from "lit/decorators.js";
 
@@ -98,7 +98,7 @@ class Split extends SuperInput {
           (index: number) => html`
             <span
               part="input-box"
-              class="${classList({ focus: this.current === index })}"
+              class="${tokenList({ focus: this.current === index })}"
               @click="${this.disabled ? null : () => this.focusAt(index)}"
             >
               ${this.currentValue[index]}

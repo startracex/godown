@@ -1,4 +1,4 @@
-import { attr, classList, godown, part, styles } from "@godown/element";
+import { attr, tokenList, godown, part, styles } from "@godown/element";
 import { type TemplateResult, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -44,7 +44,7 @@ class Input extends SuperInput {
       <div
         part="root"
         ${attr(this.observedRecord)}
-        class="${classList("input-field", this.variant)}"
+        class="${tokenList("input-field", this.variant)}"
       >
         ${[
           this._renderPrefix(),

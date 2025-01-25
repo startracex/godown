@@ -1,4 +1,4 @@
-import { attr, classList, godown, htmlSlot, styles } from "@godown/element";
+import { attr, tokenList, godown, htmlSlot, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -80,7 +80,7 @@ class Text extends GlobalStyle {
       <span
         part="root"
         ${attr(this.observedRecord)}
-        class="${classList(this.underline)}"
+        class="${tokenList(this.underline)}"
       >
         ${htmlSlot()}
       </span>

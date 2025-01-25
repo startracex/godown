@@ -1,4 +1,4 @@
-import { attr, classList, godown, isNil, joinProperties, loop, part, styles } from "@godown/element";
+import { attr, tokenList, godown, isNil, joinProperties, loop, part, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 
@@ -235,7 +235,7 @@ class Range extends SuperInput {
       <i
         tabindex="0"
         part="handle"
-        class="${classList({ "last-focus": this.lastFocus === index })}"
+        class="${tokenList({ "last-focus": this.lastFocus === index })}"
         @mousedown="${this.disabled ? null : this.createMouseDown(index)}"
         @focus="${this.disabled ? null : () => this.focusHandle(index)}"
         @blur="${this.disabled ? null : this.blurHandle}"
