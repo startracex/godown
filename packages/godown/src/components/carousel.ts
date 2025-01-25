@@ -131,10 +131,6 @@ class Carousel extends GlobalStyle {
     this.show(this.index, true);
   }
 
-  disconnectedCallback(): void {
-    clearInterval(this.intervalID);
-  }
-
   attributeChangedCallback(name: string, _old: string | null, value: string | null): void {
     super.attributeChangedCallback(name, _old, value);
     if (name === "index" && this.isConnected) {
@@ -152,7 +148,14 @@ class Carousel extends GlobalStyle {
     this._offset += (getWidth(this) - getWidth(this.children[i + 1])) / 2;
     this.dispatchEvent(new CustomEvent("change", { detail: i, composed: true }));
     this._doTranslateX(`${this._offset}px`, n);
-    this.checkInterval();
+    this.timeouts.remove(this.intervalID);
+    if (this.autoChange > 0) {
+      this.intervalID = this.timeouts.add(
+        setInterval(() => {
+          this.next();
+        }, this.autoChange),
+      );
+    }
   }
 
   next(): void {
@@ -176,15 +179,6 @@ class Carousel extends GlobalStyle {
   protected _doTranslateX(xValue: string, noTransition?: boolean): void {
     this._moveRoot.style.transform = `translateX(${xValue})`;
     this._moveRoot.style.transition = noTransition ? "none" : "";
-  }
-
-  checkInterval(): void {
-    clearInterval(this.intervalID);
-    if (this.autoChange > 0) {
-      this.intervalID = setInterval(() => {
-        this.next();
-      }, this.autoChange);
-    }
   }
 
   normalizeIndex(i: number): number {

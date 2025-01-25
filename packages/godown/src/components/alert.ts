@@ -246,7 +246,7 @@ class Alert extends GlobalStyle {
 
   protected firstUpdated(): void {
     if (this.autoclose) {
-      setTimeout(() => this.close(), this.autoclose);
+      this.timeouts.add(setTimeout(() => this.close(), this.autoclose));
     }
   }
 

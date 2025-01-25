@@ -125,13 +125,15 @@ class Typewriter extends GlobalStyle {
   write(at: number = this.index): void {
     this.contentInternal = this.content.slice(0, at + 1);
     const timeout = this.delay || random(this.max, this.min);
-    this.timeoutID = setTimeout(() => {
-      const nx = at + 1;
-      if (nx <= this.len) {
-        this.index = nx;
-        this.write();
-      }
-    }, timeout);
+    this.timeoutID = this.timeouts.add(
+      setTimeout(() => {
+        const nx = at + 1;
+        if (nx <= this.len) {
+          this.index = nx;
+          this.write();
+        }
+      }, timeout),
+    );
   }
 
   stop(): void {

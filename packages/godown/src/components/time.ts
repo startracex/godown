@@ -63,31 +63,16 @@ class Time extends GlobalStyle {
     `;
   }
 
-  protected firstUpdated(): void {
-    if (this.timeout) {
-      this.timeoutId = this.startTimeout();
-    }
-  }
-
   protected updated(changedProperties: PropertyValues): void {
-    if (changedProperties.has("timeout")) {
-      if (this.timeout) {
-        clearInterval(this.timeoutId);
-        this.timeoutId = this.startTimeout();
-      }
+    if (changedProperties.has("timeout") && this.timeout) {
+      this.timeouts.remove(this.timeoutId);
+      this.timeoutId = this.timeouts.add(
+        setInterval(() => {
+          this.dispatchEvent(new CustomEvent("time", { detail: this.time, composed: true }));
+          this.time = new Date(this.time.getTime() + (this.gap || this.timeout));
+        }, Math.abs(this.timeout)),
+      );
     }
-  }
-
-  disconnectedCallback(): void {
-    clearInterval(this.timeoutId);
-    this.timeoutId = undefined;
-  }
-
-  startTimeout(): number {
-    return setInterval(() => {
-      this.dispatchEvent(new CustomEvent("time", { detail: this.time, composed: true }));
-      this.time = new Date(this.time.getTime() + (this.gap || this.timeout));
-    }, Math.abs(this.timeout));
   }
 }
 
