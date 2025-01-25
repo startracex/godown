@@ -1,5 +1,7 @@
 import { trim } from "./lib.js";
 
+const between = (a: string, b: string, c: string) => a.startsWith(b) && a.endsWith(c);
+
 export class RouteTree {
   static matchType = {
     strict: 0,
@@ -8,24 +10,30 @@ export class RouteTree {
   };
 
   /**
-   * Raw pattern.
+   * Represents a node in the route tree, containing information about a route pattern.
    */
   pattern?: string;
+
   /**
-   * A part in the pattern.
+   * The part of the route pattern represented by this node in the route tree.
    */
   protected part: string;
   /**
-   * Match type of the current part.
+   * The type of match for the current route tree node.
+   * Can be one of  {@link RouteTree.matchType}.
    */
   protected matchType: number = RouteTree.matchType.strict;
+
+  private sorted: boolean;
+
+  private children: RouteTree[] = [];
+
   /**
-   * Whether the children are sorted.
+   * Inserts a pattern into the route tree.
+   * @param pattern The pattern to insert.
+   * @param parts The parts of the pattern, if already split.
+   * @param height The current height in the route tree.
    */
-  protected sorted: boolean;
-
-  protected children: RouteTree[] = [];
-
   insert(pattern: string, parts?: string[], height = 0): void {
     if (!parts) {
       parts = RouteTree.split(pattern);
@@ -48,6 +56,12 @@ export class RouteTree {
     spec.insert(pattern, parts, height + 1);
   }
 
+  /**
+   * Searches for a route in the route tree.
+   * @param parts The path or parts of the path to search.
+   * @param height The current height in the route tree.
+   * @returns The matching route tree node, or null if not found.
+   */
   search(parts: string | string[], height = 0): RouteTree | null {
     if (typeof parts === "string") {
       parts = RouteTree.split(parts);
@@ -57,10 +71,7 @@ export class RouteTree {
       this.sort();
     }
 
-    if (
-      parts.length === height ||
-      RouteTree.dynamic(this.part).matchType === RouteTree.matchType.multi
-    ) {
+    if (parts.length === height || RouteTree.dynamic(this.part).matchType === RouteTree.matchType.multi) {
       if (!this.pattern) {
         return null;
       }
@@ -86,92 +97,10 @@ export class RouteTree {
   }
 
   /**
-   * Returns dynamic matching parameters.
+   * Sorts the children of the route tree.
+   * @returns void
    */
-  static parseParams(path: string, pattern: string): Record<string, string> {
-    const pathSplit = RouteTree.split(path);
-    const patternSplit = RouteTree.split(pattern);
-    const params: Record<string, string> = {};
-    for (let index = 0; index < patternSplit.length; index++) {
-      const part = patternSplit[index];
-      const { key, carry, matchType: m } = RouteTree.dynamic(part);
-      if (m === RouteTree.matchType.single) {
-        params[key.slice(carry)] = pathSplit[index];
-      } else if (m === RouteTree.matchType.multi) {
-        params[key.slice(carry)] = pathSplit.slice(index).join("/");
-        break;
-      }
-    }
-    return params;
-  }
-
-  /**
-   * @param key Pattern, may contains dynamic matching parameters.
-   */
-  static dynamic(key: string): {
-    key: string;
-    carry: number;
-    matchType: number;
-  } {
-    if (key) {
-      if (
-        key.startsWith("{") && key.endsWith("}") ||
-        key.startsWith("[") && key.endsWith("]")
-      ) {
-        key = key.slice(1, -1);
-        const result = RouteTree.dynamic(key);
-        result.matchType ||= RouteTree.matchType.single;
-        return result;
-      }
-
-      if (key.length > 1) {
-        const s1 = key[0];
-        if (s1 === ":") {
-          return {
-            key,
-            carry: 1,
-            matchType: RouteTree.matchType.single,
-          };
-        }
-        if (s1 === "*") {
-          return {
-            key,
-            carry: 1,
-            matchType: RouteTree.matchType.multi,
-          };
-        }
-        if (key.startsWith("...")) {
-          return {
-            key,
-            carry: 3,
-            matchType: RouteTree.matchType.multi,
-          };
-        }
-      }
-    }
-
-    return {
-      key: key,
-      carry: 0,
-      matchType: RouteTree.matchType.strict,
-    };
-  }
-
-  /**
-   * Join paths with "/" and remove the leading and trailing "/".
-   */
-  static join(...paths: string[]): string {
-    return paths.map((path) => trim(path, "/")).join("/");
-  }
-
-  /**
-   * Split a path by "/" and filter empty parts.
-   */
-  static split(s: string): string[] {
-    return s.split("/").filter((a) => a);
-  }
-
-  sort(): void {
+  private sort(): void {
     const { children } = this;
     if (children.length) {
       children.sort((a, b) => {
@@ -182,6 +111,100 @@ export class RouteTree {
       }
     }
     this.sorted = true;
+  }
+
+  /**
+   * Parses a path and a pattern, and returns an object with the dynamic matching parameters.
+   * Split the path and pattern into parts, pick up the matching parts, and return them as an object.
+   * @param path The path to parse.
+   * @param pattern The pattern to parse.
+   * @returns An object with the dynamic matching parameters.
+   */
+  static parseParams(path: string, pattern: string): Record<string, string> {
+    const pathSplit = RouteTree.split(path);
+    const patternSplit = RouteTree.split(pattern);
+    const params: Record<string, string> = {};
+    for (let index = 0; index < patternSplit.length; index++) {
+      const part = patternSplit[index];
+      const { key, matchType } = RouteTree.dynamic(part);
+      if (matchType === RouteTree.matchType.single) {
+        params[key] = pathSplit[index];
+      } else if (matchType === RouteTree.matchType.multi) {
+        params[key] = pathSplit.slice(index).join("/");
+        break;
+      }
+    }
+    return params;
+  }
+
+  /**
+   * Parses a route pattern and returns key and match type of the dynamic parameter.
+   * The pattern may contain dynamic parameters in the following formats:
+   * - `{param}`: single parameter
+   * - `[param]`: single parameter
+   * - `:param`: single parameter
+   * - `*param`: multi-parameter
+   * - `...param`: multi-parameter
+   *
+   * If the matching still exists within the parentheses, ignore the previous value.
+   *
+   * @param key The route pattern to parse.
+   * @returns Key and match type of the dynamic parameter.
+   */
+  static dynamic(key: string): {
+    key: string;
+    matchType: number;
+  } {
+    if (key) {
+      if (between(key, "{", "}") || between(key, "[", "]")) {
+        key = key.slice(1, -1);
+        const result = RouteTree.dynamic(key);
+        result.matchType ||= RouteTree.matchType.single;
+        return result;
+      }
+
+      if (key.startsWith(":")) {
+        return {
+          key: key.slice(1),
+          matchType: RouteTree.matchType.single,
+        };
+      }
+      if (key.startsWith("*")) {
+        return {
+          key: key.slice(1),
+          matchType: RouteTree.matchType.multi,
+        };
+      }
+      if (key.startsWith("...")) {
+        return {
+          key: key.slice(3),
+          matchType: RouteTree.matchType.multi,
+        };
+      }
+    }
+
+    return {
+      key: key,
+      matchType: RouteTree.matchType.strict,
+    };
+  }
+
+  /**
+   * Join the given paths with a "/" and remove the leading and trailing "/" from each path.
+   * @param paths - An array of paths to join.
+   * @returns The joined path with "/" separators and no leading or trailing "/".
+   */
+  static join(...paths: string[]): string {
+    return paths.map((path) => trim(path, "/")).join("/");
+  }
+
+  /**
+   * Split a path string by "/" and filter out any empty parts.
+   * @param s - The path string to split.
+   * @returns An array of path segments with any empty parts removed.
+   */
+  static split(s: string): string[] {
+    return s.split("/").filter((a) => a);
   }
 }
 
