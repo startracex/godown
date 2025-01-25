@@ -68,3 +68,13 @@ export const pick = <T extends object, K extends keyof T>(obj: T, ...keys: K[]):
     }
     return acc;
   }, {} as Pick<T, K>);
+
+/**
+ * Concatenates two strings with an optional separator.
+ */
+export const fuse = (a: string, b: string, sep = " "): string => (a ? a + (b ? sep + b : "") : b);
+
+/**
+ * Checks if a string starts with and ends with a given substring.
+ */
+export const infixed = (a: string, b: string, c: string): boolean => a.startsWith(b) && a.endsWith(c);

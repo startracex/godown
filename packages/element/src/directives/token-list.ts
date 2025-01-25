@@ -1,4 +1,6 @@
-const append = (a: any, b: string) => (a ? a + (b ? " " + b : "") : b);
+import { fuse } from "../tools/lib.js";
+
+const append = fuse;
 
 type TokenListItem = string | Record<string, any> | TokenListItem[];
 

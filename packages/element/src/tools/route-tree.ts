@@ -1,6 +1,4 @@
-import { trim } from "./lib.js";
-
-const between = (a: string, b: string, c: string) => a.startsWith(b) && a.endsWith(c);
+import { infixed, trim } from "./lib.js";
 
 export class RouteTree {
   static matchType = {
@@ -156,7 +154,7 @@ export class RouteTree {
     matchType: number;
   } {
     if (key) {
-      if (between(key, "{", "}") || between(key, "[", "]")) {
+      if (infixed(key, "{", "}") || infixed(key, "[", "]")) {
         key = key.slice(1, -1);
         const result = RouteTree.dynamic(key);
         result.matchType ||= RouteTree.matchType.single;

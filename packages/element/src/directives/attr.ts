@@ -1,7 +1,9 @@
 import { noChange } from "lit";
 import { Directive, directive, type DirectiveResult, type ElementPart, PartType } from "lit/directive.js";
 
-import { isNil } from "../tools/lib.js";
+import { fuse, isNil } from "../tools/lib.js";
+
+const append = fuse;
 
 export const updateAttribute = (element: Element, name: string, value: any): void => {
   if (isNil(value) || value === false) {
@@ -38,8 +40,6 @@ export const attr: (
   value: DirectiveParams,
   caller?: (element: Element, name: string, value: any) => void,
 ) => DirectiveResult<typeof AttrDirective> = directive(AttrDirective);
-
-const append = (a: string, b: string) => a ? a + " " + b : b;
 
 export const attrToString = (a: DirectiveParams): string =>
   Object.entries(a).reduce((acc, [key, value]) => {
