@@ -3,7 +3,7 @@ import { trim, trimLeft, trimRight } from "./tools/lib.js";
 const separator = "-";
 
 class GodownConfig {
-  assign: null | Record<string, any> = null;
+  assign: null | Record<PropertyKey, any> = null;
   prefix = "godown";
   suffix = "";
   components: Map<string, CustomElementConstructor> = new Map<string, CustomElementConstructor>();
