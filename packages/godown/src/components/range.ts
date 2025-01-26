@@ -222,20 +222,22 @@ class Range extends SuperInput {
   }
 
   protected _renderHandle(index: number): TemplateResult<1> {
-    const { range } = this;
-    const end = !range || index === (this.value as number[]).length - 1;
+    const { rangeValue, disabled } = this;
+
+    // in single-handle mod or last handle.
+    const end = index === rangeValue.length - 1;
     return html`
       <i
         tabindex="0"
         part="handle"
         class="${tokenList({ "last-focus": this.lastFocus === index })}"
-        @mousedown="${this.disabled ? null : this.createMouseDown(index)}"
-        @focus="${this.disabled ? null : () => this.focusHandle(index)}"
-        @blur="${this.disabled ? null : this.blurHandle}"
-        style="z-index:${this.__focusStack.indexOf(index) + 1};--handle:var(--${
-          /* In single-handle mod or end, it is max value */
-          !range && end ? "to" : `handle-${index}`
-        })"
+        @mousedown="${disabled ? null : this.createMouseDown(index)}"
+        @focus="${disabled ? null : () => this.focusHandle(index)}"
+        @blur="${disabled ? null : this.blurHandle}"
+        style="${joinProperties({
+          "z-index": this.__focusStack.indexOf(index) + 1,
+          "--handle": `var(--${end ? "to" : `handle-${index}`})`,
+        })}"
       ></i>
     `;
   }
