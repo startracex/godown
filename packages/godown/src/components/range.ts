@@ -1,4 +1,4 @@
-import { attr, tokenList, godown, isNil, joinProperties, loop, part, styles } from "@godown/element";
+import { attr, tokenList, godown, isNil, joinProperties, loop, part, styles, Ranger } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 
@@ -164,6 +164,7 @@ class Range extends SuperInput {
   @state()
   lastFocus?: number;
 
+  protected _ranger: Ranger;
   private __focusStack: number[] = [];
 
   /**
@@ -194,11 +195,18 @@ class Range extends SuperInput {
     return rangeValue;
   }
 
+  attributeChangedCallback(name: string, _old: string | null, value: string | null): void {
+    super.attributeChangedCallback(name, _old, value);
+    if (name === "max" || name === "min" || name === "step") {
+      this._ranger = new Ranger(this.min, this.max, this.step);
+    }
+  }
+
   protected render(): TemplateResult<1> {
     const rangeValue = this.padValue(2);
     const from = Math.min(...rangeValue);
     const to = Math.max(...rangeValue);
-    const gap = this.max - this.min;
+    const gap = this._ranger.diff;
 
     return html`
       <div
@@ -291,7 +299,7 @@ class Range extends SuperInput {
     return (numberOrModifier: number | ((value: number) => number)): void => {
       const number =
         typeof numberOrModifier === "number"
-          ? this.normalizeValue(numberOrModifier)
+          ? this._ranger.normalize(numberOrModifier)
           : numberOrModifier(this.rangeValue[index]);
       let newValue: any = number;
       if (this.range) {
@@ -306,23 +314,9 @@ class Range extends SuperInput {
   /**
    * Compute value from event.
    */
-  protected _computeValue(e: MouseEvent): number {
-    const rect = this._root.getBoundingClientRect();
-    const div = this.vertical ? (e.clientY - rect.top) / rect.height : (e.clientX - rect.left) / rect.width;
-    const value = Math.round((div * (this.max - this.min)) / this.step) * this.step;
-    return this.normalizeValue(value);
-  }
-
-  /**
-   * Ensure that the values do not exceed the range of max and min.
-   */
-  normalizeValue(value: number): number {
-    if (value > this.max) {
-      value -= this.step;
-    } else if (value < this.min) {
-      value += this.step;
-    }
-    return value;
+  protected _computeValue({ clientX, clientY }: MouseEvent): number {
+    const { top, left, height, width } = this._root.getBoundingClientRect();
+    return this._ranger.present(this.vertical ? (clientY - top) / height : (clientX - left) / width);
   }
 
   protected _handleMousedownRoot(e: MouseEvent): void {
@@ -358,7 +352,7 @@ class Range extends SuperInput {
   protected createMousemoveListener(callback: (arg0: number) => void) {
     return (e: MouseEvent): void => {
       const value = this._computeValue(e);
-      if (value > this.max || value < this.min) {
+      if (value !== this._ranger.restrict(value)) {
         return;
       }
       callback?.call(this, value);
@@ -366,7 +360,7 @@ class Range extends SuperInput {
   }
 
   protected _connectedInit(): void {
-    const gap = this.max - this.min;
+    const gap = this._ranger.diff;
     this.step ||= gap / 100;
     if (isNil(this.value)) {
       if (!isNil(this.default)) {
