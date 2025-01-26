@@ -4,5 +4,6 @@ export * from "./events.js";
 export * from "./icon-set.js";
 export * from "./lib.js";
 export * from "./observers.js";
+export * from "./ranger.js";
 export * from "./route-tree.js";
 export * from "./timeouts.js";
