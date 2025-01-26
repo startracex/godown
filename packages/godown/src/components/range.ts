@@ -167,13 +167,6 @@ class Range extends SuperInput {
   private __focusStack: number[] = [];
 
   /**
-   * Returns true when the second number is greater than the first number.
-   */
-  get reverse(): boolean {
-    return this.range ? this.value[0] > this.value[1] : false;
-  }
-
-  /**
    * If value is array.
    */
   get range(): boolean {
