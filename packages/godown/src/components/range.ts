@@ -280,14 +280,14 @@ class Range extends SuperInput {
     };
   }
 
-  createMouseDown(index: number) {
+  protected createMouseDown(index: number) {
     return (e: MouseEvent): void => {
       this.focusHandle(index);
       this.createMousedownListener(this.createSetValue(index))(e);
     };
   }
 
-  createSetValue(index: number) {
+  protected createSetValue(index: number) {
     return (numberOrModifier: number | ((value: number) => number)): void => {
       const number =
         typeof numberOrModifier === "number"
