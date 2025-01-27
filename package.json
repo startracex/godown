@@ -11,9 +11,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@changesets/cli": "^2.27.11",
+    "@changesets/cli": "^2.27.12",
     "@godown/tsconfig": "workspace:*",
-    "@types/node": "^22.10.7",
+    "@types/node": "^22.10.10",
     "@types/react": "19.0.2",
     "dprint": "^0.47.6",
     "glob": "^11.0.1",
@@ -21,10 +21,10 @@
     "prettier": "^3.4.2",
     "rollup": "catalog:",
     "tsx": "^4.19.2",
-    "turbo": "^2.3.3",
+    "turbo": "^2.3.4",
     "typescript": "^5.7.3",
     "typescript545": "npm:typescript@5.4.5",
-    "vite": "^6.0.7"
+    "vite": "^6.0.11"
   },
   "packageManager": "pnpm@9.15.4",
   "engines": {
