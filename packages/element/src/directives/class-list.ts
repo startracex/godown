@@ -1,4 +1,4 @@
-import tokenList from "./token-list.js";
+import { tokenList } from "./token-list.js";
 
 export { clean } from "./token-list.js";
 

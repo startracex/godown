@@ -1,11 +1,8 @@
 import { LitElement, type PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 
-import GodownConfig from "./config.js";
-import { deepQuerySelector, deepQuerySelectorAll } from "./tools/dom.js";
-import { Events } from "./tools/events.js";
-import { Observers } from "./tools/observers.js";
-import { Timeouts } from "./tools/timeouts.js";
+import { GodownConfig } from "./config.js";
+import { deepQuerySelector, deepQuerySelectorAll, Events, Observers, Timeouts } from "./tools/index.js";
 
 class GodownElement extends LitElement {
   static godownConfig: GodownConfig = new GodownConfig();
