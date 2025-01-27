@@ -213,15 +213,13 @@ class Range extends SuperInput {
         part="root"
         ${attr(this.observedRecord)}
         @mousedown="${this.disabled ? null : this._handleMousedownRoot}"
-        style="${joinProperties({
-          "--from": `${((from - this.min) / gap) * 100}%`,
-          "--to": `${((to - this.min) / gap) * 100}%`,
-          ...(this.range
-            ? Object.fromEntries(
-                rangeValue.map((value, index) => [`--handle-${index}`, `${((value - this.min) / gap) * 100}%`]),
-              )
-            : {}),
-        })}"
+        style="${joinProperties([
+          ["--from", `${((from - this.min) / gap) * 100}%`],
+          ["--to", `${((to - this.min) / gap) * 100}%`],
+          ...rangeValue.map(
+            (value, index) => [`--handle-${index}`, `${((value - this.min) / gap) * 100}%`] as [string, string],
+          ),
+        ])}"
       >
         <div part="track"></div>
         ${loop(this.rangeValue.length, (index) => this._renderHandle(index))}

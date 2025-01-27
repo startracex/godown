@@ -26,6 +26,7 @@ export const cssGlobalVars: {
   input: CSSResult;
   white: CSSResult;
   black: CSSResult;
+  color: CSSResult;
 } = {
   foreground: scopePrefix("foreground", 2),
   background: scopePrefix("background", 2),
@@ -36,6 +37,7 @@ export const cssGlobalVars: {
   input: scopePrefix("input", 2),
   white: scopePrefix("color-white", 2),
   black: scopePrefix("color-black", 2),
+  color: scopePrefix("color", 2),
 };
 
 type PresetsGradientsCSSResult = Record<keyof typeof presetsRGB, Gradients<CSSResult>>;
@@ -46,19 +48,21 @@ GlobalStyle.styles = [
       `${cssGlobalVars.white}:rgb(255 255 255);` +
       travel((key, gradient, rgb) => {
         cssGlobalVars._colors[key] ||= [] as any;
-        cssGlobalVars._colors[key].push(unsafeCSS(scopePrefix("color", 2) + "-" + key + "-" + gradient));
+        cssGlobalVars._colors[key].push(unsafeCSS(cssGlobalVars.color + "-" + key + "-" + gradient));
         const endKey = `-${key}-${gradient}`;
-        const colorKey = scopePrefix("color", 2) + endKey;
+        const colorKey = cssGlobalVars.color + endKey;
         return `${colorKey}:rgb(${rgb});`;
       }, presetsRGB).join("") +
-      joinProperties({
-        [cssGlobalVars.background + ""]: `var(${cssGlobalVars._colors.darkgray[9]})`,
-        [cssGlobalVars.foreground + ""]: `var(${cssGlobalVars._colors.lightgray[0]})`,
-        [cssGlobalVars.active + ""]: `var(${cssGlobalVars._colors.blue[6]})`,
-        [cssGlobalVars.passive + ""]: `var(${cssGlobalVars._colors.darkgray[6]})`,
-        [cssGlobalVars.clipBackground + ""]:
+      joinProperties([
+        [cssGlobalVars.background, `var(${cssGlobalVars._colors.darkgray[9]})`],
+        [cssGlobalVars.foreground, `var(${cssGlobalVars._colors.lightgray[0]})`],
+        [cssGlobalVars.active, `var(${cssGlobalVars._colors.blue[6]})`],
+        [cssGlobalVars.passive, `var(${cssGlobalVars._colors.darkgray[6]})`],
+        [
+          cssGlobalVars.clipBackground,
           `linear-gradient(to bottom, var(${cssGlobalVars.foreground}), var(${cssGlobalVars.passive}))`,
-      }) +
+        ],
+      ]) +
       "}",
   ),
   css`
