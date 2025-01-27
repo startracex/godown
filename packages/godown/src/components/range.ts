@@ -274,16 +274,18 @@ class Range extends SuperInput {
   }
 
   protected createKeydownEvent(index: number) {
-    if (!this.range) {
+    const { rangeValue, step } = this;
+    if (rangeValue.length < 2) {
       index = 0;
     }
     return (e: KeyboardEvent): void => {
+      const old = rangeValue[index];
       if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
         e.preventDefault();
-        this.createSetValue(index)((old) => old - this.step);
+        this.createSetValue(index)(old - step);
       } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
         e.preventDefault();
-        this.createSetValue(index)((old) => old + this.step);
+        this.createSetValue(index)(old + step);
       }
     };
   }
@@ -296,15 +298,12 @@ class Range extends SuperInput {
   }
 
   protected createSetValue(index: number) {
-    return (numberOrModifier: number | ((value: number) => number)): void => {
-      const number =
-        typeof numberOrModifier === "number"
-          ? this._ranger.normalize(numberOrModifier)
-          : numberOrModifier(this.rangeValue[index]);
-      let newValue: any = number;
+    return (value: number): void => {
+      const normalizeValue = this._ranger.normalize(value);
+      let newValue: number | number[] = normalizeValue;
       if (this.range) {
-        newValue = [...this.rangeValue];
-        newValue[index] = number;
+        newValue = [...(this.value as number[])];
+        newValue[index] = normalizeValue;
       }
       this.value = newValue;
       this.dispatchEvent(new CustomEvent("range", { detail: this.value }));
@@ -349,7 +348,7 @@ class Range extends SuperInput {
     };
   }
 
-  protected createMousemoveListener(callback: (arg0: number) => void) {
+  protected createMousemoveListener(callback: (newValue: number) => void) {
     return (e: MouseEvent): void => {
       const value = this._computeValue(e);
       if (value !== this._ranger.restrict(value)) {
