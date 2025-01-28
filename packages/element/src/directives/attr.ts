@@ -32,9 +32,12 @@ class AttrDirective extends Directive {
     return noChange;
   }
 }
+
 /**
  * A directive that sets element attributes.
  * @param value An object with attribute names and values.
+ * @param caller A function to call for each attribute.
+ * @returns Directive to set attributes.
  */
 export const attr: (
   value: DirectiveParams,

@@ -8,6 +8,7 @@ import { component } from "./component.js";
  *
  * @param name Proto name, wil call `GodownElement.godownConfig.tag(name)` to get the tag name.
  * @param option Omit `tagName` from {@link component} options.
+ * @returns Decorator.
  */
 export const godown =
   (name?: string, option?: Omit<(Parameters<typeof component>[0]), "tagName">) =>

@@ -7,6 +7,7 @@ import { joinRules } from "../tools/css.js";
  *
  * @param style String of CSS style.
  * @param media Style media attribute.
+ * @returns TemplateResult or nothing.
  */
 export const htmlStyle = (style?: string | Record<string, any>, media?: string): TemplateResult<1> | typeof nothing => {
   if (!style) {

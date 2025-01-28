@@ -1,13 +1,20 @@
 import { fuse } from "../tools/lib.js";
+import { type attr } from "./attr.js";
 
 const append = fuse;
 
 type TokenListItem = string | Record<string, any> | TokenListItem[];
 
 /**
- * tokenList combines tokens into a single string, it won't trim blanks and remove duplicates.
+ * tokenList combines tokens into a single string,
+ * it does not trim blanks and remove duplicates.
+ *
+ * To set element attributes, use {@link attr}.
  *
  * Useful for classList, part, etc.
+ *
+ * @param args Tokens to combine.
+ * @returns Combined string.
  */
 export const tokenList = (...args: TokenListItem[]): string =>
   args.reduce<string>((acc: string, cur: TokenListItem) => {

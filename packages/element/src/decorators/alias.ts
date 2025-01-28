@@ -16,6 +16,7 @@ type Rejection = null | false;
  *
  * @param aliasForKey A key of the class to be aliased.
  * @param descriptor Property descriptor.
+ * @returns Decorator.
  */
 export const alias = <T, K extends keyof T, P extends keyof T>(
   aliasForKey: K,

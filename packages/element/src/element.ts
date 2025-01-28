@@ -117,7 +117,7 @@ class GodownElement extends LitElement {
 
   /**
    * Indicates whether the element's contents should be displayed as if the element itself was not there.
-   * When set to `true`, the element will be rendered with `display: contents` (apply the following style):
+   * When set to `true`, the element should be rendered with `display: contents` (apply the following style):
    * ```css
    * :host([contents]) {
    *   display: contents;

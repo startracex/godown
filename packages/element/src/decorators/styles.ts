@@ -8,6 +8,7 @@ type LitStyles = CSSResultGroup | CSSResultGroup[];
  * Tracks the styles of a component and extends them with the styles of its super classes.
  *
  * @param s The styles to add to the component.
+ * @returns Decorator.
  */
 export const styles = (...s: LitStyles[]) => {
   return (constructor: { styles?: LitStyles }): void => {

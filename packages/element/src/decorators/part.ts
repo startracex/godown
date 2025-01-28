@@ -6,6 +6,7 @@ import { query, type QueryDecorator } from "lit/decorators.js";
  * Default cache.
  *
  * @param partName - The name of the part to query.
+ * @returns Decorator.
  */
 export const part = (partName: string, cache = true): QueryDecorator => query(`[part=${partName}]`, cache);
 
