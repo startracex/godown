@@ -1,6 +1,6 @@
 import type { CSSResult } from "lit";
 
-import { isNil } from "./lib.js";
+import { Entry, isNil, toEntries } from "./lib.js";
 
 /**
  * Call Object.values and join "".
@@ -47,12 +47,9 @@ export function constructCSSObject<
   return cssObject;
 }
 
-type Properties<T = LikeString> = Record<string, T> | [T, T][];
-
-export function joinRules(rules: Record<string, string | Properties>): string {
+export function joinRules(rules: Entry<string, string | Entry<string | LikeString>>): string {
   let result = "";
-  for (const key in rules) {
-    const value = rules[key];
+  for (const [key, value] of toEntries(rules)) {
     if (value) {
       const properties = typeof value !== "object" ? value : joinProperties(value);
       if (properties) {
@@ -63,9 +60,9 @@ export function joinRules(rules: Record<string, string | Properties>): string {
   return result;
 }
 
-export function joinProperties(props: Properties): string {
+export function joinProperties(props: Entry<string | LikeString>): string {
   let result = "";
-  for (const [key, value] of Array.isArray(props) ? props : Object.entries(props)) {
+  for (const [key, value] of toEntries(props)) {
     if (key && (value || value === 0 || value === "")) {
       result += `${key}:${value};`;
     }

@@ -51,23 +51,29 @@ export const trim = (s: string, spec?: string): string => trimRight(trimLeft(s, 
  * Construct a object with the properties of obj except for those in keys.
  */
 export const omit = <T extends object, K extends keyof T>(obj: T, ...keys: K[]): Omit<T, K> =>
-  Object.keys(obj).reduce((acc, key) => {
-    if (!keys.includes(key as K)) {
-      acc[key] = obj[key];
-    }
-    return acc;
-  }, {} as Omit<T, K>);
+  Object.keys(obj).reduce(
+    (acc, key) => {
+      if (!keys.includes(key as K)) {
+        acc[key] = obj[key];
+      }
+      return acc;
+    },
+    {} as Omit<T, K>,
+  );
 
 /**
  * From obj, pick a set of properties whose keys are in keys.
  */
 export const pick = <T extends object, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K> =>
-  keys.reduce((acc, key) => {
-    if (key in obj) {
-      acc[key] = obj[key];
-    }
-    return acc;
-  }, {} as Pick<T, K>);
+  keys.reduce(
+    (acc, key) => {
+      if (key in obj) {
+        acc[key] = obj[key];
+      }
+      return acc;
+    },
+    {} as Pick<T, K>,
+  );
 
 /**
  * Concatenates two strings with an optional separator.
@@ -78,3 +84,11 @@ export const fuse = (a: string, b: string, sep = " "): string => (a ? a + (b ? s
  * Checks if a string starts with and ends with a given substring.
  */
 export const infixed = (a: string, b: string, c: string): boolean => a.startsWith(b) && a.endsWith(c);
+
+export type Entry<K = PropertyKey, V = any> = (Record<K extends PropertyKey ? K : PropertyKey, V>) | [K, V][];
+
+export function* toEntries<K, V>(o: Entry<K, V>): Generator<[K, V], void, void> {
+  for (const [k, v] of Array.isArray(o) ? o : (Object.entries(o) as [K, V][])) {
+    yield [k, v];
+  }
+}
