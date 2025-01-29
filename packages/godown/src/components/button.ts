@@ -249,7 +249,7 @@ class Button extends GlobalStyle {
     super.blur();
   }
 
-  firstUpdated(): void {
+  protected firstUpdated(): void {
     this.events.add(this, "click", this._handelClick, true);
   }
 
