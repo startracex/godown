@@ -29,16 +29,15 @@ importers:
 
   .:
     dependencies:
-      '@godown/common':
-        specifier: workspace:^
-        version: link:common
-    devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
         version: 1.9.4
       '@changesets/cli':
         specifier: ^2.27.12
         version: 2.27.12
+      '@godown/common':
+        specifier: workspace:^
+        version: link:common
       '@godown/tsconfig':
         specifier: workspace:*
         version: link:tsconfig

@@ -9,9 +9,10 @@
     "lint": "turbo run lint",
     "version": "changeset version"
   },
-  "devDependencies": {
+  "dependencies": {
     "@biomejs/biome": "1.9.4",
     "@changesets/cli": "^2.27.12",
+    "@godown/common": "workspace:^",
     "@godown/tsconfig": "workspace:*",
     "@types/node": "^22.10.10",
     "@types/react": "19.0.2",
@@ -36,8 +37,5 @@
   "type": "module",
   "author": "startracex",
   "license": "MIT",
-  "description": "Simple, stylized, semantic web components",
-  "dependencies": {
-    "@godown/common": "workspace:^"
-  }
+  "description": "Simple, stylized, semantic web components"
 }
