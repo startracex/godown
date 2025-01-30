@@ -31,6 +31,7 @@ const protoName = "progress";
     z-index: 1;
     position: relative;
     border-radius: inherit;
+    overflow: hidden;
   }
 
   [part="value"] {
