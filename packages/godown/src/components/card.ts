@@ -23,18 +23,15 @@ const cssScope = scopePrefix(protoName);
 @styles(css`
   :host {
     ${cssScope}--background: var(${cssGlobalVars.background});
-    ${cssScope}--border-width: .0375em;
+    ${cssScope}--border-width: .075em;
     ${cssScope}--border-color: transparent;
     ${cssScope}--border-background: var(${cssGlobalVars.passive});
     ${cssScope}--padding: .75em;
-    color: var(${cssGlobalVars.foreground});
-    background: var(${cssScope}--background);
     border-width: var(${cssScope}--border-width);
     display: block;
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
-    box-sizing: border-box;
   }
 
   slot {
