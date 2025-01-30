@@ -82,10 +82,7 @@ const cssScope = scopePrefix(protoName);
   }
 `)
 class Dialog extends SuperOpenable {
-  /**
-   * Direction of the opening animation.
-   * @deprecated
-   */
+  @property()
   direction: string;
 
   /**
