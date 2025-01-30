@@ -11,11 +11,11 @@ export default {
   render,
   argTypes: {
     content: new ArgHelper().type("string").arg,
-    duration: new ArgHelper().type("string").arg,
+    duration: new ArgHelper().type("number").arg,
   },
   args: {
     content: "Deploy. Preview. Ship.",
-    duration: "8s",
+    duration: 8000,
   },
   parameters: {
     docs: {

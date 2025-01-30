@@ -101,10 +101,10 @@ class Breath extends GlobalStyle {
   content: string | string[];
 
   /**
-   * Effect duration, ending in s or ms.
+   * Effect duration.
    */
-  @property()
-  duration: string;
+  @property({ type: Number })
+  duration: number;
 
   protected render(): TemplateResult<1> {
     const texts = this.getTexts();
@@ -135,28 +135,16 @@ class Breath extends GlobalStyle {
 
   protected _computeStyle(len: number): string {
     const gap = 100 / 2 / len;
-    const duration = this.parseDuration() || len * 2 + 2;
+    const duration = this.duration || (len * 2 + 2) * 1000;
     let style1 = "";
     for (let number = 1; number <= len; number++) {
       const delay = (-duration / len) * (len - number + 1);
       const defaultNumber = ((number - 1) % 3) + 1;
       style1 += `.rel:nth-child(${number}) .colorful{animation-delay:${delay}s;background:var(${cssScope}--${number},var(${cssScope}--${defaultNumber}));}`;
     }
-    return `.colorful{animation-duration:${duration}s;}@keyframes colorfulN{0%,${gap * 3}%{opacity:0;}${gap}%,${
+    return `.colorful{animation-duration:${duration}ms;}@keyframes colorfulN{0%,${gap * 3}%{opacity:0;}${gap}%,${
       gap * 2
     }%{opacity:1;}}${style1}`;
-  }
-
-  parseDuration(): number | undefined {
-    const { duration } = this;
-    if (duration) {
-      if (duration.endsWith("s")) {
-        return Number.parseFloat(duration.slice(0, -1));
-      }
-      if (duration.endsWith("ms")) {
-        return Number.parseFloat(duration.slice(0, -2)) / 1000;
-      }
-    }
   }
 }
 

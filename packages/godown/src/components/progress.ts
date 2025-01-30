@@ -1,4 +1,4 @@
-import { attr, godown, isNil, styles } from "@godown/element";
+import { attr, godown, isNil, Ranger, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -73,12 +73,8 @@ class Progress extends GlobalStyle {
     let width = 20;
     let className: string;
     if (!isNil(this.value)) {
-      width = this.parsePercent(this.value);
-      if (width > 100) {
-        width = 100;
-      } else if (width < 0) {
-        width = 0;
-      }
+      const ranger = new Ranger(this.min, this.max);
+      width = ranger.restrict(this.value / ranger.diff) * 100;
       className = "static";
     }
     return html`
@@ -93,24 +89,6 @@ class Progress extends GlobalStyle {
         ></i>
       </div>
     `;
-  }
-
-  /**
-   * Convert s to a percentage without a percent sign.
-   *
-   * @param s String or number to convert.
-   * @returns Percentage without a percent sign.
-   */
-  parsePercent(s: string | number = "0"): number {
-    s = String(s);
-    if (s.includes("%")) {
-      return parseFloat(s);
-    }
-    const diff = this.max - this.min;
-    if (diff === 0) {
-      return 100;
-    }
-    return (parseFloat(s) / diff) * 100;
   }
 }
 
