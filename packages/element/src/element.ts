@@ -77,7 +77,7 @@ class GodownElement extends LitElement {
    * @returns An array of slot names.
    */
   protected get _slottedNames(): string[] {
-    return this._slottedAll.map((c) => c.getAttribute("slot")!).filter((v) => v);
+    return this._slottedAll.map((c) => c.getAttribute("slot")).filter((v) => v);
   }
 
   /**
