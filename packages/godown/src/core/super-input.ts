@@ -3,6 +3,7 @@ import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle, cssGlobalVars } from "./global-style.js";
+import { OutlineBuilder, type OutlineType } from "./outline.js";
 
 const fieldStyle = css`
   .input-field {
@@ -12,31 +13,6 @@ const fieldStyle = css`
     align-items: center;
     border-radius: inherit;
     height: inherit;
-  }
-
-  [outline-type="outline"],
-  [outline-type="outline-inset"] {
-    outline-width: var(${cssGlobalVars.input}-outline-width);
-    outline-color: var(${cssGlobalVars.input}-outline-color);
-    outline-style: solid;
-  }
-
-  [outline-type="outline-inset"] {
-    outline-offset: calc(-1 * var(${cssGlobalVars.input}-outline-width));
-  }
-
-  [outline-type="box-shadow"] {
-    box-shadow: 0 0 0 var(${cssGlobalVars.input}-outline-width) var(${cssGlobalVars.input}-outline-color);
-  }
-
-  [outline-type="box-shadow-inset"] {
-    box-shadow: inset 0 0 0 var(${cssGlobalVars.input}-outline-width) var(${cssGlobalVars.input}-outline-color);
-  }
-
-  [outline-type="border"] {
-    border-width: var(${cssGlobalVars.input}-outline-width);
-    border-color: var(${cssGlobalVars.input}-outline-color);
-    border-style: solid;
   }
 
   .input-field [part="input"] {
@@ -94,14 +70,21 @@ const inputStyle = css`
   }
 `;
 
-@styles(fieldStyle, inputStyle)
+@styles(
+  fieldStyle,
+  new OutlineBuilder({
+    width: `${cssGlobalVars.input}-outline-width`,
+    color: `${cssGlobalVars.input}-outline-color`,
+  }).styleSheet,
+  inputStyle,
+)
 class SuperInput extends GlobalStyle {
   autofocus = false;
   @property()
   autocomplete: string | boolean;
 
   @property({ attribute: "outline-type" })
-  outlineType: "outline" | "outline-inset" | "box-shadow" | "box-shadow-inset" | "border" = "border";
+  outlineType: OutlineType = "border";
 
   @property({ type: Boolean, reflect: true })
   disabled = false;
