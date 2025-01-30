@@ -26,12 +26,14 @@ export default {
     disabled: booleanArg,
     round: booleanArg,
     ghost: booleanArg,
+    plain: booleanArg,
   },
   args: {
     color: "black",
     disabled: false,
     round: false,
     ghost: false,
+    plain: false,
   },
 } as RendererMeta<typeof render>;
 

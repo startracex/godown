@@ -110,6 +110,11 @@ const colors: Record<Colors, string> = constructCSSObject(
       color: var(${cssScope}--ghost-color);
       background: transparent;
     }
+
+    :host([plain]) {
+      ${cssScope}--gradients: unset;
+      ${cssScope}--focus-scale: unset;
+    }
   `,
   css`
     :host {
@@ -127,9 +132,8 @@ const colors: Record<Colors, string> = constructCSSObject(
         var(${cssScope}--background),
         var(${cssScope}--gradients, var(${cssScope}--background))
       );
-      border-radius: 0.3em;
+      border-radius: 0.2em;
       width: fit-content;
-      transition: 0.1s;
       display: block;
       overflow: hidden;
       text-align: center;
@@ -182,6 +186,12 @@ const colors: Record<Colors, string> = constructCSSObject(
   `,
 )
 class Button extends GlobalStyle {
+  /**
+   * If true, remove gradient, modal animation, focus scale.
+   */
+  @property({ type: Boolean, reflect: true })
+  plain = false;
+
   /**
    * Whether to disable this element.
    */
@@ -259,7 +269,9 @@ class Button extends GlobalStyle {
       e.preventDefault();
       return;
     }
-    this._handleModal(e);
+    if (!this.plain) {
+      this._handleModal(e);
+    }
   }
 
   protected _handleModal(e: MouseEvent): void {
