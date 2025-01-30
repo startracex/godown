@@ -38,7 +38,14 @@ class GodownElement extends LitElement {
    * @returns An object where the keys are the observed attribute names and the values are the current values of those attributes.
    */
   get observedRecord(): Record<string, any> {
-    return Object.fromEntries(this.scopedObservedAttributes.map((key) => [key, this[key]]));
+    const record = {};
+    for (const [property, option] of (this.constructor as typeof GodownElement).elementProperties.entries()) {
+      const attribute = option.attribute;
+      if (attribute) {
+        record[attribute === true ? property : attribute] = this[property];
+      }
+    }
+    return record;
   }
 
   /**
