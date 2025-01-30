@@ -43,6 +43,6 @@ await build(
     dir,
   },
 ).then(() => {
-  import("./manifest");
+  import("./manifest.ts");
   import("./build_cdn.ts");
 });
