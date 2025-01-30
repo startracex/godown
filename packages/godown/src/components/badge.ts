@@ -3,6 +3,7 @@ import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle, cssGlobalVars, scopePrefix } from "../core/global-style.js";
+import { DirectionCorner } from "../core/direction.js";
 
 const protoName = "badge";
 const cssScope = scopePrefix(protoName);
@@ -73,7 +74,7 @@ class Badge extends GlobalStyle {
    * Possible values are `"top-left"`, `"top-right"`, `"bottom-left"`, and `"bottom-right"`.
    */
   @property()
-  position: "top-right" | "top-left" | "bottom-right" | "bottom-left" = "top-right";
+  position: DirectionCorner = "top-right";
 
   @property({ type: Number })
   value = 0;

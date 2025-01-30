@@ -5,6 +5,7 @@ import { property, state } from "lit/decorators.js";
 
 import Input from "./input.js";
 import { cssGlobalVars } from "../core/global-style.js";
+import { DirectionCardinalY, directionOutsetPlace } from "../core/direction.js";
 
 function contain(a: string, b: string): boolean {
   return a && b && a.toLowerCase().includes(b.toLowerCase());
@@ -47,34 +48,29 @@ const protoName = "select";
  * @category input
  */
 @godown(protoName)
-@styles(css`
-  :host(:focus-within),
-  .outline {
-    ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.active});
-  }
+@styles(
+  directionOutsetPlace,
+  css`
+    :host(:focus-within),
+    .outline {
+      ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.active});
+    }
 
-  [part="input"] {
-    text-overflow: ellipsis;
-  }
+    [part="input"] {
+      text-overflow: ellipsis;
+    }
 
-  [part="content"] {
-    position: absolute;
-    width: 100%;
-    visibility: hidden;
-  }
+    [part="content"] {
+      position: absolute;
+      width: 100%;
+      visibility: hidden;
+    }
 
-  [direction="bottom"] [part="content"] {
-    top: 100%;
-  }
-
-  [direction="top"] [part="content"] {
-    bottom: 100%;
-  }
-
-  [visible] [part="content"] {
-    visibility: visible;
-  }
-`)
+    [visible] [part="content"] {
+      visibility: visible;
+    }
+  `,
+)
 class Select extends Input {
   // @ts-ignore
   value: string | string[];
@@ -89,7 +85,7 @@ class Select extends Input {
   protected _content: HTMLElement;
 
   @property()
-  direction: "top" | "bottom" | undefined;
+  direction: DirectionCardinalY;
 
   @property({ type: Boolean })
   multiple = false;
@@ -98,7 +94,7 @@ class Select extends Input {
   visible = false;
 
   @state()
-  protected autoDirection: "top" | "bottom" = "bottom";
+  protected autoDirection: DirectionCardinalY = "bottom";
 
   protected lastChecked: HTMLElement;
   protected defaultText: string;
@@ -144,6 +140,7 @@ class Select extends Input {
             <label
               for="${this.makeId}"
               part="content"
+              direction-outset-place
             >
               ${htmlSlot()}
             </label>

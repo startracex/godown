@@ -3,7 +3,8 @@ import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { scopePrefix } from "../core/global-style.js";
-import SuperOpenable, { type Direction8 } from "../core/super-openable.js";
+import SuperOpenable from "../core/super-openable.js";
+import { type DirectionCardinal, type DirectionCorner, directionOutsetPlace } from "../core/direction.js";
 
 const protoName = "tooltip";
 const cssScope = scopePrefix(protoName);
@@ -19,6 +20,7 @@ const cssScope = scopePrefix(protoName);
  */
 @godown(protoName)
 @styles(
+  directionOutsetPlace,
   css`
     :host {
       ${cssScope}--tip-background: inherit;
@@ -57,23 +59,6 @@ const cssScope = scopePrefix(protoName);
       pointer-events: none;
     }
   `,
-  css`
-    [direction^="top"] [part="tip"] {
-      bottom: 100%;
-    }
-
-    [direction^="bottom"] [part="tip"] {
-      top: 100%;
-    }
-
-    [direction$="right"] [part="tip"] {
-      left: 100%;
-    }
-
-    [direction$="left"] [part="tip"] {
-      right: 100%;
-    }
-  `,
 )
 class Tooltip extends SuperOpenable {
   /**
@@ -86,7 +71,7 @@ class Tooltip extends SuperOpenable {
    * Direction of opening the tip.
    */
   @property()
-  direction: Direction8 = "top";
+  direction: DirectionCardinal | DirectionCorner = "top";
 
   /**
    * Content alignment.
@@ -135,7 +120,10 @@ class Tooltip extends SuperOpenable {
         style="justify-content:${align};align-items:${align}"
       >
         ${htmlSlot()}
-        <div part="tip">
+        <div
+          part="tip"
+          direction-outset-place
+        >
           ${this.tip
             ? html`
                 <span class="passive">${this.tip}</span>

@@ -2,8 +2,14 @@ import { type HandlerEvent, attr, godown, htmlSlot, styles } from "@godown/eleme
 import { type PropertyValues, type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
+import { scopePrefix } from "../core/global-style.js";
 import SuperOpenable from "../core/super-openable.js";
+import {
+  type DirectionCardinal,
+  type DirectionCenter,
+  type DirectionCorner,
+  directionInsetAlign,
+} from "../core/direction.js";
 
 const protoName = "dialog";
 const cssScope = scopePrefix(protoName);
@@ -19,74 +25,61 @@ const cssScope = scopePrefix(protoName);
  * @category feedback
  */
 @godown(protoName)
-@styles(css`
-  :host {
-    ${cssScope}--background: none;
-    ${cssScope}--background-modal: black;
-    ${cssScope}--opacity-modal: 0.2;
-    background: var(${cssScope}--background);
-    pointer-events: none;
-    visibility: hidden;
-    position: fixed;
-    z-index: 1;
-    inset: 0;
-  }
+@styles(
+  directionInsetAlign,
+  css`
+    :host {
+      ${cssScope}--background: none;
+      ${cssScope}--background-modal: black;
+      ${cssScope}--opacity-modal: 0.2;
+      background: var(${cssScope}--background);
+      pointer-events: none;
+      visibility: hidden;
+      position: fixed;
+      z-index: 1;
+      inset: 0;
+    }
 
-  :host([open]) {
-    visibility: visible;
-  }
+    :host([open]) {
+      visibility: visible;
+    }
 
-  :host([open][modal]) [part="modal"] {
-    pointer-events: all;
-    visibility: visible;
-    opacity: var(${cssScope}--opacity-modal);
-  }
+    :host([open][modal]) [part="modal"] {
+      pointer-events: all;
+      visibility: visible;
+      opacity: var(${cssScope}--opacity-modal);
+    }
 
-  [part="modal"] {
-    visibility: hidden;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: var(${cssScope}--background-modal);
-  }
+    [part="modal"] {
+      visibility: hidden;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: var(${cssScope}--background-modal);
+    }
 
-  [part="root"] {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-  }
+    [part="root"] {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+    }
 
-  [part="container"] {
-    pointer-events: all;
-    position: absolute;
-  }
-
-  [direction^="top"] [part="container"] {
-    top: 0;
-  }
-
-  [direction^="bottom"] [part="container"] {
-    bottom: 0;
-  }
-
-  [direction$="right"] [part="container"] {
-    right: 0;
-  }
-
-  [direction$="left"] [part="container"] {
-    left: 0;
-  }
-`)
+    [part="container"] {
+      pointer-events: all;
+      position: absolute;
+    }
+  `,
+)
 class Dialog extends SuperOpenable {
   /**
    * The direction of the dialog container.
    */
   @property()
-  direction: string;
+  direction: DirectionCardinal | DirectionCorner | DirectionCenter;
 
   /**
    * Indicates whether the dialog should be displayed as a modal.
@@ -112,7 +105,12 @@ class Dialog extends SuperOpenable {
         ${attr(this.observedRecord)}
       >
         <div part="modal"></div>
-        <div part="container">${htmlSlot()}</div>
+        <div
+          part="container"
+          direction-inset-align
+        >
+          ${htmlSlot()}
+        </div>
       </div>
     `;
   }

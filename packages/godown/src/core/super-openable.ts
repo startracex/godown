@@ -36,11 +36,3 @@ class SuperOpenable extends GlobalStyle {
 
 export default SuperOpenable;
 export { SuperOpenable };
-
-export type Direction4 = "left" | "right" | "top" | "bottom";
-
-export type Direction5 = Direction4 | "center";
-
-export type Direction8 = Direction4 | "top-left" | "top-right" | "bottom-left" | "bottom-right";
-
-export type Direction9 = Direction8 | Direction5;
