@@ -223,10 +223,10 @@ class Range extends SuperInput {
   }
 
   protected _renderHandle(index: number): TemplateResult<1> {
-    const { rangeValue, disabled } = this;
+    const { disabled, range, rangeValue } = this;
 
-    // in single-handle mod or last handle.
-    const end = index === rangeValue.length - 1;
+    // in single-handle mod (value is a number or an array with length 1),
+    const end = !range || (range && index === rangeValue.length - 1 && rangeValue.length === 1);
     return html`
       <i
         tabindex="0"
