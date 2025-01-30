@@ -79,13 +79,13 @@ const cssScope = scopePrefix(protoName);
 `)
 class Details extends SuperOpenable {
   /**
-   * If it is true, the summary event scope will fill the element.
+   * Determines whether the details component should fill the available space.
    */
   @property({ type: Boolean })
   fill = false;
 
   /**
-   * Summary text.
+   * The summary text to display in the details component.
    */
   @property()
   summary = "";

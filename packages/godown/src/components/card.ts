@@ -51,9 +51,15 @@ const cssScope = scopePrefix(protoName);
   }
 `)
 class Card extends GlobalStyle {
+  /**
+   * Whether to display the header.
+   */
   @property({ type: Boolean })
   footer = false;
 
+  /**
+   * Whether to display the footer.
+   */
   @property({ type: Boolean })
   header = false;
 

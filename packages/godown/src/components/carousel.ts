@@ -69,13 +69,13 @@ function getWidth(e) {
 `)
 class Carousel extends GlobalStyle {
   /**
-   * The index of the element is displayed for the first time.
+   * The index of the current item.
    */
   @property({ type: Number })
   index = 0;
 
   /**
-   * If autoChange > 0, the rotation will be automated.
+   * The duration of the transition.
    */
   @property({ type: Number })
   autoChange = 0;

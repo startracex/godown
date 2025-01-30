@@ -60,6 +60,8 @@ class Heading extends GlobalStyle {
 
   /**
    * The anchor prefix.
+   *
+   * Element must have an id to be displayed.
    */
   @property()
   anchor = "#";

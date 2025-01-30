@@ -4,8 +4,6 @@ import { property } from "lit/decorators.js";
 
 import { GlobalStyle, cssGlobalVars, scopePrefix } from "../core/global-style.js";
 
-type Position = "top-right" | "top-left" | "bottom-right" | "bottom-left";
-
 const protoName = "badge";
 const cssScope = scopePrefix(protoName);
 
@@ -70,8 +68,12 @@ const cssScope = scopePrefix(protoName);
   }
 `)
 class Badge extends GlobalStyle {
+  /**
+   * The position of the badge relative to its parent element.
+   * Possible values are `"top-left"`, `"top-right"`, `"bottom-left"`, and `"bottom-right"`.
+   */
   @property()
-  position: Position = "top-right";
+  position: "top-right" | "top-left" | "bottom-right" | "bottom-left" = "top-right";
 
   @property({ type: Number })
   value = 0;
@@ -82,6 +84,10 @@ class Badge extends GlobalStyle {
   @property({ type: Boolean })
   dot = false;
 
+  /**
+   * The maximum value that can be displayed in the badge
+   * Values greater than this will be displayed as `max+` by default.
+   */
   @property({ type: Number })
   max = 99;
 

@@ -73,11 +73,13 @@ class Rotate extends GlobalStyle {
 
   /**
    * Compute offset.
-   * ```
-   * `rotateX(${rotateX}rad) rotateY(${rotateY}rad)`
-   * ```
-   * @param e Mouse move event.
+   *
    * @returns rotateX, rotateY
+   * @example
+   * ```ts
+   * const { rotateX, rotateY } = this._computeOffset(e);
+   * `rotateX(${rotateX}rad) rotateY(${rotateY}rad)`;
+   * ```
    */
   protected _computeOffset(e: MouseEvent): {
     rotateX: number;

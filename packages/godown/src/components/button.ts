@@ -193,13 +193,14 @@ class Button extends GlobalStyle {
   plain = false;
 
   /**
-   * Whether to disable this element.
+   * Whether this element is disabled or not.
    */
   @property({ type: Boolean, reflect: true })
   disabled = false;
 
   /**
-   * Display ghost.
+   * Whether this element should be rendered as a "ghost" button.
+   * A ghost button is a button with a transparent background and a border.
    */
   @property({ type: Boolean, reflect: true })
   ghost = false;

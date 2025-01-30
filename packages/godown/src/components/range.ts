@@ -13,7 +13,7 @@ const cssScope = scopePrefix(protoName);
  *
  * Value accepts number, or array.
  *
- * Number has 1 handle, the array has the number of its elements and the minimum is 2.
+ * Number has 1 handle, the array has the number of its elements.
  *
  * @fires input - Fires when the input value changes.
  * @fires change - Fires when the input value changes.
@@ -136,7 +136,7 @@ class Range extends SuperInput {
   step: number;
 
   /**
-   * Display vertically.
+   * Whether to display the range vertically.
    */
   @property({ type: Boolean, reflect: true })
   vertical = false;
@@ -167,9 +167,6 @@ class Range extends SuperInput {
   protected _ranger: Ranger;
   private __focusStack: number[] = [];
 
-  /**
-   * If value is array.
-   */
   get range(): boolean {
     return Array.isArray(this.value);
   }
@@ -182,9 +179,7 @@ class Range extends SuperInput {
   }
 
   /**
-   * @param len Minimum result length.
-   * @param value Fill value.
-   * @returns Array with length of len.
+   * Pad the value to the specified length.
    */
   padValue(len: number, value = 0): number[] {
     const { rangeValue } = this;
@@ -250,6 +245,10 @@ class Range extends SuperInput {
 
   private __keydownEvent: EventListenerOrEventListenerObject;
 
+  /**
+   * Focuses the handle at the given index, updates the focus stack, and dispatches a "focus" event.
+   * @param index - The index of the handle to focus.
+   */
   focusHandle(index: number): void {
     this.lastFocus = index;
     const indexOfFocusStack = this.__focusStack.indexOf(index);
@@ -265,12 +264,20 @@ class Range extends SuperInput {
     this.dispatchEvent(new CustomEvent("focus", { detail: index }));
   }
 
+  /**
+   * Removes the focus from the currently focused handle and dispatches a "blur" event.
+   */
   blurHandle(): void {
     this.lastFocus = undefined;
     this.__keydownEvent = this.events.remove(document, "keydown", this.__keydownEvent);
     this.dispatchEvent(new CustomEvent("blur"));
   }
 
+  /**
+   * Creates a keydown event handler that updates the value of the range based on arrow key presses.
+   * @param index - The index of the handle to update.
+   * @returns A function that handles the keydown event and updates the range value.
+   */
   protected createKeydownEvent(index: number) {
     const { rangeValue, step } = this;
     if (rangeValue.length < 2) {
@@ -288,6 +295,11 @@ class Range extends SuperInput {
     };
   }
 
+  /**
+   * Creates a mouse down event handler that focuses the handle at the given index and sets the value of the range.
+   * @param index - The index of the handle to focus.
+   * @returns A function that handles the mouse down event and updates the range value.
+   */
   protected createMouseDown(index: number) {
     return (e: MouseEvent): void => {
       this.focusHandle(index);
@@ -295,6 +307,11 @@ class Range extends SuperInput {
     };
   }
 
+  /**
+   * Creates a function that sets the value of the range at the given index.
+   * @param index - The index of the value to set.
+   * @returns A function that sets the value of the range.
+   */
   protected createSetValue(index: number) {
     return (value: number): void => {
       const normalizeValue = this._ranger.normalize(value);
@@ -310,12 +327,18 @@ class Range extends SuperInput {
 
   /**
    * Compute value from event.
+   * @returns The value closest to the event client position.
    */
   protected _computeValue({ clientX, clientY }: MouseEvent): number {
     const { top, left, height, width } = this._root.getBoundingClientRect();
     return this._ranger.present(this.vertical ? (clientY - top) / height : (clientX - left) / width);
   }
 
+  /**
+   * Handles the mouse down event on the root element of the range component.
+   * Computes the closest value to the mouse position, sets the value, and focuses the corresponding handle.
+   * @param e - The mouse down event object.
+   */
   protected _handleMousedownRoot(e: MouseEvent): void {
     const value = this._computeValue(e);
     const index = this.range
@@ -331,7 +354,11 @@ class Range extends SuperInput {
     this.createMousedownListener(set)(e);
     this.focusHandle(index);
   }
-
+  /**
+   * Creates a mouse down event handler that focuses the handle at the given index and sets the value of the range.
+   * @param index - The index of the handle to focus.
+   * @returns A function that handles the mouse down event and updates the range value.
+   */
   protected createMousedownListener(mouseMoveCallback: (arg0: number) => void) {
     return (e: MouseEvent): void => {
       e.preventDefault();
@@ -346,6 +373,11 @@ class Range extends SuperInput {
     };
   }
 
+  /**
+   * Creates a mouse move event handler that updates the range value based on the mouse position.
+   * @param callback - A function to call with the new value when the mouse is moved.
+   * @returns A function that handles the mouse move event and updates the range value.
+   */
   protected createMousemoveListener(callback: (newValue: number) => void) {
     return (e: MouseEvent): void => {
       const value = this._computeValue(e);

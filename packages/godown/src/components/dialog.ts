@@ -82,21 +82,27 @@ const cssScope = scopePrefix(protoName);
   }
 `)
 class Dialog extends SuperOpenable {
+  /**
+   * The direction of the dialog container.
+   */
   @property()
   direction: string;
 
   /**
-   * Enable modal, blocking event penetration.
+   * Indicates whether the dialog should be displayed as a modal.
    */
   @property({ type: Boolean, reflect: true })
   modal = false;
 
   /**
-   * Close key.
+   * The keys will close the dialog when pressed.
    */
   @property()
   key = "Escape";
 
+  /**
+   * Indicates whether the modal has been invoked.
+   */
   private __modalInvoke = false;
 
   protected render(): TemplateResult<1> {

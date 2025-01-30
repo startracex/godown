@@ -40,7 +40,7 @@ const protoName = "divider";
 `)
 class Divider extends GlobalStyle {
   /**
-   * Vertical display.
+   * Whether to display the divider vertically.
    */
   @property({ type: Boolean, reflect: true })
   vertical = false;

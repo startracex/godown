@@ -59,19 +59,20 @@ const cssScope = scopePrefix(protoName);
 `)
 class Avatar extends GlobalStyle {
   /**
-   * Image src.
+   * The `src` property specifies the URL of the avatar image.
+   * If `src` is not provided, the component will display the `name` property instead.
    */
   @property()
   src: string | undefined | null;
 
   /**
-   * If the image is not available, display name (call {@linkcode Avatar.format}).
+   * Specifies the name or initials to display if no `src` is provided
    */
   @property()
   name = "";
 
   /**
-   * Display rounded.
+   * If `true`, will make the avatar display as a circle.
    */
   @property({ type: Boolean })
   round = false;
