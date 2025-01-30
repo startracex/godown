@@ -101,13 +101,13 @@ class Avatar extends GlobalStyle {
     }
     if (this.name) {
       return html`
-        <span part="name">${this.format()}</span>
+        <span part="name">${this.formatName()}</span>
       `;
     }
     return htmlSlot();
   }
 
-  format(): string {
+  formatName(): string {
     return this.name;
   }
 
