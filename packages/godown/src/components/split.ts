@@ -1,4 +1,4 @@
-import { type HandlerEvent, attr, tokenList, godown, styles, loop } from "@godown/element";
+import { type HandlerEvent, attr, tokenList, godown, styles, loop, omit } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, state } from "lit/decorators.js";
 
@@ -24,7 +24,6 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(css`
   :host {
-    color: var(${cssGlobalVars.foreground});
     display: block;
     border-radius: 1px;
     width: fit-content;
@@ -51,7 +50,6 @@ const cssScope = scopePrefix(protoName);
     height: var(${cssScope}--size);
     vertical-align: top;
     text-align: center;
-    background-color: var(${cssGlobalVars.input}-background);
     border-radius: inherit;
   }
 
@@ -65,7 +63,7 @@ const cssScope = scopePrefix(protoName);
   }
 
   .focus {
-    box-shadow: var(${cssGlobalVars.input}-box-shadow);
+    ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.active});
   }
 `)
 class Split extends SuperInput {
@@ -91,13 +89,14 @@ class Split extends SuperInput {
     return html`
       <div
         part="root"
-        ${attr(this.observedRecord)}
+        ${attr(omit(this.observedRecord, "outline-type"))}
       >
         ${loop(
           this.len,
           (index: number) => html`
             <span
               part="input-box"
+              outline-type="${this.outlineType}"
               class="${tokenList({ focus: this.current === index })}"
               @click="${this.disabled ? null : () => this.focusAt(index)}"
             >

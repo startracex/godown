@@ -29,7 +29,7 @@ const cssScope = scopePrefix(protoName);
       ${cssScope}--handle-active: var(${cssGlobalVars.active});
       ${cssScope}--track-width: .5em;
       ${cssScope}--length: var(${cssGlobalVars.input}-width);
-      background: var(${cssGlobalVars.input}-background);
+      background: var(${cssGlobalVars.passive});
       width: var(${cssScope}--length);
       display: block;
     }

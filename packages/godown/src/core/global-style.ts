@@ -77,6 +77,7 @@ GlobalStyle.styles = [
     }
 
     :host {
+      color: var(${cssGlobalVars.foreground});
       box-sizing: border-box;
     }
 

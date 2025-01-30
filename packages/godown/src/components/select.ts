@@ -4,6 +4,7 @@ import { type TemplateResult, css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import Input from "./input.js";
+import { cssGlobalVars } from "../core/global-style.js";
 
 function contain(a: string, b: string): boolean {
   return a && b && a.toLowerCase().includes(b.toLowerCase());
@@ -47,6 +48,11 @@ const protoName = "select";
  */
 @godown(protoName)
 @styles(css`
+  :host(:focus-within),
+  .outline {
+    ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.active});
+  }
+
   [part="input"] {
     text-overflow: ellipsis;
   }

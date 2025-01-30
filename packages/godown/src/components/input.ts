@@ -19,10 +19,12 @@ const protoName = "input";
   :host {
     width: var(${cssGlobalVars.input}-width);
     height: var(${cssGlobalVars.input}-height);
-    color: var(${cssGlobalVars.foreground});
-    background: var(${cssGlobalVars.input}-background);
-    border-radius: var(${cssGlobalVars.input}-radius);
     display: block;
+  }
+
+  :host(:focus-within),
+  .outline {
+    ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.active});
   }
 `)
 class Input extends SuperInput {
