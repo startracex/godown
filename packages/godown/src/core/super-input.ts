@@ -7,6 +7,7 @@ import { GlobalStyle, cssGlobalVars } from "./global-style.js";
 
 const fieldStyle = css`
   .input-field {
+    --space: var(${cssGlobalVars.input}-space);
     display: flex;
     position: relative;
     align-items: center;
@@ -14,17 +15,37 @@ const fieldStyle = css`
     height: inherit;
   }
 
+  [outline-type="outline"],
+  [outline-type="outline-inset"] {
+    outline-width: var(${cssGlobalVars.input}-outline-width);
+    outline-color: var(${cssGlobalVars.input}-outline-color);
+    outline-style: solid;
+  }
+
+  [outline-type="outline-inset"] {
+    outline-offset: calc(-1 * var(${cssGlobalVars.input}-outline-width));
+  }
+
+  [outline-type="box-shadow"] {
+    box-shadow: 0 0 0 var(${cssGlobalVars.input}-outline-width) var(${cssGlobalVars.input}-outline-color);
+  }
+
+  [outline-type="box-shadow-inset"] {
+    box-shadow: inset 0 0 0 var(${cssGlobalVars.input}-outline-width) var(${cssGlobalVars.input}-outline-color);
+  }
+
+  [outline-type="border"] {
+    border-width: var(${cssGlobalVars.input}-outline-width);
+    border-color: var(${cssGlobalVars.input}-outline-color);
+    border-style: solid;
+  }
+
   .input-field [part="input"] {
-    background: transparent;
+    background: none;
     height: 100%;
     width: 100%;
     color: inherit;
-    padding: 0 var(${cssGlobalVars.input}-space);
-  }
-
-  .input-field:focus-within,
-  .input-field.outline {
-    box-shadow: var(${cssGlobalVars.input}-box-shadow);
+    padding: 0 var(--space);
   }
 
   .input-field [part="icon"] {
@@ -40,11 +61,11 @@ const fieldStyle = css`
   }
 
   .input-field [part="suffix"] [part="icon"] {
-    padding-inline-end: var(${cssGlobalVars.input}-space);
+    padding-inline-end: var(--space);
   }
 
   .input-field [part="prefix"] [part="icon"] {
-    padding-inline-start: var(${cssGlobalVars.input}-space);
+    padding-inline-start: var(--space);
   }
 `;
 
@@ -53,12 +74,10 @@ const inputStyle = css`
     ${cssGlobalVars.input}-width: 10em;
     ${cssGlobalVars.input}-height: 1.6em;
     ${cssGlobalVars.input}-space: 0.2em;
-    ${cssGlobalVars.input}-background: var(${cssGlobalVars.background});
     ${cssGlobalVars.input}-control: var(${cssGlobalVars.foreground});
-    ${cssGlobalVars.input}-control-edge: var(${cssGlobalVars.active});
-    ${cssGlobalVars.input}-radius: 0.2em;
-    ${cssGlobalVars.input}-box-shadow: 0px 0px 0px .1em var(${cssGlobalVars.active});
-    border-radius: var(${cssGlobalVars.input}-radius);
+    ${cssGlobalVars.input}-outline-width: .075em;
+    ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.passive});
+    border-radius: 0.2em;
   }
 
   :host([disabled]) {
@@ -81,6 +100,9 @@ class SuperInput extends GlobalStyle {
   autofocus = false;
   @property()
   autocomplete: string | boolean;
+
+  @property({ attribute: "outline-type" })
+  outlineType: "outline" | "outline-inset" | "box-shadow" | "box-shadow-inset" | "border" = "border";
 
   @property({ type: Boolean, reflect: true })
   disabled = false;

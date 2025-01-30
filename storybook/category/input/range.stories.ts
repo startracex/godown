@@ -9,12 +9,20 @@ export default {
   render,
   argTypes: {
     disabled: booleanArg,
+    "outline-type": new ArgHelper().options([
+      "border",
+      "outline",
+      "box-shadow",
+      "outline-inset",
+      "box-shadow-inset",
+    ]).arg,
     step: new ArgHelper().type("number").control("number").default("1").arg,
     value: new ArgHelper().type("number | array").control("object").arg,
     vertical: booleanArg,
   },
   args: {
     disabled: false,
+    "outline-type": "border",
     max: 100,
     min: 0,
     value: [0, 50],
