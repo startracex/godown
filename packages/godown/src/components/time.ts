@@ -42,13 +42,13 @@ class Time extends GlobalStyle {
    * If there is a value, update every gap or timeout.
    */
   @property({ type: Number })
-  timeout: any;
+  timeout: number;
 
   /**
    * The number of milliseconds that change with each update.
    */
   @property({ type: Number })
-  gap: any;
+  gap: number;
 
   protected timeoutId: number;
 
