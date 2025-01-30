@@ -49,22 +49,6 @@ class GodownElement extends LitElement {
   }
 
   /**
-   * Returns the observedAttributes defined on the class, excluding those defined in the GodownElement class.
-   * @returns An array of attribute names that will be observed, excluding those defined in the GodownElement class.
-   */
-  get scopedObservedAttributes(): string[] {
-    return this.globalObservedAttributes.filter((key) => !GodownElement.observedAttributes.includes(key));
-  }
-
-  /**
-   * Returns the observedAttributes defined on the class.
-   * @returns An array of attribute names that will be observed.
-   */
-  get globalObservedAttributes(): string[] {
-    return (this.constructor as any).observedAttributes;
-  }
-
-  /**
    * Returns the first unnamed slot element in the shadow root.
    * @returns The unnamed slot element, or `null` if not found.
    */
