@@ -71,11 +71,6 @@ class Input extends SuperInput {
     `;
   }
 
-  reset(): void {
-    this._input.value = this.default;
-    this.value = this.default;
-  }
-
   protected _renderSuffix(): TemplateResult<1> {
     const PASSWORD = "password";
     return html`
