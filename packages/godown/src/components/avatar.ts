@@ -23,6 +23,7 @@ const cssScope = scopePrefix(protoName);
     width: var(${cssScope}--size);
     height: var(${cssScope}--size);
     vertical-align: bottom;
+    border-radius: 0.2em;
   }
 
   :host,

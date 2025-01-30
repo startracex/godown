@@ -22,16 +22,13 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(css`
   :host {
-    ${cssScope}--background: var(${cssGlobalVars.background});
     ${cssScope}--border-width: .075em;
-    ${cssScope}--border-color: transparent;
-    ${cssScope}--border-background: var(${cssGlobalVars.passive});
-    ${cssScope}--padding: .75em;
+    ${cssScope}--border-color: var(${cssGlobalVars.passive});
+    ${cssScope}--padding: .5em;
     border-width: var(${cssScope}--border-width);
     display: block;
     flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
+    border-radius: 0.2em;
   }
 
   slot {
@@ -41,7 +38,7 @@ const cssScope = scopePrefix(protoName);
 
   :host,
   slot {
-    border-color: var(${cssScope}--border-background);
+    border-color: var(${cssScope}--border-color);
     border-style: solid;
   }
 
