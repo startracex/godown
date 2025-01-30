@@ -49,8 +49,10 @@ const cssScope = scopePrefix(protoName);
     width: var(${cssScope}--size);
     height: var(${cssScope}--size);
     vertical-align: top;
-    text-align: center;
     border-radius: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   [part="input"] {
