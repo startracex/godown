@@ -17,8 +17,6 @@ export function variablePrefix(variable: string): CSSResult {
 }
 
 export const cssGlobalVars: {
-  foreground: CSSResult;
-  background: CSSResult;
   clipBackground: CSSResult;
   active: CSSResult;
   passive: CSSResult;
@@ -28,8 +26,6 @@ export const cssGlobalVars: {
   black: CSSResult;
   color: CSSResult;
 } = {
-  foreground: scopePrefix("foreground", 2),
-  background: scopePrefix("background", 2),
   clipBackground: scopePrefix("clip-background", 2),
   active: scopePrefix("active", 2),
   passive: scopePrefix("passive", 2),
@@ -54,13 +50,11 @@ GlobalStyle.styles = [
         return `${colorKey}:rgb(${rgb});`;
       }, presetsRGB).join("") +
       joinProperties([
-        [cssGlobalVars.background, `var(${cssGlobalVars._colors.darkgray[9]})`],
-        [cssGlobalVars.foreground, `var(${cssGlobalVars._colors.lightgray[0]})`],
         [cssGlobalVars.active, `var(${cssGlobalVars._colors.blue[6]})`],
         [cssGlobalVars.passive, `var(${cssGlobalVars._colors.darkgray[6]})`],
         [
           cssGlobalVars.clipBackground,
-          `linear-gradient(to bottom, var(${cssGlobalVars.foreground}), var(${cssGlobalVars.passive}))`,
+          `linear-gradient(to bottom, var(${cssGlobalVars._colors.lightgray[0]}), var(${cssGlobalVars._colors.darkgray[5]}))`,
         ],
       ]) +
       "}",
@@ -77,7 +71,6 @@ GlobalStyle.styles = [
     }
 
     :host {
-      color: var(${cssGlobalVars.foreground});
       box-sizing: border-box;
     }
 

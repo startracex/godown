@@ -73,7 +73,7 @@ const inputStyle = css`
     ${cssGlobalVars.input}-width: 10em;
     ${cssGlobalVars.input}-height: 1.6em;
     ${cssGlobalVars.input}-space: 0.2em;
-    ${cssGlobalVars.input}-control: var(${cssGlobalVars.foreground});
+    ${cssGlobalVars.input}-control: currentColor;
     ${cssGlobalVars.input}-outline-width: .075em;
     ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.passive});
     border-radius: 0.2em;

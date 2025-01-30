@@ -22,7 +22,7 @@ const cssScope = scopePrefix(protoName);
 @styles(css`
   :host {
     ${cssScope}--background: none;
-    ${cssScope}--background-modal: var(${cssGlobalVars.background});
+    ${cssScope}--background-modal: black;
     ${cssScope}--opacity-modal: 0.2;
     background: var(${cssScope}--background);
     pointer-events: none;
