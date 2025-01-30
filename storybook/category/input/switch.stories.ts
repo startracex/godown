@@ -10,12 +10,10 @@ export default {
   argTypes: {
     checked: booleanArg,
     disabled: booleanArg,
-    round: booleanArg,
   },
   args: {
     checked: false,
     disabled: false,
-    round: false,
   },
 } as RendererMeta<typeof render>;
 

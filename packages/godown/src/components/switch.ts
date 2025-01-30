@@ -1,4 +1,4 @@
-import { attr, godown, styles } from "@godown/element";
+import { attr, godown, omit, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, query } from "lit/decorators.js";
 
@@ -10,9 +10,6 @@ const cssScope = scopePrefix(protoName);
 
 /**
  * {@linkcode Switch} renders a switch.
- *
- * The switch is rectangular by default,
- * set the round property to rounded switch.
  *
  * @fires change - Fires when the switch is switched.
  * @category input
@@ -32,18 +29,23 @@ const cssScope = scopePrefix(protoName);
     ${cssScope}-handle-size: 1.25em;
     ${cssScope}-handle-space: .125em;
     ${cssScope}-transition: .2s ease-in-out;
-    background: var(${cssGlobalVars.input}-background);
+    border-radius: calc(var(${cssScope}-height) / 2);
+    background: var(${cssGlobalVars.passive});
     vertical-align: bottom;
-    border-radius: 0;
+    transition: 0.2s ease-in-out;
+    transition-property: background, left;
+  }
+
+  :host([checked]) {
+    background: var(${cssGlobalVars.active});
   }
 
   [part="root"],
   [part="handle"] {
-    transition: var(${cssScope}-transition);
+    transition: inherit;
   }
 
   [part="root"] {
-    border-radius: inherit;
     position: relative;
     height: inherit;
   }
@@ -52,7 +54,6 @@ const cssScope = scopePrefix(protoName);
     opacity: 0;
     width: 100%;
     height: 100%;
-    appearance: none;
   }
 
   [part="handle"] {
@@ -64,45 +65,26 @@ const cssScope = scopePrefix(protoName);
     left: 0;
     width: 50%;
     pointer-events: none;
-    border-radius: inherit;
-  }
-
-  :host([round]) {
-    border-radius: calc(var(${cssScope}-height) / 2);
-    background: var(${cssGlobalVars.passive});
   }
 
   :host([checked]) [part="handle"] {
     left: 50%;
   }
 
-  .rect .true {
-    background: var(${cssGlobalVars.active});
-  }
-
-  .rect .false {
-    background: var(${cssGlobalVars.passive});
-  }
-
-  .round [part="handle"] {
+  [part="handle"] {
     --size: var(${cssScope}-handle-size);
     border-radius: 100%;
-    background: var(--godown--input-control);
+    background: currentColor;
     width: var(--size);
     height: var(--size);
     margin: var(${cssScope}-handle-space);
   }
-
-  :host([checked]) .round {
-    background: var(${cssGlobalVars.active});
-  }
 `)
 class Switch extends SuperInput {
   /**
-   * Display rounded.
+   * @deprecated
    */
-  @property({ type: Boolean, reflect: true })
-  round = false;
+  round: boolean;
 
   /**
    * Whether this element is selected or not.
@@ -119,8 +101,8 @@ class Switch extends SuperInput {
   /**
    * Default checked state.
    */
-  @property()
-  default = "false";
+  @property({ type: Boolean })
+  default = false;
 
   /**
    * Input value.
@@ -135,8 +117,8 @@ class Switch extends SuperInput {
     return html`
       <div
         part="root"
-        ${attr(this.observedRecord)}
-        class="${this.round ? "round" : "rect"}"
+        ${attr(omit(this.observedRecord, "outline-type"))}
+        class="round"
       >
         <input
           part="input"
@@ -156,16 +138,15 @@ class Switch extends SuperInput {
   }
 
   reset(): void {
-    this.checked = this.default === "true";
+    this.checked = this.default;
     this._input.checked = this.checked;
   }
 
-  connectedCallback(): void {
-    super.connectedCallback();
+  protected _connectedInit(): void {
     if (this.checked) {
-      this.default = "true";
+      this.default = true;
     }
-    if (this.default === "true") {
+    if (this.default === true) {
       this.checked = true;
     }
   }
