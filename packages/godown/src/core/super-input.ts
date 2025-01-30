@@ -1,5 +1,4 @@
 import { type HandlerEvent, htmlSlot, omit, part, styles } from "@godown/element";
-import iconEyeSlashFill from "@godown/f7-icon/icons/eye-slash-fill.js";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -221,24 +220,12 @@ class SuperInput extends GlobalStyle {
   }
 
   protected _renderSuffix(): TemplateResult<1> {
-    const PASSWORD = "password";
     return html`
       <label
         for=${this.makeId}
         part="suffix"
       >
-        ${this.type === "password"
-          ? html`
-              <i
-                part="icon"
-                @mousedown="${() => this._changeInputType("text")}"
-                @mouseup="${() => this._changeInputType(PASSWORD)}"
-                @mouseleave="${() => this._changeInputType(PASSWORD)}"
-              >
-                ${iconEyeSlashFill()}
-              </i>
-            `
-          : htmlSlot("suffix")}
+        ${htmlSlot("suffix")}
       </label>
     `;
   }

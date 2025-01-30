@@ -1,4 +1,5 @@
-import { attr, tokenList, godown, part, styles } from "@godown/element";
+import { attr, tokenList, godown, part, styles, htmlSlot } from "@godown/element";
+import iconEyeSlashFill from "@godown/f7-icon/icons/eye-slash-fill.js";
 import { type TemplateResult, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -73,6 +74,29 @@ class Input extends SuperInput {
   reset(): void {
     this._input.value = this.default;
     this.value = this.default;
+  }
+
+  protected _renderSuffix(): TemplateResult<1> {
+    const PASSWORD = "password";
+    return html`
+      <label
+        for=${this.makeId}
+        part="suffix"
+      >
+        ${this.type === PASSWORD
+          ? html`
+              <i
+                part="icon"
+                @mousedown="${() => this._changeInputType("text")}"
+                @mouseup="${() => this._changeInputType(PASSWORD)}"
+                @mouseleave="${() => this._changeInputType(PASSWORD)}"
+              >
+                ${iconEyeSlashFill()}
+              </i>
+            `
+          : htmlSlot("suffix")}
+      </label>
+    `;
   }
 }
 
