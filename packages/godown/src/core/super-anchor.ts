@@ -23,12 +23,13 @@ import { GlobalStyle } from "./global-style.js";
     text-decoration: inherit;
   }
 `)
-class SuperAnchor extends GlobalStyle {
+abstract class SuperAnchor extends GlobalStyle {
   /**
    * A element href.
    */
   @property()
   href: string;
+
   /**
    * A element target.
    */
@@ -53,7 +54,7 @@ class SuperAnchor extends GlobalStyle {
     `;
   }
 
-  protected _handleClick(_: MouseEvent): void {}
+  protected abstract _handleClick(_: MouseEvent): void;
 }
 
 export default SuperAnchor;
