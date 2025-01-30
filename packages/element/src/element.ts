@@ -40,7 +40,7 @@ class GodownElement extends LitElement {
   get observedRecord(): Record<string, any> {
     const record = {};
     for (const [property, option] of (this.constructor as typeof GodownElement).elementProperties.entries()) {
-      const attribute = option.attribute;
+      const attribute = option.attribute ?? property;
       if (attribute) {
         record[attribute === true ? property : attribute] = this[property];
       }
