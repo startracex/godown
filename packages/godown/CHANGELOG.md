@@ -1,5 +1,29 @@
 # godown
 
+## 3.4.0
+
+### Minor Changes
+
+- 28d66a0: add outlineType for input components
+- 46075d1: apply the style update applicable to the outlineType
+- 00dfb24: revert Dialog.direction property
+- 7c907ce: remove Switch.round
+- b0d7f64: rename Avatar.format to formatName
+- 0b213ef: remove Card background
+- 1baf104: remove global background and foreground variables
+- 43a9ad9: add Button.plain
+- 2ef9b92: change Breath.duration and Progress.value to number
+
+### Patch Changes
+
+- 5f7216a: fix incorrect Range handle position
+- a4c55ea: fix missing types of Timeout.timeout and Timeout.gap
+- Updated dependencies [4869824]
+- Updated dependencies [305ad82]
+- Updated dependencies [1ea680e]
+  - @godown/element@1.3.0
+  - @godown/f7-icon@1.0.3
+
 ## 3.3.0
 
 ### Minor Changes
