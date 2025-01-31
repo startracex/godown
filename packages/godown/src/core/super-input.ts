@@ -27,6 +27,7 @@ const fieldStyle = css`
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(${cssGlobalVars.input}-icon-color);
   }
 
   .input-field [part="prefix"],
@@ -52,12 +53,17 @@ const inputStyle = css`
     ${cssGlobalVars.input}-control: currentColor;
     ${cssGlobalVars.input}-outline-width: .075em;
     ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.passive});
+    ${cssGlobalVars.input}-icon-color: var(${cssGlobalVars.passive});
     border-radius: 0.2em;
   }
 
   :host([disabled]) {
     cursor: not-allowed;
     filter: brightness(0.85);
+  }
+
+  :host(:focus-within) {
+    ${cssGlobalVars.input}-icon-color: currentColor;
   }
 
   input:disabled {
