@@ -3,7 +3,7 @@ import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { scopePrefix } from "../core/global-style.js";
-import SuperOpenable from "../core/super-openable.js";
+import { SuperOpenable } from "../core/super-openable.js";
 import { type DirectionCardinal, type DirectionCorner, directionOutsetPlace } from "../core/direction.js";
 
 const protoName = "tooltip";

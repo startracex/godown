@@ -5,7 +5,7 @@ import { property, state } from "lit/decorators.js";
 
 import Input from "./input.js";
 import { cssGlobalVars } from "../core/global-style.js";
-import { DirectionCardinalY, directionOutsetPlace } from "../core/direction.js";
+import { type DirectionCardinalY, directionOutsetPlace } from "../core/direction.js";
 
 function contain(a: string, b: string): boolean {
   return a && b && a.toLowerCase().includes(b.toLowerCase());

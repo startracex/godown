@@ -4,7 +4,7 @@ import { type TemplateResult, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars } from "../core/global-style.js";
-import SuperInput from "../core/super-input.js";
+import { SuperInput } from "../core/super-input.js";
 
 const protoName = "input";
 

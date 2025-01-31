@@ -1,7 +1,7 @@
 import { godown } from "@godown/element";
 import { property } from "lit/decorators.js";
 
-import SuperAnchor from "../core/super-anchor.js";
+import { SuperAnchor } from "../core/super-anchor.js";
 import Router from "./router.js";
 
 const protoName = "link";

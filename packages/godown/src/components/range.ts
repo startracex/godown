@@ -3,7 +3,7 @@ import { type TemplateResult, css, html } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
-import SuperInput from "../core/super-input.js";
+import { SuperInput } from "../core/super-input.js";
 
 const protoName = "range";
 const cssScope = scopePrefix(protoName);
