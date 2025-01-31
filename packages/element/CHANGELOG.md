@@ -1,5 +1,16 @@
 # @godown/element
 
+## 1.3.0
+
+### Minor Changes
+
+- 4869824: remove deprecated classList directive
+- 305ad82: remove unused observedAttributes getters
+
+### Patch Changes
+
+- 1ea680e: fix the observedRecord error when the attribute and property name are inconsistent
+
 ## 1.2.0
 
 ### Minor Changes
