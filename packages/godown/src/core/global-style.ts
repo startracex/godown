@@ -50,8 +50,8 @@ GlobalStyle.styles = [
         return `${colorKey}:rgb(${rgb});`;
       }, presetsRGB).join("") +
       joinProperties([
-        [cssGlobalVars.active, `var(${cssGlobalVars._colors.blue[6]})`],
-        [cssGlobalVars.passive, `var(${cssGlobalVars._colors.darkgray[6]})`],
+        [cssGlobalVars.active, `var(${cssGlobalVars._colors.blue[5]})`],
+        [cssGlobalVars.passive, `var(${cssGlobalVars._colors.darkgray[5]})`],
         [
           cssGlobalVars.clipBackground,
           `linear-gradient(to bottom, var(${cssGlobalVars._colors.lightgray[0]}), var(${cssGlobalVars._colors.darkgray[5]}))`,
