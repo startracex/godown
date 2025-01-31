@@ -93,12 +93,6 @@ class Switch extends SuperInput {
   checked = false;
 
   /**
-   * Disable this element.
-   */
-  @property({ type: Boolean, reflect: true })
-  disabled = false;
-
-  /**
    * Default checked state.
    */
   @property({ type: Boolean })
