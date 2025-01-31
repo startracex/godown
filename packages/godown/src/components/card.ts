@@ -42,6 +42,10 @@ const cssScope = scopePrefix(protoName);
     border-style: solid;
   }
 
+  [part="root"] {
+    width: 100%;
+  }
+
   [name="footer"] {
     border-top-width: var(${cssScope}--border-width);
   }
