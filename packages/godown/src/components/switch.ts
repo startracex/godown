@@ -1,6 +1,6 @@
 import { attr, godown, omit, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
 import { SuperInput } from "../core/super-input.js";
@@ -27,7 +27,7 @@ const cssScope = scopePrefix(protoName);
     ${cssScope}-width: 3em;
     ${cssScope}-height: calc(var(${cssScope}-width) / 2);
     ${cssScope}-handle-size: 1.25em;
-    ${cssScope}-handle-space: .125em;
+    ${cssScope}-handle-space: calc(var(${cssScope}-width) / 4 - var(${cssScope}-handle-size) / 2);
     ${cssScope}-transition: .2s ease-in-out;
     border-radius: calc(var(${cssScope}-height) / 2);
     background: var(${cssGlobalVars.passive});
@@ -40,14 +40,33 @@ const cssScope = scopePrefix(protoName);
     background: var(${cssGlobalVars.active});
   }
 
-  [part="root"],
-  [part="handle"] {
+  [part="root"] {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    position: relative;
     transition: inherit;
   }
 
-  [part="root"] {
-    position: relative;
-    height: inherit;
+  [part="handle"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    transition: inherit;
+    left: 0;
+    top: 50%;
+    pointer-events: none;
+    border-radius: 100%;
+    background: currentColor;
+    --size: var(${cssScope}-handle-size);
+    width: var(--size);
+    height: var(--size);
+    transform: translateY(-50%) translateX(var(${cssScope}-handle-space));
+  }
+
+  :host([checked]) [part="handle"] {
+    left: 50%;
   }
 
   [part="input"] {
@@ -55,42 +74,20 @@ const cssScope = scopePrefix(protoName);
     width: 100%;
     height: 100%;
   }
-
-  [part="handle"] {
-    height: 100%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    left: 0;
-    width: 50%;
-    pointer-events: none;
-  }
-
-  :host([checked]) [part="handle"] {
-    left: 50%;
-  }
-
-  [part="handle"] {
-    --size: var(${cssScope}-handle-size);
-    border-radius: 100%;
-    background: currentColor;
-    width: var(--size);
-    height: var(--size);
-    margin: var(${cssScope}-handle-space);
-  }
 `)
-class Switch extends SuperInput {
+class Switch extends SuperInput<boolean> {
   /**
    * @deprecated
    */
   round: boolean;
 
-  /**
-   * Whether this element is selected or not.
-   */
-  @property({ type: Boolean, reflect: true })
-  checked = false;
+  set checked(v: boolean) {
+    this.value = v;
+  }
+
+  get checked(): boolean {
+    return this.value;
+  }
 
   /**
    * Default checked state.
@@ -99,13 +96,10 @@ class Switch extends SuperInput {
   default = false;
 
   /**
-   * Input value.
+   * The current value of the switch component. Reflects the "checked" attribute.
    */
-  @property()
-  value = "on";
-
-  @query("input")
-  protected _input: HTMLInputElement;
+  @property({ type: Boolean, attribute: "checked", reflect: true })
+  value = false;
 
   get observedRecord(): Record<string, any> {
     return omit(super.observedRecord, "outline-type");
@@ -122,40 +116,35 @@ class Switch extends SuperInput {
           part="input"
           type="checkbox"
           ?disabled="${this.disabled}"
-          ?checked="${this.checked}"
-          name="${this.name}"
+          ?checked="${this.value}"
           id="${this.makeId}"
           @change="${this._handleChange}"
         />
-        <span
-          part="handle"
-          class="${this.checked}"
-        ></span>
+        <span part="handle"></span>
       </div>
     `;
   }
 
   reset(): void {
-    this.checked = this.default;
-    this._input.checked = this.checked;
+    this.value = this.default;
+    this._input.checked = this.value;
   }
 
   protected _connectedInit(): void {
-    if (this.checked) {
-      this.default = true;
-    }
-    if (this.default === true) {
-      this.checked = true;
+    if (this.default) {
+      this.value = true;
+    } else {
+      if (this.value) {
+        this.value = true;
+        this.default = true;
+      }
     }
   }
 
   protected _handleChange(): void {
-    this.checked = this._input.checked;
-    this.dispatchEvent(new CustomEvent("change", { detail: this.checked, composed: true }));
-  }
-
-  namevalue(): [string, boolean] {
-    return [this.name, this.checked];
+    const { checked } = this._input;
+    this.value = checked;
+    this.dispatchCustomEvent("change", this.value);
   }
 }
 
