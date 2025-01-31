@@ -8,6 +8,8 @@ import { SuperInput } from "../core/super-input.js";
 const protoName = "range";
 const cssScope = scopePrefix(protoName);
 
+type RangeValue = number | number[];
+
 /**
  * {@linkcode Range} is similar to `<input type="range">`.
  *
@@ -116,7 +118,7 @@ const cssScope = scopePrefix(protoName);
     }
   `,
 )
-class Range extends SuperInput {
+class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
   /**
    * Minimum value.
    */
@@ -147,13 +149,13 @@ class Range extends SuperInput {
    * Accepts number or array of numbers.
    */
   @property({ type: Array })
-  value: number | number[];
+  value: V;
 
   /**
    * The default of `{@linkcode this.value}`.
    */
   @property({ type: Array })
-  default: typeof this.value;
+  default: V;
 
   @part("root")
   protected _root: HTMLElement;
@@ -167,8 +169,8 @@ class Range extends SuperInput {
   protected _ranger: Ranger;
   private __focusStack: number[] = [];
 
-  get range(): boolean {
-    return Array.isArray(this.value);
+  get range(): V extends number ? false : true {
+    return Array.isArray(this.value) as any;
   }
 
   /**
@@ -319,12 +321,12 @@ class Range extends SuperInput {
   protected createSetValue(index: number) {
     return (value: number): void => {
       const normalizeValue = this._ranger.normalize(value);
-      let newValue: number | number[] = normalizeValue;
+      let newValue: RangeValue = normalizeValue;
       if (this.range) {
         newValue = [...(this.value as number[])];
         newValue[index] = normalizeValue;
       }
-      this.value = newValue;
+      this.value = newValue as V;
       this.dispatchEvent(new CustomEvent("range", { detail: this.value }));
     };
   }
@@ -399,7 +401,7 @@ class Range extends SuperInput {
       if (!isNil(this.default)) {
         this.value = this.default;
       } else {
-        this.value = Math.round(gap / 2 / this.step) * this.step;
+        (this.value as number) = Math.round(gap / 2 / this.step) * this.step;
       }
     }
     this.default ??= this.value;
@@ -409,13 +411,13 @@ class Range extends SuperInput {
     this.value = this.default;
   }
 
-  sort(): number | number[] {
+  sort(): V {
     return (this.value = this.toSorted());
   }
 
-  toSorted(): number | number[] {
+  toSorted(): V {
     if (this.range) {
-      return [...(this.value as number[])].sort((a, b) => a - b);
+      return [...(this.value as number[])].sort((a, b) => a - b) as V;
     }
     return this.value;
   }

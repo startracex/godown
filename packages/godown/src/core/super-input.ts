@@ -84,7 +84,7 @@ const inputStyle = css`
   }).styleSheet,
   inputStyle,
 )
-class SuperInput extends GlobalStyle {
+class SuperInput<V = string> extends GlobalStyle {
   autofocus = false;
   @property()
   autocomplete: string | boolean;
@@ -105,7 +105,7 @@ class SuperInput extends GlobalStyle {
   name: string;
 
   @property()
-  value: any;
+  value: V;
 
   get observedRecord(): Record<string, any> {
     return omit(super.observedRecord, "default", "value");
@@ -151,7 +151,7 @@ class SuperInput extends GlobalStyle {
     if (this.compositing) {
       return;
     }
-    this.value = e.target.value?.trim();
+    (this.value as string) = e.target.value?.trim();
     this.dispatchEvent(
       new CustomEvent("input", {
         detail: this.value,
