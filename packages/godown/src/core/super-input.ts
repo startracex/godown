@@ -52,8 +52,8 @@ const inputStyle = css`
     ${cssGlobalVars.input}-space: 0.2em;
     ${cssGlobalVars.input}-control: currentColor;
     ${cssGlobalVars.input}-outline-width: .075em;
-    ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.passive});
-    ${cssGlobalVars.input}-icon-color: var(${cssGlobalVars.passive});
+    ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars._colors.darkgray[4]});
+    ${cssGlobalVars.input}-icon-color: var(${cssGlobalVars._colors.darkgray[4]});
     border-radius: 0.2em;
   }
 

@@ -8,11 +8,11 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    checked: booleanArg,
+    value: booleanArg,
     disabled: booleanArg,
   },
   args: {
-    checked: false,
+    value: false,
     disabled: false,
   },
 } as RendererMeta<typeof render>;
