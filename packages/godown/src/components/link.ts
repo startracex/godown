@@ -92,13 +92,13 @@ class Link extends SuperAnchor {
   handleState: () => void = () => {
     switch (this.type) {
       case linkTypes.auto:
-      // biome-ignore lint: if replace is true, fallthrough to replace case
       case linkTypes.push:
         if (!this.replace) {
           // type is auto or push and replace is false
           history.pushState(this.state, "", this.href);
           break;
         }
+      // fallthrough to replace
       case linkTypes.replace:
         history.replaceState(this.state, "", this.href);
         break;

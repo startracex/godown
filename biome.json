@@ -89,7 +89,7 @@
         "noEmptyBlockStatements": "off",
         "noExplicitAny": "off",
         "noExtraNonNullAssertion": "error",
-        "noFallthroughSwitchClause": "error",
+        "noFallthroughSwitchClause": "off",
         "noFunctionAssign": "error",
         "noGlobalAssign": "error",
         "noImportAssign": "error",
