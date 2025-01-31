@@ -113,11 +113,15 @@ class Switch extends SuperInput {
   @query("input")
   protected _input: HTMLInputElement;
 
+  get observedRecord(): Record<string, any> {
+    return omit(super.observedRecord, "outline-type");
+  }
+
   protected render(): TemplateResult<1> {
     return html`
       <div
         part="root"
-        ${attr(omit(this.observedRecord, "outline-type"))}
+        ${attr(this.observedRecord)}
         class="round"
       >
         <input

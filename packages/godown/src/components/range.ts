@@ -1,4 +1,4 @@
-import { attr, tokenList, godown, isNil, joinProperties, loop, part, styles, Ranger } from "@godown/element";
+import { attr, tokenList, godown, isNil, joinProperties, loop, part, styles, Ranger, omit } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 
@@ -195,6 +195,10 @@ class Range extends SuperInput {
     if (name === "max" || name === "min" || name === "step") {
       this._ranger = new Ranger(this.min, this.max, this.step);
     }
+  }
+
+  get observedRecord(): Record<string, any> {
+    return omit(super.observedRecord, "outline-type");
   }
 
   protected render(): TemplateResult<1> {

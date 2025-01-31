@@ -87,11 +87,15 @@ class Split extends SuperInput {
   @state()
   currentValue: (string | void)[] = [];
 
+  get observedRecord(): Record<string, any> {
+    return omit(super.observedRecord, "outline-type");
+  }
+
   protected render(): TemplateResult<1> {
     return html`
       <div
         part="root"
-        ${attr(omit(this.observedRecord, "outline-type"))}
+        ${attr(this.observedRecord)}
       >
         ${loop(
           this.len,

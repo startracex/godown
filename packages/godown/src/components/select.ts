@@ -101,14 +101,18 @@ class Select extends Input {
   protected defaultChecked: HTMLElement[];
   private __store: { value: string; text: string }[] = [];
 
+  get observedRecord(): Record<string, any> {
+    return {
+      ...super.observedRecord,
+      direction: this.direction || this.autoDirection,
+    };
+  }
+
   protected render(): TemplateResult<1> {
     return html`
       <div
         part="root"
-        ${attr({
-          ...this.observedRecord,
-          direction: this.direction || this.autoDirection,
-        })}
+        ${attr(this.observedRecord)}
         class="input-field"
       >
         ${[
