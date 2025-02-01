@@ -2,7 +2,7 @@ import { attr, godown, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { GlobalStyle } from "../core/global-style.js";
+import { cssGlobalVars, GlobalStyle } from "../core/global-style.js";
 
 const protoName = "divider";
 
@@ -19,6 +19,7 @@ const protoName = "divider";
     margin: auto;
     display: block;
     background: currentColor;
+    color: var(${cssGlobalVars.passive});
   }
 
   :host([vertical]) {
