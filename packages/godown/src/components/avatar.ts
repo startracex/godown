@@ -2,7 +2,7 @@ import { attr, godown, htmlSlot, omit, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { GlobalStyle, scopePrefix } from "../core/global-style.js";
+import { GlobalStyle, scopePrefix, cssGlobalVars } from "../core/global-style.js";
 
 const protoName = "avatar";
 const cssScope = scopePrefix(protoName);
@@ -22,6 +22,7 @@ const cssScope = scopePrefix(protoName);
     ${cssScope}--size: 2em;
     width: var(${cssScope}--size);
     height: var(${cssScope}--size);
+    background: var(${cssGlobalVars.passive});
     vertical-align: bottom;
     border-radius: 0.2em;
   }
