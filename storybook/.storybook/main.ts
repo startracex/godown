@@ -54,7 +54,7 @@ export default {
     font-size: 15px;
   }
   #root-inner {
-    text-align: center;
+
   }
   .rejt-value-node:hover .rejt-value {
     background: none !important;
