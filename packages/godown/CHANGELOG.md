@@ -1,5 +1,19 @@
 # godown
 
+## 3.5.0
+
+### Minor Changes
+
+- 23dd58e: update the type of Switch.value to boolean and make "checked" an alias of "value"
+- aec8f39: add generics to inputs classes
+
+### Patch Changes
+
+- a20efaf: brighter active and passive
+- d5484d9: synchronize the outline styles when Split is in the active and focus
+- 5eca159: set color of Divider style to passive
+- 0b80e7e: set background of Avatar style to passive
+
 ## 3.4.0
 
 ### Minor Changes
