@@ -64,7 +64,8 @@ const cssScope = scopePrefix(protoName);
     z-index: -1;
   }
 
-  .focus {
+  .focus,
+  [part="input-box"]:active {
     ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.active});
   }
 `)
