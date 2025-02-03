@@ -131,12 +131,12 @@ const colors: Record<Colors, string> = constructCSSObject(
         var(${cssScope}--background),
         var(${cssScope}--gradients, var(${cssScope}--background))
       );
+      padding: var(${cssScope}--padding);
       border-radius: 0.2em;
       width: fit-content;
       display: block;
       overflow: hidden;
       text-align: center;
-      padding: 0 !important;
       cursor: pointer;
     }
 
@@ -147,13 +147,11 @@ const colors: Record<Colors, string> = constructCSSObject(
     [part="root"] {
       width: 100%;
       height: 100%;
-      overflow: hidden;
       position: relative;
       transition: none;
       user-select: none;
       border-radius: inherit;
       transition-duration: inherit;
-      padding: var(${cssScope}--padding);
     }
 
     i {
@@ -259,7 +257,8 @@ class Button extends GlobalStyle {
     super.blur();
   }
 
-  protected firstUpdated(): void {
+  connectedCallback(): void {
+    super.connectedCallback();
     this.events.add(this, "click", this._handelClick, true);
   }
 
@@ -276,13 +275,13 @@ class Button extends GlobalStyle {
 
   protected _handleModal(e: MouseEvent): void {
     const modal = document.createElement("i");
-    const rect = this._root.getBoundingClientRect();
-    const { height, width } = rect;
-    const size = `${Math.sqrt(height * height + width * width) * 2}px`;
+    const { width, height } = this.getBoundingClientRect();
+    const { x, y } = this._root.getBoundingClientRect();
+    const size = `${Math.sqrt(height ** 2 + width ** 2) * 2}px`;
     modal.style.height = size;
     modal.style.width = size;
-    modal.style.left = `${e.clientX - rect.left}px`;
-    modal.style.top = `${e.clientY - rect.y}px`;
+    modal.style.left = `${e.x - x}px`;
+    modal.style.top = `${e.y - y}px`;
     modal.style.animationName = "kf";
     this._modalRoot.appendChild(modal);
     modal.addEventListener("animationend", () => modal.remove(), { once: true });
