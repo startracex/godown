@@ -98,7 +98,7 @@ class Details extends SuperOpenable {
       >
         <dt
           part="title"
-          @click="${this._handelClick}"
+          @click="${() => this.toggle()}"
         >
           <span part="summary">${this.summary || htmlSlot("summary")}</span>
           <span>

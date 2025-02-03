@@ -28,10 +28,6 @@ class SuperOpenable extends GlobalStyle {
       this.dispatchEvent(new CustomEvent("change", { detail: this.open, composed: true }));
     }
   }
-
-  protected _handelClick(_: MouseEvent): void {
-    this.toggle();
-  }
 }
 
 export default SuperOpenable;
