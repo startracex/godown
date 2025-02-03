@@ -10,7 +10,9 @@
     "pnpm-lock.yaml": true,
     "**/.turbo": true,
     "**/LICENSE": true,
-    "**/*.map": true,
+    "**/*.map": {
+      "when": "$(basename)"
+    },
     "**/*.js": {
       "when": "$(basename).d.ts"
     },
