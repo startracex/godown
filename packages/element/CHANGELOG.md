@@ -1,5 +1,11 @@
 # @godown/element
 
+## 1.3.1
+
+### Patch Changes
+
+- 5c7df1c: publish tsconfig.json
+
 ## 1.3.0
 
 ### Minor Changes
