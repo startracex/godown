@@ -1,5 +1,15 @@
 # godown
 
+## 3.5.1
+
+### Patch Changes
+
+- 5c7df1c: publish tsconfig.json
+- 1e939a1: replace local var with global var for input space
+- Updated dependencies [5c7df1c]
+  - @godown/element@1.3.1
+  - @godown/f7-icon@1.0.4
+
 ## 3.5.0
 
 ### Minor Changes

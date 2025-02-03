@@ -1,5 +1,12 @@
 # @godown/f7-icon
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [5c7df1c]
+  - @godown/element@1.3.1
+
 ## 1.0.3
 
 ### Patch Changes
