@@ -135,7 +135,3 @@ customElements.define("my-button", Button);
 ```html
 <my-button>Click me</my-button>
 ```
-
-### Conditional import
-
-Under "development" condition, codes and templates will not be compressed.
