@@ -7,7 +7,6 @@ import { OutlineBuilder, type OutlineType } from "./outline.js";
 
 const fieldStyle = css`
   .input-field {
-    --space: var(${cssGlobalVars.input}-space);
     display: flex;
     position: relative;
     align-items: center;
@@ -20,7 +19,7 @@ const fieldStyle = css`
     height: 100%;
     width: 100%;
     color: inherit;
-    padding: 0 var(--space);
+    padding: 0 var(${cssGlobalVars.input}-space);
   }
 
   .input-field [part="icon"] {
@@ -37,11 +36,11 @@ const fieldStyle = css`
   }
 
   .input-field [part="suffix"] [part="icon"] {
-    padding-inline-end: var(--space);
+    padding-inline-end: var(${cssGlobalVars.input}-space);
   }
 
   .input-field [part="prefix"] [part="icon"] {
-    padding-inline-start: var(--space);
+    padding-inline-start: var(${cssGlobalVars.input}-space);
   }
 `;
 
