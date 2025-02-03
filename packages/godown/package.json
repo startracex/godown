@@ -4,19 +4,6 @@
   "description": "Non Composite Web Components Library",
   "type": "module",
   "main": "index.js",
-  "exports": {
-    ".": {
-      "development": "./dev/index.js",
-      "default": "./index.js"
-    },
-    "./*": {
-      "development": "./dev/*",
-      "default": "./*"
-    },
-    "./build/*": "./build/*",
-    "./src/*": "./src/*",
-    "./*.json": "./*.json"
-  },
   "scripts": {
     "dev": "tsc --watch",
     "check-types": "tsc --noEmit",
