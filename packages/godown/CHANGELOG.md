@@ -1,5 +1,12 @@
 # godown
 
+## 3.5.2
+
+### Patch Changes
+
+- 3d1ee1c: fix duplicate input event dispatch
+- 06d900d: dispatch change events separately
+
 ## 3.5.1
 
 ### Patch Changes
