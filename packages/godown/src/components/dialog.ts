@@ -34,24 +34,22 @@ const cssScope = scopePrefix(protoName);
       ${cssScope}--opacity-modal: 0.2;
       background: var(${cssScope}--background);
       pointer-events: none;
-      visibility: hidden;
       position: fixed;
       z-index: 1;
       inset: 0;
     }
 
-    :host([open]) {
-      visibility: visible;
+    :host(:not([open])) {
+      visibility: hidden;
     }
 
-    :host([open][modal]) [part="modal"] {
+    :host([modal]) [part="modal"] {
       pointer-events: all;
-      visibility: visible;
       opacity: var(${cssScope}--opacity-modal);
     }
 
     [part="modal"] {
-      visibility: hidden;
+      visibility: inherit;
       opacity: 0;
       width: 100%;
       height: 100%;
