@@ -27,6 +27,8 @@
     "access": "public"
   },
   "files": [
-    "**/*.{ts,js}+(|.map)"
+    "**/*.{d.ts,js}+(|.map)",
+    "src",
+    "tsconfig.json"
   ]
 }

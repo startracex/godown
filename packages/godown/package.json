@@ -21,7 +21,7 @@
     "dev": "tsc --watch",
     "check-types": "tsc --noEmit",
     "clean": "tsc --build tsconfig.prod.json --clean",
-    "build": "tsc && tsx build.ts",
+    "build": "tsx build.ts",
     "build:ts": "tsc",
     "fmt": "prettier src --write",
     "lint": "biome lint",
@@ -54,7 +54,8 @@
     "custom-elements.json",
     "web-types.json",
     "vscode.{css,html}-custom-data.json",
-    "src"
+    "src",
+    "tsconfig.json"
   ],
   "custom-elements": "./custom-elements.json",
   "customElements": "./custom-elements.json",

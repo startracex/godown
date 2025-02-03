@@ -1,12 +1,33 @@
 {
-  "extends": "@godown/tsconfig/base.json",
   "compilerOptions": {
+    "target": "ES2021",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "customConditions": [
+      "development",
+      "import",
+      "default"
+    ],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "types": [],
+    "allowJs": false,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "importHelpers": true,
+    "noImplicitThis": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
     "isolatedDeclarations": true,
-    "isolatedModules": true,
+    "rootDir": "src",
     "outDir": "."
   },
-  "include": [
-    "src/**/*.ts"
-  ],
+  "include": ["src"],
   "exclude": []
 }
