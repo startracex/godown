@@ -130,6 +130,7 @@ class Select extends Input {
               id="${this.makeId}"
               @focus="${this._handleFocus}"
               @input="${this._handleInput}"
+              @change="${this._handleChange}"
             />
           `,
           html`
@@ -268,7 +269,6 @@ class Select extends Input {
     const s = this._input.value;
     this.filter(this.multiple ? betweenAt(this._input.selectionStart, s, ",") : s);
     this.dispatchEvent(new CustomEvent("input", { detail: this.value, composed: true, bubbles: true }));
-    this.dispatchEvent(new CustomEvent("change", { detail: this.value, composed: true }));
   }
 
   focus(options?: FocusOptions): void {

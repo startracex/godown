@@ -63,6 +63,7 @@ class Input extends SuperInput {
               placeholder="${this.placeholder || nothing}"
               id="${this.makeId}"
               @input="${this._handleInput}"
+              @change="${this._handleChange}"
             />
           `,
           this._renderSuffix(),
