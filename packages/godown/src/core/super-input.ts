@@ -19,7 +19,7 @@ const fieldStyle = css`
     height: 100%;
     width: 100%;
     color: inherit;
-    padding: 0 var(${cssGlobalVars.input}-space);
+    padding: var(${cssGlobalVars.input}-space);
   }
 
   .input-field [part="icon"] {
