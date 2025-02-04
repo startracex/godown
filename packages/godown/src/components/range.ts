@@ -395,6 +395,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
   }
 
   protected _connectedInit(): void {
+    this._ranger = new Ranger(this.min, this.max, this.step);
     const gap = this._ranger.diff;
     this.step ||= gap / 100;
     if (isNil(this.value)) {
