@@ -1,5 +1,13 @@
 # godown
 
+## 3.5.3
+
+### Patch Changes
+
+- fdea2b3: ensure Range.ranger is initialized before reading properties
+- c5040b1: correct Button modal positioning calculation
+- 7e3e15e: observe resize to reset the offset for Carousel
+
 ## 3.5.2
 
 ### Patch Changes
