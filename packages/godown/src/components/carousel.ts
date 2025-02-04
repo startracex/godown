@@ -124,6 +124,10 @@ class Carousel extends GlobalStyle {
       this.appendChild(this.__cloneLast);
       this.insertBefore(this.__cloneFirst, this.firstElementChild);
     }
+    this.observers.add(this, ResizeObserver, () => {
+      this._offset = this._computeOffset();
+      this._doTranslateX(`${this._offset}px`, true);
+    });
   }
 
   protected async firstUpdated(): Promise<void> {
@@ -141,13 +145,9 @@ class Carousel extends GlobalStyle {
   show(i: number, n?: boolean): void {
     i = this.normalizeIndex(i);
     this.index = i;
-    this._offset = 0;
-    for (let childIndex = 0; childIndex <= i; childIndex++) {
-      this._offset -= getWidth(this.children[childIndex]);
-    }
-    this._offset += (getWidth(this) - getWidth(this.children[i + 1])) / 2;
-    this.dispatchEvent(new CustomEvent("change", { detail: i, composed: true }));
+    this._offset = this._computeOffset();
     this._doTranslateX(`${this._offset}px`, n);
+    this.dispatchCustomEvent("change", i);
     this.timeouts.remove(this.intervalID);
     if (this.autoChange > 0) {
       this.intervalID = this.timeouts.add(
@@ -179,6 +179,15 @@ class Carousel extends GlobalStyle {
   protected _doTranslateX(xValue: string, noTransition?: boolean): void {
     this._moveRoot.style.transform = `translateX(${xValue})`;
     this._moveRoot.style.transition = noTransition ? "none" : "";
+  }
+
+  protected _computeOffset(): number {
+    let offset = 0;
+    for (let childIndex = 0; childIndex <= this.index; childIndex++) {
+      offset -= getWidth(this.children[childIndex]);
+    }
+    offset += (getWidth(this) - getWidth(this.children[this.index + 1])) / 2;
+    return offset;
   }
 
   normalizeIndex(i: number): number {
