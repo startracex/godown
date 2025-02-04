@@ -140,7 +140,7 @@ class Breath extends GlobalStyle {
     for (let number = 1; number <= len; number++) {
       const delay = (-duration / len) * (len - number + 1);
       const defaultNumber = ((number - 1) % 3) + 1;
-      style1 += `.rel:nth-child(${number}) .colorful{animation-delay:${delay}s;background:var(${cssScope}--${number},var(${cssScope}--${defaultNumber}));}`;
+      style1 += `.rel:nth-child(${number}) .colorful{animation-delay:${delay}ms;background:var(${cssScope}--${number},var(${cssScope}--${defaultNumber}));}`;
     }
     return `.colorful{animation-duration:${duration}ms;}@keyframes colorfulN{0%,${gap * 3}%{opacity:0;}${gap}%,${
       gap * 2
