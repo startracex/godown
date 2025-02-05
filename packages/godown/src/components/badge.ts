@@ -39,8 +39,6 @@ const cssScope = scopePrefix(protoName);
     user-select: none;
     border-radius: calc(infinity * 1px);
     transform: translate(-50%, -50%);
-    left: var(--left);
-    top: var(--top);
     background: var(${cssScope}--background);
   }
 
@@ -52,20 +50,20 @@ const cssScope = scopePrefix(protoName);
     border-radius: 50%;
   }
 
-  [position^="top"] {
-    --top: calc(0% + var(${cssScope}--offset-y));
+  [position^="top"] [part="badge"] {
+    top: calc(0% + var(${cssScope}--offset-y));
   }
 
-  [position$="right"] {
-    --left: calc(100% - var(${cssScope}--offset-x));
+  [position$="right"] [part="badge"] {
+    left: calc(100% - var(${cssScope}--offset-x));
   }
 
-  [position^="bottom"] {
-    --top: calc(100% - var(${cssScope}--offset-y));
+  [position^="bottom"] [part="badge"] {
+    top: calc(100% - var(${cssScope}--offset-y));
   }
 
-  [position$="left"] {
-    --left: calc(0% + var(${cssScope}--offset-x));
+  [position$="left"] [part="badge"] {
+    left: calc(0% + var(${cssScope}--offset-x));
   }
 `)
 class Badge extends GlobalStyle {
