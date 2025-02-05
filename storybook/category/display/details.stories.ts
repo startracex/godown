@@ -8,10 +8,14 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
+    fill: booleanArg,
+    float: booleanArg,
     summary: stringArg,
     open: booleanArg,
   },
   args: {
+    fill: false,
+    float: false,
     summary: "Summary",
     open: false,
   },

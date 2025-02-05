@@ -78,6 +78,12 @@ const cssScope = scopePrefix(protoName);
 `)
 class Details extends SuperOpenable {
   /**
+   * Determines whether the details component should float.
+   */
+  @property({ type: Boolean })
+  float = false;
+
+  /**
    * Determines whether the details component should fill the available space.
    */
   @property({ type: Boolean })
