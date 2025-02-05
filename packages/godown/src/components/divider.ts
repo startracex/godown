@@ -16,7 +16,6 @@ const protoName = "divider";
   :host {
     width: 100%;
     height: 0.05em;
-    margin: auto;
     display: block;
     background: currentColor;
     color: var(${cssGlobalVars.passive});
@@ -24,7 +23,7 @@ const protoName = "divider";
 
   :host([vertical]) {
     width: 0.05em;
-    height: max(1em, 100%);
+    height: 100%;
   }
 
   :host([contents]) [part="root"] {
