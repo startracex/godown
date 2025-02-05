@@ -3,7 +3,7 @@ import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle, cssGlobalVars, scopePrefix } from "../core/global-style.js";
-import { DirectionCorner } from "../core/direction.js";
+import type { DirectionCorner } from "../core/direction.js";
 
 const protoName = "badge";
 const cssScope = scopePrefix(protoName);
