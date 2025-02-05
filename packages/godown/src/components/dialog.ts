@@ -1,15 +1,10 @@
 import { type HandlerEvent, attr, godown, htmlSlot, styles } from "@godown/element";
 import { type PropertyValues, type TemplateResult, css, html } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 
 import { scopePrefix } from "../core/global-style.js";
 import { SuperOpenable } from "../core/super-openable.js";
-import {
-  type DirectionCardinal,
-  type DirectionCenter,
-  type DirectionCorner,
-  directionInsetAlign,
-} from "../core/direction.js";
+import { type DirectionCardinal, type DirectionCorner, type DirectionCenter } from "../core/direction.js";
 
 const protoName = "dialog";
 const cssScope = scopePrefix(protoName);
@@ -25,53 +20,38 @@ const cssScope = scopePrefix(protoName);
  * @category feedback
  */
 @godown(protoName)
-@styles(
-  directionInsetAlign,
-  css`
-    :host {
-      ${cssScope}--background: none;
-      ${cssScope}--background-modal: black;
-      ${cssScope}--opacity-modal: 0.2;
-      background: var(${cssScope}--background);
-      pointer-events: none;
-      position: fixed;
-      z-index: 1;
-      inset: 0;
-    }
+@styles(css`
+  :host {
+    ${cssScope}--background-modal: black;
+    ${cssScope}--opacity-modal: 0.2;
+    width: fit-content;
+    display: block;
+    margin: auto;
+    background: none;
+    left: 50%;
+    top: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+  }
 
-    :host(:not([open])) {
-      visibility: hidden;
-    }
+  :host(:not([open])) {
+    visibility: hidden;
+  }
 
-    :host([modal]) [part="modal"] {
-      pointer-events: all;
-      opacity: var(${cssScope}--opacity-modal);
-    }
+  :host([contents]) dialog {
+    position: fixed;
+  }
 
-    [part="modal"] {
-      visibility: inherit;
-      opacity: 0;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      background: var(${cssScope}--background-modal);
-    }
+  dialog {
+    position: relative;
+    background: inherit;
+  }
 
-    [part="root"] {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      position: relative;
-      align-items: center;
-      justify-content: center;
-    }
-
-    [part="container"] {
-      pointer-events: all;
-      position: absolute;
-    }
-  `,
-)
+  ::backdrop {
+    background: var(${cssScope}--background-modal);
+    opacity: var(${cssScope}--opacity-modal);
+  }
+`)
 class Dialog extends SuperOpenable {
   /**
    * The direction of the dialog container.
@@ -83,7 +63,13 @@ class Dialog extends SuperOpenable {
    * Indicates whether the dialog should be displayed as a modal.
    */
   @property({ type: Boolean, reflect: true })
-  modal = false;
+  set modal(value: boolean) {
+    this.contents = value;
+  }
+
+  get modal(): boolean {
+    return this.contents;
+  }
 
   /**
    * The keys will close the dialog when pressed.
@@ -96,29 +82,39 @@ class Dialog extends SuperOpenable {
    */
   private __modalInvoke = false;
 
+  @query("dialog")
+  protected _dialog: HTMLDialogElement;
+
   protected render(): TemplateResult<1> {
     return html`
-      <div
+      <dialog
         part="root"
         ${attr(this.observedRecord)}
       >
-        <div part="modal"></div>
-        <div
-          part="container"
-          direction-inset-align
-        >
-          ${htmlSlot()}
-        </div>
-      </div>
+        ${htmlSlot()}
+      </dialog>
     `;
   }
 
   showModal(): void {
-    if (!this.modal) {
-      this.modal = true;
-      this.__modalInvoke = true;
-    }
+    this.modal = true;
+    this.__modalInvoke = true;
     this.show();
+  }
+
+  attributeChangedCallback(name: string, _old: string | null, value: string | null): void {
+    super.attributeChangedCallback(name, _old, value);
+    if (name === "open") {
+      if (this.open) {
+        if (this.modal) {
+          this._dialog.showModal();
+        } else {
+          this._dialog.show();
+        }
+      } else {
+        this._dialog.close();
+      }
+    }
   }
 
   private __submitEvent: EventListenerOrEventListenerObject;
