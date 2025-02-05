@@ -19,8 +19,14 @@ export default {
 
 export const Primary = {};
 
-export const Round = {
+export const WithCustomSize = {
   args: {
-    round: true,
+    stylex: "--godown-switch-handle-size: 1.55em;",
+  },
+};
+
+export const WithCustomColor = {
+  args: {
+    stylex: "background: blueviolet;color: chartreuse;--godown--active: darkorange;",
   },
 };
