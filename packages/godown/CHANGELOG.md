@@ -1,5 +1,13 @@
 # godown
 
+## 3.6.1
+
+### Patch Changes
+
+- a7ee549: add "none" option to OutlineType
+- 01872fa: prevent overflow in Details
+- bd1941d: flex Layout by default
+
 ## 3.6.0
 
 ### Minor Changes
