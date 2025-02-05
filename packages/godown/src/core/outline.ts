@@ -51,4 +51,13 @@ export class OutlineBuilder {
   }
 }
 
-export type OutlineType = "outline" | "outline-inset" | "box-shadow" | "box-shadow-inset" | "border";
+export type OutlineType =
+  | "outline"
+  | "outline-inset"
+  | "box-shadow"
+  | "box-shadow-inset"
+  | "border"
+  | "none"
+  | undefined;
+
+export const isNone = (type: OutlineType): boolean => !type || type === "none";
