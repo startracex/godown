@@ -41,6 +41,7 @@ const cssScope = scopePrefix(protoName);
     justify-content: space-between;
     grid-template-columns: auto auto;
     transition: inherit;
+    overflow: hidden;
   }
 
   [part="details"] {
