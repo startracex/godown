@@ -8,7 +8,7 @@ export default (args: Pick<Flex, "content" | "items" | "gap" | "vertical">) =>
 
 ${[
     ...loop(5, (i) =>
-      html`  <div>Flex item ${i + 1}</div>
+      html`  <div>${i + 1}</div>
 `),
   ]}
 

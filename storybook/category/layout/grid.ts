@@ -7,7 +7,7 @@ export default (args: Pick<Grid, "rows" | "columns" | "content" | "items" | "gap
 <godown-grid ${attr(args)}>
 ${[
     ...loop(12, (i) =>
-      html`  <div>Grid item ${i + 1}</div>
+      html`  <div>${i + 1}</div>
 `),
   ]}
 
