@@ -23,54 +23,53 @@ const cssScope = scopePrefix(protoName);
   :host {
     ${cssScope}--icon-deg-open: 0deg;
     ${cssScope}--icon-deg-close: 90deg;
-    ${cssScope}--icon-space: 0.3em;
-    ${cssScope}--summary-direction: row;
-    ${cssScope}--transition: .3s;
-    height: fit-content;
+    ${cssScope}--icon-space: .22em;
     display: block;
-    transition: var(${cssScope}--transition);
+    transition: 0.3s;
   }
 
   [part="root"] {
     height: 100%;
     position: relative;
-    overflow: hidden;
   }
 
   [part="title"] {
     direction: ltr;
     height: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    background: inherit;
+    display: grid;
     align-items: center;
-    flex-direction: var(${cssScope}--summary-direction);
+    justify-content: space-between;
+    grid-template-columns: auto auto;
+    transition: inherit;
   }
 
   [part="details"] {
-    display: grid;
     overflow: hidden;
+    display: grid;
     grid-template-rows: 0fr;
-    transition: var(${cssScope}--transition);
-    transition-property: grid-template-rows;
+    transition: inherit;
   }
 
   :host([open]) [part="details"] {
     grid-template-rows: 1fr;
   }
 
-  :host([float]) [part="details"] {
-    top: 100%;
+  [float] [part="details"] {
     position: absolute;
+    top: 100%;
+    width: 100%;
+  }
+
+  [part] {
+    transition: inherit;
+    transition-property: transform, grid-template-rows;
   }
 
   [part="icon"] {
     display: flex;
     backface-visibility: hidden;
-    padding: var(${cssScope}--icon-space);
-    transition: var(${cssScope}--transition);
     transform: rotate(var(${cssScope}--icon-deg-close));
+    padding: var(${cssScope}--icon-space);
   }
 
   :host([open]) [part="icon"] {
@@ -101,9 +100,7 @@ class Details extends SuperOpenable {
           @click="${() => this.toggle()}"
         >
           <span part="summary">${this.summary || htmlSlot("summary")}</span>
-          <span>
-            <i part="icon">${svgCaretDown()}</i>
-          </span>
+          <span part="icon">${svgCaretDown()}</span>
         </dt>
         <dd
           part="details"
