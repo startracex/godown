@@ -5,7 +5,7 @@ import { attr } from "@godown/element/directives/attr.js";
 import type { Layout } from "godown";
 import { html } from "lit";
 
-export default (args: Pick<Layout, "noFooter" | "noHeader" | "sticky">) => {
+export default (args: Pick<Layout, "sticky">) => {
   return html`
 <div class="container">
   <godown-layout ${attr(args)}>

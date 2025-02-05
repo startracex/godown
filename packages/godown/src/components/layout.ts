@@ -7,7 +7,13 @@ import { GlobalStyle } from "../core/global-style.js";
 const protoName = "layout";
 
 /**
- * {@linkcode Layout} renders slot and optional top header, bottom footer.
+ * {@linkcode Layout} renders main content, top header, bottom footer.
+ *
+ * If `sticky` is set to `true`, the header will be sticky.
+ *
+ * Main content will take up the remaining space.
+ *
+ * Element display should be `(inline-)flex` or `(inline-)grid`.
  *
  * @slot - The main content of the layout.
  * @slot header - The header of the layout.
@@ -16,50 +22,51 @@ const protoName = "layout";
  */
 @godown(protoName)
 @styles(css`
+  :host {
+    width: 100%;
+    min-height: 100%;
+    flex-direction: column;
+    grid-template-rows: auto 1fr auto;
+  }
+
   :host,
   :host([contents]) [part="root"] {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
+    display: grid;
   }
 
   [part="root"] {
     display: contents;
   }
 
+  [part="main"] {
+    width: 100%;
+    flex: 1;
+  }
+
+  [part="header"],
+  [part="footer"] {
+    flex-shrink: 0;
+    width: 100%;
+  }
+
   [sticky] header {
     position: sticky;
     top: 0;
-    z-index: 1;
-  }
-
-  [part="main"] {
-    position: relative;
-    flex: 1;
-    width: 100%;
-  }
-
-  header,
-  main,
-  footer {
-    width: 100%;
   }
 `)
 class Layout extends GlobalStyle {
   /**
-   * If true, remove the header slot.
+   * @deprecated Omit header slot instead.
    */
-  @property({ type: Boolean })
-  noHeader = false;
+  noHeader: boolean;
 
   /**
-   * If true, remove the footer slot.
+   * @deprecated Omit footer slot instead.
    */
-  @property({ type: Boolean })
-  noFooter = false;
+  noFooter: boolean;
 
   /**
-   * If true, header will sticky.
+   * If `true`, header will sticky.
    */
   @property({ type: Boolean })
   sticky = false;
@@ -70,17 +77,9 @@ class Layout extends GlobalStyle {
         part="root"
         ${attr(this.observedRecord)}
       >
-        ${!this.noHeader
-          ? html`
-              <header part="header">${htmlSlot("header")}</header>
-            `
-          : ""}
+        <header part="header">${htmlSlot("header")}</header>
         <main part="main">${htmlSlot()}</main>
-        ${!this.noFooter
-          ? html`
-              <footer part="footer">${htmlSlot("footer")}</footer>
-            `
-          : ""}
+        <footer part="footer">${htmlSlot("footer")}</footer>
       </div>
     `;
   }
