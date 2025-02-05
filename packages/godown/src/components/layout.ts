@@ -31,7 +31,7 @@ const protoName = "layout";
 
   :host,
   :host([contents]) [part="root"] {
-    display: grid;
+    display: flex;
   }
 
   [part="root"] {
