@@ -19,12 +19,12 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(css`
   :host {
-    ${cssScope}--size: 2em;
-    width: var(${cssScope}--size);
-    height: var(${cssScope}--size);
     background: var(${cssGlobalVars.passive});
     vertical-align: bottom;
     border-radius: 0.2em;
+    overflow: hidden;
+    width: 2em;
+    height: 2em;
   }
 
   :host,
@@ -49,7 +49,6 @@ const cssScope = scopePrefix(protoName);
   }
 
   [part="root"] {
-    overflow: hidden;
     position: relative;
     border-radius: inherit;
     width: 100%;
