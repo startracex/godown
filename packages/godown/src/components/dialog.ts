@@ -4,7 +4,6 @@ import { property, query } from "lit/decorators.js";
 
 import { scopePrefix } from "../core/global-style.js";
 import { SuperOpenable } from "../core/super-openable.js";
-import { type DirectionCardinal, type DirectionCorner, type DirectionCenter } from "../core/direction.js";
 
 const protoName = "dialog";
 const cssScope = scopePrefix(protoName);
@@ -53,12 +52,6 @@ const cssScope = scopePrefix(protoName);
   }
 `)
 class Dialog extends SuperOpenable {
-  /**
-   * The direction of the dialog container.
-   */
-  @property()
-  direction: DirectionCardinal | DirectionCorner | DirectionCenter;
-
   /**
    * Indicates whether the dialog should be displayed as a modal.
    */
