@@ -1,5 +1,21 @@
 # godown
 
+## 3.6.0
+
+### Minor Changes
+
+- fbe1320: extract border radius to global variable
+- 90f820d: refactor Dialog with native dialog element
+- 15e5b0e: remove Layout.noHeader, Layout.noFooter
+- 4df2919: remove Dialog.direction property
+
+### Patch Changes
+
+- 1bca553: reduce Details styles
+- a894702: remove margin auto, min-height for Divider
+- 80051b6: reduce Avatar styles
+- 0581050: add missing Details.float property
+
 ## 3.5.3
 
 ### Patch Changes
