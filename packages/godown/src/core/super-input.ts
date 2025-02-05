@@ -53,7 +53,6 @@ const inputStyle = css`
     ${cssGlobalVars.input}-outline-width: .075em;
     ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars._colors.darkgray[4]});
     ${cssGlobalVars.input}-icon-color: var(${cssGlobalVars._colors.darkgray[4]});
-    border-radius: 0.2em;
   }
 
   :host([disabled]) {

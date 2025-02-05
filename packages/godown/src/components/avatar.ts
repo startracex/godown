@@ -21,7 +21,6 @@ const cssScope = scopePrefix(protoName);
   :host {
     background: var(${cssGlobalVars.passive});
     vertical-align: bottom;
-    border-radius: 0.2em;
     overflow: hidden;
     width: 2em;
     height: 2em;

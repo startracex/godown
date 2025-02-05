@@ -25,6 +25,7 @@ export const cssGlobalVars: {
   white: CSSResult;
   black: CSSResult;
   color: CSSResult;
+  borderRadius: CSSResult;
 } = {
   clipBackground: scopePrefix("clip-background", 2),
   active: scopePrefix("active", 2),
@@ -34,6 +35,7 @@ export const cssGlobalVars: {
   white: scopePrefix("color-white", 2),
   black: scopePrefix("color-black", 2),
   color: scopePrefix("color", 2),
+  borderRadius: scopePrefix("border-radius", 2),
 };
 
 type PresetsGradientsCSSResult = Record<keyof typeof presetsRGB, Gradients<CSSResult>>;
@@ -93,6 +95,12 @@ GlobalStyle.styles = [
     :where(:host([contents]) [part="root"]) {
       all: inherit;
       display: revert;
+    }
+  `,
+  css`
+    :host {
+      ${cssGlobalVars.borderRadius}: 0.2em;
+      border-radius: var(${cssGlobalVars.borderRadius});
     }
   `,
 ];

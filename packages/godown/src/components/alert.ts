@@ -90,12 +90,10 @@ const calls = {
 @styles(css`
   :host,
   :where(:host([contents]) [part="root"]) {
-    ${cssScope}--border-radius: .2em;
     ${cssScope}--border-width: .075em;
     ${cssScope}--blockquote-width: .2em;
     ${cssScope}--blockquote-background: transparent;
     ${cssScope}--gap: .5em;
-    border-radius: var(${cssScope}--border-radius);
     display: block;
     width: 100%;
   }

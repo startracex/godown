@@ -25,7 +25,7 @@ const cssScope = scopePrefix(protoName);
 @styles(css`
   :host {
     display: block;
-    border-radius: 1px;
+    border-radius: 0.1em;
     width: fit-content;
     ${cssScope}--size: 1.45em;
     ${cssScope}--gap: .25em;

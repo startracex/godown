@@ -132,7 +132,6 @@ const colors: Record<Colors, string> = constructCSSObject(
         var(${cssScope}--gradients, var(${cssScope}--background))
       );
       padding: var(${cssScope}--padding);
-      border-radius: 0.2em;
       width: fit-content;
       display: block;
       overflow: hidden;

@@ -28,7 +28,6 @@ const cssScope = scopePrefix(protoName);
     border-width: var(${cssScope}--border-width);
     display: block;
     flex-shrink: 0;
-    border-radius: 0.2em;
   }
 
   slot {
