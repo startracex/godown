@@ -1,7 +1,16 @@
 import { attr } from "@godown/element/directives/attr.js";
 import type { Divider } from "godown";
-import { html, nothing } from "lit";
+import { html } from "lit";
 
 export default (args: Pick<Divider, "vertical">) => {
-  return html`<godown-divider ${attr(args)} style="${args.vertical ? "height: 200px;" : nothing}"></godown-divider>`;
+  return html`
+    <div style="${
+    args.vertical ? "" : "flex-direction: column;"
+  }height: 300px;display: flex;justify-content: space-evenly;align-items: center;"
+    >
+  A
+  <godown-divider ${attr(args)}></godown-divider>
+  B
+</div>
+  `;
 };
