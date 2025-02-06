@@ -1,13 +1,22 @@
-import { LitElement, type PropertyValues } from "lit";
+import { LitElement, type PropertyDeclaration, type PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GodownConfig } from "./config.js";
 import { deepQuerySelector, deepQuerySelectorAll, Events, Observers, Timeouts } from "./tools/index.js";
 
+export const attributeName = (property: PropertyKey, { attribute }: PropertyDeclaration): string | undefined => {
+  if (!attribute || typeof property === "symbol") {
+    return;
+  }
+  return attribute === true ? String(property).toLowerCase() : attribute;
+};
+
 class GodownElement extends LitElement {
   static godownConfig: GodownConfig = new GodownConfig();
 
   static elementTagName?: string;
+
+  static elementAttributes: Map<string, PropertyKey>;
 
   static elementCategory?: any;
 
@@ -33,17 +42,25 @@ class GodownElement extends LitElement {
     return this.godownConfig.get(this.elementTagName);
   }
 
+  static finalize(): void {
+    super.finalize();
+    this.elementAttributes = new Map();
+    for (const [property, option] of this.elementProperties.entries()) {
+      const attribute = attributeName(property, option);
+      if (attribute) {
+        this.elementAttributes.set(attribute, property);
+      }
+    }
+  }
+
   /**
    * Returns an object containing the current values of the observed attributes.
    * @returns An object where the keys are the observed attribute names and the values are the current values of those attributes.
    */
   get observedRecord(): Record<string, any> {
     const record = {};
-    for (const [property, option] of (this.constructor as typeof GodownElement).elementProperties.entries()) {
-      const attribute = option.attribute ?? property;
-      if (attribute) {
-        record[attribute === true ? property : attribute] = this[property];
-      }
+    for (const [attribute, property] of (this.constructor as typeof GodownElement).elementAttributes.entries()) {
+      record[attribute] = this[property];
     }
     return record;
   }
