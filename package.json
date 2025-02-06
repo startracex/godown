@@ -10,12 +10,12 @@
     "version": "changeset version"
   },
   "dependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "^1.9.4",
     "@changesets/cli": "^2.27.12",
     "@godown/common": "workspace:^",
     "@godown/tsconfig": "workspace:*",
     "@types/node": "^22.13.1",
-    "@types/react": "19.0.2",
+    "@types/react": "^19.0.8",
     "dprint": "^0.47.6",
     "glob": "^11.0.1",
     "postcss": "^8.5.1",
@@ -27,7 +27,7 @@
     "typescript545": "npm:typescript@5.4.5",
     "vite": "^6.1.0"
   },
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@10.2.0",
   "engines": {
     "node": ">=20"
   },

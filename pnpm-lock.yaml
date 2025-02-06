@@ -30,7 +30,7 @@ importers:
   .:
     dependencies:
       '@biomejs/biome':
-        specifier: 1.9.4
+        specifier: ^1.9.4
         version: 1.9.4
       '@changesets/cli':
         specifier: ^2.27.12
@@ -45,8 +45,8 @@ importers:
         specifier: ^22.13.1
         version: 22.13.1
       '@types/react':
-        specifier: 19.0.2
-        version: 19.0.2
+        specifier: ^19.0.8
+        version: 19.0.8
       dprint:
         specifier: ^0.47.6
         version: 0.47.6
@@ -189,7 +189,7 @@ importers:
     dependencies:
       '@lit/react':
         specifier: 'catalog:'
-        version: 1.0.7(@types/react@19.0.2)
+        version: 1.0.7(@types/react@19.0.8)
       godown:
         specifier: workspace:^
         version: link:../godown
@@ -254,7 +254,7 @@ importers:
         version: 8.5.3(storybook@8.5.3(prettier@3.4.2))(vitest@2.1.8(@types/node@22.13.1)(terser@5.38.0))
       '@storybook/addon-essentials':
         specifier: ^8.5.3
-        version: 8.5.3(@types/react@19.0.2)(storybook@8.5.3(prettier@3.4.2))
+        version: 8.5.3(@types/react@19.0.8)(storybook@8.5.3(prettier@3.4.2))
       '@storybook/blocks':
         specifier: ^8.5.3
         version: 8.5.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.5.3(prettier@3.4.2))
@@ -1439,8 +1439,8 @@ packages:
   '@types/node@22.13.1':
     resolution: {integrity: sha512-jK8uzQlrvXqEU91UxiK5J7pKHyzgnI1Qnl0QDHIgVGuolJhRb9EEl28Cj9b3rGR8B2lhFCtvIm5os8lFnO/1Ew==}
 
-  '@types/react@19.0.2':
-    resolution: {integrity: sha512-USU8ZI/xyKJwFTpjSVIrSeHBVAGagkHQKPNbxeWwql/vDmnTIBgx+TJnhFnj1NXgz8XfprU0egV2dROLGpsBEg==}
+  '@types/react@19.0.8':
+    resolution: {integrity: sha512-9P/o1IGdfmQxrujGbIMDyYaaCykhLKc0NGCtYcECNUr9UAaDe4gwvV9bR6tvd5Br1SG0j+PBpbKr2UYY8CwqSw==}
 
   '@types/relateurl@0.2.33':
     resolution: {integrity: sha512-bTQCKsVbIdzLqZhLkF5fcJQreE4y1ro4DIyVrlDNSCJRRwHhB8Z+4zXXa8jN6eDvc2HbRsEYgbvrnGvi54EpSw==}
@@ -1884,8 +1884,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  electron-to-chromium@1.5.92:
-    resolution: {integrity: sha512-BeHgmNobs05N1HMmMZ7YIuHfYBGlq/UmvlsTgg+fsbFs9xVMj+xJHFg19GN04+9Q+r8Xnh9LXqaYIyEWElnNgQ==}
+  electron-to-chromium@1.5.93:
+    resolution: {integrity: sha512-M+29jTcfNNoR9NV7la4SwUqzWAxEwnc7ThA5e1m6LRSotmpfpCpLcIfgtSCVL+MllNLgAyM/5ru86iMRemPzDQ==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -3808,9 +3808,9 @@ snapshots:
 
   '@lit-labs/ssr-dom-shim@1.3.0': {}
 
-  '@lit/react@1.0.7(@types/react@19.0.2)':
+  '@lit/react@1.0.7(@types/react@19.0.8)':
     dependencies:
-      '@types/react': 19.0.2
+      '@types/react': 19.0.8
 
   '@lit/reactive-element@2.0.4':
     dependencies:
@@ -3832,10 +3832,10 @@ snapshots:
       globby: 11.1.0
       read-yaml-file: 1.1.0
 
-  '@mdx-js/react@3.1.0(@types/react@19.0.2)(react@18.3.1)':
+  '@mdx-js/react@3.1.0(@types/react@19.0.8)(react@18.3.1)':
     dependencies:
       '@types/mdx': 2.0.13
-      '@types/react': 19.0.2
+      '@types/react': 19.0.8
       react: 18.3.1
 
   '@nodelib/fs.scandir@2.1.5':
@@ -4053,9 +4053,9 @@ snapshots:
       storybook: 8.5.3(prettier@3.4.2)
       ts-dedent: 2.2.0
 
-  '@storybook/addon-docs@8.5.3(@types/react@19.0.2)(storybook@8.5.3(prettier@3.4.2))':
+  '@storybook/addon-docs@8.5.3(@types/react@19.0.8)(storybook@8.5.3(prettier@3.4.2))':
     dependencies:
-      '@mdx-js/react': 3.1.0(@types/react@19.0.2)(react@18.3.1)
+      '@mdx-js/react': 3.1.0(@types/react@19.0.8)(react@18.3.1)
       '@storybook/blocks': 8.5.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.5.3(prettier@3.4.2))
       '@storybook/csf-plugin': 8.5.3(storybook@8.5.3(prettier@3.4.2))
       '@storybook/react-dom-shim': 8.5.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.5.3(prettier@3.4.2))
@@ -4066,12 +4066,12 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@storybook/addon-essentials@8.5.3(@types/react@19.0.2)(storybook@8.5.3(prettier@3.4.2))':
+  '@storybook/addon-essentials@8.5.3(@types/react@19.0.8)(storybook@8.5.3(prettier@3.4.2))':
     dependencies:
       '@storybook/addon-actions': 8.5.3(storybook@8.5.3(prettier@3.4.2))
       '@storybook/addon-backgrounds': 8.5.3(storybook@8.5.3(prettier@3.4.2))
       '@storybook/addon-controls': 8.5.3(storybook@8.5.3(prettier@3.4.2))
-      '@storybook/addon-docs': 8.5.3(@types/react@19.0.2)(storybook@8.5.3(prettier@3.4.2))
+      '@storybook/addon-docs': 8.5.3(@types/react@19.0.8)(storybook@8.5.3(prettier@3.4.2))
       '@storybook/addon-highlight': 8.5.3(storybook@8.5.3(prettier@3.4.2))
       '@storybook/addon-measure': 8.5.3(storybook@8.5.3(prettier@3.4.2))
       '@storybook/addon-outline': 8.5.3(storybook@8.5.3(prettier@3.4.2))
@@ -4278,7 +4278,7 @@ snapshots:
     dependencies:
       undici-types: 6.20.0
 
-  '@types/react@19.0.2':
+  '@types/react@19.0.8':
     dependencies:
       csstype: 3.1.3
 
@@ -4476,7 +4476,7 @@ snapshots:
   browserslist@4.24.4:
     dependencies:
       caniuse-lite: 1.0.30001697
-      electron-to-chromium: 1.5.92
+      electron-to-chromium: 1.5.93
       node-releases: 2.0.19
       update-browserslist-db: 1.1.2(browserslist@4.24.4)
 
@@ -4781,7 +4781,7 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  electron-to-chromium@1.5.92: {}
+  electron-to-chromium@1.5.93: {}
 
   emoji-regex@8.0.0: {}
 
