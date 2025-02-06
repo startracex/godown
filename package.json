@@ -14,7 +14,7 @@
     "@changesets/cli": "^2.27.12",
     "@godown/common": "workspace:^",
     "@godown/tsconfig": "workspace:*",
-    "@types/node": "^22.13.0",
+    "@types/node": "^22.13.1",
     "@types/react": "19.0.2",
     "dprint": "^0.47.6",
     "glob": "^11.0.1",
@@ -25,7 +25,7 @@
     "turbo": "^2.4.0",
     "typescript": "^5.7.3",
     "typescript545": "npm:typescript@5.4.5",
-    "vite": "^6.0.11"
+    "vite": "^6.1.0"
   },
   "packageManager": "pnpm@9.15.4",
   "engines": {
