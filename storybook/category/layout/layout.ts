@@ -1,4 +1,3 @@
-import "godown/layout.js";
 import "./layout.css";
 
 import { attr } from "@godown/element";
