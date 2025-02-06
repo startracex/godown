@@ -2,7 +2,7 @@ import { attr, loop } from "@godown/element";
 import type { Flex } from "godown";
 import { html } from "lit";
 
-export default (args: Pick<Flex, "content" | "items" | "gap" | "vertical">) =>
+export default (args: Flex) =>
   html`
 <godown-flex ${attr(args)}>
 

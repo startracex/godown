@@ -2,7 +2,7 @@ import { attr, loop } from "@godown/element";
 import type { Grid } from "godown";
 import { html } from "lit";
 
-export default (args: Pick<Grid, "rows" | "columns" | "content" | "items" | "gap">) =>
+export default (args: Grid) =>
   html`
 <godown-grid ${attr(args)}>
 ${[

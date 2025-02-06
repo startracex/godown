@@ -2,7 +2,7 @@ import { attr } from "@godown/element";
 import type { Select } from "godown";
 import { html } from "lit";
 
-export default (args: Pick<Select, "direction" | "variant" | "multiple" | "disabled">) => {
+export default (args: Select) => {
   return html`
 <godown-select ${attr(args)} style="margin-${args.direction || "bottom"}: 8em;">
 

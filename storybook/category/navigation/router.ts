@@ -2,7 +2,7 @@ import { attr } from "@godown/element";
 import type { Router } from "godown";
 import { html } from "lit";
 
-export default (args: Pick<Router, "pathname" | "type">) => {
+export default (args: Router) => {
   return html`
   Current pathname: ${args.pathname}
 <godown-router ${attr(args)}>

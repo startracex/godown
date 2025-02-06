@@ -3,7 +3,7 @@ import type { Dialog } from "godown";
 import { html } from "lit";
 import { createRef, ref } from "lit/directives/ref.js";
 
-export default (args: Pick<Dialog, "open">) => {
+export default (args: Dialog) => {
   const dialogRef = createRef<HTMLElement & { open: boolean }>();
   return html`
   <div style="height:200px">

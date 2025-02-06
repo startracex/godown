@@ -2,7 +2,7 @@ import { attr } from "@godown/element";
 import type { Card } from "godown";
 import { html } from "lit";
 
-export default (args: Pick<Card, "footer" | "header">) => {
+export default (args: Card) => {
   return html`
 <godown-card ${attr(args)}>
   <div slot="header">

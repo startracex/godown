@@ -2,7 +2,7 @@ import { attr } from "@godown/element";
 import type { Link } from "godown";
 import { html } from "lit";
 
-export default (args: Pick<Link, "href" | "type">) => {
+export default (args: Link) => {
   return html`
 <godown-link ${attr(args)}>Go to ${args.href}</godown-link>
 ${

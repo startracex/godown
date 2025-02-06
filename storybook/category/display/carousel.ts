@@ -2,7 +2,7 @@ import { attr, loop } from "@godown/element";
 import type { Carousel } from "godown";
 import { html } from "lit";
 
-export default (args: Pick<Carousel, "index" | "autoChange">) =>
+export default (args: Carousel) =>
   html`
 <godown-carousel ${attr(args)}>
 
