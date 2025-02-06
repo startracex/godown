@@ -1,5 +1,14 @@
 # @godown/element
 
+## 1.4.0
+
+### Minor Changes
+
+- 205a0cd: collect attribute-property mapping when finalize
+- 50af665: remove allowAccessors check
+- f7e5004: set properties in updateAttribute
+- 2aa40ef: convert updateAttribute into regular function, introduce this
+
 ## 1.3.1
 
 ### Patch Changes

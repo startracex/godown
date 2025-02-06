@@ -1,5 +1,20 @@
 # godown
 
+## 3.7.0
+
+### Minor Changes
+
+- 390880a: add Tabs component
+
+### Patch Changes
+
+- Updated dependencies [205a0cd]
+- Updated dependencies [50af665]
+- Updated dependencies [f7e5004]
+- Updated dependencies [2aa40ef]
+  - @godown/element@1.4.0
+  - @godown/f7-icon@1.0.5
+
 ## 3.6.1
 
 ### Patch Changes
