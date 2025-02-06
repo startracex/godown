@@ -1,4 +1,4 @@
-import { attr } from "@godown/element/directives/attr.js";
+import { attr } from "@godown/element";
 import type { Input } from "godown";
 import { html } from "lit";
 

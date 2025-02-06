@@ -1,7 +1,7 @@
 import "godown/layout.js";
 import "./layout.css";
 
-import { attr } from "@godown/element/directives/attr.js";
+import { attr } from "@godown/element";
 import type { Layout } from "godown";
 import { html } from "lit";
 
