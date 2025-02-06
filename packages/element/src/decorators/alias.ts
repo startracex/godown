@@ -34,22 +34,12 @@ export const alias = <T, K extends keyof T, P extends keyof T>(
     this[propertyKey] = value;
   };
 
-  const allowAccessors = !("value" in descriptor || "writable" in descriptor);
-
   const resolveSet = resolve(set, defaultSet);
   const resolveGet = resolve(get, defaultGet);
 
   Object.defineProperty(proto, aliasForKey, {
-    ...(
-      allowAccessors && resolveGet
-        ? { get: resolveGet }
-        : {}
-    ),
-    ...(
-      allowAccessors && resolveSet
-        ? { set: resolveSet }
-        : {}
-    ),
+    ...(resolveGet ? { get: resolveGet } : {}),
+    ...(resolveSet ? { set: resolveSet } : {}),
     ...descriptor,
   });
 };
