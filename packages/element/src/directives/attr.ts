@@ -14,10 +14,12 @@ export function updateAttribute(this: Element, name: string, value: any): void {
     (typeof value === "number" && !isNaN(value))
   ) {
     this.setAttribute(name, value === true ? "" : String(value));
+  } else {
+    this[name] = value;
   }
 }
 
-type DirectiveParams = Record<string, string | boolean | number | null | undefined>;
+type DirectiveParams = Record<string, any>;
 
 class AttrDirective extends Directive {
   render(value: DirectiveParams, caller?: (this: Element, name: string, value: any) => void): void {
@@ -36,8 +38,8 @@ class AttrDirective extends Directive {
 
 /**
  * A directive that sets element attributes.
- * @param value An object with attribute names and values.
- * @param caller A function to call for each attribute.
+ * @param value An object with names and values.
+ * @param caller A function to call for each attribute, {@link updateAttribute} by default.
  * @returns Directive to set attributes.
  */
 export const attr: (
