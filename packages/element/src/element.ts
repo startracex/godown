@@ -5,10 +5,10 @@ import { GodownConfig } from "./config.js";
 import { deepQuerySelector, deepQuerySelectorAll, Events, Observers, Timeouts } from "./tools/index.js";
 
 export const attributeName = (property: PropertyKey, { attribute }: PropertyDeclaration): string | undefined => {
-  if (!attribute || typeof property === "symbol") {
+  if (attribute === false || typeof property === "symbol") {
     return;
   }
-  return attribute === true ? String(property).toLowerCase() : attribute;
+  return attribute === true || attribute === undefined ? String(property).toLowerCase() : attribute;
 };
 
 class GodownElement extends LitElement {
