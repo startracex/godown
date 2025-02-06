@@ -77,6 +77,13 @@ export class ArgHelper {
         detail,
       },
     };
+    if (summary === "string") {
+      this.control("text");
+    } else if (summary === "number" || summary === "boolean") {
+      this.control(summary);
+    } else if (summary === "object" || summary === "array" || summary.endsWith("[]")) {
+      this.control("object");
+    }
     return this;
   }
 
