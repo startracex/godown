@@ -5,28 +5,29 @@ import { fuse, isNil } from "../tools/lib.js";
 
 const append = fuse;
 
-export const updateAttribute = (element: Element, name: string, value: any): void => {
+export function updateAttribute(this: Element, name: string, value: any): void {
   if (isNil(value) || value === false) {
-    element.removeAttribute(name);
+    this.removeAttribute(name);
   } else if (
     value === true ||
     typeof value === "string" ||
     (typeof value === "number" && !isNaN(value))
   ) {
-    element.setAttribute(name, value === true ? "" : String(value));
+    this.setAttribute(name, value === true ? "" : String(value));
   }
-};
+}
 
 type DirectiveParams = Record<string, string | boolean | number | null | undefined>;
 
 class AttrDirective extends Directive {
-  render(value: DirectiveParams, caller?: (element: Element, name: string, value: any) => void): void {
+  render(value: DirectiveParams, caller?: (this: Element, name: string, value: any) => void): void {
   }
 
   update(part: ElementPart, [value, caller]: Parameters<this["render"]>): symbol {
     if (value && part.type === PartType.ELEMENT) {
       for (const name in value) {
-        (caller || updateAttribute)(part.element, name, value[name]);
+        const fn = caller || updateAttribute;
+        fn.call(part.element, name, value[name]);
       }
     }
     return noChange;
@@ -41,7 +42,7 @@ class AttrDirective extends Directive {
  */
 export const attr: (
   value: DirectiveParams,
-  caller?: (element: Element, name: string, value: any) => void,
+  caller?: (this: Element, name: string, value: any) => void,
 ) => DirectiveResult<typeof AttrDirective> = directive(AttrDirective);
 
 export const attrToString = (a: DirectiveParams): string =>
