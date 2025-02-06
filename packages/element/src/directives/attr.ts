@@ -5,8 +5,10 @@ import { fuse, isNil } from "../tools/lib.js";
 
 const append = fuse;
 
+const noAttribute = (value: any): boolean => isNil(value) || value === false;
+
 export function updateAttribute(this: Element, name: string, value: any): void {
-  if (isNil(value) || value === false) {
+  if (noAttribute(value)) {
     this.removeAttribute(name);
   } else if (
     value === true ||
@@ -25,10 +27,9 @@ class AttrDirective extends Directive {
   render(value: DirectiveParams, caller?: (this: Element, name: string, value: any) => void): void {
   }
 
-  update(part: ElementPart, [value, caller]: Parameters<this["render"]>): symbol {
+  update(part: ElementPart, [value, fn = updateAttribute]: Parameters<this["render"]>): symbol {
     if (value && part.type === PartType.ELEMENT) {
       for (const name in value) {
-        const fn = caller || updateAttribute;
         fn.call(part.element, name, value[name]);
       }
     }
@@ -49,7 +50,7 @@ export const attr: (
 
 export const attrToString = (a: DirectiveParams): string =>
   Object.entries(a).reduce((acc, [key, value]) => {
-    if (isNil(value) || value === false) {
+    if (noAttribute(value)) {
       return acc;
     }
     return append(acc, key + (value === true ? "" : `="${value}"`));
