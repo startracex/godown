@@ -1,4 +1,4 @@
-import { booleanArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./dialog";
 
@@ -8,8 +8,8 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    open: booleanArg,
-    modal: booleanArg,
+    open: new ArgHelper().type("boolean").default("false").arg,
+    modal: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
     direction: "center",

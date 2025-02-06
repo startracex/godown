@@ -1,4 +1,4 @@
-import { ArgHelper, booleanArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./range";
 
@@ -8,10 +8,10 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    disabled: booleanArg,
+    disabled: new ArgHelper().type("boolean").default("false").arg,
     step: new ArgHelper().type("number").default("1").arg,
     value: new ArgHelper().type("number | array").control("object").arg,
-    vertical: booleanArg,
+    vertical: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
     disabled: false,

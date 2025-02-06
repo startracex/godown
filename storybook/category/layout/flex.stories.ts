@@ -1,4 +1,4 @@
-import { ArgHelper, booleanArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./flex";
 
@@ -8,7 +8,7 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    vertical: booleanArg,
+    vertical: new ArgHelper().type("boolean").default("false").arg,
     gap: new ArgHelper().type("string").arg,
     flexFlow: new ArgHelper().type("string").arg,
     content: new ArgHelper().type("string").arg,

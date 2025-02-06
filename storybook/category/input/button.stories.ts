@@ -1,4 +1,4 @@
-import { ArgHelper, booleanArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./button";
 
@@ -23,10 +23,10 @@ export default {
       "none",
     ]).arg,
     content: new ArgHelper().type("string").arg,
-    disabled: booleanArg,
-    round: booleanArg,
-    ghost: booleanArg,
-    plain: booleanArg,
+    disabled: new ArgHelper().type("boolean").default("false").arg,
+    round: new ArgHelper().type("boolean").default("false").arg,
+    ghost: new ArgHelper().type("boolean").default("false").arg,
+    plain: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
     color: "black",

@@ -1,4 +1,4 @@
-import { booleanArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./divider";
 
@@ -8,7 +8,7 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    vertical: booleanArg,
+    vertical: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
     vertical: false,

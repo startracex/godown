@@ -1,4 +1,4 @@
-import { ArgHelper, booleanArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./split";
 
@@ -8,7 +8,7 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    disabled: booleanArg,
+    disabled: new ArgHelper().type("boolean").default("false").arg,
     "outline-type": new ArgHelper().options([
       "border",
       "outline",

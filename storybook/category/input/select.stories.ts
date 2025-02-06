@@ -1,4 +1,4 @@
-import { ArgHelper, booleanArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./select";
 
@@ -8,7 +8,7 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    disabled: booleanArg,
+    disabled: new ArgHelper().type("boolean").default("false").arg,
     direction: new ArgHelper().options([
       "top",
       "bottom",
@@ -21,7 +21,7 @@ export default {
       "box-shadow-inset",
     ]).arg,
     placeholder: new ArgHelper().type("string").arg,
-    multiple: booleanArg,
+    multiple: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
     disabled: false,

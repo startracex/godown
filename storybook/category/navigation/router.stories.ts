@@ -1,4 +1,4 @@
-import { ArgHelper, stringArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./router";
 
@@ -8,7 +8,7 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    pathname: stringArg,
+    pathname: new ArgHelper().type("string").default("").arg,
     type: new ArgHelper().options([
       "united",
       "slotted",

@@ -1,4 +1,4 @@
-import { ArgHelper, booleanArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./alert";
 
@@ -40,7 +40,7 @@ export default {
       "dark",
       "light",
     ], "dark").arg,
-    hideClose: booleanArg,
+    hideClose: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
     color: "blue",

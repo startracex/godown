@@ -1,4 +1,4 @@
-import { booleanArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./card";
 
@@ -8,8 +8,8 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    header: booleanArg,
-    footer: booleanArg,
+    header: new ArgHelper().type("boolean").default("false").arg,
+    footer: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
     header: false,

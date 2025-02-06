@@ -1,4 +1,4 @@
-import { numberArg, stringArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./typewriter";
 
@@ -8,8 +8,8 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    content: stringArg,
-    delay: numberArg,
+    content: new ArgHelper().type("string").default("").arg,
+    delay: new ArgHelper().type("number").default("0").arg,
   },
   args: {
     content: "Hello world",

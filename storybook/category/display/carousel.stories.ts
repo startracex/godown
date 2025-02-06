@@ -1,4 +1,4 @@
-import { numberArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./carousel";
 
@@ -8,8 +8,8 @@ export default {
   tags: ["autodocs"],
   render: (args: any) => render(args),
   argTypes: {
-    index: numberArg,
-    autoChange: numberArg,
+    index: new ArgHelper().type("number").default("0").arg,
+    autoChange: new ArgHelper().type("number").default("0").arg,
   },
   args: {
     index: 1,

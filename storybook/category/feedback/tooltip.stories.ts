@@ -1,4 +1,4 @@
-import { ArgHelper, booleanArg } from "../../args";
+import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
 import render from "./tooltip";
 
@@ -23,7 +23,7 @@ export default {
       "bottom-left",
       "bottom-right",
     ]).arg,
-    propagation: booleanArg,
+    propagation: new ArgHelper().type("boolean").default("false").arg,
     type: new ArgHelper().options([
       "hover",
       "focus",

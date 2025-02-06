@@ -1,29 +1,5 @@
 import type { InputType } from "@storybook/csf";
 
-export const booleanArg = {
-  control: { type: "boolean" },
-  table: {
-    type: { summary: "boolean" },
-    defaultValue: { summary: "false" },
-  },
-};
-
-export const stringArg = {
-  control: { type: "text" },
-  table: {
-    type: { summary: "string" },
-    defaultValue: { summary: "" },
-  },
-};
-
-export const numberArg = {
-  control: { type: "number" },
-  table: {
-    type: { summary: "number" },
-    defaultValue: { summary: "0" },
-  },
-};
-
 export class ArgHelper {
   arg: InputType = {
     control: {},
