@@ -8,6 +8,8 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
+    replace: new ArgHelper().type("boolean").default("false").arg,
+    suppress: new ArgHelper().type("boolean").default("false").arg,
     type: new ArgHelper().options([
       "push",
       "replace",

@@ -8,8 +8,10 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    gap: new ArgHelper().type("number").type("number").arg,
     timeout: new ArgHelper().type("number").type("number").arg,
+    time: new ArgHelper().type("Date").control("date").arg,
+    gap: new ArgHelper().type("number").type("number").arg,
+    escape: new ArgHelper().type("string").default("%").arg,
   },
   args: {
     format: "YYYY-MM-DD hh:mm:ss UTFZ",

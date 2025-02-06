@@ -14,6 +14,7 @@ export default {
       "slotted",
       "field",
     ]).arg,
+    cache: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
     pathname: "/index",

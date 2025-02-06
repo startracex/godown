@@ -17,6 +17,7 @@ export default {
       "box-shadow-inset",
     ]).arg,
     len: new ArgHelper().type("number").control("number", { min: 1 }).default("6").arg,
+    index: new ArgHelper().type("number").default("-1").arg,
   },
   args: {
     len: 6,

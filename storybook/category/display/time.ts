@@ -3,6 +3,9 @@ import type { Time } from "godown";
 import { html } from "lit";
 
 export default (args: Pick<Time, "format" | "gap" | "timeout">) => {
+  if (args.time) {
+    args.time = new Date(args.time);
+  }
   return html`
 <godown-time ${attr(args)}></godown-time>
   `;

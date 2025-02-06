@@ -10,9 +10,9 @@ export default {
   argTypes: {
     open: new ArgHelper().type("boolean").default("false").arg,
     modal: new ArgHelper().type("boolean").default("false").arg,
+    key: new ArgHelper().type("string").default("Escape").arg,
   },
   args: {
-    direction: "center",
     modal: false,
     open: false,
   },
