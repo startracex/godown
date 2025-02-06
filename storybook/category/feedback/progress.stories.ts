@@ -12,8 +12,8 @@ export default {
       max: 100,
       min: 0,
     }).arg,
-    max: new ArgHelper().type("number").control("number").default("100").arg,
-    min: new ArgHelper().type("number").control("number").default("0").arg,
+    max: new ArgHelper().type("number").default("100").arg,
+    min: new ArgHelper().type("number").default("0").arg,
   },
   args: {
     max: 100,

@@ -11,7 +11,7 @@ export default {
   argTypes: {
     name: stringArg,
     round: booleanArg,
-    src: new ArgHelper().type("string").control("text").arg,
+    src: new ArgHelper().type("string").arg,
   },
   args: {
     name: "S",

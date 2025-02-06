@@ -9,10 +9,10 @@ export default {
   render,
   argTypes: {
     vertical: booleanArg,
-    gap: new ArgHelper().type("string").control("text").arg,
-    flexFlow: new ArgHelper().type("string").control("text").arg,
-    content: new ArgHelper().type("string").control("text").arg,
-    items: new ArgHelper().type("string").control("text").arg,
+    gap: new ArgHelper().type("string").arg,
+    flexFlow: new ArgHelper().type("string").arg,
+    content: new ArgHelper().type("string").arg,
+    items: new ArgHelper().type("string").arg,
   },
   args: {
     vertical: false,

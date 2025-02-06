@@ -9,8 +9,8 @@ export default {
   render,
   argTypes: {
     position: new ArgHelper().options(["top-right", "top-left", "bottom-right", "bottom-left"]).arg,
-    value: new ArgHelper().type("number").control("number").arg,
-    dot: new ArgHelper().type("boolean").control("boolean").arg,
+    value: new ArgHelper().type("number").arg,
+    dot: new ArgHelper().type("boolean").arg,
   },
 } as RendererMeta<typeof render>;
 

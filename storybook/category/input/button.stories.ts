@@ -22,7 +22,7 @@ export default {
       "white",
       "none",
     ]).arg,
-    content: new ArgHelper().type("string").control("text").arg,
+    content: new ArgHelper().type("string").arg,
     disabled: booleanArg,
     round: booleanArg,
     ghost: booleanArg,

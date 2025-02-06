@@ -9,10 +9,10 @@ export default {
   render,
   argTypes: {
     columns: new ArgHelper().type("string | number").control("number").arg,
-    content: new ArgHelper().type("string").control("text").arg,
-    gap: new ArgHelper().type("string").control("text").arg,
-    flexFlow: new ArgHelper().type("string").control("text").arg,
-    items: new ArgHelper().type("string").control("text").arg,
+    content: new ArgHelper().type("string").arg,
+    gap: new ArgHelper().type("string").arg,
+    flexFlow: new ArgHelper().type("string").arg,
+    items: new ArgHelper().type("string").arg,
     rows: new ArgHelper().type("string | number").control("number").arg,
   },
   args: {

@@ -9,7 +9,7 @@ export default {
   render,
   argTypes: {
     disabled: booleanArg,
-    step: new ArgHelper().type("number").control("number").default("1").arg,
+    step: new ArgHelper().type("number").default("1").arg,
     value: new ArgHelper().type("number | array").control("object").arg,
     vertical: booleanArg,
   },

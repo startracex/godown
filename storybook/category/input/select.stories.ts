@@ -20,7 +20,7 @@ export default {
       "outline-inset",
       "box-shadow-inset",
     ]).arg,
-    placeholder: new ArgHelper().type("string").control("text").arg,
+    placeholder: new ArgHelper().type("string").arg,
     multiple: booleanArg,
   },
   args: {

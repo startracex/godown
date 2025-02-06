@@ -27,7 +27,7 @@ export default {
       "default",
       "outline",
     ]).arg,
-    placeholder: new ArgHelper().type("string").control("text").arg,
+    placeholder: new ArgHelper().type("string").arg,
   },
   args: {
     "outline-type": "border",

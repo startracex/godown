@@ -20,8 +20,8 @@ export default {
     dir: "ltr",
   },
   argTypes: {
-    stylex: new ArgHelper().type("string").control("text").arg,
-    contents: new ArgHelper().type("boolean").control("boolean").category("experimental").arg,
+    stylex: new ArgHelper().type("string").arg,
+    contents: new ArgHelper().type("boolean").category("experimental").arg,
   },
   args: {},
   decorators: (fn, c) => {

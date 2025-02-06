@@ -16,7 +16,7 @@ export default {
       "h5",
       "h6",
     ]).arg,
-    anchor: new ArgHelper().type("string").control("text").default("#").arg,
+    anchor: new ArgHelper().type("string").default("#").arg,
     side: new ArgHelper().options(["left", "right"]).arg,
   },
   args: {
