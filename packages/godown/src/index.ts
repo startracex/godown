@@ -25,6 +25,7 @@ export { default as Skeleton } from "./skeleton.js";
 export { default as Split } from "./split.js";
 export { default as Switch } from "./switch.js";
 export { default as Text } from "./text.js";
+export { default as Tabs } from "./tabs.js";
 export { default as Time } from "./time.js";
 export { default as Tooltip } from "./tooltip.js";
 export { default as Typewriter } from "./typewriter.js";
