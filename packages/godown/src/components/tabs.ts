@@ -14,7 +14,8 @@ const mouseEnterAddedToken = "hover";
  *
  * It accepts "tabs" to present the sub-content.
  *
- * If "useSlot" is set, then each piece of content in "tabs" will be a named slot with the same name as it.
+ * When "useSlot" is enabled, each item in "tabs" becomes a named slot with the same name as itself,
+ * while for non-slot tabs, the content is rendered as a horizontally padded string.
  *
  * When "mouseenter" and "mouseleave" are triggered on an individual tab, the indicator will move.
  *
@@ -72,7 +73,7 @@ const mouseEnterAddedToken = "hover";
     [part~="item"] {
       width: 100%;
       display: block;
-      padding: 0 0.5em;
+      padding: 0 0.4em;
       position: relative;
       transition: inherit;
       border-radius: inherit;
