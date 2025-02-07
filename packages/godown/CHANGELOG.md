@@ -1,5 +1,12 @@
 # godown
 
+## 3.7.1
+
+### Patch Changes
+
+- 1d7855d: fix tabs item indicator display error caused by z-index
+- e047b42: reduce tabs item padding
+
 ## 3.7.0
 
 ### Minor Changes
