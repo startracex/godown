@@ -53,6 +53,8 @@ const mouseEnterAddedToken = "hover";
     }
 
     [part="root"] {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: inherit;
       overflow-x: clip;
