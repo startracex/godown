@@ -140,23 +140,25 @@ class Tabs extends GlobalStyle {
         ${attr(this.observedRecord)}
         @mouseleave="${this._handleMouseLeave}"
       >
-        ${this.tabs.map((tab, index) => {
-          return html`
-            <li
-              part="${tokenList("item", {
-                selected: this.index === index,
-              })}"
-              @mouseenter=${() => {
-                this.move(this._lastIndex, index);
-                this._lastIndex = index;
-              }}
-              @click=${() => this.select(index)}
-            >
-              ${this.useSlot ? htmlSlot(tab) : tab}
-              <div part="indicator"></div>
-            </li>
-          `;
-        })}
+        ${this.tabs.map((tab, index) =>
+          tab || this.useSlot
+            ? html`
+                <li
+                  part="${tokenList("item", {
+                    selected: this.index === index,
+                  })}"
+                  @mouseenter=${() => {
+                    this.move(this._lastIndex, index);
+                    this._lastIndex = index;
+                  }}
+                  @click=${() => this.select(index)}
+                >
+                  ${this.useSlot ? htmlSlot(tab) : tab}
+                  <div part="indicator"></div>
+                </li>
+              `
+            : "",
+        )}
       </ul>
     `;
   }
@@ -213,13 +215,14 @@ class Tabs extends GlobalStyle {
   }
 
   select(selected: number): void {
-    if (this.index === selected) {
+    const { index, tabs, _lastIndex, useSlot } = this;
+    if (index === selected || !(selected in tabs)) {
       return;
     }
     this.dispatchCustomEvent("select", selected);
-    this.move(this._lastIndex, selected);
+    this.move(_lastIndex, selected);
     this._lastIndex = selected;
-    if (this.index in this.tabs) {
+    if (index in tabs && (tabs[index] || useSlot)) {
       this.index = selected;
     }
   }
