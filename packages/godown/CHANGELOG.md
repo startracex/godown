@@ -1,5 +1,12 @@
 # godown
 
+## 3.7.3
+
+### Patch Changes
+
+- 0f60559: update Tabs.index when the index is not out of bounds
+- 7d3fb63: handle empty tab content
+
 ## 3.7.2
 
 ### Patch Changes
