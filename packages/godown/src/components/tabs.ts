@@ -219,7 +219,9 @@ class Tabs extends GlobalStyle {
     this.dispatchCustomEvent("select", selected);
     this.move(this._lastIndex, selected);
     this._lastIndex = selected;
-    this.index = selected;
+    if (this.index in this.tabs) {
+      this.index = selected;
+    }
   }
 }
 
