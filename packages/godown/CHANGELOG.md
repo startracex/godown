@@ -1,5 +1,12 @@
 # godown
 
+## 3.7.2
+
+### Patch Changes
+
+- 773ece3: remove Button "content" part
+- c037d94: extract the width and height of "root" part
+
 ## 3.7.1
 
 ### Patch Changes
