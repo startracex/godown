@@ -18,8 +18,6 @@ const cssScope = scopePrefix(protoName);
 @styles(css`
   :host,
   :host([contents]) [part="root"] {
-    width: var(${cssScope}-width);
-    height: var(${cssScope}-height);
     display: inline-block;
   }
 
@@ -29,6 +27,8 @@ const cssScope = scopePrefix(protoName);
     ${cssScope}-handle-size: 1.25em;
     ${cssScope}-handle-space: calc(var(${cssScope}-width) / 4 - var(${cssScope}-handle-size) / 2);
     ${cssScope}-transition: .2s ease-in-out;
+    width: var(${cssScope}-width);
+    height: var(${cssScope}-height);
     border-radius: calc(var(${cssScope}-height) / 2);
     background: var(${cssGlobalVars.passive});
     vertical-align: bottom;
@@ -41,7 +41,6 @@ const cssScope = scopePrefix(protoName);
   }
 
   [part="root"] {
-    height: inherit;
     display: flex;
     align-items: center;
     position: relative;

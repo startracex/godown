@@ -95,7 +95,6 @@ const calls = {
     ${cssScope}--blockquote-background: transparent;
     ${cssScope}--gap: .5em;
     display: block;
-    width: 100%;
   }
 
   [part="root"] {

@@ -29,7 +29,6 @@ const cssScope = scopePrefix(protoName);
   }
 
   [part="root"] {
-    height: 100%;
     position: relative;
   }
 

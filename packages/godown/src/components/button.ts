@@ -139,13 +139,12 @@ const colors: Record<Colors, string> = constructCSSObject(
       cursor: pointer;
     }
 
-    :host([contents]) [part="root"] {
-      width: fit-content;
+    [part="root"]:not([contents]) {
+      height: 100%;
+      width: 100%;
     }
 
     [part="root"] {
-      width: 100%;
-      height: 100%;
       position: relative;
       transition: none;
       user-select: none;

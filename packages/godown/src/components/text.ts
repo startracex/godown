@@ -26,7 +26,6 @@ const cssScope = scopePrefix(protoName);
 
   [part="root"] {
     white-space: nowrap;
-    width: 100%;
     vertical-align: bottom;
     display: inline-block;
     text-overflow: inherit;

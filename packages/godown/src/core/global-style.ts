@@ -92,6 +92,16 @@ GlobalStyle.styles = [
       display: contents;
     }
 
+    [part="root"] {
+      width: 100%;
+      height: 100%;
+    }
+
+    :host([contents]) [part="root"] {
+      height: inherit;
+      width: inherit;
+    }
+
     :where(:host([contents]) [part="root"]) {
       all: inherit;
       display: revert;

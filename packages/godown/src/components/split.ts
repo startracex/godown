@@ -31,13 +31,8 @@ const cssScope = scopePrefix(protoName);
     ${cssScope}--gap: .25em;
   }
 
-  :host([contents]) [part="root"] {
-    width: fit-content;
-  }
-
   [part="root"] {
     gap: var(${cssScope}--gap);
-    width: 100%;
     position: relative;
     vertical-align: top;
     display: flex;

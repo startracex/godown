@@ -50,8 +50,6 @@ const cssScope = scopePrefix(protoName);
   [part="root"] {
     position: relative;
     border-radius: inherit;
-    width: 100%;
-    height: 100%;
     align-items: center;
     justify-content: center;
   }

@@ -54,7 +54,6 @@ type RangeValue = number | number[];
       min-height: inherit;
       position: relative;
       border-radius: inherit;
-      width: 100%;
       --from: 0%;
       --to: 50%;
       height: var(${cssScope}--track-width);

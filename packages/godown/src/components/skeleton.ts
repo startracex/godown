@@ -34,7 +34,6 @@ const cssScope = scopePrefix(protoName);
   }
 
   [part="root"] {
-    height: 100%;
     min-height: inherit;
     text-align: center;
     animation: var(${cssScope}--duration) ease-in-out 0s infinite none running;

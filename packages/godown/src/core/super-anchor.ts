@@ -17,7 +17,6 @@ import { GlobalStyle } from "./global-style.js";
   }
 
   [part="root"] {
-    width: 100%;
     color: inherit;
     display: inline-block;
     text-decoration: inherit;
