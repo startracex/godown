@@ -1,5 +1,14 @@
 # @godown/react
 
+## 3.7.4
+
+### Patch Changes
+
+- 10477f0: export Tabs
+- Updated dependencies [1443f9e]
+- Updated dependencies [5c5ac8b]
+  - godown@3.7.4
+
 ## 3.7.3
 
 ### Patch Changes
