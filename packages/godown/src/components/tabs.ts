@@ -141,7 +141,7 @@ class Tabs extends GlobalStyle {
         ${attr(this.observedRecord)}
         @mouseleave="${this._handleMouseLeave}"
       >
-        ${this.tabs.map((tab, index) =>
+        ${this.tabs?.map((tab, index) =>
           tab || this.useSlot
             ? html`
                 <li
@@ -217,7 +217,7 @@ class Tabs extends GlobalStyle {
 
   select(selected: number): void {
     const { index, tabs, _lastIndex, useSlot } = this;
-    if (index === selected || !(selected in tabs)) {
+    if (!tabs || index === selected || !(selected in tabs)) {
       return;
     }
     this.dispatchCustomEvent("select", selected);
