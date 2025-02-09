@@ -1,5 +1,12 @@
 # godown
 
+## 3.7.4
+
+### Patch Changes
+
+- 1443f9e: prevent text wrapping in tab items
+- 5c5ac8b: add null check for Tabs.tabs
+
 ## 3.7.3
 
 ### Patch Changes
