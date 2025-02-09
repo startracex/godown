@@ -75,6 +75,7 @@ const mouseEnterAddedToken = "hover";
       display: block;
       padding: 0 0.4em;
       position: relative;
+      white-space: nowrap;
       transition: inherit;
       border-radius: inherit;
       transition-property: inherit;
