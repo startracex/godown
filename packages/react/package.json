@@ -17,6 +17,7 @@
     "fmt": "dprint fmt",
     "lint": "biome lint"
   },
+  "homepage": "https://godown.js.org",
   "repository": {
     "type": "git",
     "url": "https://github.com/startracex/godown.git",
