@@ -1,5 +1,18 @@
 # @godown/react
 
+## 3.7.5
+
+### Patch Changes
+
+- a57a4b4: export Tabs in index
+- Updated dependencies [2a0676f]
+- Updated dependencies [809d41f]
+- Updated dependencies [266f523]
+- Updated dependencies [d393437]
+- Updated dependencies [172a951]
+- Updated dependencies [c794219]
+  - godown@3.7.5
+
 ## 3.7.4
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # godown
 
+## 3.7.5
+
+### Patch Changes
+
+- 2a0676f: remove the dividers in Card, increase padding
+- 809d41f: lighter clip-background gradient
+- 266f523: fix Range.createKeydownEvent fails to set the latest value
+- d393437: replace custom CSS variable with direct host padding for Details
+- 172a951: optimize the event listeners of Dragbox
+- c794219: use bounding rect for dynamic size calculations
+
 ## 3.7.4
 
 ### Patch Changes
