@@ -284,11 +284,11 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
    * @returns A function that handles the keydown event and updates the range value.
    */
   protected createKeydownEvent(index: number) {
-    const { rangeValue, step } = this;
-    if (rangeValue.length < 2) {
-      index = 0;
-    }
     return (e: KeyboardEvent): void => {
+      const { rangeValue, step } = this;
+      if (rangeValue.length < 2) {
+        index = 0;
+      }
       const old = rangeValue[index];
       if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
         e.preventDefault();
