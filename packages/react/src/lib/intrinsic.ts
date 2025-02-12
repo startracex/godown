@@ -1,9 +1,8 @@
-import type * as React from "react";
-
 import type { WebComponentProps } from "@lit/react";
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
 
-export type _IntrinsicElement<T extends HTMLElement> = React.DetailedHTMLProps<
-  React.HTMLAttributes<T> & Partial<Omit<T, keyof HTMLElement>>,
+export type _IntrinsicElement<T extends HTMLElement> = DetailedHTMLProps<
+  HTMLAttributes<T> & Partial<Omit<T, keyof HTMLElement>>,
   T
 >;
 export type IntrinsicElement<T extends HTMLElement> = WebComponentProps<T>;
