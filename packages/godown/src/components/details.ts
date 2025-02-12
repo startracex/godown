@@ -23,7 +23,7 @@ const cssScope = scopePrefix(protoName);
   :host {
     ${cssScope}--icon-deg-open: 0deg;
     ${cssScope}--icon-deg-close: 90deg;
-    ${cssScope}--icon-space: .22em;
+    padding: 0.2em;
     display: block;
     transition: 0.3s;
   }
@@ -69,7 +69,6 @@ const cssScope = scopePrefix(protoName);
     display: flex;
     backface-visibility: hidden;
     transform: rotate(var(${cssScope}--icon-deg-close));
-    padding: var(${cssScope}--icon-space);
   }
 
   :host([open]) [part="icon"] {
