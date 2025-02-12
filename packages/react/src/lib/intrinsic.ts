@@ -10,7 +10,7 @@ export type IntrinsicElement<T extends HTMLElement> = WebComponentProps<T>;
 export type IntrinsicTag<T extends keyof HTMLElementTagNameMap> = IntrinsicElement<HTMLElementTagNameMap[T]>;
 
 /**
- * With @types/react 18.3.15+:
+ * With `@types/react` 18.3.15+:
  *
  * ```ts
  * import { type IntrinsicMap } from "@godown/react/lib/intrinsic.js";
