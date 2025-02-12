@@ -7,7 +7,7 @@ import { GlobalStyle } from "../core/global-style.js";
 const protoName = "dragbox";
 
 /**
- * {@linkcode Dragbox} does not extend beyond the range of {@linkcode Dragbox.offsetsWidth} and {@linkcode Dragbox.offsetsHeight}.
+ * {@linkcode Dragbox} moves with the mouse and does not exceed the boundary of offsetParent.
  *
  * @category wrapper
  */
@@ -48,13 +48,13 @@ class Dragbox extends GlobalStyle {
    * Position x.
    */
   @property()
-  x = "auto";
+  x: string;
 
   /**
    * Position y.
    */
   @property()
-  y = "auto";
+  y: string;
 
   protected render(): TemplateResult<1> {
     return html`
@@ -62,7 +62,6 @@ class Dragbox extends GlobalStyle {
         part="root"
         ${attr(this.observedRecord)}
         @mousedown="${this._handleDragStart}"
-        @mouseup="${this._handleDragEnd}"
       >
         ${htmlSlot()}
       </div>
@@ -81,15 +80,18 @@ class Dragbox extends GlobalStyle {
     this.__drag = true;
     this._handleMouseMove = this.events.add(document, "mousemove", this._handleDrag.bind(this));
     this._handleMouseLeave = this.events.add(document, "mouseleave", this._handleDragEnd.bind(this));
+    this._handleMouseUp = this.events.add(document, "mouseup", this._handleDragEnd.bind(this));
   }
 
   protected _handleMouseMove: EventListenerFunc;
   protected _handleMouseLeave: EventListenerFunc;
+  protected _handleMouseUp: EventListenerFunc;
 
   protected _handleDragEnd(): void {
     this.__drag = false;
     this.events.remove(document, "mousemove", this._handleMouseMove);
     this.events.remove(document, "mouseleave", this._handleMouseLeave);
+    this.events.remove(document, "mouseup", this._handleMouseUp);
   }
 
   protected _handleDrag(e: MouseEvent): void {
