@@ -56,7 +56,7 @@ GlobalStyle.styles = [
         [cssGlobalVars.passive, `var(${cssGlobalVars._colors.darkgray[5]})`],
         [
           cssGlobalVars.clipBackground,
-          `linear-gradient(to bottom, var(${cssGlobalVars._colors.lightgray[0]}), var(${cssGlobalVars._colors.darkgray[5]}))`,
+          `linear-gradient(to bottom, var(${cssGlobalVars._colors.lightgray[0]}), var(${cssGlobalVars._colors.darkgray[0]}))`,
         ],
       ]) +
       "}",
