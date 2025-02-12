@@ -18,16 +18,16 @@
     "@types/react": "^19.0.8",
     "dprint": "^0.47.6",
     "glob": "^11.0.1",
-    "postcss": "^8.5.1",
-    "prettier": "^3.4.2",
+    "postcss": "^8.5.2",
+    "prettier": "^3.5.0",
     "rollup": "catalog:",
     "tsx": "^4.19.2",
-    "turbo": "^2.4.0",
+    "turbo": "^2.4.1",
     "typescript": "^5.7.3",
     "typescript545": "npm:typescript@5.4.5",
     "vite": "^6.1.0"
   },
-  "packageManager": "pnpm@10.2.0",
+  "packageManager": "pnpm@10.3.0",
   "engines": {
     "node": ">=20"
   },
