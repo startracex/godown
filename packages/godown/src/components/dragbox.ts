@@ -9,7 +9,8 @@ const protoName = "dragbox";
 /**
  * {@linkcode Dragbox} moves with the mouse and does not exceed the boundary of offsetParent.
  *
- * @category wrapper
+ * @slot - Dragbox content.
+ * @category layout
  */
 @godown(protoName)
 @styles(css`
@@ -24,18 +25,21 @@ const protoName = "dragbox";
   }
 `)
 class Dragbox extends GlobalStyle {
-  /**
-   * Width of (`this.offsetParent` or `document.body`).
-   */
+  /** @deprecated */
   get offsetsWidth(): number {
-    return this.offsetParent?.clientWidth ?? document.body.offsetWidth;
+    return this._offsetParent.getBoundingClientRect().width;
+  }
+
+  /** @deprecated */
+  get offsetsHeight(): number {
+    return this._offsetParent.getBoundingClientRect().height;
   }
 
   /**
-   * Height of (`this.offsetParent` or `document.body`).
+   * Offset parent or document.body.
    */
-  get offsetsHeight(): number {
-    return this.offsetParent?.clientHeight ?? document.body.offsetHeight;
+  get _offsetParent(): Element {
+    return this.offsetParent ?? document.body;
   }
 
   private __drag = false;
@@ -75,8 +79,10 @@ class Dragbox extends GlobalStyle {
   protected _handleDragStart(e: MouseEvent): void {
     this.__x = e.x;
     this.__y = e.y;
-    this.__t = this.offsetTop;
-    this.__l = this.offsetLeft;
+    const parentRect = this._offsetParent.getBoundingClientRect();
+    const rect = this.getBoundingClientRect();
+    this.__t = rect.top - parentRect.top;
+    this.__l = rect.left - parentRect.left;
     this.__drag = true;
     this._handleMouseMove = this.events.add(document, "mousemove", this._handleDrag.bind(this));
     this._handleMouseLeave = this.events.add(document, "mouseleave", this._handleDragEnd.bind(this));
@@ -98,34 +104,38 @@ class Dragbox extends GlobalStyle {
     if (!this.__drag) {
       return;
     }
-    const { __x, __y, __l, __t, style, offsetsWidth, offsetsHeight, offsetWidth, offsetHeight } = this;
+    const { __x, __y, __l, __t, style } = this;
+    const { height: parentHeight, width: parentWidth } = this._offsetParent.getBoundingClientRect();
+    const { width, height } = this.getBoundingClientRect();
     const l = e.x - (__x - __l);
     const t = e.y - (__y - __t);
     if (l < 0) {
       style.left = "0";
-    } else if (l < offsetsWidth - offsetWidth) {
+    } else if (l < parentWidth - width) {
       style.left = `${l}px`;
     } else {
-      style.left = `${offsetsWidth - offsetWidth}"px"`;
+      style.left = `${parentWidth - width}"px"`;
     }
     if (t < 0) {
       style.top = "0";
-    } else if (t < offsetsHeight - offsetHeight) {
+    } else if (t < parentHeight - height) {
       style.top = `${t}px`;
     } else {
-      style.top = `${offsetsHeight - offsetHeight}px`;
+      style.top = `${parentHeight - height}px`;
     }
   }
 
   reset(): void {
-    const { x, y, style, offsetsWidth, offsetsHeight, offsetWidth, offsetHeight, offsetLeft, offsetTop } = this;
+    const { x, y, style, offsetWidth, offsetHeight, offsetLeft, offsetTop } = this;
+    const { height: parentHeight, width: parentWidth } = this._offsetParent.getBoundingClientRect();
+
     style.left = x || "0";
     style.top = y || "0";
-    if (offsetLeft > offsetsWidth - offsetWidth) {
-      style.left = `${offsetsWidth - offsetWidth}px`;
+    if (offsetLeft > parentWidth - offsetWidth) {
+      style.left = `${parentWidth - offsetWidth}px`;
     }
-    if (offsetTop > offsetsHeight - offsetHeight) {
-      style.top = `${offsetsHeight - offsetHeight}px`;
+    if (offsetTop > parentHeight - offsetHeight) {
+      style.top = `${parentHeight - offsetHeight}px`;
     }
   }
 }
