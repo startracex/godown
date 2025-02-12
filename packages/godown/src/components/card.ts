@@ -24,8 +24,7 @@ const cssScope = scopePrefix(protoName);
   :host {
     ${cssScope}--border-width: .075em;
     ${cssScope}--border-color: var(${cssGlobalVars.passive});
-    ${cssScope}--padding: .5em;
-    border-width: var(${cssScope}--border-width);
+    ${cssScope}--padding: .75em;
     display: block;
     flex-shrink: 0;
   }
@@ -35,18 +34,19 @@ const cssScope = scopePrefix(protoName);
     padding: var(${cssScope}--padding);
   }
 
-  :host,
-  slot {
+  [part="root"] {
     border-color: var(${cssScope}--border-color);
     border-style: solid;
+    border-width: var(${cssScope}--border-width);
+    border-radius: inherit;
   }
 
   [name="footer"] {
-    border-top-width: var(${cssScope}--border-width);
+    padding-top: 0;
   }
 
   [name="header"] {
-    border-bottom-width: var(${cssScope}--border-width);
+    padding-bottom: 0;
   }
 `)
 class Card extends GlobalStyle {
