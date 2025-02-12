@@ -85,6 +85,7 @@ const colors: Record<Colors, string> = constructCSSObject(
  *
  * Set the color to `none` to prevent applying styles.
  *
+ * @slot - The content of the button.
  * @category input
  */
 @godown(protoName)
