@@ -41,8 +41,8 @@ class Dragbox extends GlobalStyle {
   private __drag = false;
   private __t: number;
   private __l: number;
-  private __cx: number;
-  private __cy: number;
+  private __x: number;
+  private __y: number;
 
   /**
    * Position x.
@@ -73,8 +73,8 @@ class Dragbox extends GlobalStyle {
   }
 
   protected _handleDragStart(e: MouseEvent): void {
-    this.__cx = e.clientX;
-    this.__cy = e.clientY;
+    this.__x = e.x;
+    this.__y = e.y;
     this.__t = this.offsetTop;
     this.__l = this.offsetLeft;
     this.__drag = true;
@@ -98,20 +98,20 @@ class Dragbox extends GlobalStyle {
     if (!this.__drag) {
       return;
     }
-    const nl = e.clientX - (this.__cx - this.__l);
-    const nt = e.clientY - (this.__cy - this.__t);
-    const { style, offsetsWidth, offsetsHeight, offsetWidth, offsetHeight } = this;
-    if (nl < 0) {
+    const { __x, __y, __l, __t, style, offsetsWidth, offsetsHeight, offsetWidth, offsetHeight } = this;
+    const l = e.x - (__x - __l);
+    const t = e.y - (__y - __t);
+    if (l < 0) {
       style.left = "0";
-    } else if (nl < offsetsWidth - offsetWidth) {
-      style.left = `${nl}px`;
+    } else if (l < offsetsWidth - offsetWidth) {
+      style.left = `${l}px`;
     } else {
       style.left = `${offsetsWidth - offsetWidth}"px"`;
     }
-    if (nt < 0) {
+    if (t < 0) {
       style.top = "0";
-    } else if (nt < offsetsHeight - offsetHeight) {
-      style.top = `${nt}px`;
+    } else if (t < offsetsHeight - offsetHeight) {
+      style.top = `${t}px`;
     } else {
       style.top = `${offsetsHeight - offsetHeight}px`;
     }
