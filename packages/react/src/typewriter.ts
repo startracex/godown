@@ -1,10 +1,10 @@
 "use client";
-import component from "godown/typewriter.js";
+import Typewriter from "godown/typewriter.js";
 
-import create from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default create(component);
+export default createReact(Typewriter);
 
 export * from "godown/typewriter.js";
 

@@ -1,10 +1,10 @@
 "use client";
-import component from "godown/skeleton.js";
+import Skeleton from "godown/skeleton.js";
 
-import create from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default create(component);
+export default createReact(Skeleton);
 
 export * from "godown/skeleton.js";
 

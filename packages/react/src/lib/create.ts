@@ -12,7 +12,7 @@ export type TargetedCustomEvent<D = any, T = HTMLElement> = Omit<CustomEvent<D>,
 
 type OrLower<N> = N extends string ? N | Lowercase<N> : never;
 
-export const create = <G extends HTMLElement, E extends Record<string, any>>(
+export const createReact = <G extends HTMLElement, E extends Record<string, any>>(
   elementClass: WithTagName<G>,
   events?: E,
 ) => {
@@ -38,4 +38,4 @@ export const eventMap = <T extends Record<string, any>>(
   return eMap;
 };
 
-export default create;
+export default createReact;

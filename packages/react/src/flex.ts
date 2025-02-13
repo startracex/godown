@@ -1,10 +1,10 @@
 "use client";
-import component from "godown/flex.js";
+import Flex from "godown/flex.js";
 
-import create from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default create(component);
+export default createReact(Flex);
 
 export * from "godown/flex.js";
 

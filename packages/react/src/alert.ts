@@ -1,10 +1,10 @@
 "use client";
-import component from "godown/alert.js";
+import Alert from "godown/alert.js";
 
-import create from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default create(component);
+export default createReact(Alert);
 
 export * from "godown/alert.js";
 

@@ -1,10 +1,10 @@
 "use client";
-import component from "godown/progress.js";
+import Progress from "godown/progress.js";
 
-import create from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default create(component);
+export default createReact(Progress);
 
 export * from "godown/progress.js";
 

@@ -1,10 +1,10 @@
 "use client";
-import component from "godown/select.js";
+import Select from "godown/select.js";
 
-import create from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default create(component);
+export default createReact(Select);
 
 export * from "godown/select.js";
 

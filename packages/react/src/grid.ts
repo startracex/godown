@@ -1,10 +1,10 @@
 "use client";
-import component from "godown/grid.js";
+import Grid from "godown/grid.js";
 
-import create from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default create(component);
+export default createReact(Grid);
 
 export * from "godown/grid.js";
 

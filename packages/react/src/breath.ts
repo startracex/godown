@@ -1,10 +1,10 @@
 "use client";
-import component from "godown/breath.js";
+import Breath from "godown/breath.js";
 
-import create from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default create(component);
+export default createReact(Breath);
 
 export * from "godown/breath.js";
 

@@ -1,10 +1,10 @@
 "use client";
-import component from "godown/range.js";
+import Range from "godown/range.js";
 
-import create from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default create(component);
+export default createReact(Range);
 
 export * from "godown/range.js";
 

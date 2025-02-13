@@ -1,10 +1,10 @@
 "use client";
-import component from "godown/card.js";
+import Card from "godown/card.js";
 
-import create from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default create(component);
+export default createReact(Card);
 
 export * from "godown/card.js";
 

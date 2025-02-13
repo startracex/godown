@@ -1,10 +1,10 @@
 "use client";
-import component from "godown/dialog.js";
+import Dialog from "godown/dialog.js";
 
-import create from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default create(component);
+export default createReact(Dialog);
 
 export * from "godown/dialog.js";
 
