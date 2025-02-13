@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "turbo run build",
-    "check": "biome lint && dprint check && prettier --check packages/godown/src",
+    "check": "biome lint && dprint check && prettier --check packages/godown/src/**/*",
     "check-types": "turbo run check-types",
     "clean": "turbo run clean",
     "dev": "turbo run dev",

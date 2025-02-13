@@ -10,7 +10,7 @@
     "clean": "tsc --build tsconfig.prod.json --clean",
     "build": "tsx build.ts",
     "build:ts": "tsc",
-    "fmt": "prettier src --write",
+    "fmt": "prettier src/**/* --write",
     "lint": "biome lint",
     "manifest": "tsx manifest.ts"
   },
