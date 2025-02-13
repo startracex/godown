@@ -17,11 +17,7 @@ type RangeValue = number | number[];
  *
  * Number has 1 handle, the array has the number of its elements.
  *
- * @fires input - Fires when the input value changes.
- * @fires change - Fires when the input value changes.
  * @fires range - Fires when the value changes.
- * @fires focus - Fires when the handle is focused.
- * @fires blur - Fires when the handle is blurred.
  * @category input
  */
 @godown(protoName)
@@ -251,7 +247,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
   private __keydownEvent: EventListenerOrEventListenerObject;
 
   /**
-   * Focuses the handle at the given index, updates the focus stack, and dispatches a "focus" event.
+   * Focuses the handle at the given index, updates the focus stack.
    * @param index - The index of the handle to focus.
    */
   focusHandle(index: number): void {
@@ -266,16 +262,14 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
     if (!this.__keydownEvent) {
       this.__keydownEvent = this.events.add(document, "keydown", this.createKeydownEvent(index));
     }
-    this.dispatchEvent(new CustomEvent("focus", { detail: index }));
   }
 
   /**
-   * Removes the focus from the currently focused handle and dispatches a "blur" event.
+   * Removes the focus from the currently focused handle.
    */
   blurHandle(): void {
     this.lastFocus = undefined;
     this.__keydownEvent = this.events.remove(document, "keydown", this.__keydownEvent);
-    this.dispatchEvent(new CustomEvent("blur"));
   }
 
   /**
@@ -326,7 +320,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
         newValue[index] = normalizeValue;
       }
       this.value = newValue as V;
-      this.dispatchEvent(new CustomEvent("range", { detail: this.value }));
+      this.dispatchEvent(new CustomEvent("change", { detail: this.value }));
     };
   }
 
