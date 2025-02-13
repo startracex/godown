@@ -75,11 +75,6 @@ const cssScope = scopePrefix(protoName);
   }
 `)
 class Switch extends SuperInput<boolean> {
-  /**
-   * @deprecated
-   */
-  round: boolean;
-
   set checked(v: boolean) {
     this.value = v;
   }
