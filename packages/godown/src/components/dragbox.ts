@@ -74,20 +74,20 @@ class Dragbox extends GlobalStyle {
     this.__t = rect.top - parentRect.top;
     this.__l = rect.left - parentRect.left;
     this.__drag = true;
-    this._handleMouseMove = this.events.add(document, "mousemove", this._handleDrag.bind(this));
-    this._handleMouseLeave = this.events.add(document, "mouseleave", this._handleDragEnd.bind(this));
-    this._handleMouseUp = this.events.add(document, "mouseup", this._handleDragEnd.bind(this));
+    this.__handleMouseMove = this.events.add(document, "mousemove", this._handleDrag.bind(this));
+    this.__handleMouseLeave = this.events.add(document, "mouseleave", this._handleDragEnd.bind(this));
+    this.__handleMouseUp = this.events.add(document, "mouseup", this._handleDragEnd.bind(this));
   }
 
-  protected _handleMouseMove: EventListenerFunc;
-  protected _handleMouseLeave: EventListenerFunc;
-  protected _handleMouseUp: EventListenerFunc;
+  private __handleMouseMove: EventListenerFunc;
+  private __handleMouseLeave: EventListenerFunc;
+  private __handleMouseUp: EventListenerFunc;
 
   protected _handleDragEnd(): void {
     this.__drag = false;
-    this.events.remove(document, "mousemove", this._handleMouseMove);
-    this.events.remove(document, "mouseleave", this._handleMouseLeave);
-    this.events.remove(document, "mouseup", this._handleMouseUp);
+    this.events.remove(document, "mousemove", this.__handleMouseMove);
+    this.events.remove(document, "mouseleave", this.__handleMouseLeave);
+    this.events.remove(document, "mouseup", this.__handleMouseUp);
   }
 
   protected _handleDrag(e: MouseEvent): void {
