@@ -111,6 +111,7 @@ class Split extends SuperInput {
           id="${this.makeId}"
           @blur=${this.blur}
           @input="${this._handleInput}"
+          @change="${this._handleChange}"
           .value="${
             /* Ensure that input always has a value of length this.len */
             this.value.padStart(this.len, " ")
