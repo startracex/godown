@@ -205,14 +205,12 @@ class Split extends SuperInput {
   focusAt(i: number): void {
     this.current = i;
     this._input.focus();
-    this.dispatchEvent(new CustomEvent("focus", { detail: i, bubbles: true, composed: true }));
   }
 
   blur(): void {
     this._input.blur();
     this.current = -1;
     super.blur();
-    this.dispatchEvent(new CustomEvent("blur", { bubbles: true, composed: true }));
   }
 
   reset(): void {
