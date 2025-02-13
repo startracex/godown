@@ -2,9 +2,7 @@
   "extends": "@godown/tsconfig/base.json",
   "compilerOptions": {
     "outDir": ".",
-    "rootDir": "src",
-    "sourceMap": false,
-    "declarationMap": false
+    "rootDir": "src"
   },
   "include": [
     "src"
