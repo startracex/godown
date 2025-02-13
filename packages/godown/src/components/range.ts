@@ -320,7 +320,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
         newValue[index] = normalizeValue;
       }
       this.value = newValue as V;
-      this.dispatchEvent(new CustomEvent("change", { detail: this.value }));
+      this.dispatchCustomEvent("change", this.value);
     };
   }
 

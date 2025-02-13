@@ -118,7 +118,7 @@ class Typewriter extends GlobalStyle {
 
   protected updated(changedProperties: PropertyValueMap<this>): void {
     if (changedProperties.has("index")) {
-      this.dispatchEvent(new CustomEvent(this.index === this.len ? "done" : "write", { detail: this.contentInternal }));
+      this.dispatchCustomEvent(this.index === this.len ? "done" : "write", this.contentInternal);
     }
   }
 

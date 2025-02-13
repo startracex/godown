@@ -68,7 +68,7 @@ class Time extends GlobalStyle {
       this.timeouts.remove(this.timeoutId);
       this.timeoutId = this.timeouts.add(
         setInterval(() => {
-          this.dispatchEvent(new CustomEvent("time", { detail: this.time, composed: true }));
+          this.dispatchCustomEvent("time", this.time);
           this.time = new Date(this.time.getTime() + (this.gap || this.timeout));
         }, Math.abs(this.timeout)),
       );

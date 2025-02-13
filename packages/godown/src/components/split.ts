@@ -135,7 +135,7 @@ class Split extends SuperInput {
     this.fillInput(e.data);
     this.value = this.currentValue.join("");
 
-    this.dispatchEvent(new CustomEvent("input", { detail: this.value, composed: true, bubbles: true }));
+    this.dispatchCustomEvent("input", this.value, { bubbles: true });
   }
 
   /**

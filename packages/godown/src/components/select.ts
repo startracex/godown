@@ -241,7 +241,7 @@ class Select extends Input {
         operation = 1;
       }
     }
-    this.dispatchEvent(new CustomEvent("select", { detail: this.value, composed: true }));
+    this.dispatchCustomEvent("select", this.value);
     this.filter();
     return operation;
   }
@@ -268,7 +268,7 @@ class Select extends Input {
     }
     const s = this._input.value;
     this.filter(this.multiple ? betweenAt(this._input.selectionStart, s, ",") : s);
-    this.dispatchEvent(new CustomEvent("input", { detail: this.value, composed: true, bubbles: true }));
+    this.dispatchCustomEvent("input", this.value, { bubbles: true });
   }
 
   focus(options?: FocusOptions): void {

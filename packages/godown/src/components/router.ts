@@ -190,7 +190,7 @@ class Router extends GlobalStyle {
       if (!this.__cacheRecord.has(this.pathname) && this.path) {
         this.__cacheRecord.set(this.pathname, ur);
       }
-      this.dispatchEvent(new CustomEvent("change", { detail: ur }));
+      this.dispatchCustomEvent("change", ur);
     }
   }
 

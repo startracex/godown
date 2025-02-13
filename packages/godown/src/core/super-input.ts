@@ -150,11 +150,11 @@ class SuperInput<V = string> extends GlobalStyle {
       return;
     }
     (this.value as string) = e.target.value?.trim();
-    this.dispatchEvent(new CustomEvent("input", { detail: this.value, composed: true, bubbles: true }));
+    this.dispatchCustomEvent("input", this.value, { bubbles: true });
   }
 
   protected _handleChange(e: HandlerEvent<HTMLInputElement>): void {
-    this.dispatchEvent(new CustomEvent("change", { detail: this.value, composed: true }));
+    this.dispatchCustomEvent("change", this.value);
   }
 
   connectedCallback(): void {

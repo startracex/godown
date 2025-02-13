@@ -238,7 +238,7 @@ class Alert extends GlobalStyle {
 
   close(): void {
     this.remove();
-    this.dispatchEvent(new CustomEvent("close", { bubbles: true, composed: true }));
+    this.dispatchCustomEvent("close", undefined, { bubbles: true });
   }
 
   protected firstUpdated(): void {
