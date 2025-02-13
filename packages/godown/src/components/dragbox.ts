@@ -25,16 +25,6 @@ const protoName = "dragbox";
   }
 `)
 class Dragbox extends GlobalStyle {
-  /** @deprecated */
-  get offsetsWidth(): number {
-    return this._offsetParent.getBoundingClientRect().width;
-  }
-
-  /** @deprecated */
-  get offsetsHeight(): number {
-    return this._offsetParent.getBoundingClientRect().height;
-  }
-
   /**
    * Offset parent or document.body.
    */
