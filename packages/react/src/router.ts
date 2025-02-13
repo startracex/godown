@@ -1,10 +1,25 @@
 "use client";
 import Router from "godown/router.js";
 
-import { createReact } from "./lib/create.js";
+import { createReact, eventMap, type TargetedCustomEvent } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default createReact(Router);
+export default createReact(
+  Router,
+  eventMap<{
+    onChange: TargetedCustomEvent<
+      {
+        pathname: string;
+        params: Record<string, string>;
+        path: string;
+        component: unknown;
+      },
+      Router
+    >;
+  }>({
+    onChange: "change",
+  }),
+);
 
 export * from "godown/router.js";
 

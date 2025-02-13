@@ -1,10 +1,23 @@
 "use client";
 import Link from "godown/link.js";
 
-import { createReact } from "./lib/create.js";
+import { createReact, eventMap, type TargetedCustomEvent } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default createReact(Link);
+export default createReact(
+  Link,
+  eventMap<{
+    onNavigate: TargetedCustomEvent<
+      {
+        state: object;
+        pathname: string;
+      },
+      Link
+    >;
+  }>({
+    onNavigate: "navigate",
+  }),
+);
 
 export * from "godown/link.js";
 

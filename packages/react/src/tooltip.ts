@@ -1,10 +1,17 @@
 "use client";
 import Tooltip from "godown/tooltip.js";
 
-import { createReact } from "./lib/create.js";
+import { createReact, eventMap, type TargetedCustomEvent } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default createReact(Tooltip);
+export default createReact(
+  Tooltip,
+  eventMap<{
+    onChange: TargetedCustomEvent<boolean, Tooltip>;
+  }>({
+    onChange: "change",
+  }),
+);
 
 export * from "godown/tooltip.js";
 
