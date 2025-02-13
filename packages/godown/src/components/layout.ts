@@ -56,16 +56,6 @@ const protoName = "layout";
 `)
 class Layout extends GlobalStyle {
   /**
-   * @deprecated Omit header slot instead.
-   */
-  noHeader: boolean;
-
-  /**
-   * @deprecated Omit footer slot instead.
-   */
-  noFooter: boolean;
-
-  /**
    * If `true`, header will sticky.
    */
   @property({ type: Boolean })
