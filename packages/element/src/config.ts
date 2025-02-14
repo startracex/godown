@@ -2,7 +2,7 @@ import { trim, trimLeft, trimRight } from "./tools/lib.js";
 
 const separator = "-";
 
-class GodownConfig {
+export class GodownConfig {
   assign: null | Record<PropertyKey, any> = null;
   prefix = "godown";
   suffix = "";
@@ -48,4 +48,4 @@ class GodownConfig {
   }
 }
 
-export { GodownConfig, GodownConfig as default };
+export default GodownConfig;

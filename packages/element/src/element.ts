@@ -11,7 +11,7 @@ export const attributeName = (property: PropertyKey, { attribute }: PropertyDecl
   return attribute === true || attribute === undefined ? String(property).toLowerCase() : attribute;
 };
 
-class GodownElement extends LitElement {
+export class GodownElement extends LitElement {
   static godownConfig: GodownConfig = new GodownConfig();
 
   static elementTagName?: string;
@@ -310,4 +310,4 @@ class GodownElement extends LitElement {
   }
 }
 
-export { GodownElement, GodownElement as default };
+export default GodownElement;
