@@ -2,7 +2,7 @@
 import Input from "godown/input.js";
 
 import { createReact, eventMap, type TargetedCustomEvent } from "./lib/create.js";
-import type { IntrinsicTag } from "./lib/intrinsic.js";
+import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(
   Input,
@@ -20,7 +20,7 @@ export * from "godown/input.js";
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-input": IntrinsicTag<"godown-input">;
+      "godown-input": IntrinsicElement<Input>;
     }
   }
 }

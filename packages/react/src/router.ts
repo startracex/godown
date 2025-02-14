@@ -2,7 +2,7 @@
 import Router from "godown/router.js";
 
 import { createReact, eventMap, type TargetedCustomEvent } from "./lib/create.js";
-import type { IntrinsicTag } from "./lib/intrinsic.js";
+import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(
   Router,
@@ -26,7 +26,7 @@ export * from "godown/router.js";
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-router": IntrinsicTag<"godown-router">;
+      "godown-router": IntrinsicElement<Router>;
     }
   }
 }

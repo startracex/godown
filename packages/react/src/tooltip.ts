@@ -2,7 +2,7 @@
 import Tooltip from "godown/tooltip.js";
 
 import { createReact, eventMap, type TargetedCustomEvent } from "./lib/create.js";
-import type { IntrinsicTag } from "./lib/intrinsic.js";
+import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(
   Tooltip,
@@ -18,7 +18,7 @@ export * from "godown/tooltip.js";
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-tooltip": IntrinsicTag<"godown-tooltip">;
+      "godown-tooltip": IntrinsicElement<Tooltip>;
     }
   }
 }

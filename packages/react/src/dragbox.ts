@@ -2,7 +2,7 @@
 import Dragbox from "godown/dragbox.js";
 
 import { createReact } from "./lib/create.js";
-import type { IntrinsicTag } from "./lib/intrinsic.js";
+import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Dragbox);
 
@@ -11,7 +11,7 @@ export * from "godown/dragbox.js";
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-dragbox": IntrinsicTag<"godown-dragbox">;
+      "godown-dragbox": IntrinsicElement<Dragbox>;
     }
   }
 }

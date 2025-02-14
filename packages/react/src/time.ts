@@ -2,7 +2,7 @@
 import Time from "godown/time.js";
 
 import { createReact, eventMap, type TargetedCustomEvent } from "./lib/create.js";
-import type { IntrinsicTag } from "./lib/intrinsic.js";
+import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(
   Time,
@@ -18,7 +18,7 @@ export * from "godown/time.js";
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-time": IntrinsicTag<"godown-time">;
+      "godown-time": IntrinsicElement<Time>;
     }
   }
 }

@@ -2,7 +2,7 @@
 import Switch from "godown/switch.js";
 
 import { createReact, eventMap, type TargetedCustomEvent } from "./lib/create.js";
-import type { IntrinsicTag } from "./lib/intrinsic.js";
+import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(
   Switch,
@@ -18,7 +18,7 @@ export * from "godown/switch.js";
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-switch": IntrinsicTag<"godown-switch">;
+      "godown-switch": IntrinsicElement<Switch>;
     }
   }
 }

@@ -2,7 +2,7 @@
 import Alert from "godown/alert.js";
 
 import { createReact, eventMap, type TargetedCustomEvent } from "./lib/create.js";
-import type { IntrinsicTag } from "./lib/intrinsic.js";
+import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(
   Alert,
@@ -18,7 +18,7 @@ export * from "godown/alert.js";
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-alert": IntrinsicTag<"godown-alert">;
+      "godown-alert": IntrinsicElement<Alert>;
     }
   }
 }
