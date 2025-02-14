@@ -27,7 +27,9 @@ export const createReact = <G extends HTMLElement, E extends Record<string, any>
 
 export const eventMap = <T extends Record<string, any>>(
   eMap: Record<keyof T, any>,
-): Record<OrLower<keyof T>, EventName<T[keyof T]>> => {
+): {
+  [K in keyof T as OrLower<K>]: EventName<T[K]>;
+} => {
   if (!eMap) {
     return;
   }
@@ -36,7 +38,7 @@ export const eventMap = <T extends Record<string, any>>(
       eMap[key] = undefined;
     }
   }
-  return eMap;
+  return eMap as any;
 };
 
 export default createReact;
