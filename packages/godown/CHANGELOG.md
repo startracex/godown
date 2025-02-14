@@ -1,5 +1,14 @@
 # godown
 
+## 3.8.1
+
+### Patch Changes
+
+- Updated dependencies [c7ccbba]
+- Updated dependencies [d024e98]
+  - @godown/element@1.5.0
+  - @godown/f7-icon@1.0.6
+
 ## 3.8.0
 
 ### Minor Changes
