@@ -1,10 +1,10 @@
 "use client";
-import Flex from "godown/form.js";
+import Form from "godown/form.js";
 
 import { createReact } from "./lib/create.js";
 import type { IntrinsicTag } from "./lib/intrinsic.js";
 
-export default createReact(Flex);
+export default createReact(Form);
 
 export * from "godown/form.js";
 
