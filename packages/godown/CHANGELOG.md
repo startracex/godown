@@ -1,5 +1,20 @@
 # godown
 
+## 3.8.0
+
+### Minor Changes
+
+- c20b9d6: remove deprecated offset methods from Dragbox
+- 80170f1: update Dragbox event handler visibility
+- 0a3de45: remove deprecated noHeader, noFooter property from Layout
+- f63b855: reduce events dispatch in Range
+- ba4b74e: remove deprecated round property from Switch
+- 4226d1c: remove blur, focus event dispatch for Split
+
+### Patch Changes
+
+- 548d562: add missing change event listener
+
 ## 3.7.5
 
 ### Patch Changes
