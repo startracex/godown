@@ -1,5 +1,12 @@
 # @godown/element
 
+## 1.5.0
+
+### Minor Changes
+
+- c7ccbba: use approximate selector in part decorator
+- d024e98: remove slotChange parameter from htmlSlot directive
+
 ## 1.4.0
 
 ### Minor Changes

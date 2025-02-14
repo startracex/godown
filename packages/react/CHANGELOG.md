@@ -1,5 +1,13 @@
 # @godown/react
 
+## 3.8.1
+
+### Patch Changes
+
+- 041ab25: replace Record with "{}" in return type of eventMap
+- 42ddb23: add default value for E generic in createReact
+  - godown@3.8.1
+
 ## 3.8.0
 
 ### Minor Changes
