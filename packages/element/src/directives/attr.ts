@@ -10,12 +10,13 @@ const noAttribute = (value: any): boolean => isNil(value) || value === false;
 export function updateAttribute(this: Element, name: string, value: any): void {
   if (noAttribute(value)) {
     this.removeAttribute(name);
+  } else if (value === true) {
+    this.setAttribute(name, "");
   } else if (
-    value === true ||
     typeof value === "string" ||
     (typeof value === "number" && !isNaN(value))
   ) {
-    this.setAttribute(name, value === true ? "" : String(value));
+    this.setAttribute(name, String(value));
   } else {
     this[name] = value;
   }
