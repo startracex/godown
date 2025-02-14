@@ -1,5 +1,23 @@
 # @godown/react
 
+## 3.8.0
+
+### Minor Changes
+
+- 1937b63: add events declaration
+- e4c7dee: improve types for react
+
+### Patch Changes
+
+- Updated dependencies [c20b9d6]
+- Updated dependencies [80170f1]
+- Updated dependencies [548d562]
+- Updated dependencies [0a3de45]
+- Updated dependencies [f63b855]
+- Updated dependencies [ba4b74e]
+- Updated dependencies [4226d1c]
+  - godown@3.8.0
+
 ## 3.7.5
 
 ### Patch Changes
