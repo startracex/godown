@@ -1,11 +1,11 @@
 import { infixed, isString, trim } from "sharekit";
 
 export class RouteTree {
-  static matchType = {
+  static MatchTypes = {
     strict: 0,
     single: 1,
     multi: 2,
-  };
+  } as const;
 
   /**
    * Represents a node in the route tree, containing information about a route pattern.
@@ -16,11 +16,12 @@ export class RouteTree {
    * The part of the route pattern represented by this node in the route tree.
    */
   protected part: string;
+
   /**
    * The type of match for the current route tree node.
-   * Can be one of  {@link RouteTree.matchType}.
+   * Can be one of  {@link RouteTree.MatchTypes}.
    */
-  protected matchType: number = RouteTree.matchType.strict;
+  protected matchType: 0 | 1 | 2 = RouteTree.MatchTypes.strict;
 
   private sorted: boolean;
 
@@ -69,7 +70,7 @@ export class RouteTree {
       this.sort();
     }
 
-    if (parts.length === height || RouteTree.dynamic(this.part).matchType === RouteTree.matchType.multi) {
+    if (parts.length === height || RouteTree.dynamic(this.part).matchType === RouteTree.MatchTypes.multi) {
       if (!this.pattern) {
         return null;
       }
@@ -125,9 +126,9 @@ export class RouteTree {
     for (let index = 0; index < patternSplit.length; index++) {
       const part = patternSplit[index];
       const { key, matchType } = RouteTree.dynamic(part);
-      if (matchType === RouteTree.matchType.single) {
+      if (matchType === RouteTree.MatchTypes.single) {
         params[key] = pathSplit[index];
-      } else if (matchType === RouteTree.matchType.multi) {
+      } else if (matchType === RouteTree.MatchTypes.multi) {
         params[key] = pathSplit.slice(index).join("/");
         break;
       }
@@ -157,33 +158,33 @@ export class RouteTree {
       if (infixed(key, "{", "}") || infixed(key, "[", "]")) {
         key = key.slice(1, -1);
         const result = RouteTree.dynamic(key);
-        result.matchType ||= RouteTree.matchType.single;
+        result.matchType ||= RouteTree.MatchTypes.single;
         return result;
       }
 
       if (key.startsWith(":")) {
         return {
           key: key.slice(1),
-          matchType: RouteTree.matchType.single,
+          matchType: RouteTree.MatchTypes.single,
         };
       }
       if (key.startsWith("*")) {
         return {
           key: key.slice(1),
-          matchType: RouteTree.matchType.multi,
+          matchType: RouteTree.MatchTypes.multi,
         };
       }
       if (key.startsWith("...")) {
         return {
           key: key.slice(3),
-          matchType: RouteTree.matchType.multi,
+          matchType: RouteTree.MatchTypes.multi,
         };
       }
     }
 
     return {
       key: key,
-      matchType: RouteTree.matchType.strict,
+      matchType: RouteTree.MatchTypes.strict,
     };
   }
 
