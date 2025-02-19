@@ -1,5 +1,18 @@
 # @godown/element
 
+## 1.6.0
+
+### Minor Changes
+
+- 69e4645: remove RouteTree.join static method
+- 0012c42: rename `matchType` to `MatchTypes` static method in RouteTree
+- e9d3f8f: move random to Ranger.random method
+
+### Patch Changes
+
+- Updated dependencies [33da66a]
+  - sharekit@0.1.0
+
 ## 1.5.0
 
 ### Minor Changes
