@@ -57,6 +57,8 @@ pnpm run build
 
 - `@godown/react` React components for godown.
 
+- `sharekit` Shareable utility toolkit.
+
 - `template-extractor` Extract strings templates in TypeScript source file.
 
 ### Plugins
