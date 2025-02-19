@@ -1,5 +1,0 @@
----
-"sharekit": minor
----
-
-initial release
