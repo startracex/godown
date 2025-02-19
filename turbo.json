@@ -11,7 +11,8 @@
       ],
       "outputs": [
         "**/*.js",
-        "**/*.d.ts"
+        "**/*.d.ts",
+        "**/*.map"
       ]
     },
     "check-types": {
