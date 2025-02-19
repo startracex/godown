@@ -1,4 +1,4 @@
-import { infixed, isString, trim } from "sharekit";
+import { infixed, isString } from "sharekit";
 
 export class RouteTree {
   static MatchTypes = {
@@ -152,7 +152,7 @@ export class RouteTree {
    */
   static dynamic(key: string): {
     key: string;
-    matchType: number;
+    matchType: 0 | 1 | 2;
   } {
     if (key) {
       if (infixed(key, "{", "}") || infixed(key, "[", "]")) {
@@ -186,15 +186,6 @@ export class RouteTree {
       key: key,
       matchType: RouteTree.MatchTypes.strict,
     };
-  }
-
-  /**
-   * Join the given paths with a "/" and remove the leading and trailing "/" from each path.
-   * @param paths - An array of paths to join.
-   * @returns The joined path with "/" separators and no leading or trailing "/".
-   */
-  static join(...paths: string[]): string {
-    return paths.map((path) => trim(path, "/")).join("/");
   }
 
   /**
