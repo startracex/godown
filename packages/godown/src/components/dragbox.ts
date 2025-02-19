@@ -104,7 +104,7 @@ class Dragbox extends GlobalStyle {
     } else if (l < parentWidth - width) {
       style.left = `${l}px`;
     } else {
-      style.left = `${parentWidth - width}"px"`;
+      style.left = `${parentWidth - width}px`;
     }
     if (t < 0) {
       style.top = "0";
