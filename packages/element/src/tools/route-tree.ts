@@ -1,4 +1,4 @@
-import { infixed, trim } from "./lib.js";
+import { infixed, trim } from "sharekit";
 
 export class RouteTree {
   static matchType = {

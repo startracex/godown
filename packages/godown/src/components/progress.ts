@@ -1,4 +1,4 @@
-import { attr, godown, isNil, Ranger, styles } from "@godown/element";
+import { attr, godown, isNullable, Ranger, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -71,7 +71,7 @@ class Progress extends GlobalStyle {
   protected render(): TemplateResult<1> {
     let width = 20;
     let className: string;
-    if (!isNil(this.value)) {
+    if (!isNullable(this.value)) {
       const ranger = new Ranger(this.min, this.max);
       width = ranger.restrict(this.value / ranger.diff) * 100;
       className = "static";

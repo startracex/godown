@@ -1,7 +1,4 @@
-interface Constructor<T> {
-  prototype: T;
-  new(...args: any[]): T;
-}
+import type { Constructor } from "./lib.js";
 
 interface SomeObservers {
   target: Node | Element;

@@ -1,11 +1,9 @@
 import { noChange } from "lit";
 import { Directive, directive, type DirectiveResult, type ElementPart, PartType } from "lit/directive.js";
 
-import { fuse, isNil } from "../tools/lib.js";
+import { isNullable, join } from "../tools/lib.js";
 
-const append = fuse;
-
-const noAttribute = (value: any): boolean => isNil(value) || value === false;
+const noAttribute = (value: any): boolean => isNullable(value) || value === false;
 
 export function updateAttribute(this: Element, name: string, value: any): void {
   if (noAttribute(value)) {
@@ -54,7 +52,7 @@ export const attrToString = (a: DirectiveParams): string =>
     if (noAttribute(value)) {
       return acc;
     }
-    return append(acc, key + (value === true ? "" : `="${value}"`));
+    return join(acc, key + (value === true ? "" : `="${value}"`), " ");
   }, "");
 
 const svgInitials = {

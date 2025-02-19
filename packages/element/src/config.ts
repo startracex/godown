@@ -1,4 +1,4 @@
-import { trim, trimLeft, trimRight } from "./tools/lib.js";
+import { toDash } from "sharekit";
 
 const separator = "-";
 
@@ -16,10 +16,7 @@ export class GodownConfig {
   }
 
   tag(origin: string): string {
-    return trim(
-      trimRight(this.prefix, separator) + separator + origin + separator + trimLeft(this.suffix, separator),
-      separator,
-    );
+    return toDash(this.prefix + separator + origin + separator + this.suffix);
   }
 
   define(name: string, constructor: CustomElementConstructor, options?: ElementDefinitionOptions): void {

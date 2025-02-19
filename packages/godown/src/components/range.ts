@@ -1,4 +1,4 @@
-import { attr, tokenList, godown, isNil, joinProperties, loop, part, styles, Ranger, omit } from "@godown/element";
+import { attr, tokenList, godown, isNullable, joinProperties, loop, part, styles, Ranger, omit } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 
@@ -391,8 +391,8 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
     this._ranger = new Ranger(this.min, this.max, this.step);
     const gap = this._ranger.diff;
     this.step ||= gap / 100;
-    if (isNil(this.value)) {
-      if (!isNil(this.default)) {
+    if (isNullable(this.value)) {
+      if (!isNullable(this.default)) {
         this.value = this.default;
       } else {
         (this.value as number) = Math.round(gap / 2 / this.step) * this.step;

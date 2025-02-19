@@ -1,6 +1,7 @@
 import type { CSSResult } from "lit";
 
-import { Entry, isNil, toEntries } from "./lib.js";
+import { Entry, toEntries } from "./lib.js";
+import { isNullable } from "../tools/lib.js";
 
 /**
  * Call Object.values and join "".
@@ -37,7 +38,7 @@ export function constructCSSObject<
     const rules = vars.reduce((acc: string[], key, index) => {
       let value = props[sel][index] as V;
       value = (propertyFunc ? propertyFunc(value, index) : value) as V;
-      if (!isNil(value)) {
+      if (!isNullable(value)) {
         acc.push(`${key}:${value}`);
       }
       return acc;

@@ -1,7 +1,7 @@
 {
-  "name": "@godown/element",
-  "version": "1.5.0",
-  "description": "Component base class for godown",
+  "name": "sharekit",
+  "version": "0.0.0",
+  "description": "Shareable utility toolkit",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -14,22 +14,17 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/startracex/godown.git",
-    "directory": "packages/element"
+    "directory": "packages/sharekit"
   },
-  "keywords": [],
+  "keywords": [
+    "shared",
+    "utilities",
+    "toolkit"
+  ],
   "author": "startracex",
   "license": "MIT",
-  "dependencies": {
-    "lit": "catalog:",
-    "sharekit": "workspace:^",
-    "tslib": "catalog:"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
   "files": [
     "**/*.{d.ts,js}+(|.map)",
-    "src",
-    "tsconfig.json"
+    "src"
   ]
 }

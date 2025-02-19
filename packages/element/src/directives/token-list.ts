@@ -1,7 +1,5 @@
-import { fuse } from "../tools/lib.js";
-import { type attr } from "./attr.js";
-
-const append = fuse;
+import { join } from "../tools/lib.js";
+import type { attr } from "./attr.js";
 
 type TokenListItem = string | Record<string, any> | TokenListItem[];
 
@@ -22,17 +20,17 @@ export const tokenList = (...args: TokenListItem[]): string =>
       return acc;
     }
     if (Array.isArray(cur)) {
-      return append(acc, tokenList(...cur));
+      return join(acc, tokenList(...cur), " ");
     }
     if (typeof cur === "object") {
       for (const key in cur) {
         if (cur[key]) {
-          acc = append(acc, key);
+          acc = join(acc, key, " ");
         }
       }
       return acc;
     }
-    return append(acc, cur);
+    return join(acc, cur, " ");
   }, "");
 
 export default tokenList;
