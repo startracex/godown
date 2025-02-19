@@ -1,4 +1,4 @@
-import { infixed, trim } from "sharekit";
+import { infixed, isString, trim } from "sharekit";
 
 export class RouteTree {
   static matchType = {
@@ -61,7 +61,7 @@ export class RouteTree {
    * @returns The matching route tree node, or null if not found.
    */
   search(parts: string | string[], height = 0): RouteTree | null {
-    if (typeof parts === "string") {
+    if (isString(parts)) {
       parts = RouteTree.split(parts);
     }
 

@@ -2,10 +2,10 @@ import { LitElement, type PropertyDeclaration, type PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GodownConfig } from "./config.js";
-import { deepQuerySelector, deepQuerySelectorAll, Events, Observers, Timeouts } from "./tools/index.js";
+import { deepQuerySelector, deepQuerySelectorAll, Events, isSymbol, Observers, Timeouts } from "./tools/index.js";
 
 export const attributeName = (property: PropertyKey, { attribute }: PropertyDeclaration): string | undefined => {
-  if (attribute === false || typeof property === "symbol") {
+  if (attribute === false || isSymbol(property)) {
     return;
   }
   return attribute === true || attribute === undefined ? String(property).toLowerCase() : attribute;

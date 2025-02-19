@@ -1,5 +1,6 @@
 import { html, svg, type TemplateResult } from "lit";
 
+import { isString } from "../tools/lib.js";
 import { svgAttr } from "./attr.js";
 
 export const icon = (
@@ -7,7 +8,7 @@ export const icon = (
 ) => (
   <A extends IconAttributesParams>(strings: TemplateStringsArray, ...values: any[]): IconRenderer<A> => {
     const body = svg(strings, values);
-    const s = typeof viewBox === "string" ? viewBox : viewBox.join(" ");
+    const s = isString(viewBox) ? viewBox : viewBox.join(" ");
     const renderer = (attributes?: A) => html`<svg viewBox="${s}" ${svgAttr(attributes)}>${body}</svg>`;
     renderer.body = body;
     renderer.viewBox = s;

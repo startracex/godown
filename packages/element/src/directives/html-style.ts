@@ -1,6 +1,7 @@
 import { html, nothing, type TemplateResult } from "lit";
 
 import { joinRules } from "../tools/css.js";
+import { isString } from "sharekit";
 
 /**
  * Style element directive.
@@ -13,7 +14,7 @@ export const htmlStyle = (style?: string | Record<string, any>, media?: string):
   if (!style) {
     return nothing;
   }
-  const styleString = typeof style === "string" ? style : joinRules(style);
+  const styleString = isString(style) ? style : joinRules(style);
   return styleString
     ? html`<style media="${media || nothing}">${styleString}</style>`
     : nothing;

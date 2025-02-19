@@ -1,4 +1,4 @@
-import { join } from "../tools/lib.js";
+import { isArray, isObject, join } from "../tools/lib.js";
 import type { attr } from "./attr.js";
 
 type TokenListItem = string | Record<string, any> | TokenListItem[];
@@ -19,10 +19,10 @@ export const tokenList = (...args: TokenListItem[]): string =>
     if (!cur) {
       return acc;
     }
-    if (Array.isArray(cur)) {
+    if (isArray(cur)) {
       return join(acc, tokenList(...cur), " ");
     }
-    if (typeof cur === "object") {
+    if (isObject(cur)) {
       for (const key in cur) {
         if (cur[key]) {
           acc = join(acc, key, " ");

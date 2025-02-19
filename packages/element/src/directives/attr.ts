@@ -1,7 +1,7 @@
 import { noChange } from "lit";
 import { Directive, directive, type DirectiveResult, type ElementPart, PartType } from "lit/directive.js";
 
-import { isNullable, join } from "../tools/lib.js";
+import { isNullable, isNumber, isString, join } from "../tools/lib.js";
 
 const noAttribute = (value: any): boolean => isNullable(value) || value === false;
 
@@ -11,8 +11,8 @@ export function updateAttribute(this: Element, name: string, value: any): void {
   } else if (value === true) {
     this.setAttribute(name, "");
   } else if (
-    typeof value === "string" ||
-    (typeof value === "number" && !isNaN(value))
+    isString(value) ||
+    (isNumber(value) && !isNaN(value))
   ) {
     this.setAttribute(name, String(value));
   } else {

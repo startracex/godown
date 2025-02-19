@@ -1,10 +1,10 @@
-import GodownElement from "@godown/element/element.js";
 import { css } from "@lit/reactive-element/css-tag.js";
 import { property } from "@lit/reactive-element/decorators/property.js";
 import { state } from "@lit/reactive-element/decorators/state.js";
+import { GodownElement, isString } from "@godown/element";
 
 const importSpec = (specifier: string | URL, base: string | URL) =>
-  (typeof specifier === "string" && import.meta.resolve)
+  (isString(specifier) && import.meta.resolve)
     ? import.meta.resolve(specifier)
     : new URL(specifier, base || undefined) + "";
 
