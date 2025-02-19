@@ -1,4 +1,4 @@
-import { attr, godown, htmlSlot, random, styles } from "@godown/element";
+import { attr, godown, htmlSlot, Ranger, styles } from "@godown/element";
 import { type PropertyValueMap, type TemplateResult, css, html } from "lit";
 import { property, query, state } from "lit/decorators.js";
 
@@ -86,6 +86,7 @@ class Typewriter extends GlobalStyle {
 
   @query("i")
   protected _i: HTMLElement;
+  protected _ranger: Ranger;
 
   /**
    * {@linkcode Typewriter.content} length.
@@ -109,6 +110,11 @@ class Typewriter extends GlobalStyle {
     `;
   }
 
+  connectedCallback(): void {
+    super.connectedCallback();
+    this._ranger = new Ranger(this.min, this.max);
+  }
+
   protected firstUpdated(): void {
     this.content ||= this._slot?.assignedNodes()[0]?.textContent.trim() || "";
     if (!this.ended && this.len) {
@@ -124,7 +130,7 @@ class Typewriter extends GlobalStyle {
 
   write(at: number = this.index): void {
     this.contentInternal = this.content.slice(0, at + 1);
-    const timeout = this.delay || random(this.max, this.min);
+    const timeout = this.delay || this._ranger.random();
     this.timeoutID = this.timeouts.add(
       setTimeout(() => {
         const nx = at + 1;

@@ -11,6 +11,10 @@ export class Ranger {
     this.step = step;
   }
 
+  random(): number {
+    return this.normalize(Math.random() * this.diff + this.min);
+  }
+
   present(decimal: number): number {
     return this.normalize(decimal * this.diff);
   }
