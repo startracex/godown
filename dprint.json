@@ -1,28 +1,7 @@
 {
-  "typescript": {
-    "lineWidth": 120,
-    "indentWidth": 2,
-    "useTabs": false,
-    "semiColons": "prefer",
-    "quoteStyle": "alwaysDouble",
-    "quoteProps": "asNeeded",
-    "newLineKind": "lf",
-    "useBraces": "always",
-    "bracePosition": "sameLine",
-    "singleBodyPosition": "nextLine",
-    "trailingCommas": "onlyMultiLine",
-    "binaryExpression.operatorPosition": "sameLine",
-    "conditionalExpression.operatorPosition": "nextLine",
-    "arrowFunction.useParentheses": "force",
-    "typeLiteral.separatorKind": "semiColon",
-    "spaceSurroundingProperties": true,
-    "taggedTemplate.spaceBeforeLiteral": false,
-    "commentLine.forceSpaceAfterSlashes": true,
-    "functionExpression.spaceAfterFunctionKeyword": true,
-    "module.sortImportDeclarations": "maintain",
-    "importDeclaration.forceSingleLine": true,
-    "exportDeclaration.forceSingleLine": false
-  },
+  "extends": [
+    "./node_modules/@startracex/dev-config/dprint.json"
+  ],
   "excludes": [
     "**/node_modules",
     "**/*.d.ts",
@@ -36,7 +15,7 @@
     "**/*.json"
   ],
   "plugins": [
-    "https://plugins.dprint.dev/typescript-0.93.0.wasm",
+    "https://plugins.dprint.dev/typescript-0.93.4.wasm",
     "https://plugins.dprint.dev/markdown-0.17.8.wasm",
     "https://plugins.dprint.dev/json-0.19.4.wasm"
   ]
