@@ -22,9 +22,7 @@ export function cleanTSGenFiles(
   const p1 = globSync(input.pattern, {
     cwd: input.dir,
     ...input.options,
-  }).map(
-    (path) => path.slice(0, -3) + ".{js,d.ts,js.map,d.ts.map}",
-  );
+  }).map((path) => path.slice(0, -3) + ".{js,d.ts,js.map,d.ts.map}");
 
   const files = globSync([...p1, ...output.addFiles], {
     cwd: output.dir,

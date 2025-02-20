@@ -15,6 +15,5 @@ class DatasetDirective extends Directive {
   }
 }
 
-export const dataset: (
-  value: Record<string, any>,
-) => DirectiveResult<typeof DatasetDirective> = directive(DatasetDirective);
+export const dataset: (value: Record<string, any>) => DirectiveResult<typeof DatasetDirective> =
+  directive(DatasetDirective);

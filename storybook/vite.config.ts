@@ -8,7 +8,7 @@ export default defineConfig({
     {
       name: "replace-placeholder",
       enforce: "pre",
-      async load(id) {
+      load(id) {
         if (
           id.endsWith(".mdx")
         ) {

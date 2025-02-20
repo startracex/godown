@@ -1,6 +1,6 @@
 import type { CSSResult } from "lit";
 
-import { Entry, isObject, toEntries } from "./lib.js";
+import { type Entry, isObject, toEntries } from "./lib.js";
 import { isNullable } from "../tools/lib.js";
 
 /**

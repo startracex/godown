@@ -1,4 +1,4 @@
-import { type AnalyzePhaseParams } from "@custom-elements-manifest/analyzer";
+import type { AnalyzePhaseParams } from "@custom-elements-manifest/analyzer";
 
 import { exports } from "./exports.js";
 
@@ -9,9 +9,7 @@ export function analyzeModuleDeclaration({
   context,
 }: AnalyzePhaseParams) {
   if (ts.isModuleDeclaration(node) && node.name.getText() === "global") {
-    ts.forEachChild(node, (
-      node1,
-    ) => {
+    ts.forEachChild(node, (node1) => {
       if (ts.isModuleBlock(node1)) {
         node1.statements.forEach((s) => {
           if (ts.isInterfaceDeclaration(s) && s.name.getText() === "HTMLElementTagNameMap") {

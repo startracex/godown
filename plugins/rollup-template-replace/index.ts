@@ -29,9 +29,7 @@ export async function doReplace(oldContent: string, { replace, callback, match }
     end: number;
   }[] = [];
 
-  for (let index = 0; index < templates.length; index++) {
-    const template = templates[index];
-
+  for (const template of templates) {
     const { start, end } = template;
 
     if (!template.children) {

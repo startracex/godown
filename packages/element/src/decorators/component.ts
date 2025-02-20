@@ -18,12 +18,7 @@ interface Options {
  * @param param0.registry custom element registry.
  * @returns Decorator.
  */
-export const component = ({
-  tagName,
-  styles: s,
-  autoDefine = false,
-  registry = customElements,
-}: Options) =>
+export const component = ({ tagName, styles: s, autoDefine = false, registry = customElements }: Options) =>
 (
   constructor: typeof HTMLElement & {
     elementTagName?: string;

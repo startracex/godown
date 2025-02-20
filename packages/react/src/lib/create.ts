@@ -3,7 +3,7 @@ import * as React from "react";
 
 interface WithTagName<T> {
   elementTagName?: string;
-  new(): T;
+  new (): T;
 }
 
 export type TargetedCustomEvent<D = any, T = HTMLElement> = Omit<CustomEvent<D>, "target"> & {
@@ -24,9 +24,7 @@ export const createReact = <G extends HTMLElement, E extends Record<string, any>
   });
 };
 
-export const eventMap = <T extends Record<string, any>>(
-  eMap: Record<keyof T, any>,
-): {
+export const eventMap = <T extends Record<string, any>>(eMap: Record<keyof T, any>): {
   [K in keyof T as OrLower<K>]: EventName<T[K]>;
 } => {
   if (!eMap) {

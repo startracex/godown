@@ -12,7 +12,7 @@ export function updateAttribute(this: Element, name: string, value: any): void {
     this.setAttribute(name, "");
   } else if (
     isString(value) ||
-    (isNumber(value) && !isNaN(value))
+    (isNumber(value) && !Number.isNaN(value))
   ) {
     this.setAttribute(name, String(value));
   } else {

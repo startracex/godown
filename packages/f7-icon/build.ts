@@ -11,13 +11,11 @@ import format from "./lib/format.js";
 
 const set = new IconSet(createRequire(import.meta.url)("@iconify-json/f7/icons.json"));
 
-["icons", "types"].forEach(
-  (path) => {
-    if (!existsSync(path)) {
-      mkdirSync(path);
-    }
-  },
-);
+["icons", "types"].forEach((path) => {
+  if (!existsSync(path)) {
+    mkdirSync(path);
+  }
+});
 
 const list = set.list(["icon"]);
 
@@ -36,26 +34,20 @@ const I = `type I = import("@godown/element/directives/icon.d.ts").IconRenderer;
 Object.entries({
   "includes.json": JSON.stringify(list),
   "types/icon.d.ts": I + "declare var i: I;\nexport default i;",
-  "types/all.d.ts": I + list.map(
-    (name) => `declare module "@godown/f7-icon/icons/${name}.js" { var i: I; export default i; }`,
-  ).join("\n"),
+  "types/all.d.ts": I +
+    list.map((name) => `declare module "@godown/f7-icon/icons/${name}.js" { var i: I; export default i; }`).join("\n"),
 }).map((entry) => writeFileSync(entry[0], entry[1] + "\n"));
 
-build(
-  {
-    ...commonInput,
-    input: globSync("lib/*.js"),
-    output: {
-      dir: ".",
-      sourcemap: true,
-      format: "cjs",
-      entryFileNames: "[name].cjs",
-      preserveModules: true,
-      preserveModulesRoot: ".",
-    },
-    plugins: [
-      cjsShim(),
-      commonjs(),
-    ],
+build({
+  ...commonInput,
+  input: globSync("lib/*.js"),
+  output: {
+    dir: ".",
+    sourcemap: true,
+    format: "cjs",
+    entryFileNames: "[name].cjs",
+    preserveModules: true,
+    preserveModulesRoot: ".",
   },
-);
+  plugins: [cjsShim(), commonjs()],
+});

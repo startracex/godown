@@ -52,8 +52,7 @@ export function extract(node: ts.Node, parent?: ts.Node): ExtractResult[] {
     const spans = node.templateSpans;
     const children: ExtractResult[] = [];
     if (spans) {
-      for (let i = 0; i < spans.length; i++) {
-        const span = spans[i];
+      for (const span of spans) {
         children.push(...extract(span));
       }
     }

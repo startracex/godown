@@ -1,4 +1,4 @@
-import { type AnalyzePhaseParams } from "@custom-elements-manifest/analyzer";
+import type { AnalyzePhaseParams } from "@custom-elements-manifest/analyzer";
 import type { JSDoc } from "typescript545";
 
 import { exports } from "./exports.js";

@@ -3,9 +3,8 @@ import { html, svg, type TemplateResult } from "lit";
 import { isString } from "../tools/lib.js";
 import { svgAttr } from "./attr.js";
 
-export const icon = (
-  viewBox: string | (string | number)[],
-) => (
+export const icon =
+  (viewBox: string | (string | number)[]) =>
   <A extends IconAttributesParams>(strings: TemplateStringsArray, ...values: any[]): IconRenderer<A> => {
     const body = svg(strings, values);
     const s = isString(viewBox) ? viewBox : viewBox.join(" ");
@@ -13,8 +12,7 @@ export const icon = (
     renderer.body = body;
     renderer.viewBox = s;
     return renderer;
-  }
-);
+  };
 
 type IconAttributesParams = Parameters<typeof svgAttr>[0] & { viewBox?: never };
 

@@ -1,5 +1,5 @@
 import { themes } from "@storybook/theming";
-import { type Preview } from "@storybook/web-components";
+import type { Preview } from "@storybook/web-components";
 import { ArgHelper } from "../args";
 import "godown";
 

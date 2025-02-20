@@ -22,32 +22,28 @@ export default function (fn: (old: string) => string) {
   return {
     name: "fix-module",
     packageLinkPhase({ customElementsManifest }) {
-      customElementsManifest.modules.forEach(
-        (
-          mod: ManifestModule,
-        ) => {
-          if (mod.path) {
-            mod.path = fn(mod.path);
+      customElementsManifest.modules.forEach((mod: ManifestModule) => {
+        if (mod.path) {
+          mod.path = fn(mod.path);
+        }
+
+        mod.exports?.forEach(({ declaration }) => {
+          if (declaration?.module) {
+            declaration.module = fn(declaration.module);
           }
+        });
 
-          mod.exports?.forEach(({ declaration }) => {
-            if (declaration?.module) {
-              declaration.module = fn(declaration.module);
+        mod.declarations?.forEach(({ members, attributes, events, superclass }) => {
+          [...(members || []), ...(attributes || []), ...(events || [])].forEach(({ inheritedFrom }) => {
+            if (inheritedFrom?.module) {
+              inheritedFrom.module = fn(inheritedFrom.module);
             }
           });
-
-          mod.declarations?.forEach(({ members, attributes, events, superclass }) => {
-            [...(members || []), ...(attributes || []), ...(events || [])].forEach(({ inheritedFrom }) => {
-              if (inheritedFrom?.module) {
-                inheritedFrom.module = fn(inheritedFrom.module);
-              }
-            });
-            if (superclass?.module) {
-              superclass.module = fn(superclass.module);
-            }
-          });
-        },
-      );
+          if (superclass?.module) {
+            superclass.module = fn(superclass.module);
+          }
+        });
+      });
     },
   };
 }

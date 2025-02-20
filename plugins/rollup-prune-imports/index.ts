@@ -1,4 +1,4 @@
-import { createFilter, FilterPattern } from "@rollup/pluginutils";
+import { createFilter, type FilterPattern } from "@rollup/pluginutils";
 import MagicString from "magic-string";
 import type { Plugin } from "rollup";
 

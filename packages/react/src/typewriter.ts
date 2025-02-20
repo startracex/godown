@@ -1,7 +1,7 @@
 "use client";
 import Typewriter from "godown/typewriter.js";
 
-import { createReact, eventMap, TargetedCustomEvent } from "./lib/create.js";
+import { createReact, eventMap, type TargetedCustomEvent } from "./lib/create.js";
 import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(

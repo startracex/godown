@@ -193,7 +193,8 @@ class Carousel extends GlobalStyle {
   normalizeIndex(i: number): number {
     if (i < 0) {
       return 0;
-    } else if (i > this.children.length - 3) {
+    }
+    if (i > this.children.length - 3) {
       return this.children.length - 3;
     }
     return i;

@@ -11,6 +11,8 @@ export const attributeName = (property: PropertyKey, { attribute }: PropertyDecl
   return attribute === true || attribute === undefined ? String(property).toLowerCase() : attribute;
 };
 
+const withSelectorRegex = /^[\s\S]*{[\s\S]*}$/;
+
 export class GodownElement extends LitElement {
   static godownConfig: GodownConfig = new GodownConfig();
 
@@ -207,7 +209,7 @@ export class GodownElement extends LitElement {
   @property({ reflect: true })
   set stylex(sx: string) {
     sx = sx.trim();
-    if (!/^[\s\S]*{[\s\S]*}$/.test(sx)) {
+    if (!withSelectorRegex.test(sx)) {
       sx = `:host{${sx}}`;
     }
     if (!this.shadowRoot) {
