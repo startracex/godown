@@ -2,10 +2,9 @@ import { attr, godown, htmlSlot, omit, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { GlobalStyle, scopePrefix, cssGlobalVars } from "../core/global-style.js";
+import { GlobalStyle, cssGlobalVars } from "../core/global-style.js";
 
 const protoName = "avatar";
-const cssScope = scopePrefix(protoName);
 
 /**
  * {@linkcode Avatar} renders a avatar.
