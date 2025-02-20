@@ -12,7 +12,6 @@ export type TargetedCustomEvent<D = any, T = HTMLElement> = Omit<CustomEvent<D>,
 
 type OrLower<N> = N extends string ? N | Lowercase<N> : never;
 
-// biome-ignore lint/complexity/noBannedTypes: {}
 export const createReact = <G extends HTMLElement, E extends Record<string, any> = {}>(
   elementClass: WithTagName<G>,
   events?: E,
