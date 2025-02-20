@@ -2,9 +2,7 @@ node_modules
 .idea
 .turbo
 .vercel
-test
 build
-dev
 
 *.js
 *.cjs
@@ -18,4 +16,4 @@ web-types.json
 vscode.css-custom-data.json
 vscode.html-custom-data.json
 custom-elements.json
-packages/f7-icon/includes.json
+includes.json
