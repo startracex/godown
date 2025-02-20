@@ -2,7 +2,7 @@ import type { Constructor } from "./types.js";
 
 export const isNullable = (value: unknown): value is null | undefined => value === null || value === undefined;
 
-export const isNumerical = (value: string | number): boolean => !isNaN(+value);
+export const isNumerical = (value: unknown): boolean => !isNaN(+(value as any));
 
 export const isBoolean = (value: unknown): value is boolean => typeof value === "boolean";
 
@@ -35,5 +35,5 @@ export const isArrayLike = <T = any>(value: unknown): value is ArrayLike<T> =>
 export const isTemplateStringArray = (value: unknown): value is TemplateStringsArray =>
   isArray(value) && isArray((value as any).raw);
 
-export const isConstructor = <T = any>(value: any): value is Constructor<T> =>
+export const isConstructor = <T = any>(value: unknown): value is Constructor<T> =>
   typeof value === "function" && value.prototype?.constructor === value;
