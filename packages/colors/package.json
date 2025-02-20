@@ -7,9 +7,7 @@
   "scripts": {
     "check-types": "tsc --noEmit",
     "clean": "tsc --build --clean",
-    "build": "tsc",
-    "fmt": "dprint fmt",
-    "lint": "biome lint"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",

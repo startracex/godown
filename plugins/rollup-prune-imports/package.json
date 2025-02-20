@@ -5,9 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "fmt": "dprint fmt",
-    "lint": "biome lint"
+    "build": "tsc"
   },
   "keywords": [
     "rollup",

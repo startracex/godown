@@ -11,7 +11,6 @@
     "build": "tsx build.ts",
     "build:ts": "tsc",
     "fmt": "prettier src/**/* --write",
-    "lint": "biome lint",
     "manifest": "tsx manifest.ts"
   },
   "homepage": "https://godown.js.org",

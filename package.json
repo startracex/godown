@@ -5,8 +5,8 @@
     "check-types": "turbo run check-types",
     "clean": "turbo run clean",
     "dev": "turbo run dev",
-    "fmt": "turbo run fmt",
-    "lint": "turbo run lint",
+    "fmt": "dprint fmt && turbo run fmt",
+    "lint": "biome lint",
     "version": "changeset version"
   },
   "dependencies": {
