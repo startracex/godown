@@ -295,16 +295,14 @@ export class GodownElement extends LitElement {
    * @returns The index of the injected style sheet, or `undefined` if there is no shadow root or no styles were provided.
    */
   adoptStyles(...styles: { toString(): string }[]): number | undefined {
-    if (!this.shadowRoot) {
+    if (!this.shadowRoot || !styles.length) {
       return;
     }
     const stack = this.shadowRoot.adoptedStyleSheets;
-    if (styles.length) {
-      const sheet = new CSSStyleSheet();
-      styles.forEach((style) => sheet.insertRule(style.toString()));
-      stack.push(sheet);
-      return stack.length - 1;
-    }
+    const sheet = new CSSStyleSheet();
+    styles.forEach((style) => sheet.insertRule(style.toString()));
+    stack.push(sheet);
+    return stack.length - 1;
   }
 
   dispatchCustomEvent(type: string, detail?: any, options?: EventInit): void {
