@@ -2,7 +2,7 @@ import type { Constructor } from "./types.js";
 
 export const isNullable = (value: unknown): value is null | undefined => value === null || value === undefined;
 
-export const isNumerical = (value: unknown): boolean => !isNaN(+(value as any));
+export const isNumerical = (value: unknown): boolean => !Number.isNaN(+(value as any));
 
 export const isBoolean = (value: unknown): value is boolean => typeof value === "boolean";
 
