@@ -12,7 +12,7 @@ export type IntrinsicTag<T extends keyof HTMLElementTagNameMap> = IntrinsicEleme
  * With `@types/react` 18.3.15+:
  *
  * ```ts
- * import { type IntrinsicMap } from "@godown/react/lib/intrinsic.js";
+ * import type { IntrinsicMap } from "@godown/react/lib/intrinsic.js";
  *
  * declare module "react" {
  *   namespace JSX {
