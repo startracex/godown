@@ -12,7 +12,7 @@ import { component } from "./component.js";
  * @returns Decorator.
  */
 export const godown =
-  (name?: string, option?: Omit<(Parameters<typeof component>[0]), "tagName">) =>
+  (name?: string, option?: Omit<Parameters<typeof component>[0], "tagName">) =>
   (constructor: typeof GodownElement): void => {
     name ||= toDash(constructor.name);
     constructor.protoName = name;

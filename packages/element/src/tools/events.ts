@@ -17,12 +17,7 @@ export class Events {
     T extends EventTarget = HTMLElement,
     F extends EventListenerFunc<T> = EventListenerFunc<T>,
     N extends string = EventNames,
-  >(
-    src: T,
-    type: N,
-    listener: F,
-    options?: EventAddOptions,
-  ): F {
+  >(src: T, type: N, listener: F, options?: EventAddOptions): F {
     if (!src || !listener) {
       return;
     }

@@ -2,8 +2,7 @@ import { noChange } from "lit";
 import { Directive, directive, type DirectiveResult, type ElementPart, PartType } from "lit/directive.js";
 
 class DatasetDirective extends Directive {
-  render(value: Record<string, any>): void {
-  }
+  render(value: Record<string, any>): void {}
 
   update(part: ElementPart, [value]: Parameters<this["render"]>): symbol {
     if (value && part.type === PartType.ELEMENT) {

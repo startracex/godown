@@ -10,10 +10,7 @@ export function updateAttribute(this: Element, name: string, value: any): void {
     this.removeAttribute(name);
   } else if (value === true) {
     this.setAttribute(name, "");
-  } else if (
-    isString(value) ||
-    (isNumber(value) && !Number.isNaN(value))
-  ) {
+  } else if (isString(value) || (isNumber(value) && !Number.isNaN(value))) {
     this.setAttribute(name, String(value));
   } else {
     this[name] = value;
@@ -23,8 +20,7 @@ export function updateAttribute(this: Element, name: string, value: any): void {
 type DirectiveParams = Record<string, any>;
 
 class AttrDirective extends Directive {
-  render(value: DirectiveParams, caller?: (this: Element, name: string, value: any) => void): void {
-  }
+  render(value: DirectiveParams, caller?: (this: Element, name: string, value: any) => void): void {}
 
   update(part: ElementPart, [value, fn = updateAttribute]: Parameters<this["render"]>): symbol {
     if (value && part.type === PartType.ELEMENT) {
