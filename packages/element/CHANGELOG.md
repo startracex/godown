@@ -1,5 +1,15 @@
 # @godown/element
 
+## 1.6.1
+
+### Patch Changes
+
+- Updated dependencies [6a681b5]
+- Updated dependencies [fda00b2]
+- Updated dependencies [becc391]
+- Updated dependencies [dcd9eb5]
+  - sharekit@0.2.0
+
 ## 1.6.0
 
 ### Minor Changes

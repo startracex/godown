@@ -1,5 +1,11 @@
 # @godown/react
 
+## 3.8.3
+
+### Patch Changes
+
+- godown@3.8.3
+
 ## 3.8.2
 
 ### Patch Changes

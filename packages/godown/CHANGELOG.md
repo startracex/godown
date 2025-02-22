@@ -1,5 +1,12 @@
 # godown
 
+## 3.8.3
+
+### Patch Changes
+
+- @godown/element@1.6.1
+- @godown/f7-icon@1.0.8
+
 ## 3.8.2
 
 ### Patch Changes
