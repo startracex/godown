@@ -7,9 +7,9 @@ export type StageStandard = 3;
 export type ExperimentalDecorator<T> = (target?: T, name?: PropertyKey, descriptor?: PropertyDescriptor) => void | any;
 
 export type StandardDecorator<T> = (
-  target?: T | ClassAccessorDecoratorTarget<T, unknown> | undefined,
+  target?: T | ClassAccessorDecoratorTarget<T, any> | undefined,
   context?: DecoratorContext,
-) => void | ClassAccessorDecoratorResult<T, unknown>;
+) => void | ClassAccessorDecoratorResult<T, any> | any;
 
 export const createDecorator = <
   G extends number = -1,
@@ -19,7 +19,7 @@ export const createDecorator = <
 >(
   experimental: E,
   standard: S,
-): G extends StageStandard ? S : G extends StageExperimental ? E : E | S => {
+): G extends StageStandard ? S : G extends StageExperimental ? E : E & S => {
   return ((target: any, keyOrContext: PropertyKey | DecoratorContext, descriptor?: PropertyDescriptor) => {
     if (!isObject(keyOrContext)) {
       return experimental(target, keyOrContext, descriptor);
