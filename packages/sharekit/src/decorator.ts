@@ -4,11 +4,11 @@ export type StageExperimental = 1;
 
 export type StageStandard = 3;
 
-export type ExperimentalDecorator<T> = (target: T, name: PropertyKey, descriptor?: PropertyDescriptor) => void | any
+export type ExperimentalDecorator<T> = (target?: T, name?: PropertyKey, descriptor?: PropertyDescriptor) => void | any;
 
 export type StandardDecorator<T> = (
-  target: T | ClassAccessorDecoratorTarget<T, unknown> | undefined,
-  context: DecoratorContext,
+  target?: T | ClassAccessorDecoratorTarget<T, unknown> | undefined,
+  context?: DecoratorContext,
 ) => void | ClassAccessorDecoratorResult<T, unknown>;
 
 export const createDecorator = <
