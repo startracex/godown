@@ -1,3 +1,5 @@
+import { createDecorator, type ExperimentalDecorator, type StandardDecorator } from "sharekit";
+
 const resolve = (value, defaults) => {
   if (value) {
     return value;
@@ -7,41 +9,53 @@ const resolve = (value, defaults) => {
   }
 };
 
-type Rejection = null | false;
+const makeDefaultSetter = (key: PropertyKey) =>
+  function (this: any, value) {
+    this[key] = value;
+  };
+
+const makeDefaultGetter = (key: PropertyKey) =>
+  function (this: any) {
+    return this[key];
+  };
+
+const getAliasDescriptor = (key: PropertyKey, descriptor: PropertyDescriptor) => {
+  const { get, set } = descriptor;
+  const attribute = {
+    ...descriptor,
+  };
+  const defaultGet = makeDefaultGetter(key);
+  const defaultSet = makeDefaultSetter(key);
+
+  const resolveSet = resolve(set, defaultSet);
+  const resolveGet = resolve(get, defaultGet);
+  if (resolveSet) {
+    attribute.set = resolveSet;
+  }
+  if (resolveGet) {
+    attribute.get = resolveGet;
+  }
+  return attribute;
+};
+
+type AliasDecorator<T, K extends keyof T> = {
+  get?: null | false | ((this: T) => T[K]);
+  set?: null | false | ((this: T, value: T[K]) => void);
+} & Omit<PropertyDescriptor, "get" | "set">;
 
 /**
  * Decorator adds an aliased property to the class.
- *
- * Stage 2 only.
  *
  * @param aliasForKey A key of the class to be aliased.
  * @param descriptor Property descriptor.
  * @returns Decorator.
  */
-export const alias = <T, K extends keyof T, P extends keyof T>(
+export const alias = <T, K extends keyof T = any>(
   aliasForKey: K,
-  { get, set, ...descriptor }: {
-    get?: Rejection | ((this: Omit<T, K>) => T[K]);
-    set?: Rejection | ((this: Omit<T, K>, value: T[K]) => void);
-  } & Omit<PropertyDescriptor, "get" | "set"> = {},
-) =>
-(proto: T, propertyKey: P): void => {
-  const defaultGet = function (this: any) {
-    return this[propertyKey];
-  };
-
-  const defaultSet = function (this: any, value: T[K]) {
-    this[propertyKey] = value;
-  };
-
-  const resolveSet = resolve(set, defaultSet);
-  const resolveGet = resolve(get, defaultGet);
-
-  Object.defineProperty(proto, aliasForKey, {
-    ...(resolveGet ? { get: resolveGet } : {}),
-    ...(resolveSet ? { set: resolveSet } : {}),
-    ...descriptor,
-  });
-};
+  descriptor: AliasDecorator<T, K> = {},
+): ExperimentalDecorator<T> & StandardDecorator<T> =>
+  createDecorator<-1, T>((proto, propertyKey) => {
+    Object.defineProperty(proto, aliasForKey, getAliasDescriptor(propertyKey, descriptor as PropertyDescriptor));
+  }, () => getAliasDescriptor(aliasForKey, descriptor as PropertyDescriptor));
 
 export default alias;
