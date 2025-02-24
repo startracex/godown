@@ -2,11 +2,13 @@ import type { CSSResult } from "lit";
 
 import { type Entry, isNullable, isObject, toEntries } from "./lib.js";
 
-export const joinRules = (rules: Entry<string, string | Entry<string | LikeString>>): string => {
+type LikeString = string | { toString(): string };
+
+export const joinRules = (rules: Entry<string, string | Entry<LikeString>>): string => {
   let result = "";
   for (const [key, value] of toEntries(rules)) {
     if (value) {
-      const properties = isObject(value) ? joinProperties(value) : value;
+      const properties = isObject(value) ? joinDeclarations(value) : value;
       if (properties) {
         result += key ? `${key}{${properties}}` : properties;
       }
@@ -15,7 +17,7 @@ export const joinRules = (rules: Entry<string, string | Entry<string | LikeStrin
   return result;
 };
 
-export const joinProperties = (props: Entry<string | LikeString>): string => {
+export const joinDeclarations = (props: Entry<LikeString>): string => {
   let result = "";
   for (const [key, value] of toEntries(props)) {
     if (key && !isNullable(value)) {
@@ -26,10 +28,6 @@ export const joinProperties = (props: Entry<string | LikeString>): string => {
 };
 
 export const toVar = (a: LikeString, b?: LikeString): string => (a ? `var(${a}${b ? `,${b}` : ""})` : "");
-
-interface LikeString {
-  toString(): string;
-}
 
 export const toStyleSheet = (style: string | CSSStyleSheet | CSSResult): CSSStyleSheet => {
   if (!(style instanceof CSSStyleSheet)) {

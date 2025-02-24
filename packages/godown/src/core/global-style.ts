@@ -1,6 +1,6 @@
 import { type Gradients, presetsRGB } from "@godown/colors/presets-rgb.js";
 import { travel } from "@godown/colors/travel.js";
-import { GodownElement, joinProperties, trim } from "@godown/element";
+import { GodownElement, joinDeclarations, trim } from "@godown/element";
 import { type CSSResult, css, unsafeCSS } from "lit";
 
 export class GlobalStyle extends GodownElement {}
@@ -55,7 +55,7 @@ GlobalStyle.styles = [
         const colorKey = cssGlobalVars.color + endKey;
         return `${colorKey}:rgb(${rgb});`;
       }, presetsRGB).join("") +
-      joinProperties([
+      joinDeclarations([
         [cssGlobalVars.active, `var(${cssGlobalVars._colors.blue[5]})`],
         [cssGlobalVars.passive, `var(${cssGlobalVars._colors.darkgray[5]})`],
         [

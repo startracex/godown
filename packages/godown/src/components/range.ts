@@ -1,4 +1,15 @@
-import { attr, tokenList, godown, isNullable, joinProperties, loop, part, styles, Ranger, omit } from "@godown/element";
+import {
+  attr,
+  tokenList,
+  godown,
+  isNullable,
+  joinDeclarations,
+  loop,
+  part,
+  styles,
+  Ranger,
+  omit,
+} from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 
@@ -209,7 +220,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
         part="root"
         ${attr(this.observedRecord)}
         @mousedown="${this.disabled ? null : this._handleMousedownRoot}"
-        style="${joinProperties([
+        style="${joinDeclarations([
           ["--from", `${((from - this.min) / gap) * 100}%`],
           ["--to", `${((to - this.min) / gap) * 100}%`],
           ...rangeValue.map(
@@ -236,7 +247,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
         @mousedown="${disabled ? null : this.createMouseDown(index)}"
         @focus="${disabled ? null : () => this.focusHandle(index)}"
         @blur="${disabled ? null : this.blurHandle}"
-        style="${joinProperties({
+        style="${joinDeclarations({
           "z-index": this.__focusStack.indexOf(index) + 1,
           "--handle": `var(--${end ? "to" : `handle-${index}`})`,
         })}"
