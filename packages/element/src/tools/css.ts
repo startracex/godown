@@ -54,7 +54,7 @@ export const joinRules = (rules: Entry<string, string | Entry<string | LikeStrin
     if (value) {
       const properties = !isObject(value) ? value : joinProperties(value);
       if (properties) {
-        result += `${key}{${properties}}`;
+        result += key ? `${key}{${properties}}` : properties;
       }
     }
   }
@@ -71,7 +71,7 @@ export const joinProperties = (props: Entry<string | LikeString>): string => {
   return result;
 };
 
-export const toVar = (a: LikeString, b?: LikeString): string => a ? `var(${a}${b ? `,${b}` : ""})` : "";
+export const toVar = (a: LikeString, b?: LikeString): string => (a ? `var(${a}${b ? `,${b}` : ""})` : "");
 
 interface LikeString {
   toString(): string;
