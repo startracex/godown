@@ -78,3 +78,12 @@ export function toVar(a: LikeString, b?: LikeString): string {
 interface LikeString {
   toString(): string;
 }
+
+export const toStyleSheet = (style: string | CSSStyleSheet | CSSResult): CSSStyleSheet => {
+  if (!(style instanceof CSSStyleSheet)) {
+    const sheet = new CSSStyleSheet();
+    sheet.replaceSync(String(style));
+    return sheet;
+  }
+  return style;
+};
