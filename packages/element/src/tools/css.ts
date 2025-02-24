@@ -6,14 +6,14 @@ import { isNullable } from "../tools/lib.js";
 /**
  * Call Object.values and join "".
  */
-export function constructCSS<K extends string, V extends string | number | CSSResult>(
+export const constructCSS = <K extends string, V extends string | number | CSSResult>(
   vars: string[],
   props: Record<K, V[]>,
   selectorFunc?: (raw?: string, index?: number) => string,
   propertyFunc?: (raw?: V, index?: number) => any,
-): string {
+): string => {
   return Object.values(constructCSSObject(vars, props, selectorFunc, propertyFunc)).join("");
-}
+};
 
 /**
  * Create a CSS style object based on the provided variable name array and property object.
@@ -23,7 +23,7 @@ export function constructCSS<K extends string, V extends string | number | CSSRe
  * @param propertyFunc Function to process property.
  * @return CSS style object with selectors as keys and corresponding styles as values.
  */
-export function constructCSSObject<
+export const constructCSSObject = <
   K extends string,
   V extends string | number | CSSResult,
   R extends Record<K, string>,
@@ -32,7 +32,7 @@ export function constructCSSObject<
   props: Record<K, V[]>,
   selectorFunc?: (raw?: string, index?: number) => string,
   propertyFunc?: (raw?: V, index?: number) => any,
-): R {
+): R => {
   const cssObject = {} as R;
   Object.keys(props).forEach((sel, index0) => {
     const rules = vars.reduce((acc: string[], key, index) => {
@@ -46,9 +46,9 @@ export function constructCSSObject<
     cssObject[sel] = `${selectorFunc ? selectorFunc(sel, index0) : sel}{${rules.join(";")}}`;
   });
   return cssObject;
-}
+};
 
-export function joinRules(rules: Entry<string, string | Entry<string | LikeString>>): string {
+export const joinRules = (rules: Entry<string, string | Entry<string | LikeString>>): string => {
   let result = "";
   for (const [key, value] of toEntries(rules)) {
     if (value) {
@@ -59,9 +59,9 @@ export function joinRules(rules: Entry<string, string | Entry<string | LikeStrin
     }
   }
   return result;
-}
+};
 
-export function joinProperties(props: Entry<string | LikeString>): string {
+export const joinProperties = (props: Entry<string | LikeString>): string => {
   let result = "";
   for (const [key, value] of toEntries(props)) {
     if (key && (value || value === 0 || value === "")) {
@@ -69,11 +69,9 @@ export function joinProperties(props: Entry<string | LikeString>): string {
     }
   }
   return result;
-}
+};
 
-export function toVar(a: LikeString, b?: LikeString): string {
-  return a ? `var(${a}${b ? `,${b}` : ""})` : "";
-}
+export const toVar = (a: LikeString, b?: LikeString): string => a ? `var(${a}${b ? `,${b}` : ""})` : "";
 
 interface LikeString {
   toString(): string;
