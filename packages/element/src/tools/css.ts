@@ -8,7 +8,7 @@ export const joinRules = (rules: Entry<string, string | Entry<LikeString>>): str
   let result = "";
   for (const [key, value] of toEntries(rules)) {
     if (value) {
-      const properties = isObject(value) ? joinDeclarations(value) : value;
+      const properties = isObject(value) && !("_$cssResult$" in value) ? joinDeclarations(value) : value;
       if (properties) {
         result += key ? `${key}{${properties}}` : properties;
       }
