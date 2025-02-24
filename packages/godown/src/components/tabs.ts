@@ -1,4 +1,4 @@
-import { attr, godown, htmlSlot, styles, tokenList } from "@godown/element";
+import { attr, godown, htmlSlot, StyleController, styles, tokenList } from "@godown/element";
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../core/global-style.js";
 import { css, html, type TemplateResult } from "lit";
 import { property, queryAll } from "lit/decorators.js";
@@ -35,75 +35,67 @@ const mouseEnterAddedToken = "hover";
  * @category display
  */
 @godown(protoName)
-@styles(
-  new OutlineBuilder({
-    width: `${cssScope}--outline-width`,
-    color: `${cssScope}--outline-color`,
-  }).css,
-  css`
-    :host {
-      ${cssScope}--indicator-background: var(${cssGlobalVars._colors.darkgray[7]});
-      ${cssScope}--outline-color: var(${cssGlobalVars.passive});
-      ${cssScope}--outline-width: 0.075em;
-      ${cssScope}--space: 0.25em;
-      border-radius: var(${cssGlobalVars.borderRadius});
-      transition: 0.2s ease-in-out;
-      width: fit-content;
-      display: flex;
-      cursor: default;
-    }
+@styles(css`
+  :host {
+    ${cssScope}--indicator-background: var(${cssGlobalVars._colors.darkgray[7]});
+    ${cssScope}--space: 0.25em;
+    border-radius: var(${cssGlobalVars.radius});
+    transition: 0.2s ease-in-out;
+    width: fit-content;
+    display: flex;
+    cursor: default;
+  }
 
-    [part="root"] {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: inherit;
-      overflow-x: clip;
-      border-radius: inherit;
-      transition: inherit;
-      transition-property: width, transform, opacity;
-      padding: var(${cssScope}--space);
-      gap: var(${cssScope}--space);
-    }
+  [part="root"] {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: inherit;
+    overflow-x: clip;
+    border-radius: inherit;
+    transition: inherit;
+    transition-property: width, transform, opacity;
+    padding: var(${cssScope}--space);
+    gap: var(${cssScope}--space);
+  }
 
-    [useslot] [part~="item"] {
-      padding: 0;
-    }
+  [useslot] [part~="item"] {
+    padding: 0;
+  }
 
-    [part~="item"] {
-      width: 100%;
-      display: block;
-      padding: 0 0.4em;
-      position: relative;
-      white-space: nowrap;
-      transition: inherit;
-      border-radius: inherit;
-      transition-property: inherit;
-    }
+  [part~="item"] {
+    width: 100%;
+    display: block;
+    padding: 0 0.4em;
+    position: relative;
+    white-space: nowrap;
+    transition: inherit;
+    border-radius: inherit;
+    transition-property: inherit;
+  }
 
-    [part="indicator"] {
-      width: 100%;
-      height: 100%;
-      inset: 0;
-      opacity: 0;
-      z-index: -1;
-      position: absolute;
-      transition: inherit;
-      border-radius: inherit;
-      transition-property: inherit;
-      background: var(${cssScope}--indicator-background);
-    }
+  [part="indicator"] {
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+    transition: inherit;
+    border-radius: inherit;
+    transition-property: inherit;
+    background: var(${cssScope}--indicator-background);
+  }
 
-    [part~="selected"] {
-      background: var(${cssScope}--indicator-background);
-    }
+  [part~="selected"] {
+    background: var(${cssScope}--indicator-background);
+  }
 
-    [part~="selected"] [part="indicator"],
-    [part~="hover"] [part="indicator"] {
-      opacity: 1;
-    }
-  `,
-)
+  [part~="selected"] [part="indicator"],
+  [part~="hover"] [part="indicator"] {
+    opacity: 1;
+  }
+`)
 class Tabs extends GlobalStyle {
   @property({ attribute: "outline-type" })
   outlineType: OutlineType = "border";
@@ -133,6 +125,8 @@ class Tabs extends GlobalStyle {
 
   @queryAll("[part=indicator]")
   protected _indicators: HTMLCollectionOf<HTMLDivElement>;
+
+  private __outlineSC = new StyleController(this, () => new OutlineBuilder({ outlineType: this.outlineType }).css);
 
   render(): TemplateResult<1> {
     return html`

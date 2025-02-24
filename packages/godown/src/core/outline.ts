@@ -1,53 +1,48 @@
-import { css, unsafeCSS, type CSSResult } from "lit";
+import { cssGlobalVars } from "./global-style.js";
+import { unsafeCSS, type CSSResult } from "lit";
 
-type OutlineVars = {
-  width: string | CSSResult;
-  color: string | CSSResult;
+type OutlineOptions = {
+  width?: string | CSSResult;
+  color?: string | CSSResult;
+  selector?: string;
+  outlineType?: OutlineType;
+};
+
+const getOutlineStyles = (width: string | CSSResult, color: string | CSSResult) => {
+  const colors = `outline-color:var(${color});border-color:var(${color});`;
+  const outline = `${colors}outline-width:var(${width});outline-style:solid;`;
+  return {
+    outline,
+    "outline-inset": `${outline}outline-offset:calc(-1 * var(${width}));`,
+    "box-shadow": `box-shadow:0 0 0 var(${width}) var(${color});`,
+    "box-shadow-inset": `box-shadow:inset 0 0 0 var(${width}) var(${color});`,
+    border: `${colors}border-width:var(${width});border-style:solid;`,
+  };
 };
 
 /**
  * The `OutlineBuilder` class is responsible for generating CSS styles for various types of outlines.
  */
 export class OutlineBuilder {
-  css: CSSResult;
+  css: string;
 
-  /**
-   * @param vars.width The width variable of the outline.
-   * @param vars.color The color variable of the outline.
-   */
-  constructor(vars: OutlineVars) {
-    const width = unsafeCSS(vars.width);
-    const color = unsafeCSS(vars.color);
-    this.css = css`
-      [outline-type="outline"],
-      [outline-type="outline-inset"] {
-        outline-width: var(${width});
-        outline-color: var(${color});
-        outline-style: solid;
-      }
-
-      [outline-type="outline-inset"] {
-        outline-offset: calc(-1 * var(${width}));
-      }
-
-      [outline-type="box-shadow"] {
-        box-shadow: 0 0 0 var(${width}) var(${color});
-      }
-
-      [outline-type="box-shadow-inset"] {
-        box-shadow: inset 0 0 0 var(${width}) var(${color});
-      }
-
-      [outline-type="border"] {
-        border-width: var(${width});
-        border-color: var(${color});
-        border-style: solid;
-      }
-    `;
+  constructor({
+    selector = ":host",
+    width = cssGlobalVars.outlineWidth,
+    color = cssGlobalVars.outlineColor,
+    outlineType,
+  }: OutlineOptions = {}) {
+    const styles = getOutlineStyles(width, color);
+    if (outlineType && outlineType in styles) {
+      const style = styles[outlineType];
+      this.css = `${selector}{${style}}`;
+    } else {
+      this.css = "";
+    }
   }
 
   get styleSheet(): CSSStyleSheet {
-    return this.css.styleSheet;
+    return unsafeCSS(this.css).styleSheet;
   }
 }
 

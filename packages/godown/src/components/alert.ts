@@ -1,4 +1,4 @@
-import { attr, constructCSSObject, godown, htmlSlot, htmlStyle, styles, toVar } from "@godown/element";
+import { attr, godown, htmlSlot, joinRules, StyleController, styles } from "@godown/element";
 import iconCheckAltCircle from "@godown/f7-icon/icons/checkmark-alt-circle.js";
 import iconExclamationCircle from "@godown/f7-icon/icons/exclamationmark-circle.js";
 import iconInfoCircle from "@godown/f7-icon/icons/info-circle.js";
@@ -15,30 +15,23 @@ import { GlobalStyle, cssGlobalVars, scopePrefix } from "../core/global-style.js
 const protoName = "alert";
 const cssScope = scopePrefix(protoName);
 
-const vars = ["color", "background"].map((v) => `${cssScope}--${v}`);
-
 const genDark = (key: string) => {
   return [cssGlobalVars._colors[key][5], cssGlobalVars._colors[key][9]];
 };
 
-const darkStyles = constructCSSObject(
-  vars,
-  {
-    green: genDark("green"),
-    blue: genDark("blue"),
-    orange: genDark("orange"),
-    red: genDark("red"),
-    yellow: genDark("yellow"),
-    purple: genDark("purple"),
-    teal: genDark("teal"),
-    pink: genDark("pink"),
-    gray: [cssGlobalVars._colors.lightgray[5], cssGlobalVars._colors.darkgray[5]],
-    white: [cssGlobalVars._colors.lightgray[2], cssGlobalVars._colors.darkgray[7]],
-    black: [cssGlobalVars._colors.darkgray[8], cssGlobalVars._colors.lightgray[5]],
-  },
-  () => ":host",
-  (prop) => toVar(prop),
-);
+const colorDetails = {
+  green: genDark("green"),
+  blue: genDark("blue"),
+  orange: genDark("orange"),
+  red: genDark("red"),
+  yellow: genDark("yellow"),
+  purple: genDark("purple"),
+  teal: genDark("teal"),
+  pink: genDark("pink"),
+  gray: [cssGlobalVars._colors.lightgray[5], cssGlobalVars._colors.darkgray[5]],
+  white: [cssGlobalVars._colors.lightgray[2], cssGlobalVars._colors.darkgray[7]],
+  black: [cssGlobalVars._colors.darkgray[8], cssGlobalVars._colors.lightgray[5]],
+};
 
 const calls = {
   tip: {
@@ -88,12 +81,15 @@ const calls = {
  */
 @godown(protoName)
 @styles(css`
-  :host,
-  :where(:host([contents]) [part="root"]) {
+  :host {
     ${cssScope}--border-width: .075em;
     ${cssScope}--blockquote-width: .2em;
     ${cssScope}--blockquote-background: transparent;
     ${cssScope}--gap: .5em;
+  }
+
+  :host,
+  :where(:host([contents]) [part="root"]) {
     display: block;
   }
 
@@ -142,6 +138,20 @@ const calls = {
   }
 `)
 class Alert extends GlobalStyle {
+  private __colorSC = new StyleController(this, () => {
+    const color = calls[this.call]?.color || this.color;
+    if (color in colorDetails) {
+      const [fg, bg] = colorDetails[color];
+      return joinRules({
+        ":host": [
+          [`${cssScope}--color`, `var(${fg})`],
+          [`${cssScope}--background`, `var(${bg})`],
+        ],
+      });
+    }
+    return null;
+  });
+
   /**
    * If it is a legal value, the icon and preset color will be rendered.
    */
@@ -202,7 +212,6 @@ class Alert extends GlobalStyle {
   variant: "blockquote" | "dark" = "dark";
 
   protected render(): TemplateResult<1> {
-    const color = calls[this.call]?.color || this.color;
     const icon = this.call ? calls[this.call].icon() : htmlSlot("icon");
     return html`
       <div
@@ -231,7 +240,6 @@ class Alert extends GlobalStyle {
                 ${iconXmark()}
               </div>
             `}
-        ${htmlStyle(darkStyles[color])}
       </div>
     `;
   }

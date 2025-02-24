@@ -1,9 +1,10 @@
-import { type HandlerEvent, attr, tokenList, godown, styles, loop, omit } from "@godown/element";
+import { type HandlerEvent, attr, tokenList, godown, styles, loop, omit, StyleController } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../core/global-style.js";
 import { SuperInput } from "../core/super-input.js";
+import { OutlineBuilder } from "../core/outline.js";
 
 const protoName = "split";
 const cssScope = scopePrefix(protoName);
@@ -61,7 +62,7 @@ const cssScope = scopePrefix(protoName);
 
   .focus,
   [part="input-box"]:active {
-    ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.active});
+    ${cssGlobalVars.outlineColor}: var(${cssGlobalVars.active});
   }
 `)
 class Split extends SuperInput {
@@ -82,6 +83,15 @@ class Split extends SuperInput {
 
   @state()
   currentValue: (string | void)[] = [];
+
+  private __outlineSC = new StyleController(
+    this,
+    () =>
+      new OutlineBuilder({
+        selector: "[part=input-box]",
+        outlineType: this.outlineType,
+      }).css,
+  );
 
   get observedRecord(): Record<string, any> {
     return omit(super.observedRecord, "outline-type");

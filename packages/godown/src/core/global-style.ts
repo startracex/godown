@@ -25,9 +25,9 @@ export const cssGlobalVars: {
   white: CSSResult;
   black: CSSResult;
   color: CSSResult;
-  borderRadius: CSSResult;
-  borderWidth: CSSResult;
-  borderColor: CSSResult;
+  radius: CSSResult;
+  outlineWidth: CSSResult;
+  outlineColor: CSSResult;
 } = {
   clipBackground: scopePrefix("clip-background", 2),
   active: scopePrefix("active", 2),
@@ -37,9 +37,9 @@ export const cssGlobalVars: {
   white: scopePrefix("color-white", 2),
   black: scopePrefix("color-black", 2),
   color: scopePrefix("color", 2),
-  borderRadius: scopePrefix("border-radius", 2),
-  borderWidth: scopePrefix("border-width", 2),
-  borderColor: scopePrefix("border-color", 2),
+  radius: scopePrefix("radius", 2),
+  outlineWidth: scopePrefix("outline-width", 2),
+  outlineColor: scopePrefix("outline-color", 2),
 };
 
 type PresetsGradientsCSSResult = Record<keyof typeof presetsRGB, Gradients<CSSResult>>;
@@ -62,8 +62,8 @@ GlobalStyle.styles = [
           cssGlobalVars.clipBackground,
           `linear-gradient(to bottom, var(${cssGlobalVars._colors.lightgray[0]}), var(${cssGlobalVars._colors.darkgray[0]}))`,
         ],
-        [cssGlobalVars.borderColor, `var(${cssGlobalVars.passive})`],
-        [cssGlobalVars.borderWidth, ".075em"],
+        [cssGlobalVars.outlineColor, `var(${cssGlobalVars._colors.darkgray[4]})`],
+        [cssGlobalVars.outlineWidth, ".075em"],
       ]) +
       "}",
   ),
@@ -80,6 +80,8 @@ GlobalStyle.styles = [
 
     :host {
       box-sizing: border-box;
+      border-style: none;
+      outline-style: none;
     }
 
     a {
@@ -115,8 +117,8 @@ GlobalStyle.styles = [
   `,
   css`
     :host {
-      ${cssGlobalVars.borderRadius}: 0.2em;
-      border-radius: var(${cssGlobalVars.borderRadius});
+      ${cssGlobalVars.radius}: 0.2em;
+      border-radius: var(${cssGlobalVars.radius});
     }
   `,
 ];

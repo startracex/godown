@@ -3,7 +3,7 @@ import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle, cssGlobalVars } from "./global-style.js";
-import { OutlineBuilder, type OutlineType } from "./outline.js";
+import type { OutlineType } from "./outline.js";
 
 const fieldStyle = css`
   .input-field {
@@ -50,8 +50,6 @@ const inputStyle = css`
     ${cssGlobalVars.input}-height: 1.6em;
     ${cssGlobalVars.input}-space: 0.2em;
     ${cssGlobalVars.input}-control: currentColor;
-    ${cssGlobalVars.input}-outline-width: .075em;
-    ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars._colors.darkgray[4]});
     ${cssGlobalVars.input}-icon-color: var(${cssGlobalVars._colors.darkgray[4]});
   }
 
@@ -74,14 +72,7 @@ const inputStyle = css`
   }
 `;
 
-@styles(
-  fieldStyle,
-  new OutlineBuilder({
-    width: `${cssGlobalVars.input}-outline-width`,
-    color: `${cssGlobalVars.input}-outline-color`,
-  }).styleSheet,
-  inputStyle,
-)
+@styles(fieldStyle, inputStyle)
 class SuperInput<V = string> extends GlobalStyle {
   autofocus = false;
   @property()

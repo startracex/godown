@@ -1,10 +1,11 @@
-import { attr, tokenList, godown, part, styles, htmlSlot } from "@godown/element";
+import { attr, godown, part, styles, htmlSlot, StyleController } from "@godown/element";
 import iconEyeSlashFill from "@godown/f7-icon/icons/eye-slash-fill.js";
 import { type TemplateResult, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars } from "../core/global-style.js";
 import { SuperInput } from "../core/super-input.js";
+import { OutlineBuilder } from "../core/outline.js";
 
 const protoName = "input";
 
@@ -23,9 +24,8 @@ const protoName = "input";
     display: block;
   }
 
-  :host(:focus-within),
-  .outline {
-    ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.active});
+  :host(:focus-within) {
+    ${cssGlobalVars.outlineColor}: var(${cssGlobalVars.active});
   }
 `)
 class Input extends SuperInput {
@@ -42,12 +42,19 @@ class Input extends SuperInput {
   @part("input")
   protected _input: HTMLInputElement;
 
+  private __outlineSC = new StyleController(
+    this,
+    () =>
+      new OutlineBuilder({ outlineType: this.outlineType }).css +
+      (this.variant === "outline" ? `:host{${cssGlobalVars.outlineColor}: var(${cssGlobalVars.active})}` : ""),
+  );
+
   protected render(): TemplateResult<1> {
     return html`
       <div
         part="root"
         ${attr(this.observedRecord)}
-        class="${tokenList("input-field", this.variant)}"
+        class="input-field"
       >
         ${[
           this._renderPrefix(),

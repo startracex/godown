@@ -1,4 +1,4 @@
-import { attr, constructCSSObject, godown, htmlSlot, htmlStyle, part, styles, toVar } from "@godown/element";
+import { attr, godown, htmlSlot, joinRules, part, StyleController, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -10,69 +10,77 @@ const cssScope = scopePrefix(protoName);
 const whiteFont = cssGlobalVars.white;
 const blackFont = cssGlobalVars.black;
 
-type Colors = "teal" | "blue" | "green" | "red" | "purple" | "orange" | "yellow" | "pink" | "gray" | "white" | "black";
-const colors: Record<Colors, string> = constructCSSObject(
-  ["color", "background", "gradients"].map((k) => `${cssScope}--${k}`),
-  {
-    black: [
-      whiteFont, // color
-      cssGlobalVars._colors.darkgray[7], // background
-      cssGlobalVars._colors.darkgray[5], // gradients
-    ],
-    gray: [
-      whiteFont, // color
-      cssGlobalVars._colors.darkgray[1], // background
-      cssGlobalVars._colors.lightgray[8], // gradients
-    ],
-    white: [
-      blackFont, // color
-      cssGlobalVars._colors.lightgray[3], // background
-      cssGlobalVars._colors.lightgray[0], // gradients
-    ],
-    blue: [
-      whiteFont, // color
-      cssGlobalVars._colors.blue[6], // background
-      cssGlobalVars._colors.blue[4], // gradients
-    ],
-    green: [
-      whiteFont, // color
-      cssGlobalVars._colors.green[6], // background
-      cssGlobalVars._colors.green[4], // gradients
-    ],
-    red: [
-      whiteFont, // color
-      cssGlobalVars._colors.red[6], // background
-      cssGlobalVars._colors.red[4], // gradients
-    ],
-    orange: [
-      whiteFont, // color
-      cssGlobalVars._colors.orange[6], // background
-      cssGlobalVars._colors.orange[4], // gradients
-    ],
-    pink: [
-      whiteFont, // color
-      cssGlobalVars._colors.pink[6], // background
-      cssGlobalVars._colors.pink[4], // gradients
-    ],
-    purple: [
-      whiteFont, // color
-      cssGlobalVars._colors.purple[6], // background
-      cssGlobalVars._colors.purple[4], // gradients
-    ],
-    yellow: [
-      blackFont, // color
-      cssGlobalVars._colors.yellow[6], // background
-      cssGlobalVars._colors.yellow[4], // gradients
-    ],
-    teal: [
-      whiteFont, // color
-      cssGlobalVars._colors.teal[6], // background
-      cssGlobalVars._colors.teal[4], // gradients
-    ],
-  },
-  () => ":host",
-  (prop) => toVar(prop),
-);
+type Colors =
+  | "none"
+  | "teal"
+  | "blue"
+  | "green"
+  | "red"
+  | "purple"
+  | "orange"
+  | "yellow"
+  | "pink"
+  | "gray"
+  | "white"
+  | "black";
+
+const colorDetails = {
+  black: [
+    whiteFont, // color
+    cssGlobalVars._colors.darkgray[7], // background
+    cssGlobalVars._colors.darkgray[5], // gradients
+  ],
+  gray: [
+    whiteFont, // color
+    cssGlobalVars._colors.darkgray[1], // background
+    cssGlobalVars._colors.lightgray[8], // gradients
+  ],
+  white: [
+    blackFont, // color
+    cssGlobalVars._colors.lightgray[3], // background
+    cssGlobalVars._colors.lightgray[0], // gradients
+  ],
+  blue: [
+    whiteFont, // color
+    cssGlobalVars._colors.blue[6], // background
+    cssGlobalVars._colors.blue[4], // gradients
+  ],
+  green: [
+    whiteFont, // color
+    cssGlobalVars._colors.green[6], // background
+    cssGlobalVars._colors.green[4], // gradients
+  ],
+  red: [
+    whiteFont, // color
+    cssGlobalVars._colors.red[6], // background
+    cssGlobalVars._colors.red[4], // gradients
+  ],
+  orange: [
+    whiteFont, // color
+    cssGlobalVars._colors.orange[6], // background
+    cssGlobalVars._colors.orange[4], // gradients
+  ],
+  pink: [
+    whiteFont, // color
+    cssGlobalVars._colors.pink[6], // background
+    cssGlobalVars._colors.pink[4], // gradients
+  ],
+  purple: [
+    whiteFont, // color
+    cssGlobalVars._colors.purple[6], // background
+    cssGlobalVars._colors.purple[4], // gradients
+  ],
+  yellow: [
+    blackFont, // color
+    cssGlobalVars._colors.yellow[6], // background
+    cssGlobalVars._colors.yellow[4], // gradients
+  ],
+  teal: [
+    whiteFont, // color
+    cssGlobalVars._colors.teal[6], // background
+    cssGlobalVars._colors.teal[4], // gradients
+  ],
+};
 
 /**
  * {@linkcode Button} renders a button.
@@ -182,6 +190,21 @@ const colors: Record<Colors, string> = constructCSSObject(
   `,
 )
 class Button extends GlobalStyle {
+  private __colorSC = new StyleController(this, () => {
+    const color = this.nextColor();
+    if (color in colorDetails) {
+      const [fg, bg, gd] = colorDetails[color];
+      return joinRules({
+        ":host": [
+          [`${cssScope}--color`, `var(${fg})`],
+          [`${cssScope}--background`, `var(${bg})`],
+          [`${cssScope}--gradients`, `var(${gd})`],
+        ],
+      });
+    }
+    return null;
+  });
+
   /**
    * If true, remove gradient, modal animation, focus scale.
    */
@@ -217,7 +240,7 @@ class Button extends GlobalStyle {
    * The primary color.
    */
   @property({ reflect: true })
-  color: "none" | keyof typeof colors = "black";
+  color: Colors = "black";
 
   /**
    * Content text.
@@ -231,7 +254,6 @@ class Button extends GlobalStyle {
   protected _root: HTMLElement;
 
   protected render(): TemplateResult<1> {
-    const color = this.nextColor();
     return html`
       <div
         part="root"
@@ -239,7 +261,6 @@ class Button extends GlobalStyle {
       >
         ${this.content || htmlSlot()}
         <span part="modal-root"></span>
-        ${htmlStyle(colors[color])}
       </div>
     `;
   }
@@ -287,7 +308,7 @@ class Button extends GlobalStyle {
     modal.addEventListener("animationend", () => modal.remove(), { once: true });
   }
 
-  nextColor(): Colors | "none" {
+  nextColor(): Colors {
     return this.color;
   }
 }
