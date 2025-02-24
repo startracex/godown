@@ -1,12 +1,12 @@
 import type { CSSResult } from "lit";
 
-import { type Entry, isObject, toEntries } from "./lib.js";
+import { type Entry, isNullable, isObject, toEntries } from "./lib.js";
 
 export const joinRules = (rules: Entry<string, string | Entry<string | LikeString>>): string => {
   let result = "";
   for (const [key, value] of toEntries(rules)) {
     if (value) {
-      const properties = !isObject(value) ? value : joinProperties(value);
+      const properties = isObject(value) ? joinProperties(value) : value;
       if (properties) {
         result += key ? `${key}{${properties}}` : properties;
       }
@@ -18,7 +18,7 @@ export const joinRules = (rules: Entry<string, string | Entry<string | LikeStrin
 export const joinProperties = (props: Entry<string | LikeString>): string => {
   let result = "";
   for (const [key, value] of toEntries(props)) {
-    if (key && (value || value === 0 || value === "")) {
+    if (key && !isNullable(value)) {
       result += `${key}:${value};`;
     }
   }
