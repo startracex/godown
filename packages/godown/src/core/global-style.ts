@@ -26,6 +26,8 @@ export const cssGlobalVars: {
   black: CSSResult;
   color: CSSResult;
   borderRadius: CSSResult;
+  borderWidth: CSSResult;
+  borderColor: CSSResult;
 } = {
   clipBackground: scopePrefix("clip-background", 2),
   active: scopePrefix("active", 2),
@@ -36,6 +38,8 @@ export const cssGlobalVars: {
   black: scopePrefix("color-black", 2),
   color: scopePrefix("color", 2),
   borderRadius: scopePrefix("border-radius", 2),
+  borderWidth: scopePrefix("border-width", 2),
+  borderColor: scopePrefix("border-color", 2),
 };
 
 type PresetsGradientsCSSResult = Record<keyof typeof presetsRGB, Gradients<CSSResult>>;
@@ -58,6 +62,8 @@ GlobalStyle.styles = [
           cssGlobalVars.clipBackground,
           `linear-gradient(to bottom, var(${cssGlobalVars._colors.lightgray[0]}), var(${cssGlobalVars._colors.darkgray[0]}))`,
         ],
+        [cssGlobalVars.borderColor, `var(${cssGlobalVars.passive})`],
+        [cssGlobalVars.borderWidth, ".075em"],
       ]) +
       "}",
   ),
