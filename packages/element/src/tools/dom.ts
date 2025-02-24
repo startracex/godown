@@ -1,6 +1,7 @@
 export function deepQuerySelectorAll<E extends Element = HTMLElement>(
+  this: any,
   selectors: string,
-  root: E | ParentNode = document.body,
+  root: E | ParentNode = this,
 ): E[] {
   if (!root || !selectors) {
     return [];
@@ -21,8 +22,9 @@ export function deepQuerySelectorAll<E extends Element = HTMLElement>(
 }
 
 export function deepQuerySelector<E extends Element = HTMLElement>(
+  this: any,
   selectors: string,
-  root: E | ParentNode = document.body,
+  root: E | ParentNode = this,
 ): E | null {
   if (!root || !selectors) {
     return null;

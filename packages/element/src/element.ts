@@ -275,7 +275,7 @@ export class GodownElement extends LitElement {
    * @returns The first element that matches the specified selectors, or null if no matches are found.
    */
   deepQuerySelector<E extends Element = HTMLElement>(selectors: string): E | null {
-    return deepQuerySelector<E>(selectors, this);
+    return deepQuerySelector.call(this, selectors);
   }
 
   /**
@@ -285,7 +285,7 @@ export class GodownElement extends LitElement {
    * @returns An array of all elements that match the specified selectors.
    */
   deepQuerySelectorAll<E extends Element = HTMLElement>(selectors: string): E[] {
-    return deepQuerySelectorAll<E>(selectors, this);
+    return deepQuerySelectorAll.call(this, selectors);
   }
 
   /**
