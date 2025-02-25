@@ -220,6 +220,7 @@ class Select extends Input {
 
   select(value: string, text?: string): 0 | 1 {
     text ||= value;
+    text = text.trim();
     let operation: 0 | 1 = 0;
     if (this.multiple) {
       const i = this.__store.findIndex((s) => s.value === value);
