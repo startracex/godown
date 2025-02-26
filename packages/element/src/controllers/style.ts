@@ -1,8 +1,7 @@
 import type { CSSResult, ReactiveController, ReactiveControllerHost } from "lit";
-import type GodownElement from "../element.js";
 import { toStyleSheet } from "../tools/css.js";
 
-type ComputeFn<T> = (host?: T) => string | CSSStyleSheet | CSSResult | null | undefined;
+type ComputeFn = () => string | CSSStyleSheet | CSSResult | null | undefined;
 
 type StyleControllerHost = {
   shadowRoot: ShadowRoot;
@@ -11,12 +10,12 @@ type StyleControllerHost = {
 /**
  * StyleController computes and applies styles when host updated.
  */
-export class StyleController<T extends StyleControllerHost = GodownElement> implements ReactiveController {
-  host: T;
+export class StyleController implements ReactiveController {
+  host: StyleControllerHost;
   styleID: number;
-  computeStyle: ComputeFn<T>;
+  computeStyle: ComputeFn;
 
-  constructor(host: T, computeStyle: ComputeFn<T>) {
+  constructor(host: StyleControllerHost, computeStyle: ComputeFn) {
     (this.host = host).addController(this);
     this.computeStyle = computeStyle;
   }
@@ -29,7 +28,7 @@ export class StyleController<T extends StyleControllerHost = GodownElement> impl
     if (this.styleID !== undefined) {
       sheets.splice(this.styleID, 1);
     }
-    const styleResult = this.computeStyle(this.host);
+    const styleResult = this.computeStyle();
     if (!styleResult) {
       this.styleID = undefined;
       return;
