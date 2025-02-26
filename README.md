@@ -1,13 +1,12 @@
 # godown
 
-Non Composite Web Components Library.
+Web Components Library.
 
 [See readme for godown package](./packages/godown/README.md)
 
 ## Features
 
 - 🌙 Dark mode first
-- 🏗️ No composite
 - 🎨 High customization
 - 📐 Similar standard
 
