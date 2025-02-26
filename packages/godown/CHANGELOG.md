@@ -1,5 +1,24 @@
 # godown
 
+## 3.9.0
+
+### Minor Changes
+
+- 2ae2e5f: add global border width and color variables
+- 18fd6ae: update styling approach using StyleController
+
+### Patch Changes
+
+- 4a7bb93: trim text before selecting
+- Updated dependencies [ed1531d]
+- Updated dependencies [89ac334]
+- Updated dependencies [249e1e4]
+- Updated dependencies [23d9538]
+- Updated dependencies [74a4aef]
+- Updated dependencies [ce4d381]
+  - @godown/element@1.7.0
+  - @godown/f7-icon@1.0.9
+
 ## 3.8.3
 
 ### Patch Changes
