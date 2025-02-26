@@ -1,5 +1,19 @@
 # @godown/element
 
+## 1.7.0
+
+### Minor Changes
+
+- ed1531d: add StyleController
+- 249e1e4: defaults root of deep query functions to this
+- 23d9538: rename joinProperties to joinDeclarations
+- ce4d381: remove CSS construction functions
+
+### Patch Changes
+
+- 89ac334: avoid processing CSS results as declarations
+- 74a4aef: handle empty key in CSS rules
+
 ## 1.6.1
 
 ### Patch Changes
