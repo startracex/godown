@@ -5,10 +5,13 @@ import { GodownConfig } from "./config.js";
 import { deepQuerySelector, deepQuerySelectorAll, Events, isSymbol, Observers, Timeouts } from "./tools/index.js";
 
 export const attributeName = (property: PropertyKey, { attribute }: PropertyDeclaration): string | undefined => {
+  if (attribute === true || attribute === undefined) {
+    return String(property).toLowerCase();
+  }
   if (attribute === false || isSymbol(property)) {
     return;
   }
-  return attribute === true || attribute === undefined ? String(property).toLowerCase() : attribute;
+  return attribute;
 };
 
 const withSelectorRegex = /^[\s\S]*{[\s\S]*}$/;
