@@ -1,3 +1,1 @@
-import Skeleton from "./web-components/skeleton/definition.js";
-
-export default Skeleton;
+export { default } from "./web-components/skeleton/definition.js";

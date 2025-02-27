@@ -1,3 +1,1 @@
-import Form from "./web-components/form/definition.js";
-
-export default Form;
+export { default } from "./web-components/form/definition.js";

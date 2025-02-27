@@ -1,3 +1,1 @@
-import Badge from "./web-components/badge/definition.js";
-
-export default Badge;
+export { default } from "./web-components/badge/definition.js";

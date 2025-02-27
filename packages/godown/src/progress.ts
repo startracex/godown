@@ -1,3 +1,1 @@
-import Progress from "./web-components/progress/definition.js";
-
-export default Progress;
+export { default } from "./web-components/progress/definition.js";

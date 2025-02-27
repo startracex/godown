@@ -1,3 +1,1 @@
-import Split from "./web-components/split/definition.js";
-
-export default Split;
+export { default } from "./web-components/split/definition.js";

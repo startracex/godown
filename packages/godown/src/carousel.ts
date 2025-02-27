@@ -1,3 +1,1 @@
-import Carousel from "./web-components/carousel/definition.js";
-
-export default Carousel;
+export { default } from "./web-components/carousel/definition.js";

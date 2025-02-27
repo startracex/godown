@@ -1,3 +1,1 @@
-import Router from "./web-components/router/definition.js";
-
-export default Router;
+export { default } from "./web-components/router/definition.js";

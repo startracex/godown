@@ -1,3 +1,1 @@
-import Button from "./web-components/button/definition.js";
-
-export default Button;
+export { default } from "./web-components/button/definition.js";

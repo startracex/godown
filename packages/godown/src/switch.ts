@@ -1,3 +1,1 @@
-import Switch from "./web-components/switch/definition.js";
-
-export default Switch;
+export { default } from "./web-components/switch/definition.js";

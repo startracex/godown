@@ -1,3 +1,1 @@
-import Layout from "./web-components/layout/definition.js";
-
-export default Layout;
+export { default } from "./web-components/layout/definition.js";

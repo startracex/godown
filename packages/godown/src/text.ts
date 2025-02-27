@@ -1,3 +1,1 @@
-import Text from "./web-components/text/definition.js";
-
-export default Text;
+export { default } from "./web-components/text/definition.js";

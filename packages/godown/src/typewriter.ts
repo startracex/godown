@@ -1,3 +1,1 @@
-import Typewriter from "./web-components/typewriter/definition.js";
-
-export default Typewriter;
+export { default } from "./web-components/typewriter/definition.js";

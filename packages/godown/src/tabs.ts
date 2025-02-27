@@ -1,3 +1,1 @@
-import Tabs from "./web-components/tabs/definition.js";
-
-export default Tabs;
+export { default } from "./web-components/tabs/definition.js";

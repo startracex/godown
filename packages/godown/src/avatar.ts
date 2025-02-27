@@ -1,3 +1,1 @@
-import Avatar from "./web-components/avatar/definition.js";
-
-export default Avatar;
+export { default } from "./web-components/avatar/definition.js";
