@@ -1,13 +1,3 @@
-import Carousel from "./components/carousel.js";
-
-Carousel.define();
+import Carousel from "./web-components/carousel/definition.js";
 
 export default Carousel;
-
-export * from "./components/carousel.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-carousel": Carousel;
-  }
-}

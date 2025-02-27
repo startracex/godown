@@ -1,13 +1,3 @@
-import Dialog from "./components/dialog.js";
-
-Dialog.define();
+import Dialog from "./web-components/dialog/definition.js";
 
 export default Dialog;
-
-export * from "./components/dialog.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-dialog": Dialog;
-  }
-}

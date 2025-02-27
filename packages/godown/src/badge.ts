@@ -1,13 +1,3 @@
-import Badge from "./components/badge.js";
-
-Badge.define();
+import Badge from "./web-components/badge/definition.js";
 
 export default Badge;
-
-export * from "./components/badge.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-badge": Badge;
-  }
-}

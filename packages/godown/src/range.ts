@@ -1,13 +1,3 @@
-import Range from "./components/range.js";
-
-Range.define();
+import Range from "./web-components/range/definition.js";
 
 export default Range;
-
-export * from "./components/range.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-range": Range;
-  }
-}

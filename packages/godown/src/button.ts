@@ -1,13 +1,3 @@
-import Button from "./components/button.js";
-
-Button.define();
+import Button from "./web-components/button/definition.js";
 
 export default Button;
-
-export * from "./components/button.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-button": Button;
-  }
-}

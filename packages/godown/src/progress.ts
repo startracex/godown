@@ -1,13 +1,3 @@
-import Progress from "./components/progress.js";
-
-Progress.define();
+import Progress from "./web-components/progress/definition.js";
 
 export default Progress;
-
-export * from "./components/progress.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-progress": Progress;
-  }
-}

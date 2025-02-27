@@ -1,13 +1,3 @@
-import Router from "./components/router.js";
-
-Router.define();
+import Router from "./web-components/router/definition.js";
 
 export default Router;
-
-export * from "./components/router.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-router": Router;
-  }
-}

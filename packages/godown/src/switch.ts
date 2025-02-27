@@ -1,13 +1,3 @@
-import Switch from "./components/switch.js";
-
-Switch.define();
+import Switch from "./web-components/switch/definition.js";
 
 export default Switch;
-
-export * from "./components/switch.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-switch": Switch;
-  }
-}

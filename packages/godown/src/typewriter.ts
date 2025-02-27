@@ -1,13 +1,3 @@
-import Typewriter from "./components/typewriter.js";
-
-Typewriter.define();
+import Typewriter from "./web-components/typewriter/definition.js";
 
 export default Typewriter;
-
-export * from "./components/typewriter.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-typewriter": Typewriter;
-  }
-}

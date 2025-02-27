@@ -1,13 +1,3 @@
-import Input from "./components/input.js";
-
-Input.define();
+import Input from "./web-components/input/definition.js";
 
 export default Input;
-
-export * from "./components/input.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-input": Input;
-  }
-}

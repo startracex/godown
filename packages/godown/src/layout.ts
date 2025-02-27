@@ -1,13 +1,3 @@
-import Layout from "./components/layout.js";
-
-Layout.define();
+import Layout from "./web-components/layout/definition.js";
 
 export default Layout;
-
-export * from "./components/layout.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-layout": Layout;
-  }
-}

@@ -124,10 +124,10 @@ Element-scoped css variables will start with `--${tagName}--`.
 
 ### Undefined
 
-Undefined elements in the `./components` sub path.
+Undefined elements at `/web-components/${name}/component.js`.
 
 ```ts
-import Button "godown/components/button.js";
+import Button "godown/web-components/button/component.js";
 
 customElements.define("my-button", Button);
 ```

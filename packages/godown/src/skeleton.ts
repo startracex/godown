@@ -1,13 +1,3 @@
-import Skeleton from "./components/skeleton.js";
-
-Skeleton.define();
+import Skeleton from "./web-components/skeleton/definition.js";
 
 export default Skeleton;
-
-export * from "./components/skeleton.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-skeleton": Skeleton;
-  }
-}

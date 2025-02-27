@@ -1,13 +1,3 @@
-import Grid from "./components/grid.js";
-
-Grid.define();
+import Grid from "./web-components/grid/definition.js";
 
 export default Grid;
-
-export * from "./components/grid.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-grid": Grid;
-  }
-}

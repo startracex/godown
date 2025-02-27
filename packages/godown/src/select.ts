@@ -1,13 +1,3 @@
-import Select from "./components/select.js";
-
-Select.define();
+import Select from "./web-components/select/definition.js";
 
 export default Select;
-
-export * from "./components/select.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-select": Select;
-  }
-}

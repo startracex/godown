@@ -1,13 +1,3 @@
-import Card from "./components/card.js";
-
-Card.define();
+import Card from "./web-components/card/definition.js";
 
 export default Card;
-
-export * from "./components/card.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-card": Card;
-  }
-}

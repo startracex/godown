@@ -1,13 +1,3 @@
-import Time from "./components/time.js";
-
-Time.define();
+import Time from "./web-components/time/definition.js";
 
 export default Time;
-
-export * from "./components/time.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-time": Time;
-  }
-}

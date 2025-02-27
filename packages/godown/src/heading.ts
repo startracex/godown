@@ -1,13 +1,3 @@
-import Heading from "./components/heading.js";
-
-Heading.define();
+import Heading from "./web-components/heading/definition.js";
 
 export default Heading;
-
-export * from "./components/heading.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-heading": Heading;
-  }
-}

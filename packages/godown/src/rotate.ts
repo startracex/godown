@@ -1,13 +1,3 @@
-import Rotate from "./components/rotate.js";
-
-Rotate.define();
+import Rotate from "./web-components/rotate/definition.js";
 
 export default Rotate;
-
-export * from "./components/rotate.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-rotate": Rotate;
-  }
-}

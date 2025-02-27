@@ -1,13 +1,3 @@
-import Form from "./components/form.js";
-
-Form.define();
+import Form from "./web-components/form/definition.js";
 
 export default Form;
-
-export * from "./components/form.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-form": Form;
-  }
-}

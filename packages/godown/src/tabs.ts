@@ -1,13 +1,3 @@
-import Tabs from "./components/tabs.js";
-
-Tabs.define();
+import Tabs from "./web-components/tabs/definition.js";
 
 export default Tabs;
-
-export * from "./components/tabs.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-tabs": Tabs;
-  }
-}

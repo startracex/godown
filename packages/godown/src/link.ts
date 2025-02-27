@@ -1,13 +1,3 @@
-import Link from "./components/link.js";
-
-Link.define();
+import Link from "./web-components/link/definition.js";
 
 export default Link;
-
-export * from "./components/link.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-link": Link;
-  }
-}

@@ -1,0 +1,139 @@
+import { attr, godown, htmlSlot, styles } from "@godown/element";
+import { type TemplateResult, css, html } from "lit";
+import { property } from "lit/decorators.js";
+
+import { scopePrefix } from "../../internal/global-style.js";
+import { SuperOpenable } from "../../internal/super-openable.js";
+import { type DirectionCardinal, type DirectionCorner, directionOutsetPlace } from "../../internal/direction.js";
+
+const protoName = "tooltip";
+const cssScope = scopePrefix(protoName);
+
+/**
+ * {@linkcode Tooltip} provide tooltip for slot elements.
+ *
+ * If it has the tip property, ignore the slot tip.
+ *
+ * @slot tip - Tip element if no `tip` provided.
+ * @slot - Content.
+ * @category feedback
+ */
+@godown(protoName)
+@styles(
+  directionOutsetPlace,
+  css`
+    :host {
+      ${cssScope}--tip-background: inherit;
+      width: fit-content;
+    }
+
+    :host,
+    [part="root"] {
+      display: inline-flex;
+    }
+
+    [part="root"] {
+      position: relative;
+      transition: inherit;
+      border-radius: inherit;
+    }
+
+    [part="tip"] {
+      width: fit-content;
+      height: fit-content;
+      position: absolute;
+      visibility: hidden;
+      transition: inherit;
+      user-select: none;
+    }
+
+    :host([open]) [part="tip"] {
+      visibility: visible;
+    }
+
+    .passive {
+      background: var(${cssScope}--tip-background);
+    }
+
+    [propagation] [part="tip"] {
+      pointer-events: none;
+    }
+  `,
+)
+class Tooltip extends SuperOpenable {
+  /**
+   * Tip text, if there is a value, the slot will be ignored.
+   */
+  @property()
+  tip: string;
+
+  /**
+   * Direction of opening the tip.
+   */
+  @property()
+  direction: DirectionCardinal | DirectionCorner = "top";
+
+  /**
+   * Content alignment.
+   */
+  @property()
+  align: "center" | "flex-start" | "flex-end" | "start" | "end" = "center";
+
+  /**
+   * If true, allow penetration of the tip.
+   */
+  @property({ type: Boolean })
+  propagation = false;
+
+  /**
+   * How can tips be triggered.
+   *
+   * If `focus`, element will be focusable, open tip when focused.
+   *
+   * If `hover`, element will open tip when hovered.
+   *
+   * @default "hover"
+   */
+  @property()
+  type: "hover" | "focus" = "hover";
+
+  static aligns = {
+    start: "flex-start",
+    end: "flex-end",
+    center: "center",
+    "flex-start": "flex-start",
+    "flex-end": "flex-end",
+  };
+
+  protected render(): TemplateResult<1> {
+    const align = Tooltip.aligns[this.align] || "inherit";
+    const isFocusable = this.type === "focus";
+    return html`
+      <div
+        part="root"
+        ${attr(this.observedRecord)}
+        tabindex="${isFocusable ? 0 : -1}"
+        @focus="${isFocusable ? () => (this.open = true) : null}"
+        @blur="${isFocusable ? () => (this.open = false) : null}"
+        @mouseenter="${isFocusable ? null : () => (this.open = true)}"
+        @mouseleave="${isFocusable ? null : () => (this.open = false)}"
+        style="justify-content:${align};align-items:${align}"
+      >
+        ${htmlSlot()}
+        <div
+          part="tip"
+          direction-outset-place
+        >
+          ${this.tip
+            ? html`
+                <span class="passive">${this.tip}</span>
+              `
+            : htmlSlot("tip")}
+        </div>
+      </div>
+    `;
+  }
+}
+
+export default Tooltip;
+export { Tooltip };

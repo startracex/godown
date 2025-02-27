@@ -1,13 +1,3 @@
-import Divider from "./components/divider.js";
-
-Divider.define();
+import Divider from "./web-components/divider/definition.js";
 
 export default Divider;
-
-export * from "./components/divider.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-divider": Divider;
-  }
-}

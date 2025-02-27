@@ -1,13 +1,3 @@
-import Dragbox from "./components/dragbox.js";
-
-Dragbox.define();
+import Dragbox from "./web-components/dragbox/definition.js";
 
 export default Dragbox;
-
-export * from "./components/dragbox.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-dragbox": Dragbox;
-  }
-}

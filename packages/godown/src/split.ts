@@ -1,13 +1,3 @@
-import Split from "./components/split.js";
-
-Split.define();
+import Split from "./web-components/split/definition.js";
 
 export default Split;
-
-export * from "./components/split.js";
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "godown-split": Split;
-  }
-}
