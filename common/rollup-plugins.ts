@@ -6,7 +6,7 @@ export const terser = (options: Omit<TerserOptions, "ecma"> & Record<string, any
 
 export { default as commonjs } from "@rollup/plugin-commonjs";
 export { nodeResolve } from "@rollup/plugin-node-resolve";
-export { default as ts2 } from "rollup-plugin-typescript2";
+export { default as ts } from "@rollup/plugin-typescript";
 
 // workspace scope
 export { cjsShim } from "rollup-plugin-cjs-shim";

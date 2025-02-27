@@ -8,6 +8,7 @@
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
     "autoprefixer": "^10.4.20",
     "cem-plugin-define": "workspace:^",
     "cem-plugin-fix-module": "workspace:^",
@@ -19,7 +20,6 @@
     "rollup-plugin-minify-html-literals": "^1.2.6",
     "rollup-plugin-prune-imports": "workspace:^",
     "rollup-plugin-template-replace": "workspace:^",
-    "rollup-plugin-typescript2": "0.32.1",
     "typescript": "5.4.5"
   }
 }

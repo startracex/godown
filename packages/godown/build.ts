@@ -3,7 +3,7 @@ import postcss from "postcss";
 
 import { autoprefixer, cssnano } from "@godown/common/postcss-plugins";
 import { build, commonInput, commonOutput } from "@godown/common/rollup-creator";
-import { minifyLiterals, templateReplace, terser, ts2 } from "@godown/common/rollup-plugins";
+import { minifyLiterals, templateReplace, terser, ts } from "@godown/common/rollup-plugins";
 
 const dir = ".";
 
@@ -29,7 +29,7 @@ await build(
           },
         },
       }),
-      ts2({
+      ts({
         tsconfig: "./tsconfig.prod.json",
       }),
       terser({
