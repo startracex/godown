@@ -6,8 +6,6 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Dragbox);
 
-export * from "godown/dragbox.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

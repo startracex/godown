@@ -6,8 +6,6 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Text);
 
-export * from "godown/text.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

@@ -6,8 +6,6 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Progress);
 
-export * from "godown/progress.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

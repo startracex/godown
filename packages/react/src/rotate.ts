@@ -6,8 +6,6 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Rotate);
 
-export * from "godown/rotate.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

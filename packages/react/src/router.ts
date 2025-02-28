@@ -21,8 +21,6 @@ export default createReact(
   }),
 );
 
-export * from "godown/router.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

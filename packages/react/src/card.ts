@@ -6,8 +6,6 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Card);
 
-export * from "godown/card.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

@@ -13,8 +13,6 @@ export default createReact(
   }),
 );
 
-export * from "godown/time.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

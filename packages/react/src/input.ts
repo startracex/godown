@@ -15,8 +15,6 @@ export default createReact(
   }),
 );
 
-export * from "godown/input.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

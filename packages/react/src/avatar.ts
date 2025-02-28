@@ -6,8 +6,6 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Avatar);
 
-export * from "godown/avatar.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

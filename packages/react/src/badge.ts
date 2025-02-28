@@ -6,8 +6,6 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Badge);
 
-export * from "godown/badge.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

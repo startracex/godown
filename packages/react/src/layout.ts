@@ -6,8 +6,6 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Layout);
 
-export * from "godown/layout.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

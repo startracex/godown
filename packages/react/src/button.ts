@@ -6,8 +6,6 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Button);
 
-export * from "godown/button.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

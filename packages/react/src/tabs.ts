@@ -13,8 +13,6 @@ export default createReact(
   }),
 );
 
-export * from "godown/tabs.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

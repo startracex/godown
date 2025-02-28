@@ -6,8 +6,6 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Grid);
 
-export * from "godown/grid.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

@@ -6,8 +6,6 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 
 export default createReact(Flex);
 
-export * from "godown/flex.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {

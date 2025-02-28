@@ -17,8 +17,6 @@ export default createReact(
   }),
 );
 
-export * from "godown/select.js";
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {
