@@ -19,6 +19,9 @@
   ],
   "author": "startracex",
   "license": "MIT",
+  "peerDependencies": {
+    "typescript": "^5.7.3"
+  },
   "devDependencies": {
     "typescript": "^5.7.3"
   },
