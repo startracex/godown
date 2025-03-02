@@ -26,6 +26,6 @@
     "typescript": "^5.7.3"
   },
   "files": [
-    "index.{js,ts,d.ts}"
+    "*.js,ts"
   ]
 }
