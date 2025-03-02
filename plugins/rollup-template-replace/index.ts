@@ -1,7 +1,8 @@
 import MagicString from "magic-string";
 import type { Plugin } from "rollup";
 import { createFilter } from "@rollup/pluginutils";
-import { type ExtractResult, extractSourceFile } from "template-extractor";
+import { type ExtractResult, extractSourceFile, type TaggedTemplateExpressionResult } from "template-extractor";
+import { getTextRange } from "template-extractor/utils.js";
 
 interface RollupFilterOptions {
   include?: Parameters<typeof createFilter>[0];
@@ -15,7 +16,12 @@ export interface ReplacementOptions {
 }
 
 export async function doReplace(oldContent: string, { replace, callback, match }: ReplacementOptions) {
-  const templates = extractSourceFile(oldContent).filter(({ tag }) => (match ? match(tag) : tag));
+  if (!callback) {
+    return oldContent;
+  }
+  const templates = extractSourceFile(oldContent).filter((
+    result,
+  ) => ("tag" in result && (match?.(result.tag.getText())))) as TaggedTemplateExpressionResult[];
 
   if (!templates.length) {
     return oldContent;
@@ -29,27 +35,27 @@ export async function doReplace(oldContent: string, { replace, callback, match }
     end: number;
   }[] = [];
 
-  for (const template of templates) {
-    const { start, end } = template;
+  for (const t of templates) {
+    const { start, end, text } = getTextRange(t.template);
 
-    if (!template.children) {
+    if (!t.children) {
       // no expressions
 
-      let text = template.text;
-      if (callback) {
-        const r = await callback(trimQuote(text));
-        text = withQuote(r);
+      const newText = withQuote(await callback(trimQuote(text)));
+      if (text === newText) {
+        continue;
       }
+
       replacePositions.push({
-        text,
+        text: newText,
         start,
         end,
       });
     } else {
-      const replaced = replaceText(
-        template.text,
-        template.children.map((child) => {
-          const replacedValue = replace(child.text, replaceIndex, child, template);
+      const placeholderFilledText = replaceText(
+        text,
+        t.children.map((child) => {
+          const replacedValue = replace(child.text, replaceIndex, child, t);
           replaceIndex++;
           replaceMap.set(replacedValue, child.text);
           return {
@@ -60,18 +66,16 @@ export async function doReplace(oldContent: string, { replace, callback, match }
         }),
       );
 
-      let processContent = replaced;
+      let newText = placeholderFilledText;
 
-      if (callback) {
-        processContent = withQuote(await callback(trimQuote(processContent)));
-      }
+      newText = withQuote(await callback(trimQuote(placeholderFilledText)));
 
       replaceMap.forEach((value, key) => {
-        processContent = processContent.replaceAll(key, "${" + value + "}");
+        newText = newText.replaceAll(key, "${" + value + "}");
       });
 
       replacePositions.push({
-        text: processContent,
+        text: newText,
         start,
         end,
       });
@@ -120,7 +124,7 @@ export function replaceText(raw: string, pos: { text: string; start: number; end
 }
 
 function trimQuote(s: string) {
-  return s.slice(s.indexOf("`") + 1, s.lastIndexOf("`"));
+  return s.slice(1, -1);
 }
 
 function withQuote(s: string) {
