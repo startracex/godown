@@ -185,6 +185,12 @@ importers:
         specifier: 'catalog:'
         version: 2.8.1
 
+  packages/minify-html-parts:
+    dependencies:
+      template-extractor:
+        specifier: workspace:^
+        version: link:../template-extractor
+
   packages/react:
     dependencies:
       '@lit/react':

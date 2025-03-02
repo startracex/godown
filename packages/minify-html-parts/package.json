@@ -1,0 +1,32 @@
+{
+  "name": "minify-html-parts",
+  "version": "0.0.0",
+  "description": "Minify HTML in (tagged) template expressions",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "template-extractor": "workspace:^"
+  },
+  "keywords": [
+    "minify",
+    "html",
+    "literal",
+    "template",
+    "tagged",
+    "lit-html"
+  ],
+  "author": "startracex",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/startracex/godown.git",
+    "directory": "packages/minify-html-parts"
+  },
+  "files": [
+    "**/*.{js,d.ts}+(|.map)",
+    "src"
+  ]
+}
