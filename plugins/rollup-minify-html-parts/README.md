@@ -9,7 +9,7 @@ Can be used in `lit-html` or `fast-element`.
 Rollup config
 
 ```js
-import { minify } from "minify-html-template-expression";
+import { minifyHtmlParts } from "rollup-plugin-minify-html-parts";
 
 export default {
   // ...

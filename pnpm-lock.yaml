@@ -221,6 +221,18 @@ importers:
 
   plugins/rollup-cjs-shim: {}
 
+  plugins/rollup-minify-html-parts:
+    dependencies:
+      '@rollup/pluginutils':
+        specifier: ^5.1.4
+        version: 5.1.4(rollup@4.34.9)
+      magic-string:
+        specifier: ^0.30.17
+        version: 0.30.17
+      minify-html-parts:
+        specifier: workspace:^
+        version: link:../../packages/minify-html-parts
+
   plugins/rollup-prune-imports:
     dependencies:
       '@rollup/pluginutils':
