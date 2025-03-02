@@ -3,7 +3,7 @@ import postcss from "postcss";
 
 import { autoprefixer, cssnano } from "@godown/common/postcss-plugins";
 import { build, commonInput, commonOutput } from "@godown/common/rollup-creator";
-import { minifyLiterals, templateReplace, terser, ts } from "@godown/common/rollup-plugins";
+import { minifyHtmlParts, templateReplace, terser, ts } from "@godown/common/rollup-plugins";
 
 const dir = ".";
 
@@ -21,14 +21,7 @@ await build(
           return result.css;
         },
       }),
-      minifyLiterals({
-        options: {
-          minifyOptions: {
-            minifyCSS: false, // !This option will cause loss of CSS property value units
-            minifyJS: false,
-          },
-        },
-      }),
+      minifyHtmlParts(),
       ts({
         tsconfig: "./tsconfig.prod.json",
       }),
