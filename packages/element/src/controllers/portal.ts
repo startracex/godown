@@ -41,7 +41,6 @@ export class PortalController<E extends HTMLElement = HTMLElement> implements Re
     (this.host = host).addController(this);
     this.render = renderRootContent;
     this.setup = setupRoot;
-    this.root;
   }
 
   hostConnected(): void {
