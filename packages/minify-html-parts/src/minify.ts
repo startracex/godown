@@ -5,18 +5,19 @@ import { buildString } from "./build-string.js";
 export interface MinifyOptions {
   removeComments?: boolean;
   removeAttributeQuotes?: boolean;
-  shouldMinify?: (_: TaggedTemplateExpressionResult | TemplateExpressionResult) => boolean;
+  shouldMinify?: (extractResult: TaggedTemplateExpressionResult | TemplateExpressionResult) => boolean;
 }
 
 /**
  * Determines whether the given template expression is an html expression.
  *
  * @param result - The tagged template expression or template expression to check.
- * @returns `true` if the HTML expression is inside a tag, `false` otherwise.
+ * @returns `true` if the HTML expression is inside a ExtractResult, `false` otherwise.
  */
 export const isHtmlExpression = (result: TaggedTemplateExpressionResult | TemplateExpressionResult) => {
   if (result.type === "TaggedTemplateExpression") {
     const tag = result.tag.getText();
+    // html`` or `htm`
     if (tag === "html" || tag === "htm") {
       return true;
     }
@@ -29,6 +30,7 @@ export const isHtmlExpression = (result: TaggedTemplateExpressionResult | Templa
       return false;
     }
     const before = full.slice(0, end - start);
+    // /* html */ or /* htm */
     return /^\s*\/\*\s*(html|htm)\s*\*\/\s*$/i.test(before);
   }
   return false;
@@ -46,15 +48,15 @@ const trim = (a: string[]) => {
 /**
  * Determines whether the given HTML string is inside an HTML tag.
  *
- * @param h - The HTML string to check.
- * @param isInside - The initial state of whether the string is inside a tag.
+ * @param part - The HTML string to check.
+ * @param currentState - The current state of whether the string is inside a tag.
  * @returns `true` if the HTML string is inside a tag, `false` otherwise.
  */
-export const isInsideTag = (h: string, isInside: boolean) => {
-  const l = h.indexOf("<");
-  const r = h.lastIndexOf(">");
+export const isInsideTag = (part: string, currentState: boolean) => {
+  const l = part.indexOf("<");
+  const r = part.lastIndexOf(">");
   if (l === -1 && r === -1) {
-    return isInside;
+    return currentState;
   }
   if (l === -1) {
     return false;
