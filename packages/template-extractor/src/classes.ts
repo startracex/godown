@@ -71,7 +71,7 @@ class BaseResult<N extends NodeType = NodeType> {
 
 export class TaggedTemplateExpressionResult extends BaseResult<TaggedTemplateExpressionNode> {
   tag: ts.LeftHandSideExpression;
-  template: ts.TemplateExpression;
+  template: ts.TemplateLiteral;
   strings: TemplateParts["strings"];
   values: TemplateParts["values"];
   children: TemplateSpanResult[];
@@ -79,7 +79,7 @@ export class TaggedTemplateExpressionResult extends BaseResult<TaggedTemplateExp
   constructor(node: ts.TaggedTemplateExpression) {
     super(node);
     this.tag = node.tag;
-    this.template = node.template as ts.TemplateExpression;
+    this.template = node.template;
     const { strings, values } = getTemplateParts(this.template);
     this.strings = strings;
     this.values = values;
@@ -107,7 +107,7 @@ export class TaggedTemplateExpressionResult extends BaseResult<TaggedTemplateExp
 }
 
 export class TemplateExpressionResult extends BaseResult<TemplateExpressionNode> {
-  template: ts.TemplateExpression;
+  template: ts.TemplateLiteral;
   strings: TemplateParts["values"];
   values: TemplateParts["values"];
   children: TemplateSpanResult[];

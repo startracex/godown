@@ -1,4 +1,4 @@
-import type ts from "typescript";
+import ts from "typescript";
 
 export type TextRange = {
   start: number;
@@ -11,19 +11,18 @@ export type TemplateParts = {
   values: string[];
 };
 
-export function getTemplateParts(node: ts.TemplateExpression): TemplateParts {
+export function getTemplateParts(node: ts.TemplateLiteral): TemplateParts {
   const strings: string[] = [];
   const values: string[] = [];
 
-  if (node.head) {
+  if (ts.isTemplateExpression(node)) {
     strings.push(node.head.text);
-  }
-
-  if (node.templateSpans) {
     for (const span of node.templateSpans) {
       values.push(span.expression.getText());
       strings.push(span.literal.text);
     }
+  } else {
+    strings.push(node.text);
   }
 
   return { strings, values };
