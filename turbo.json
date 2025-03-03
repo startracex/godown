@@ -22,6 +22,11 @@
     },
     "clean": {},
     "fmt": {},
+    "@godown/f7-icon#build": {
+      "dependsOn": [
+        "@godown/common#build"
+      ]
+    },
     "godown#dev": {
       "dependsOn": [
         "^build"
