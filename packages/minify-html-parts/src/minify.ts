@@ -5,6 +5,7 @@ import { buildString } from "./build-string.js";
 export interface MinifyOptions {
   removeComments?: boolean;
   removeAttributeQuotes?: boolean;
+  removeEmptyAttributeValues?: boolean;
   shouldMinify?: (extractResult: TaggedTemplateExpressionResult | TemplateExpressionResult) => boolean;
 }
 
@@ -75,6 +76,9 @@ export const minifyPart = (input: string, options: MinifyOptions): string => {
   if (options.removeAttributeQuotes) {
     input = input.replace(/(\w+)=\"([^"]+)\"/g, "$1=$2");
   }
+  if (options.removeEmptyAttributeValues) {
+    input = input.replace(/(\w+)=(""|'')/g, "");
+  }
   if (options.removeComments) {
     input = input.replace(/<!--.*?-->/g, "");
   }
@@ -126,6 +130,7 @@ export const joinParts = (strings: string[], values: string[]) =>
 const defaultOptions = {
   removeComments: true,
   removeAttributeQuotes: false,
+  removeEmptyAttributeValues: false,
   shouldMinify: isHtmlExpression,
 };
 
