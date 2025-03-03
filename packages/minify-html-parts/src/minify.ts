@@ -18,7 +18,7 @@ export interface MinifyOptions {
 export const isHtmlExpression = (result: TaggedTemplateExpressionResult | TemplateExpressionResult) => {
   if (result.type === "TaggedTemplateExpression") {
     const tag = result.tag.getText();
-    // html`` or `htm`
+    // html`` or htm``
     if (tag === "html" || tag === "htm") {
       return true;
     }
