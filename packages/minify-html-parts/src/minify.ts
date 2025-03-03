@@ -127,7 +127,7 @@ export const joinParts = (strings: string[], values: string[]) =>
     "",
   );
 
-const defaultOptions = {
+const defaultOptions: MinifyOptions = {
   removeComments: true,
   removeAttributeQuotes: false,
   removeEmptyAttributeValues: false,
@@ -146,11 +146,7 @@ const defaultOptions = {
  */
 export const minify = (
   input: string,
-  options: {
-    shouldMinify?: (_: TaggedTemplateExpressionResult | TemplateExpressionResult) => boolean;
-    removeComments?: boolean;
-    removeAttributeQuotes?: boolean;
-  } = {},
+  options: MinifyOptions = {},
 ) => {
   options = { ...defaultOptions, ...options };
   let finalString = "";
