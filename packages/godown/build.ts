@@ -1,9 +1,10 @@
 import { globSync } from "glob";
 import postcss from "postcss";
 
-import { autoprefixer, cssnano } from "@godown/common/postcss-plugins";
+import { autoprefixer, cssnano } from "@godown/common/third-party/postcss";
+import { terser, ts } from "@godown/common/third-party/rollup";
+import { minifyHtmlParts, templateReplace } from "@godown/common/workspace-scoped/rollup";
 import { build, commonInput, commonOutput } from "@godown/common/rollup-creator";
-import { minifyHtmlParts, templateReplace, terser, ts } from "@godown/common/rollup-plugins";
 
 const dir = ".";
 

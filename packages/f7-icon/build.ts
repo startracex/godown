@@ -5,9 +5,10 @@ import { IconSet } from "@iconify/tools/lib/icon-set";
 import { iconToSVG } from "@iconify/utils/lib/svg/build";
 import { globSync } from "glob";
 
-import { build, commonInput } from "@godown/common/rollup-creator.js";
-import { cjsShim, commonjs } from "@godown/common/rollup-plugins.js";
 import format from "./lib/format.js";
+import { build, commonInput } from "@godown/common/rollup-creator.js";
+import { commonjs } from "@godown/common/third-party/rollup.js";
+import { cjsShim } from "@godown/common/workspace-scoped/rollup.js";
 
 const set = new IconSet(createRequire(import.meta.url)("@iconify-json/f7/icons.json"));
 

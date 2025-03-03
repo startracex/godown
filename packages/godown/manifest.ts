@@ -1,9 +1,10 @@
 import { globSync } from "glob";
 
 import { analyze } from "@godown/common/cem";
-import { fixModule, jb, moduleDeclarationDefine, vs } from "@godown/common/cem-plugins";
+import { jb, vs } from "@godown/common/third-party/cem";
 import { minJSON } from "@godown/common/min-json";
 import { statSync } from "node:fs";
+import { fixModule, moduleDeclarationDefine } from "@godown/common/workspace-scoped/cem";
 
 function toJSPath(path: string) {
   return path

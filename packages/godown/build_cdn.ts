@@ -1,7 +1,7 @@
 import { statSync } from "node:fs";
 import type { InputOptions, OutputOptions } from "rollup";
 import { build } from "@godown/common/rollup-creator";
-import { nodeResolve, terser } from "@godown/common/rollup-plugins";
+import { nodeResolve, terser } from "@godown/common/third-party/rollup";
 import packageJSON from "./package.json";
 
 const intro = (...args: string[]) => {
