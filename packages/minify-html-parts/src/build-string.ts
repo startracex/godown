@@ -1,5 +1,12 @@
 import type { TaggedTemplateExpressionResult, TemplateExpressionResult } from "template-extractor";
 
+/**
+ * Builds a string by combining a template expression result with a custom build function.
+ *
+ * @param templateExpressionResult - The template expression result to build the string from.
+ * @param buildFunc - A function to build the string from the template expression result.
+ * @returns The built string.
+ */
 export const buildString = (
   templateExpressionResult: TaggedTemplateExpressionResult | TemplateExpressionResult,
   buildFunc: (strings: string[], values: string[]) => string,

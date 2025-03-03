@@ -8,6 +8,12 @@ export interface MinifyOptions {
   shouldMinify?: (_: TaggedTemplateExpressionResult | TemplateExpressionResult) => boolean;
 }
 
+/**
+ * Determines whether the given template expression is an html expression.
+ *
+ * @param result - The tagged template expression or template expression to check.
+ * @returns `true` if the HTML expression is inside a tag, `false` otherwise.
+ */
 export const isHtmlExpression = (result: TaggedTemplateExpressionResult | TemplateExpressionResult) => {
   if (result.type === "TaggedTemplateExpression") {
     const tag = result.tag.getText();
@@ -37,6 +43,13 @@ const trim = (a: string[]) => {
   a[last] = a[last].trimEnd();
 };
 
+/**
+ * Determines whether the given HTML string is inside an HTML tag.
+ *
+ * @param h - The HTML string to check.
+ * @param isInside - The initial state of whether the string is inside a tag.
+ * @returns `true` if the HTML string is inside a tag, `false` otherwise.
+ */
 export const isInsideTag = (h: string, isInside: boolean) => {
   const l = h.indexOf("<");
   const r = h.lastIndexOf(">");
@@ -95,6 +108,13 @@ export const minifyPartsArray = (parts: string[], options: MinifyOptions): strin
   return parts;
 };
 
+/**
+ * Joins an array of string parts with their corresponding values.
+ *
+ * @param strings - An array of string parts.
+ * @param values - An array of values to be interpolated into the string parts.
+ * @returns The joined string with the values interpolated.
+ */
 export const joinParts = (strings: string[], values: string[]) =>
   strings.reduce(
     (acc, current, i) => acc + current + (i < values.length ? `\${${values[i]}}` : ""),
@@ -107,6 +127,16 @@ const defaultOptions = {
   shouldMinify: isHtmlExpression,
 };
 
+/**
+ * Minifies the TypeScript string containing HTML expression based on the provided options.
+ *
+ * @param input - The input HTML string to be minified.
+ * @param options - An optional object containing options for the minification process.
+ * @param options.shouldMinify - A function that determines whether a specific HTML element should be minified.
+ * @param options.removeComments - A boolean indicating whether HTML comments should be removed.
+ * @param options.removeAttributeQuotes - A boolean indicating whether attribute quotes should be removed.
+ * @returns The minified TypeScript string.
+ */
 export const minify = (
   input: string,
   options: {
