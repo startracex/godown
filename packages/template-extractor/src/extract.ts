@@ -1,9 +1,9 @@
 import ts from "typescript";
 import { type ExtractResult, TaggedTemplateExpressionResult, TemplateExpressionResult, TemplateSpanResult } from "./classes.js";
 
-export function extractSourceFile(input: string): ExtractResult[] {
+export function extractSourceFile(input: string): (TaggedTemplateExpressionResult | TemplateExpressionResult)[] {
   const sourceFile = ts.createSourceFile("", input, ts.ScriptTarget.Latest, true);
-  return extract(sourceFile);
+  return extract(sourceFile) as (TaggedTemplateExpressionResult | TemplateExpressionResult)[];
 }
 
 export function extract(node: ts.Node, parent?: ts.Node): ExtractResult[] {
