@@ -4,12 +4,12 @@ import type { TaggedTemplateExpressionResult, TemplateExpressionResult } from "t
  * Builds a string by combining a template expression result with a custom build function.
  *
  * @param templateExpressionResult - The template expression result to build the string from.
- * @param buildFunc - A function to build the string from the template expression result.
+ * @param processParts - A function to build the string from the template expression result.
  * @returns The built string.
  */
 export const buildString = (
   templateExpressionResult: TaggedTemplateExpressionResult | TemplateExpressionResult,
-  buildFunc: (strings: string[], values: string[]) => string,
+  processParts: (strings: string[], values: string[]) => string,
 ): string => {
   const src = templateExpressionResult.node.getSourceFile().text;
   const head = src.slice(templateExpressionResult.start, templateExpressionResult.template.getStart() + 1);
@@ -23,14 +23,14 @@ export const buildString = (
       let newValue = "";
       const span = templateExpressionResult.children[stringsIndex];
       const { children: spans } = span;
-      if (spans.length === 0) {
+      if (!spans.length) {
         newValue += span.text;
       } else {
         let lastEnd = span.start;
         for (const expr of spans) {
           newValue += src.slice(lastEnd, expr.start);
           lastEnd = expr.end;
-          newValue += buildString(expr, buildFunc);
+          newValue += buildString(expr, processParts);
         }
         newValue += src.slice(lastEnd, span.end);
       }
@@ -38,5 +38,5 @@ export const buildString = (
       resultValues.push(newValue);
     }
   }
-  return head + (buildFunc(resultStrings, resultValues)) + tail;
+  return head + (processParts(resultStrings, resultValues)) + tail;
 };
