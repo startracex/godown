@@ -1,6 +1,6 @@
 {
   "name": "minify-html-parts",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Minify HTML in (tagged) template expressions",
   "type": "module",
   "main": "index.js",
