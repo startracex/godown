@@ -1,5 +1,12 @@
 # @godown/element
 
+## 1.8.0
+
+### Minor Changes
+
+- ffed3ac: remove the generics of StyleController
+- 6ca1462: add PortalController
+
 ## 1.7.0
 
 ### Minor Changes

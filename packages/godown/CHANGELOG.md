@@ -1,5 +1,18 @@
 # godown
 
+## 3.10.0
+
+### Minor Changes
+
+- 7691cfa: revert web-components sub directory
+
+### Patch Changes
+
+- Updated dependencies [ffed3ac]
+- Updated dependencies [6ca1462]
+  - @godown/element@1.8.0
+  - @godown/f7-icon@1.0.10
+
 ## 3.9.0
 
 ### Minor Changes
