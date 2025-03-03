@@ -60,6 +60,8 @@ pnpm run build
 
 - `template-extractor` Extract strings templates in TypeScript source file.
 
+- `minify-html-parts` Minify HTML parts in TypeScript source file.
+
 ### Plugins
 
 - `cem-define` Enhance custom-element-manifest's custom-element-definition exports.
@@ -71,3 +73,5 @@ pnpm run build
 - `rollup-plugin-prune-imports` Rollup plugin to prune module imports.
 
 - `rollup-plugin-template-replace` Rollup plugin with template-extractor.
+
+- `rollup-plugin-minify-html-parts` Rollup plugin with minify-html-parts.
