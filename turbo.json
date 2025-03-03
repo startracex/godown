@@ -25,6 +25,12 @@
     "@godown/f7-icon#build": {
       "dependsOn": [
         "@godown/common#build"
+      ],
+      "outputs": [
+        "**/*.js",
+        "**/*.d.ts",
+        "**/*.map",
+        "includes.json"
       ]
     },
     "godown#dev": {
