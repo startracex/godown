@@ -1,6 +1,6 @@
 {
   "name": "template-extractor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Extract templates from TypeScript",
   "type": "module",
   "main": "index.js",
