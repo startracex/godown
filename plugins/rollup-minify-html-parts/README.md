@@ -15,8 +15,9 @@ export default {
   // ...
   plugins: [
     minifyHtmlParts({
-      removeAttributeQuotes: true,
       removeComments: true,
+      removeAttributeQuotes: true,
+      removeEmptyAttributeValues: true,
       shouldMinify(extractResult) {
         return extractResult.type === "TaggedTemplateExpression" &&
           extractResult.tag.getText() === "html";

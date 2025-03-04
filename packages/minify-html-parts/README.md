@@ -10,8 +10,9 @@ Can be used in `lit-html` or `fast-element`.
 import { minify } from "minify-html-parts";
 
 const output = minify(input, {
-  removeAttributeQuotes: true,
   removeComments: true,
+  removeAttributeQuotes: true,
+  removeEmptyAttributeValues: true,
   shouldMinify(extractResult) {
     return extractResult.type === "TaggedTemplateExpression" &&
       extractResult.tag.getText() === "html";
