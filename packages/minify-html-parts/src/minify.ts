@@ -1,6 +1,7 @@
 import extractSourceFile, { type TaggedTemplateExpressionResult, type TemplateExpressionResult } from "template-extractor";
 import { getTextRange } from "template-extractor/utils.js";
 import { buildString } from "./build-string.js";
+import { parsePart } from "./parse-parts.js";
 
 export interface MinifyOptions {
   removeComments?: boolean;
@@ -37,7 +38,7 @@ export const isHtmlExpression = (result: TaggedTemplateExpressionResult | Templa
   return false;
 };
 
-const trim = (a: string[]) => {
+const trimBothSide = (a: string[]) => {
   if (!a.length) {
     return;
   }
@@ -46,71 +47,59 @@ const trim = (a: string[]) => {
   a[last] = a[last].trimEnd();
 };
 
-/**
- * Determines whether the given HTML string is inside an HTML tag.
- *
- * @param part - The HTML string to check.
- * @param currentState - The current state of whether the string is inside a tag.
- * @returns `true` if the HTML string is inside a tag, `false` otherwise.
- */
-export const isInsideTag = (part: string, currentState: boolean) => {
-  const l = part.indexOf("<");
-  const r = part.lastIndexOf(">");
-  if (l === -1 && r === -1) {
-    return currentState;
+const minifyAnyPart = (input: string, options: MinifyOptions): string => {
+  if (options.removeComments) {
+    input = input.replace(/<!--.*?-->/g, "");
   }
-  if (l === -1) {
-    return false;
-  }
-  if (r === -1) {
-    return true;
-  }
-  return l < r;
+  input = input.replace(/\s+/g, " ");
+  return input;
 };
 
-export const minifyPart = (input: string, options: MinifyOptions): string => {
-  input = input
-    .replace(/\s+/g, " ")
-    .replace(/\s*\/?>/, ">")
-    .replace(/>\s*</g, "><");
+const minifyInTagPart = (input: string, options: MinifyOptions) => {
+  if (options.removeEmptyAttributeValues) {
+    input = input.replace(/(\w+)=(""|'')/g, "$1");
+  }
   if (options.removeAttributeQuotes) {
     input = input.replace(/(\w+)=\"([^"]+)\"/g, "$1=$2");
   }
   if (options.removeEmptyAttributeValues) {
     input = input.replace(/(\w+)=(""|'')/g, "");
   }
-  if (options.removeComments) {
-    input = input.replace(/<!--.*?-->/g, "");
-  }
+  input = input.replace(/\s+(?=[>\/>])/g, "");
   return input;
 };
 
-export const minifyPartsArray = (parts: string[], options: MinifyOptions): string[] => {
-  parts = parts.map((part) => minifyPart(part, options));
-  trim(parts);
-
-  if (!options.removeAttributeQuotes) {
-    return parts;
-  }
-
-  let isInside = false;
+const minifyPartsArray = (parts: string[], options: MinifyOptions): string[] => {
+  parts = parts.map((part) => minifyAnyPart(part, options));
+  trimBothSide(parts);
+  const context = {
+    inTag: false,
+  };
+  let prevEndsWithEqualQuote = false;
   for (let i = 0; i < parts.length; i++) {
-    const currentPart = parts[i];
-    parts[i] = currentPart;
-    isInside = isInsideTag(currentPart, isInside);
-
-    if (isInside && i + 1 < parts.length) {
-      const nextPart = parts[i + 1];
-      if (
-        (currentPart.endsWith("\"") && nextPart.startsWith("\"")) ||
-        (currentPart.endsWith("'") && nextPart.startsWith("'"))
-      ) {
-        parts[i] = currentPart.slice(0, -1);
-        parts[i + 1] = parts[i + 1].slice(1);
-      }
-    }
+    const parsedPart = parsePart(parts[i], context);
+    parts[i] = parsedPart
+      .map(({
+        inTag,
+        text,
+      }) => {
+        if (!inTag) {
+          return text;
+        }
+        text = minifyInTagPart(text, options);
+        if (options.removeAttributeQuotes) {
+          if (prevEndsWithEqualQuote && text.startsWith("\"")) {
+            text = text.slice(1);
+          }
+          prevEndsWithEqualQuote = text.endsWith("=\"");
+          if (prevEndsWithEqualQuote) {
+            text = text.slice(0, -1);
+          }
+        }
+        return text;
+      })
+      .join("");
   }
-
   return parts;
 };
 
@@ -122,10 +111,7 @@ export const minifyPartsArray = (parts: string[], options: MinifyOptions): strin
  * @returns The joined string with the values interpolated.
  */
 export const joinParts = (strings: string[], values: string[]) =>
-  strings.reduce(
-    (acc, current, i) => acc + current + (i < values.length ? `\${${values[i]}}` : ""),
-    "",
-  );
+  strings.reduce((acc, current, i) => acc + current + (i < values.length ? `\${${values[i]}}` : ""), "");
 
 const defaultOptions: MinifyOptions = {
   removeComments: true,
@@ -144,10 +130,7 @@ const defaultOptions: MinifyOptions = {
  * @param options.removeAttributeQuotes - A boolean indicating whether attribute quotes should be removed.
  * @returns The minified TypeScript string.
  */
-export const minify = (
-  input: string,
-  options: MinifyOptions = {},
-) => {
+export const minify = (input: string, options: MinifyOptions = {}) => {
   options = { ...defaultOptions, ...options };
   let finalString = "";
   let lastEnd = 0;
