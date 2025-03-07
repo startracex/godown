@@ -13,37 +13,53 @@ type ParseContext = {
  * @param input - The input string to be parsed.
  * @param context - An `ParseContext` object can be used to maintain state between calls to `parsePart`.
  * @returns An array of `ParseResult` objects representing the parts of the input.
+ * @example
+ * ```ts
+ * const context = { inTag: false }
+ * parsePart("<a>b<c", context)
+ * // [
+ * //   { inTag: true, text: '<a>' },
+ * //   { inTag: false, text: 'b' },
+ * //   { inTag: true, text: '<c' }
+ * // ]
+ * parsePart(">d< e", context)
+ * // [
+ * //   { inTag: true, text: ">" },
+ * //   { inTag: false, text: "d< e" },
+ * // ]
+ * ```
  */
 export const parsePart = (input: string, context: ParseContext): ParseResult[] => {
   const parts: ParseResult[] = [];
-  let startIndex = 0;
+  let lastIndex = 0;
 
   for (let i = 0; i < input.length; i++) {
-    if (input[i] === "<") {
-      if (!context.inTag && i > startIndex) {
+    if (input[i] === "<" && !context.inTag && (i === input.length - 1 || /\w/.test(input[i + 1]))) {
+      if (i > lastIndex) {
         parts.push({
-          inTag: false,
-          text: input.slice(startIndex, i),
+          inTag: context.inTag,
+          text: input.slice(lastIndex, i),
         });
       }
-      startIndex = i;
       context.inTag = true;
-    } else if (input[i] === ">") {
-      if (context.inTag) {
-        parts.push({
-          inTag: true,
-          text: input.slice(startIndex, i + 1),
-        });
-        startIndex = i + 1;
-        context.inTag = false;
-      }
+      lastIndex = i;
+      continue;
+    }
+    if (input[i] === ">" && context.inTag) {
+      parts.push({
+        inTag: true,
+        text: input.slice(lastIndex, i + 1),
+      });
+      context.inTag = false;
+      lastIndex = i + 1;
+      continue;
     }
   }
 
-  if (startIndex < input.length) {
+  if (lastIndex < input.length) {
     parts.push({
       inTag: context.inTag,
-      text: input.slice(startIndex),
+      text: input.slice(lastIndex),
     });
   }
 
