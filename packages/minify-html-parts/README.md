@@ -14,8 +14,7 @@ const output = minify(input, {
   removeAttributeQuotes: true,
   removeEmptyAttributeValues: true,
   shouldMinify(extractResult) {
-    return extractResult.type === "TaggedTemplateExpression" &&
-      extractResult.tag.getText() === "html";
+    return extractResult.tag?.getText() === "html";
   },
 });
 ```
