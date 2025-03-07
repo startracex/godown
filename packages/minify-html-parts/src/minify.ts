@@ -62,9 +62,6 @@ const minifyInTagPart = (input: string, options: MinifyOptions) => {
   if (options.removeAttributeQuotes) {
     input = input.replace(/(\w+)=\"([^"]+)\"/g, "$1=$2");
   }
-  if (options.removeEmptyAttributeValues) {
-    input = input.replace(/(\w+)=(""|'')/g, "");
-  }
   input = input.replace(/\s+(?=[>\/>])/g, "");
   return input;
 };
