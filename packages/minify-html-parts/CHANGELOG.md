@@ -1,5 +1,13 @@
 # minify-html-parts
 
+## 0.0.3
+
+### Patch Changes
+
+- ddc9491: avoid removing quotation marks with blank values
+- 26a571a: correctly handle non-tag-started `<`
+- bae0c9b: remove unused replacement
+
 ## 0.0.2
 
 ### Patch Changes
