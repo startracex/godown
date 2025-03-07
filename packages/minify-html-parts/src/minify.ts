@@ -1,7 +1,7 @@
 import extractSourceFile, { type TaggedTemplateExpressionResult, type TemplateExpressionResult } from "template-extractor";
 import { getTextRange } from "template-extractor/utils.js";
 import { buildString } from "./build-string.js";
-import { parsePart } from "./parse-parts.js";
+import { parsePart } from "./parse-part.js";
 
 export interface MinifyOptions {
   removeComments?: boolean;
