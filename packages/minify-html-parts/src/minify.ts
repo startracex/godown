@@ -60,7 +60,7 @@ const minifyInTagPart = (input: string, options: MinifyOptions) => {
     input = input.replace(/(\w+)=(""|'')/g, "$1");
   }
   if (options.removeAttributeQuotes) {
-    input = input.replace(/(\w+)=\"([^"]+)\"/g, "$1=$2");
+    input = input.replace(/(\w+)=\"([^"\s]+)\"/g, "$1=$2");
   }
   input = input.replace(/\s+(?=[>\/>])/g, "");
   return input;
