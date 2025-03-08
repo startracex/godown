@@ -5,7 +5,7 @@
   "type": "module",
   "dependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.4",
-    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
@@ -15,7 +15,7 @@
     "cssnano": "^7.0.6",
     "custom-element-jet-brains-integration": "^1.7.0",
     "custom-element-vs-code-integration": "^1.5.0",
-    "rollup": "^4.34.9",
+    "rollup": "^4.35.0",
     "rollup-plugin-cjs-shim": "workspace:^",
     "rollup-plugin-minify-html-parts": "workspace:^",
     "rollup-plugin-prune-imports": "workspace:^",
