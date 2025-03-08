@@ -7,6 +7,8 @@ type ParseContext = {
   inTag: boolean;
 };
 
+const afterTagStartRegex = /[a-zA-Z\/]/;
+
 /**
  * Parses the given input string into an array of `ParseResult` objects, which represent the parts of the input that are either inside or outside of HTML tags.
  *
@@ -34,7 +36,7 @@ export const parsePart = (input: string, context: ParseContext): ParseResult[] =
   let lastIndex = 0;
 
   for (let i = 0; i < input.length; i++) {
-    if (input[i] === "<" && !context.inTag && (i === input.length - 1 || /\w/.test(input[i + 1]))) {
+    if (input[i] === "<" && !context.inTag && (i === input.length - 1 || afterTagStartRegex.test(input[i + 1]))) {
       if (i > lastIndex) {
         parts.push({
           inTag: context.inTag,
