@@ -19,25 +19,20 @@ const topLevelRegex = /^\s*\/\*\s*(html|htm)\s*\*\/\s*$/i;
  * @returns `true` if the HTML expression is inside a ExtractResult, `false` otherwise.
  */
 export const isHtmlExpression = (result: TaggedTemplateExpressionResult | TemplateExpressionResult) => {
-  if (result.type === "TaggedTemplateExpression") {
+  if ("tag" in result) {
     const tag = result.tag.getText().toLowerCase();
     // html`` or htm``
-    if (tag === "html" || tag === "htm") {
-      return true;
-    }
+    return tag === "html" || tag === "htm";
   }
-  if (result.type === "TemplateExpression") {
-    const start = result.node.getFullStart();
-    const end = result.node.getStart();
-    if (start === end) {
-      return false;
-    }
-    const full = result.node.getFullText();
-    const before = full.slice(0, end - start);
-    // /* html */ or /* htm */
-    return topLevelRegex.test(before);
+  const start = result.node.getFullStart();
+  const end = result.node.getStart();
+  if (start === end) {
+    return false;
   }
-  return false;
+  const full = result.node.getFullText();
+  const before = full.slice(0, end - start);
+  // /* html */`` or /* htm */``
+  return topLevelRegex.test(before);
 };
 
 const trimBothSide = (a: string[]) => {
