@@ -1,5 +1,12 @@
 # minify-html-parts
 
+## 0.0.4
+
+### Patch Changes
+
+- 6f4af2d: optimize top level regexp
+- 7f69ae4: fix tag start matching
+
 ## 0.0.3
 
 ### Patch Changes

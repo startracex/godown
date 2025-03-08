@@ -1,5 +1,14 @@
 # rollup-plugin-minify-html-parts
 
+## 0.0.4
+
+### Patch Changes
+
+- 5a81f31: make include and exclude options optional
+- Updated dependencies [6f4af2d]
+- Updated dependencies [7f69ae4]
+  - minify-html-parts@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @godown/element
 
+## 1.8.1
+
+### Patch Changes
+
+- 7fe48e2: add customizable portal root cleanup
+- 6f4af2d: optimize top level regexp
+
 ## 1.8.0
 
 ### Minor Changes

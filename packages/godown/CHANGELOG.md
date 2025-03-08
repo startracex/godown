@@ -1,5 +1,15 @@
 # godown
 
+## 3.10.1
+
+### Patch Changes
+
+- 6f4af2d: optimize top level regexp
+- Updated dependencies [7fe48e2]
+- Updated dependencies [6f4af2d]
+  - @godown/element@1.8.1
+  - @godown/f7-icon@1.0.11
+
 ## 3.10.0
 
 ### Minor Changes
