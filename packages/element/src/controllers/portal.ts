@@ -30,21 +30,28 @@ export class PortalController<E extends HTMLElement = HTMLElement> implements Re
   host: ReactiveControllerHost;
   root: E;
   setup: () => E;
+  cleanup: (root: E) => void;
   render: (root?: E) => any;
   value: any;
 
   constructor(
     host: ReactiveControllerHost,
     renderRootContent: (root?: E) => any,
-    setupRoot?: () => E,
+    setupRoot: () => E = () => document.body as E,
+    cleanupRoot: (root: E) => void = (root) => {
+      if (document.body !== root) {
+        root.remove();
+      }
+    },
   ) {
     (this.host = host).addController(this);
     this.render = renderRootContent;
     this.setup = setupRoot;
+    this.cleanup = cleanupRoot;
   }
 
   hostConnected(): void {
-    this.root = this.setup?.() || document.body as E;
+    this.root = this.setup();
   }
 
   hostUpdated(): void {
@@ -57,8 +64,8 @@ export class PortalController<E extends HTMLElement = HTMLElement> implements Re
   }
 
   hostDisconnected(): void {
-    if (this.root && this.root !== document.body) {
-      this.root.remove();
+    if (this.root) {
+      this.cleanup(this.root);
       this.root = null;
     }
   }
