@@ -6,7 +6,7 @@ import packageJSON from "./package.json";
 
 const intro = (...args: string[]) => {
   return `/**
- * @license MIT
+ * @license ${packageJSON.license}
  * @version ${packageJSON.version}${(args.length ? "\n * " : "") + args.join("\n * ")}
  */`;
 };
@@ -28,7 +28,7 @@ const buildInto: (InputOptions & { output: OutputOptions[] })[] = [
         format: "es",
         sourcemap: true,
         indent: false,
-        intro: intro(`Require Lit Core (import from \`"lit"\`)`),
+        intro: intro("Require Lit Core (import from `\"lit\"`)"),
       },
       {
         file: "build/godown.iife.js",
@@ -38,7 +38,7 @@ const buildInto: (InputOptions & { output: OutputOptions[] })[] = [
         globals: {
           lit: "Lit",
         },
-        intro: intro(`Require Lit Core ("Lit" in globalThis)`),
+        intro: intro("Require Lit Core (`\"Lit\"` in globalThis)"),
       },
       {
         file: "build/godown.umd.js",
@@ -49,7 +49,7 @@ const buildInto: (InputOptions & { output: OutputOptions[] })[] = [
         globals: {
           lit: "Lit",
         },
-        intro: intro(`Require Lit Core ("Lit" in globalThis)`),
+        intro: intro("Require Lit Core (`\"Lit\"` in globalThis)"),
       },
     ],
   },
