@@ -4,8 +4,8 @@ import { createFilter, type FilterPattern } from "@rollup/pluginutils";
 
 export function minifyHtmlParts(
   options?: MinifyOptions & {
-    include: FilterPattern;
-    exclude: FilterPattern;
+    include?: FilterPattern;
+    exclude?: FilterPattern;
   },
 ) {
   const filter = createFilter(options?.include, options?.exclude);
