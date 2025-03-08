@@ -27,12 +27,12 @@ export const isHtmlExpression = (result: TaggedTemplateExpressionResult | Templa
     }
   }
   if (result.type === "TemplateExpression") {
-    const full = result.node.getFullText();
     const start = result.node.getFullStart();
     const end = result.node.getStart();
     if (start === end) {
       return false;
     }
+    const full = result.node.getFullText();
     const before = full.slice(0, end - start);
     // /* html */ or /* htm */
     return topLevelRegex.test(before);
