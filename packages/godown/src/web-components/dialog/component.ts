@@ -8,6 +8,8 @@ import { SuperOpenable } from "../../internal/super-openable.js";
 const protoName = "dialog";
 const cssScope = scopePrefix(protoName);
 
+const splitKeysRegexp = /[\s,]+/;
+
 /**
  * {@linkcode Dialog} similar to `<dialog>`.
  *
@@ -128,7 +130,7 @@ class Dialog extends SuperOpenable {
   }
 
   protected _handleKeydown(e: KeyboardEvent): void {
-    const keys = this.key.split(/[\s,]/);
+    const keys = this.key.split(splitKeysRegexp);
     if (keys.includes(e.key) || keys.includes(e.code)) {
       e.preventDefault();
       this.close();

@@ -19,9 +19,6 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "performance": {
-        "useTopLevelRegex": "off"
-      },
       "suspicious": {
         "noConsole": {
           "level": "error",

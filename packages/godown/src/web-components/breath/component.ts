@@ -7,6 +7,8 @@ import { GlobalStyle, cssGlobalVars, scopePrefix } from "../../internal/global-s
 const defineName = "breath";
 const cssScope = scopePrefix(defineName);
 
+const splitTextRegexp = /[\s,]+/;
+
 /**
  * {@linkcode Breath} render the text with a breathing effect.
  *
@@ -130,7 +132,7 @@ class Breath extends GlobalStyle {
   protected getTexts(): string[] {
     return Array.isArray(this.content)
       ? this.content
-      : (this.content || this.textContent).split(/\s+/).filter((x) => x);
+      : (this.content || this.textContent).split(splitTextRegexp).filter((x) => x);
   }
 
   protected _computeStyle(len: number): string {

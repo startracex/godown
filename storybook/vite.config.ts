@@ -13,6 +13,7 @@ export default defineConfig({
           id.endsWith(".mdx")
         ) {
           const raw = readFileSync(id).toString();
+          // biome-ignore lint/performance/useTopLevelRegex:
           const placeholderRegex = /\{\/\* PLACEHOLDER (.*?) \*\/\}/;
           const match = raw.match(placeholderRegex);
           if (!match) {

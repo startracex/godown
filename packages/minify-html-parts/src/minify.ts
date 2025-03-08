@@ -10,6 +10,8 @@ export interface MinifyOptions {
   shouldMinify?: (extractResult: TaggedTemplateExpressionResult | TemplateExpressionResult) => boolean;
 }
 
+const topLevelRegex = /^\s*\/\*\s*(html|htm)\s*\*\/\s*$/i;
+
 /**
  * Determines whether the given template expression is an html expression.
  *
@@ -33,7 +35,7 @@ export const isHtmlExpression = (result: TaggedTemplateExpressionResult | Templa
     }
     const before = full.slice(0, end - start);
     // /* html */ or /* htm */
-    return /^\s*\/\*\s*(html|htm)\s*\*\/\s*$/i.test(before);
+    return topLevelRegex.test(before);
   }
   return false;
 };

@@ -8,7 +8,9 @@ import { fixModule, moduleDeclarationDefine } from "@godown/common/workspace-sco
 
 function toJSPath(path: string) {
   return path
+    // biome-ignore lint/performance/useTopLevelRegex:
     .replace(/^\/?src\//, "")
+    // biome-ignore lint/performance/useTopLevelRegex:
     .replace(/\.ts$/, ".js");
 }
 
