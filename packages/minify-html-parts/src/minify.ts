@@ -20,7 +20,7 @@ const topLevelRegex = /^\s*\/\*\s*(html|htm)\s*\*\/\s*$/i;
  */
 export const isHtmlExpression = (result: TaggedTemplateExpressionResult | TemplateExpressionResult) => {
   if (result.type === "TaggedTemplateExpression") {
-    const tag = result.tag.getText();
+    const tag = result.tag.getText().toLowerCase();
     // html`` or htm``
     if (tag === "html" || tag === "htm") {
       return true;
