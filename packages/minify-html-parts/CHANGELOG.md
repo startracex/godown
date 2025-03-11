@@ -1,5 +1,13 @@
 # minify-html-parts
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies [b8957e8]
+- Updated dependencies [c06ab63]
+  - template-extractor@0.1.2
+
 ## 0.0.4
 
 ### Patch Changes

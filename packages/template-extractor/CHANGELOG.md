@@ -1,5 +1,12 @@
 # template-extractor
 
+## 0.1.2
+
+### Patch Changes
+
+- b8957e8: export utility functions
+- c06ab63: fix file pattern
+
 ## 0.1.1
 
 ### Patch Changes
