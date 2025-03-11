@@ -1,5 +1,13 @@
 # rollup-plugin-template-replace
 
+## 0.2.4
+
+### Patch Changes
+
+- Updated dependencies [b8957e8]
+- Updated dependencies [c06ab63]
+  - template-extractor@0.1.2
+
 ## 0.2.3
 
 ### Patch Changes
