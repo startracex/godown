@@ -26,6 +26,6 @@
     "typescript": "^5.8.2"
   },
   "files": [
-    "*.js,ts"
+    "**/*.{js,d.ts}+(|.map)"
   ]
 }
