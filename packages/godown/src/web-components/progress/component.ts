@@ -73,7 +73,8 @@ class Progress extends GlobalStyle {
     let className: string;
     if (!isNullable(this.value)) {
       const ranger = new Ranger(this.min, this.max);
-      width = ranger.restrict(this.value / ranger.diff) * 100;
+      const value = +this.value - this.min;
+      width = (value / ranger.diff) * 100;
       className = "static";
     }
     return html`
