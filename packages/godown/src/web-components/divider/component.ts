@@ -1,4 +1,4 @@
-import { attr, godown, styles } from "@godown/element";
+import { godown, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -25,18 +25,6 @@ const protoName = "divider";
     width: 0.05em;
     height: 100%;
   }
-
-  :host([contents]) [part="root"] {
-    width: 100%;
-    height: 0.05em;
-    margin: auto;
-    display: block;
-    background: currentColor;
-  }
-
-  [part="root"] {
-    display: contents;
-  }
 `)
 class Divider extends GlobalStyle {
   /**
@@ -47,10 +35,7 @@ class Divider extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     return html`
-      <div
-        part="root"
-        ${attr(this.observedRecord)}
-      ></div>
+      <div part="root"></div>
     `;
   }
 }
