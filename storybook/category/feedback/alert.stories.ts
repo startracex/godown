@@ -35,7 +35,6 @@ export default {
   args: {
     color: "blue",
     variant: "dark",
-    hideClose: false,
     title: "Title",
     content: "",
   },

@@ -1,17 +1,10 @@
 "use client";
 import Alert from "godown/alert.js";
 
-import { createReact, eventMap, type TargetedCustomEvent } from "./lib/create.js";
+import { createReact } from "./lib/create.js";
 import type { IntrinsicElement } from "./lib/intrinsic.js";
 
-export default createReact(
-  Alert,
-  eventMap<{
-    onClose: TargetedCustomEvent<undefined, Alert>;
-  }>({
-    onClose: "close",
-  }),
-);
+export default createReact(Alert);
 
 declare global {
   namespace JSX {

@@ -71,14 +71,8 @@ const colorDetails = {
     background: var(${cssScope}--blockquote-background);
   }
 
-  [part~="icon"] {
-    display: grid;
-    align-items: center;
-    height: 2em;
-  }
-
   [part="content"] {
-    grid-row: span 2 / span 2;
+    display: grid;
   }
 `)
 class Alert extends GlobalStyle {
@@ -116,12 +110,6 @@ class Alert extends GlobalStyle {
     | "none" = "blue";
 
   /**
-   * Close delay, if 0, it will not be closed automatically.
-   */
-  @property({ type: Number })
-  autoclose = 0;
-
-  /**
    * The title is bold and the icon height is the same as it.
    */
   @property()
@@ -141,38 +129,19 @@ class Alert extends GlobalStyle {
   variant: "blockquote" | "dark" = "dark";
 
   protected render(): TemplateResult<1> {
-    const icon = htmlSlot("icon");
     return html`
       <div
         part="root"
         ${attr(this.observedRecord)}
       >
-        <div class="start">${icon}</div>
+        <div class="start">${htmlSlot("start")}</div>
         <div part="content">
           <strong part="title">${this.title || htmlSlot("title")}</strong>
           ${this.content || htmlSlot()}
         </div>
-        <div
-          part="close"
-          class="end"
-          tabindex="0"
-          @click="${this.close}"
-        >
-          ${htmlSlot("close")}
-        </div>
+        <div class="end">${htmlSlot("end")}</div>
       </div>
     `;
-  }
-
-  close(): void {
-    this.remove();
-    this.dispatchCustomEvent("close", undefined, { bubbles: true });
-  }
-
-  protected firstUpdated(): void {
-    if (this.autoclose) {
-      this.timeouts.add(setTimeout(() => this.close(), this.autoclose));
-    }
   }
 
   static alert(root: HTMLElement, option: Partial<Alert>): Alert {
