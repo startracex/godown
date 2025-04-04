@@ -48,7 +48,6 @@ const protoName = "heading";
     direction: ltr;
     font-size: revert;
     position: relative;
-    width: fit-content;
   }
 `)
 class Heading extends GlobalStyle {
