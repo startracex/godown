@@ -35,12 +35,16 @@ type RangeValue = number | number[];
 @styles(
   css`
     :host {
-      ${cssScope}--handle-active: var(${cssGlobalVars.active});
       ${cssScope}--track-width: .5em;
+      ${cssScope}--handle-scale: 1;
+      ${cssScope}--handle-border-color: currentColor;
+      ${cssScope}--handle-background: var(${cssGlobalVars.active});
+      ${cssScope}--track-background: var(${cssGlobalVars.active});
       ${cssScope}--length: var(${cssGlobalVars.input}-width);
       background: var(${cssGlobalVars.passive});
       width: var(${cssScope}--length);
       display: block;
+      height: var(${cssScope}--track-width);
     }
 
     :host([contents]) [part="root"] {
@@ -52,18 +56,12 @@ type RangeValue = number | number[];
       width: fit-content;
     }
 
-    :host(:not([disabled])) .last-focus {
-      ${cssScope}--handle-scale: 1.05;
-      background: var(${cssScope}--handle-active);
-    }
-
     [part="root"] {
       min-height: inherit;
       position: relative;
       border-radius: inherit;
       --from: 0%;
       --to: 50%;
-      height: var(${cssScope}--track-width);
     }
 
     [part="track"] {
@@ -75,11 +73,11 @@ type RangeValue = number | number[];
       border-radius: inherit;
       justify-content: space-between;
       left: min(var(--from), var(--to));
-      background: var(${cssGlobalVars.active});
+      background: var(${cssScope}--track-background);
       width: max(calc(var(--to) - var(--from)), calc(var(--from) - var(--to)));
     }
 
-    [part="handle"] {
+    [part~="handle"] {
       width: 1em;
       height: 1em;
       display: flex;
@@ -87,12 +85,14 @@ type RangeValue = number | number[];
       justify-content: center;
       user-select: none;
       position: absolute;
-      border: 0.1em solid;
       border-radius: 50%;
       transform-origin: 0% 25%;
-      transform: scale(var(${cssScope}--handle-scale, 1)) translate(-50%, -25%);
-      background: var(${cssGlobalVars.active});
-      border-color: var(${cssGlobalVars.input}-control);
+      outline: 0;
+      border-style: solid;
+      border-width: 0.1em;
+      transform: scale(var(${cssScope}--handle-scale)) translate(-50%, -25%);
+      background: var(${cssScope}--handle-background);
+      border-color: var(${cssScope}--handle-border-color);
     }
   `,
   css`
@@ -113,12 +113,12 @@ type RangeValue = number | number[];
     }
   `,
   css`
-    [part="handle"] {
+    [part~="handle"] {
       left: var(--handle);
       top: 0;
     }
 
-    [vertical] [part="handle"] {
+    [vertical] [part~="handle"] {
       top: var(--handle);
       left: 0;
     }
@@ -242,11 +242,8 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
     return html`
       <i
         tabindex="0"
-        part="handle"
-        class="${tokenList({ "last-focus": this.lastFocus === index })}"
+        part="${tokenList("handle", `handle-${index}`)}"
         @mousedown="${disabled ? null : this.createMouseDown(index)}"
-        @focus="${disabled ? null : () => this.focusHandle(index)}"
-        @blur="${disabled ? null : this.blurHandle}"
         style="${joinDeclarations({
           "z-index": this.__focusStack.indexOf(index) + 1,
           "--handle": `var(--${end ? "to" : `handle-${index}`})`,
