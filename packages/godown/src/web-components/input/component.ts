@@ -1,5 +1,5 @@
 import { attr, godown, part, styles, htmlSlot, StyleController } from "@godown/element";
-import iconEyeSlashFill from "@godown/f7-icon/icons/eye-slash-fill.js";
+import iconEyeSlash from "../../internal/icons/eye-slash.js";
 import { type TemplateResult, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -94,7 +94,7 @@ class Input extends SuperInput {
                 @mouseup="${() => this._changeInputType(PASSWORD)}"
                 @mouseleave="${() => this._changeInputType(PASSWORD)}"
               >
-                ${iconEyeSlashFill()}
+                ${iconEyeSlash()}
               </i>
             `
           : htmlSlot("suffix")}

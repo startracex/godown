@@ -28,7 +28,6 @@
   "dependencies": {
     "@godown/colors": "workspace:^",
     "@godown/element": "workspace:^",
-    "@godown/f7-icon": "workspace:^",
     "fmtime": "^0.0.3",
     "lit": "catalog:",
     "tslib": "catalog:"

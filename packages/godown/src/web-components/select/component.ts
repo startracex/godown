@@ -1,5 +1,5 @@
 import { type HandlerEvent, attr, godown, htmlSlot, part, styles } from "@godown/element";
-import svgCaretDown from "@godown/f7-icon/icons/chevron-down.js";
+import svgCaretDown from "../../internal/icons/caret-down.js";
 import { type TemplateResult, css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 

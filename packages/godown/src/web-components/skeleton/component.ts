@@ -1,5 +1,4 @@
 import { attr, godown, htmlSlot, styles } from "@godown/element";
-import iconPhoto from "@godown/f7-icon/icons/photo.js";
 import { type TemplateResult, css, html } from "lit";
 import { property, state } from "lit/decorators.js";
 
@@ -21,7 +20,7 @@ const cssScope = scopePrefix(protoName);
     ${cssScope}--from: var(${cssGlobalVars._colors.darkgray[9]});
     ${cssScope}--to: var(${cssGlobalVars._colors.darkgray[7]});
     ${cssScope}--deg: 95deg;
-    ${cssScope}--duration: 1.5s;
+    ${cssScope}--duration: 2s;
     ${cssScope}--icon-size: 5em;
     ${cssScope}--icon-margin: .25em;
     color: var(${cssGlobalVars._colors.darkgray[5]});
@@ -37,12 +36,6 @@ const cssScope = scopePrefix(protoName);
     min-height: inherit;
     text-align: center;
     animation: var(${cssScope}--duration) ease-in-out 0s infinite none running;
-  }
-
-  svg {
-    --size: var(${cssScope}--icon-size);
-    font-size: var(--size);
-    margin: calc(var(--size) * 0.05);
   }
 
   [animation="position"] {
@@ -67,16 +60,14 @@ const cssScope = scopePrefix(protoName);
   }
 
   [animation="opacity"] {
+    background: var(${cssScope}--from);
     animation-name: op;
     animation-direction: alternate;
   }
 
   @keyframes op {
     50% {
-      opacity: 0.25;
-    }
-    to {
-      opacity: 1;
+      opacity: 0.5;
     }
   }
 `)
@@ -109,7 +100,7 @@ class Skeleton extends GlobalStyle {
         part="root"
         ${attr(this.observedRecord)}
       >
-        ${this.type === "image" ? iconPhoto() : ""} ${htmlSlot("loading")}
+        ${htmlSlot("loading")}
       </div>
     `;
   }

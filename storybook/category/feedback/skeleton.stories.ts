@@ -8,31 +8,14 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    type: new ArgHelper().options([
-      "text",
-      "image",
-    ]).arg,
     animation: new ArgHelper().options([
       "position",
       "opacity",
     ]).arg,
   },
   args: {
-    type: "text",
     animation: "position",
   },
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
-
-export const Text = {
-  args: {
-    type: "text",
-  },
-};
-
-export const Image = {
-  args: {
-    type: "image",
-  },
-};

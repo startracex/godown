@@ -1,6 +1,6 @@
 import { attr, godown, htmlSlot, part, styles } from "@godown/element";
-import iconChevronLeft from "@godown/f7-icon/icons/chevron-left.js";
-import iconChevronRight from "@godown/f7-icon/icons/chevron-right.js";
+import iconCaretLeft from "../../internal/icons/caret-left.js";
+import iconCaretRight from "../../internal/icons/caret-right.js";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -101,14 +101,14 @@ class Carousel extends GlobalStyle {
           part="prev"
           @click="${this.prev}"
         >
-          ${iconChevronLeft()}
+          ${iconCaretLeft()}
         </i>
         <div part="move-root">${htmlSlot()}</div>
         <i
           part="next"
           @click="${this.next}"
         >
-          ${iconChevronRight()}
+          ${iconCaretRight()}
         </i>
       </div>
     `;

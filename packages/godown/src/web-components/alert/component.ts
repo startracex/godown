@@ -1,12 +1,4 @@
 import { attr, godown, htmlSlot, joinRules, StyleController, styles } from "@godown/element";
-import iconCheckAltCircle from "@godown/f7-icon/icons/checkmark-alt-circle.js";
-import iconExclamationCircle from "@godown/f7-icon/icons/exclamationmark-circle.js";
-import iconInfoCircle from "@godown/f7-icon/icons/info-circle.js";
-import iconLightbulb from "@godown/f7-icon/icons/lightbulb.js";
-import iconQuestionCircle from "@godown/f7-icon/icons/question-circle.js";
-import iconSlashCircle from "@godown/f7-icon/icons/slash-circle.js";
-import iconXmarkCircle from "@godown/f7-icon/icons/xmark-circle.js";
-import iconXmark from "@godown/f7-icon/icons/xmark.js";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -29,43 +21,8 @@ const colorDetails = {
   teal: genDark("teal"),
   pink: genDark("pink"),
   gray: [cssGlobalVars._colors.lightgray[5], cssGlobalVars._colors.darkgray[5]],
-  white: [cssGlobalVars._colors.lightgray[2], cssGlobalVars._colors.darkgray[7]],
-  black: [cssGlobalVars._colors.darkgray[8], cssGlobalVars._colors.lightgray[5]],
-};
-
-const calls = {
-  tip: {
-    color: "teal",
-    icon: iconLightbulb,
-  },
-  success: {
-    color: "green",
-    icon: iconCheckAltCircle,
-  },
-  info: {
-    color: "blue",
-    icon: iconInfoCircle,
-  },
-  warning: {
-    color: "orange",
-    icon: iconExclamationCircle,
-  },
-  danger: {
-    color: "red",
-    icon: iconXmarkCircle,
-  },
-  error: {
-    color: "red",
-    icon: iconXmarkCircle,
-  },
-  help: {
-    color: "purple",
-    icon: iconQuestionCircle,
-  },
-  deprecated: {
-    color: "gray",
-    icon: iconSlashCircle,
-  },
+  white: [cssGlobalVars._colors.lightgray[1], cssGlobalVars._colors.darkgray[9]],
+  black: [cssGlobalVars._colors.darkgray[9], cssGlobalVars._colors.lightgray[1]],
 };
 
 /**
@@ -120,26 +77,13 @@ const calls = {
     height: 2em;
   }
 
-  .start svg {
-    margin-inline-end: var(${cssScope}--gap);
-  }
-
-  .end svg {
-    margin-inline-start: var(${cssScope}--gap);
-  }
-
-  svg {
-    width: 1.25em;
-    height: 1.25em;
-  }
-
   [part="content"] {
     grid-row: span 2 / span 2;
   }
 `)
 class Alert extends GlobalStyle {
   private __colorSC = new StyleController(this, () => {
-    const color = calls[this.call]?.color || this.color;
+    const color = this.color;
     if (color in colorDetails) {
       const [fg, bg] = colorDetails[color];
       return joinRules({
@@ -151,12 +95,6 @@ class Alert extends GlobalStyle {
     }
     return null;
   });
-
-  /**
-   * If it is a legal value, the icon and preset color will be rendered.
-   */
-  @property()
-  call: "tip" | "success" | "info" | "warning" | "danger" | "error" | "help" | "deprecated";
 
   /**
    * The tone of the component.
@@ -196,50 +134,32 @@ class Alert extends GlobalStyle {
   content: string;
 
   /**
-   * Set true to hide the close button.
-   *
-   * The behavior may change due to the {@linkcode variant} property.
-   */
-  @property({ type: Boolean })
-  hideClose = false;
-
-  /**
-   * Alert variant, if set to `blockquote`, the alert will be rendered as a blockquote.
-   *
-   * If variant is `"blockquote"`, hide the close button.
+   * Alert variant, if set to `blockquote`, the alert will be rendered as a blockquote,
+   * otherwise it will be rendered as a normal alert.
    */
   @property()
   variant: "blockquote" | "dark" = "dark";
 
   protected render(): TemplateResult<1> {
-    const icon = this.call ? calls[this.call].icon() : htmlSlot("icon");
+    const icon = htmlSlot("icon");
     return html`
       <div
         part="root"
         ${attr(this.observedRecord)}
       >
-        <div
-          part="icon"
-          class="start"
-        >
-          ${icon}
-        </div>
+        <div class="start">${icon}</div>
         <div part="content">
           <strong part="title">${this.title || htmlSlot("title")}</strong>
           ${this.content || htmlSlot()}
         </div>
-        ${this.hideClose || this.variant === "blockquote"
-          ? ""
-          : html`
-              <div
-                part="icon close"
-                class="end"
-                tabindex="0"
-                @click="${this.close}"
-              >
-                ${iconXmark()}
-              </div>
-            `}
+        <div
+          part="close"
+          class="end"
+          tabindex="0"
+          @click="${this.close}"
+        >
+          ${htmlSlot("close")}
+        </div>
       </div>
     `;
   }
