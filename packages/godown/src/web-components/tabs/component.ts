@@ -37,7 +37,7 @@ const mouseEnterAddedToken = "hover";
 @godown(protoName)
 @styles(css`
   :host {
-    ${cssScope}--indicator-background: var(${cssGlobalVars._colors.darkgray[7]});
+    ${cssScope}--indicator-background: var(${cssGlobalVars.passive});
     ${cssScope}--space: 0.25em;
     border-radius: var(${cssGlobalVars.radius});
     transition: 0.2s ease-in-out;

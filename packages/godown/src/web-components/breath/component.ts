@@ -1,5 +1,5 @@
 import { attr, godown, htmlStyle, styles } from "@godown/element";
-import { type TemplateResult, css, html } from "lit";
+import { type TemplateResult, css, html, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle, cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
@@ -29,12 +29,12 @@ const splitTextRegexp = /[\s,]+/;
   css`
     :host {
       ${cssScope}--deg: 60deg;
-      ${cssScope}--1-1: var(${cssGlobalVars._colors.red[5]});
-      ${cssScope}--1-2: var(${cssGlobalVars._colors.yellow[5]});
-      ${cssScope}--2-1: var(${cssGlobalVars._colors.green[5]});
-      ${cssScope}--2-2: var(${cssGlobalVars._colors.purple[5]});
-      ${cssScope}--3-1: var(${cssGlobalVars._colors.blue[5]});
-      ${cssScope}--3-2: var(${cssGlobalVars._colors.pink[5]});
+      ${cssScope}--1-1: hsl(0 70% 55%);
+      ${cssScope}--1-2: hsl(30 90% 60%);
+      ${cssScope}--2-1: hsl(130 70% 50%);
+      ${cssScope}--2-2: hsl(180 60% 40%);
+      ${cssScope}--3-1: hsl(270 80% 55%);
+      ${cssScope}--3-2: hsl(210 90% 50%);
       ${cssScope}--1: linear-gradient(var(${cssScope}--deg), var(${cssScope}--1-1), var(${cssScope}--1-2));
       ${cssScope}--2: linear-gradient(var(${cssScope}--deg), var(${cssScope}--2-1), var(${cssScope}--2-2));
       ${cssScope}--3: linear-gradient(var(${cssScope}--deg), var(${cssScope}--3-1), var(${cssScope}--3-2));

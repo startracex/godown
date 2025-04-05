@@ -1,29 +1,11 @@
-import { attr, godown, htmlSlot, joinRules, StyleController, styles } from "@godown/element";
+import { attr, godown, htmlSlot, joinRules, StyleController, styles, toVar } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { GlobalStyle, cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
+import { cssGlobalVars, GlobalStyle, scopePrefix } from "../../internal/global-style.js";
 
 const protoName = "alert";
 const cssScope = scopePrefix(protoName);
-
-const genDark = (key: string) => {
-  return [cssGlobalVars._colors[key][5], cssGlobalVars._colors[key][9]];
-};
-
-const colorDetails = {
-  green: genDark("green"),
-  blue: genDark("blue"),
-  orange: genDark("orange"),
-  red: genDark("red"),
-  yellow: genDark("yellow"),
-  purple: genDark("purple"),
-  teal: genDark("teal"),
-  pink: genDark("pink"),
-  gray: [cssGlobalVars._colors.lightgray[5], cssGlobalVars._colors.darkgray[5]],
-  white: [cssGlobalVars._colors.lightgray[1], cssGlobalVars._colors.darkgray[9]],
-  black: [cssGlobalVars._colors.darkgray[9], cssGlobalVars._colors.lightgray[1]],
-};
 
 /**
  * {@linkcode Alert} renders a alert.
@@ -39,6 +21,8 @@ const colorDetails = {
 @godown(protoName)
 @styles(css`
   :host {
+    color: var(${cssGlobalVars.foreground});
+    background: var(${cssGlobalVars.background});
     ${cssScope}--border-width: .075em;
     ${cssScope}--blockquote-width: .2em;
     ${cssScope}--blockquote-background: transparent;
@@ -56,12 +40,12 @@ const colorDetails = {
     align-items: center;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto 1fr;
-    border-color: currentColor;
     border-radius: inherit;
     border-style: solid;
     border-width: var(${cssScope}--border-width);
     padding: var(${cssScope}--gap);
     background: var(${cssScope}--background);
+    border-color: var(${cssScope}--border-color, currentColor);
   }
 
   [variant="blockquote"] {
@@ -76,39 +60,6 @@ const colorDetails = {
   }
 `)
 class Alert extends GlobalStyle {
-  private __colorSC = new StyleController(this, () => {
-    const color = this.color;
-    if (color in colorDetails) {
-      const [fg, bg] = colorDetails[color];
-      return joinRules({
-        ":host": [
-          [`${cssScope}--color`, `var(${fg})`],
-          [`${cssScope}--background`, `var(${bg})`],
-        ],
-      });
-    }
-    return null;
-  });
-
-  /**
-   * The tone of the component.
-   * Overrides the color of the call.
-   */
-  @property()
-  color:
-    | "white"
-    | "black"
-    | "gray"
-    | "green"
-    | "teal"
-    | "blue"
-    | "red"
-    | "purple"
-    | "orange"
-    | "yellow"
-    | "pink"
-    | "none" = "blue";
-
   /**
    * The title is bold and the icon height is the same as it.
    */

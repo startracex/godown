@@ -53,7 +53,7 @@ const protoName = "select";
   css`
     :host(:focus-within),
     .outline {
-      ${cssGlobalVars.input}-outline-color: var(${cssGlobalVars.active});
+      ${cssGlobalVars.input}-outline-color: currentColor;
     }
 
     [part="input"] {

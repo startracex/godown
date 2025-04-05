@@ -46,7 +46,7 @@ class Input extends SuperInput {
     this,
     () =>
       new OutlineBuilder({ outlineType: this.outlineType }).css +
-      (this.variant === "outline" ? `:host{${cssGlobalVars.outlineColor}: var(${cssGlobalVars.active})}` : ""),
+      (this.variant === "outline" ? `:host{${cssGlobalVars.outlineColor}:currentColor}` : ""),
   );
 
   protected render(): TemplateResult<1> {

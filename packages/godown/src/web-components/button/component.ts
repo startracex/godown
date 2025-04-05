@@ -1,4 +1,4 @@
-import { attr, godown, htmlSlot, joinRules, part, StyleController, styles } from "@godown/element";
+import { attr, godown, htmlSlot, part, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -6,81 +6,6 @@ import { GlobalStyle, cssGlobalVars, scopePrefix } from "../../internal/global-s
 
 const protoName = "button";
 const cssScope = scopePrefix(protoName);
-
-const whiteFont = cssGlobalVars.white;
-const blackFont = cssGlobalVars.black;
-
-type Colors =
-  | "none"
-  | "teal"
-  | "blue"
-  | "green"
-  | "red"
-  | "purple"
-  | "orange"
-  | "yellow"
-  | "pink"
-  | "gray"
-  | "white"
-  | "black";
-
-const colorDetails = {
-  black: [
-    whiteFont, // color
-    cssGlobalVars._colors.darkgray[7], // background
-    cssGlobalVars._colors.darkgray[5], // gradients
-  ],
-  gray: [
-    whiteFont, // color
-    cssGlobalVars._colors.darkgray[1], // background
-    cssGlobalVars._colors.lightgray[8], // gradients
-  ],
-  white: [
-    blackFont, // color
-    cssGlobalVars._colors.lightgray[3], // background
-    cssGlobalVars._colors.lightgray[0], // gradients
-  ],
-  blue: [
-    whiteFont, // color
-    cssGlobalVars._colors.blue[6], // background
-    cssGlobalVars._colors.blue[4], // gradients
-  ],
-  green: [
-    whiteFont, // color
-    cssGlobalVars._colors.green[6], // background
-    cssGlobalVars._colors.green[4], // gradients
-  ],
-  red: [
-    whiteFont, // color
-    cssGlobalVars._colors.red[6], // background
-    cssGlobalVars._colors.red[4], // gradients
-  ],
-  orange: [
-    whiteFont, // color
-    cssGlobalVars._colors.orange[6], // background
-    cssGlobalVars._colors.orange[4], // gradients
-  ],
-  pink: [
-    whiteFont, // color
-    cssGlobalVars._colors.pink[6], // background
-    cssGlobalVars._colors.pink[4], // gradients
-  ],
-  purple: [
-    whiteFont, // color
-    cssGlobalVars._colors.purple[6], // background
-    cssGlobalVars._colors.purple[4], // gradients
-  ],
-  yellow: [
-    blackFont, // color
-    cssGlobalVars._colors.yellow[6], // background
-    cssGlobalVars._colors.yellow[4], // gradients
-  ],
-  teal: [
-    whiteFont, // color
-    cssGlobalVars._colors.teal[6], // background
-    cssGlobalVars._colors.teal[4], // gradients
-  ],
-};
 
 /**
  * {@linkcode Button} renders a button.
@@ -112,13 +37,6 @@ const colorDetails = {
       filter: brightness(0.85);
     }
 
-    :host([ghost]) {
-      ${cssScope}--modal-background: var(${cssScope}--ghost-color);
-      box-shadow: inset 0px 0px 0px var(${cssScope}--ghost-width) var(${cssScope}--ghost-color);
-      color: var(${cssScope}--ghost-color);
-      background: transparent;
-    }
-
     :host([plain]) {
       ${cssScope}--gradients: unset;
       ${cssScope}--focus-scale: unset;
@@ -129,16 +47,15 @@ const colorDetails = {
       ${cssScope}--padding-x: .8em;
       ${cssScope}--padding-y: calc(var(${cssScope}--padding-x) / 4);
       ${cssScope}--padding: var(${cssScope}--padding-y) var(${cssScope}--padding-x);
-      ${cssScope}--modal-animation-duration: 1s;
+      ${cssScope}--modal-animation-duration: 1.5s;
       ${cssScope}--ghost-width: .08em;
       ${cssScope}--focus-scale: .97;
       ${cssScope}--deg: 45deg;
       ${cssScope}--ghost-color:var(${cssScope}--background);
-      color: var(${cssScope}--color, inherit);
       background: linear-gradient(
         var(${cssScope}--deg),
-        var(${cssScope}--background),
-        var(${cssScope}--gradients, var(${cssScope}--background))
+        var(${cssScope}--background, var(${cssGlobalVars.background})),
+        var(${cssScope}--gradients, var(${cssScope}--background, var(${cssGlobalVars.background})))
       );
       padding: var(${cssScope}--padding);
       width: fit-content;
@@ -155,10 +72,7 @@ const colorDetails = {
 
     [part="root"] {
       position: relative;
-      transition: none;
       user-select: none;
-      border-radius: inherit;
-      transition-duration: inherit;
     }
 
     i {
@@ -190,21 +104,6 @@ const colorDetails = {
   `,
 )
 class Button extends GlobalStyle {
-  private __colorSC = new StyleController(this, () => {
-    const color = this.nextColor();
-    if (color in colorDetails) {
-      const [fg, bg, gd] = colorDetails[color];
-      return joinRules({
-        ":host": [
-          [`${cssScope}--color`, `var(${fg})`],
-          [`${cssScope}--background`, `var(${bg})`],
-          [`${cssScope}--gradients`, `var(${gd})`],
-        ],
-      });
-    }
-    return null;
-  });
-
   /**
    * If true, remove gradient, modal animation, focus scale.
    */
@@ -235,12 +134,6 @@ class Button extends GlobalStyle {
    */
   @property({ type: Boolean, reflect: true })
   round = false;
-
-  /**
-   * The primary color.
-   */
-  @property({ reflect: true })
-  color: Colors = "black";
 
   /**
    * Content text.
@@ -306,10 +199,6 @@ class Button extends GlobalStyle {
     modal.style.animationName = "kf";
     this._modalRoot.appendChild(modal);
     modal.addEventListener("animationend", () => modal.remove(), { once: true });
-  }
-
-  nextColor(): Colors {
-    return this.color;
   }
 }
 

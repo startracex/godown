@@ -17,13 +17,12 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(css`
   :host {
-    ${cssScope}--from: var(${cssGlobalVars._colors.darkgray[9]});
-    ${cssScope}--to: var(${cssGlobalVars._colors.darkgray[7]});
+    ${cssScope}--from: var(${cssGlobalVars.background});
+    ${cssScope}--to: var(${cssGlobalVars.passive});
     ${cssScope}--deg: 95deg;
     ${cssScope}--duration: 2s;
     ${cssScope}--icon-size: 5em;
     ${cssScope}--icon-margin: .25em;
-    color: var(${cssGlobalVars._colors.darkgray[5]});
     background: var(${cssScope}--from);
     min-height: 1.5em;
     width: 100%;
@@ -35,7 +34,7 @@ const cssScope = scopePrefix(protoName);
   [part="root"] {
     min-height: inherit;
     text-align: center;
-    animation: var(${cssScope}--duration) ease-in-out 0s infinite none running;
+    animation: var(${cssScope}--duration) ease-in-out infinite none running;
   }
 
   [animation="position"] {
@@ -60,14 +59,16 @@ const cssScope = scopePrefix(protoName);
   }
 
   [animation="opacity"] {
-    background: var(${cssScope}--from);
     animation-name: op;
     animation-direction: alternate;
   }
 
   @keyframes op {
-    50% {
-      opacity: 0.5;
+    0% {
+      background: var(${cssScope}--from);
+    }
+    to {
+      background: var(${cssScope}--to);
     }
   }
 `)

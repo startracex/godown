@@ -8,23 +8,6 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    color: new ArgHelper().options(
-      [
-        "white",
-        "black",
-        "gray",
-        "green",
-        "teal",
-        "blue",
-        "red",
-        "purple",
-        "orange",
-        "yellow",
-        "pink",
-        "none",
-      ],
-      "blue",
-    ).arg,
     variant: new ArgHelper().options([
       "blockquote",
       "dark",
@@ -33,7 +16,6 @@ export default {
     content: new ArgHelper().type("string").arg,
   },
   args: {
-    color: "blue",
     variant: "dark",
     title: "Title",
     content: "",

@@ -26,7 +26,6 @@
   "author": "startracex",
   "license": "MIT",
   "dependencies": {
-    "@godown/colors": "workspace:^",
     "@godown/element": "workspace:^",
     "fmtime": "^0.0.3",
     "lit": "catalog:",

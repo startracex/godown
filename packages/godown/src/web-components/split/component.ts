@@ -42,6 +42,7 @@ const cssScope = scopePrefix(protoName);
   }
 
   [part="input-box"] {
+    background: var(${cssGlobalVars.background});
     width: var(${cssScope}--size);
     height: var(${cssScope}--size);
     vertical-align: top;

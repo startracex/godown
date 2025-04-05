@@ -8,20 +8,6 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    color: new ArgHelper().options([
-      "teal",
-      "blue",
-      "green",
-      "red",
-      "purple",
-      "orange",
-      "yellow",
-      "pink",
-      "black",
-      "gray",
-      "white",
-      "none",
-    ]).arg,
     content: new ArgHelper().type("string").arg,
     disabled: new ArgHelper().type("boolean").default("false").arg,
     round: new ArgHelper().type("boolean").default("false").arg,
@@ -29,7 +15,6 @@ export default {
     plain: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
-    color: "black",
     disabled: false,
     round: false,
     ghost: false,
@@ -39,22 +24,14 @@ export default {
 
 export const Primary = {};
 
-export const WithColor = {
-  args: {
-    color: "blue",
-  },
-};
-
 export const Ghost = {
   args: {
     ghost: true,
-    color: "blue",
   },
 };
 
 export const WithCustomColor = {
   args: {
-    color: "none",
     stylex: "background: #3d4051; color: #e2e8f0;",
   },
 };

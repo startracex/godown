@@ -50,7 +50,7 @@ const inputStyle = css`
     ${cssGlobalVars.input}-height: 1.6em;
     ${cssGlobalVars.input}-space: 0.2em;
     ${cssGlobalVars.input}-control: currentColor;
-    ${cssGlobalVars.input}-icon-color: var(${cssGlobalVars._colors.darkgray[4]});
+    ${cssGlobalVars.input}-icon-color: hsl(0, 0%, 50%);
   }
 
   :host([disabled]) {

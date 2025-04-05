@@ -25,6 +25,7 @@ const cssScope = scopePrefix(protoName);
     ${cssScope}--border-width: .075em;
     ${cssScope}--border-color: var(${cssGlobalVars.passive});
     ${cssScope}--padding: .75em;
+    background: var(${cssGlobalVars.background});
     display: block;
     flex-shrink: 0;
   }
