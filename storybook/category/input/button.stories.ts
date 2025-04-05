@@ -11,24 +11,16 @@ export default {
     content: new ArgHelper().type("string").arg,
     disabled: new ArgHelper().type("boolean").default("false").arg,
     round: new ArgHelper().type("boolean").default("false").arg,
-    ghost: new ArgHelper().type("boolean").default("false").arg,
     plain: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
     disabled: false,
     round: false,
-    ghost: false,
     plain: false,
   },
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
-
-export const Ghost = {
-  args: {
-    ghost: true,
-  },
-};
 
 export const WithCustomColor = {
   args: {

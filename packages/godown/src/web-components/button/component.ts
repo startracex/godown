@@ -44,20 +44,17 @@ const cssScope = scopePrefix(protoName);
   `,
   css`
     :host {
-      ${cssScope}--padding-x: .8em;
-      ${cssScope}--padding-y: calc(var(${cssScope}--padding-x) / 4);
-      ${cssScope}--padding: var(${cssScope}--padding-y) var(${cssScope}--padding-x);
       ${cssScope}--modal-animation-duration: 1.5s;
-      ${cssScope}--ghost-width: .08em;
       ${cssScope}--focus-scale: .97;
       ${cssScope}--deg: 45deg;
-      ${cssScope}--ghost-color:var(${cssScope}--background);
       background: linear-gradient(
         var(${cssScope}--deg),
         var(${cssScope}--background, var(${cssGlobalVars.background})),
         var(${cssScope}--gradients, var(${cssScope}--background, var(${cssGlobalVars.background})))
       );
-      padding: var(${cssScope}--padding);
+      padding: 0.25em 0.75em;
+      border-width: var(${cssGlobalVars.outlineWidth});
+      border-style: none;
       width: fit-content;
       display: block;
       overflow: hidden;
@@ -115,13 +112,6 @@ class Button extends GlobalStyle {
    */
   @property({ type: Boolean, reflect: true })
   disabled = false;
-
-  /**
-   * Whether this element should be rendered as a "ghost" button.
-   * A ghost button is a button with a transparent background and a border.
-   */
-  @property({ type: Boolean, reflect: true })
-  ghost = false;
 
   /**
    * Whether this element is active or not.
