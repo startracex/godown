@@ -44,7 +44,8 @@ const protoName = "input";
     background: none;
     height: 100%;
     flex-grow: 1;
-    color: inherit;
+    color: currentColor;
+    min-height: 1.5em;
   }
 
   [part~="icon"] {
@@ -69,7 +70,19 @@ const protoName = "input";
   }
 `)
 class Input extends SuperInput {
-  type: "text" | "search" | "tel" | "url" | "email" | "password" = "text";
+  type:
+    | "text"
+    | "search"
+    | "tel"
+    | "url"
+    | "email"
+    | "password"
+    | "number"
+    | "date"
+    | "time"
+    | "datetime-local"
+    | "month"
+    | "week" = "text";
 
   value: string;
 

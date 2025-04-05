@@ -22,6 +22,12 @@ export default {
       "url",
       "email",
       "password",
+      "number",
+      "date",
+      "time",
+      "datetime-local",
+      "month",
+      "week",
     ]).arg,
     variant: new ArgHelper().options([
       "default",
