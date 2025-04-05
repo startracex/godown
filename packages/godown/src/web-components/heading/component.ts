@@ -1,8 +1,8 @@
-import { attr, godown, htmlSlot, styles } from "@godown/element";
+import { godown, htmlSlot, styles, tokenList } from "@godown/element";
 import { type TemplateResult, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
-import { GlobalStyle } from "../../internal/global-style.js";
+import Link from "../link/component.js";
 
 const protoName = "heading";
 
@@ -21,22 +21,19 @@ const protoName = "heading";
     text-align: start;
   }
 
-  [part="anchor"] {
+  [part~="anchor"] {
     position: absolute;
     text-align: center;
     min-width: 1.25em;
     right: 100%;
   }
 
-  [side="left"] [part="anchor"] {
+  [part~="left"][part~="anchor"] {
     right: 100%;
   }
-  [side="right"] [part="anchor"] {
-    left: 100%;
-  }
 
-  a {
-    color: inherit;
+  [part~="right"][part~="anchor"] {
+    left: 100%;
   }
 
   h1,
@@ -45,12 +42,12 @@ const protoName = "heading";
   h4,
   h5,
   h6 {
-    direction: ltr;
+    width: fit-content;
     font-size: revert;
     position: relative;
   }
 `)
-class Heading extends GlobalStyle {
+class Heading extends Link {
   /**
    * The heading level.
    */
@@ -72,17 +69,17 @@ class Heading extends GlobalStyle {
   side: "left" | "right" = "left";
 
   protected render(): TemplateResult<1> {
+    const hrefValue = this.href || (this.id ? "#" + this.id : undefined);
     return html`
       <a
         part="root"
-        href="${this.id ? "#" + this.id : nothing}"
-        ${attr(this.observedRecord)}
+        href="${hrefValue || nothing}"
       >
         ${this.wrapHeading(
           htmlSlot(),
-          this.id
+          hrefValue
             ? html`
-                <i part="anchor">${this.anchor}</i>
+                <i part="${tokenList("anchor", this.side)}">${this.anchor}</i>
               `
             : "",
         )}

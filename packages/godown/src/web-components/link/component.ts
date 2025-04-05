@@ -98,6 +98,9 @@ class Link extends GlobalStyle {
 
   protected _handleClick(e: MouseEvent): void {
     const { state, type, href, pathname, suppress } = this;
+    if (!href) {
+      return;
+    }
     this.dispatchCustomEvent("navigate", {
       ...this.observedRecord,
       pathname,

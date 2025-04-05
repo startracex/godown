@@ -18,6 +18,7 @@ export default {
     ]).arg,
     anchor: new ArgHelper().type("string").default("#").arg,
     side: new ArgHelper().options(["left", "right"]).arg,
+    href: new ArgHelper().type("string").arg,
   },
   args: {
     as: "h2",
