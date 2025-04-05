@@ -1,52 +1,6 @@
 {
   "name": "@godown/f7-icon",
   "version": "1.0.11",
-  "description": "Icon wrapper for F7",
   "type": "module",
-  "main": "./f7-icon.js",
-  "exports": {
-    ".": "./f7-icon.js",
-    "./icons/*": {
-      "types": "./types/icon.d.ts",
-      "default": "./icons/*"
-    },
-    "./lib/*.js": {
-      "require": "./lib/*.cjs",
-      "default": "./lib/*.js"
-    },
-    "./*": "./*"
-  },
-  "scripts": {
-    "build:ts": "tsc",
-    "build": "tsc && tsx build.ts",
-    "clean": "tsc --build --clean"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/startracex/godown.git",
-    "directory": "packages/f7-icon"
-  },
-  "keywords": [
-    "icons",
-    "framework7",
-    "f7"
-  ],
-  "author": "startracex",
-  "license": "MIT",
-  "dependencies": {
-    "@godown/element": "workspace:^",
-    "@iconify-json/f7": "^1.2.2",
-    "@iconify/tools": "^4.1.1",
-    "@iconify/utils": "^2.3.0",
-    "@lit/reactive-element": "catalog:",
-    "tslib": "catalog:"
-  },
-  "files": [
-    "icons/",
-    "lib/",
-    "types/",
-    "f7-icon.{ts,js,d.ts}+(|.map)",
-    "element.{ts,js,d.ts}+(|.map)",
-    "includes.json"
-  ]
+  "private": true
 }
