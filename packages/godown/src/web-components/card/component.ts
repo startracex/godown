@@ -1,9 +1,10 @@
-import { attr, godown, htmlSlot, styles } from "@godown/element";
+import { attr, godown, htmlSlot, StyleController, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle, cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
 import type Layout from "../layout/component.js";
+import { RingBuilder, type RingType } from "../../internal/ring.js";
 
 const protoName = "card";
 const cssScope = scopePrefix(protoName);
@@ -22,8 +23,6 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(css`
   :host {
-    ${cssScope}--border-width: .075em;
-    ${cssScope}--border-color: var(${cssGlobalVars.passive});
     ${cssScope}--padding: .75em;
     background: var(${cssGlobalVars.background});
     display: block;
@@ -36,9 +35,6 @@ const cssScope = scopePrefix(protoName);
   }
 
   [part="root"] {
-    border-color: var(${cssScope}--border-color);
-    border-style: solid;
-    border-width: var(${cssScope}--border-width);
     border-radius: inherit;
   }
 
@@ -51,6 +47,14 @@ const cssScope = scopePrefix(protoName);
   }
 `)
 class Card extends GlobalStyle {
+  constructor() {
+    super();
+    new StyleController(this, () => new RingBuilder({ type: this.ringType }).css);
+  }
+
+  @property({ attribute: "ring-type" })
+  ringType: RingType = "border";
+
   /**
    * Whether to display the header.
    */
