@@ -1,4 +1,4 @@
-import { attr, godown, htmlSlot, part, styles } from "@godown/element";
+import { attr, godown, htmlSlot, queryPart, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -131,9 +131,9 @@ class Button extends GlobalStyle {
   @property()
   content: string;
 
-  @part("modal-root")
+  @queryPart("modal-root")
   protected _modalRoot: HTMLElement;
-  @part("root")
+  @queryPart("root")
   protected _root: HTMLElement;
 
   protected render(): TemplateResult<1> {

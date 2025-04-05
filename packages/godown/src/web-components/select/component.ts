@@ -1,4 +1,4 @@
-import { type HandlerEvent, attr, godown, htmlSlot, part, styles } from "@godown/element";
+import { type HandlerEvent, attr, godown, htmlSlot, queryPart, styles } from "@godown/element";
 import svgCaretDown from "../../internal/icons/caret-down.js";
 import { type TemplateResult, css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
@@ -81,7 +81,7 @@ class Select extends Input {
   @property()
   text: string;
 
-  @part("content")
+  @queryPart("content")
   protected _content: HTMLElement;
 
   @property()
@@ -110,10 +110,9 @@ class Select extends Input {
 
   protected render(): TemplateResult<1> {
     return html`
-      <div
+      <label
         part="root"
         ${attr(this.observedRecord)}
-        class="input-field"
       >
         ${[
           this._renderPrefix(),
@@ -127,23 +126,14 @@ class Select extends Input {
               autocapitalize="${this.autocapitalize || nothing}"
               autocomplete="${this.autocomplete || nothing}"
               placeholder="${this.placeholder || nothing}"
-              id="${this.makeId}"
               @focus="${this._handleFocus}"
               @input="${this._handleInput}"
               @change="${this._handleChange}"
             />
           `,
+          this._renderSuffix(),
           html`
             <label
-              for="${this.makeId}"
-              part="suffix"
-            >
-              <i part="icon">${svgCaretDown()}</i>
-            </label>
-          `,
-          html`
-            <label
-              for="${this.makeId}"
               part="content"
               direction-outset-place
             >
@@ -151,7 +141,13 @@ class Select extends Input {
             </label>
           `,
         ]}
-      </div>
+      </label>
+    `;
+  }
+
+  protected _renderSuffix(): TemplateResult<1> {
+    return html`
+      <i part="suffix icon">${svgCaretDown()}</i>
     `;
   }
 

@@ -1,4 +1,4 @@
-import { attr, godown, part, styles, htmlSlot, StyleController } from "@godown/element";
+import { attr, godown, queryPart, styles, htmlSlot, StyleController } from "@godown/element";
 import iconEyeSlash from "../../internal/icons/eye-slash.js";
 import { type TemplateResult, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
@@ -19,13 +19,53 @@ const protoName = "input";
 @godown(protoName)
 @styles(css`
   :host {
-    width: var(${cssGlobalVars.input}-width);
-    height: var(${cssGlobalVars.input}-height);
     display: block;
+    ${cssGlobalVars.input}-space: 0.2em;
+    ${cssGlobalVars.input}-control: currentColor;
+    ${cssGlobalVars.input}-icon-color: hsl(0, 0%, 50%);
   }
 
-  :host(:focus-within) {
+  :host(:focus-within),
+  :host(:active) {
     ${cssGlobalVars.ringColor}: var(${cssGlobalVars.active});
+    ${cssGlobalVars.input}-icon-color: currentColor;
+  }
+
+  [part~="root"] {
+    padding: 0.4em 0.5em;
+    display: flex;
+    position: relative;
+    align-items: center;
+    border-radius: inherit;
+    height: inherit;
+  }
+
+  [part="input"] {
+    background: none;
+    height: 100%;
+    flex-grow: 1;
+    color: inherit;
+  }
+
+  [part~="icon"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(${cssGlobalVars.input}-icon-color);
+  }
+
+  [part~="prefix"],
+  [part~="suffix"] {
+    height: 100%;
+    display: flex;
+  }
+
+  [part~="suffix"][part~="icon"] {
+    padding-inline-start: var(${cssGlobalVars.input}-space);
+  }
+
+  [part~="prefix"][part~="icon"] {
+    padding-inline-end: var(${cssGlobalVars.input}-space);
   }
 `)
 class Input extends SuperInput {
@@ -39,7 +79,7 @@ class Input extends SuperInput {
   @property()
   variant: "default" | "outline" = "default";
 
-  @part("input")
+  @queryPart("input")
   protected _input: HTMLInputElement;
 
   constructor() {
@@ -54,10 +94,9 @@ class Input extends SuperInput {
 
   protected render(): TemplateResult<1> {
     return html`
-      <div
+      <label
         part="root"
         ${attr(this.observedRecord)}
-        class="input-field"
       >
         ${[
           this._renderPrefix(),
@@ -71,38 +110,31 @@ class Input extends SuperInput {
               autocapitalize="${this.autocapitalize || nothing}"
               autocomplete="${this.autocomplete || nothing}"
               placeholder="${this.placeholder || nothing}"
-              id="${this.makeId}"
               @input="${this._handleInput}"
               @change="${this._handleChange}"
             />
           `,
           this._renderSuffix(),
         ]}
-      </div>
+      </label>
     `;
   }
 
   protected _renderSuffix(): TemplateResult<1> {
     const PASSWORD = "password";
-    return html`
-      <label
-        for=${this.makeId}
-        part="suffix"
-      >
-        ${this.type === PASSWORD
-          ? html`
-              <i
-                part="icon"
-                @mousedown="${() => this._changeInputType("text")}"
-                @mouseup="${() => this._changeInputType(PASSWORD)}"
-                @mouseleave="${() => this._changeInputType(PASSWORD)}"
-              >
-                ${iconEyeSlash()}
-              </i>
-            `
-          : htmlSlot("suffix")}
-      </label>
-    `;
+    if (this.type === PASSWORD) {
+      return html`
+        <i
+          part="suffix icon"
+          @mousedown="${() => this._changeInputType("text")}"
+          @mouseup="${() => this._changeInputType(PASSWORD)}"
+          @mouseleave="${() => this._changeInputType(PASSWORD)}"
+        >
+          ${iconEyeSlash()}
+        </i>
+      `;
+    }
+    return super._renderSuffix();
   }
 }
 

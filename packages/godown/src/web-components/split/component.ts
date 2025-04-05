@@ -122,7 +122,6 @@ class Split extends SuperInput {
         )}
         <input
           part="input"
-          id="${this.makeId}"
           @blur=${this.blur}
           @input="${this._handleInput}"
           @change="${this._handleChange}"

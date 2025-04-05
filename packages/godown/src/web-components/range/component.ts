@@ -5,7 +5,7 @@ import {
   isNullable,
   joinDeclarations,
   loop,
-  part,
+  queryPart,
   styles,
   Ranger,
   omit,
@@ -163,7 +163,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
   @property({ type: Array })
   default: V;
 
-  @part("root")
+  @queryPart("root")
   protected _root: HTMLElement;
 
   @queryAll("[part=handle]")

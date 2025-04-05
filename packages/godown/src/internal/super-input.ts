@@ -1,65 +1,14 @@
-import { type HandlerEvent, htmlSlot, omit, part, styles } from "@godown/element";
+import { type HandlerEvent, htmlSlot, omit, queryPart, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { GlobalStyle, cssGlobalVars } from "./global-style.js";
+import { GlobalStyle } from "./global-style.js";
 import type { RingType } from "./ring.js";
 
-const fieldStyle = css`
-  .input-field {
-    display: flex;
-    position: relative;
-    align-items: center;
-    border-radius: inherit;
-    height: inherit;
-  }
-
-  .input-field [part="input"] {
-    background: none;
-    height: 100%;
-    width: 100%;
-    color: inherit;
-    padding: var(${cssGlobalVars.input}-space);
-  }
-
-  .input-field [part="icon"] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(${cssGlobalVars.input}-icon-color);
-  }
-
-  .input-field [part="prefix"],
-  .input-field [part="suffix"] {
-    height: 100%;
-    display: flex;
-  }
-
-  .input-field [part="suffix"] [part="icon"] {
-    padding-inline-end: var(${cssGlobalVars.input}-space);
-  }
-
-  .input-field [part="prefix"] [part="icon"] {
-    padding-inline-start: var(${cssGlobalVars.input}-space);
-  }
-`;
-
 const inputStyle = css`
-  :host {
-    ${cssGlobalVars.input}-width: 10em;
-    ${cssGlobalVars.input}-height: 1.6em;
-    ${cssGlobalVars.input}-space: 0.2em;
-    ${cssGlobalVars.input}-control: currentColor;
-    ${cssGlobalVars.input}-icon-color: hsl(0, 0%, 50%);
-  }
-
   :host([disabled]) {
     cursor: not-allowed;
     filter: brightness(0.85);
-  }
-
-  :host(:focus-within) {
-    ${cssGlobalVars.input}-icon-color: currentColor;
   }
 
   input:disabled {
@@ -72,7 +21,7 @@ const inputStyle = css`
   }
 `;
 
-@styles(fieldStyle, inputStyle)
+@styles(inputStyle)
 class SuperInput<V = string> extends GlobalStyle {
   autofocus = false;
   @property()
@@ -106,7 +55,7 @@ class SuperInput<V = string> extends GlobalStyle {
   @property()
   default: any;
 
-  @part("input")
+  @queryPart("input")
   protected _input: HTMLInputElement;
 
   /**
@@ -184,23 +133,13 @@ class SuperInput<V = string> extends GlobalStyle {
 
   protected _renderPrefix(): TemplateResult<1> {
     return html`
-      <label
-        for=${this.makeId}
-        part="prefix"
-      >
-        ${htmlSlot("prefix")}
-      </label>
+      <i part="prefix">${htmlSlot("prefix")}</i>
     `;
   }
 
   protected _renderSuffix(): TemplateResult<1> {
     return html`
-      <label
-        for=${this.makeId}
-        part="suffix"
-      >
-        ${htmlSlot("suffix")}
-      </label>
+      <i part="suffix">${htmlSlot("suffix")}</i>
     `;
   }
 }

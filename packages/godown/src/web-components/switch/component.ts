@@ -111,7 +111,6 @@ class Switch extends SuperInput<boolean> {
           type="checkbox"
           ?disabled="${this.disabled}"
           ?checked="${this.value}"
-          id="${this.makeId}"
           @change="${this._handleChange}"
         />
         <span part="handle"></span>
