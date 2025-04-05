@@ -1,8 +1,9 @@
-import { godown } from "@godown/element";
+import { attr, godown, htmlSlot, styles } from "@godown/element";
 import { property } from "lit/decorators.js";
 
-import { SuperAnchor } from "../../internal/super-anchor.js";
 import Router from "../router/component.js";
+import { css, html, nothing, type TemplateResult } from "lit";
+import GlobalStyle from "../../internal/global-style.js";
 
 const protoName = "link";
 
@@ -35,7 +36,23 @@ type LinkType = keyof typeof linkTypes;
  * @category navigation
  */
 @godown(protoName)
-class Link extends SuperAnchor {
+@styles(css`
+  :host {
+    display: inline-block;
+    color: currentColor;
+    cursor: default;
+  }
+
+  :host([href]) {
+    cursor: pointer;
+  }
+
+  a {
+    color: currentColor;
+    display: contents;
+  }
+`)
+class Link extends GlobalStyle {
   /**
    * If `"normal"`, behave like a normal anchor.
    *
@@ -59,9 +76,25 @@ class Link extends SuperAnchor {
   replace = false;
 
   /**
+   * A element href.
+   */
+  @property()
+  href: string;
+
+  /**
+   * A element target.
+   */
+  @property()
+  target: "_blank" | "_self" | "_parent" | "_top" = "_self";
+
+  /**
    * Location state object.
    */
   state = {};
+
+  get pathname(): string {
+    return new URL(this.href, location.href).pathname;
+  }
 
   protected _handleClick(e: MouseEvent): void {
     const { state, type, href, pathname, suppress } = this;
@@ -104,6 +137,20 @@ class Link extends SuperAnchor {
         break;
     }
   };
+
+  protected render(): TemplateResult<1> {
+    return html`
+      <a
+        part="root"
+        ${attr(this.observedRecord)}
+        href="${this.href || nothing}"
+        target="${this.target}"
+        @click=${this._handleClick}
+      >
+        ${htmlSlot()}
+      </a>
+    `;
+  }
 }
 
 export default Link;
