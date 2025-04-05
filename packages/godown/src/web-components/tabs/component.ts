@@ -39,6 +39,7 @@ const mouseEnterAddedToken = "hover";
   :host {
     ${cssScope}--indicator-background: var(${cssGlobalVars.passive});
     ${cssScope}--space: 0.25em;
+    padding: 0.2em;
     border-radius: var(${cssGlobalVars.radius});
     transition: 0.2s ease-in-out;
     width: fit-content;
@@ -55,7 +56,6 @@ const mouseEnterAddedToken = "hover";
     border-radius: inherit;
     transition: inherit;
     transition-property: width, transform, opacity;
-    padding: var(${cssScope}--space);
     gap: var(${cssScope}--space);
   }
 
@@ -66,7 +66,7 @@ const mouseEnterAddedToken = "hover";
   [part~="item"] {
     width: 100%;
     display: block;
-    padding: 0 0.4em;
+    padding: 0 0.25em;
     position: relative;
     white-space: nowrap;
     transition: inherit;
@@ -98,7 +98,7 @@ const mouseEnterAddedToken = "hover";
 `)
 class Tabs extends GlobalStyle {
   @property({ attribute: "ring-type" })
-  outlineType: RingType = "border";
+  ringType: RingType = "border";
 
   /**
    * Determines whether the tabs should use a slot for their content instead of a string.
@@ -128,7 +128,7 @@ class Tabs extends GlobalStyle {
 
   constructor() {
     super();
-    new StyleController(this, () => new RingBuilder({ type: this.outlineType }).css);
+    new StyleController(this, () => new RingBuilder({ type: this.ringType }).css);
   }
 
   render(): TemplateResult<1> {
