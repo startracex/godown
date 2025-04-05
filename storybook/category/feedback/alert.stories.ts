@@ -8,15 +8,10 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    variant: new ArgHelper().options([
-      "blockquote",
-      "dark",
-    ], "dark").arg,
     title: new ArgHelper().type("string").arg,
     content: new ArgHelper().type("string").arg,
   },
   args: {
-    variant: "dark",
     title: "Title",
     content: "",
   },

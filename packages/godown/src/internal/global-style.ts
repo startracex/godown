@@ -27,7 +27,7 @@ export const cssGlobalVars: {
   foreground: CSSResult;
 } = {
   background: scopePrefix("background", 2),
-  foreground: scopePrefix("background", 2),
+  foreground: scopePrefix("foreground", 2),
   clipBackground: scopePrefix("clip-background", 2),
   active: scopePrefix("active", 2),
   passive: scopePrefix("passive", 2),
@@ -42,8 +42,8 @@ GlobalStyle.styles = [
   unsafeCSS(
     joinRules({
       ":host": joinDeclarations([
-        [cssGlobalVars.background, "hsl(0 0% 5%)"],
-        [cssGlobalVars.active, "hsl(0 0% 96%)"],
+        [cssGlobalVars.background, "hsl(0 0% 4%)"],
+        [cssGlobalVars.foreground, "hsl(0 0% 96%)"],
         [cssGlobalVars.active, "hsl(0 0% 96%)"],
         [cssGlobalVars.passive, "hsl(0 0% 15%)"],
         [cssGlobalVars.clipBackground, "linear-gradient(to bottom, hsl(0 0% 100%), hsl(0 0% 30%))"],

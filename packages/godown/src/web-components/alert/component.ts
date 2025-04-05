@@ -1,4 +1,4 @@
-import { attr, godown, htmlSlot, joinRules, StyleController, styles, toVar } from "@godown/element";
+import { attr, godown, htmlSlot, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -35,24 +35,10 @@ const cssScope = scopePrefix(protoName);
   }
 
   [part="root"] {
-    color: var(${cssScope}--color, currentColor);
     display: grid;
     align-items: center;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto 1fr;
-    border-radius: inherit;
-    border-style: solid;
-    border-width: var(${cssScope}--border-width);
-    padding: var(${cssScope}--gap);
-    background: var(${cssScope}--background);
-    border-color: var(${cssScope}--border-color, currentColor);
-  }
-
-  [variant="blockquote"] {
-    border-radius: 0;
-    border-width: 0;
-    border-left-width: var(${cssScope}--blockquote-width);
-    background: var(${cssScope}--blockquote-background);
   }
 
   [part="content"] {
@@ -60,6 +46,7 @@ const cssScope = scopePrefix(protoName);
   }
 `)
 class Alert extends GlobalStyle {
+
   /**
    * The title is bold and the icon height is the same as it.
    */
@@ -71,13 +58,6 @@ class Alert extends GlobalStyle {
    */
   @property()
   content: string;
-
-  /**
-   * Alert variant, if set to `blockquote`, the alert will be rendered as a blockquote,
-   * otherwise it will be rendered as a normal alert.
-   */
-  @property()
-  variant: "blockquote" | "dark" = "dark";
 
   protected render(): TemplateResult<1> {
     return html`
