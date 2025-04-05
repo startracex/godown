@@ -21,8 +21,8 @@ export const cssGlobalVars: {
   input: CSSResult;
   color: CSSResult;
   radius: CSSResult;
-  outlineWidth: CSSResult;
-  outlineColor: CSSResult;
+  ringWidth: CSSResult;
+  ringColor: CSSResult;
   background: CSSResult;
   foreground: CSSResult;
 } = {
@@ -34,8 +34,8 @@ export const cssGlobalVars: {
   input: scopePrefix("input", 2),
   color: scopePrefix("color", 2),
   radius: scopePrefix("radius", 2),
-  outlineWidth: scopePrefix("outline-width", 2),
-  outlineColor: scopePrefix("outline-color", 2),
+  ringWidth: scopePrefix("ring-width", 2),
+  ringColor: scopePrefix("ring-color", 2),
 };
 
 GlobalStyle.styles = [
@@ -46,9 +46,9 @@ GlobalStyle.styles = [
         [cssGlobalVars.foreground, "hsl(0 0% 96%)"],
         [cssGlobalVars.active, "hsl(0 0% 96%)"],
         [cssGlobalVars.passive, "hsl(0 0% 15%)"],
-        [cssGlobalVars.clipBackground, "linear-gradient(to bottom, hsl(0 0% 100%), hsl(0 0% 30%))"],
-        [cssGlobalVars.outlineColor, toVar(cssGlobalVars.passive)],
-        [cssGlobalVars.outlineWidth, ".075em"],
+        [cssGlobalVars.clipBackground, "linear-gradient(to bottom, hsl(0deg 0% 100%), hsl(0deg 0% 30%))"],
+        [cssGlobalVars.ringColor, toVar(cssGlobalVars.passive)],
+        [cssGlobalVars.ringWidth, ".075em"],
       ]),
     }),
   ),

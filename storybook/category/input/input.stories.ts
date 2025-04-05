@@ -8,12 +8,12 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    "outline-type": new ArgHelper().options([
+    "ring-type": new ArgHelper().options([
       "border",
       "outline",
-      "box-shadow",
+      "shadow",
       "outline-inset",
-      "box-shadow-inset",
+      "shadow-inset",
     ]).arg,
     type: new ArgHelper().options([
       "text",
@@ -30,7 +30,7 @@ export default {
     placeholder: new ArgHelper().type("string").arg,
   },
   args: {
-    "outline-type": "border",
+    "ring-type": "border",
     type: "text",
     variant: "default",
   },

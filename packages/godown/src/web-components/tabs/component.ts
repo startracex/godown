@@ -2,7 +2,7 @@ import { attr, godown, htmlSlot, StyleController, styles, tokenList } from "@god
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../../internal/global-style.js";
 import { css, html, type TemplateResult } from "lit";
 import { property, queryAll } from "lit/decorators.js";
-import { OutlineBuilder, type OutlineType } from "../../internal/outline.js";
+import { RingBuilder, type RingType } from "../../internal/ring.js";
 
 const protoName = "tabs";
 const cssScope = scopePrefix(protoName);
@@ -97,8 +97,8 @@ const mouseEnterAddedToken = "hover";
   }
 `)
 class Tabs extends GlobalStyle {
-  @property({ attribute: "outline-type" })
-  outlineType: OutlineType = "border";
+  @property({ attribute: "ring-type" })
+  outlineType: RingType = "border";
 
   /**
    * Determines whether the tabs should use a slot for their content instead of a string.
@@ -126,7 +126,10 @@ class Tabs extends GlobalStyle {
   @queryAll("[part=indicator]")
   protected _indicators: HTMLCollectionOf<HTMLDivElement>;
 
-  private __outlineSC = new StyleController(this, () => new OutlineBuilder({ outlineType: this.outlineType }).css);
+  constructor() {
+    super();
+    new StyleController(this, () => new RingBuilder({ type: this.outlineType }).css);
+  }
 
   render(): TemplateResult<1> {
     return html`

@@ -4,7 +4,7 @@ import { property, state } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
 import { SuperInput } from "../../internal/super-input.js";
-import { OutlineBuilder } from "../../internal/outline.js";
+import { RingBuilder } from "../../internal/ring.js";
 
 const protoName = "split";
 const cssScope = scopePrefix(protoName);
@@ -63,7 +63,7 @@ const cssScope = scopePrefix(protoName);
 
   .focus,
   [part="input-box"]:active {
-    ${cssGlobalVars.outlineColor}: var(${cssGlobalVars.active});
+    ${cssGlobalVars.ringColor}: var(${cssGlobalVars.active});
   }
 `)
 class Split extends SuperInput {
@@ -85,17 +85,20 @@ class Split extends SuperInput {
   @state()
   currentValue: (string | void)[] = [];
 
-  private __outlineSC = new StyleController(
-    this,
-    () =>
-      new OutlineBuilder({
-        selector: "[part=input-box]",
-        outlineType: this.outlineType,
-      }).css,
-  );
+  constructor() {
+    super();
+    new StyleController(
+      this,
+      () =>
+        new RingBuilder({
+          selector: "[part=input-box]",
+          type: this.ringType,
+        }).css,
+    );
+  }
 
   get observedRecord(): Record<string, any> {
-    return omit(super.observedRecord, "outline-type");
+    return omit(super.observedRecord, "ring-type");
   }
 
   protected render(): TemplateResult<1> {
@@ -109,7 +112,7 @@ class Split extends SuperInput {
           (index: number) => html`
             <span
               part="input-box"
-              outline-type="${this.outlineType}"
+              ring-type="${this.ringType}"
               class="${tokenList({ focus: this.current === index })}"
               @click="${this.disabled ? null : () => this.focusAt(index)}"
             >

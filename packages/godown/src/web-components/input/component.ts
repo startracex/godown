@@ -5,7 +5,7 @@ import { property } from "lit/decorators.js";
 
 import { cssGlobalVars } from "../../internal/global-style.js";
 import { SuperInput } from "../../internal/super-input.js";
-import { OutlineBuilder } from "../../internal/outline.js";
+import { RingBuilder } from "../../internal/ring.js";
 
 const protoName = "input";
 
@@ -25,7 +25,7 @@ const protoName = "input";
   }
 
   :host(:focus-within) {
-    ${cssGlobalVars.outlineColor}: var(${cssGlobalVars.active});
+    ${cssGlobalVars.ringColor}: var(${cssGlobalVars.active});
   }
 `)
 class Input extends SuperInput {
@@ -42,12 +42,15 @@ class Input extends SuperInput {
   @part("input")
   protected _input: HTMLInputElement;
 
-  private __outlineSC = new StyleController(
-    this,
-    () =>
-      new OutlineBuilder({ outlineType: this.outlineType }).css +
-      (this.variant === "outline" ? `:host{${cssGlobalVars.outlineColor}:currentColor}` : ""),
-  );
+  constructor() {
+    super();
+    new StyleController(
+      this,
+      () =>
+        new RingBuilder({ type: this.ringType }).css +
+        (this.variant === "outline" ? `:host{${cssGlobalVars.ringColor}:currentColor}` : ""),
+    );
+  }
 
   protected render(): TemplateResult<1> {
     return html`

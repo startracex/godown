@@ -206,7 +206,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
   }
 
   get observedRecord(): Record<string, any> {
-    return omit(super.observedRecord, "outline-type");
+    return omit(super.observedRecord, "ring-type");
   }
 
   protected render(): TemplateResult<1> {

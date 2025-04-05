@@ -3,7 +3,7 @@ import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle, cssGlobalVars } from "./global-style.js";
-import type { OutlineType } from "./outline.js";
+import type { RingType } from "./ring.js";
 
 const fieldStyle = css`
   .input-field {
@@ -78,8 +78,8 @@ class SuperInput<V = string> extends GlobalStyle {
   @property()
   autocomplete: string | boolean;
 
-  @property({ attribute: "outline-type" })
-  outlineType: OutlineType = "border";
+  @property({ attribute: "ring-type" })
+  ringType: RingType = "border";
 
   @property({ type: Boolean, reflect: true })
   disabled = false;

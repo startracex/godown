@@ -53,7 +53,7 @@ const cssScope = scopePrefix(protoName);
         var(${cssScope}--gradients, var(${cssScope}--background, var(${cssGlobalVars.background})))
       );
       padding: 0.25em 0.75em;
-      border-width: var(${cssGlobalVars.outlineWidth});
+      border-width: var(${cssGlobalVars.ringWidth});
       border-style: none;
       width: fit-content;
       display: block;

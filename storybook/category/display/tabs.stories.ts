@@ -11,12 +11,12 @@ export default {
     index: new ArgHelper().type("number").default("0").arg,
     tabs: new ArgHelper().type("string[]").arg,
     useSlot: new ArgHelper().type("boolean").default("false").arg,
-    "outline-type": new ArgHelper().options([
+    "ring-type": new ArgHelper().options([
       "border",
       "outline",
       "box-shadow",
       "outline-inset",
-      "box-shadow-inset",
+      "shadow",
     ]).arg,
   },
   args: {

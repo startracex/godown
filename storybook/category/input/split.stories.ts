@@ -9,12 +9,12 @@ export default {
   render,
   argTypes: {
     disabled: new ArgHelper().type("boolean").default("false").arg,
-    "outline-type": new ArgHelper().options([
+    "ring-type": new ArgHelper().options([
       "border",
       "outline",
-      "box-shadow",
+      "shadow",
       "outline-inset",
-      "box-shadow-inset",
+      "shadow-inset",
     ]).arg,
     len: new ArgHelper().type("number").control("number", { min: 1 }).default("6").arg,
     index: new ArgHelper().type("number").default("-1").arg,
@@ -22,7 +22,7 @@ export default {
   args: {
     len: 6,
     disabled: false,
-    "outline-type": "border",
+    "ring-type": "border",
   },
 } as RendererMeta<typeof render>;
 

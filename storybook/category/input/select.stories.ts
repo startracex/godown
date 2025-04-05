@@ -13,19 +13,19 @@ export default {
       "top",
       "bottom",
     ]).arg,
-    "outline-type": new ArgHelper().options([
+    "ring-type": new ArgHelper().options([
       "border",
       "outline",
-      "box-shadow",
+      "shadow",
       "outline-inset",
-      "box-shadow-inset",
+      "shadow-inset",
     ]).arg,
     placeholder: new ArgHelper().type("string").arg,
     multiple: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
     disabled: false,
-    "outline-type": "border",
+    "ring-type": "border",
     multiple: false,
   },
 } as RendererMeta<typeof render>;

@@ -2,7 +2,7 @@ import { attr, godown, htmlSlot, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { cssGlobalVars, GlobalStyle, scopePrefix } from "../../internal/global-style.js";
+import { GlobalStyle, scopePrefix } from "../../internal/global-style.js";
 
 const protoName = "alert";
 const cssScope = scopePrefix(protoName);
@@ -21,12 +21,10 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(css`
   :host {
-    color: var(${cssGlobalVars.foreground});
-    background: var(${cssGlobalVars.background});
-    ${cssScope}--border-width: .075em;
-    ${cssScope}--blockquote-width: .2em;
-    ${cssScope}--blockquote-background: transparent;
-    ${cssScope}--gap: .5em;
+    padding: 0.75em;
+    background: var(${cssScope}--background);
+    border-color: var(${cssScope}--border-color, currentColor);
+    border-style: solid;
   }
 
   :host,
