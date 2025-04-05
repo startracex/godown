@@ -6,6 +6,6 @@ export default Select;
 
 declare global {
   interface HTMLElementTagNameMap {
-    "g-select": Select;
+    "godown-select": Select;
   }
 }
