@@ -5,6 +5,7 @@ export { default as Breath } from "./breath.js";
 export { default as Button } from "./button.js";
 export { default as Card } from "./card.js";
 export { default as Carousel } from "./carousel.js";
+export { default as Chip } from "./chip.js";
 export { default as Details } from "./details.js";
 export { default as Dialog } from "./dialog.js";
 export { default as Divider } from "./divider.js";
