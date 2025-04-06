@@ -89,7 +89,7 @@ const splitTextRegexp = /[\s,]+/;
     .nocolor {
       position: absolute;
       top: 0;
-      background: var(${cssGlobalVars.clipBackground});
+      background: var(${cssGlobalVars.backgroundClip});
     }
   `,
 )

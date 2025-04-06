@@ -15,11 +15,10 @@ export function variablePrefix(variable: string): CSSResult {
 }
 
 export const cssGlobalVars: {
-  clipBackground: CSSResult;
+  backgroundClip: CSSResult;
   active: CSSResult;
   passive: CSSResult;
   input: CSSResult;
-  color: CSSResult;
   radius: CSSResult;
   ringWidth: CSSResult;
   ringColor: CSSResult;
@@ -28,11 +27,10 @@ export const cssGlobalVars: {
 } = {
   background: scopePrefix("background", 2),
   foreground: scopePrefix("foreground", 2),
-  clipBackground: scopePrefix("clip-background", 2),
+  backgroundClip: scopePrefix("background-clip", 2),
   active: scopePrefix("active", 2),
   passive: scopePrefix("passive", 2),
   input: scopePrefix("input", 2),
-  color: scopePrefix("color", 2),
   radius: scopePrefix("radius", 2),
   ringWidth: scopePrefix("ring-width", 2),
   ringColor: scopePrefix("ring-color", 2),
@@ -45,8 +43,8 @@ GlobalStyle.styles = [
         [cssGlobalVars.background, "hsl(0 0% 4%)"],
         [cssGlobalVars.foreground, "hsl(0 0% 96%)"],
         [cssGlobalVars.active, "hsl(0 0% 96%)"],
-        [cssGlobalVars.passive, "hsl(0 0% 15%)"],
-        [cssGlobalVars.clipBackground, "linear-gradient(to bottom, hsl(0deg 0% 100%), hsl(0deg 0% 30%))"],
+        [cssGlobalVars.passive, "hsl(0 0% 18%)"],
+        [cssGlobalVars.backgroundClip, "linear-gradient(to bottom, hsl(0deg 0% 100%), hsl(0deg 0% 30%))"],
         [cssGlobalVars.ringColor, toVar(cssGlobalVars.passive)],
         [cssGlobalVars.ringWidth, ".075em"],
       ]),

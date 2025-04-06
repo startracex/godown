@@ -53,7 +53,7 @@ const cssScope = scopePrefix(protoName);
   }
 
   [clip] {
-    background: var(${cssGlobalVars.clipBackground});
+    background: var(${cssGlobalVars.backgroundClip});
     display: inline-block;
     color: transparent;
     -webkit-text-fill-color: transparent;
