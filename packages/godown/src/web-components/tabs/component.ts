@@ -41,7 +41,7 @@ const mouseEnterAddedToken = "hover";
     ${cssScope}--space: 0.25em;
     padding: 0.2em;
     border-radius: var(${cssGlobalVars.radius});
-    transition: 0.2s ease-in-out;
+    transition: 0.3s ease-in-out;
     width: fit-content;
     display: flex;
     cursor: default;

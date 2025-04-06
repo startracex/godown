@@ -26,7 +26,6 @@ const cssScope = scopePrefix(protoName);
     ${cssScope}-height: calc(var(${cssScope}-width) / 2);
     ${cssScope}-handle-size: 1.25em;
     ${cssScope}-handle-space: calc(var(${cssScope}-width) / 4 - var(${cssScope}-handle-size) / 2);
-    ${cssScope}-transition: .2s ease-in-out;
     width: var(${cssScope}-width);
     height: var(${cssScope}-height);
     border-radius: calc(var(${cssScope}-height) / 2);
@@ -57,10 +56,9 @@ const cssScope = scopePrefix(protoName);
     top: 50%;
     pointer-events: none;
     border-radius: 100%;
-    background: currentColor;
-    --size: var(${cssScope}-handle-size);
-    width: var(--size);
-    height: var(--size);
+    background: var(${cssGlobalVars.background});
+    width: var(${cssScope}-handle-size);
+    height: var(${cssScope}-handle-size);
     transform: translateY(-50%) translateX(var(${cssScope}-handle-space));
   }
 
