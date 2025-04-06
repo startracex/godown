@@ -37,12 +37,9 @@ type RangeValue = number | number[];
     :host {
       ${cssScope}--track-width: .5em;
       ${cssScope}--handle-scale: 1;
-      ${cssScope}--handle-border-color: currentColor;
-      ${cssScope}--handle-background: var(${cssGlobalVars.active});
       ${cssScope}--track-background: var(${cssGlobalVars.active});
-      ${cssScope}--length: var(${cssGlobalVars.input}-width);
       background: var(${cssGlobalVars.passive});
-      width: var(${cssScope}--length);
+      width: 100%;
       display: block;
       height: var(${cssScope}--track-width);
     }
@@ -52,7 +49,7 @@ type RangeValue = number | number[];
     }
 
     :host([vertical]) {
-      height: var(${cssScope}--length);
+      height: 100%;
       width: fit-content;
     }
 
@@ -91,8 +88,8 @@ type RangeValue = number | number[];
       border-style: solid;
       border-width: 0.1em;
       transform: scale(var(${cssScope}--handle-scale)) translate(-50%, -25%);
-      background: var(${cssScope}--handle-background);
-      border-color: var(${cssScope}--handle-border-color);
+      background: var(${cssGlobalVars.background});
+      border-color: currentColor;
     }
   `,
   css`
