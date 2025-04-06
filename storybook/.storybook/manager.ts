@@ -1,33 +1,27 @@
 import { addons, types } from "@storybook/manager-api";
 import { themes } from "@storybook/theming";
-import { changeDir } from "./tools/change-dir";
-import { freshStyles } from "./tools/fresh-styles";
-import { repoLink } from "./tools/repolink";
+import { FreshStyles } from "./tools/fresh-styles";
+import { SourceLink } from "./tools/source-link";
+import { ThemeSwitcher } from "./tools/theme-switcher";
 
 addons.setConfig({
   theme: themes.dark,
 });
 
-addons.register("addon-fresh", () => {
-  addons.add("addon-fresh-styles", {
+addons.register("startracex", () => {
+  addons.add("fresh-styles", {
     type: types.TOOL,
-    title: "fresh-style",
-    render: freshStyles,
+    title: "Fresh Styles",
+    render: FreshStyles,
   });
-});
-
-addons.register("addon-dir", () => {
-  addons.add("addon-dir-change", {
+  addons.add("theme-switcher", {
+    title: "Themes",
     type: types.TOOL,
-    title: "change-dir",
-    render: changeDir,
+    render: ThemeSwitcher,
   });
-});
-
-addons.register("addon-link", () => {
-  addons.add("addon-link-repo", {
+  addons.add("source-link", {
     type: types.TOOLEXTRA,
-    title: "repo-Link",
-    render: repoLink,
+    title: "Repository",
+    render: SourceLink,
   });
 });
