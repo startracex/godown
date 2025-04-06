@@ -17,7 +17,6 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(css`
   :host {
-    ${cssScope}--background: var(${cssGlobalVars.active});
     ${cssScope}--offset: 0%;
     ${cssScope}--offset-x: var(${cssScope}--offset);
     ${cssScope}--offset-y: var(${cssScope}--offset);
@@ -39,7 +38,8 @@ const cssScope = scopePrefix(protoName);
     user-select: none;
     border-radius: calc(infinity * 1px);
     transform: translate(-50%, -50%);
-    background: var(${cssScope}--background);
+    color: var(${cssGlobalVars.primaryForeground});
+    background: var(${cssGlobalVars.primaryBackground});
   }
 
   [part="chip"]:empty {

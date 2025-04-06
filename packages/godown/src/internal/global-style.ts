@@ -1,4 +1,4 @@
-import { GodownElement, joinDeclarations, joinRules, toVar, trim } from "@godown/element";
+import { declareLightDarkColors, GodownElement, joinDeclarations, joinRules, toVar, trim } from "@godown/element";
 import { type CSSResult, css, unsafeCSS } from "lit";
 
 export class GlobalStyle extends GodownElement {}
@@ -24,10 +24,16 @@ export const cssGlobalVars: {
   ringColor: CSSResult;
   background: CSSResult;
   foreground: CSSResult;
+  primaryBackground: CSSResult;
+  primaryForeground: CSSResult;
+  muted: CSSResult;
 } = {
   background: scopePrefix("background", 2),
   foreground: scopePrefix("foreground", 2),
   backgroundClip: scopePrefix("background-clip", 2),
+  primaryBackground: scopePrefix("primary", 2),
+  primaryForeground: scopePrefix("primary-foreground", 2),
+  muted: scopePrefix("muted", 2),
   active: scopePrefix("active", 2),
   passive: scopePrefix("passive", 2),
   input: scopePrefix("input", 2),
@@ -38,13 +44,27 @@ export const cssGlobalVars: {
 
 GlobalStyle.styles = [
   unsafeCSS(
+    declareLightDarkColors(
+      ":host",
+      [
+        [cssGlobalVars.background, ["hsl(0 0% 96%)", "hsl(0 0% 4%)"]],
+        [cssGlobalVars.foreground, ["hsl(0 0% 4%)", "hsl(0 0% 96%)"]],
+        [cssGlobalVars.muted, ["hsl(0 0% 90%)", "hsl(0 0% 18%)"]],
+      ],
+      1,
+    ),
+  ),
+  unsafeCSS(
     joinRules({
       ":host": joinDeclarations([
-        [cssGlobalVars.background, "hsl(0 0% 4%)"],
-        [cssGlobalVars.foreground, "hsl(0 0% 96%)"],
-        [cssGlobalVars.active, "hsl(0 0% 96%)"],
-        [cssGlobalVars.passive, "hsl(0 0% 18%)"],
-        [cssGlobalVars.backgroundClip, "linear-gradient(to bottom, hsl(0deg 0% 100%), hsl(0deg 0% 30%))"],
+        [cssGlobalVars.primaryBackground, toVar(cssGlobalVars.foreground)],
+        [cssGlobalVars.primaryForeground, toVar(cssGlobalVars.background)],
+        [cssGlobalVars.active, toVar(cssGlobalVars.primaryBackground)],
+        [cssGlobalVars.passive, toVar(cssGlobalVars.muted)],
+        [
+          cssGlobalVars.backgroundClip,
+          `linear-gradient(to bottom, ${toVar(cssGlobalVars.foreground)}, ${toVar(cssGlobalVars.muted)})`,
+        ],
         [cssGlobalVars.ringColor, toVar(cssGlobalVars.passive)],
         [cssGlobalVars.ringWidth, ".075em"],
       ]),

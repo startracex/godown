@@ -47,11 +47,8 @@ const cssScope = scopePrefix(protoName);
       ${cssScope}--modal-animation-duration: 1.5s;
       ${cssScope}--focus-scale: .97;
       ${cssScope}--deg: 45deg;
-      background: linear-gradient(
-        var(${cssScope}--deg),
-        var(${cssScope}--background, var(${cssGlobalVars.background})),
-        var(${cssScope}--gradients, var(${cssScope}--background, var(${cssGlobalVars.background})))
-      );
+      color: var(${cssGlobalVars.primaryForeground});
+      background: var(${cssGlobalVars.primaryBackground});
       padding: 0.25em 0.75em;
       border-width: var(${cssGlobalVars.ringWidth});
       border-style: none;
