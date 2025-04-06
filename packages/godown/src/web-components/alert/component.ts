@@ -1,11 +1,11 @@
-import { attr, godown, htmlSlot, styles } from "@godown/element";
+import { attr, godown, htmlSlot, StyleController, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { GlobalStyle, scopePrefix } from "../../internal/global-style.js";
+import { cssGlobalVars, GlobalStyle } from "../../internal/global-style.js";
+import { RingBuilder, type RingType } from "../../internal/ring.js";
 
 const protoName = "alert";
-const cssScope = scopePrefix(protoName);
 
 /**
  * {@linkcode Alert} renders a alert.
@@ -22,9 +22,7 @@ const cssScope = scopePrefix(protoName);
 @styles(css`
   :host {
     padding: 0.75em;
-    background: var(${cssScope}--background);
-    border-color: var(${cssScope}--border-color, currentColor);
-    border-style: solid;
+    background: var(${cssGlobalVars.background});
   }
 
   :host,
@@ -44,6 +42,13 @@ const cssScope = scopePrefix(protoName);
   }
 `)
 class Alert extends GlobalStyle {
+  constructor() {
+    super();
+    new StyleController(this, () => new RingBuilder({ type: this.ringType }).css);
+  }
+
+  @property({ attribute: "ring-type" })
+  ringType: RingType = "border";
 
   /**
    * The title is bold and the icon height is the same as it.
