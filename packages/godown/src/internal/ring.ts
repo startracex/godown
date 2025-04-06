@@ -1,3 +1,4 @@
+import { toVar } from "@godown/element";
 import { cssGlobalVars } from "./global-style.js";
 import { unsafeCSS, type CSSResult } from "lit";
 
@@ -8,22 +9,22 @@ type OutlineOptions = {
   type?: RingType;
 };
 
-const getRingStyles = (width: string | CSSResult, color: string | CSSResult) => {
-  const colors = `outline-color:var(${color});border-color:var(${color});`;
-  const outline = `${colors}outline-width:var(${width});outline-style:solid;`;
-  const outlineInset = `${outline}outline-offset:calc(-1 * var(${width}));`;
-  const shadow = `box-shadow:0 0 0 var(${width}) var(${color});`;
-  const shadowInset = `box-shadow:inset 0 0 0 var(${width}) var(${color});`;
-  const border = `${colors}border-width:var(${width});border-style:solid;`;
-  return {
-    outline,
-    "outline-inset": outlineInset,
-    "box-shadow": shadow,
-    shadow,
-    "box-shadow-inset": shadowInset,
-    "shadow-inset": shadowInset,
-    border,
-  };
+const outlineRing = ({ width, color, inset }) =>
+  `outline-style:solid;outline-color:${color};outline-width:${width};${inset ? `outline-offset:calc(-1 * ${width});` : ""}`;
+
+const borderRing = ({ width, color }) =>
+  `border-style:solid;border-color:${color};border-width:${width};border-style:solid;`;
+
+const shadowRing = ({ width, color, inset }) => `box-shadow:${inset ? "inset" : ""} 0 0 0 ${width} ${color};`;
+
+const ringMap = {
+  outline: (width, color) => outlineRing({ width, color, inset: false }),
+  "outline-inset": (width, color) => outlineRing({ width, color, inset: true }),
+  "box-shadow": (width, color) => shadowRing({ width, color, inset: false }),
+  shadow: (width, color) => shadowRing({ width, color, inset: false }),
+  "box-shadow-inset": (width, color) => shadowRing({ width, color, inset: true }),
+  "shadow-inset": (width, color) => shadowRing({ width, color, inset: true }),
+  border: (width, color) => borderRing({ width, color }),
 };
 
 /**
@@ -34,13 +35,12 @@ export class RingBuilder {
 
   constructor({
     selector = ":host",
-    width = cssGlobalVars.ringWidth,
-    color = cssGlobalVars.ringColor,
+    width = toVar(cssGlobalVars.ringWidth),
+    color = toVar(cssGlobalVars.ringColor),
     type,
   }: OutlineOptions = {}) {
-    const styles = getRingStyles(width, color);
-    if (type && type in styles) {
-      const style = styles[type];
+    if (type && type in ringMap) {
+      const style = ringMap[type](width, color);
       this.css = `${selector}{${style}}`;
     } else {
       this.css = "";
