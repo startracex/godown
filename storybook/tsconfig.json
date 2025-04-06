@@ -9,5 +9,9 @@
     "sourceMap": false,
     "noEmit": true,
     "jsx": "react"
-  }
+  },
+  "include": [
+    ".storybook/**/*",
+    "**/*"
+  ]
 }

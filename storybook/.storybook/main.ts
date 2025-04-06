@@ -16,9 +16,6 @@ export default {
   managerHead: (head) =>
     `${head}
 <style>
-  :root {
-    color-scheme: dark;
-  }
   .sidebar-header button::before,
   .sidebar-header button::after {
     content: none;
@@ -48,7 +45,6 @@ export default {
   :root {
     font-family: sans-serif;
     font-size: 20px;
-    color-scheme: dark;
   }
   .sbdocs p {
     font-size: 15px;
