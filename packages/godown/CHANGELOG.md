@@ -1,5 +1,34 @@
 # godown
 
+## 3.11.0
+
+### Minor Changes
+
+- 5e32390: rename outline to ring in global styles and controllers
+- 7a8579f: remove animation and type for Skeleton
+- fd4360b: remove the width and height of Input
+- 7e76db3: reduce icons in the components
+- 751ad5f: remove ghost for Button
+- 8361baf: add ringType for Tabs
+- e485748: merge SuperAnchor to Link
+- c697ee2: migrate Badge to Chip
+- e9fbaa5: extend Input type types
+- 038cf49: add ringType for Alert
+- 08b1a22: rename clipBackground to backgroundClip
+- 4c66523: let Heading extend Link
+- c5fea78: add ringType for Card
+- dc05780: add primary and muted colors
+- 86a9192: remove variant for Alert
+- 914163b: rewrite Badge with reference to button
+- a53c328: remove autoclose, replace icon, close parts with start, end parts in Alert
+
+### Patch Changes
+
+- efdf7e5: fix Progress component value calculation
+- 72de43f: fix tag name in HTMLElementTagNameMap declaration
+- Updated dependencies [8bf2b41]
+  - @godown/element@1.9.0
+
 ## 3.10.1
 
 ### Patch Changes
