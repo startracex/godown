@@ -32,6 +32,12 @@ export default {
   .sb-bar {
     overflow-x: hidden !important;
   }
+  .sb-bar > button {
+    width: 100%;
+  }
+  .sb-bar > div > div {
+    margin: 0;
+  }
   iframe {
     background: none !important;
   }
