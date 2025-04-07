@@ -1,4 +1,4 @@
-export const join = (a: string, b: string, sep: string): string => (a ? a + (b ? sep + b : "") : b) || "";
+export const join = (a: string, b: string, sep?: string): string => (a ? a + (b ? (sep || "") + b : "") : b) || "";
 
 export const infixed = (a: string, b: string, c: string): boolean => a.startsWith(b) && a.endsWith(c);
 
@@ -53,3 +53,9 @@ export const toCamel = (s: string, u?: boolean): string => {
 export const toDash = (s: string): string => splitWords(s).join("-");
 
 export const toSnake = (s: string): string => splitWords(s).join("_");
+
+export const toKebab = toDash;
+
+export const toPascal = (s: string): string => toCamel(s, true);
+
+export const toMacro = (s: string): string => toSnake(s).toUpperCase();
