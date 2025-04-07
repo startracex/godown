@@ -12,12 +12,6 @@ const cssScope = scopePrefix(protoName);
  *
  * Create modal animation upon clicking.
  *
- * Available colors (background): none, black, gray, white, blue, green, red, orange, pink, purple, yellow, teal.
- *
- * Default color is `black`.
- *
- * Set the color to `none` to prevent applying styles.
- *
  * @slot - The content of the button.
  * @category input
  */

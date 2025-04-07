@@ -39,7 +39,7 @@ const protoName = "select";
  *
  * Multi-selected state looks the same as single-selected.
  *
- * Input will filter the element.
+ * Input will filter the options.
  *
  * @fires input - Fires when the input value changes.
  * @fires change - Fires when the input value changes.

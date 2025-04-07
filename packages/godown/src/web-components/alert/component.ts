@@ -10,12 +10,10 @@ const protoName = "alert";
 /**
  * {@linkcode Alert} renders a alert.
  *
- * Color defaults to blue.
- *
  * @slot - Alert content.
  * @slot title - Alert title.
- * @slot icon - Alert icon.
- * @fires close - Fires when the alert is closed.
+ * @slot prefix - Alert prefix.
+ * @slot suffix - Alert suffix.
  * @category feedback
  */
 @godown(protoName)
@@ -68,12 +66,12 @@ class Alert extends GlobalStyle {
         part="root"
         ${attr(this.observedRecord)}
       >
-        <div class="start">${htmlSlot("start")}</div>
+        <div>${htmlSlot("prefix")}</div>
         <div part="content">
           <strong part="title">${this.title || htmlSlot("title")}</strong>
           ${this.content || htmlSlot()}
         </div>
-        <div class="end">${htmlSlot("end")}</div>
+        <div>${htmlSlot("suffix")}</div>
       </div>
     `;
   }

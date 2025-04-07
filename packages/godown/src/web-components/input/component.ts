@@ -10,7 +10,7 @@ import { RingBuilder } from "../../internal/ring.js";
 const protoName = "input";
 
 /**
- * {@linkcode Input} renders a text input.
+ * {@linkcode Input} renders a input.
  *
  * @fires input - Fires when the input value changes.
  * @fires change - Fires when the input value changes.

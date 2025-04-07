@@ -9,7 +9,7 @@ const protoName = "text";
 const cssScope = scopePrefix(protoName);
 
 /**
- * {@linkcode Text} renders nowrap text.
+ * {@linkcode Text} renders text.
  *
  * @category display
  */
