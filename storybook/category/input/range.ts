@@ -4,6 +4,8 @@ import { html } from "lit";
 
 export default (args: Range) => {
   return html`
-<godown-range ${attr(args)}></godown-range>
+<div style="height: 200px;display: flex;justify-content: center;">
+  <godown-range ${attr(args)}></godown-range>
+</div>
   `;
 };
