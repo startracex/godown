@@ -48,11 +48,7 @@ pnpm run build
 
 - `godown` Web components library.
 
-- `@godown/colors` Color gradients for godown.
-
 - `@godown/element` Component base class for godown.
-
-- `@godown/f7-icon` Icon wrapper, web component, plugin for F7.
 
 - `@godown/react` React components for godown.
 
