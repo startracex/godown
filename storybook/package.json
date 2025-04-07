@@ -5,25 +5,23 @@
     "fmt": "prettier **/*.mdx --write && dprint fmt"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^8.6.4",
-    "@storybook/addon-essentials": "^8.6.4",
-    "@storybook/blocks": "^8.6.4",
-    "@storybook/components": "^8.6.4",
+    "@storybook/addon-a11y": "^8.6.12",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/components": "^8.6.12",
     "@storybook/csf": "^0.1.13",
     "@storybook/icons": "^1.4.0",
-    "@storybook/manager-api": "^8.6.4",
-    "@storybook/test": "^8.6.4",
-    "@storybook/theming": "^8.6.4",
-    "@storybook/web-components": "^8.6.4",
-    "@storybook/web-components-vite": "^8.6.4",
+    "@storybook/manager-api": "^8.6.12",
+    "@storybook/test": "^8.6.12",
+    "@storybook/theming": "^8.6.12",
+    "@storybook/web-components": "^8.6.12",
+    "@storybook/web-components-vite": "^8.6.12",
     "lit": "catalog:",
-    "react": "^19.0.0",
-    "storybook": "^8.6.4"
+    "react": "^19.1.0",
+    "storybook": "^8.6.12"
   },
   "dependencies": {
-    "@godown/colors": "workspace:^",
     "@godown/element": "workspace:^",
-    "@godown/f7-icon": "workspace:^",
     "godown": "workspace:^"
   },
   "name": "@godown/storybook",
