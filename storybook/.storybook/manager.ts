@@ -32,6 +32,11 @@ addons.register("startracex", (api) => {
     api.setOptions({ theme: themes[theme] });
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
+    const iframe = document.querySelector("iframe");
+    if (iframe) {
+      iframe.contentDocument.documentElement.dataset.theme = theme;
+      iframe.contentDocument.documentElement.style.colorScheme = theme;
+    }
   };
 
   document.addEventListener("theme-change", handleChange);
