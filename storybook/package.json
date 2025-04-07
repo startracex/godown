@@ -2,7 +2,8 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build -o build",
-    "fmt": "prettier **/*.mdx --write && dprint fmt"
+    "fmt": "prettier **/*.mdx --write && dprint fmt",
+    "preview": "vite preview --port 6006 --outDir build"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^8.6.12",
