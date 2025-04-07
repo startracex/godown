@@ -1,5 +1,14 @@
 # sharekit
 
+## 0.3.0
+
+### Minor Changes
+
+- 318d16b: add Path class
+- 0c78a0d: remove join, infixed
+- a24c668: extend function aliases
+- d1e16d4: add is functions
+
 ## 0.2.0
 
 ### Minor Changes
