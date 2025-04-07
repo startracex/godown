@@ -9,6 +9,10 @@ export const DirectionSwitcher = memo(() => {
     <IconButton
       onClick={() => {
         document.documentElement.dir = nextDir;
+        const iframe = document.querySelector("iframe");
+        if (iframe) {
+          iframe.contentDocument.documentElement.dir = nextDir;
+        }
         setDir(nextDir);
       }}
       title="Change direction"
