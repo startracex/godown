@@ -16,7 +16,7 @@
   "homepage": "https://godown.js.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/startracex/godown.git",
+    "url": "git+https://github.com/startracex/godown.git",
     "directory": "packages/godown"
   },
   "keywords": [

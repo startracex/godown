@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/startracex/godown.git",
+    "url": "git+https://github.com/startracex/godown.git",
     "directory": "plugins/cem-fix-module"
   },
   "files": [
