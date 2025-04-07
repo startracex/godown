@@ -21,35 +21,22 @@ const cssScope = scopePrefix(protoName);
     ${cssScope}--to: var(${cssGlobalVars.passive});
     ${cssScope}--deg: 95deg;
     ${cssScope}--duration: 2s;
-    ${cssScope}--icon-size: 5em;
-    ${cssScope}--icon-margin: .25em;
-    background: var(${cssScope}--from);
     min-height: 1.5em;
     width: 100%;
     flex-shrink: 0;
-    display: block;
     overflow: hidden;
-  }
-
-  [part="root"] {
-    min-height: inherit;
-    text-align: center;
-    animation: var(${cssScope}--duration) ease-in-out infinite none running;
-  }
-
-  [animation="position"] {
+    background-color: transparent;
+    background-size: 200% 100%;
     background-image: linear-gradient(
       var(${cssScope}--deg),
       var(${cssScope}--from) 36%,
       var(${cssScope}--to) 50%,
       var(${cssScope}--from) 64%
     );
-    background-color: transparent;
-    background-size: 200% 100%;
-    animation-name: po;
+    animation: _ var(${cssScope}--duration) ease-in-out infinite none running;
   }
 
-  @keyframes po {
+  @keyframes _ {
     from {
       background-position: 150% center;
     }
@@ -58,34 +45,16 @@ const cssScope = scopePrefix(protoName);
     }
   }
 
-  [animation="opacity"] {
-    animation-name: op;
-    animation-direction: alternate;
+  [part="root"] {
+    display: contents;
   }
 
-  @keyframes op {
-    0% {
-      background: var(${cssScope}--from);
-    }
-    to {
-      background: var(${cssScope}--to);
-    }
+  :host,
+  :host([contents]) [part="root"] {
+    display: block;
   }
 `)
 class Skeleton extends GlobalStyle {
-  /**
-   * If "image", render a image placeholder.
-   */
-  @property()
-  type: "text" | "image";
-
-  /**
-   * Animation type.
-   * opacity animation only effect on slotted element and image icon.
-   */
-  @property()
-  animation: "position" | "opacity" = "position";
-
   /**
    * If false, render slot only.
    */
@@ -97,12 +66,7 @@ class Skeleton extends GlobalStyle {
       return htmlSlot();
     }
     return html`
-      <div
-        part="root"
-        ${attr(this.observedRecord)}
-      >
-        ${htmlSlot("loading")}
-      </div>
+      <div part="root">${htmlSlot("loading")}</div>
     `;
   }
 }
