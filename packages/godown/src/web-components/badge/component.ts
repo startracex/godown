@@ -18,7 +18,7 @@ const protoName = "badge";
   }
 `)
 class Badge extends Button {
-  plain: Button["plain"] = true;
+  plain: never = true as never;
   round: Button["round"] = true;
 }
 
