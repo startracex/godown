@@ -1,4 +1,6 @@
-import { infixed, isString } from "sharekit";
+import { isString } from "sharekit";
+
+const infixed = (a: string, b: string, c: string): boolean => a.startsWith(b) && a.endsWith(c);
 
 export class RouteTree {
   static MatchTypes = {

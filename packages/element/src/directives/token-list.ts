@@ -1,5 +1,7 @@
-import { isArray, isObject, join } from "../tools/lib.js";
+import { isArray, isObject } from "../tools/lib.js";
 import type { attr } from "./attr.js";
+
+export const combineToken = (a: string, b: string): string => (a ? a + (b ? " " + b : "") : b) || "";
 
 type TokenListItem = string | Record<string, any> | TokenListItem[];
 
@@ -20,17 +22,17 @@ export const tokenList = (...args: TokenListItem[]): string =>
       return acc;
     }
     if (isArray(cur)) {
-      return join(acc, tokenList(...cur), " ");
+      return combineToken(acc, tokenList(...cur));
     }
     if (isObject(cur)) {
       for (const key in cur) {
         if (cur[key]) {
-          acc = join(acc, key, " ");
+          acc = combineToken(acc, key);
         }
       }
       return acc;
     }
-    return join(acc, cur, " ");
+    return combineToken(acc, cur);
   }, "");
 
 export default tokenList;

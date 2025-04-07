@@ -1,7 +1,8 @@
 import { noChange } from "lit";
 import { Directive, directive, type DirectiveResult, type ElementPart, PartType } from "lit/directive.js";
 
-import { isNullable, isNumber, isString, join } from "../tools/lib.js";
+import { isNullable, isNumber, isString } from "../tools/lib.js";
+import { combineToken } from "./token-list.js";
 
 const noAttribute = (value: any): boolean => isNullable(value) || value === false;
 
@@ -48,7 +49,7 @@ export const attrToString = (a: DirectiveParams): string =>
     if (noAttribute(value)) {
       return acc;
     }
-    return join(acc, key + (value === true ? "" : `="${value}"`), " ");
+    return combineToken(acc, key + (value === true ? "" : `="${value}"`));
   }, "");
 
 const svgInitials = {

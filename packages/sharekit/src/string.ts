@@ -1,7 +1,3 @@
-export const join = (a: string, b: string, sep?: string): string => (a ? a + (b ? (sep || "") + b : "") : b) || "";
-
-export const infixed = (a: string, b: string, c: string): boolean => a.startsWith(b) && a.endsWith(c);
-
 export const trimStartFunc = (s: string, func: (s: string) => boolean): string => {
   if (!s || !func) {
     return s;
