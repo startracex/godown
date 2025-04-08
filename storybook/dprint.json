@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "../node_modules/@startracex/dev-config/dprint-prettier.json"
+  ],
+  "excludes": [
+    "**/node_modules",
+    "**/*.d.ts"
+  ],
+  "includes": [
+    "**/*.mdx"
+  ],
+  "plugins": [
+    "https://plugins.dprint.dev/prettier-0.57.0.json@1bc6b449e982d5b91a25a7c59894102d40c5748651a08a095fb3926e64d55a31"
+  ]
+}

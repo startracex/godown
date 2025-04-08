@@ -10,7 +10,6 @@
     "clean": "tsc --build tsconfig.prod.json --clean",
     "build": "tsx build.ts",
     "build:ts": "tsc",
-    "fmt": "prettier src/**/* --write",
     "manifest": "tsx manifest.ts"
   },
   "homepage": "https://godown.js.org",

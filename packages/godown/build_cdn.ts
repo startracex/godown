@@ -28,7 +28,7 @@ const buildInto: (InputOptions & { output: OutputOptions[] })[] = [
         format: "es",
         sourcemap: true,
         indent: false,
-        intro: intro("Require Lit Core (import from `\"lit\"`)"),
+        intro: intro('Require Lit Core (import from `"lit"`)'),
       },
       {
         file: "build/godown.iife.js",
@@ -38,7 +38,7 @@ const buildInto: (InputOptions & { output: OutputOptions[] })[] = [
         globals: {
           lit: "Lit",
         },
-        intro: intro("Require Lit Core (`\"Lit\"` in globalThis)"),
+        intro: intro('Require Lit Core (`"Lit"` in globalThis)'),
       },
       {
         file: "build/godown.umd.js",
@@ -49,7 +49,7 @@ const buildInto: (InputOptions & { output: OutputOptions[] })[] = [
         globals: {
           lit: "Lit",
         },
-        intro: intro("Require Lit Core (`\"Lit\"` in globalThis)"),
+        intro: intro('Require Lit Core (`"Lit"` in globalThis)'),
       },
     ],
   },
@@ -99,10 +99,8 @@ buildInto.forEach(async (into) => {
     await build(into);
   }
   into.output.forEach(({ file }) => {
-    console.info(`${file.padEnd(maxLen)} (${
-      buildFlag
-        ? (statSync(file).size / 1024).toFixed(1) + " KiB"
-        : "skipped"
-    })`);
+    console.info(
+      `${file.padEnd(maxLen)} (${buildFlag ? (statSync(file).size / 1024).toFixed(1) + " KiB" : "skipped"})`,
+    );
   });
 });
