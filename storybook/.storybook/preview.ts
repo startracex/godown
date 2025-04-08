@@ -19,7 +19,7 @@ export default {
   initialGlobals: {},
   argTypes: {
     stylex: new ArgHelper().type("string").arg,
-    contents: new ArgHelper().type("boolean").category("experimental").arg,
+    contents: new ArgHelper().type("boolean").arg,
   },
   args: {},
 } satisfies Preview;
