@@ -6,7 +6,9 @@
     "clean": "turbo run clean",
     "dev": "turbo run dev",
     "fmt": "dprint fmt",
-    "lint": "biome lint",
+    "fmt:check": "dprint check",
+    "lint": "biome lint --fix",
+    "lint:check": "biome lint",
     "version": "changeset version"
   },
   "dependencies": {
