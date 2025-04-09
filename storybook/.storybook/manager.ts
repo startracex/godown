@@ -40,4 +40,15 @@ addons.register("startracex", (api) => {
   };
 
   document.addEventListener("theme-change", handleChange);
+  const wrapper = document.querySelector("#storybook-preview-wrapper")
+  new MutationObserver(() => {
+    const iframe = wrapper.querySelector("iframe");
+    if (iframe) {
+      iframe.contentDocument.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      iframe.contentDocument.documentElement.style.colorScheme = document.documentElement.dataset.theme;
+    }
+  }).observe(wrapper, {
+    attributes: true,
+    subtree: true
+});
 });
