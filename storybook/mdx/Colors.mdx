@@ -2,17 +2,21 @@ import { ColorPalette, ColorItem } from "@storybook/blocks";
 
 # Colors
 
-Color will automatically match color-scheme, and if light-dark is not supported, it will fall back to dark value.
+Godown using [light-dark](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark) function to support both light and dark mode.
 
-Set color-scheme for the document root or element to change the system default value.
+All major browsers released after Baseline 2024 support this feature. However, in cases where the feature is not supported, it will fall back to the "dark" value.
+
+Set color-scheme for the document root or element to override scheme.
 
 ```html
 <html style="color-scheme: light"></html>
 ```
 
 ```html
-<html style="color-scheme: dark"></html>
+<godown-alert style="color-scheme: dark"></godown-alert>
 ```
+
+## Values and Variables
 
 <godown-layout stylex="display: contents">
   <ColorItem

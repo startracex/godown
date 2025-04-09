@@ -2,11 +2,19 @@
 
 Set the `display` property of the host element to `contents`.
 
-The contentsRoot of the shadowRoot inherits the original styles of the host.
+## Examples
+
+### Normal
+
+<godown-button>Normal</godown-button>
 
 ```html
 <godown-button>Normal</godown-button>
 ```
+
+### Contents
+
+<godown-button contents>Contents</godown-button>
 
 ```html
 <godown-button contents>Contents</godown-button>
@@ -18,7 +26,7 @@ In shadowRoot, the element with `part="root"` or first element child is consider
 
 The host element display will be content.
 
-All styles of the root element inherit, but display is [revert](https://developer.mozilla.org/docs/Web/CSS/revert).
+All styles of the root element inherit, but display is [revert](https://developer.mozilla.org/en-US/docs/Web/CSS/revert).
 
 Apply the following style:
 
