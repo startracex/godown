@@ -64,6 +64,6 @@ export const WithOutlineVariant = {
 
 export const WithCustomColor = {
   args: {
-    stylex: "background: #0e1122; color: #c3d1e3; --godown--active: #c3d1e3",
+    stylex: "background: #131410; color: #ffffff; --godown--active: #2283ff",
   },
 };

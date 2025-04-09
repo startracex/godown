@@ -4,16 +4,8 @@ import { html } from "lit";
 
 export default (args: Link) => {
   return html`
-<godown-link ${attr(args)}>Go to ${args.href}</godown-link>
-${
-    args.type === "push" || args.type === "replace"
-      ? html`<godown-router>
-  <div slot="/index">Index Page, update pathname to navigation</div>
-  <div slot="/:dynamic">Page other (dynamic match)</div>
-  <div slot="/*wild_dynamic">Page other (wild dynamic match)</div>
-  <div>No slotted</div>
-</godown-router>`
-      : ""
-  }
-  `;
+<godown-link ${attr(args)}>
+ When no &lt;godown-router&gt; is mounted, its behavior is the same as that of &lt;a&gt;.
+</godown-link>
+`
 };

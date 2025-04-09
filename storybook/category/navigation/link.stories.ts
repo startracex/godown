@@ -18,7 +18,7 @@ export default {
     ]).arg,
   },
   args: {
-    href: "/index",
+    href: "/",
     type: "auto",
     suppress: false,
   },

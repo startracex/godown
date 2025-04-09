@@ -23,6 +23,6 @@ export const Primary = {};
 
 export const WithSrc = {
   args: {
-    src: matrixToBase64(stringToMatrix("startracex", 6, "#00a2ff"), 100, 1),
+    src: matrixToBase64(stringToMatrix("startracex", 6, "chocolate"), 100, 1),
   },
 };

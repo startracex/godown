@@ -27,6 +27,6 @@ export const WithCustomSize = {
 
 export const WithCustomColor = {
   args: {
-    stylex: "background: blueviolet;color: chartreuse;--godown--active: darkorange;",
+    stylex: "background: blueviolet;--godown--active: darkorange;",
   },
 };

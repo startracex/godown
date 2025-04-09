@@ -10,6 +10,6 @@ export default (args: Chip) => {
 
 export const withAvatar = (args: Chip) => {
   return html`<godown-chip ${attr(args)}>
-    <godown-avatar name="S" round stylex="background-color: darkgreen;"></godown-avatar>
+    <godown-avatar name="S" round stylex="background-color: #12a1a1;"></godown-avatar>
   </godown-chip> `;
 };

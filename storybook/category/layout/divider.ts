@@ -4,13 +4,15 @@ import { html } from "lit";
 
 export default (args: Divider) => {
   return html`
-    <div style="${
-    args.vertical ? "" : "flex-direction: column;"
-  }height: 300px;display: flex;justify-content: space-evenly;align-items: center;"
-    >
+<godown-flex
+  ?vertical="${!args.vertical}"
+  content="space-evenly"
+  items="center"
+  style="height: 15em;"
+>
   A
   <godown-divider ${attr(args)}></godown-divider>
   B
-</div>
+</godown-flex>
   `;
 };

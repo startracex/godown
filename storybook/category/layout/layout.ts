@@ -9,7 +9,7 @@ export default (args: Layout) => {
 <div class="container">
   <godown-layout ${attr(args)}>
     <div slot="header">
-      Header
+      Header (${args.sticky? "sticky" : "static"})
     </div>
     <main>
       Main content

@@ -37,15 +37,3 @@ export const WithHeaderAndFooter = {
     footer: true,
   },
 };
-
-export const WithCustomPadding = {
-  args: {
-    stylex: "--godown-card--padding: 4px;",
-  },
-};
-
-export const WithCustomColor = {
-  args: {
-    stylex: "background: #0e1122; color: #c3d1e3;",
-  },
-};

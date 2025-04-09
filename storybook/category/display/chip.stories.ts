@@ -38,7 +38,7 @@ export const WithMax = {
 export const WithCustomColor = {
   args: {
     dot: true,
-    stylex: "--godown-chip--background: lightgreen;",
+    stylex: "--godown--primary: #12a1a1;",
   },
 };
 

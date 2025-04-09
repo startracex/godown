@@ -1,23 +1,18 @@
 .container {
   overflow-y: scroll;
-  height: calc(100vh - 2em);
-  min-height: 10em;
-}
-
-godown-layout {
-  height: calc(100vh + 8em);
+  height: 20em;
 }
 
 main {
   height: 100%;
   display: grid;
   place-items: center;
-  min-height: 20em;
+  min-height: 30em;
   background: #303030;
 }
 
 [slot="header"],
 [slot="footer"] {
   background: #161616;
-  padding: .5em;
+  padding: .5em 1em;
 }

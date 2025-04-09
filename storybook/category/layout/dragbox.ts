@@ -4,9 +4,9 @@ import { html } from "lit";
 
 export default (args: Dragbox) => {
   return html`
-<div style="position: relative;height: 200px;outline: 2px gray dashed;">
+<div style="position: relative;height: 12em;outline: 2px gray dashed;">
   <godown-dragbox ${attr(args)}>
-    <div style="width: 50px; height: 50px; background: gray;"></div>
+    <div style="width: 4em; height: 4em; background: gray;"></div>
   </godown-dragbox>
 </div>
   `;

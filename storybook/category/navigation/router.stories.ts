@@ -17,7 +17,7 @@ export default {
     cache: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
-    pathname: "/index",
+    pathname: "/",
     type: "united",
   },
 } as RendererMeta<typeof render>;
