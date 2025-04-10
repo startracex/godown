@@ -4,6 +4,7 @@ node_modules
 .vercel
 build
 
+*.css
 *.js
 *.cjs
 *.d.ts

@@ -20,9 +20,9 @@ export default create({
   appPreviewBg: background,
   appBorderColor: border,
 
-  barTextColor: "hsl(0 0% 60%)",
-  barSelectedColor: "hsl(0 0% 72%)",
-  barHoverColor: "hsl(0 0% 72%)",
+  barTextColor: "hsl(0 0% 66%)",
+  barSelectedColor: "hsl(0 0% 94%)",
+  barHoverColor: "hsl(0 0% 84%)",
   barBg: background,
 
   inputBg: controlsBackground,

@@ -6,6 +6,7 @@ import { ThemeSwitcher } from "./tools/theme-switcher";
 import { themes } from "./themes";
 import { ThemeComparison } from "./tools/theme-comparison";
 import { GridSwitcher } from "./tools/grid-switcher";
+import "./manager.css";
 
 addons.register("startracex", (api) => {
   addons.add("fresh-styles", {

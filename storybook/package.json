@@ -1,7 +1,8 @@
 {
   "scripts": {
-    "dev": "storybook dev -p 6006",
-    "build": "storybook build -o build",
+    "dev": "pnpm build:css && storybook dev -p 6006",
+    "build": "pnpm build:css && storybook build -o build",
+    "build:css": "stylus .storybook/manager.styl",
     "preview": "vite preview --port 6006 --outDir build"
   },
   "devDependencies": {
@@ -22,7 +23,8 @@
   },
   "dependencies": {
     "@godown/element": "workspace:^",
-    "godown": "workspace:^"
+    "godown": "workspace:^",
+    "stylus": "^0.64.0"
   },
   "name": "@godown/storybook",
   "version": "0.0.0",

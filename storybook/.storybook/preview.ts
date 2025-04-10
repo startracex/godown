@@ -3,6 +3,7 @@ import { ArgHelper } from "../args";
 import "godown";
 import { Container } from "./tools/container";
 import { comparisonDecorator } from "./tools/theme-comparison";
+import "./preview.styl";
 
 export default {
   parameters: {
