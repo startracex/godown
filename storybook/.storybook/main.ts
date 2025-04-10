@@ -1,12 +1,14 @@
 import type { StorybookConfig } from "@storybook/web-components-vite";
 
 export default {
-  stories: [
-    "../**/*.stories.ts",
-    "../mdx/*.mdx",
-  ],
+  stories: ["../**/*.stories.ts", "../mdx/*.mdx"],
   addons: [
-    "@storybook/addon-essentials",
+    {
+      name: "@storybook/addon-essentials",
+      options: {
+        backgrounds: false,
+      },
+    },
     "@storybook/addon-a11y",
   ],
   framework: {
@@ -73,6 +75,56 @@ export default {
   previewHead: (head) =>
     `${head}
 <style>
+  :root,
+  body {
+    height: 100%;
+  }
+  #storybook-root:not([hidden]),
+  #root-inner {
+    display: contents;
+  }
+  [data-theme="dark"],
+  [data-theme="dark"] .theme-obverse,
+  [data-theme="light"] .theme-reverse {
+    color-scheme: dark;
+    color: #ffffff;
+    background: #000000;
+  }
+  [data-theme="light"],
+  [data-theme="light"] .theme-obverse,
+  [data-theme="dark"] .theme-reverse {
+    color-scheme: light;
+    color: #000000;
+    background: #ffffff;
+  }
+  [data-compare="false"] #compare-target {
+    display: none;
+  }
+  #compare-root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  @media screen and (max-width: 450px) {
+    #compare-root {
+      flex-direction: column;
+    }
+  }
+  .compare-block {
+    flex: 1;
+    padding: 1em;
+  }
+  body {
+    padding: 0 !important;
+  }
+  [data-grid="true"] body,
+  [data-grid="true"] #storybook-docs .docs-story,
+  [data-grid="true"] #compare-root .compare-block {
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: 20px 20px, 20px 20px, 20px 20px, 20px 20px ;
+    background-blend-mode: difference;
+    background-image: linear-gradient(rgba(130, 130, 130, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(130, 130, 130, 0.5) 1px, transparent 1px), linear-gradient(rgba(130, 130, 130, 0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(130, 130, 130, 0.25) 1px, transparent 1px);
+  }
   #storybook-docs p {
     font-size: 15px;
   }

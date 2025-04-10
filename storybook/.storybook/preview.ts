@@ -2,6 +2,7 @@ import type { Preview } from "@storybook/web-components";
 import { ArgHelper } from "../args";
 import "godown";
 import { Container } from "./tools/container";
+import { comparisonDecorator } from "./tools/theme-comparison";
 
 export default {
   parameters: {
@@ -22,4 +23,5 @@ export default {
     contents: new ArgHelper().type("boolean").arg,
   },
   args: {},
+  decorators: [comparisonDecorator],
 } satisfies Preview;
