@@ -3,7 +3,7 @@ import { DirectionSwitcher } from "./tools/direction-switcher";
 import { FreshStyles } from "./tools/fresh-styles";
 import { SourceLink } from "./tools/source-link";
 import { ThemeSwitcher } from "./tools/theme-switcher";
-import { themes } from "@storybook/theming";
+import { themes } from "./themes";
 
 addons.register("startracex", (api) => {
   addons.add("fresh-styles", {
@@ -40,7 +40,7 @@ addons.register("startracex", (api) => {
   };
 
   document.addEventListener("theme-change", handleChange);
-  const wrapper = document.querySelector("#storybook-preview-wrapper")
+  const wrapper = document.querySelector("#storybook-preview-wrapper");
   new MutationObserver(() => {
     const iframe = wrapper.querySelector("iframe");
     if (iframe) {
@@ -49,6 +49,6 @@ addons.register("startracex", (api) => {
     }
   }).observe(wrapper, {
     attributes: true,
-    subtree: true
-});
+    subtree: true,
+  });
 });

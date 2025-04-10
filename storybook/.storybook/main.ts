@@ -15,7 +15,32 @@ export default {
   },
   managerHead: (head) =>
     `${head}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <style>
+  .search-field button,
+  #storybook-explorer-menu .search-result-item,
+  #storybook-explorer-menu button,
+  .sidebar-subheading-action,
+  .sidebar-header button {
+    background: none !important;
+    color: currentColor !important;
+  }
+  [data-theme="dark"] .sidebar-item:hover {
+    background: hsl(0deg 0% 10%);
+  }
+  [data-theme="light"] .sidebar-item:hover {
+    background: hsl(0deg 0% 90%)
+  }
+  [data-testid="tooltip"] * {
+    color: currentColor !important;
+  }
+  [data-theme="dark"] [data-testid="tooltip"] button:hover {
+    background: hsl(0deg 0% 10%) !important;;
+  }
+  #storybook-explorer-menu svg,
+  #storybook-explorer-tree .sidebar-item svg {
+    color: currentColor;
+  }
   .sidebar-header button::before,
   .sidebar-header button::after {
     content: none;
@@ -48,15 +73,17 @@ export default {
   previewHead: (head) =>
     `${head}
 <style>
-  :root {
-    font-family: sans-serif;
-    font-size: 20px;
-  }
-  .sbdocs p {
+  #storybook-docs p {
     font-size: 15px;
   }
+  #storybook-docs :is(h1, h2, h3, h4, h5, h6) a {
+    margin-left: -24px;
+  }
+  [data-theme="dark"] #storybook-docs a {
+    color: hsl(210 100% 50%)
+  }
   #root-inner {
-
+    font-size: 22px;
   }
   .rejt-value-node:hover .rejt-value {
     background: none !important;

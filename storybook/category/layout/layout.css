@@ -1,3 +1,13 @@
+[data-theme="dark"] {
+  --bg-default: hsl(0 0% 18%);
+  --bg-named: hsl(0 0% 8%);
+}
+
+[data-theme="light"] {
+  --bg-default: hsl(0 0% 95%);
+  --bg-named: hsl(0 0% 90%);
+}
+
 .container {
   overflow-y: scroll;
   height: 20em;
@@ -8,11 +18,11 @@ main {
   display: grid;
   place-items: center;
   min-height: 30em;
-  background: #303030;
+  background: var(--bg-default);
 }
 
 [slot="header"],
 [slot="footer"] {
-  background: #161616;
-  padding: .5em 1em;
+  background: var(--bg-named);
+  padding: 0.5em 1em;
 }

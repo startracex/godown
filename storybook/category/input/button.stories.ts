@@ -24,6 +24,6 @@ export const Primary = {};
 
 export const WithCustomColor = {
   args: {
-    stylex: "background: #6c1313; color: #ffffff;",
+    stylex: "background: #a41515; color: #ffffff;",
   },
 };
