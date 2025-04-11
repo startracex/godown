@@ -11,15 +11,14 @@ export const SourceLink = memo(() => {
   if (path) {
     href += "/storybook" + path;
     return (
-      <a
-        style={{ display: "contents" }}
-        href={href}
-      >
-        
-        <IconButton title="Open in GitHub">
+      <IconButton asChild>
+        <a
+          href={href}
+          title="Open in GitHub"
+        >
           <GithubIcon />
-        </IconButton>
-      </a>
+        </a>
+      </IconButton>
     );
   }
 

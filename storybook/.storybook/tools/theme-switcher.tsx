@@ -1,5 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 import { IconButton } from "@storybook/components";
+import { addons } from "@storybook/manager-api";
+import { themes } from "../themes";
 
 const IconAuto = memo(() => (
   <svg
@@ -67,23 +69,25 @@ export const ThemeSwitcher = memo(() => {
   const nextTheme = themeKeys[(themeKeys.indexOf(currentTheme) + 1) % themeKeys.length];
   const [label, icon] = themeDisplay[currentTheme];
 
+  const applyTheme = (t: string) => {
+    const key = specialTheme(t);
+    addons.setConfig({
+      theme: themes[specialTheme(key)],
+      themeKey: specialTheme(key),
+    });
+    document.documentElement.dataset.theme = key;
+    document.dispatchEvent(new CustomEvent("theme-change", { detail: key }));
+  };
+
   useEffect(() => {
-    document.dispatchEvent(
-      new CustomEvent("theme-change", {
-        detail: specialTheme(currentTheme),
-      }),
-    );
+    applyTheme(currentTheme);
   }, []);
 
   return (
     <IconButton
       title="Change theme"
       onClick={() => {
-        document.dispatchEvent(
-          new CustomEvent("theme-change", {
-            detail: specialTheme(nextTheme),
-          }),
-        );
+        applyTheme(nextTheme);
         localStorage.setItem("theme", nextTheme);
         setCurrentTheme(nextTheme);
       }}

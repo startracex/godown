@@ -5,16 +5,17 @@ import React, { memo, useState } from "react";
 export const DirectionSwitcher = memo(() => {
   const [dir, setDir] = useState("ltr");
   const nextDir = dir === "ltr" ? "rtl" : "ltr";
+
+  const iframe = document.querySelector("iframe");
+  const toggleDir = () => {
+    document.documentElement.dir = nextDir;
+    iframe.contentDocument.documentElement.dir = nextDir;
+    setDir(nextDir);
+  };
+
   return (
     <IconButton
-      onClick={() => {
-        document.documentElement.dir = nextDir;
-        const iframe = document.querySelector("iframe");
-        if (iframe) {
-          iframe.contentDocument.documentElement.dir = nextDir;
-        }
-        setDir(nextDir);
-      }}
+      onClick={toggleDir}
       title="Change direction"
     >
       <ParagraphIcon />

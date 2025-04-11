@@ -7,11 +7,8 @@ export const Container = ({ children, context }) => {
   const topDocument = window.top.document;
   const [currentTheme, setTheme] = useState<string>(topDocument.documentElement.dataset.theme);
   useEffect(() => {
-    document.documentElement.dataset.theme = currentTheme;
     const handleChange = (e: CustomEvent) => {
-      const theme = e.detail;
-      setTheme(theme);
-      document.documentElement.dataset.theme = theme;
+      setTheme(e.detail);
     };
     topDocument.addEventListener("theme-change", handleChange);
 
@@ -19,6 +16,7 @@ export const Container = ({ children, context }) => {
       topDocument.removeEventListener("theme-change", handleChange);
     };
   }, []);
+
   const theme = themes[currentTheme];
   return (
     <DocsContainer

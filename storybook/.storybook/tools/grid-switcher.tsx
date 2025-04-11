@@ -1,16 +1,25 @@
 import { IconButton } from "@storybook/components";
 import { GridIcon } from "@storybook/icons";
-import React, { memo, useState } from "react";
+import { addons } from "@storybook/manager-api";
+import React, { memo, useState, useEffect } from "react";
 
 export const GridSwitcher = memo(() => {
-  const [grid, setGrid] = useState(!!localStorage.getItem("grid"));
+  const [grid, setGrid] = useState(localStorage.getItem("grid") === "true" ? true : false);
 
-  const iframe = document.querySelector("iframe");
+  const updateFrame = (grid: boolean) => {
+    addons.setConfig({ grid });
+    addons.getChannel().emit("grid-change", grid);
+  };
+
+  useEffect(() => {
+    updateFrame(grid);
+  }, []);
+
   const toggleGrid = () => {
-    setGrid(!grid);
-    const s = `${!grid}`;
-    iframe.contentDocument.documentElement.dataset.grid = s;
-    localStorage.setItem("grid", s);
+    const newValue = !grid;
+    setGrid(newValue);
+    updateFrame(newValue);
+    localStorage.setItem("grid", `${newValue}`);
   };
 
   return (
