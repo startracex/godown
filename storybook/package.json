@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "pnpm build:css && storybook dev -p 6006",
     "build": "pnpm build:css && storybook build -o build",
-    "build:css": "stylus .storybook/manager.styl",
+    "build:css": "stylus ./styl/manager.styl",
     "preview": "vite preview --port 6006 --outDir build"
   },
   "devDependencies": {
