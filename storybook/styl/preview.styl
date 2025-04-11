@@ -2,68 +2,67 @@
 
 :root,
 body
-  height: 100%
+  height 100%
+  padding 0 !important
 
 #storybook-root:not([hidden]),
 #root-inner
-  display: contents
+  display contents
 
 #compare-target
-  display: none
+  display none
 
 [data-compare="true"] #compare-target
-  display: block
+  display block
 
 #compare-root
-  width: 100%
-  height: 100%
-  display: flex
+  width 100%
+  height 100%
+  display flex
   
-  @media screen and (max-width: 450px)
-    flex-direction: column
+  @media screen and (max-width 450px)
+    flex-direction column
 
 .compare-block
-  flex: 1
-  padding: 1em
-
-body
-  padding: 0 !important
+  flex 1
+  padding 1em
 
 [data-grid="true"]
   body,
   #storybook-docs .docs-story,
   #compare-root .compare-block
-    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px
-    background-position: 20px 20px, 20px 20px, 20px 20px, 20px 20px
-    background-blend-mode: difference
-    background-image: linear-gradient(rgba(130, 130, 130, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(130, 130, 130, 0.5) 1px, transparent 1px), linear-gradient(rgba(130, 130, 130, 0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(130, 130, 130, 0.25) 1px, transparent 1px)
+    background-size 100px 100px, 100px 100px, 20px 20px, 20px 20px
+    background-position 20px 20px, 20px 20px, 20px 20px, 20px 20px
+    background-blend-mode difference
+    background-image linear-gradient( rgb(130 130 130 / 50%) 1px, transparent 1px), linear-gradient(90deg,  rgb(130 130 130 / 50%) 1px, transparent 1px), linear-gradient(rgb(130 130 130 / 25%) 1px, transparent 1px), linear-gradient(90deg, rgb(130 130 130 / 25%) 1px, transparent 1px)
 
 #storybook-docs
   p
-    font-size: 15px
+    font-size 15px
   
   :is(h1, h2, h3, h4, h5, h6) a
-    margin-left: -24px
+    margin-left -24px
   
   table tbody button
-    white-space: nowrap
-    cursor: pointer
-
-[data-theme="dark"] #storybook-docs a
-  color:hsl(210 100% 60%)
-
-[data-theme="light"] #storybook-docs a
-  color hsl(210 100% 50%)
+    white-space nowrap
+    cursor pointer
+  a
+    [data-theme="dark"] &
+      color:hsl(210 100% 60%)
+  
+    [data-theme="light"] &
+      color hsl(210 100% 50%)
 
 #root-inner
-  font-size: 22px
+  font-size 22px
 
 .rejt-value-node:hover .rejt-value
-  background: none !important
+  background none !important
 
-.docblock-colorpalette > * > :first-child
-  flex: 0 8em
+.docblock-colorpalette
+  > * > :first-child
+    flex 0 8em
 
-.docblock-colorpalette div
-  background: none
-  border: none
+  div
+    background none
+    border none
