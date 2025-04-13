@@ -1,5 +1,12 @@
 # godown
 
+## 3.11.1
+
+### Patch Changes
+
+- a25c35f: move padding to root part
+- b02cbb0: adjust size of Input and Skeleton
+
 ## 3.11.0
 
 ### Minor Changes
