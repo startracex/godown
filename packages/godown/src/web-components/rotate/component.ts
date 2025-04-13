@@ -18,7 +18,6 @@ const cssScope = scopePrefix(protoName);
     width: -moz-fit-content;
     width: fit-content;
     transition: all 0.5s ease-in-out;
-    ${cssScope}--padding: .75em;
     ${cssScope}--offset: .5em;
   }
 

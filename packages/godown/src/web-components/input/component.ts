@@ -1,4 +1,4 @@
-import { attr, godown, queryPart, styles, htmlSlot, StyleController } from "@godown/element";
+import { attr, godown, queryPart, styles, StyleController } from "@godown/element";
 import iconEyeSlash from "../../internal/icons/eye-slash.js";
 import { type TemplateResult, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
@@ -21,13 +21,12 @@ const protoName = "input";
   :host {
     display: block;
     ${cssGlobalVars.input}-space: 0.2em;
-    ${cssGlobalVars.input}-control: currentColor;
     ${cssGlobalVars.input}-icon-color: hsl(0, 0%, 50%);
   }
 
   :host(:focus-within),
   :host(:active) {
-    ${cssGlobalVars.ringColor}: var(${cssGlobalVars.active});
+    ${cssGlobalVars.ringColor}: currentColor;
     ${cssGlobalVars.input}-icon-color: currentColor;
   }
 
