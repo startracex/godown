@@ -15,6 +15,7 @@ export default create({
   textColor: "hsl(0 0% 94%)",
   colorSecondary: "hsl(0 0% 17%)",
   colorPrimary: "hsl(0 0% 17%)",
+
   appBg: background,
   appContentBg: background,
   appPreviewBg: background,

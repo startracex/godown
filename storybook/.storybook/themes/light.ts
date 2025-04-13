@@ -14,6 +14,8 @@ export default create({
 
   textColor: "hsl(0 0% 8%)",
   colorSecondary: "hsl(0 0% 44%)",
+  colorPrimary: "hsl(0 0% 44%)",
+
   appBg: background,
   appContentBg: background,
   appPreviewBg: background,
@@ -30,5 +32,4 @@ export default create({
   booleanSelectedBg: controlsSelectedBackground,
   buttonBg: controlsBackground,
   buttonBorder: border,
-  inputBorderRadius: 2,
 });

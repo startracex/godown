@@ -1,9 +1,11 @@
-[data-theme="dark"] {
+[data-theme="dark"],
+[data-theme="light"] .theme-reverse {
   --bg-default: hsl(0 0% 18%);
   --bg-named: hsl(0 0% 8%);
 }
 
-[data-theme="light"] {
+[data-theme="light"],
+[data-theme="dark"] .theme-reverse {
   --bg-default: hsl(0 0% 95%);
   --bg-named: hsl(0 0% 90%);
 }
