@@ -36,15 +36,14 @@ const protoName = "input";
     position: relative;
     align-items: center;
     border-radius: inherit;
-    height: inherit;
   }
 
   [part="input"] {
-    background: none;
+    width: 100%;
     height: 100%;
     flex-grow: 1;
     color: currentColor;
-    min-height: 1.5em;
+    background: none;
   }
 
   [part~="icon"] {

@@ -21,7 +21,7 @@ const cssScope = scopePrefix(protoName);
     ${cssScope}--to: var(${cssGlobalVars.passive});
     ${cssScope}--deg: 95deg;
     ${cssScope}--duration: 2s;
-    min-height: 1.5em;
+    height: 2em;
     width: 100%;
     flex-shrink: 0;
     overflow: hidden;
