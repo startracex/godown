@@ -23,12 +23,12 @@ const cssScope = scopePrefix(protoName);
   :host {
     ${cssScope}--icon-deg-open: 0deg;
     ${cssScope}--icon-deg-close: 90deg;
-    padding: 0.2em;
     display: block;
     transition: 0.3s;
   }
 
   [part="root"] {
+    padding: 0.25em;
     position: relative;
   }
 

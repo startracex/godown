@@ -19,7 +19,6 @@ const protoName = "alert";
 @godown(protoName)
 @styles(css`
   :host {
-    padding: 0.75em;
     background: var(${cssGlobalVars.background});
   }
 
@@ -29,6 +28,7 @@ const protoName = "alert";
   }
 
   [part="root"] {
+    padding: 0.75em;
     display: grid;
     align-items: center;
     grid-template-columns: auto 1fr auto;

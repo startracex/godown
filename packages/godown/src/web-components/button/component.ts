@@ -43,7 +43,6 @@ const cssScope = scopePrefix(protoName);
       ${cssScope}--deg: 45deg;
       color: var(${cssGlobalVars.primaryForeground});
       background: var(${cssGlobalVars.primaryBackground});
-      padding: 0.25em 0.75em;
       border-width: var(${cssGlobalVars.ringWidth});
       border-style: none;
       width: fit-content;
@@ -59,6 +58,7 @@ const cssScope = scopePrefix(protoName);
     }
 
     [part="root"] {
+      padding: 0.25em 0.75em;
       position: relative;
       user-select: none;
     }

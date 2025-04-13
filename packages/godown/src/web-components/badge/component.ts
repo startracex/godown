@@ -16,6 +16,10 @@ const protoName = "badge";
   :host {
     font-size: 0.75em;
   }
+
+  [part="root"] {
+    padding: 0 0.5em;
+  }
 `)
 class Badge extends Button {
   plain: never = true as never;

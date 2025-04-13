@@ -39,7 +39,6 @@ const mouseEnterAddedToken = "hover";
   :host {
     ${cssScope}--indicator-background: var(${cssGlobalVars.passive});
     ${cssScope}--space: 0.25em;
-    padding: 0.2em;
     border-radius: var(${cssGlobalVars.radius});
     transition: 0.3s ease-in-out;
     width: fit-content;
@@ -48,6 +47,7 @@ const mouseEnterAddedToken = "hover";
   }
 
   [part="root"] {
+    padding: 0.2em;
     position: relative;
     z-index: 1;
     display: flex;
