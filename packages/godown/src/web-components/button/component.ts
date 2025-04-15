@@ -73,21 +73,7 @@ const cssScope = scopePrefix(protoName);
       visibility: visible;
       pointer-events: none;
       transform-origin: 0 0;
-      background: var(${cssScope}--modal-background, currentColor);
-      animation-duration: var(${cssScope}--modal-animation-duration);
-    }
-
-    @keyframes kf {
-      0% {
-        transform: scale(0) translate(-50%, -50%);
-        opacity: var(${cssScope}--modal-opacity, 0.1);
-      }
-      80% {
-        transform: scale(1) translate(-50%, -50%);
-      }
-      to {
-        opacity: 0;
-      }
+      background: currentColor;
     }
   `,
 )
@@ -177,8 +163,24 @@ class Button extends GlobalStyle {
     modal.style.width = size;
     modal.style.left = `${e.x - x}px`;
     modal.style.top = `${e.y - y}px`;
-    modal.style.animationName = "kf";
     this._modalRoot.appendChild(modal);
+    const keyframes = [
+      {
+        transform: "scale(0) translate(-50%, -50%)",
+        opacity: 0.1,
+      },
+      {
+        transform: "scale(1) translate(-50%, -50%)",
+        offset: 0.8,
+      },
+      {
+        opacity: 0,
+      },
+    ];
+    modal.animate(keyframes, {
+      duration: 800,
+      iterations: 1,
+    });
     modal.addEventListener("animationend", () => modal.remove(), { once: true });
   }
 }
