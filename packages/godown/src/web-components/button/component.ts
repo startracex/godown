@@ -140,7 +140,7 @@ class Button extends GlobalStyle {
 
   connectedCallback(): void {
     super.connectedCallback();
-    this.events.add(this, "click", this._handelClick, true);
+    this.events.add(this, "click", this._handelClick);
   }
 
   protected _handelClick(e: MouseEvent): void {
