@@ -29,6 +29,7 @@ const splitKeysRegexp = /[\s,]+/;
     display: block;
     margin: auto;
     background: none;
+    z-index: 1;
     left: 50%;
     top: 50%;
     position: fixed;
