@@ -1,5 +1,11 @@
 # @godown/element
 
+## 1.9.1
+
+### Patch Changes
+
+- 218b069: add space in not condition of supports query
+
 ## 1.9.0
 
 ### Minor Changes
