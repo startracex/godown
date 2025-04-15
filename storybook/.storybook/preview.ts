@@ -13,7 +13,7 @@ export default {
     },
     options: {
       storySort: {
-        order: ["Getting started", "Colors", "Contents"],
+        order: ["Getting started", "Colors", "Contents", "About"],
       },
     },
   },
