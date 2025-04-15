@@ -1,5 +1,11 @@
 # @godown/react
 
+## 3.11.2
+
+### Patch Changes
+
+- godown@3.11.2
+
 ## 3.11.1
 
 ### Patch Changes

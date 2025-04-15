@@ -1,5 +1,12 @@
 # godown
 
+## 3.11.2
+
+### Patch Changes
+
+- Updated dependencies [218b069]
+  - @godown/element@1.9.1
+
 ## 3.11.1
 
 ### Patch Changes
