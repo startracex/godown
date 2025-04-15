@@ -49,7 +49,7 @@ GlobalStyle.styles = [
       [
         [cssGlobalVars.background, ["hsl(0 0% 96%)", "hsl(0 0% 4%)"]],
         [cssGlobalVars.foreground, ["hsl(0 0% 4%)", "hsl(0 0% 96%)"]],
-        [cssGlobalVars.muted, ["hsl(0 0% 90%)", "hsl(0 0% 18%)"]],
+        [cssGlobalVars.muted, ["hsl(0 0% 88%)", "hsl(0 0% 18%)"]],
       ],
       1,
     ),
