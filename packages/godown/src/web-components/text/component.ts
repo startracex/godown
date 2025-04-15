@@ -1,12 +1,10 @@
-import { attr, tokenList, godown, htmlSlot, styles } from "@godown/element";
+import { godown, htmlSlot, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { GlobalStyle, cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
+import { GlobalStyle, cssGlobalVars } from "../../internal/global-style.js";
 
 const protoName = "text";
-
-const cssScope = scopePrefix(protoName);
 
 /**
  * {@linkcode Text} renders text.
@@ -15,44 +13,7 @@ const cssScope = scopePrefix(protoName);
  */
 @godown(protoName)
 @styles(css`
-  :host {
-    ${cssScope}--color: currentColor;
-    ${cssScope}--color-hover: currentColor;
-    ${cssScope}--color-active: currentColor;
-    display: inline-block;
-    text-overflow: ellipsis;
-    overflow-wrap: break-word;
-  }
-
-  [part="root"] {
-    white-space: nowrap;
-    vertical-align: bottom;
-    display: inline-block;
-    text-overflow: inherit;
-    overflow-wrap: inherit;
-    overflow: hidden;
-    color: var(${cssScope}--color);
-  }
-
-  [part="root"]:hover {
-    color: var(${cssScope}--color-hover, var(${cssScope}--color));
-  }
-
-  [part="root"]:active {
-    color: var(${cssScope}--color-active, var(${cssScope}--color));
-  }
-
-  .hover:hover,
-  .active:active,
-  .always {
-    text-decoration: underline;
-  }
-
-  .none {
-    text-decoration: none;
-  }
-
-  [clip] {
+  :host([clip]) {
     background: var(${cssGlobalVars.backgroundClip});
     display: inline-block;
     color: transparent;
@@ -60,29 +21,63 @@ const cssScope = scopePrefix(protoName);
     background-clip: text;
     -webkit-background-clip: text;
   }
+
+  :host([nowrap]) {
+    white-space: nowrap;
+  }
+
+  :host([italic]) {
+    font-style: italic;
+  }
+
+  :host([truncate]),
+  :host([truncate]) ::slotted(*) {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  :host([strikethrough]) {
+    text-decoration: line-through;
+  }
+
+  :host([underline=""]),
+  :host([underline="always"]),
+  :host(:hover[underline="hover"]),
+  :host(:active[underline="active"]),
+  :host(:focus[underline="focus"]) {
+    text-decoration: underline;
+  }
 `)
 class Text extends GlobalStyle {
-  /**
-   * Underline behavior.
-   */
-  @property()
-  underline: "none" | "hover" | "active" | "always" = "none";
+  @property({
+    converter: {
+      fromAttribute(value) {
+        return value === "" ? true : value;
+      },
+      toAttribute(value) {
+        return value === false ? null : value === true ? "" : value;
+      },
+    },
+    reflect: true,
+  })
+  underline: "none" | "hover" | "active" | "always" | boolean = "none";
 
-  /**
-   * Set background-clip to text.
-   */
-  @property({ type: Boolean })
+  @property({ type: Boolean, reflect: true })
+  nowrap = false;
+
+  @property({ type: Boolean, reflect: true })
+  italic = false;
+
+  @property({ type: Boolean, reflect: true })
+  truncate = false;
+
+  @property({ type: Boolean, reflect: true })
   clip = false;
 
   protected render(): TemplateResult<1> {
     return html`
-      <span
-        part="root"
-        ${attr(this.observedRecord)}
-        class="${tokenList(this.underline)}"
-      >
-        ${htmlSlot()}
-      </span>
+      <p part="root">${htmlSlot()}</p>
     `;
   }
 }

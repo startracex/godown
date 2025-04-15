@@ -14,6 +14,9 @@ export default {
   args: {
     underline: "none",
     clip: false,
+    nowrap: false,
+    italic: false,
+    truncate: false,
   },
 } as RendererMeta<typeof render>;
 
