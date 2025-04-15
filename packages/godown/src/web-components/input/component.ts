@@ -1,4 +1,4 @@
-import { attr, godown, queryPart, styles, StyleController } from "@godown/element";
+import { attr, godown, queryPart, styles, StyleController, htmlSlot } from "@godown/element";
 import iconEyeSlash from "../../internal/icons/eye-slash.js";
 import { type TemplateResult, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
@@ -46,25 +46,21 @@ const protoName = "input";
     background: none;
   }
 
-  [part~="icon"] {
+  [part="prefix"],
+  [part="suffix"] {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(${cssGlobalVars.input}-icon-color);
   }
 
-  [part~="prefix"],
-  [part~="suffix"] {
-    height: 100%;
-    display: flex;
+  [part="suffix"] slot svg {
+    margin-inline-start: var(${cssGlobalVars.input}-space);
   }
 
-  [part~="suffix"][part~="icon"] {
-    padding-inline-start: var(${cssGlobalVars.input}-space);
-  }
-
-  [part~="prefix"][part~="icon"] {
-    padding-inline-end: var(${cssGlobalVars.input}-space);
+  [part="prefix"] slot svg {
+    margin-inline-end: var(${cssGlobalVars.input}-space);
   }
 `)
 class Input extends SuperInput {
@@ -136,12 +132,12 @@ class Input extends SuperInput {
     if (this.type === PASSWORD) {
       return html`
         <i
-          part="suffix icon"
+          part="suffix"
           @mousedown="${() => this._changeInputType("text")}"
           @mouseup="${() => this._changeInputType(PASSWORD)}"
           @mouseleave="${() => this._changeInputType(PASSWORD)}"
         >
-          ${iconEyeSlash()}
+          ${htmlSlot("suffix", iconEyeSlash())}
         </i>
       `;
     }

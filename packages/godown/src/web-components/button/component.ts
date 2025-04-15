@@ -119,7 +119,7 @@ class Button extends GlobalStyle {
         part="root"
         ${attr(this.observedRecord)}
       >
-        ${this.content || htmlSlot()}
+        ${htmlSlot("", this.content)}
         <span part="modal-root"></span>
       </div>
     `;

@@ -68,8 +68,8 @@ class Alert extends GlobalStyle {
       >
         <div>${htmlSlot("prefix")}</div>
         <div part="content">
-          <strong part="title">${this.title || htmlSlot("title")}</strong>
-          ${this.content || htmlSlot()}
+          <strong part="title">${htmlSlot("title", this.title)}</strong>
+          ${htmlSlot("", this.content)}
         </div>
         <div>${htmlSlot("suffix")}</div>
       </div>

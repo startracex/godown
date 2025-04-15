@@ -104,7 +104,7 @@ class Details extends SuperOpenable {
           part="title"
           @click="${() => this.toggle()}"
         >
-          <span part="summary">${this.summary || htmlSlot("summary")}</span>
+          <span part="summary">${htmlSlot("summary", this.summary)}</span>
           <span part="icon">${svgCaretDown()}</span>
         </dt>
         <dd

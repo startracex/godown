@@ -124,11 +124,12 @@ class Tooltip extends SuperOpenable {
           part="tip"
           direction-outset-place
         >
-          ${this.tip
-            ? html`
-                <span class="passive">${this.tip}</span>
-              `
-            : htmlSlot("tip")}
+          ${htmlSlot(
+            "tip",
+            html`
+              <span class="passive">${this.tip}</span>
+            `,
+          )}
         </div>
       </div>
     `;
