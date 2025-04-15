@@ -63,7 +63,7 @@ export const ifSupports = (
     result += `${supportsAtRule}(${condition}){${truecase}}`;
   }
   if (falsecase) {
-    result += `${supportsAtRule} not(${condition}){${falsecase}}`;
+    result += `${supportsAtRule} not (${condition}){${falsecase}}`;
   }
   return result;
 };
