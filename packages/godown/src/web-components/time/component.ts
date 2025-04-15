@@ -1,9 +1,9 @@
-import { attr, godown, styles } from "@godown/element";
+import { attr, godown } from "@godown/element";
 import fmtime from "fmtime";
-import { type PropertyValues, type TemplateResult, css, html } from "lit";
+import { type PropertyValues, type TemplateResult, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { GlobalStyle } from "../../internal/global-style.js";
+import Text from "../text/component.js";
 
 const protoName = "time";
 
@@ -14,12 +14,7 @@ const protoName = "time";
  * @category display
  */
 @godown(protoName)
-@styles(css`
-  :host {
-    text-align: center;
-  }
-`)
-class Time extends GlobalStyle {
+class Time extends Text {
   /**
    * Escape symbol.
    */
@@ -54,12 +49,7 @@ class Time extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     return html`
-      <span
-        part="root"
-        ${attr(this.observedRecord)}
-      >
-        ${fmtime(this.format, this.time, this.escape)}
-      </span>
+      <p part="root">${fmtime(this.format, this.time, this.escape)}</p>
     `;
   }
 
