@@ -7,6 +7,12 @@ import { ThemeComparison } from "./tools/theme-comparison";
 import { GridSwitcher } from "./tools/grid-switcher";
 import "../styl/manager.css";
 
+import "./tools/css-hint";
+
+document.body.appendChild(
+  document.createElement("css-hint")
+)
+
 addons.register("startracex", () => {
   addons.add("fresh-styles", {
     type: types.TOOL,
