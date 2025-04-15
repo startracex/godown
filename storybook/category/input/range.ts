@@ -4,8 +4,8 @@ import { html } from "lit";
 
 export default (args: Range) => {
   return html`
-<div style="height: 200px;display: flex;justify-content: center;">
+<godown-flex content=center items=center style="height: ${args.vertical? "100%" : "auto"};">
   <godown-range ${attr(args)}></godown-range>
-</div>
+</godown-flex>
   `;
 };

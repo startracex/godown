@@ -10,12 +10,7 @@
   --bg-named: hsl(0 0% 90%);
 }
 
-.container {
-  overflow-y: scroll;
-  height: 20em;
-}
-
-main {
+godown-layout main {
   height: 100%;
   display: grid;
   place-items: center;
@@ -23,8 +18,8 @@ main {
   background: var(--bg-default);
 }
 
-[slot="header"],
-[slot="footer"] {
+godown-layout header,
+godown-layout footer {
   background: var(--bg-named);
   padding: 0.5em 1em;
 }

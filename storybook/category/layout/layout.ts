@@ -1,22 +1,20 @@
-import "./layout.css";
-
 import { attr } from "@godown/element";
 import type { Layout } from "godown";
 import { html } from "lit";
 
 export default (args: Layout) => {
   return html`
-<div class="container">
+<div style="overflow-y: scroll;height: 20em;">
   <godown-layout ${attr(args)}>
-    <div slot="header">
+    <header slot="header">
       Header (${args.sticky? "sticky" : "static"})
-    </div>
+    </header>
     <main>
       Main content
     </main>
-    <div slot="footer">
+    <footer slot="footer">
       Footer
-    </div>
+    </footer>
   </godown-layout>
 </div>`;
 };
