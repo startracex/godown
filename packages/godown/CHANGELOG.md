@@ -1,5 +1,21 @@
 # godown
 
+## 3.12.0
+
+### Minor Changes
+
+- 0725faf: add text style properties to Text
+- 00d60b1: remove capture from Button click listener
+- 002a151: let Time extend Text
+- 1427d85: replace CSS modal animation with JavaScript
+
+### Patch Changes
+
+- 33b7306: ensure dialog is above other elements
+- b9a6732: move type property from SuperInput to Input
+- Updated dependencies [86fe78c]
+  - @godown/element@1.10.0
+
 ## 3.11.2
 
 ### Patch Changes
