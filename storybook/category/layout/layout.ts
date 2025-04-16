@@ -7,7 +7,7 @@ export default (args: Layout) => {
 <div style="overflow-y: scroll;height: 20em;">
   <godown-layout ${attr(args)}>
     <header slot="header">
-      Header (${args.sticky? "sticky" : "static"})
+      Header (${args.sticky ? "sticky" : "static"})
     </header>
     <main>
       Main content

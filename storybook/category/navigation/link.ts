@@ -18,5 +18,5 @@ export default (args: Link) => {
   </godown-router>
 </godown-card>
 When no &lt;godown-router&gt; is mounted, its behavior is the same as that of &lt;a&gt;.
-`
+`;
 };

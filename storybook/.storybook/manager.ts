@@ -9,9 +9,7 @@ import "../styl/manager.css";
 
 import "./tools/css-hint";
 
-document.body.appendChild(
-  document.createElement("css-hint")
-)
+document.body.appendChild(document.createElement("css-hint"));
 
 addons.register("startracex", () => {
   addons.add("fresh-styles", {

@@ -2,7 +2,7 @@ import { IconButton } from "@storybook/components";
 import { SideBySideIcon } from "@storybook/icons";
 import { addons } from "@storybook/manager-api";
 import { html } from "lit";
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { requestFresh } from "./fresh-styles";
 
 export const comparisonDecorator = (storyFn, context) => {

@@ -24,9 +24,9 @@ export default (args: Dialog) => {
 
 <godown-flex vertical gap="1em" style="height: 260px;">
   <godown-button @click=${() => {
-      dialogRef.value.modal = false;
-      dialogRef.value.toggle()
-    }}>
+    dialogRef.value.modal = false;
+    dialogRef.value.toggle();
+  }}>
     Open/Close no-modal dialog
   </godown-button>
   <godown-button @click=${() => dialogRef.value.showModal()}>
