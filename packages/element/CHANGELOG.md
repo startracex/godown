@@ -1,5 +1,11 @@
 # @godown/element
 
+## 1.10.0
+
+### Minor Changes
+
+- 86fe78c: add placeholder parameter to htmlSlot directive
+
 ## 1.9.1
 
 ### Patch Changes
