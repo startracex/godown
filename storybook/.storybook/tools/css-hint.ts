@@ -1,5 +1,6 @@
 import { css, html, LitElement } from "lit";
 import "godown/alert";
+import { customElement } from "lit/decorators.js";
 
 const supports: {
   condition: string;
@@ -13,6 +14,7 @@ const supports: {
   },
 ];
 
+@customElement("css-hint")
 export class CssHint extends LitElement {
   static styles = [
     css`
@@ -57,5 +59,3 @@ export class CssHint extends LitElement {
     });
   }
 }
-
-customElements.define("css-hint", CssHint);

@@ -1,17 +1,19 @@
 {
-  "extends": "@godown/tsconfig/base.json",
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "declaration": false,
-    "declarationMap": false,
-    "sourceMap": false,
-    "noEmit": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "noImplicitThis": true,
+    "useDefineForClassFields": false,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "outDir": "out",
     "jsx": "react"
   },
   "include": [
-    ".storybook/**/*",
-    "**/*"
+    ".storybook/*",
+    "."
   ]
 }
