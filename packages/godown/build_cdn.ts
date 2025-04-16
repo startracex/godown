@@ -11,6 +11,16 @@ const intro = (...args: string[]) => {
  */`;
 };
 
+const commonOutput = {
+  sourcemap: true,
+  sourcemapExcludeSources: true,
+  sourcemapIgnoreList: false,
+  indent: false,
+  intro: intro(),
+};
+
+const introRequireCore = intro('Require Lit Core (import from `"lit"`)');
+
 const buildInto: (InputOptions & { output: OutputOptions[] })[] = [
   {
     input: "index.js",
@@ -24,32 +34,30 @@ const buildInto: (InputOptions & { output: OutputOptions[] })[] = [
     ],
     output: [
       {
+        ...commonOutput,
         file: "build/godown.js",
         format: "es",
-        sourcemap: true,
-        indent: false,
-        intro: intro('Require Lit Core (import from `"lit"`)'),
+        intro: introRequireCore,
       },
       {
+        ...commonOutput,
         file: "build/godown.iife.js",
         format: "iife",
         name: "Godown",
-        indent: false,
         globals: {
           lit: "Lit",
         },
-        intro: intro('Require Lit Core (`"Lit"` in globalThis)'),
+        intro: introRequireCore,
       },
       {
+        ...commonOutput,
         file: "build/godown.umd.js",
         format: "umd",
         name: "Godown",
-        sourcemap: true,
-        indent: false,
         globals: {
           lit: "Lit",
         },
-        intro: intro('Require Lit Core (`"Lit"` in globalThis)'),
+        intro: introRequireCore,
       },
     ],
   },
@@ -64,27 +72,21 @@ const buildInto: (InputOptions & { output: OutputOptions[] })[] = [
     ],
     output: [
       {
+        ...commonOutput,
         file: "build/godown+lit.js",
         format: "es",
-        sourcemap: true,
-        intro: intro(),
-        indent: false,
       },
       {
+        ...commonOutput,
         file: "build/godown+lit.iife.js",
         format: "iife",
         name: "Godown",
-        sourcemap: true,
-        intro: intro(),
-        indent: false,
       },
       {
+        ...commonOutput,
         file: "build/godown+lit.umd.js",
         format: "umd",
         name: "Godown",
-        sourcemap: true,
-        intro: intro(),
-        indent: false,
       },
     ],
   },
