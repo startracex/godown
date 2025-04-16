@@ -34,9 +34,6 @@ class SuperInput<V = string> extends GlobalStyle {
   disabled = false;
 
   @property({ reflect: true })
-  type: InputType;
-
-  @property({ reflect: true })
   placeholder: string;
 
   @property({ reflect: true })
@@ -117,12 +114,6 @@ class SuperInput<V = string> extends GlobalStyle {
     }
   }
 
-  protected _changeInputType(t: typeof this.type): void {
-    if (this._input) {
-      this._input.type = t;
-    }
-  }
-
   focus(options?: FocusOptions): void {
     this._input?.focus(options);
   }
@@ -146,25 +137,3 @@ class SuperInput<V = string> extends GlobalStyle {
 
 export default SuperInput;
 export { SuperInput };
-
-type InputType =
-  | "hidden"
-  | "text"
-  | "search"
-  | "tel"
-  | "url"
-  | "email"
-  | "password"
-  | "datetime"
-  | "date"
-  | "month"
-  | "week"
-  | "time"
-  | "datetime-local"
-  | "number"
-  | "range"
-  | "color"
-  | "checkbox"
-  | "radio"
-  | "file"
-  | "image";

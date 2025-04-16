@@ -7,6 +7,25 @@ import { cssGlobalVars } from "../../internal/global-style.js";
 import { SuperInput } from "../../internal/super-input.js";
 import { RingBuilder } from "../../internal/ring.js";
 
+type InputType =
+  | "text"
+  | "search"
+  | "tel"
+  | "url"
+  | "email"
+  | "password"
+  | "datetime"
+  | "date"
+  | "month"
+  | "week"
+  | "time"
+  | "datetime-local"
+  | "number"
+  | "range"
+  | "color"
+  | "file"
+  | "image";
+
 const protoName = "input";
 
 /**
@@ -64,19 +83,8 @@ const protoName = "input";
   }
 `)
 class Input extends SuperInput {
-  type:
-    | "text"
-    | "search"
-    | "tel"
-    | "url"
-    | "email"
-    | "password"
-    | "number"
-    | "date"
-    | "time"
-    | "datetime-local"
-    | "month"
-    | "week" = "text";
+  @property({ reflect: true })
+  type: InputType = "text";
 
   value: string;
 
@@ -142,6 +150,12 @@ class Input extends SuperInput {
       `;
     }
     return super._renderSuffix();
+  }
+
+  protected _changeInputType(t: typeof this.type): void {
+    if (this._input) {
+      this._input.type = t;
+    }
   }
 }
 
