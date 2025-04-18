@@ -1,138 +1,70 @@
-import { attr, godown, htmlSlot, styles } from "@godown/element";
-import { type TemplateResult, css, html } from "lit";
+import { godown, htmlSlot } from "@godown/element";
+import { type TemplateResult, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { scopePrefix } from "../../internal/global-style.js";
-import { SuperOpenable } from "../../internal/super-openable.js";
-import { type DirectionCardinal, type DirectionCorner, directionOutsetPlace } from "../../internal/direction.js";
+import Popover from "../popover/component.js";
 
 const protoName = "tooltip";
-const cssScope = scopePrefix(protoName);
 
 /**
- * {@linkcode Tooltip} provide tooltip for slot elements.
+ * {@linkcode Tooltip} is similar to {@linkcode Popover}.
  *
- * If it has the tip property, ignore the slot tip.
+ * It listens for the mouseenter event and displays the tip or popover after a specified delay.
  *
- * @slot tip - Tip element if no `tip` provided.
- * @slot - Content.
+ * When it is clicked or the mouseleave event occurs followed by another delay, closes the tip.
+ *
+ * @fires toggle - Fired when the popover is toggled.
+ * @slot tip - Tip content.
+ * @slot - Tip trigger.
  * @category feedback
  */
 @godown(protoName)
-@styles(
-  directionOutsetPlace,
-  css`
-    :host {
-      ${cssScope}--tip-background: inherit;
-      width: fit-content;
-    }
+class Tooltip extends Popover {
+  action: "hide";
+  span: "span" | "isolated";
 
-    :host,
-    [part="root"] {
-      display: inline-flex;
-    }
-
-    [part="root"] {
-      position: relative;
-      transition: inherit;
-      border-radius: inherit;
-    }
-
-    [part="tip"] {
-      width: fit-content;
-      height: fit-content;
-      position: absolute;
-      visibility: hidden;
-      transition: inherit;
-      user-select: none;
-    }
-
-    :host([open]) [part="tip"] {
-      visibility: visible;
-    }
-
-    .passive {
-      background: var(${cssScope}--tip-background);
-    }
-
-    [propagation] [part="tip"] {
-      pointer-events: none;
-    }
-  `,
-)
-class Tooltip extends SuperOpenable {
-  /**
-   * Tip text, if there is a value, the slot will be ignored.
-   */
   @property()
   tip: string;
 
-  /**
-   * Direction of opening the tip.
-   */
-  @property()
-  direction: DirectionCardinal | DirectionCorner = "top";
-
-  /**
-   * Content alignment.
-   */
-  @property()
-  align: "center" | "flex-start" | "flex-end" | "start" | "end" = "center";
-
-  /**
-   * If true, allow penetration of the tip.
-   */
-  @property({ type: Boolean })
-  propagation = false;
-
-  /**
-   * How can tips be triggered.
-   *
-   * If `focus`, element will be focusable, open tip when focused.
-   *
-   * If `hover`, element will open tip when hovered.
-   *
-   * @default "hover"
-   */
-  @property()
-  type: "hover" | "focus" = "hover";
-
-  static aligns = {
-    start: "flex-start",
-    end: "flex-end",
-    center: "center",
-    "flex-start": "flex-start",
-    "flex-end": "flex-end",
-  };
+  @property({ type: Number })
+  delay = 300;
 
   protected render(): TemplateResult<1> {
-    const align = Tooltip.aligns[this.align] || "inherit";
-    const isFocusable = this.type === "focus";
     return html`
-      <div
-        part="root"
-        ${attr(this.observedRecord)}
-        tabindex="${isFocusable ? 0 : -1}"
-        @focus="${isFocusable ? () => (this.open = true) : null}"
-        @blur="${isFocusable ? () => (this.open = false) : null}"
-        @mouseenter="${isFocusable ? null : () => (this.open = true)}"
-        @mouseleave="${isFocusable ? null : () => (this.open = false)}"
-        style="justify-content:${align};align-items:${align}"
-      >
-        ${htmlSlot()}
+      <div part="root">
         <div
-          part="tip"
-          direction-outset-place
+          part="trigger"
+          @click=${this.hide}
         >
-          ${htmlSlot(
-            "tip",
-            html`
-              <span class="passive">${this.tip}</span>
-            `,
-          )}
+          ${htmlSlot()}
+        </div>
+        <div
+          part="popover"
+          popover="manual"
+        >
+          ${htmlSlot("tip", this.tip)}
         </div>
       </div>
     `;
+  }
+
+  _hoverTimeout: number;
+  _leaveTimeout: number;
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.events.add(this, "mouseenter", () => {
+      clearTimeout(this._leaveTimeout);
+      this._hoverTimeout = setTimeout(() => {
+        this.show();
+      }, this.delay);
+    });
+    this.events.add(this, "mouseleave", () => {
+      clearTimeout(this._hoverTimeout);
+      this._leaveTimeout = setTimeout(() => {
+        this.hide();
+      }, this.delay);
+    });
   }
 }
 

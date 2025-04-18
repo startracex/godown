@@ -1,6 +1,6 @@
 import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
-import render from "./tooltip";
+import render, { allPositions as position } from "./tooltip";
 
 export default {
   title: "feedback/Tooltip",
@@ -8,58 +8,42 @@ export default {
   tags: ["autodocs"],
   render,
   argTypes: {
-    align: new ArgHelper().options([
-      "center",
-      "start",
-      "end",
-    ]).arg,
-    direction: new ArgHelper().options([
-      "left",
-      "right",
-      "top",
+    position: new ArgHelper().options(
+      [
+        "center",
+        "left",
+        "left-top",
+        "left-bottom",
+        "right",
+        "right-top",
+        "right-bottom",
+        "top",
+        "top-left",
+        "top-right",
+        "bottom",
+        "bottom-left",
+        "bottom-right",
+        "start",
+        "start-start",
+        "start-end",
+        "end",
+        "end-start",
+        "end-end",
+      ],
       "bottom",
-      "top-left",
-      "top-right",
-      "bottom-left",
-      "bottom-right",
-    ]).arg,
-    propagation: new ArgHelper().type("boolean").default("false").arg,
-    type: new ArgHelper().options([
-      "hover",
-      "focus",
-    ]).arg,
+    ).arg,
+    span: new ArgHelper().options(["span", "isolated"], "span").arg,
+    delay: new ArgHelper().control("number").arg,
   },
   args: {
-    align: "center",
-    direction: "top",
-    propagation: false,
-    tip: "Tooltip visible",
-    type: "hover",
+    position: "bottom",
+    span: "span",
+    delay: 300,
   },
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
 
-export const WithDirection = {
-  args: {
-    direction: "bottom",
-  },
-};
-
-export const WithPropagation = {
-  args: {
-    propagation: true,
-  },
-};
-
-export const WithFocus = {
-  args: {
-    type: "focus",
-  },
-};
-
-export const WithBackground = {
-  args: {
-    stylex: "--godown-tooltip--tip-background: #007cc7;",
-  },
+export const Positions = {
+  render: position,
 };
