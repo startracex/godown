@@ -2,7 +2,7 @@
 
 Web Components Library.
 
-[See readme for godown package](./packages/godown/README.md)
+<a href="https://godown.js.org" target="_blank"><img src="https://raw.githubusercontent.com/storybookjs/brand/main/badge/badge-storybook.svg" alt="Components documentation"></a>
 
 ## Features
 
