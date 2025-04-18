@@ -1,5 +1,5 @@
 import { ArgHelper } from "../../args";
-import { matrixToBase64, stringToMatrix } from "../../hex-image";
+import { matrixToBase64, stringToMatrix } from "../../../build/hex-image";
 import type { RendererMeta } from "../../types";
 import render from "./avatar";
 
@@ -23,6 +23,6 @@ export const Primary = {};
 
 export const WithSrc = {
   args: {
-    src: matrixToBase64(stringToMatrix("startracex", 6, "chocolate"), 100, 1),
+    src: "https://picsum.photos/40",
   },
 };
