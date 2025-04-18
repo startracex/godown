@@ -7,8 +7,8 @@ export default (args: Flex) =>
 <godown-flex ${attr(args)}>
 
 ${[
-    ...loop(5, (i) =>
-      html`  <div>${i + 1}</div>
+    ...loop(5, () =>
+      html`  <div style="width: 5em;height: 2em;background: gray;"></div>
 `),
   ]}
 </godown-flex>
