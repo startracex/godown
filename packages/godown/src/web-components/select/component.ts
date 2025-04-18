@@ -147,7 +147,7 @@ class Select extends Input {
 
   protected _renderSuffix(): TemplateResult<1> {
     return html`
-      <i part="suffix icon">${svgCaretDown()}</i>
+      <i part="suffix">${svgCaretDown()}</i>
     `;
   }
 
