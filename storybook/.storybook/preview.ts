@@ -1,6 +1,7 @@
 import type { Preview } from "@storybook/web-components";
 import { ArgHelper } from "../args";
 import "godown";
+import "iconify-icon";
 import { Container } from "./tools/container";
 import { comparisonDecorator } from "./tools/theme-comparison";
 import "../styl/preview.styl";

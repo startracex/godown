@@ -17,6 +17,7 @@ export { default as Heading } from "./heading.js";
 export { default as Input } from "./input.js";
 export { default as Layout } from "./layout.js";
 export { default as Link } from "./link.js";
+export { default as Popover } from "./popover.js";
 export { default as Progress } from "./progress.js";
 export { default as Range } from "./range.js";
 export { default as Rotate } from "./rotate.js";

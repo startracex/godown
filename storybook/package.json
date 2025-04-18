@@ -24,6 +24,7 @@
   "dependencies": {
     "@godown/element": "workspace:^",
     "godown": "workspace:^",
+    "iconify-icon": "^2.3.0",
     "stylus": "^0.64.0"
   },
   "name": "@godown/storybook",
