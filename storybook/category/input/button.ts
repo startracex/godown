@@ -7,3 +7,16 @@ export default (args: Button) => {
 <godown-button ${attr(args)}> Click me </godown-button>
   `;
 };
+
+export const sharps = () => {
+  return html`
+<godown-flex gap=".5em">
+  <godown-button style="width: 1.6em;height: 1.6em;">
+    <iconify-icon icon="ion:logo-web-component"></iconify-icon>
+  </godown-button>
+  <godown-button style="width: 1.6em;height: 1.6em;" round>
+    <iconify-icon icon="ion:logo-web-component"></iconify-icon>
+  </godown-button>
+</godown-flex>
+  `;
+};

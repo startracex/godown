@@ -1,6 +1,6 @@
 import { ArgHelper } from "../../args";
 import type { RendererMeta } from "../../types";
-import render from "./button";
+import render, { sharps } from "./button";
 
 export default {
   title: "input/Button",
@@ -26,4 +26,8 @@ export const WithCustomColor = {
   args: {
     stylex: "background: #a41515; color: #ffffff;",
   },
+};
+
+export const Sharps = {
+  render: sharps,
 };
