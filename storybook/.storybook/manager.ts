@@ -7,9 +7,9 @@ import { ThemeComparison } from "./tools/theme-comparison";
 import { GridSwitcher } from "./tools/grid-switcher";
 import "../styl/manager.css";
 
-import "./tools/css-hint";
+import { CompatibilityHint } from "./tools/compatibility-hint";
 
-document.body.appendChild(document.createElement("css-hint"));
+document.body.appendChild(new CompatibilityHint());
 
 addons.register("startracex", () => {
   addons.add("fresh-styles", {
