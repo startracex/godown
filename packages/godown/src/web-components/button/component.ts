@@ -61,6 +61,8 @@ const cssScope = scopePrefix(protoName);
       padding: 0.25em 0.75em;
       position: relative;
       user-select: none;
+      display: grid;
+      place-content: center;
     }
 
     i {
