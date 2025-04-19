@@ -3,7 +3,6 @@ import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle, cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
-import type { DirectionCorner } from "../../internal/direction.js";
 
 const protoName = "chip";
 const cssScope = scopePrefix(protoName);
@@ -69,10 +68,9 @@ const cssScope = scopePrefix(protoName);
 class Chip extends GlobalStyle {
   /**
    * The position of the chip relative to its parent element.
-   * Possible values are `"top-left"`, `"top-right"`, `"bottom-left"`, and `"bottom-right"`.
    */
   @property()
-  position: DirectionCorner = "top-right";
+  position: "top-left" | "top-right" | "bottom-left" | "bottom-right" = "top-right";
 
   @property({ type: Number })
   value = 0;
