@@ -27,7 +27,6 @@ const cssScope = scopePrefix(protoName);
   }
 
   [part="root"] {
-    padding: 0.25em;
     position: relative;
   }
 
