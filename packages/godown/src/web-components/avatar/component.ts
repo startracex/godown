@@ -18,6 +18,7 @@ const protoName = "avatar";
 @godown(protoName)
 @styles(css`
   :host {
+    color: var(${cssGlobalVars.foreground});
     background: var(${cssGlobalVars.passive});
     vertical-align: bottom;
     overflow: hidden;

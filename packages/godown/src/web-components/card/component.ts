@@ -25,6 +25,7 @@ const cssScope = scopePrefix(protoName);
   :host {
     ${cssScope}--padding: .75em;
     background: var(${cssGlobalVars.background});
+    color: var(${cssGlobalVars.foreground});
     display: block;
     flex-shrink: 0;
   }

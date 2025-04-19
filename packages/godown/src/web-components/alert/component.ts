@@ -20,6 +20,7 @@ const protoName = "alert";
 @styles(css`
   :host {
     background: var(${cssGlobalVars.background});
+    color: var(${cssGlobalVars.foreground});
   }
 
   :host,
