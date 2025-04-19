@@ -7,31 +7,20 @@ export default (args: Dialog) => {
   const dialogRef = createRef<Dialog>();
   return html`
 <godown-dialog ${attr(args)} ${ref(dialogRef)}>
+  <godown-button slot="trigger">
+    open dialog
+  </godown-button>
   <godown-card footer>
     <p> 
       Like dialog, it listens for submit events and closes itself when the target method is "dialog".
-    </p>
-    <p>
-      It listens for the keydown event and also closes itself when the "key" contained in the key is pressed.
+      Dialog requires using slot="trigger" as the trigger instead of an element without a slot name
     </p>
     <godown-flex slot="footer" content="end">
-      <godown-button @click=${() => dialogRef.value.open = false}>
+      <godown-button @click=${() => dialogRef.value.close()}>
         Close
       </godown-button>
     </godown-flex>
   </godown-card>
 </godown-dialog>
-
-<godown-flex vertical gap="1em" style="height: 260px;">
-  <godown-button @click=${() => {
-    dialogRef.value.modal = false;
-    dialogRef.value.toggle();
-  }}>
-    Open/Close no-modal dialog
-  </godown-button>
-  <godown-button @click=${() => dialogRef.value.showModal()}>
-    Open modal dialog
-  </godown-button>
-</godown-flex>
 `;
 };
