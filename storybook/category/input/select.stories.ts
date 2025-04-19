@@ -9,10 +9,6 @@ export default {
   render,
   argTypes: {
     disabled: new ArgHelper().type("boolean").default("false").arg,
-    direction: new ArgHelper().options([
-      "top",
-      "bottom",
-    ]).arg,
     "ring-type": new ArgHelper().options([
       "border",
       "outline",
@@ -22,12 +18,21 @@ export default {
     ]).arg,
     placeholder: new ArgHelper().type("string").arg,
     multiple: new ArgHelper().type("boolean").default("false").arg,
+    noEdit: new ArgHelper().type("boolean").default("false").arg,
   },
   args: {
     disabled: false,
-    "ring-type": "border",
     multiple: false,
+    noEdit: false,
+    "ring-type": "border",
   },
 } as RendererMeta<typeof render>;
 
 export const Primary = {};
+
+export const Dropdown = {
+  args: {
+    noEdit: true,
+    multiple: true,
+  },
+};
