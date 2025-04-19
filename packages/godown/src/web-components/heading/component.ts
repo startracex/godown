@@ -43,7 +43,6 @@ const protoName = "heading";
   h5,
   h6 {
     width: fit-content;
-    font-size: revert;
     position: relative;
   }
 `)

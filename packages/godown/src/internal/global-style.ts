@@ -1,5 +1,6 @@
 import { declareLightDarkColors, GodownElement, joinDeclarations, joinRules, toVar, trim } from "@godown/element";
 import { type CSSResult, css, unsafeCSS } from "lit";
+import { resetStyle } from "./reset-style.js";
 
 export class GlobalStyle extends GodownElement {}
 
@@ -44,6 +45,7 @@ export const cssGlobalVars: {
 };
 
 GlobalStyle.styles = [
+  resetStyle,
   unsafeCSS(
     declareLightDarkColors(
       ":host",
@@ -72,39 +74,6 @@ GlobalStyle.styles = [
     }),
   ),
   css`
-    input,
-    button,
-    dialog {
-      border: 0;
-      outline: 0;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      font-size: 100%;
-      font-style: normal;
-      box-sizing: border-box;
-    }
-
-    :host {
-      box-sizing: border-box;
-      border-style: none;
-      outline-style: none;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    span {
-      white-space: nowrap;
-    }
-
-    svg {
-      user-select: none;
-    }
-
     :host([contents]) {
       display: contents;
     }
@@ -128,6 +97,8 @@ GlobalStyle.styles = [
     :host {
       ${cssGlobalVars.radius}: 0.2em;
       border-radius: var(${cssGlobalVars.radius});
+      border-style: none;
+      outline-style: none;
     }
   `,
 ];

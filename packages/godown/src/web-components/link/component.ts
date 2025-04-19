@@ -39,7 +39,6 @@ type LinkType = keyof typeof linkTypes;
 @styles(css`
   :host {
     display: inline-block;
-    color: currentColor;
     cursor: default;
   }
 
@@ -48,7 +47,6 @@ type LinkType = keyof typeof linkTypes;
   }
 
   a {
-    color: currentColor;
     display: contents;
   }
 `)

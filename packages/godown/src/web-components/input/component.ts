@@ -49,7 +49,7 @@ const protoName = "input";
     ${cssGlobalVars.input}-icon-color: currentColor;
   }
 
-  [part~="root"] {
+  [part="root"] {
     padding: 0.4em 0.5em;
     display: flex;
     position: relative;
@@ -61,8 +61,6 @@ const protoName = "input";
     width: 100%;
     height: 100%;
     flex-grow: 1;
-    color: currentColor;
-    background: none;
   }
 
   [part="prefix"],

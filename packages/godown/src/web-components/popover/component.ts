@@ -32,19 +32,11 @@ const protoName = POPOVER;
   }
 
   [part="popover"] {
-    margin: 0;
-    border: 0;
     inset: unset;
     z-index: 1;
     overflow: visible;
     position: absolute;
     position-try-fallbacks: flip-block;
-  }
-
-  @supports not selector(:popover-open) {
-    [popover] {
-      display: none;
-    }
   }
 `)
 class Popover extends GlobalStyle {
