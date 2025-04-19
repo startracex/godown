@@ -1,10 +1,9 @@
 import { attr, godown, htmlSlot, styles } from "@godown/element";
 import svgCaretDown from "../../internal/icons/caret-down.js";
-import { type TemplateResult, css, html } from "lit";
+import { type PropertyValueMap, type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { scopePrefix } from "../../internal/global-style.js";
-import { SuperOpenable } from "../../internal/super-openable.js";
+import GlobalStyle, { scopePrefix } from "../../internal/global-style.js";
 
 const protoName = "details";
 
@@ -13,7 +12,7 @@ const cssScope = scopePrefix(protoName);
 /**
  * {@linkcode Details} similar to `<details>`.
  *
- * @slot summary - Details summary if no `summary` is provided.
+ * @slot summary - Details summary (trigger).
  * @slot - Details content.
  * @fires change - Fires when the open changes.
  * @category display
@@ -75,22 +74,16 @@ const cssScope = scopePrefix(protoName);
     transform: rotate(var(${cssScope}--icon-deg-open));
   }
 `)
-class Details extends SuperOpenable {
-  /**
-   * Determines whether the details component should float.
-   */
+class Details extends GlobalStyle {
+  @property({ type: Boolean, reflect: true })
+  open = false;
+
   @property({ type: Boolean })
   float = false;
 
-  /**
-   * Determines whether the details component should fill the available space.
-   */
   @property({ type: Boolean })
   fill = false;
 
-  /**
-   * The summary text to display in the details component.
-   */
   @property()
   summary = "";
 
@@ -105,7 +98,7 @@ class Details extends SuperOpenable {
           @click="${() => this.toggle()}"
         >
           <span part="summary">${htmlSlot("summary", this.summary)}</span>
-          <span part="icon">${svgCaretDown()}</span>
+          <span part="icon">${htmlSlot("icon", svgCaretDown())}</span>
         </dt>
         <dd
           part="details"
@@ -115,6 +108,25 @@ class Details extends SuperOpenable {
         </dd>
       </dl>
     `;
+  }
+
+  protected updated(changedProperties: PropertyValueMap<this>): void {
+    const open = changedProperties.get("open");
+    if (open !== undefined) {
+      this.dispatchCustomEvent("change", open);
+    }
+  }
+
+  toggle(to?: boolean): void {
+    this.open = to ?? !this.open;
+  }
+
+  close(): void {
+    this.open = false;
+  }
+
+  show(): void {
+    this.open = true;
   }
 }
 
