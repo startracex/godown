@@ -7,8 +7,6 @@ import GlobalStyle, { scopePrefix } from "../../internal/global-style.js";
 const protoName = "dialog";
 const cssScope = scopePrefix(protoName);
 
-const splitKeysRegexp = /[\s,]+/;
-
 /**
  * {@linkcode Dialog} similar to `<dialog>`.
  *
@@ -54,9 +52,6 @@ class Dialog extends GlobalStyle {
 
   @property({ type: Boolean, reflect: true })
   modal = false;
-
-  @property()
-  key: string;
 
   /**
    * Indicates whether the modal has been invoked.
@@ -113,9 +108,8 @@ class Dialog extends GlobalStyle {
           this._dialog.show();
         }
         this.__submitEvent = this.events.add(this, "submit", this._handelSubmit);
-        if (this.key) {
-          this.__keydownEvent = this.events.add(document, "keydown", this._handleKeydown.bind(this));
-        }
+
+        this.__keydownEvent = this.events.add(document, "keydown", this._handleKeydown.bind(this));
       } else {
         if (this.__modalInvoke) {
           this.modal = false;
@@ -129,8 +123,7 @@ class Dialog extends GlobalStyle {
   }
 
   protected _handleKeydown(e: KeyboardEvent): void {
-    const keys = this.key.split(splitKeysRegexp);
-    if (keys.includes(e.key) || keys.includes(e.code)) {
+    if (e.key === "Escape") {
       e.preventDefault();
       this.close();
     }
