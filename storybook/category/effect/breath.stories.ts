@@ -1,14 +1,13 @@
+import { attr } from "@godown/element";
+import type { Breath } from "godown";
+import { html } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./breath";
-// @ts-ignore
-import page from "./breath.mdx";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "effect/Breath",
   component: "godown-breath",
   tags: ["autodocs"],
-  render,
   argTypes: {
     content: new ArgHelper().type("string").arg,
     duration: new ArgHelper().type("number").arg,
@@ -17,11 +16,14 @@ export default {
     content: "Deploy. Preview. Ship.",
     duration: 8000,
   },
-  parameters: {
-    docs: {
-      page: page,
-    },
-  },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Breath>;
 
-export const Primary = {};
+type Story = StoryVariants<Breath>;
+
+export const Primary: Story = {
+  render: (args: Breath) => {
+    return html`<godown-breath ${attr(args)}>
+  <!-- From a certain website slogan -->
+</godown-breath>`;
+  },
+};

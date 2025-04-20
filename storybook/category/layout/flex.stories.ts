@@ -1,12 +1,13 @@
+import { attr, loop } from "@godown/element";
+import type { Flex } from "godown";
+import { html, render } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./flex";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "layout/Flex",
   component: "godown-flex",
   tags: ["autodocs"],
-  render,
   argTypes: {
     vertical: new ArgHelper().type("boolean").default("false").arg,
     gap: new ArgHelper().type("string").arg,
@@ -18,12 +19,27 @@ export default {
     vertical: false,
     gap: "1em",
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Flex>;
 
-export const Primary = {};
+type Story = StoryVariants<Flex>;
 
-export const Vertical = {
+export const Primary: Story = {
+  render: (args: Flex) =>
+    html`
+<godown-flex ${attr(args)}>
+
+${[
+      ...loop(5, () =>
+        html`  <div style="width: 5em;height: 2em;background: gray;"></div>
+`),
+    ]}
+</godown-flex>
+`,
+};
+
+export const Vertical: Story = {
   args: {
     vertical: true,
   },
+  render: Primary.render,
 };

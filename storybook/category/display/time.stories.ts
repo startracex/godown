@@ -1,12 +1,13 @@
+import type { Time } from "godown";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./time";
+import type { StoryMeta, StoryVariants } from "../../types";
+import { html } from "lit";
+import { attr } from "@godown/element";
 
 export default {
   title: "display/Time",
   component: "godown-time",
   tags: ["autodocs"],
-  render,
   argTypes: {
     timeout: new ArgHelper().type("number").type("number").arg,
     time: new ArgHelper().type("Date").control("date").arg,
@@ -14,20 +15,31 @@ export default {
     escape: new ArgHelper().type("string").default("%").arg,
   },
   args: {
-    format: "YYYY-MM-DD hh:mm:ss UTFZ",
+    format: "YYYY-MM-DD hh:mm:ss",
     timeout: 1000,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Time>;
 
-export const Primary = {};
+type Story = StoryVariants<Time>;
 
-export const WithGap = {
+export const Primary: Story = {
+  render: (args: Time) => {
+    if (args.time) {
+      args.time = new Date(args.time);
+    }
+    return html`
+<godown-time ${attr(args)}></godown-time>
+  `;
+  },
+};
+
+export const WithGap: Story = {
   args: {
     gap: -1000,
   },
 };
 
-export const WithFormat = {
+export const WithFormat: Story = {
   args: {
     format: "YYYY-MM-DD",
   },

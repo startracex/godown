@@ -1,21 +1,16 @@
-import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./select";
+import type { Select } from "godown";
+import { ArgHelper, ringTypeArgs } from "../../args";
+import type { StoryMeta, StoryVariants } from "../../types";
+import { html } from "lit";
+import { attr } from "@godown/element";
 
 export default {
   title: "input/Select",
   component: "godown-select",
   tags: ["autodocs"],
-  render,
   argTypes: {
     disabled: new ArgHelper().type("boolean").default("false").arg,
-    "ring-type": new ArgHelper().options([
-      "border",
-      "outline",
-      "shadow",
-      "outline-inset",
-      "shadow-inset",
-    ]).arg,
+    "ring-type": ringTypeArgs(),
     placeholder: new ArgHelper().type("string").arg,
     multiple: new ArgHelper().type("boolean").default("false").arg,
     noEdit: new ArgHelper().type("boolean").default("false").arg,
@@ -26,13 +21,42 @@ export default {
     noEdit: false,
     "ring-type": "border",
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Select>;
 
-export const Primary = {};
+type Story = StoryVariants<Select>;
 
-export const Dropdown = {
+export const Primary: Story = {
+  render: (args: Select) => {
+    return html`
+<godown-select ${
+      attr({
+        ...args,
+        placeholder: args.placeholder || "Choose a food",
+      })
+    }>
+  <godown-card style="margin-top: .2em;">
+    <optgroup label="Fruit">
+      <option value="apple">Apples</option>
+      <option value="banana">Bananas</option>
+      <option value="cherry">Cherries</option>
+      <option value="damson">Damsons</option>
+    </optgroup>
+    <hr />
+    <optgroup label="Vegetables">
+      <option value="artichoke">Artichokes</option>
+      <option value="broccoli">Broccoli</option>
+      <option value="cabbage">Cabbages</option>
+    </optgroup>
+  </godown-card>
+</godown-select>
+  `;
+  },
+};
+
+export const Dropdown: Story = {
   args: {
     noEdit: true,
     multiple: true,
   },
+  render: Primary.render,
 };

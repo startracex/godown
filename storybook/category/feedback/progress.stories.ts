@@ -1,12 +1,13 @@
+import type { Progress } from "godown";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./progress";
+import type { StoryMeta, StoryVariants } from "../../types";
+import { html } from "lit";
+import { attr } from "@godown/element";
 
 export default {
   title: "feedback/Progress",
   component: "godown-progress",
   tags: ["autodocs"],
-  render,
   argTypes: {
     value: new ArgHelper().type("number").control("number", {
       max: 100,
@@ -19,12 +20,15 @@ export default {
     max: 100,
     min: 0,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Progress>;
 
-export const Primary = {};
+type Story = StoryVariants<Progress>;
 
-export const WithValue = {
+export const Primary: Story = {};
+
+export const WithValue: Story = {
   args: {
     value: 70,
   },
+  render: Primary.render,
 };

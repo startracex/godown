@@ -1,12 +1,13 @@
+import { html } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./range";
+import type { StoryMeta, StoryVariants } from "../../types";
+import { attr } from "@godown/element";
+import type { Range } from "godown";
 
 export default {
   title: "input/Range",
   component: "godown-range",
   tags: ["autodocs"],
-  render,
   argTypes: {
     disabled: new ArgHelper().type("boolean").default("false").arg,
     step: new ArgHelper().type("number").default("1").arg,
@@ -20,24 +21,36 @@ export default {
     value: [0, 50],
     vertical: false,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Range>;
 
-export const Primary = {};
+type Story = StoryVariants<Range>;
 
-export const Vertical = {
+export const Primary: Story = {
+  render: (args: Range) =>
+    html`
+<godown-flex content=center items=center style="height: ${args.vertical ? "100%" : "auto"};">
+  <godown-range ${attr(args)}></godown-range>
+</godown-flex>
+  `,
+};
+
+export const Vertical: Story = {
   args: {
     vertical: true,
   },
+  render: Primary.render,
 };
 
-export const SignalControl = {
+export const SignalControl: Story = {
   args: {
     value: 70,
   },
+  render: Primary.render,
 };
 
-export const MultipleControl = {
+export const MultipleControl: Story = {
   args: {
     value: [20, 40, 80, 90],
   },
+  render: Primary.render,
 };

@@ -1,12 +1,13 @@
+import { html } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render, { sharps } from "./button";
+import type { StoryMeta, StoryVariants } from "../../types";
+import { attr } from "@godown/element";
+import type { Button } from "godown";
 
 export default {
   title: "input/Button",
   component: "godown-button",
   tags: ["autodocs"],
-  render,
   argTypes: {
     content: new ArgHelper().type("string").arg,
     disabled: new ArgHelper().type("boolean").default("false").arg,
@@ -18,16 +19,34 @@ export default {
     round: false,
     plain: false,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Button>;
 
-export const Primary = {};
+type Story = StoryVariants<Button>;
 
-export const WithCustomColor = {
+export const Primary: Story = {
+  render: (args: Button) =>
+    html`
+<godown-button ${attr(args)}>Click me</godown-button>
+  `,
+};
+
+export const WithCustomColor: Story = {
   args: {
     stylex: "background: #a41515; color: #ffffff;",
   },
+  render: Primary.render,
 };
 
-export const Sharps = {
-  render: sharps,
+export const Sharps: Story = {
+  render: () =>
+    html`
+<godown-flex gap=".5em">
+  <godown-button style="width: 1.6em;height: 1.6em;">
+    <iconify-icon icon="ion:logo-web-component"></iconify-icon>
+  </godown-button>
+  <godown-button style="width: 1.6em;height: 1.6em;" round>
+    <iconify-icon icon="ion:logo-web-component"></iconify-icon>
+  </godown-button>
+</godown-flex>
+  `,
 };

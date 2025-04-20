@@ -1,13 +1,14 @@
-import type { RendererMeta } from "../../types";
-import render from "./skeleton";
+import type { Skeleton } from "godown";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "feedback/Skeleton",
   component: "godown-skeleton",
   tags: ["autodocs"],
-  render,
   argTypes: {},
   args: {},
-} as RendererMeta<typeof render>;
+} as StoryMeta<Skeleton>;
 
-export const Primary = {};
+type Story = StoryVariants<Skeleton>;
+
+export const Primary: Story = {};

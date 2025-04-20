@@ -1,13 +1,13 @@
 import { ArgHelper } from "../../args";
-import { matrixToBase64, stringToMatrix } from "../../../build/hex-image";
-import type { RendererMeta } from "../../types";
-import render from "./avatar";
+import type { StoryMeta, StoryVariants } from "../../types";
+import { html } from "lit";
+import { attr } from "@godown/element";
+import type { Avatar } from "godown";
 
 export default {
   title: "display/Avatar",
   component: "godown-avatar",
   tags: ["autodocs"],
-  render,
   argTypes: {
     name: new ArgHelper().type("string").default("").arg,
     round: new ArgHelper().type("boolean").default("false").arg,
@@ -17,11 +17,13 @@ export default {
     name: "S",
     round: false,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Avatar>;
 
-export const Primary = {};
+type Story = StoryVariants<Avatar>;
 
-export const WithSrc = {
+export const Primary: Story = {};
+
+export const WithSrc: Story = {
   args: {
     src: "https://picsum.photos/40",
   },

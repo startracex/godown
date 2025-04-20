@@ -1,13 +1,25 @@
-import type { RendererMeta } from "../../types";
-import render from "./dragbox";
+import type { Dragbox } from "godown";
+import type { StoryMeta, StoryVariants } from "../../types";
+import { html } from "lit";
+import { attr } from "@godown/element";
 
 export default {
   title: "layout/Dragbox",
   component: "godown-dragbox",
   tags: ["autodocs"],
-  render,
   argTypes: {},
   args: {},
-} as RendererMeta<typeof render>;
+} as StoryMeta<Dragbox>;
 
-export const Primary = {};
+type Story = StoryVariants<Dragbox>;
+
+export const Primary: Story = {
+  render: (args: Dragbox) =>
+    html`
+<div style="position: relative;height: 12em;outline: 2px gray dashed;">
+  <godown-dragbox ${attr(args)}>
+    <div style="width: 4em; height: 4em; background: gray;"></div>
+  </godown-dragbox>
+</div>
+  `,
+};

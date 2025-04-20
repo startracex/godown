@@ -1,20 +1,13 @@
-import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./input";
+import type { Input } from "godown";
+import { ArgHelper, ringTypeArgs } from "../../args";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "input/Input",
   component: "godown-input",
   tags: ["autodocs"],
-  render,
   argTypes: {
-    "ring-type": new ArgHelper().options([
-      "border",
-      "outline",
-      "shadow",
-      "outline-inset",
-      "shadow-inset",
-    ]).arg,
+    "ring-type": ringTypeArgs(),
     type: new ArgHelper().options([
       "text",
       "search",
@@ -40,29 +33,31 @@ export default {
     type: "text",
     variant: "default",
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Input>;
 
-export const Primary = {};
+type Story = StoryVariants<Input>;
 
-export const WithPlaceholder = {
+export const Primary: Story = {};
+
+export const WithPlaceholder: Story = {
   args: {
     placeholder: "Input placeholder",
   },
 };
 
-export const WithType = {
+export const WithType: Story = {
   args: {
     type: "password",
   },
 };
 
-export const WithOutlineVariant = {
+export const WithOutlineVariant: Story = {
   args: {
     variant: "outline",
   },
 };
 
-export const WithCustomColor = {
+export const WithCustomColor: Story = {
   args: {
     stylex: "background: #131410; color: #ffffff; --godown--active: #2283ff",
   },

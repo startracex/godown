@@ -1,12 +1,13 @@
+import { attr } from "@godown/element";
+import type { Router } from "godown";
+import { html } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./router";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "navigation/Router",
   component: "godown-router",
   tags: ["autodocs"],
-  render,
   argTypes: {
     pathname: new ArgHelper().type("string").default("").arg,
     type: new ArgHelper().options([
@@ -20,6 +21,21 @@ export default {
     pathname: "/",
     type: "united",
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Router>;
 
-export const Primary = {};
+type Story = StoryVariants<Router>;
+
+export const Primary: Story = {
+  render: (args: Router) =>
+    html`
+Current pathname: ${args.pathname}
+<godown-card>
+  <godown-router ${attr(args)}>
+    <div slot="/">Strict match ( / => / )</div>
+    <div slot="/:dynamic">Dynamic match ( ${args.pathname} => /:dynamic )</div>
+    <div slot="/*wild_dynamic">Wild dynamic match ( ${args.pathname} => /*wild_dynamic )</div>
+    <div>No slotted</div>
+  </godown-router>
+</godown-card>
+  `,
+};

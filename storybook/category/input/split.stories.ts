@@ -1,21 +1,14 @@
-import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./split";
+import type { Split } from "godown";
+import { ArgHelper, ringTypeArgs } from "../../args";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "input/Split",
   component: "godown-split",
   tags: ["autodocs"],
-  render,
   argTypes: {
     disabled: new ArgHelper().type("boolean").default("false").arg,
-    "ring-type": new ArgHelper().options([
-      "border",
-      "outline",
-      "shadow",
-      "outline-inset",
-      "shadow-inset",
-    ]).arg,
+    "ring-type": ringTypeArgs(),
     len: new ArgHelper().type("number").control("number", { min: 1 }).default("6").arg,
     index: new ArgHelper().type("number").default("-1").arg,
   },
@@ -24,6 +17,8 @@ export default {
     disabled: false,
     "ring-type": "border",
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Split>;
 
-export const Primary = {};
+type Story = StoryVariants<Split>;
+
+export const Primary: Story = {};

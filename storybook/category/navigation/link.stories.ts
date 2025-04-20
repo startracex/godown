@@ -1,12 +1,13 @@
+import { attr } from "@godown/element";
+import type { Link } from "godown";
+import { html } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./link";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "navigation/Link",
   component: "godown-link",
   tags: ["autodocs"],
-  render,
   argTypes: {
     replace: new ArgHelper().type("boolean").default("false").arg,
     suppress: new ArgHelper().type("boolean").default("false").arg,
@@ -22,6 +23,27 @@ export default {
     type: "auto",
     suppress: false,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Link>;
 
-export const Primary = {};
+type Story = StoryVariants<Link>;
+
+export const Primary: Story = {
+  render: (args: Link) => {
+    return html`
+<godown-link ${attr(args)}>
+  <godown-button>
+    Click to navigate to: ${args.href}
+  </godown-button>
+</godown-link>
+<godown-card>
+  <godown-router>
+    <div slot="/">Strict match ( / => / )</div>
+    <div slot="/:dynamic">Dynamic match ( ${args.href} => /:dynamic )</div>
+    <div slot="/*wild_dynamic">Wild dynamic match ( ${args.href} => /*wild_dynamic )</div>
+    <div>No slotted</div>
+  </godown-router>
+</godown-card>
+When no &lt;godown-router&gt; is mounted, its behavior is the same as that of &lt;a&gt;.
+`;
+  },
+};

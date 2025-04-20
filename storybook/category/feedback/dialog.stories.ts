@@ -1,12 +1,14 @@
+import { attr } from "@godown/element";
+import type { Dialog } from "godown";
+import { html } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./dialog";
+import { createRef, ref } from "lit/directives/ref.js";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "feedback/Dialog",
   component: "godown-dialog",
   tags: ["autodocs"],
-  render,
   argTypes: {
     open: new ArgHelper().type("boolean").default("false").arg,
     modal: new ArgHelper().type("boolean").default("false").arg,
@@ -16,6 +18,32 @@ export default {
     modal: false,
     open: false,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Dialog>;
 
-export const Primary = {};
+type Story = StoryVariants<Dialog>;
+
+export const Primary: Story = {
+  render: (args: Dialog) => {
+    const dialogRef = createRef<Dialog>();
+    return html`
+<godown-dialog style="margin-bottom: 5em;" ${attr(args)} ${ref(dialogRef)}>
+  <godown-button slot="trigger">
+    open dialog
+  </godown-button>
+  <godown-card footer>
+    <div style="margin-bottom: 1em;"> 
+      Like dialog, it listens for submit events and closes itself when the target method is "dialog".
+    </div>
+    <div>
+      Dialog requires using slot="trigger" as the trigger instead of an element without a slot name.
+    </div>
+    <godown-flex slot="footer" content="end">
+      <godown-button @click=${() => dialogRef.value.close()}>
+        Close
+      </godown-button>
+    </godown-flex>
+  </godown-card>
+</godown-dialog>
+`;
+  },
+};

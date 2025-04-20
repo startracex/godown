@@ -1,12 +1,13 @@
+import type { Badge } from "godown";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./badge";
+import type { StoryMeta, StoryVariants } from "../../types";
+import { html } from "lit";
+import { attr } from "@godown/element";
 
 export default {
   title: "display/Badge",
   component: "godown-badge",
   tags: ["autodocs"],
-  render,
   argTypes: {
     content: new ArgHelper().type("string").arg,
     disabled: new ArgHelper().type("boolean").default("false").arg,
@@ -16,6 +17,13 @@ export default {
     disabled: false,
     round: false,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Badge>;
 
-export const Primary = {};
+type Story = StoryVariants<Badge>;
+
+export const Primary: Story = {
+  render: (args: Badge) =>
+    html`
+<godown-badge ${attr(args)}>Badge</godown-badge>
+  `,
+};

@@ -1,12 +1,13 @@
+import { html } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./text";
+import type { StoryMeta, StoryVariants } from "../../types";
+import { attr } from "@godown/element";
+import type { Text } from "godown";
 
 export default {
   title: "display/Text",
   component: "godown-text",
   tags: ["autodocs"],
-  render,
   argTypes: {
     underline: new ArgHelper().options(["none", "hover", "active", "always"]).arg,
     clip: new ArgHelper().type("boolean").default("false").arg,
@@ -18,6 +19,20 @@ export default {
     italic: false,
     truncate: false,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Text>;
 
-export const Primary = {};
+type Story = StoryVariants<Text>;
+
+export const Primary: Story = {
+  render: (args: Text) =>
+    html`
+<godown-text ${attr(args)}>
+
+  <div>
+    Reason has always existed, but not always in a reasonable form. 
+    <!-- From a certain communist -->
+  </div>
+
+</godown-text>
+  `,
+};

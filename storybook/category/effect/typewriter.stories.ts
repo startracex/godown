@@ -1,12 +1,13 @@
+import type { Breath, Typewriter } from "godown";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./typewriter";
+import type { StoryMeta } from "../../types";
+import { attr } from "@godown/element";
+import { html } from "lit";
 
 export default {
   title: "effect/Typewriter",
   component: "godown-typewriter",
   tags: ["autodocs"],
-  render,
   argTypes: {
     content: new ArgHelper().type("string").default("").arg,
     delay: new ArgHelper().type("number").default("0").arg,
@@ -15,6 +16,6 @@ export default {
     content: "Hello world",
     delay: 0,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Breath>;
 
 export const Primary = {};

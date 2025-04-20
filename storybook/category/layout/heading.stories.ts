@@ -1,12 +1,12 @@
+import { attr } from "@godown/element";
+import type { Heading } from "godown";
+import { html } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./heading";
-
+import type { StoryMeta, StoryVariants } from "../../types";
 export default {
   title: "layout/Heading",
   component: "godown-heading",
   tags: ["autodocs"],
-  render,
   argTypes: {
     as: new ArgHelper().options([
       "h1",
@@ -25,12 +25,21 @@ export default {
     anchor: "#",
     side: "left",
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Heading>;
 
-export const Primary = {};
+type Story = StoryVariants<Heading>;
+
+export const Primary: Story = {
+  render: (args: Heading) =>
+    html`<div style="margin: 24px;">
+  <godown-heading ${attr(args)}>Heading section as ${args.as}</godown-heading>
+</div>
+`,
+};
 
 export const WithID = {
   args: {
     id: "test",
   },
+  render: Primary.render,
 };

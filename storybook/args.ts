@@ -86,3 +86,13 @@ export class ArgHelper {
     return this;
   }
 }
+
+export const ringTypeArgs = () =>
+  new ArgHelper().options([
+    "border",
+    "outline",
+    "shadow",
+    "outline-inset",
+    "shadow-inset",
+    "none",
+  ]).arg;

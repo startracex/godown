@@ -1,12 +1,13 @@
+import { attr } from "@godown/element";
+import type { Card } from "godown";
+import { html } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./card";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "display/Card",
   component: "godown-card",
   tags: ["autodocs"],
-  render,
   argTypes: {
     header: new ArgHelper().type("boolean").default("false").arg,
     footer: new ArgHelper().type("boolean").default("false").arg,
@@ -15,25 +16,51 @@ export default {
     header: false,
     footer: false,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Card>;
 
-export const Primary = {};
+type Story = StoryVariants<Card>;
 
-export const WithHeader = {
+export const Primary: Story = {
+  render: (args: Card) =>
+    html`
+<godown-card ${attr(args)}>
+${[
+      args.header
+        ? html`
+  <div slot="header">Header</div>
+      `
+        : "",
+      html`
+  <div>Main content</div>
+  `,
+      args.footer
+        ? html`
+  <div slot="footer">Footer</div>
+      `
+        : "",
+    ]}
+</godown-card>
+    `,
+};
+
+export const WithHeader: Story = {
   args: {
     header: true,
   },
+  render: Primary.render,
 };
 
-export const WithFooter = {
+export const WithFooter: Story = {
   args: {
     footer: true,
   },
+  render: Primary.render,
 };
 
-export const WithHeaderAndFooter = {
+export const WithHeaderAndFooter: Story = {
   args: {
     header: true,
     footer: true,
   },
+  render: Primary.render,
 };

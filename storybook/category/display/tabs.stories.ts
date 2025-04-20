@@ -1,8 +1,8 @@
-import { Tabs } from "godown";
-import { ArgHelper } from "../../args";
+import type { Tabs } from "godown";
+import { ArgHelper, ringTypeArgs } from "../../args";
 import { html } from "lit";
 import { attr } from "@godown/element";
-import { StoryMeta, StoryVariants } from "../../types";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "display/Tabs",
@@ -13,13 +13,14 @@ export default {
     indicator: new ArgHelper().options(["background", "underline"]).arg,
     beginning: new ArgHelper().options(["selected", "previous", "none"]).arg,
     tabs: new ArgHelper().type("string[]").arg,
-    "ring-type": new ArgHelper().options(["border", "outline", "box-shadow", "outline-inset", "shadow"]).arg,
+    "ring-type": ringTypeArgs(),
   },
   args: {
     index: 0,
     indicator: "background",
     beginning: "selected",
     tabs: ["Tab 1", "Tab 2", "Tab 3"],
+    "ring-type": "border",
   },
 } as StoryMeta<Tabs>;
 

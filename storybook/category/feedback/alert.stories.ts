@@ -1,12 +1,13 @@
+import { attr } from "@godown/element";
+import type { Alert } from "godown";
+import { html } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./alert";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "feedback/Alert",
   component: "godown-alert",
   tags: ["autodocs"],
-  render,
   argTypes: {
     title: new ArgHelper().type("string").arg,
     content: new ArgHelper().type("string").arg,
@@ -15,6 +16,13 @@ export default {
     title: "Title",
     content: "",
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Alert>;
 
-export const Primary = {};
+type Story = StoryVariants<Alert>;
+
+export const Primary: Story = {
+  render: (args: Alert) =>
+    html`<godown-alert ${attr(args)}>
+  Alert content
+</godown-alert>`,
+};

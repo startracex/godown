@@ -1,12 +1,14 @@
+import { attr } from "@godown/element";
+import type { Tooltip } from "godown";
+import { html } from "lit";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render, { allPositions as position } from "./tooltip";
+import type { StoryMeta, StoryVariants } from "../../types";
+import { gridPositions } from "../../grid-positions";
 
 export default {
   title: "feedback/Tooltip",
   component: "godown-tooltip",
   tags: ["autodocs"],
-  render,
   argTypes: {
     position: new ArgHelper().options(
       [
@@ -40,10 +42,55 @@ export default {
     span: "span",
     delay: 300,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Tooltip>;
 
-export const Primary = {};
+type Story = StoryVariants<Tooltip>;
 
-export const Positions = {
-  render: position,
+export const Primary: Story = {
+  render: (args: Tooltip) => {
+    return html`
+<godown-tooltip ${attr(args)}>
+  <godown-button>Hover me</godown-button>
+  <godown-card slot="tip" style="white-space: nowrap;">Tooltip content</godown-card>
+</godown-tooltip>
+  `;
+  },
+};
+
+export const Positions: Story = {
+  render: (args: Tooltip) => {
+    return html`
+<godown-grid
+  rows="repeat(5, 2.5em)"
+  columns="repeat(5, 2.5em)"
+  content="center"
+  items="center"
+  style="margin: 2em;"
+>
+${
+      gridPositions.map((i) => {
+        const { position, row, icon, column } = i;
+        return html`
+    <godown-tooltip
+      position="${position as Tooltip["position"]}"
+      action="${args.action}"
+      span="${args.span}"
+      style="grid-row: ${row}; grid-column: ${column};"
+    >
+      <godown-button
+        style="width: 2em;height: 2em;"
+      >
+        <iconify-icon
+          icon="${icon}"
+          style="font-size: 1.25em;transform: rotate(${i.rotate || 0}deg);"
+        ></iconify-icon>
+      </godown-button>
+      <godown-card slot="tip">${position}</godown-card>
+    </godown-tooltip>
+        `;
+      })
+    }
+</godown-grid>
+  `;
+  },
 };

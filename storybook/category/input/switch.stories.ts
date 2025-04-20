@@ -1,12 +1,11 @@
+import type { Switch } from "godown";
 import { ArgHelper } from "../../args";
-import type { RendererMeta } from "../../types";
-import render from "./switch";
+import type { StoryMeta, StoryVariants } from "../../types";
 
 export default {
   title: "input/Switch",
   component: "godown-switch",
   tags: ["autodocs"],
-  render,
   argTypes: {
     value: new ArgHelper().type("boolean").default("false").arg,
     disabled: new ArgHelper().type("boolean").default("false").arg,
@@ -15,11 +14,13 @@ export default {
     value: false,
     disabled: false,
   },
-} as RendererMeta<typeof render>;
+} as StoryMeta<Switch>;
 
-export const Primary = {};
+type Story = StoryVariants<Switch>;
 
-export const WithCustomSize = {
+export const Primary: Story = {};
+
+export const WithCustomSize: Story = {
   args: {
     stylex: "--godown-switch-handle-size: 1.55em;",
   },
