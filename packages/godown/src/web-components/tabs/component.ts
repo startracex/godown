@@ -21,7 +21,6 @@ const hoverToken = "hover";
     ${cssScope}--indicator-background: var(${cssGlobalVars.passive});
     ${cssScope}--selected-background: var(${cssGlobalVars.passive});
     transition: 0.2s ease-in-out;
-    width: fit-content;
     display: flex;
     cursor: default;
   }

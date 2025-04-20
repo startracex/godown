@@ -15,7 +15,6 @@ const cssScope = scopePrefix(protoName);
 @styles(css`
   :host {
     display: block;
-    width: -moz-fit-content;
     width: fit-content;
     transition: all 0.5s ease-in-out;
     ${cssScope}--offset: .5em;
