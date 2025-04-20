@@ -9,8 +9,7 @@
     "check-types": "tsc --noEmit",
     "clean": "tsc --build tsconfig.prod.json --clean",
     "build": "tsx build.ts",
-    "build:ts": "tsc",
-    "manifest": "tsx manifest.ts"
+    "build:ts": "tsc"
   },
   "homepage": "https://godown.js.org",
   "repository": {
