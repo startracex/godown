@@ -4,7 +4,7 @@ import { property } from "lit/decorators.js";
 
 import { GlobalStyle, cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
 import type Layout from "../layout/component.js";
-import { RingBuilder, type RingType } from "../../internal/ring.js";
+import { RingBuilder, ringTypeAttribute, type RingType } from "../../internal/ring.js";
 
 const protoName = "card";
 const cssScope = scopePrefix(protoName);
@@ -53,7 +53,7 @@ class Card extends GlobalStyle {
     new StyleController(this, () => new RingBuilder({ type: this.ringType }).css);
   }
 
-  @property({ attribute: "ring-type" })
+  @property({ attribute: ringTypeAttribute })
   ringType: RingType = "border";
 
   /**

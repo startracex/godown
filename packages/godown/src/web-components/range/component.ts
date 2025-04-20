@@ -15,6 +15,7 @@ import { property, queryAll, state } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
 import { SuperInput } from "../../internal/super-input.js";
+import { ringTypeAttribute } from "../../internal/ring.js";
 
 const protoName = "range";
 const cssScope = scopePrefix(protoName);
@@ -203,7 +204,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
   }
 
   get observedRecord(): Record<string, any> {
-    return omit(super.observedRecord, "ring-type");
+    return omit(super.observedRecord, ringTypeAttribute);
   }
 
   protected render(): TemplateResult<1> {

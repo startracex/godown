@@ -1,13 +1,14 @@
 import type { Input } from "godown";
 import { ArgHelper, ringTypeArgs } from "../../args";
 import type { StoryMeta, StoryVariants } from "../../types";
+import { ringTypeAttribute } from "godown/internal/ring";
 
 export default {
   title: "input/Input",
   component: "godown-input",
   tags: ["autodocs"],
   argTypes: {
-    "ring-type": ringTypeArgs(),
+    [ringTypeAttribute]: ringTypeArgs(),
     type: new ArgHelper().options([
       "text",
       "search",
@@ -29,7 +30,7 @@ export default {
     placeholder: new ArgHelper().type("string").arg,
   },
   args: {
-    "ring-type": "border",
+    [ringTypeAttribute]: "border",
     type: "text",
     variant: "default",
   },

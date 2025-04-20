@@ -3,7 +3,7 @@ import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, GlobalStyle } from "../../internal/global-style.js";
-import { RingBuilder, type RingType } from "../../internal/ring.js";
+import { RingBuilder, ringTypeAttribute, type RingType } from "../../internal/ring.js";
 
 const protoName = "alert";
 
@@ -46,7 +46,7 @@ class Alert extends GlobalStyle {
     new StyleController(this, () => new RingBuilder({ type: this.ringType }).css);
   }
 
-  @property({ attribute: "ring-type" })
+  @property({ attribute: ringTypeAttribute })
   ringType: RingType = "border";
 
   /**

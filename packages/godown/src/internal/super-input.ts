@@ -3,7 +3,7 @@ import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GlobalStyle } from "./global-style.js";
-import type { RingType } from "./ring.js";
+import { ringTypeAttribute, type RingType } from "./ring.js";
 
 const inputStyle = css`
   :host([disabled]) {
@@ -27,7 +27,7 @@ class SuperInput<V = string> extends GlobalStyle {
   @property()
   autocomplete: string | boolean;
 
-  @property({ attribute: "ring-type" })
+  @property({ attribute: ringTypeAttribute })
   ringType: RingType = "border";
 
   @property({ type: Boolean, reflect: true })

@@ -1,4 +1,5 @@
 import type { Tabs } from "godown";
+import { ringTypeAttribute } from "godown/internal/ring";
 import { ArgHelper, ringTypeArgs } from "../../args";
 import { html } from "lit";
 import { attr } from "@godown/element";
@@ -13,14 +14,14 @@ export default {
     indicator: new ArgHelper().options(["background", "underline"]).arg,
     beginning: new ArgHelper().options(["selected", "previous", "none"]).arg,
     tabs: new ArgHelper().type("string[]").arg,
-    "ring-type": ringTypeArgs(),
+    [ringTypeAttribute]: ringTypeArgs(),
   },
   args: {
     index: 0,
     indicator: "background",
     beginning: "selected",
     tabs: ["Tab 1", "Tab 2", "Tab 3"],
-    "ring-type": "border",
+    [ringTypeAttribute]: "border",
   },
 } as StoryMeta<Tabs>;
 

@@ -3,6 +3,7 @@ import { ArgHelper, ringTypeArgs } from "../../args";
 import type { StoryMeta, StoryVariants } from "../../types";
 import { html } from "lit";
 import { attr } from "@godown/element";
+import { ringTypeAttribute } from "godown/internal/ring";
 
 export default {
   title: "input/Select",
@@ -10,7 +11,7 @@ export default {
   tags: ["autodocs"],
   argTypes: {
     disabled: new ArgHelper().type("boolean").default("false").arg,
-    "ring-type": ringTypeArgs(),
+    [ringTypeAttribute]: ringTypeArgs(),
     placeholder: new ArgHelper().type("string").arg,
     multiple: new ArgHelper().type("boolean").default("false").arg,
     noEdit: new ArgHelper().type("boolean").default("false").arg,
@@ -19,7 +20,7 @@ export default {
     disabled: false,
     multiple: false,
     noEdit: false,
-    "ring-type": "border",
+    [ringTypeAttribute]: "border",
   },
 } as StoryMeta<Select>;
 

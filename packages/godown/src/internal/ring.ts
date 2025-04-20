@@ -54,3 +54,5 @@ export class RingBuilder {
 export type RingType = "outline" | "outline-inset" | "shadow" | "shadow-inset" | "border" | "none" | undefined;
 
 export const isNone = (type: RingType): boolean => !type || type === "none";
+
+export const ringTypeAttribute = "ring-type";

@@ -4,7 +4,7 @@ import { property, state } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
 import { SuperInput } from "../../internal/super-input.js";
-import { RingBuilder } from "../../internal/ring.js";
+import { RingBuilder, ringTypeAttribute } from "../../internal/ring.js";
 
 const protoName = "split";
 const cssScope = scopePrefix(protoName);
@@ -97,7 +97,7 @@ class Split extends SuperInput {
   }
 
   get observedRecord(): Record<string, any> {
-    return omit(super.observedRecord, "ring-type");
+    return omit(super.observedRecord, ringTypeAttribute);
   }
 
   protected render(): TemplateResult<1> {

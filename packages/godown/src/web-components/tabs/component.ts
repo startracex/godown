@@ -2,7 +2,7 @@ import { attr, godown, htmlSlot, StyleController, styles, tokenList } from "@god
 import { cssGlobalVars, GlobalStyle, scopePrefix } from "../../internal/global-style.js";
 import { css, html, type TemplateResult } from "lit";
 import { property, queryAll } from "lit/decorators.js";
-import { RingBuilder, type RingType } from "../../internal/ring.js";
+import { RingBuilder, ringTypeAttribute, type RingType } from "../../internal/ring.js";
 
 const protoName = "tabs";
 const cssScope = scopePrefix(protoName);
@@ -89,7 +89,7 @@ const hoverToken = "hover";
   }
 `)
 class Tabs extends GlobalStyle {
-  @property({ attribute: "ring-type" })
+  @property({ attribute: ringTypeAttribute })
   ringType: RingType = "border";
 
   /**
