@@ -7,47 +7,28 @@ import { RingBuilder, type RingType } from "../../internal/ring.js";
 const protoName = "tabs";
 const cssScope = scopePrefix(protoName);
 
-const mouseEnterAddedToken = "hover";
+const hoverToken = "hover";
 
 /**
  * {@linkcode Tabs} used to render a set of tabs.
  *
- * It accepts "tabs" to present the sub-content.
- *
- * When "useSlot" is enabled, each item in "tabs" becomes a named slot with the same name as itself,
- * while for non-slot tabs, the content is rendered as a horizontally padded string.
- *
- * When "mouseenter" and "mouseleave" are triggered on an individual tab, the indicator will move.
- *
- * The moving indicator will start from the position of the item that was last entered.
- *
- * If the pointer moves out of the root element or the element is connected to the document,
- * the starting position of the indicator will be regarded as the current selection.
- *
- * Apply "flex-direction: column" to the tabs to arrange them vertically.
- *
- * @csspart root - The root element.
- * @csspart item - The tab items.
- * @csspart indicator - The indicator.
- * @csspart selected - The selected tab item.
- * @csspart hover - The hovered tab item.
- * @fires select - Fires when the tab is selected.
+ * @fires select - Fires when the tab index is changed.
  * @category display
  */
 @godown(protoName)
 @styles(css`
   :host {
     ${cssScope}--indicator-background: var(${cssGlobalVars.passive});
-    ${cssScope}--space: 0.25em;
-    border-radius: var(${cssGlobalVars.radius});
-    transition: 0.3s ease-in-out;
+    ${cssScope}--selected-background: var(${cssGlobalVars.passive});
+    transition: 0.2s ease-in-out;
     width: fit-content;
     display: flex;
     cursor: default;
   }
 
   [part="root"] {
-    padding: 0.2em;
+    gap: 0.25em;
+    padding: 0.25em;
     position: relative;
     z-index: 1;
     display: flex;
@@ -56,14 +37,10 @@ const mouseEnterAddedToken = "hover";
     border-radius: inherit;
     transition: inherit;
     transition-property: width, transform, opacity;
-    gap: var(${cssScope}--space);
-  }
-
-  [useslot] [part~="item"] {
-    padding: 0;
   }
 
   [part~="item"] {
+    position: relative;
     width: 100%;
     display: block;
     padding: 0 0.25em;
@@ -74,12 +51,11 @@ const mouseEnterAddedToken = "hover";
     transition-property: inherit;
   }
 
-  [part="indicator"] {
+  [part="indicator"],
+  [part~="item"]::after {
     width: 100%;
     height: 100%;
     inset: 0;
-    opacity: 0;
-    z-index: -1;
     position: absolute;
     transition: inherit;
     border-radius: inherit;
@@ -87,11 +63,28 @@ const mouseEnterAddedToken = "hover";
     background: var(${cssScope}--indicator-background);
   }
 
-  [part~="selected"] {
-    background: var(${cssScope}--indicator-background);
+  [part="indicator"] {
+    opacity: 0;
+    z-index: -1;
   }
 
-  [part~="selected"] [part="indicator"],
+  [part~="item"]::after {
+    z-index: -2;
+  }
+
+  [indicator="underline"] [part="indicator"],
+  [indicator="underline"] [part~="item"]::after {
+    top: 100%;
+    height: 0.15em;
+    border-radius: 0.075em;
+    margin-top: 0.15em;
+  }
+
+  [part~="selected"]::after {
+    content: "";
+    background: var(${cssScope}--selected-background);
+  }
+
   [part~="hover"] [part="indicator"] {
     opacity: 1;
   }
@@ -101,13 +94,27 @@ class Tabs extends GlobalStyle {
   ringType: RingType = "border";
 
   /**
-   * Determines whether the tabs should use a slot for their content instead of a string.
+   * If it is "select", the indicator moves from the selected content to the hover position.
+   *
+   * If it is "previous", the indicator moves from the last moved position to the hover position.
+   *
+   * If "none", the indicator will not move.
    */
-  @property({ type: Boolean })
-  useSlot = false;
+  @property()
+  beginning: "selected" | "previous" | "none" = "selected";
 
   /**
-   * An array of strings or slot content representing the tabs.
+   * The behavior of the indicator:
+   *
+   * If "background", its size will be consistent with that of a single tab.
+   *
+   * If "underline", an underline will be displayed at the bottom of the tab.
+   */
+  @property()
+  indicator: "background" | "underline" = "background";
+
+  /**
+   * Tab list or slot list.
    */
   @property({ type: Array })
   tabs: string[];
@@ -118,7 +125,7 @@ class Tabs extends GlobalStyle {
   @property({ type: Number })
   index = 0;
 
-  protected _lastIndex: number;
+  protected previousIndex: number;
 
   @queryAll("[part~=item]")
   protected _items: HTMLCollectionOf<HTMLLIElement>;
@@ -138,24 +145,20 @@ class Tabs extends GlobalStyle {
         ${attr(this.observedRecord)}
         @mouseleave="${this._handleMouseLeave}"
       >
-        ${this.tabs?.map((tab, index) =>
-          tab || this.useSlot
-            ? html`
-                <li
-                  part="${tokenList("item", {
-                    selected: this.index === index,
-                  })}"
-                  @mouseenter=${() => {
-                    this.move(this._lastIndex, index);
-                    this._lastIndex = index;
-                  }}
-                  @click=${() => this.select(index)}
-                >
-                  ${this.useSlot ? htmlSlot(tab) : tab}
-                  <div part="indicator"></div>
-                </li>
-              `
-            : "",
+        ${this.tabs?.map(
+          (tab, index) => html`
+            <li
+              part="${tokenList("item", this.index === index && "selected")}"
+              @mouseenter=${() => {
+                this.move(this.previousIndex, index);
+                this.previousIndex = index;
+              }}
+              @click=${() => this.select(index)}
+            >
+              ${htmlSlot(tab, tab)}
+              <div part="indicator"></div>
+            </li>
+          `,
         )}
       </ul>
     `;
@@ -163,65 +166,62 @@ class Tabs extends GlobalStyle {
 
   connectedCallback(): void {
     super.connectedCallback();
-    this._lastIndex = this.index;
+    this.previousIndex = this.beginning === "selected" ? this.index : -1;
   }
 
   protected _handleMouseLeave(): void {
-    const lastItem = this._items[this._lastIndex];
+    const lastItem = this._items[this.previousIndex];
     if (lastItem) {
-      lastItem.part.remove(mouseEnterAddedToken);
+      lastItem.part.remove(hoverToken);
     }
-    this._lastIndex = this.index;
+    this.previousIndex = this.beginning === "selected" ? this.index : -1;
   }
 
-  move(from: number, to: number): void {
-    if (from === to) {
+  move(sourceIndex: number, targetIndex: number): void {
+    if (sourceIndex === targetIndex) {
       return;
     }
     const { _items, _indicators } = this;
-    const toItem = _items[to];
-    if (!toItem) {
+    const targetElement = _items[targetIndex];
+    if (!targetElement) {
       return;
     }
-    toItem.part.add(mouseEnterAddedToken);
-    const fromItem = _items[from];
+    targetElement.part.add(hoverToken);
+    const fromItem = _items[sourceIndex];
     if (!fromItem) {
       return;
     }
-    fromItem.part.remove(mouseEnterAddedToken);
-    const toIndicator = _indicators[to];
-    const fromIndicator = _indicators[from];
-    if (!toIndicator || !fromIndicator) {
+    fromItem.part.remove(hoverToken);
+    if (this.beginning === "none") {
       return;
     }
-    const fromIndicatorRect = fromIndicator.getBoundingClientRect();
-    const toItemRect = toItem.getBoundingClientRect();
-    const transformX = fromIndicatorRect.x - toItemRect.x;
-    const transformY = fromIndicatorRect.y - toItemRect.y;
-    const fromWidth = fromIndicatorRect.width;
+    const targetIndicator = _indicators[targetIndex];
+    const sourceIndicator = _indicators[sourceIndex];
+    if (!targetIndicator || !sourceIndicator) {
+      return;
+    }
+    const { x: sourceX, y: sourceY, width: sourceWidth } = sourceIndicator.getBoundingClientRect();
+    const { x, y } = targetIndicator.getBoundingClientRect();
+    const transformX = sourceX - x;
+    const transformY = sourceY - y;
 
-    const { style } = toIndicator;
-    const cssNone = "none";
+    const { style: targetStyle } = targetIndicator;
+    const { style: sourceStyle } = sourceIndicator;
 
-    style.transform = `translate3d(${transformX}px,${transformY}px,0)`;
-    style.width = fromWidth + "px";
-    style.transition = fromIndicator.style.transition = cssNone;
-
-    toIndicator.getBoundingClientRect();
-
-    style.width = style.transform = style.transition = fromIndicator.style.transition = "";
+    targetStyle.transform = `translate3d(${transformX}px,${transformY}px,0)`;
+    targetStyle.width = `${sourceWidth}px`;
+    targetStyle.transition = sourceStyle.transition = "none";
+    targetIndicator.getBoundingClientRect();
+    targetStyle.width = targetStyle.transform = targetStyle.transition = sourceStyle.transition = "";
   }
 
   select(selected: number): void {
-    const { index, tabs, _lastIndex, useSlot } = this;
-    if (!tabs || index === selected || !(selected in tabs)) {
-      return;
-    }
-    this.dispatchCustomEvent("select", selected);
-    this.move(_lastIndex, selected);
-    this._lastIndex = selected;
-    if (index in tabs && (tabs[index] || useSlot)) {
+    const { index, previousIndex } = this;
+    this.move(previousIndex, selected);
+    if (selected !== index) {
+      this.previousIndex = selected;
       this.index = selected;
+      this.dispatchCustomEvent("select", selected);
     }
   }
 }
