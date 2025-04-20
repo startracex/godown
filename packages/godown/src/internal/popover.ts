@@ -1,3 +1,5 @@
+import { memoize } from "./utils.js";
+
 const POPOVER = "popover";
 
 const supportPopover = () => Object.hasOwn(HTMLElement.prototype, POPOVER);
@@ -16,10 +18,12 @@ const standardHide = (element: HTMLElement) => {
   }
 };
 
-export let hidePopover = (element: HTMLElement): void => {
-  hidePopover = supportPopover() ? standardHide : shimHide;
-  hidePopover(element);
-};
+export const hidePopover: (element: HTMLElement) => void = memoize((element: HTMLElement) => {
+  if (supportPopover()) {
+    return standardHide(element);
+  }
+  return shimHide(element);
+});
 
 function shimShow(this: void | HTMLElement, element: HTMLElement) {
   element.style.display = "block";
@@ -52,12 +56,9 @@ function standardShow(this: void | HTMLElement, element: HTMLElement) {
   }
 }
 
-export let showPopover = function <This extends void | HTMLElement>(this: This, element: HTMLElement): void {
+export const showPopover: (this: void | HTMLElement, element: HTMLElement) => void = memoize(function (this, element) {
   if (supportPopover()) {
-    showPopover = standardShow;
-  } else {
-    showPopover = shimShow;
+    return standardShow.call(this, element);
   }
-
-  showPopover.call(this, element);
-};
+  return shimShow.call(this, element);
+});

@@ -5,6 +5,9 @@ import { property } from "lit/decorators.js";
 
 import Input from "../input/component.js";
 import { hidePopover, showPopover } from "../../internal/popover.js";
+import { memoize } from "../../internal/utils.js";
+
+const supportsPositionArea = memoize(() => CSS.supports("position-area:top"));
 
 function updateSelected(element: HTMLElement | null, operation: 0 | 1) {
   if (element) {
@@ -115,7 +118,7 @@ class Select extends Input {
         ]}
         <div
           part="popover"
-          popover="${CSS.supports("position-area:top") ? "manual" : nothing}"
+          popover="${supportsPositionArea() ? "manual" : nothing}"
         >
           ${htmlSlot()}
         </div>
