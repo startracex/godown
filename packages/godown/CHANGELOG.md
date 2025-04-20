@@ -1,5 +1,24 @@
 # godown
 
+## 3.13.0
+
+### Minor Changes
+
+- e8a5c16: add Popover component
+- 340ea03: refactor Tooltip with Popover
+- 63176c1: add indicator, beginning properties for Tabs
+- 6f7fa61: remove unnecessary style resets
+- 91a723a: add trigger for Dialog
+- 9b589b0: remove key property of Dialog
+- 76c5d77: wrap Select icon with slot
+- efc4909: replace Select dropdown implementation with popover
+
+### Patch Changes
+
+- fe7737a: fix the icon of Select uses foreground color
+- 6d02e8c: grid root part of the Button
+- c555297: remove duplicate border-style in borderRing
+
 ## 3.12.0
 
 ### Minor Changes
