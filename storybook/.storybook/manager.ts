@@ -47,20 +47,28 @@ addons.register("startracex", () => {
   const wrapper = document.querySelector("#storybook-preview-wrapper");
   const iframe = wrapper.querySelector("iframe");
 
+  const getIframeDocument = () => iframe.contentDocument.documentElement;
+
   addons.getChannel().on("compare-change", (e) => {
-    iframe.contentDocument.documentElement.dataset.compare = `${e}`;
+    const doc = getIframeDocument();
+    if (doc) {
+      doc.dataset.compare = `${e}`;
+    }
   });
 
   addons.getChannel().on("grid-change", (e) => {
-    iframe.contentDocument.documentElement.dataset.grid = `${e}`;
+    const doc = getIframeDocument();
+    if (doc) {
+      doc.dataset.grid = `${e}`;
+    }
   });
   new MutationObserver(() => {
-    const de = iframe.contentDocument.documentElement;
-    if (de) {
+    const doc = getIframeDocument();
+    if (doc) {
       const { themeKey: theme, compare, grid } = addons.getConfig();
-      de.dataset.theme = theme;
-      de.dataset.compare = `${compare}`;
-      de.dataset.grid = `${grid}`;
+      doc.dataset.theme = theme;
+      doc.dataset.compare = `${compare}`;
+      doc.dataset.grid = `${grid}`;
     }
   }).observe(wrapper, {
     attributes: true,
