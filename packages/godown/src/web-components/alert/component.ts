@@ -24,20 +24,15 @@ const protoName = "alert";
   }
 
   :host,
-  :where(:host([contents]) [part="root"]) {
+  :where(:host([contents]) [part="root"]),
+  b {
     display: block;
   }
 
   [part="root"] {
     padding: 1em;
     display: grid;
-    align-items: center;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto 1fr;
-  }
-
-  [part="content"] {
-    display: grid;
   }
 `)
 class Alert extends GlobalStyle {
@@ -63,13 +58,10 @@ class Alert extends GlobalStyle {
 
   protected render(): TemplateResult<1> {
     return html`
-      <div
-        part="root"
-        ${attr(this.observedRecord)}
-      >
+      <div part="root">
         <div>${htmlSlot("prefix")}</div>
         <div part="content">
-          <strong part="title">${htmlSlot("title", this.title)}</strong>
+          <b part="title">${htmlSlot("title", this.title)}</b>
           ${htmlSlot("", this.content)}
         </div>
         <div>${htmlSlot("suffix")}</div>
