@@ -42,6 +42,7 @@ const hoverToken = "hover";
     position: relative;
     width: 100%;
     display: block;
+    text-align: center;
     position: relative;
     white-space: nowrap;
     transition: inherit;
