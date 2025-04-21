@@ -1,5 +1,15 @@
 # godown
 
+## 3.13.1
+
+### Patch Changes
+
+- 043f228: fix Select options not hiding
+- 1efca26: adjust components padding
+- 73389ea: remove this bind of showPopover
+- 9d17013: increase value of ringWidth, radius variables
+- 24add36: center align text in Tab
+
 ## 3.13.0
 
 ### Minor Changes
