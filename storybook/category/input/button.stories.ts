@@ -41,10 +41,10 @@ export const Sharps: Story = {
   render: () =>
     html`
 <godown-flex gap=".5em">
-  <godown-button style="width: 1.6em;height: 1.6em;">
+  <godown-button style="width: 2em;height: 2em;">
     <iconify-icon icon="ion:logo-web-component"></iconify-icon>
   </godown-button>
-  <godown-button style="width: 1.6em;height: 1.6em;" round>
+  <godown-button style="width: 2em;height: 2em;" round>
     <iconify-icon icon="ion:logo-web-component"></iconify-icon>
   </godown-button>
 </godown-flex>
