@@ -138,6 +138,7 @@ class Select extends Input {
       if (target.tagName !== "OPTION") {
         return;
       }
+      e.preventDefault();
       const { label, value } = target;
       const operation = this.select(value, label);
       if (!this.multiple) {
