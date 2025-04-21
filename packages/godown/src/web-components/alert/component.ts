@@ -29,7 +29,7 @@ const protoName = "alert";
   }
 
   [part="root"] {
-    padding: 0.75em;
+    padding: 1em;
     display: grid;
     align-items: center;
     grid-template-columns: auto 1fr auto;

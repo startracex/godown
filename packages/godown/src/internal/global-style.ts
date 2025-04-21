@@ -70,7 +70,7 @@ GlobalStyle.styles = [
         ],
         [cssGlobalVars.ringColor, toVar(cssGlobalVars.passive)],
         [cssGlobalVars.ringWidth, ".1em"],
-        [cssGlobalVars.radius, ".2em"],
+        [cssGlobalVars.radius, ".25em"],
       ]),
     }),
   ),

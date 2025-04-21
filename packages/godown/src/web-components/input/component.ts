@@ -39,7 +39,6 @@ const protoName = "input";
 @styles(css`
   :host {
     display: block;
-    ${cssGlobalVars.input}-space: 0.2em;
     ${cssGlobalVars.input}-icon-color: hsl(0, 0%, 50%);
   }
 
@@ -50,7 +49,8 @@ const protoName = "input";
   }
 
   [part="root"] {
-    padding: 0.4em 0.5em;
+    padding-inline: 0.75em;
+    padding-block: 0.5em;
     display: flex;
     position: relative;
     align-items: center;
@@ -73,11 +73,11 @@ const protoName = "input";
   }
 
   [part="suffix"] slot svg {
-    margin-inline-start: var(${cssGlobalVars.input}-space);
+    margin-inline-start: 0.25em;
   }
 
   [part="prefix"] slot svg {
-    margin-inline-end: var(${cssGlobalVars.input}-space);
+    margin-inline-end: 0.25em;
   }
 `)
 class Input extends SuperInput {

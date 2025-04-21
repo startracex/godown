@@ -23,7 +23,6 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(css`
   :host {
-    ${cssScope}--padding: .75em;
     background: var(${cssGlobalVars.background});
     color: var(${cssGlobalVars.foreground});
     display: block;
@@ -32,7 +31,7 @@ const cssScope = scopePrefix(protoName);
 
   slot {
     display: block;
-    padding: var(${cssScope}--padding);
+    padding: 1em;
   }
 
   [part="root"] {

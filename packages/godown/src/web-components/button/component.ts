@@ -43,26 +43,20 @@ const cssScope = scopePrefix(protoName);
       ${cssScope}--deg: 45deg;
       color: var(${cssGlobalVars.primaryForeground});
       background: var(${cssGlobalVars.primaryBackground});
-      border-width: var(${cssGlobalVars.ringWidth});
-      border-style: none;
-      width: fit-content;
-      display: block;
+      display: inline-block;
       overflow: hidden;
       text-align: center;
       cursor: pointer;
     }
 
-    [part="root"]:not([contents]) {
-      height: 100%;
-      width: 100%;
-    }
-
     [part="root"] {
-      padding: 0.25em 0.75em;
+      padding-block: 0.25em;
+      padding-inline: 1em;
       position: relative;
       user-select: none;
-      display: grid;
-      place-content: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     i {
