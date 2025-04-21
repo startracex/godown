@@ -69,7 +69,8 @@ GlobalStyle.styles = [
           `linear-gradient(to bottom, ${toVar(cssGlobalVars.foreground)}, ${toVar(cssGlobalVars.muted)})`,
         ],
         [cssGlobalVars.ringColor, toVar(cssGlobalVars.passive)],
-        [cssGlobalVars.ringWidth, ".075em"],
+        [cssGlobalVars.ringWidth, ".1em"],
+        [cssGlobalVars.radius, ".2em"],
       ]),
     }),
   ),
@@ -95,7 +96,6 @@ GlobalStyle.styles = [
   `,
   css`
     :host {
-      ${cssGlobalVars.radius}: 0.2em;
       border-radius: var(${cssGlobalVars.radius});
       border-style: none;
       outline-style: none;
