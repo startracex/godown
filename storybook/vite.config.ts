@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { createRequire } from "node:module";
 
 import { defineConfig } from "vite";
 
@@ -9,9 +9,7 @@ export default defineConfig({
       name: "replace-placeholder",
       enforce: "pre",
       load(id) {
-        if (
-          id.endsWith(".mdx")
-        ) {
+        if (id.endsWith(".mdx")) {
           const raw = readFileSync(id).toString();
           // biome-ignore lint/performance/useTopLevelRegex:
           const placeholderRegex = /\{\/\* PLACEHOLDER (.*?) \*\/\}/;
@@ -24,7 +22,12 @@ export default defineConfig({
             return;
           }
           const [path, start, end] = placeholders;
-          const replace = readFileSync(resolve(id, path)).toString();
+          const require = createRequire(id);
+          const resolvedPath = require.resolve(path);
+          if (!resolvedPath) {
+            return;
+          }
+          const replace = readFileSync(resolvedPath).toString();
           const replaceStart = start ? replace.indexOf(start) : 0;
           const replaceEnd = end
             ? replace.lastIndexOf(end) + end.length
