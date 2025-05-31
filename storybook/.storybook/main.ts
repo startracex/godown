@@ -5,7 +5,7 @@ import type { StorybookConfig } from "@storybook/web-components-vite";
 const require = createRequire(import.meta.url);
 
 export default {
-  stories: ["../**/*.stories.ts", "../mdx/*.mdx"],
+  stories: ["../**/*.stories.ts", "../src/content/*.mdx"],
   addons: [
     getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@storybook/addon-a11y"),

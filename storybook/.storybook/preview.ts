@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/web-components-vite";
-import { ArgHelper } from "../args";
+import { ArgHelper } from "../src/lib/args.js";
 import "godown";
 import "iconify-icon";
 import { Container } from "./tools/container";
