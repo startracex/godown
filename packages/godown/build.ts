@@ -3,17 +3,17 @@ import postcss from "postcss";
 import { statSync } from "node:fs";
 import { basename, join } from "node:path";
 
-import { jb, vs } from "@godown/common/third-party/cem";
-import { autoprefixer, cssnano } from "@godown/common/third-party/postcss";
-import { nodeResolve, terser, ts } from "@godown/common/third-party/rollup";
-import { minifyHtmlParts, templateReplace } from "@godown/common/workspace-scoped/rollup";
-import { fixModule, moduleDeclarationDefine } from "@godown/common/workspace-scoped/cem";
-import { build, commonInput, commonOutput } from "@godown/common/rollup-creator";
-import { minJSON } from "@godown/common/min-json";
-import { analyze } from "@godown/common/cem";
+import { jb, vs } from "@godown/common/third-party/cem.ts";
+import { autoprefixer, cssnano } from "@godown/common/third-party/postcss.ts";
+import { nodeResolve, terser, ts } from "@godown/common/third-party/rollup.ts";
+import { minifyHtmlParts, templateReplace } from "@godown/common/workspace-scoped/rollup.ts";
+import { fixModule, moduleDeclarationDefine } from "@godown/common/workspace-scoped/cem.ts";
+import { build, commonInput, commonOutput } from "@godown/common/rollup-creator.ts";
+import { minJSON } from "@godown/common/min-json.ts";
+import { analyze } from "@godown/common/cem.ts";
 import type { InputOptions, OutputOptions } from "rollup";
 
-import packageJSON from "./package.json";
+import packageJSON from "./package.json" with { type: "json" };
 
 buildPackage().then(() => {
   buildCDN();

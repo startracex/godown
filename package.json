@@ -24,13 +24,12 @@
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "rollup": "^4.40.0",
-    "tsx": "^4.19.3",
     "turbo": "^2.5.0",
     "typescript": "^5.8.3",
     "typescript545": "npm:typescript@5.4.5",
     "vite": "^6.3.2"
   },
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.11.0",
   "prettier": "@startracex/dev-config/prettier",
   "engines": {
     "node": ">=24"

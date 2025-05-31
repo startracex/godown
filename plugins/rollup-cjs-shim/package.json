@@ -13,7 +13,7 @@
     "./*": "./*"
   },
   "scripts": {
-    "build": "tsc && tsx build.ts"
+    "build": "tsc && node build.ts"
   },
   "keywords": [
     "cjs",
