@@ -52,7 +52,7 @@ const standardShow = (element: HTMLElement) => {
   if (getPopoverAttribute(element) !== null) {
     element.showPopover();
   } else {
-    shimShow.call(this, element);
+    shimShow(element);
   }
 };
 
