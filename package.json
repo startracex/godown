@@ -33,7 +33,7 @@
   "packageManager": "pnpm@10.8.1",
   "prettier": "@startracex/dev-config/prettier",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "name": "@godown/workspace",
   "version": "0.0.0",
