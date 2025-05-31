@@ -3,17 +3,16 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "noImplicitThis": true,
+    "experimentalDecorators": true,
     "useDefineForClassFields": false,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "outDir": "out",
-    "jsx": "react"
+    "jsx": "react-jsx"
   },
   "include": [
-    ".storybook/*",
-    "."
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
+    "./**/*.ts",
+    "./**/*.tsx"
   ]
 }

@@ -1,8 +1,8 @@
-import { IconButton } from "@storybook/components";
+import { IconButton } from "storybook/internal/components";
 import { SideBySideIcon } from "@storybook/icons";
-import { addons } from "@storybook/manager-api";
+import { addons } from "storybook/internal/manager-api";
 import { html } from "lit";
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { requestFresh } from "./fresh-styles";
 
 export const comparisonDecorator = (storyFn, context) => {

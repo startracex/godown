@@ -1,4 +1,4 @@
-import { create } from "@storybook/theming/create";
+import { create } from "storybook/internal/theming";
 
 const background = "hsl(0 0% 100%)";
 const controlsBackground = "hsl(0 0% 94%)";

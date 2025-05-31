@@ -1,5 +1,4 @@
-import React from "react";
-import { DocsContainer } from "@storybook/blocks";
+import { DocsContainer } from "@storybook/addon-docs/blocks";
 import { useEffect, useState } from "react";
 import { themes } from "../themes";
 

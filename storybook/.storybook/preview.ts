@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/web-components";
+import type { Preview } from "@storybook/web-components-vite";
 import { ArgHelper } from "../args";
 import "godown";
 import "iconify-icon";

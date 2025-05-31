@@ -1,6 +1,6 @@
-import { IconButton } from "@storybook/components";
+import { IconButton } from "storybook/internal/components";
 import { ReduxIcon } from "@storybook/icons";
-import React, { memo } from "react";
+import { memo } from "react";
 
 export const requestFresh = (e: HTMLElement) => {
   e.style.display = "none";

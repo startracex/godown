@@ -1,4 +1,4 @@
-import { addons, types } from "@storybook/manager-api";
+import { addons, types } from "storybook/internal/manager-api";
 import { DirectionSwitcher } from "./tools/direction-switcher";
 import { FreshStyles } from "./tools/fresh-styles";
 import { SourceLink } from "./tools/source-link";

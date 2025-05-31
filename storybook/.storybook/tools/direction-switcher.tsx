@@ -1,6 +1,6 @@
-import { IconButton } from "@storybook/components";
+import { IconButton } from "storybook/internal/components";
 import { ParagraphIcon } from "@storybook/icons";
-import React, { memo, useState } from "react";
+import { memo, useState } from "react";
 
 export const DirectionSwitcher = memo(() => {
   const [dir, setDir] = useState("ltr");
