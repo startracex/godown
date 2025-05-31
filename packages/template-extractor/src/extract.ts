@@ -15,7 +15,7 @@ export function extract(node: ts.Node, parent?: ts.Node): ExtractResult[] {
   if (ts.isTaggedTemplateExpression(node)) {
     const item = new TaggedTemplateExpressionResult(node);
     ts.forEachChild(node, (n) => {
-      item.children.push(...extract(n, node) as TemplateSpanResult[]);
+      item.children.push(...(extract(n, node) as TemplateSpanResult[]));
     });
     result.push(item);
     return result;
@@ -28,7 +28,7 @@ export function extract(node: ts.Node, parent?: ts.Node): ExtractResult[] {
   ) {
     const item = new TemplateExpressionResult(node);
     for (const span of node.templateSpans) {
-      item.children.push(...extract(span) as TemplateSpanResult[]);
+      item.children.push(...(extract(span) as TemplateSpanResult[]));
     }
     result.push(item);
     return result;

@@ -54,7 +54,7 @@ export async function analyze(config: Options = {}) {
     try {
       const inputResolved = input.map((inputItem) => path.resolve(cwd, inputItem));
       thirdPartyCEMs = await findExternalManifests(inputResolved, { basePath: cwd });
-    } catch { /* empty */ }
+    } catch {}
   }
 
   let plugins: any[] = await addFrameworkPlugins(mergedOptions);
