@@ -14,13 +14,12 @@ export const comparisonDecorator = (storyFn, context) => {
     <div id="compare-root">
       <div
         id="compare-source"
-        class="compare-block theme-obverse"
       >
         ${storyFn()}
       </div>
       <div
         id="compare-target"
-        class="compare-block theme-reverse"
+        data-theme-reverse
       >
         ${storyFn()}
       </div>
