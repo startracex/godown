@@ -1,4 +1,4 @@
-import { RouteTree, godown, htmlSlot, omit, styles } from "@godown/element";
+import { Router as Mux, godown, htmlSlot, omit, parseParams, styles } from "@godown/element";
 import { type PropertyValueMap, type TemplateResult, css } from "lit";
 import { property, state } from "lit/decorators.js";
 
@@ -62,8 +62,8 @@ const protoName = "router";
 class Router extends GlobalStyle {
   static routerInstances: Set<Router> = new Set<Router>();
 
-  private __fieldRouteTree: RouteTree = new RouteTree();
-  private __slottedRouteTree: RouteTree = new RouteTree();
+  private __fieldRoute: Mux = new Mux();
+  private __slottedRoute: Mux = new Mux();
   private __cacheRecord = new Map<string, RouteResult>();
   private __routes: RouteItem[];
 
@@ -80,7 +80,7 @@ class Router extends GlobalStyle {
     if (!this.path) {
       return {};
     }
-    return RouteTree.parseParams(this.pathname, this.path);
+    return parseParams(this.pathname, this.path);
   }
 
   /**
@@ -198,7 +198,7 @@ class Router extends GlobalStyle {
    * Get component from {@linkcode routes} by query.
    */
   fieldComponent(query?: string): unknown {
-    query ||= this.__fieldRouteTree.search(this.pathname)?.pattern;
+    query ||= this.__fieldRoute.search(this.pathname)?.pattern;
     this.path = query;
 
     if (!query) {
@@ -222,7 +222,7 @@ class Router extends GlobalStyle {
    */
   slottedComponent(query?: string): TemplateResult<1> {
     const slottedPaths = this._slottedNames;
-    query ||= this.__slottedRouteTree.search(this.pathname)?.pattern;
+    query ||= this.__slottedRoute.search(this.pathname)?.pattern;
     this.path = query;
 
     if (!query) {
@@ -241,10 +241,10 @@ class Router extends GlobalStyle {
    * Reset the route tree, clear cache, collect routes from child elements.
    */
   collectSlottedRoutes(): void {
-    this.__slottedRouteTree = new RouteTree();
+    this.__slottedRoute = new Mux();
     this.clear();
     this._slottedNames.forEach((slotName) => {
-      this.__slottedRouteTree.insert(slotName);
+      this.__slottedRoute.insert(slotName);
     });
   }
 
@@ -252,10 +252,10 @@ class Router extends GlobalStyle {
    * Reset the route tree, clear cache, collect routes from value.
    */
   collectFieldRoutes(value: typeof this.routes): void {
-    this.__fieldRouteTree = new RouteTree();
+    this.__fieldRoute = new Mux();
     this.clear();
     value.forEach(({ path }) => {
-      this.__fieldRouteTree.insert(path);
+      this.__fieldRoute.insert(path);
     });
   }
 
@@ -265,8 +265,8 @@ class Router extends GlobalStyle {
     });
   }
 
-  search(pathname: string): RouteTree {
-    return this.__fieldRouteTree.search(pathname) || this.__slottedRouteTree.search(pathname);
+  search(pathname: string): Mux {
+    return this.__fieldRoute.search(pathname) || this.__slottedRoute.search(pathname);
   }
 
   handlePopstate: () => void = this.events.add(window, "popstate", () => {
