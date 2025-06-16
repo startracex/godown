@@ -1,4 +1,4 @@
-import { attr, godown } from "@godown/element";
+import { godown } from "@godown/element";
 import fmtime from "fmtime";
 import { type PropertyValues, type TemplateResult, html } from "lit";
 import { property } from "lit/decorators.js";
