@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
   "extends": ["@startracex/dev-config/biome"],
   "vcs": {
     "enabled": true,
@@ -8,14 +8,12 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "include": ["*.ts", "*.tsx"]
+    "includes": ["**/*.ts", "**/*.tsx"]
   },
   "formatter": {
     "enabled": false
   },
-  "organizeImports": {
-    "enabled": true
-  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {

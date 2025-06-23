@@ -173,9 +173,9 @@ async function buildManifest() {
   function toJSPath(path: string) {
     return (
       path
-        // biome-ignore lint/performance/useTopLevelRegex:
+        // biome-ignore lint/performance/useTopLevelRegex:_
         .replace(/^\/?src\//, "")
-        // biome-ignore lint/performance/useTopLevelRegex:
+        // biome-ignore lint/performance/useTopLevelRegex:_
         .replace(/\.ts$/, ".js")
     );
   }

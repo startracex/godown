@@ -3,6 +3,8 @@ import { createRequire } from "node:module";
 
 import { defineConfig } from "vite";
 
+const placeholderRegex = /\{\/\* PLACEHOLDER (.*?) \*\/\}/;
+
 export default defineConfig({
   plugins: [
     {
@@ -11,8 +13,6 @@ export default defineConfig({
       load(id) {
         if (id.endsWith(".mdx")) {
           const raw = readFileSync(id).toString();
-          // biome-ignore lint/performance/useTopLevelRegex:
-          const placeholderRegex = /\{\/\* PLACEHOLDER (.*?) \*\/\}/;
           const match = raw.match(placeholderRegex);
           if (!match) {
             return;
@@ -46,7 +46,7 @@ function extractPlaceholderContent(input: string): string[] {
 
   for (let i = 0; i < input.length; i++) {
     const char = input[i];
-    if (char === `\\`) {
+    if (char === "\\") {
       current += char;
       i++;
       current += input[i];
