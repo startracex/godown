@@ -16,8 +16,11 @@ import type { InputOptions, OutputOptions } from "rollup";
 import packageJSON from "./package.json" with { type: "json" };
 
 buildPackage().then(() => {
-  buildCDN();
-  buildManifest();
+  const buildFlag = !process.env.VERCEL; // skip build in Vercel
+  if (buildFlag) {
+    buildCDN();
+    buildManifest();
+  }
 });
 
 async function buildPackage() {
@@ -155,16 +158,10 @@ async function buildCDN() {
 
   const maxLen = Math.max(...buildInto.flatMap(({ output }) => output.map((item1) => item1.file.length)));
 
-  const buildFlag = !process.env.VERCEL; // skip build in Vercel
-
-  buildInto.forEach(async (into) => {
-    if (buildFlag) {
-      await build(into);
-    }
+  await Promise.all(buildInto.map((into) => build(into)));
+  buildInto.forEach((into) => {
     into.output.forEach(({ file }) => {
-      console.info(
-        `${file.padEnd(maxLen)} (${buildFlag ? (statSync(file).size / 1024).toFixed(1) + " KiB" : "skipped"})`,
-      );
+      console.info(`${file.padEnd(maxLen)} (${(statSync(file).size / 1024).toFixed(1) + " KiB"})`);
     });
   });
 }
