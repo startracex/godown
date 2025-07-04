@@ -1,4 +1,3 @@
-import MagicString from "magic-string";
 import { minify, type MinifyOptions } from "minify-html-parts";
 import { createFilter, type FilterPattern } from "@rollup/pluginutils";
 
@@ -15,11 +14,7 @@ export function minifyHtmlParts(
       if (!filter(id)) {
         return null;
       }
-      code = minify(code, options);
-      return {
-        code,
-        map: new MagicString(code).generateMap({ hires: true }),
-      };
+      return minify(code, options);
     },
   };
 }

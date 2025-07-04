@@ -8,6 +8,7 @@
     "build": "tsc"
   },
   "dependencies": {
+    "magic-string": "^0.30.17",
     "template-extractor": "workspace:^"
   },
   "keywords": [

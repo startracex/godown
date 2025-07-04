@@ -1,7 +1,7 @@
 import extractSourceFile, { type TaggedTemplateExpressionResult, type TemplateExpressionResult } from "template-extractor";
-import { getTextRange } from "template-extractor/utils.js";
-import { buildString } from "./build-string.js";
+import { getTemplateTextRange, type TemplateParts } from "template-extractor/utils.js";
 import { parsePart } from "./parse-part.js";
+import MagicString from "magic-string";
 
 export interface MinifyOptions {
   removeComments?: boolean;
@@ -10,7 +10,7 @@ export interface MinifyOptions {
   shouldMinify?: (extractResult: TaggedTemplateExpressionResult | TemplateExpressionResult) => boolean;
 }
 
-const topLevelRegex = /^\s*\/\*\s*(html|htm)\s*\*\/\s*$/i;
+const htmlTagRegexp = /^\s*\/\*\s*(html|htm)\s*\*\/\s*$/i;
 
 /**
  * Determines whether the given template expression is an html expression.
@@ -32,7 +32,7 @@ export const isHtmlExpression = (result: TaggedTemplateExpressionResult | Templa
   const full = result.node.getFullText();
   const before = full.slice(0, end - start);
   // /* html */`` or /* htm */``
-  return topLevelRegex.test(before);
+  return htmlTagRegexp.test(before);
 };
 
 const trimBothSide = (a: string[]) => {
@@ -73,10 +73,7 @@ const minifyPartsArray = (parts: string[], options: MinifyOptions): string[] => 
   for (let i = 0; i < parts.length; i++) {
     const parsedPart = parsePart(parts[i], context);
     parts[i] = parsedPart
-      .map(({
-        inTag,
-        text,
-      }) => {
+      .map(({ inTag, text }) => {
         if (!inTag) {
           return text;
         }
@@ -97,21 +94,40 @@ const minifyPartsArray = (parts: string[], options: MinifyOptions): string[] => 
   return parts;
 };
 
-/**
- * Joins an array of string parts with their corresponding values.
- *
- * @param strings - An array of string parts.
- * @param values - An array of values to be interpolated into the string parts.
- * @returns The joined string with the values interpolated.
- */
-export const joinParts = (strings: string[], values: string[]) =>
-  strings.reduce((acc, current, i) => acc + current + (i < values.length ? values[i] : ""), "");
+const joinMagicString = (ms: MagicString, rawStrings: TemplateParts["strings"], strings: string[]) => {
+  for (let i = 0; i < rawStrings.length; i++) {
+    const rawString = rawStrings[i];
+    const string = strings[i];
+    const { start, end } = getTemplateTextRange(rawString);
+    if (start === end) {
+      continue;
+    }
+    ms.overwrite(start, end, string);
+  }
+};
 
 const defaultOptions: MinifyOptions = {
   removeComments: true,
   removeAttributeQuotes: false,
   removeEmptyAttributeValues: false,
   shouldMinify: isHtmlExpression,
+};
+
+const buildString = (
+  templateExpressionResult: TaggedTemplateExpressionResult | TemplateExpressionResult,
+  processParts: (strings: TemplateParts["strings"]) => void,
+) => {
+  const { strings, values } = templateExpressionResult;
+  for (let stringsIndex = 0; stringsIndex < strings.length; stringsIndex++) {
+    if (stringsIndex < values.length) {
+      const span = templateExpressionResult.children[stringsIndex];
+      const { children: spans } = span;
+      for (const expr of spans) {
+        buildString(expr, processParts);
+      }
+    }
+  }
+  processParts(strings);
 };
 
 /**
@@ -122,26 +138,25 @@ const defaultOptions: MinifyOptions = {
  * @param options.shouldMinify - A function that determines whether a specific HTML element should be minified.
  * @param options.removeComments - A boolean indicating whether HTML comments should be removed.
  * @param options.removeAttributeQuotes - A boolean indicating whether attribute quotes should be removed.
- * @returns The minified TypeScript string.
+ * @returns The minified TypeScript code and map.
  */
 export const minify = (input: string, options: MinifyOptions = {}) => {
   options = { ...defaultOptions, ...options };
-  let finalString = "";
-  let lastEnd = 0;
+  const ms = new MagicString(input);
   const extracted = extractSourceFile(input);
-  extracted.forEach((result: TaggedTemplateExpressionResult | TemplateExpressionResult) => {
-    const { start, end } = getTextRange(result.node);
+  extracted.forEach((result) => {
     if (options.shouldMinify(result)) {
-      finalString += input.slice(lastEnd, start);
-      finalString += buildString(result, (strings, values) => {
-        const parts = minifyPartsArray(strings, options);
-        return joinParts(parts, values);
+      buildString(result, (strings) => {
+        const parts = minifyPartsArray(
+          strings.map((s) => s.text),
+          options,
+        );
+        joinMagicString(ms, strings, parts);
       });
-    } else {
-      finalString += input.slice(lastEnd, end);
     }
-    lastEnd = end;
   });
-  finalString += input.slice(lastEnd);
-  return finalString;
+  return {
+    code: ms.toString(),
+    map: ms.generateMap({ hires: true }),
+  };
 };
