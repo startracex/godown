@@ -1,5 +1,5 @@
-import ts from "typescript";
-import { getTemplateParts, getTextRange, type TemplateParts, type TextRange } from "./utils.js";
+import ts, { Expression, TemplateLiteralLikeNode } from "typescript";
+import { getTemplateParts, getTextRange, type TextRange } from "./utils.js";
 
 type TaggedTemplateExpressionNode = {
   type: "TaggedTemplateExpression";
@@ -72,8 +72,8 @@ class BaseResult<N extends NodeType = NodeType> {
 export class TaggedTemplateExpressionResult extends BaseResult<TaggedTemplateExpressionNode> {
   tag: ts.LeftHandSideExpression;
   template: ts.TemplateLiteral;
-  strings: TemplateParts["strings"];
-  values: TemplateParts["values"];
+  strings: TemplateLiteralLikeNode[];
+  values: Expression[];
   children: TemplateSpanResult[];
 
   constructor(node: ts.TaggedTemplateExpression) {
@@ -92,15 +92,16 @@ export class TaggedTemplateExpressionResult extends BaseResult<TaggedTemplateExp
       type: TaggedTemplateExpressionNode["type"];
       kind: TaggedTemplateExpressionNode["kind"];
       children: ToJSON<TemplateSpanResult>[];
+      strings: string[];
+      values: string[];
     }
-    & TextRange
-    & TemplateParts {
+    & TextRange {
     return {
       ...super.toJSON(),
       tag: getTextRange(this.tag),
       template: getTextRange(this.template),
-      strings: this.strings,
-      values: this.values,
+      strings: this.strings.map((string) => string.text),
+      values: this.values.map((value) => value.getText()),
       children: this.children.map((child) => child.toJSON()),
     };
   }
@@ -108,8 +109,8 @@ export class TaggedTemplateExpressionResult extends BaseResult<TaggedTemplateExp
 
 export class TemplateExpressionResult extends BaseResult<TemplateExpressionNode> {
   template: ts.TemplateLiteral;
-  strings: TemplateParts["values"];
-  values: TemplateParts["values"];
+  strings: TemplateLiteralLikeNode[];
+  values: Expression[];
   children: TemplateSpanResult[];
 
   constructor(node: ts.TemplateExpression) {
@@ -126,14 +127,15 @@ export class TemplateExpressionResult extends BaseResult<TemplateExpressionNode>
       type: TemplateExpressionNode["type"];
       kind: TemplateExpressionNode["kind"];
       children: ToJSON<TemplateSpanResult>[];
+      strings: string[];
+      values: string[];
     }
-    & TextRange
-    & TemplateParts {
+    & TextRange {
     return {
       ...super.toJSON(),
       template: getTextRange(this.template),
-      strings: this.strings,
-      values: this.values,
+      strings: this.strings.map((string) => string.text),
+      values: this.values.map((value) => value.getText()),
       children: this.children.map((child) => child.toJSON()),
     };
   }
