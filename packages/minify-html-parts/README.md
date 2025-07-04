@@ -41,5 +41,5 @@ export const htmlResult = html`
 Output
 
 ```plain
-export const htmlResult = html`<my-element ${attr} id=${id} class="x ${classes}" .property=${property} @click=${onClick}> ${html`<div>${textContent}</div>`} </my-element>`;
+export const htmlResult = html` <my-element ${attr} id=${id} class="x ${classes}" .property=${property} @click=${onClick}> ${html`<div>${textContent}</div>`} </my-element> `;
 ```

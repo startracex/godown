@@ -105,7 +105,7 @@ const minifyPartsArray = (parts: string[], options: MinifyOptions): string[] => 
  * @returns The joined string with the values interpolated.
  */
 export const joinParts = (strings: string[], values: string[]) =>
-  strings.reduce((acc, current, i) => acc + current + (i < values.length ? `\${${values[i]}}` : ""), "");
+  strings.reduce((acc, current, i) => acc + current + (i < values.length ? values[i] : ""), "");
 
 const defaultOptions: MinifyOptions = {
   removeComments: true,
