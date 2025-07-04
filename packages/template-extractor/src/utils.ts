@@ -1,4 +1,4 @@
-import ts, { Expression, TemplateLiteralLikeNode } from "typescript";
+import { type Expression, isTemplateExpression, isTemplateTail, type Node, type TemplateLiteral, type TemplateLiteralLikeNode } from "typescript";
 
 export type TextRange = {
   start: number;
@@ -11,11 +11,11 @@ export type TemplateParts = {
   values: Expression[];
 };
 
-export function getTemplateParts(node: ts.TemplateLiteral): TemplateParts {
+export function getTemplateParts(node: TemplateLiteral): TemplateParts {
   const strings = [];
   const values = [];
 
-  if (ts.isTemplateExpression(node)) {
+  if (isTemplateExpression(node)) {
     strings.push(node.head);
     for (const span of node.templateSpans) {
       values.push(span.expression);
@@ -28,7 +28,7 @@ export function getTemplateParts(node: ts.TemplateLiteral): TemplateParts {
   return { strings, values };
 }
 
-export function getTextRange(node: ts.Node, full?: boolean): TextRange {
+export function getTextRange(node: Node, full?: boolean): TextRange {
   return {
     start: full ? node.getFullStart() : node.getStart(),
     end: node.getEnd(),
@@ -36,10 +36,10 @@ export function getTextRange(node: ts.Node, full?: boolean): TextRange {
   };
 }
 
-export function getTemplateTextRange(node: ts.TemplateLiteralLikeNode): TextRange {
+export function getTemplateTextRange(node: TemplateLiteralLikeNode): TextRange {
   return {
     start: node.getStart() + 1,
-    end: node.getEnd() - (ts.isTemplateTail(node) ? 1 : 2),
+    end: node.getEnd() - (isTemplateTail(node) ? 1 : 2),
     text: node.text,
   };
 }

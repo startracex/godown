@@ -1,17 +1,17 @@
-import ts, { Expression, TemplateLiteralLikeNode } from "typescript";
+import { type Expression, type LeftHandSideExpression, SyntaxKind, type TaggedTemplateExpression, type TemplateExpression, type TemplateLiteral, type TemplateLiteralLikeNode, type TemplateSpan } from "typescript";
 import { getTemplateParts, getTextRange, type TextRange } from "./utils.js";
 
 type TaggedTemplateExpressionNode = {
   type: "TaggedTemplateExpression";
-} & ts.TaggedTemplateExpression;
+} & TaggedTemplateExpression;
 
 type TemplateExpressionNode = {
   type: "TemplateExpression";
-} & ts.TemplateExpression;
+} & TemplateExpression;
 
 type TemplateSpanNode = {
   type: "TemplateSpan";
-} & ts.TemplateSpan;
+} & TemplateSpan;
 
 type NodeType = TaggedTemplateExpressionNode | TemplateExpressionNode | TemplateSpanNode;
 
@@ -31,13 +31,13 @@ class BaseResult<N extends NodeType = NodeType> {
     this.node = node;
     this.kind = node.kind;
     switch (node.kind) {
-      case ts.SyntaxKind.TaggedTemplateExpression:
+      case SyntaxKind.TaggedTemplateExpression:
         this.type = "TaggedTemplateExpression";
         break;
-      case ts.SyntaxKind.TemplateExpression:
+      case SyntaxKind.TemplateExpression:
         this.type = "TemplateExpression";
         break;
-      case ts.SyntaxKind.TemplateSpan:
+      case SyntaxKind.TemplateSpan:
         this.type = "TemplateSpan";
         break;
     }
@@ -70,13 +70,13 @@ class BaseResult<N extends NodeType = NodeType> {
 }
 
 export class TaggedTemplateExpressionResult extends BaseResult<TaggedTemplateExpressionNode> {
-  tag: ts.LeftHandSideExpression;
-  template: ts.TemplateLiteral;
+  tag: LeftHandSideExpression;
+  template: TemplateLiteral;
   strings: TemplateLiteralLikeNode[];
   values: Expression[];
   children: TemplateSpanResult[];
 
-  constructor(node: ts.TaggedTemplateExpression) {
+  constructor(node: TaggedTemplateExpression) {
     super(node);
     this.tag = node.tag;
     this.template = node.template;
@@ -108,12 +108,12 @@ export class TaggedTemplateExpressionResult extends BaseResult<TaggedTemplateExp
 }
 
 export class TemplateExpressionResult extends BaseResult<TemplateExpressionNode> {
-  template: ts.TemplateLiteral;
+  template: TemplateLiteral;
   strings: TemplateLiteralLikeNode[];
   values: Expression[];
   children: TemplateSpanResult[];
 
-  constructor(node: ts.TemplateExpression) {
+  constructor(node: TemplateExpression) {
     super(node);
     this.template = node;
     const { strings, values } = getTemplateParts(this.template);
@@ -145,7 +145,7 @@ export class TemplateSpanResult extends BaseResult<TemplateSpanNode> {
   span: TextRange;
   children: (TaggedTemplateExpressionResult | TemplateExpressionResult)[];
 
-  constructor(node: ts.TemplateSpan) {
+  constructor(node: TemplateSpan) {
     super(node);
     const { literal, expression } = node;
     const spanStart = expression.getFullStart();
