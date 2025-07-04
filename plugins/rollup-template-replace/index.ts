@@ -1,8 +1,7 @@
 import MagicString from "magic-string";
 import type { Plugin } from "rollup";
 import { createFilter } from "@rollup/pluginutils";
-import { type ExtractResult, extractSourceFile, type TaggedTemplateExpressionResult } from "template-extractor";
-import { getTextRange } from "template-extractor/utils.js";
+import { extractSourceFile, getTemplateTextRange, getTextRange, type TaggedTemplateExpressionResult } from "template-extractor";
 
 interface RollupFilterOptions {
   include?: Parameters<typeof createFilter>[0];
@@ -11,78 +10,8 @@ interface RollupFilterOptions {
 
 export interface ReplacementOptions {
   match?: (tag: string) => boolean;
-  replace?: (text?: string, index?: number, child?: ExtractResult, parent?: ExtractResult) => string;
+  replace?: (text?: string, index?: number) => string;
   callback?: (input: string) => string | Promise<string>;
-}
-
-export async function doReplace(oldContent: string, { replace, callback, match }: ReplacementOptions) {
-  if (!callback) {
-    return oldContent;
-  }
-  const templates = extractSourceFile(oldContent).filter((
-    result,
-  ) => ("tag" in result && (match?.(result.tag.getText())))) as TaggedTemplateExpressionResult[];
-
-  if (!templates.length) {
-    return oldContent;
-  }
-
-  let replaceIndex = 0;
-  const replaceMap = new Map<string, string>();
-  const replacePositions: {
-    text: string;
-    start: number;
-    end: number;
-  }[] = [];
-
-  for (const t of templates) {
-    const { start, end, text } = getTextRange(t.template);
-
-    if (!t.children) {
-      // no expressions
-
-      const newText = withQuote(await callback(trimQuote(text)));
-      if (text === newText) {
-        continue;
-      }
-
-      replacePositions.push({
-        text: newText,
-        start,
-        end,
-      });
-    } else {
-      const placeholderFilledText = replaceText(
-        text,
-        t.children.map((child) => {
-          const replacedValue = replace(child.text, replaceIndex, child, t);
-          replaceIndex++;
-          replaceMap.set(replacedValue, child.text);
-          return {
-            text: replacedValue,
-            start: child.start - start - "${".length,
-            end: child.end - start + "}".length,
-          };
-        }),
-      );
-
-      let newText = placeholderFilledText;
-
-      newText = withQuote(await callback(trimQuote(placeholderFilledText)));
-
-      replaceMap.forEach((value, key) => {
-        newText = newText.replaceAll(key, "${" + value + "}");
-      });
-
-      replacePositions.push({
-        text: newText,
-        start,
-        end,
-      });
-    }
-  }
-
-  return replaceText(oldContent, replacePositions);
 }
 
 export default function (
@@ -96,37 +25,150 @@ export default function (
   const filter = createFilter(options.include, options.exclude);
   return {
     name: "template-replace",
-    async transform(oldContent: string, id: string) {
+    async transform(code: string, id: string) {
+      const ms = new MagicString(code);
+
       if (!filter(id)) {
         return;
       }
-      const code = await doReplace(oldContent, {
-        callback: options.callback,
-        match: options.match || ((tag) => options.tags.includes(tag)),
-        replace: options.replace || ((_, index) => "--__REPLACE__" + index + "__"),
-      });
+
+      await doReplace(
+        code,
+        {
+          match: options.match || ((tag) => options.tags?.includes(tag)),
+          replace: options.replace || ((_, i) => `__REPLACE__${i}__`),
+          callback: options.callback,
+        },
+        ms,
+      );
+
       return {
-        code: code,
-        map: new MagicString(code).generateMap({ hires: true }),
+        code: ms.toString(),
+        map: ms.generateMap({
+          hires: true,
+        }),
       };
     },
   };
 }
 
-export function replaceText(raw: string, pos: { text: string; start: number; end: number }[]) {
-  let index = 0;
-  let result = "";
-  pos.forEach(({ start, end, text }) => {
-    result += raw.slice(index, start) + text;
-    index = end;
-  });
-  return result + raw.slice(index);
+export async function doReplace(
+  raw: string,
+  { match, replace, callback }: ReplacementOptions,
+  ms: MagicString,
+): Promise<MagicString> {
+  const templates = extractSourceFile(raw).filter((r) =>
+    "tag" in r && match?.(r.tag.getText())
+  ) as TaggedTemplateExpressionResult[];
+
+  let replaceIndex = 0;
+
+  for (const t of templates) {
+    const { strings, values } = t;
+
+    const replaceSegments = getSegments(strings, values).map((s) => {
+      return {
+        ...s,
+        replaced: s.type === "value" ? (replace?.(s.text, replaceIndex++) ?? s.text) : s.text,
+      };
+    });
+
+    const joinedString = replaceSegments.map((s) => s.replaced).join("");
+
+    const transformed = (await callback?.(joinedString)) ?? joinedString;
+
+    let offset = 0;
+    const replacedMatchArray: {
+      pos: number;
+      segment: Segment & {
+        replaced: string;
+      };
+    }[] = [];
+    for (const replaceSegment of replaceSegments) {
+      if (replaceSegment.type === "value") {
+        const pos = transformed.indexOf(replaceSegment.replaced, offset);
+        replacedMatchArray.push({ pos, segment: replaceSegment });
+        offset = pos + replaceSegment.replaced.length;
+      }
+    }
+
+    /* If the callback has just changed the sequence of replacement values, the accuracy of the original mapping will be reduced. */
+
+    if (isSortedAscending(replacedMatchArray.map((r) => r.pos))) {
+      offset = 0;
+      for (let i = 0; i < replaceSegments.length; i++) {
+        const segment = replaceSegments[i];
+        if (segment.type === "string") {
+          if (i < replaceSegments.length - 1) {
+            const valueSegment = replaceSegments[i + 1];
+            const { pos } = replacedMatchArray[i / 2];
+            if (pos === -1) {
+              continue;
+            }
+            ms.overwrite(segment.start, segment.end, transformed.slice(offset, pos));
+            offset = pos + valueSegment.replaced.length;
+          } else {
+            ms.overwrite(segment.start, segment.end, transformed.slice(offset));
+          }
+        }
+      }
+    } else {
+      if (replaceSegments.length === 1) {
+        const segment = replaceSegments[0];
+        ms.overwrite(segment.start, segment.end, transformed);
+      } else {
+        let s = transformed;
+        replacedMatchArray.forEach(({ segment }) => {
+          s = s.replace(segment.replaced, `\${${segment.text}}`);
+        });
+
+        ms.overwrite(t.template.getStart() + 1, t.template.getEnd() - 1, s);
+      }
+    }
+  }
+
+  return ms;
 }
 
-function trimQuote(s: string) {
-  return s.slice(1, -1);
+function isSortedAscending(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < arr[i - 1]) {
+      return false;
+    }
+  }
+  return true;
 }
 
-function withQuote(s: string) {
-  return "`" + s + "`";
+type Segment = {
+  type: "string" | "value";
+  text: string;
+  start: number;
+  end: number;
+  padStart?: number;
+  padEnd?: number;
+};
+
+function getSegments(strings, values): Segment[] {
+  const segments: Segment[] = [];
+
+  for (let i = 0; i < strings.length; i++) {
+    const s = strings[i];
+    const segment: Segment = {
+      type: "string",
+      ...getTemplateTextRange(s),
+    };
+
+    segments.push(segment);
+
+    if (i < values.length) {
+      const v = values[i];
+
+      segments.push({
+        type: "value",
+        ...getTextRange(v),
+      });
+    }
+  }
+
+  return segments;
 }

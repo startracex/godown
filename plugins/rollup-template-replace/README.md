@@ -19,7 +19,7 @@ export default {
 };
 ```
 
-Example, use a CSS preprocessor to process the modified text.
+Example, use a CSS preprocessor to process css literals.
 
 ```js
 replace({
@@ -28,33 +28,3 @@ replace({
   replace: (_, index) => `--__REPLACE__${index}__`,
 });
 ```
-
-before replacement
-
-```js
-css`
-  .class {
-    ${"expression_0"}: ${"expression_1"};
-  }
-`;
-```
-
-after replacement
-
-```js
-css`
-  .class {
-    --__REPLACE__0__: --__REPLACE__1__;
-  }
-`;
-```
-
-callback input (content between `` ` ``)
-
-```css
-.class {
-  --__REPLACE__0__: --__REPLACE__1__;
-}
-```
-
-Final output text will be restored.
