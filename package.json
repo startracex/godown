@@ -12,24 +12,23 @@
     "version": "changeset version"
   },
   "dependencies": {
-    "@biomejs/biome": "^2.0.5",
+    "@biomejs/biome": "^2.0.6",
     "@changesets/cli": "^2.29.5",
     "@godown/common": "workspace:^",
     "@godown/tsconfig": "workspace:*",
     "@startracex/dev-config": "^0.3.0",
-    "@types/node": "^24.0.3",
+    "@types/node": "^24.0.10",
     "@types/react": "^19.1.8",
-    "dprint": "^0.50.0",
+    "dprint": "^0.50.1",
     "glob": "^11.0.3",
     "postcss": "^8.5.6",
-    "prettier": "^3.6.0",
-    "rollup": "^4.44.0",
+    "prettier": "^3.6.2",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3",
     "typescript545": "npm:typescript@5.4.5",
-    "vite": "^6.3.5"
+    "vite": "^7.0.2"
   },
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.12.4",
   "prettier": "@startracex/dev-config/prettier",
   "engines": {
     "node": ">=24"

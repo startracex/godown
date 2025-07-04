@@ -1,5 +1,4 @@
 import MagicString from "magic-string";
-import type { Plugin } from "rollup";
 import { createFilter } from "@rollup/pluginutils";
 import { extractSourceFile, getTemplateTextRange, getTextRange, type TaggedTemplateExpressionResult } from "template-extractor";
 
@@ -21,7 +20,10 @@ export default function (
     }
     & ReplacementOptions
     & RollupFilterOptions,
-): Plugin {
+): {
+  name: "template-replace";
+  transform: (code: string, id: string) => Promise<{ code: string; map: any }>;
+} {
   const filter = createFilter(options.include, options.exclude);
   return {
     name: "template-replace",

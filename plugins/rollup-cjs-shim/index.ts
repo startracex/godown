@@ -1,5 +1,4 @@
 import { factory, isCallExpression, isIdentifier, isMetaProperty, isPropertyAccessExpression, isVariableStatement, type Node, ScriptTarget, type SourceFile, SyntaxKind, type TransformerFactory, transpileModule, visitEachChild, visitNode } from "typescript";
-import type { Plugin, SourceMapInput } from "rollup";
 
 export interface ReplaceParams {
   match?: (node: Node) => boolean;
@@ -84,8 +83,10 @@ function cjsShim({
   replacements = defaultReplacements,
 }: {
   replacements?: ReplaceParams[];
-  generateSourceMap?: (code: string) => SourceMapInput;
-} = {}): Plugin {
+} = {}): {
+  name: "cjs-shim";
+  transform: (code: string, id: string) => { code: string; map: any };
+} {
   return {
     name: "cjs-shim",
     transform(code: string, id) {

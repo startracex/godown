@@ -4,7 +4,8 @@ packages:
   - common
   - tsconfig
   - storybook
+
 catalog:
-  "@lit/react": ^1.0.0
+  '@lit/react': ^1.0.0
   lit: ^3.0.0
   tslib: ^2.7.0

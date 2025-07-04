@@ -1,6 +1,5 @@
 import { createFilter, type FilterPattern } from "@rollup/pluginutils";
 import MagicString from "magic-string";
-import type { Plugin } from "rollup";
 
 import { Prune } from "./lib/prune.js";
 
@@ -11,7 +10,10 @@ function pruneImports(options: {
     include?: FilterPattern;
     exclude?: FilterPattern;
   };
-}): Plugin {
+}): {
+  name: "prune-imports";
+  transform: (code: string, id: string) => { code: string; map: any } | null;
+} {
   const state = new Map<string, Prune>();
 
   const filter = createFilter(options.include, options.exclude);
