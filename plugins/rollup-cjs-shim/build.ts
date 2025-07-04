@@ -1,15 +1,20 @@
-import { build } from "@godown/common/rollup-creator.ts";
-import { commonjs } from "@godown/common/third-party/rollup.ts";
+import { build, packageDependencies } from "@godown/common/rollup-creator.ts";
+import pkg from "./package.json" with { type: "json" };
 
-build({
-  input: "index.js",
-  output: {
-    dir: ".",
-    format: "cjs",
-    entryFileNames: "[name].cjs",
-    exports: "named",
+build(
+  {
+    input: "index.ts",
+    external: packageDependencies(pkg),
   },
-  plugins: [
-    commonjs(),
+  [
+    {
+      exports: "named",
+      format: "cjs",
+      file: "index.cjs",
+    },
+    {
+      exports: "named",
+      file: "index.js",
+    },
   ],
-});
+);
