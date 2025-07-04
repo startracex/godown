@@ -8,10 +8,9 @@ import { autoprefixer, cssnano } from "@godown/common/third-party/postcss.ts";
 import { nodeResolve, terser, ts } from "@godown/common/third-party/rollup.ts";
 import { minifyHtmlParts, templateReplace } from "@godown/common/workspace-scoped/rollup.ts";
 import { fixModule, moduleDeclarationDefine } from "@godown/common/workspace-scoped/cem.ts";
-import { build, commonInput, commonOutput } from "@godown/common/rollup-creator.ts";
+import { build, commonOutput, packageDependencies } from "@godown/common/build.ts";
 import { minJSON } from "@godown/common/min-json.ts";
-import { analyze } from "@godown/common/cem.ts";
-import type { InputOptions, OutputOptions } from "rollup";
+import { analyze } from "@godown/common/manifest.ts";
 
 import packageJSON from "./package.json" with { type: "json" };
 
@@ -30,8 +29,8 @@ async function buildPackage() {
 
   await build(
     {
-      ...commonInput,
       input,
+      external: packageDependencies(packageJSON),
       plugins: [
         templateReplace({
           tags: ["css"],
@@ -85,7 +84,7 @@ async function buildCDN() {
 
   const introRequireCore = intro('Require Lit Core (import from `"lit"`)');
 
-  const buildInto: (InputOptions & { output: OutputOptions[] })[] = [
+  const buildInto: any[] = [
     {
       input: "index.js",
       external: ["lit"],
@@ -100,7 +99,6 @@ async function buildCDN() {
         {
           ...commonOutput,
           file: "build/godown.js",
-          format: "es",
           intro: introRequireCore,
         },
         {

@@ -1,4 +1,4 @@
-import { build, packageDependencies } from "@godown/common/rollup-creator.ts";
+import { build, packageDependencies } from "@godown/common/build.ts";
 import pkg from "./package.json" with { type: "json" };
 
 build(

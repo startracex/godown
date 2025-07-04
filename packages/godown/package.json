@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsc --watch",
     "check-types": "tsc --noEmit",
-    "clean": "tsc --build tsconfig.prod.json --clean",
+    "clean": "tsc --build --clean",
     "build": "node build.ts",
     "build:ts": "tsc"
   },
