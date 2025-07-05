@@ -25,9 +25,9 @@
   "license": "MIT",
   "dependencies": {
     "@godown/element": "workspace:^",
+    "@oxc-project/runtime": "^0.75.1",
     "fmtime": "^0.0.3",
-    "lit": "catalog:",
-    "tslib": "catalog:"
+    "lit": "catalog:"
   },
   "publishConfig": {
     "access": "public"

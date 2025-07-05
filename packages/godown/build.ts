@@ -1,11 +1,10 @@
 import { globSync } from "glob";
 import postcss from "postcss";
 import { statSync } from "node:fs";
-import { basename, join } from "node:path";
 
 import { jb, vs } from "@godown/common/third-party/cem.ts";
 import { autoprefixer, cssnano } from "@godown/common/third-party/postcss.ts";
-import { nodeResolve, terser, ts } from "@godown/common/third-party/rollup.ts";
+import { nodeResolve, oxc } from "@godown/common/third-party/rollup.ts";
 import { minifyHtmlParts, templateReplace } from "@godown/common/workspace-scoped/rollup.ts";
 import { fixModule, moduleDeclarationDefine } from "@godown/common/workspace-scoped/cem.ts";
 import { build, commonOutput, packageDependencies } from "@godown/common/build.ts";
@@ -32,6 +31,15 @@ async function buildPackage() {
       input,
       external: packageDependencies(packageJSON),
       plugins: [
+        oxc({
+          tsconfigCompilerOptions: {
+            declaration: true,
+            declarationMap: true,
+            experimentalDecorators: true,
+            target: "es2021",
+          },
+          minify: true,
+        }),
         templateReplace({
           tags: ["css"],
           async callback(input) {
@@ -40,27 +48,11 @@ async function buildPackage() {
           },
         }),
         minifyHtmlParts(),
-        ts({
-          tsconfig: "./tsconfig.prod.json",
-          compilerOptions: {
-            sourceRoot: "__source__",
-          },
-        }),
-        terser({
-          keep_classnames: true,
-        }),
       ],
     },
     {
       ...commonOutput,
-      sourcemapPathTransform(s) {
-        if (!s.includes("__source__")) {
-          return s;
-        }
-        const [dir, wrongPath] = s.split("__source__");
-        const base = basename(wrongPath);
-        return join(dir, base);
-      },
+      preserveModulesRoot: "src",
       dir,
     },
   );
@@ -90,9 +82,8 @@ async function buildCDN() {
       external: ["lit"],
       plugins: [
         nodeResolve(),
-        terser({
-          ecma: 2021,
-          keep_classnames: true,
+        oxc({
+          minify: true,
         }),
       ],
       output: [
@@ -127,9 +118,8 @@ async function buildCDN() {
       input: "index.js",
       plugins: [
         nodeResolve(),
-        terser({
-          ecma: 2021,
-          keep_classnames: true,
+        oxc({
+          minify: true,
         }),
       ],
       output: [
