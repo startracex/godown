@@ -3,7 +3,7 @@ import postcss from "postcss";
 import { statSync } from "node:fs";
 
 import { jb, vs } from "@godown/common/third-party/cem.ts";
-import { autoprefixer, cssnano } from "@godown/common/third-party/postcss.ts";
+import { autoprefixer, csso } from "@godown/common/third-party/postcss.ts";
 import { nodeResolve, oxc } from "@godown/common/third-party/rollup.ts";
 import { minifyHtmlParts, templateReplace } from "@godown/common/workspace-scoped/rollup.ts";
 import { fixModule, moduleDeclarationDefine } from "@godown/common/workspace-scoped/cem.ts";
@@ -43,7 +43,9 @@ async function buildPackage() {
         templateReplace({
           tags: ["css"],
           async callback(input) {
-            const result = await postcss(autoprefixer(["since 2021"]), cssnano).process(input, { from: undefined });
+            const result = await postcss(autoprefixer(["since 2021"]), csso({ restructure: false })).process(input, {
+              from: undefined,
+            });
             return result.css;
           },
         }),

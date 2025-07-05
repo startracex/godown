@@ -1,2 +1,2 @@
 export { default as autoprefixer } from "autoprefixer";
-export { default as cssnano } from "cssnano";
+export { default as csso } from "postcss-csso";
