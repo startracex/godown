@@ -8,7 +8,7 @@
     "dev": "tsc --watch",
     "check-types": "tsc --noEmit",
     "clean": "tsc --build --clean",
-    "build": "node build.ts",
+    "build": "oxnode build.ts",
     "build:ts": "tsc"
   },
   "homepage": "https://godown.js.org",

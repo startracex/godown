@@ -16,6 +16,8 @@
     "@changesets/cli": "^2.29.5",
     "@godown/common": "workspace:^",
     "@godown/tsconfig": "workspace:*",
+    "@oxc-node/cli": "^0.0.29",
+    "@oxc-node/core": "^0.0.29",
     "@startracex/dev-config": "^0.3.0",
     "@types/node": "^24.0.10",
     "@types/react": "^19.1.8",
@@ -32,7 +34,7 @@
   "packageManager": "pnpm@10.12.4",
   "prettier": "@startracex/dev-config/prettier",
   "engines": {
-    "node": ">=24"
+    "node": ">=22"
   },
   "name": "@godown/workspace",
   "version": "0.0.0",
