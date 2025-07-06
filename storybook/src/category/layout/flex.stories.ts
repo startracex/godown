@@ -1,8 +1,8 @@
 import { attr, loop } from "@godown/element";
 import type { Flex } from "godown";
 import { html, render } from "lit";
-import { ArgHelper } from "../../lib/args";
-import type { StoryMeta, StoryVariants } from "../../lib/types";
+import { ArgHelper } from "../../lib/args.js";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 
 export default {
   title: "layout/Flex",

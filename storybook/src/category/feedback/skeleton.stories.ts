@@ -1,5 +1,5 @@
 import type { Skeleton } from "godown";
-import type { StoryMeta, StoryVariants } from "../../lib/types";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 
 export default {
   title: "feedback/Skeleton",

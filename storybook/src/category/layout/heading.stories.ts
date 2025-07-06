@@ -1,8 +1,8 @@
 import { attr } from "@godown/element";
 import type { Heading } from "godown";
 import { html } from "lit";
-import { ArgHelper } from "../../lib/args";
-import type { StoryMeta, StoryVariants } from "../../lib/types";
+import { ArgHelper } from "../../lib/args.js";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 export default {
   title: "layout/Heading",
   component: "godown-heading",

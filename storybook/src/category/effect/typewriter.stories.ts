@@ -1,6 +1,6 @@
 import type { Breath, Typewriter } from "godown";
-import { ArgHelper } from "../../lib/args";
-import type { StoryMeta } from "../../lib/types";
+import { ArgHelper } from "../../lib/args.js";
+import type { StoryMeta } from "../../lib/types.js";
 import { attr } from "@godown/element";
 import { html } from "lit";
 

@@ -1,6 +1,6 @@
 import type { Grid } from "godown";
-import { ArgHelper } from "../../lib/args";
-import type { StoryMeta, StoryVariants } from "../../lib/types";
+import { ArgHelper } from "../../lib/args.js";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 import { attr, loop } from "@godown/element";
 import { html } from "lit";
 

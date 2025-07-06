@@ -1,8 +1,8 @@
 import type { Popover } from "godown";
 import { html } from "lit";
-import { ArgHelper } from "../../lib/args";
-import { gridPositions } from "../../lib/grid-positions";
-import type { StoryMeta, StoryVariants } from "../../lib/types";
+import { ArgHelper } from "../../lib/args.js";
+import { gridPositions } from "../../lib/grid-positions.js";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 import { attr } from "@godown/element";
 
 export default {

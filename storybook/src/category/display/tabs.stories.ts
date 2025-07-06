@@ -1,9 +1,9 @@
 import type { Tabs } from "godown";
-import { ringTypeAttribute } from "godown/internal/ring";
-import { ArgHelper, ringTypeArgs } from "../../lib/args";
+import { ringTypeAttribute } from "godown/internal/ring.js";
+import { ArgHelper, ringTypeArgs } from "../../lib/args.js";
 import { html } from "lit";
 import { attr } from "@godown/element";
-import type { StoryMeta, StoryVariants } from "../../lib/types";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 
 export default {
   title: "display/Tabs",

@@ -1,5 +1,5 @@
 import type { Dragbox } from "godown";
-import type { StoryMeta, StoryVariants } from "../../lib/types";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 import { html } from "lit";
 import { attr } from "@godown/element";
 

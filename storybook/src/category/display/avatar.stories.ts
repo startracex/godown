@@ -1,5 +1,5 @@
-import { ArgHelper } from "../../lib/args";
-import type { StoryMeta, StoryVariants } from "../../lib/types";
+import { ArgHelper } from "../../lib/args.js";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 import type { Avatar } from "godown";
 
 export default {

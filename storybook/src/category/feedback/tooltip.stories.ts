@@ -1,9 +1,9 @@
 import { attr } from "@godown/element";
 import type { Tooltip } from "godown";
 import { html } from "lit";
-import { ArgHelper } from "../../lib/args";
-import type { StoryMeta, StoryVariants } from "../../lib/types";
-import { gridPositions } from "../../lib/grid-positions";
+import { ArgHelper } from "../../lib/args.js";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
+import { gridPositions } from "../../lib/grid-positions.js";
 
 export default {
   title: "feedback/Tooltip",
