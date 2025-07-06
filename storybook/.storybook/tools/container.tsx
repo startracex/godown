@@ -1,6 +1,7 @@
 import { DocsContainer } from "@storybook/addon-docs/blocks";
 import { useEffect, useState } from "react";
 import { themes } from "../themes";
+import React from "react";
 
 export const Container = ({ children, context }) => {
   const topDocument = window.top.document;

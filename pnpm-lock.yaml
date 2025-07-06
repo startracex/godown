@@ -240,10 +240,10 @@ importers:
         version: 0.64.0
     devDependencies:
       '@storybook/addon-a11y':
-        specifier: ^9.0.12
+        specifier: ^9.0.15
         version: 9.0.15(storybook@9.0.15(@testing-library/dom@10.4.0)(prettier@3.6.2))
       '@storybook/addon-docs':
-        specifier: ^9.0.12
+        specifier: ^9.0.15
         version: 9.0.15(@types/react@19.1.8)(storybook@9.0.15(@testing-library/dom@10.4.0)(prettier@3.6.2))
       '@storybook/csf':
         specifier: ^0.1.13
@@ -252,7 +252,7 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@storybook/web-components-vite':
-        specifier: ^9.0.12
+        specifier: ^9.0.15
         version: 9.0.15(lit@3.3.0)(storybook@9.0.15(@testing-library/dom@10.4.0)(prettier@3.6.2))(vite@7.0.2(@types/node@24.0.10)(stylus@0.64.0)(terser@5.43.1)(tsx@4.19.3))
       lit:
         specifier: 'catalog:'
@@ -261,7 +261,7 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0
       storybook:
-        specifier: ^9.0.12
+        specifier: ^9.0.15
         version: 9.0.15(@testing-library/dom@10.4.0)(prettier@3.6.2)
 
   tsconfig: {}
@@ -2242,8 +2242,8 @@ packages:
     resolution: {integrity: sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==}
     engines: {node: '>=12'}
 
-  ws@8.18.2:
-    resolution: {integrity: sha512-DMricUmwGZUVr++AEAe2uiVM7UoO9MAVZMDu05UQOaUII0lp+zOzLLU4Xqh/JvTqklB1T4uELaaPBKyjE1r4fQ==}
+  ws@8.18.3:
+    resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -3921,7 +3921,7 @@ snapshots:
       esbuild-register: 3.6.0(esbuild@0.25.5)
       recast: 0.23.11
       semver: 7.7.2
-      ws: 8.18.2
+      ws: 8.18.3
     optionalDependencies:
       prettier: 3.6.2
     transitivePeerDependencies:
@@ -4096,4 +4096,4 @@ snapshots:
       string-width: 5.1.2
       strip-ansi: 7.1.0
 
-  ws@8.18.2: {}
+  ws@8.18.3: {}

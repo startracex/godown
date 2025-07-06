@@ -2,6 +2,7 @@ import { memo, useEffect, useState } from "react";
 import { IconButton } from "storybook/internal/components";
 import { addons } from "storybook/internal/manager-api";
 import { themes } from "../themes";
+import React from "react";
 
 const IconAuto = memo(() => (
   <svg

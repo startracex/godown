@@ -4,6 +4,7 @@ import { addons } from "storybook/internal/manager-api";
 import { html } from "lit";
 import { memo, useEffect, useState } from "react";
 import { requestFresh } from "./fresh-styles";
+import React from "react";
 
 export const comparisonDecorator = (storyFn, context) => {
   const displayCompare = context.viewMode === "story";

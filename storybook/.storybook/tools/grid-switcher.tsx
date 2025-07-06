@@ -2,6 +2,7 @@ import { IconButton } from "storybook/internal/components";
 import { GridIcon } from "@storybook/icons";
 import { addons } from "storybook/internal/manager-api";
 import { memo, useEffect, useState } from "react";
+import React from "react";
 
 export const GridSwitcher = memo(() => {
   const [grid, setGrid] = useState(localStorage.getItem("grid") === "true" ? true : false);

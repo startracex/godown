@@ -2,6 +2,7 @@ import { IconButton } from "storybook/internal/components";
 import { GithubIcon } from "@storybook/icons";
 import { useStorybookState } from "storybook/internal/manager-api";
 import { memo } from "react";
+import React from "react";
 
 export const SourceLink = memo(() => {
   const { storyId, index } = useStorybookState();

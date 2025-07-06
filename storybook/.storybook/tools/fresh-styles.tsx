@@ -1,6 +1,7 @@
 import { IconButton } from "storybook/internal/components";
 import { ReduxIcon } from "@storybook/icons";
 import { memo } from "react";
+import React from "react";
 
 export const requestFresh = (e: HTMLElement) => {
   e.style.display = "none";
