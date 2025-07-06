@@ -10,6 +10,7 @@ export default {
   parameters: {
     backgrounds: { disable: true },
     docs: {
+      codePanel: true,
       container: Container,
     },
     options: {
