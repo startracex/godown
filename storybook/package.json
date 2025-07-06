@@ -1,9 +1,8 @@
 {
   "scripts": {
-    "dev": "pnpm build:css && pnpm build:ts && storybook dev -p 6006",
-    "build": "pnpm build:css && pnpm build:ts && storybook build -o build",
-    "build:css": "stylus ./styl/manager.styl",
-    "build:ts": "tsc",
+    "dev": "pnpm build:manager && storybook dev -p 6006",
+    "build": "pnpm build:manager && storybook build -o build",
+    "build:manager": "stylus ./styl/manager.styl && swc .storybook/manager.ts -o .storybook/manager.js",
     "preview": "vite preview --port 6006 --outDir build"
   },
   "devDependencies": {
@@ -12,6 +11,8 @@
     "@storybook/csf": "^0.1.13",
     "@storybook/icons": "^1.4.0",
     "@storybook/web-components-vite": "^9.0.15",
+    "@swc/cli": "^0.7.7",
+    "@swc/core": "^1.12.9",
     "lit": "catalog:",
     "react": "^19.1.0",
     "storybook": "^9.0.15"
