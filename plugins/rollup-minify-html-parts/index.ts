@@ -1,13 +1,18 @@
 import { minify, type MinifyOptions } from "minify-html-parts";
 import { createFilter, type FilterPattern } from "@rollup/pluginutils";
+import type { Plugin } from "rollup";
 
 export function minifyHtmlParts(
-  options?: MinifyOptions & {
+  {
+    include,
+    exclude,
+    ...options
+  }: MinifyOptions & {
     include?: FilterPattern;
     exclude?: FilterPattern;
-  },
-) {
-  const filter = createFilter(options?.include, options?.exclude);
+  } = {},
+): Plugin {
+  const filter = createFilter(include, exclude);
   return {
     name: "minify-html-parts",
     transform(code: string, id: string) {

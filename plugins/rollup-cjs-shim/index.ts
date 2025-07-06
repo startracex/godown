@@ -1,4 +1,5 @@
 import { factory, isCallExpression, isIdentifier, isMetaProperty, isPropertyAccessExpression, isVariableStatement, type Node, ScriptTarget, type SourceFile, SyntaxKind, type TransformerFactory, transpileModule, visitEachChild, visitNode } from "typescript";
+import type { Plugin } from "rollup";
 
 export interface ReplaceParams {
   match?: (node: Node) => boolean;
@@ -83,10 +84,7 @@ function cjsShim({
   replacements = defaultReplacements,
 }: {
   replacements?: ReplaceParams[];
-} = {}): {
-  name: "cjs-shim";
-  transform: (code: string, id: string) => { code: string; map: any };
-} {
+} = {}): Plugin {
   return {
     name: "cjs-shim",
     transform(code: string, id) {

@@ -1,11 +1,7 @@
 import MagicString from "magic-string";
-import { createFilter } from "@rollup/pluginutils";
+import { createFilter, type FilterPattern } from "@rollup/pluginutils";
 import { extractSourceFile, getTemplateTextRange, getTextRange, type TaggedTemplateExpressionResult } from "template-extractor";
-
-interface RollupFilterOptions {
-  include?: Parameters<typeof createFilter>[0];
-  exclude?: Parameters<typeof createFilter>[1];
-}
+import type { Plugin } from "rollup";
 
 export interface ReplacementOptions {
   match?: (tag: string) => boolean;
@@ -14,17 +10,22 @@ export interface ReplacementOptions {
 }
 
 export default function (
-  options:
+  {
+    tags,
+    include,
+    exclude,
+    match,
+    replace,
+    callback,
+  }:
     & {
       tags?: string[];
+      include?: FilterPattern;
+      exclude?: FilterPattern;
     }
-    & ReplacementOptions
-    & RollupFilterOptions,
-): {
-  name: "template-replace";
-  transform: (code: string, id: string) => Promise<{ code: string; map: any }>;
-} {
-  const filter = createFilter(options.include, options.exclude);
+    & ReplacementOptions,
+): Plugin {
+  const filter = createFilter(include, exclude);
   return {
     name: "template-replace",
     async transform(code: string, id: string) {
@@ -37,9 +38,9 @@ export default function (
       await doReplace(
         code,
         {
-          match: options.match || ((tag) => options.tags?.includes(tag)),
-          replace: options.replace || ((_, i) => `__REPLACE__${i}__`),
-          callback: options.callback,
+          match: match || ((tag) => tags?.includes(tag)),
+          replace: replace || ((_, i) => `__REPLACE__${i}__`),
+          callback: callback,
         },
         ms,
       );
