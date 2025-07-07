@@ -85,6 +85,8 @@ async function buildCDN() {
       plugins: [
         nodeResolve(),
         oxc({
+          resolve: false,
+          transform: false,
           minify: true,
         }),
       ],
@@ -121,6 +123,8 @@ async function buildCDN() {
       plugins: [
         nodeResolve(),
         oxc({
+          resolve: false,
+          transform: false,
           minify: true,
         }),
       ],

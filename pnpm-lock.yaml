@@ -114,8 +114,8 @@ importers:
         specifier: workspace:^
         version: link:../plugins/rollup-minify-html-parts
       rollup-plugin-oxc:
-        specifier: ^0.1.4
-        version: 0.1.4(rollup@4.44.2)
+        specifier: ^0.1.5
+        version: 0.1.5(rollup@4.44.2)
       rollup-plugin-prune-imports:
         specifier: workspace:^
         version: link:../plugins/rollup-prune-imports
@@ -2425,8 +2425,8 @@ packages:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
-  rollup-plugin-oxc@0.1.4:
-    resolution: {integrity: sha512-IU4Je3z/CYkGQak44VxaZVjVYUTZmuGjuXCxPD3S6Wb/L7bfBlJ4SJ22zqV5rhOfFqTqjOzVES6LmlhH+1Hhjg==}
+  rollup-plugin-oxc@0.1.5:
+    resolution: {integrity: sha512-NM80OgFtzB9zg69yd/n/ZmMc0fvbWTA1cBLMESsbvFpzkZvauh0KK+bTjrYE6Mm4samwOOaAnouwtBGHPojjjA==}
 
   rollup@4.44.2:
     resolution: {integrity: sha512-PVoapzTwSEcelaWGth3uR66u7ZRo6qhPHc0f2uRO9fX6XDVNrIiGYS0Pj9+R8yIIYSD/mCx2b16Ws9itljKSPg==}
@@ -4764,7 +4764,7 @@ snapshots:
 
   reusify@1.1.0: {}
 
-  rollup-plugin-oxc@0.1.4(rollup@4.44.2):
+  rollup-plugin-oxc@0.1.5(rollup@4.44.2):
     dependencies:
       '@rollup/pluginutils': 5.2.0(rollup@4.44.2)
       oxc-minify: 0.75.1

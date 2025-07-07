@@ -15,7 +15,7 @@
     "rollup": "^4.44.2",
     "rollup-plugin-cjs-shim": "workspace:^",
     "rollup-plugin-minify-html-parts": "workspace:^",
-    "rollup-plugin-oxc": "^0.1.4",
+    "rollup-plugin-oxc": "^0.1.5",
     "rollup-plugin-prune-imports": "workspace:^",
     "rollup-plugin-template-replace": "workspace:^",
     "typescript": "5.4.5"
