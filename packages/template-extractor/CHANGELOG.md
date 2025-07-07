@@ -1,5 +1,11 @@
 # template-extractor
 
+## 1.0.0
+
+### Major Changes
+
+- cc05329: change strings and values to TypeScript Node type
+
 ## 0.1.2
 
 ### Patch Changes

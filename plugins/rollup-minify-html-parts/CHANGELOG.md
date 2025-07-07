@@ -1,5 +1,18 @@
 # rollup-plugin-minify-html-parts
 
+## 0.1.0
+
+### Minor Changes
+
+- 43494c1: improve the source mapping accuracy of minify-html-parts
+
+### Patch Changes
+
+- 10b4cbf: optimize parameters and types
+- Updated dependencies [2c119ad]
+- Updated dependencies [43494c1]
+  - minify-html-parts@0.1.0
+
 ## 0.0.5
 
 ### Patch Changes

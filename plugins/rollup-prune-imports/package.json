@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-prune-imports",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A Rollup plugin to prune module imports",
   "type": "module",
   "main": "index.js",
