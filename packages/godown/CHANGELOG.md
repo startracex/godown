@@ -1,5 +1,13 @@
 # godown
 
+## 3.13.2
+
+### Patch Changes
+
+- 796b6f4: remove unnecessary this binding for showPopover
+- Updated dependencies [ebd29d6]
+  - @godown/element@1.11.0
+
 ## 3.13.1
 
 ### Patch Changes

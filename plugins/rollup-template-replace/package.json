@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-template-replace",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Replace the template expressions and restore them",
   "type": "module",
   "main": "index.js",

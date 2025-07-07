@@ -1,5 +1,17 @@
 # minify-html-parts
 
+## 0.1.0
+
+### Minor Changes
+
+- 43494c1: improve the source mapping accuracy of minify-html-parts
+
+### Patch Changes
+
+- 2c119ad: fix duplication of symbols
+- Updated dependencies [cc05329]
+  - template-extractor@1.0.0
+
 ## 0.0.5
 
 ### Patch Changes

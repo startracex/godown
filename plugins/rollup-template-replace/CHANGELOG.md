@@ -1,5 +1,17 @@
 # rollup-plugin-template-replace
 
+## 0.3.0
+
+### Minor Changes
+
+- 0708f21: improve the source mapping accuracy of rollup-plugin-template-replace
+
+### Patch Changes
+
+- 10b4cbf: optimize parameters and types
+- Updated dependencies [cc05329]
+  - template-extractor@1.0.0
+
 ## 0.2.4
 
 ### Patch Changes

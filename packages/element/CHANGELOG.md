@@ -1,5 +1,11 @@
 # @godown/element
 
+## 1.11.0
+
+### Minor Changes
+
+- ebd29d6: refactor to optimize route tree
+
 ## 1.10.0
 
 ### Minor Changes
