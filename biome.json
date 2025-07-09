@@ -13,7 +13,6 @@
   "formatter": {
     "enabled": false
   },
-  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {
