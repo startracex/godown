@@ -15,7 +15,7 @@ Web Components Library.
 Install dependencies
 
 ```sh
-pnpm i
+node prepare.cjs && pnpm i
 ```
 
 Start development server

@@ -35,7 +35,7 @@ jobs:
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
 
       - name: Install dependencies
-        run: pnpm install
+        run: node prepare.cjs && pnpm i
 
       - name: Check
         run: pnpm run check

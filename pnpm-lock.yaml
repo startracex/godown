@@ -16,8 +16,6 @@ catalogs:
       specifier: ^2.8.1
       version: 2.8.1
 
-pnpmfileChecksum: sha256-Kd3nJJaB+MpK9nD0mHNKO5Pkqqyy9avKvoths5SSels=
-
 importers:
 
   .:

@@ -1,5 +1,5 @@
 {
-  "installCommand": "pnpm i",
+  "installCommand": "node prepare.cjs && pnpm i",
   "buildCommand": "pnpm run build",
   "outputDirectory": "storybook/build"
 }
