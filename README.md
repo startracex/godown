@@ -44,6 +44,10 @@ pnpm run build
 
 ## Packages
 
+### CLI
+
+- `@godown/cli` CLI for building package.
+
 ### Libraries
 
 - `godown` Web components library.

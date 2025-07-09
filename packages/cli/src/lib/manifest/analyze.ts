@@ -1,10 +1,9 @@
-import fs from "node:fs";
-import path from "node:path";
-
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join, resolve } from "node:path";
 import { create } from "@custom-elements-manifest/analyzer/src/create.js";
 import { addFrameworkPlugins } from "@custom-elements-manifest/analyzer/src/utils/cli-helpers.js";
 import { findExternalManifests } from "@custom-elements-manifest/analyzer/src/utils/find-external-manifests.js";
-import ts from "typescript";
+import ts from "./_typescript.ts";
 
 const defaults: Options = {
   outdir: "",
@@ -38,21 +37,21 @@ export interface Options {
   noWrite?: boolean;
 }
 
-export async function analyze(config: Options = {}) {
+export async function analyze(config: Options = {}): Promise<any> {
   const mergedOptions = { ...defaults, ...config };
   const { cwd, input } = mergedOptions;
 
   const modules = input.map((inputPath) => {
-    const filePath = path.resolve(cwd, inputPath);
+    const filePath = resolve(cwd, inputPath);
 
-    const source = fs.readFileSync(filePath).toString();
+    const source = readFileSync(filePath).toString();
     return ts.createSourceFile(inputPath, source, ts.ScriptTarget.ESNext, true);
   });
 
   let thirdPartyCEMs = [];
   if (mergedOptions.dependencies) {
     try {
-      const inputResolved = input.map((inputItem) => path.resolve(cwd, inputItem));
+      const inputResolved = input.map((inputItem) => resolve(cwd, inputItem));
       thirdPartyCEMs = await findExternalManifests(inputResolved, { basePath: cwd });
     } catch {}
   }
@@ -64,17 +63,13 @@ export async function analyze(config: Options = {}) {
 
   const customElementsManifest = create({ modules, plugins, context });
 
-  const outDirResolved = path.resolve(cwd, mergedOptions.outdir);
-
   if (!config.noWrite) {
-    if (!fs.existsSync(outDirResolved)) {
-      fs.mkdirSync(outDirResolved, { recursive: true });
+    const outDirResolved = resolve(cwd, mergedOptions.outdir);
+    if (!existsSync(outDirResolved)) {
+      mkdirSync(outDirResolved, { recursive: true });
     }
 
-    fs.writeFileSync(
-      path.join(outDirResolved, "custom-elements.json"),
-      `${JSON.stringify(customElementsManifest, null, 2)}\n`,
-    );
+    writeFileSync(join(outDirResolved, "custom-elements.json"), `${JSON.stringify(customElementsManifest, null, 2)}\n`);
   }
 
   return customElementsManifest;

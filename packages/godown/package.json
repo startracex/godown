@@ -8,8 +8,7 @@
     "dev": "tsc --watch",
     "check-types": "tsc --noEmit",
     "clean": "tsc --build --clean",
-    "build": "oxnode build.ts",
-    "build:ts": "tsc"
+    "build": "godown b --manifest --minify && godown b index.js --mode app --name Godown -o build/godown.iife.js --format iife -o build/godown.umd.js --format umd"
   },
   "homepage": "https://godown.js.org",
   "repository": {

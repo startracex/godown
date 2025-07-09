@@ -4,14 +4,6 @@
   "description": "Rollup plugin to shim CJS modules",
   "type": "module",
   "main": "index.js",
-  "exports": {
-    ".": {
-      "require": "./index.cjs",
-      "types": "./index.d.ts",
-      "default": "./index.js"
-    },
-    "./*": "./*"
-  },
   "scripts": {
     "build": "tsc"
   },

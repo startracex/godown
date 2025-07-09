@@ -22,14 +22,19 @@
     },
     "clean": {},
     "fmt": {},
-    "godown#build": {
-      "dependsOn": [
-        "@godown/common#build"
-      ]
-    },
     "godown#dev": {
       "dependsOn": [
         "^build"
+      ]
+    },
+    "@godown/element#build": {
+      "dependsOn": [
+        "@godown/cli#build"
+      ]
+    },
+    "godown#build": {
+      "dependsOn": [
+        "@godown/cli#build"
       ]
     }
   }

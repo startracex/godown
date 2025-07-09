@@ -1,0 +1,57 @@
+{
+  "name": "@godown/cli",
+  "version": "0.0.0",
+  "description": "A CLI for building package",
+  "type": "module",
+  "bin": {
+    "godown": "build/cli/godown.js"
+  },
+  "scripts": {
+    "build": "pnpm run-main b -d build",
+    "run-main": "oxnode src/cli/godown.ts",
+    "run-dist": "node build/cli/godown.js"
+  },
+  "dependencies": {
+    "@custom-elements-manifest/analyzer": "^0.10.4",
+    "@rollup/pluginutils": "^5.2.0",
+    "autoprefixer": "^10.4.21",
+    "cem-plugin-define": "workspace:^",
+    "commander": "^14.0.0",
+    "custom-element-jet-brains-integration": "^1.7.0",
+    "custom-element-vs-code-integration": "^1.5.0",
+    "fast-glob": "^3.3.3",
+    "jsonc-parser": "^3.3.1",
+    "postcss": "^8.5.6",
+    "postcss-csso": "^6.0.1",
+    "postcss-load-config": "^6.0.1",
+    "rollup": "^4.44.2",
+    "rollup-plugin-minify-html-parts": "workspace:^",
+    "rollup-plugin-oxc": "^0.3.0",
+    "rollup-plugin-template-replace": "workspace:^",
+    "semver": "^7.7.2",
+    "tsconfck": "^3.1.6",
+    "typescript545": "npm:typescript@5.4.5"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3"
+  },
+  "exports": {
+    "./src/*": "./src/*",
+    "./lib/*.js": "./build/lib/*.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/startracex/godown.git",
+    "directory": "packages/element"
+  },
+  "author": "startracex",
+  "license": "MIT"
+}

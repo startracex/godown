@@ -16,10 +16,6 @@
     "**/*.js": {
       "when": "$(basename).d.ts"
     },
-    "**/*.d.ts": {
-      "when": "$(basename).ts"
-    },
-    "**/*.cjs": true,
     "legacy": true
   },
   "[typescript]": {
