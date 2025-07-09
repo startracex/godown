@@ -5,7 +5,7 @@ const dir = `packages/cli`;
 const pkg = require(path.join(__dirname, dir, "package.json"));
 
 const getBinFiles = (bin) => {
-  return bin ? (typeof bin === "string" ? bin : Object.values(bin)) : [];
+  return [...new Set((bin ? (typeof bin === "string" ? [bin] : Object.values(bin)) : []).filter(Boolean))];
 };
 
 const ensureFileExist = (filePath) => {
