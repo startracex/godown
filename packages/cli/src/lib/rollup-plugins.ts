@@ -5,15 +5,22 @@ import postcss from "postcss";
 import type { Result } from "postcss-load-config";
 import type { Plugin } from "rollup";
 import { dataToEsm } from "@rollup/pluginutils";
-import { stripComments } from "jsonc-parser";
+import JSONC from "jsonc-parser";
+import JSON5 from "json5";
 
 function json(): Plugin {
   return {
     name: "json",
     transform: function transform(code: string, id: string) {
-      if (id.endsWith(".json") || id.endsWith(".jsonc") || id.endsWith(".json5")) {
-        code = stripComments(code);
-        const obj = JSON.parse(code);
+      if (id.endsWith(".json") || id.endsWith(".jsonc")) {
+        const obj = JSONC.parse(code);
+        return {
+          code: dataToEsm(obj),
+          map: { mappings: "" },
+        };
+      }
+      if (id.endsWith(".json5")) {
+        const obj = JSON5.parse(code);
         return {
           code: dataToEsm(obj),
           map: { mappings: "" },
