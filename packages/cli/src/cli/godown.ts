@@ -4,7 +4,7 @@ import { join, relative } from "path";
 import { createExternal, getPackageJSON, normalizeModuleFormat, packageExternal } from "../lib/utils.ts";
 import { build } from "../lib/build.ts";
 import type { OutputOptions } from "rollup";
-import { analyze, type Options } from "../lib/manifest/analyze.ts";
+import { analyze } from "../lib/manifest/analyze.ts";
 import { jb, moduleDeclarationDefine, vs } from "../lib/manifest/plugins.ts";
 import { getFrameworks } from "../lib/manifest/frameworks.ts";
 import { log, style, warn } from "../lib/logger.ts";
@@ -15,7 +15,6 @@ import thisPackage from "../../package.json" with { type: "json" };
 import type { CompilerOptions } from "rollup-plugin-oxc/migrate.js";
 import { writeFile } from "fs/promises";
 import { globPattern } from "../lib/glob.ts";
-import { getCommonPath, pathsOutOf } from "../lib/path-utils.ts";
 
 const program = new Command();
 
@@ -83,12 +82,11 @@ const getOutputOptions = (formats: string[]): OutputOptions[] => {
     .reverse();
 };
 
-const buildManifest = async (options: Options) => {
+const buildManifest = async (input: Record<string, string>, options: Record<string, boolean>) => {
   return await analyze({
+    input: input,
     plugins: [moduleDeclarationDefine(), vs(), jb()],
-    noWrite: true,
-    ...options,
-  });
+  }, options);
 };
 
 const getExts = (js?: boolean, jsx?: boolean, json?: boolean) => {
@@ -267,11 +265,12 @@ program
         compilerOptions: tsconfig.compilerOptions,
       });
       if (manifest) {
-        const ce = await buildManifest({
-          input: Array.isArray(input) ? input : Object.values(input),
-          cwd: rootDir,
-          ...getFrameworks(packageJSON),
-        });
+        const ce = await buildManifest(
+          Array.isArray(input)
+            ? Object.fromEntries(input.map((i) => [relative(rootDir, i), i]))
+            : input,
+          getFrameworks(packageJSON),
+        );
         let cePath = packageJSON.customElements || packageJSON["custom-elements"];
         if (!cePath) {
           cePath = join(packagePath, "custom-elements.json");
@@ -288,13 +287,16 @@ program.command("manifest")
   .action(async () => {
     const { tsconfig, fileNames } = await loadTsconfig(program.opts().tsconfig);
     const rootDir = tsconfig.compilerOptions.rootDir || cwd;
-    const input = fileNames.map((fileName) => relative(rootDir, fileName));
-    const [, packageJSON] = getPackageJSON();
-    buildManifest({
-      input,
-      cwd: rootDir,
-      ...getFrameworks(packageJSON),
+    const buildEntry = new BuildEntry({ rootDir, files: fileNames });
+    const input = buildEntry.getNamedFiles({
+      root: rootDir,
+      ext: true,
     });
+    const [, packageJSON] = getPackageJSON();
+    buildManifest(
+      input,
+      getFrameworks(packageJSON),
+    );
   });
 
 program.parse();
