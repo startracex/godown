@@ -1,5 +1,4 @@
 import glob from "fast-glob";
-import { resolve } from "path";
 
 const expandSuffix = (p: string, ext?: string): string => {
   if (!ext) {
@@ -34,6 +33,7 @@ export const globPattern = async ({ pattern, cwd, exts }: {
     return (await glob(include, {
       ignore: exclude,
       cwd,
-    })).map((path) => resolve(path));
+      absolute: true,
+    }));
   }
 };

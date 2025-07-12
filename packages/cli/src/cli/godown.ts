@@ -210,18 +210,19 @@ program
         cwd,
         exts: getExts(tsconfig.compilerOptions.allowJs, tsconfig.compilerOptions.jsx, false),
       });
-      const isOutOfRootDir = pathsOutOf(fileNames, rootDir);
-      if (isOutOfRootDir) {
-        rootDir = getCommonPath(fileNames);
-      }
       const buildEntry = new BuildEntry({ rootDir, files: fileNames });
-      input = Object.values(buildEntry.input);
+      if (buildEntry.outOfDir(rootDir)) {
+        rootDir = buildEntry.getCommonPath();
+        warn`root directory has changed to "${rootDir}"`;
+        buildEntry.root = rootDir;
+      }
+      input = buildEntry.getFiles();
     } else {
       const buildEntry = new BuildEntry({ rootDir, files: fileNames });
       if (isApp) {
-        input = Object.values(buildEntry.input);
+        input = buildEntry.getFiles();
       } else {
-        input = buildEntry.input;
+        input = buildEntry.getNamedFiles();
       }
     }
     setDtsOrMap(tsconfig.compilerOptions, { mode, dts, map });
