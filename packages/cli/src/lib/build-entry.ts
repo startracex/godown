@@ -1,6 +1,6 @@
 import { relative } from "path";
 import { removeExt } from "./utils.ts";
-import { getCommonPath, pathsOutOf } from "./path-utils.ts";
+import { pathsOutOf } from "./path-utils.ts";
 
 const normalizeRootExt = (path: string, root: string, ext = true): string => {
   if (root) {
@@ -63,9 +63,5 @@ export class BuildEntry {
 
   outOfDir(dir: string): boolean {
     return pathsOutOf([...this.fileSet], dir);
-  }
-
-  getCommonPath(): string {
-    return getCommonPath([...this.fileSet]);
   }
 }

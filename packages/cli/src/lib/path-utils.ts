@@ -39,3 +39,22 @@ export const getCommonPath = (paths: string[], separator: string = sep): string 
 
   return commonPath;
 };
+
+export const getCommonDir = (paths: string[], separator: string = sep): string => {
+  if (paths.length === 1) {
+    const path = paths[0];
+    if (path.endsWith(separator)) {
+      return path.slice(0, path.length - 1);
+    }
+    const idx = path.lastIndexOf(separator);
+    if (idx === -1) {
+      return path;
+    }
+    return path.slice(0, idx);
+  }
+  const commonPath = getCommonPath(paths, separator);
+  if (commonPath.endsWith(separator)) {
+    return commonPath.slice(0, commonPath.length - 1);
+  }
+  return commonPath;
+};

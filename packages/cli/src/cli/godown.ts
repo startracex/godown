@@ -15,6 +15,7 @@ import thisPackage from "../../package.json" with { type: "json" };
 import type { CompilerOptions } from "rollup-plugin-oxc/migrate.js";
 import { writeFile } from "fs/promises";
 import { globPattern } from "../lib/glob.ts";
+import { getCommonDir } from "../lib/path-utils.ts";
 
 const program = new Command();
 
@@ -210,7 +211,7 @@ program
       });
       const buildEntry = new BuildEntry({ rootDir, files: fileNames });
       if (buildEntry.outOfDir(rootDir)) {
-        rootDir = buildEntry.getCommonPath();
+        rootDir = getCommonDir([...buildEntry.fileSet]);
         warn`root directory has changed to "${rootDir}"`;
         buildEntry.root = rootDir;
       }
