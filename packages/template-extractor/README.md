@@ -5,7 +5,7 @@ Extract templates from TypeScript.
 ## Usage
 
 ```ts
-import fs from "fs";
+import fs from "node:fs";
 import { extractSourceFile } from "template-extractor";
 
 extractSourceFile(fs.readFileSync("input.ts", "utf-8"));

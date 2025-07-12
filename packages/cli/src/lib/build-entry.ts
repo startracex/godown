@@ -1,4 +1,4 @@
-import { relative } from "path";
+import { relative } from "node:path";
 import { removeExt } from "./utils.ts";
 import { pathsOutOf } from "./path-utils.ts";
 

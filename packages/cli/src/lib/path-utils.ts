@@ -1,4 +1,4 @@
-import { relative, sep } from "path";
+import { relative, sep } from "node:path";
 
 export const pathsOutOf = (paths: string[], basePath: string): boolean => {
   return paths.some((path) => {

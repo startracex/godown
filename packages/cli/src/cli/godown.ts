@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import { join, relative } from "path";
+import { join, relative } from "node:path";
 import { createExternal, getPackageJSON, normalizeModuleFormat, packageExternal } from "../lib/utils.ts";
 import { build } from "../lib/build.ts";
 import type { OutputOptions } from "rollup";
