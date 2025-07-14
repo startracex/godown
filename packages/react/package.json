@@ -3,45 +3,44 @@
   "version": "3.13.2",
   "description": "React components for godown",
   "type": "module",
-  "main": "index.js",
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "clean": "tsc --build --clean",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "react": "^19.1.0"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@lit/react": "catalog:",
+    "godown": "workspace:^"
+  },
   "exports": {
     ".": "./index.js",
     "./package.json": "./package.json",
     "./*.js": "./*.js",
     "./*": "./*.js"
   },
-  "scripts": {
-    "check-types": "tsc --noEmit",
-    "clean": "tsc --build --clean",
-    "build": "tsc"
-  },
+  "files": [
+    "**/*.{js,d.ts}+(|.map)",
+    "src"
+  ],
+  "keywords": [
+    "web-components",
+    "custom-elements"
+  ],
   "homepage": "https://godown.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/startracex/godown.git",
     "directory": "packages/react"
   },
-  "keywords": [
-    "web-components",
-    "custom-elements"
-  ],
   "author": "startracex",
   "license": "MIT",
-  "dependencies": {
-    "@lit/react": "catalog:",
-    "godown": "workspace:^"
-  },
   "publishConfig": {
     "access": "public"
-  },
-  "files": [
-    "**/*.{js,d.ts}+(|.map)",
-    "src"
-  ],
-  "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
-  },
-  "devDependencies": {
-    "react": "^19.1.0"
   }
 }

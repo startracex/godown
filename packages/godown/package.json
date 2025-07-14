@@ -3,25 +3,12 @@
   "version": "3.13.2",
   "description": "Web Components Library",
   "type": "module",
-  "main": "index.js",
   "scripts": {
     "dev": "tsc --watch",
     "check-types": "tsc --noEmit",
     "clean": "tsc --build --clean",
     "build": "godown b --manifest --minify && godown b index.js --mode app --name Godown -o build/godown.iife.js --format iife -o build/godown.umd.js --format umd"
   },
-  "homepage": "https://godown.js.org",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/startracex/godown.git",
-    "directory": "packages/godown"
-  },
-  "keywords": [
-    "web-components",
-    "custom-elements"
-  ],
-  "author": "startracex",
-  "license": "MIT",
   "dependencies": {
     "@godown/element": "workspace:^",
     "@oxc-project/runtime": "^0.76.0",
@@ -40,7 +27,18 @@
     "src",
     "tsconfig.json"
   ],
-  "custom-elements": "./custom-elements.json",
+  "keywords": [
+    "web-components",
+    "custom-elements"
+  ],
   "customElements": "./custom-elements.json",
-  "web-types": "./web-types.json"
+  "web-types": "./web-types.json",
+  "homepage": "https://godown.js.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/startracex/godown.git",
+    "directory": "packages/godown"
+  },
+  "author": "startracex",
+  "license": "MIT"
 }

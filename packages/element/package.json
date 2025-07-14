@@ -3,20 +3,11 @@
   "version": "1.11.0",
   "description": "Component base class for godown",
   "type": "module",
-  "main": "index.js",
   "scripts": {
     "check-types": "tsc --noEmit",
     "clean": "tsc --build --clean",
     "build": "tsc"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/startracex/godown.git",
-    "directory": "packages/element"
-  },
-  "keywords": [],
-  "author": "startracex",
-  "license": "MIT",
   "dependencies": {
     "lit": "catalog:",
     "sharekit": "^1.1.0",
@@ -29,5 +20,16 @@
     "**/*.{d.ts,js}+(|.map)",
     "src",
     "tsconfig.json"
-  ]
+  ],
+  "keywords": [
+    "custom-elements",
+    "web-components"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/startracex/godown.git",
+    "directory": "packages/element"
+  },
+  "author": "startracex",
+  "license": "MIT"
 }
