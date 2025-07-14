@@ -1,3 +1,0 @@
-# sharekit
-
-Shareable utility toolkit.

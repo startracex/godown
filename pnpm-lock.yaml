@@ -148,8 +148,8 @@ importers:
         specifier: 'catalog:'
         version: 3.3.0
       sharekit:
-        specifier: workspace:^
-        version: link:../sharekit
+        specifier: ^0.3.0
+        version: 0.3.0
       tslib:
         specifier: 'catalog:'
         version: 2.8.1
@@ -190,8 +190,6 @@ importers:
       react:
         specifier: ^19.1.0
         version: 19.1.0
-
-  packages/sharekit: {}
 
   packages/template-extractor:
     devDependencies:
@@ -2517,6 +2515,9 @@ packages:
     resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
     engines: {node: '>=10'}
     hasBin: true
+
+  sharekit@0.3.0:
+    resolution: {integrity: sha512-EFEEIkjdpURKnkO80G1Sr6WFn7KoP4OTIPb8uDYDepSX46EXm4NnDTnPnKTDS/Ove5Qsqb4JZP2Ppy/JluWaIA==}
 
   shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
@@ -4895,6 +4896,8 @@ snapshots:
       semver: 7.7.2
 
   semver@7.7.2: {}
+
+  sharekit@0.3.0: {}
 
   shebang-command@2.0.0:
     dependencies:
