@@ -1,5 +1,5 @@
 export * from "./css.js";
-export * from "./dom.js";
+export * from "./deep-query.js";
 export * from "./events.js";
 export * from "./icon-set.js";
 export * from "./observers.js";

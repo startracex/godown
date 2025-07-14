@@ -6,27 +6,27 @@ import { combineToken } from "./token-list.js";
 
 const noAttribute = (value: any): boolean => isNullable(value) || value === false;
 
-export function updateAttribute(this: Element, name: string, value: any): void {
+export const updateAttribute = (el: Element, name: string, value: any): void => {
   if (noAttribute(value)) {
-    this.removeAttribute(name);
+    el.removeAttribute(name);
   } else if (value === true) {
-    this.setAttribute(name, "");
+    el.setAttribute(name, "");
   } else if (isString(value) || (isNumber(value) && !Number.isNaN(value))) {
-    this.setAttribute(name, String(value));
+    el.setAttribute(name, String(value));
   } else {
-    this[name] = value;
+    el[name] = value;
   }
-}
+};
 
 type DirectiveParams = Record<string, any>;
 
 class AttrDirective extends Directive {
-  render(value: DirectiveParams, caller?: (this: Element, name: string, value: any) => void): void {}
+  render(value: DirectiveParams, caller?: (element: Element, name: string, value: any) => void): void {}
 
   update(part: ElementPart, [value, fn = updateAttribute]: Parameters<this["render"]>): symbol {
     if (value && part.type === PartType.ELEMENT) {
       for (const name in value) {
-        fn.call(part.element, name, value[name]);
+        fn(part.element, name, value[name]);
       }
     }
     return noChange;
@@ -41,7 +41,7 @@ class AttrDirective extends Directive {
  */
 export const attr: (
   value: DirectiveParams,
-  caller?: (this: Element, name: string, value: any) => void,
+  caller?: (element: Element, name: string, value: any) => void,
 ) => DirectiveResult<typeof AttrDirective> = directive(AttrDirective);
 
 export const attrToString = (a: DirectiveParams): string =>
