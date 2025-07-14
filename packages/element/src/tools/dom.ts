@@ -1,8 +1,7 @@
-export function deepQuerySelectorAll<E extends Element = HTMLElement>(
-  this: any,
+export const deepQuerySelectorAll = <E extends Element = HTMLElement>(
   selectors: string,
-  root: E | ParentNode = this,
-): E[] {
+  root: ParentNode,
+): E[] => {
   if (!root || !selectors) {
     return [];
   }
@@ -19,13 +18,12 @@ export function deepQuerySelectorAll<E extends Element = HTMLElement>(
   }
 
   return Array.from(result);
-}
+};
 
-export function deepQuerySelector<E extends Element = HTMLElement>(
-  this: any,
+export const deepQuerySelector = <E extends Element = HTMLElement>(
   selectors: string,
-  root: E | ParentNode = this,
-): E | null {
+  root: ParentNode,
+): E | null => {
   if (!root || !selectors) {
     return null;
   }
@@ -50,4 +48,4 @@ export function deepQuerySelector<E extends Element = HTMLElement>(
     }
   }
   return null;
-}
+};
