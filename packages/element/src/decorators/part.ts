@@ -11,6 +11,4 @@ import { selectPart } from "../tools/css.js";
  */
 export const queryPart = (partName: string, cache = true): QueryDecorator => query(selectPart(partName), cache);
 
-export default queryPart;
-
 export { queryPart as part };

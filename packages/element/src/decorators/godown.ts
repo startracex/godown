@@ -24,5 +24,3 @@ export const godown =
       ...option,
     })(constructor);
   };
-
-export default godown;

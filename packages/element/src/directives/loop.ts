@@ -17,5 +17,3 @@ export function* loop<T>(len: number, fn: (index?: number) => T, reverse?: boole
     }
   }
 }
-
-export default loop;

@@ -34,5 +34,3 @@ export const component = ({ tagName, styles: s, autoDefine = false, registry = c
     registry.define(tagName, constructor);
   }
 };
-
-export default component;

@@ -36,5 +36,3 @@ export class StyleController implements ReactiveController {
     this.styleID = sheets.push(toStyleSheet(styleResult)) - 1;
   }
 }
-
-export default StyleController;

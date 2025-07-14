@@ -112,5 +112,3 @@ export class Observers {
     });
   }
 }
-
-export default Observers;

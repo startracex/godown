@@ -19,5 +19,3 @@ export const htmlStyle = (style?: string | Record<string, any>, media?: string):
     ? html`<style media="${media || nothing}">${styleString}</style>`
     : nothing;
 };
-
-export default htmlStyle;

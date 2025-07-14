@@ -9,5 +9,3 @@ import { html, nothing, type TemplateResult } from "lit";
  */
 export const htmlSlot = (name?: string, placeholder?: any): TemplateResult<1> =>
   html`<slot name="${name || nothing}">${placeholder || nothing}</slot>`;
-
-export default htmlSlot;

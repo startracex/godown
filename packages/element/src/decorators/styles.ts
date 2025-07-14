@@ -25,5 +25,3 @@ export const styles = (...s: LitStyles[]) => {
     constructor.styles = [...protoStyles, ...s];
   };
 };
-
-export default styles;

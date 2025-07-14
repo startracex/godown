@@ -38,5 +38,3 @@ export class GodownConfig {
     this.registry.upgrade(root);
   }
 }
-
-export default GodownConfig;

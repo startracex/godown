@@ -67,5 +67,3 @@ export class IconSet<F extends (...args: any) => any> {
     }
   }
 }
-
-export default IconSet;

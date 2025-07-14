@@ -72,5 +72,3 @@ export class Events {
     this.inner.clear();
   }
 }
-
-export default Events;

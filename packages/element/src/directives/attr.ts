@@ -68,5 +68,3 @@ export const withInitials =
 
 export const svgAttr: (a: DirectiveParams) => DirectiveResult<typeof AttrDirective> = withInitials(attr, svgInitials);
 export const svgAttrToString: (a: DirectiveParams) => string = withInitials(attrToString, svgInitials);
-
-export default attr;

@@ -35,8 +35,6 @@ export const tokenList = (...args: TokenListItem[]): string =>
     return combineToken(acc, cur);
   }, "");
 
-export default tokenList;
-
 const splitTokenRegexp = /\s+/;
 
 export const clean = (str: string): string => {

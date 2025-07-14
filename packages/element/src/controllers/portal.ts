@@ -70,5 +70,3 @@ export class PortalController<E extends HTMLElement = HTMLElement> implements Re
     }
   }
 }
-
-export default PortalController;

@@ -313,5 +313,3 @@ export class GodownElement extends LitElement {
     this.dispatchEvent(new CustomEvent(type, { detail, composed: true, ...options }));
   }
 }
-
-export default GodownElement;
