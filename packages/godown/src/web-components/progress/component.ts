@@ -1,6 +1,7 @@
-import { attr, godown, isNullable, Ranger, styles } from "@godown/element";
+import { attr, godown, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
+import { isNullable, Ranger } from "sharekit";
 
 import { GlobalStyle, cssGlobalVars } from "../../internal/global-style.js";
 

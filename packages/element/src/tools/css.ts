@@ -1,6 +1,16 @@
 import { type CSSResult, unsafeCSS } from "lit";
 
-import { type Entry, isNullable, isObject, isString, toEntries } from "./lib.js";
+import { isArray, isNullable, isObject, isString } from "sharekit";
+
+type Entry<K = PropertyKey, V = any> = Record<K extends PropertyKey ? K : PropertyKey, V> | [K, V][];
+
+function* toEntries<K, V>(o: Entry<K, V>): Generator<[K, V], void, void> {
+  for (const e of isArray(o) ? o : (Object.entries(o) as [K, V][])) {
+    if (e) {
+      yield e;
+    }
+  }
+}
 
 type LikeString = string | { toString(): string };
 

@@ -1,6 +1,7 @@
-import { attr, godown, htmlSlot, omit, styles } from "@godown/element";
+import { attr, godown, htmlSlot, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
+import { omit } from "sharekit";
 
 import { GlobalStyle, cssGlobalVars } from "../../internal/global-style.js";
 

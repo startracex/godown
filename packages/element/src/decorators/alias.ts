@@ -1,4 +1,27 @@
-import { createDecorator, type ExperimentalDecorator, type StandardDecorator } from "sharekit";
+import { isObject } from "sharekit";
+
+type ExperimentalDecorator<T> = (target?: T, name?: PropertyKey, descriptor?: PropertyDescriptor) => void | any;
+
+type StandardDecorator<T> = (
+  target?: T | ClassAccessorDecoratorTarget<T, any> | undefined,
+  context?: DecoratorContext,
+) => void | ClassAccessorDecoratorResult<T, any> | any;
+
+const createDecorator = <
+  T = any,
+  E extends ExperimentalDecorator<any> = ExperimentalDecorator<T>,
+  S extends StandardDecorator<any> = StandardDecorator<T>,
+>(
+  experimental: E,
+  standard: S,
+): E & S => {
+  return ((target: any, keyOrContext: PropertyKey | DecoratorContext, descriptor?: PropertyDescriptor) => {
+    if (!isObject(keyOrContext)) {
+      return experimental(target, keyOrContext, descriptor);
+    }
+    return standard(target, keyOrContext);
+  }) as any;
+};
 
 const resolve = (value, defaults) => {
   if (value) {
@@ -54,7 +77,7 @@ export const alias = <T, K extends keyof T = any>(
   aliasForKey: K,
   descriptor: AliasDecorator<T, K> = {},
 ): ExperimentalDecorator<T> & StandardDecorator<T> =>
-  createDecorator<-1, T>((proto, propertyKey) => {
+  createDecorator<T>((proto, propertyKey) => {
     Object.defineProperty(proto, aliasForKey, getAliasDescriptor(propertyKey, descriptor as PropertyDescriptor));
   }, () => getAliasDescriptor(aliasForKey, descriptor as PropertyDescriptor));
 

@@ -1,8 +1,9 @@
-import { attr, godown, htmlSlot, Ranger, styles } from "@godown/element";
+import { attr, godown, htmlSlot, styles } from "@godown/element";
 import { type PropertyValueMap, type TemplateResult, css, html } from "lit";
 import { property, query, state } from "lit/decorators.js";
 
 import { GlobalStyle, scopePrefix } from "../../internal/global-style.js";
+import { Ranger } from "sharekit";
 
 const protoName = "typewriter";
 const cssScope = scopePrefix(protoName);

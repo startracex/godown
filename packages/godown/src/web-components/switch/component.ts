@@ -1,10 +1,11 @@
-import { attr, godown, omit, styles } from "@godown/element";
+import { attr, godown, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
 import { SuperInput } from "../../internal/super-input.js";
 import { ringTypeAttribute } from "../../internal/ring.js";
+import { omit } from "sharekit";
 
 const protoName = "switch";
 const cssScope = scopePrefix(protoName);

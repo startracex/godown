@@ -2,7 +2,8 @@ import { LitElement, type PropertyDeclaration, type PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 
 import { GodownConfig } from "./config.js";
-import { deepQuerySelector, deepQuerySelectorAll, Events, isSymbol, Observers, Timeouts } from "./tools/index.js";
+import { deepQuerySelector, deepQuerySelectorAll, Events, Observers, Timeouts } from "./tools/index.js";
+import { isSymbol } from "sharekit/is.js";
 
 export const attributeName = (property: PropertyKey, { attribute }: PropertyDeclaration): string | undefined => {
   if (attribute === true || attribute === undefined) {

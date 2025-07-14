@@ -1,4 +1,4 @@
-import { toDash } from "sharekit";
+import { dash } from "sharekit";
 import type { GodownElement } from "../element.js";
 import { component } from "./component.js";
 
@@ -14,7 +14,7 @@ import { component } from "./component.js";
 export const godown =
   (name?: string, option?: Omit<Parameters<typeof component>[0], "tagName">) =>
   (constructor: typeof GodownElement): void => {
-    name ||= toDash(constructor.name);
+    name ||= dash(constructor.name);
     constructor.protoName = name;
 
     const tagName = constructor.godownConfig.tag(name);

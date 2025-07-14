@@ -1,7 +1,7 @@
 import { noChange } from "lit";
 import { Directive, directive, type DirectiveResult, type ElementPart, PartType } from "lit/directive.js";
 
-import { isNullable, isNumber, isString } from "../tools/lib.js";
+import { isNullable, isNumber, isString } from "sharekit";
 import { combineToken } from "./token-list.js";
 
 const noAttribute = (value: any): boolean => isNullable(value) || value === false;

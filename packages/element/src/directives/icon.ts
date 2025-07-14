@@ -1,7 +1,7 @@
 import { html, svg, type TemplateResult } from "lit";
 
-import { isString } from "../tools/lib.js";
 import { svgAttr } from "./attr.js";
+import { isString } from "sharekit/is.js";
 
 export const icon =
   (viewBox: string | (string | number)[]) =>

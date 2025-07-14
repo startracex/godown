@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "lit": "catalog:",
-    "sharekit": "^0.3.0",
+    "sharekit": "^1.1.0",
     "tslib": "catalog:"
   },
   "publishConfig": {

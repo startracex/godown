@@ -1,4 +1,4 @@
-import { toDash } from "sharekit";
+import { dash } from "sharekit";
 
 const separator = "-";
 
@@ -16,7 +16,7 @@ export class GodownConfig {
   }
 
   tag(origin: string): string {
-    return toDash(this.prefix + separator + origin + separator + this.suffix);
+    return dash(this.prefix + separator + origin + separator + this.suffix);
   }
 
   define(name: string, constructor: CustomElementConstructor, options?: ElementDefinitionOptions): void {

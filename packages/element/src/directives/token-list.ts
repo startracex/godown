@@ -1,4 +1,4 @@
-import { isArray, isObject } from "../tools/lib.js";
+import { isArray, isObject } from "sharekit";
 import type { attr } from "./attr.js";
 
 export const combineToken = (a: string, b: string): string => (a ? a + (b ? " " + b : "") : b) || "";

@@ -1,6 +1,7 @@
-import { declareLightDarkColors, GodownElement, joinDeclarations, joinRules, toVar, trim } from "@godown/element";
+import { declareLightDarkColors, GodownElement, joinDeclarations, joinRules, toVar } from "@godown/element";
 import { type CSSResult, css, unsafeCSS } from "lit";
 import { resetStyle } from "./reset-style.js";
+import { trim } from "sharekit";
 
 export class GlobalStyle extends GodownElement {}
 

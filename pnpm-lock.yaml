@@ -148,8 +148,8 @@ importers:
         specifier: 'catalog:'
         version: 3.3.0
       sharekit:
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^1.1.0
+        version: 1.1.0
       tslib:
         specifier: 'catalog:'
         version: 2.8.1
@@ -168,6 +168,9 @@ importers:
       lit:
         specifier: 'catalog:'
         version: 3.3.0
+      sharekit:
+        specifier: ^1.1.0
+        version: 1.1.0
 
   packages/minify-html-parts:
     dependencies:
@@ -2516,8 +2519,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  sharekit@0.3.0:
-    resolution: {integrity: sha512-EFEEIkjdpURKnkO80G1Sr6WFn7KoP4OTIPb8uDYDepSX46EXm4NnDTnPnKTDS/Ove5Qsqb4JZP2Ppy/JluWaIA==}
+  sharekit@1.1.0:
+    resolution: {integrity: sha512-T9qFdHInkrGUjyYQk5BVZaFZDd9ekaaWn2aGQDR9xZVkSmuHQFbKEnIrCO5ExvyEMtVCK3MJXVwOmFvhxBfPYg==}
 
   shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
@@ -4897,7 +4900,7 @@ snapshots:
 
   semver@7.7.2: {}
 
-  sharekit@0.3.0: {}
+  sharekit@1.1.0: {}
 
   shebang-command@2.0.0:
     dependencies:

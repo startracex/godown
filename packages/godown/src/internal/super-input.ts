@@ -1,6 +1,7 @@
-import { type HandlerEvent, htmlSlot, omit, queryPart, styles } from "@godown/element";
+import { type HandlerEvent, htmlSlot, queryPart, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
+import { omit } from "sharekit";
 
 import { GlobalStyle } from "./global-style.js";
 import { ringTypeAttribute, type RingType } from "./ring.js";

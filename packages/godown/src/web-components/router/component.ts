@@ -1,6 +1,7 @@
-import { Router as Mux, godown, htmlSlot, omit, parseParams, styles } from "@godown/element";
+import { godown, htmlSlot, styles } from "@godown/element";
 import { type PropertyValueMap, type TemplateResult, css } from "lit";
 import { property, state } from "lit/decorators.js";
+import { Router as Mux, omit } from "sharekit";
 
 import { GlobalStyle } from "../../internal/global-style.js";
 
@@ -76,12 +77,7 @@ class Router extends GlobalStyle {
   /**
    * Dynamic parameters record.
    */
-  get params(): Record<string, string> {
-    if (!this.path) {
-      return {};
-    }
-    return parseParams(this.pathname, this.path);
-  }
+  params?: Record<string, string>;
 
   /**
    * Value of matched path in routes.
@@ -198,7 +194,11 @@ class Router extends GlobalStyle {
    * Get component from {@linkcode routes} by query.
    */
   fieldComponent(query?: string): unknown {
-    query ||= this.__fieldRoute.search(this.pathname)?.pattern;
+    if (!query) {
+      const mux = this.__fieldRoute.search(this.pathname);
+      this.params = mux.params(this.pathname);
+      query = mux.pattern;
+    }
     this.path = query;
 
     if (!query) {
@@ -222,7 +222,11 @@ class Router extends GlobalStyle {
    */
   slottedComponent(query?: string): TemplateResult<1> {
     const slottedPaths = this._slottedNames;
-    query ||= this.__slottedRoute.search(this.pathname)?.pattern;
+    if (!query) {
+      const mux = this.__fieldRoute.search(this.pathname);
+      this.params = mux.params(this.pathname);
+      query = mux.pattern;
+    }
     this.path = query;
 
     if (!query) {

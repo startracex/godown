@@ -1,10 +1,11 @@
-import { type HandlerEvent, attr, tokenList, godown, styles, loop, omit, StyleController } from "@godown/element";
+import { type HandlerEvent, attr, tokenList, godown, styles, loop, StyleController } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import { cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
 import { SuperInput } from "../../internal/super-input.js";
 import { RingBuilder, ringTypeAttribute } from "../../internal/ring.js";
+import { omit } from "sharekit";
 
 const protoName = "split";
 const cssScope = scopePrefix(protoName);

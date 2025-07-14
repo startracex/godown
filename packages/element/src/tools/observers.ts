@@ -1,4 +1,4 @@
-import type { Constructor } from "./lib.js";
+import type { Constructor } from "sharekit";
 
 interface SomeObservers {
   target: Node | Element;

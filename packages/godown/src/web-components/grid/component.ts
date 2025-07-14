@@ -1,6 +1,7 @@
-import { attr, godown, htmlSlot, htmlStyle, isNumerical, joinRules, styles } from "@godown/element";
+import { attr, godown, htmlSlot, htmlStyle, joinRules, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
+import { isNumerical } from "sharekit";
 
 import { GlobalStyle } from "../../internal/global-style.js";
 
