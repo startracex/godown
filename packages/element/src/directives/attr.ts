@@ -1,8 +1,6 @@
 import { noChange } from "lit";
 import { Directive, directive, type DirectiveResult, type ElementPart, PartType } from "lit/directive.js";
-
 import { isNullable, isNumber, isString } from "sharekit";
-import { combineToken } from "./token-list.js";
 
 const noAttribute = (value: any): boolean => isNullable(value) || value === false;
 
@@ -44,14 +42,6 @@ export const attr: (
   caller?: (element: Element, name: string, value: any) => void,
 ) => DirectiveResult<typeof AttrDirective> = directive(AttrDirective);
 
-export const attrToString = (a: DirectiveParams): string =>
-  Object.entries(a).reduce((acc, [key, value]) => {
-    if (noAttribute(value)) {
-      return acc;
-    }
-    return combineToken(acc, key + (value === true ? "" : `="${value}"`));
-  }, "");
-
 const svgInitials = {
   width: "1em",
   height: "1em",
@@ -67,4 +57,3 @@ export const withInitials =
     });
 
 export const svgAttr: (a: DirectiveParams) => DirectiveResult<typeof AttrDirective> = withInitials(attr, svgInitials);
-export const svgAttrToString: (a: DirectiveParams) => string = withInitials(attrToString, svgInitials);
