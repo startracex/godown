@@ -6,14 +6,8 @@ export class GodownConfig {
   assign: null | Record<PropertyKey, any> = null;
   prefix = "godown";
   suffix = "";
-  components: Map<string, CustomElementConstructor> = new Map<string, CustomElementConstructor>();
+  components: Map<string, CustomElementConstructor> = new Map();
   registry: CustomElementRegistry = customElements;
-
-  constructor(init?: Partial<GodownConfig & Record<PropertyKey, any>>) {
-    if (init) {
-      Object.assign(this, init);
-    }
-  }
 
   tag(origin: string): string {
     return dash(this.prefix + separator + origin + separator + this.suffix);
