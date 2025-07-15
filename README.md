@@ -68,10 +68,6 @@ pnpm run build
 
 - `cem-fix-module` Fix custom-element-manifest's module paths.
 
-- `rollup-plugin-cjs-shim` Rollup plugin to shim CJS modules.
-
-- `rollup-plugin-prune-imports` Rollup plugin to prune module imports.
-
 - `rollup-plugin-template-replace` Rollup plugin with template-extractor.
 
 - `rollup-plugin-minify-html-parts` Rollup plugin with minify-html-parts.

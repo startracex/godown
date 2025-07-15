@@ -208,12 +208,6 @@ importers:
 
   plugins/cem-fix-module: {}
 
-  plugins/rollup-cjs-shim:
-    dependencies:
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
-
   plugins/rollup-minify-html-parts:
     dependencies:
       '@rollup/pluginutils':
@@ -222,15 +216,6 @@ importers:
       minify-html-parts:
         specifier: workspace:^
         version: link:../../packages/minify-html-parts
-
-  plugins/rollup-prune-imports:
-    dependencies:
-      '@rollup/pluginutils':
-        specifier: ^5.2.0
-        version: 5.2.0(rollup@4.44.2)
-      magic-string:
-        specifier: ^0.30.17
-        version: 0.30.17
 
   plugins/rollup-template-replace:
     dependencies:
