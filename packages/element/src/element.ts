@@ -1,9 +1,9 @@
-import { LitElement, type PropertyDeclaration, type PropertyValues } from "lit";
+import { LitElement, type PropertyDeclaration } from "lit";
 import { property } from "lit/decorators.js";
+import { isSymbol } from "sharekit/is.js";
 
 import { GodownConfig } from "./config.js";
 import { deepQuerySelector, deepQuerySelectorAll, Events, Observers, Timeouts } from "./tools/index.js";
-import { isSymbol } from "sharekit/is.js";
 
 export const attributeName = (property: PropertyKey, { attribute }: PropertyDeclaration): string | undefined => {
   if (attribute === true || attribute === undefined) {
@@ -256,20 +256,6 @@ export class GodownElement extends LitElement {
     this.events.removeAll();
     this.observers.removeAll();
     this.timeouts.removeAll();
-  }
-
-  mount(arg?: PropertyValues): void {
-    this.firstUpdated(arg);
-  }
-
-  unmount(): void {
-    this.disconnectedCallback();
-  }
-
-  remount(arg?: PropertyValues): void {
-    this.unmount();
-    this.connectedCallback();
-    this.mount(arg);
   }
 
   /**
