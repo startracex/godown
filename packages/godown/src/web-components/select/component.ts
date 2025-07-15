@@ -1,7 +1,7 @@
-import { type HandlerEvent, attr, godown, htmlSlot, queryPart, styles } from "@godown/element";
+import { type HandlerEvent, attr, godown, htmlSlot, styles } from "@godown/element";
 import svgCaretDown from "../../internal/icons/caret-down.js";
 import { type TemplateResult, css, html, nothing } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 
 import Input from "../input/component.js";
 import { hidePopover, showPopover } from "../../internal/popover.js";
@@ -80,7 +80,7 @@ class Select extends Input {
     label?: string;
   }[] = [];
 
-  @queryPart("popover")
+  @query("[part=popover]")
   _popover: HTMLElement;
 
   protected lastChecked: HTMLElement;

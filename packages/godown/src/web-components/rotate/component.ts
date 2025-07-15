@@ -1,7 +1,8 @@
-import { godown, htmlSlot, queryPart, styles } from "@godown/element";
+import { godown, htmlSlot, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 
 import { GlobalStyle, scopePrefix } from "../../internal/global-style.js";
+import { query } from "lit/decorators.js";
 
 const protoName = "rotate";
 const cssScope = scopePrefix(protoName);
@@ -41,7 +42,7 @@ const cssScope = scopePrefix(protoName);
   }
 `)
 class Rotate extends GlobalStyle {
-  @queryPart("root")
+  @query("[part=root]")
   protected _root: HTMLElement;
 
   protected render(): TemplateResult<1> {

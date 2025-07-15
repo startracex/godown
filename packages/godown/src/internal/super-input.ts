@@ -1,6 +1,6 @@
-import { type HandlerEvent, htmlSlot, queryPart, styles } from "@godown/element";
+import { type HandlerEvent, htmlSlot, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { omit } from "sharekit";
 
 import { GlobalStyle } from "./global-style.js";
@@ -53,7 +53,7 @@ class SuperInput<V = string> extends GlobalStyle {
   @property()
   default: any;
 
-  @queryPart("input")
+  @query("[part=input]")
   protected _input: HTMLInputElement;
 
   /**

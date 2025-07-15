@@ -1,7 +1,7 @@
-import { attr, godown, queryPart, styles, StyleController, htmlSlot } from "@godown/element";
+import { attr, godown, styles, StyleController, htmlSlot } from "@godown/element";
 import iconEyeSlash from "../../internal/icons/eye-slash.js";
 import { type TemplateResult, css, html, nothing } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 
 import { cssGlobalVars } from "../../internal/global-style.js";
 import { SuperInput } from "../../internal/super-input.js";
@@ -92,7 +92,7 @@ class Input extends SuperInput {
   @property()
   variant: "default" | "outline" = "default";
 
-  @queryPart("input")
+  @query("[part=input]")
   protected _input: HTMLInputElement;
 
   constructor() {

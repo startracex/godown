@@ -1,6 +1,6 @@
-import { type HandlerEvent, godown, htmlSlot, queryPart, styles } from "@godown/element";
+import { type HandlerEvent, godown, htmlSlot, styles } from "@godown/element";
 import { type PropertyValues, type TemplateResult, css, html } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 
 import GlobalStyle, { scopePrefix } from "../../internal/global-style.js";
 
@@ -58,7 +58,7 @@ class Dialog extends GlobalStyle {
    */
   private __modalInvoke = false;
 
-  @queryPart("dialog")
+  @query("[part=dialog]")
   protected _dialog: HTMLDialogElement;
 
   protected render(): TemplateResult<1> {

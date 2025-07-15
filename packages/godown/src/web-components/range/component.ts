@@ -1,7 +1,7 @@
-import { attr, tokenList, godown, loop, queryPart, styles } from "@godown/element";
+import { attr, tokenList, godown, loop, styles } from "@godown/element";
 import { isNullable, omit, Ranger } from "sharekit";
 import { type TemplateResult, css, html } from "lit";
-import { property, queryAll, state } from "lit/decorators.js";
+import { property, query, queryAll, state } from "lit/decorators.js";
 import { styleMap } from "lit/directives/style-map.js";
 
 import { cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
@@ -152,7 +152,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
   @property({ type: Array })
   default: V;
 
-  @queryPart("root")
+  @query("[part=root]")
   protected _root: HTMLElement;
 
   @queryAll("[part=handle]")

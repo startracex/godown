@@ -1,8 +1,8 @@
-import { attr, godown, htmlSlot, queryPart, styles } from "@godown/element";
+import { attr, godown, htmlSlot, styles } from "@godown/element";
 import iconCaretLeft from "../../internal/icons/caret-left.js";
 import iconCaretRight from "../../internal/icons/caret-right.js";
 import { type TemplateResult, css, html } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 
 import { GlobalStyle } from "../../internal/global-style.js";
 
@@ -80,7 +80,7 @@ class Carousel extends GlobalStyle {
   @property({ type: Number })
   autoChange = 0;
 
-  @queryPart("move-root")
+  @query("[part=move-root]")
   protected _moveRoot: HTMLElement;
 
   intervalID: number;
