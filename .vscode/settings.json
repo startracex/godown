@@ -15,8 +15,7 @@
     },
     "**/*.js": {
       "when": "$(basename).d.ts"
-    },
-    "legacy": true
+    }
   },
   "[typescript]": {
     "editor.defaultFormatter": "dprint.dprint"

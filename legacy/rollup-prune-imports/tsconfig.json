@@ -1,3 +1,0 @@
-{
-  "extends": "@godown/tsconfig/plugin.json"
-}

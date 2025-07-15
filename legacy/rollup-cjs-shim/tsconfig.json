@@ -1,6 +1,0 @@
-{
-  "extends": "@godown/tsconfig/plugin.json",
-  "include": [
-    "index.ts"
-  ]
-}
