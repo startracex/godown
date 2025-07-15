@@ -1,7 +1,7 @@
 {
   "extends": "@godown/tsconfig/base.json",
   "compilerOptions": {
-    "outDir": ".",
+    "outDir": "build",
     "rootDir": "src",
     "types": []
   },

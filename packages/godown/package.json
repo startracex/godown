@@ -19,6 +19,13 @@
   "publishConfig": {
     "access": "public"
   },
+  "exports": {
+    ".": "./build/index.js",
+    "./src/*": "./src/*",
+    "./*.json": "./*.json",
+    "./*.js": "./build/*.js",
+    "./*": "./build/*.js"
+  },
   "files": [
     "**/*.{js,d.ts}+(|.map)",
     "custom-elements.json",

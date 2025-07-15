@@ -25,7 +25,7 @@
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
     "isolatedDeclarations": true,
-    "outDir": ".",
+    "outDir": "build",
     "rootDir": "src"
   },
   "include": ["src"],
