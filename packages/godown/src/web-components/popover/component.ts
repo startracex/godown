@@ -1,7 +1,7 @@
 import { property } from "lit/decorators.js";
 import GlobalStyle from "../../internal/global-style.js";
 import { css, html, type PropertyValues, type TemplateResult } from "lit";
-import { godown, htmlSlot, joinRules, part, StyleController, styles } from "@godown/element";
+import { godown, htmlSlot, part, StyleController, styles } from "@godown/element";
 import { hidePopover, showPopover } from "../../internal/popover.js";
 
 const POPOVER = "popover";
@@ -83,7 +83,7 @@ class Popover extends GlobalStyle {
   constructor() {
     super();
     new StyleController(this, () => {
-      return joinRules({
+      return {
         "[part=root],slot:not([name])::slotted(*)": {
           "anchor-name": this.anchorName,
         },
@@ -91,7 +91,7 @@ class Popover extends GlobalStyle {
           "position-anchor": this.anchorName,
           "position-area": this.resolveArea(),
         },
-      });
+      };
     });
   }
   protected render(): TemplateResult<1> {

@@ -1,4 +1,3 @@
-import { toVar } from "@godown/element";
 import { cssGlobalVars } from "./global-style.js";
 import { unsafeCSS, type CSSResult } from "lit";
 
@@ -34,8 +33,8 @@ export class RingBuilder {
 
   constructor({
     selector = ":host",
-    width = toVar(cssGlobalVars.ringWidth),
-    color = toVar(cssGlobalVars.ringColor),
+    width = cssGlobalVars.ringWidth.toVar(),
+    color = cssGlobalVars.ringColor.toVar(),
     type,
   }: OutlineOptions = {}) {
     if (type && type in ringMap) {

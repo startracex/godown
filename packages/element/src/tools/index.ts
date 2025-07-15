@@ -1,4 +1,3 @@
-export * from "./css.js";
 export * from "./deep-query.js";
 export * from "./events.js";
 export * from "./icon-set.js";

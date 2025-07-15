@@ -1,7 +1,8 @@
-import { attr, tokenList, godown, joinDeclarations, loop, queryPart, styles } from "@godown/element";
+import { attr, tokenList, godown, loop, queryPart, styles } from "@godown/element";
 import { isNullable, omit, Ranger } from "sharekit";
 import { type TemplateResult, css, html } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
+import { styleMap } from "lit/directives/style-map.js";
 
 import { cssGlobalVars, scopePrefix } from "../../internal/global-style.js";
 import { SuperInput } from "../../internal/super-input.js";
@@ -208,13 +209,15 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
         part="root"
         ${attr(this.observedRecord)}
         @mousedown="${this.disabled ? null : this._handleMousedownRoot}"
-        style="${joinDeclarations([
-          ["--from", `${((from - this.min) / gap) * 100}%`],
-          ["--to", `${((to - this.min) / gap) * 100}%`],
-          ...rangeValue.map(
-            (value, index) => [`--handle-${index}`, `${((value - this.min) / gap) * 100}%`] as [string, string],
-          ),
-        ])}"
+        style="${styleMap(
+          Object.fromEntries([
+            ["--from", `${((from - this.min) / gap) * 100}%`],
+            ["--to", `${((to - this.min) / gap) * 100}%`],
+            ...rangeValue.map(
+              (value, index) => [`--handle-${index}`, `${((value - this.min) / gap) * 100}%`] as [string, string],
+            ),
+          ]),
+        )}"
       >
         <div part="track"></div>
         ${loop(this.rangeValue.length, (index) => this._renderHandle(index))}
@@ -232,7 +235,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
         tabindex="0"
         part="${tokenList("handle", `handle-${index}`)}"
         @mousedown="${disabled ? null : this.createMouseDown(index)}"
-        style="${joinDeclarations({
+        style="${styleMap({
           "z-index": this.__focusStack.indexOf(index) + 1,
           "--handle": `var(--${end ? "to" : `handle-${index}`})`,
         })}"

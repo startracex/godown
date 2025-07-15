@@ -1,4 +1,4 @@
-import { declareLightDarkColors, GodownElement, joinDeclarations, joinRules, toVar } from "@godown/element";
+import { GodownElement } from "@godown/element";
 import { type CSSResult, css, unsafeCSS } from "lit";
 import { resetStyle } from "./reset-style.js";
 import { trim } from "sharekit";
@@ -9,27 +9,31 @@ export default GlobalStyle;
 
 const cssvar = trim(GlobalStyle.godownConfig.prefix, "-");
 
-export function scopePrefix(scope: string, len = 1): CSSResult {
+type CSSResult_Var = CSSResult & { toVar: () => CSSResult };
+
+export function scopePrefix(scope: string, len = 1): CSSResult_Var {
   return variablePrefix(cssvar + "-".repeat(len) + scope);
 }
 
-export function variablePrefix(variable: string): CSSResult {
-  return unsafeCSS(`--${variable}`);
+export function variablePrefix(variable: string): CSSResult_Var {
+  const v = unsafeCSS(`--${variable}`) as CSSResult_Var;
+  v.toVar = () => unsafeCSS(`var(${v})`);
+  return v;
 }
 
 export const cssGlobalVars: {
-  backgroundClip: CSSResult;
-  active: CSSResult;
-  passive: CSSResult;
-  input: CSSResult;
-  radius: CSSResult;
-  ringWidth: CSSResult;
-  ringColor: CSSResult;
-  background: CSSResult;
-  foreground: CSSResult;
-  primaryBackground: CSSResult;
-  primaryForeground: CSSResult;
-  muted: CSSResult;
+  backgroundClip: CSSResult_Var;
+  active: CSSResult_Var;
+  passive: CSSResult_Var;
+  input: CSSResult_Var;
+  radius: CSSResult_Var;
+  ringWidth: CSSResult_Var;
+  ringColor: CSSResult_Var;
+  background: CSSResult_Var;
+  foreground: CSSResult_Var;
+  primaryBackground: CSSResult_Var;
+  primaryForeground: CSSResult_Var;
+  muted: CSSResult_Var;
 } = {
   background: scopePrefix("background", 2),
   foreground: scopePrefix("foreground", 2),
@@ -47,34 +51,34 @@ export const cssGlobalVars: {
 
 GlobalStyle.styles = [
   resetStyle,
-  unsafeCSS(
-    declareLightDarkColors(
-      ":host",
-      [
-        [cssGlobalVars.background, ["hsl(0 0% 96%)", "hsl(0 0% 4%)"]],
-        [cssGlobalVars.foreground, ["hsl(0 0% 4%)", "hsl(0 0% 96%)"]],
-        [cssGlobalVars.muted, ["hsl(0 0% 88%)", "hsl(0 0% 18%)"]],
-      ],
-      1,
-    ),
-  ),
-  unsafeCSS(
-    joinRules({
-      ":host": joinDeclarations([
-        [cssGlobalVars.primaryBackground, toVar(cssGlobalVars.foreground)],
-        [cssGlobalVars.primaryForeground, toVar(cssGlobalVars.background)],
-        [cssGlobalVars.active, toVar(cssGlobalVars.primaryBackground)],
-        [cssGlobalVars.passive, toVar(cssGlobalVars.muted)],
-        [
-          cssGlobalVars.backgroundClip,
-          `linear-gradient(to bottom, ${toVar(cssGlobalVars.foreground)}, ${toVar(cssGlobalVars.muted)})`,
-        ],
-        [cssGlobalVars.ringColor, toVar(cssGlobalVars.passive)],
-        [cssGlobalVars.ringWidth, ".1em"],
-        [cssGlobalVars.radius, ".25em"],
-      ]),
-    }),
-  ),
+  css`
+    @supports (color: light-dark(#fff, #000)) {
+      :host {
+        ${cssGlobalVars.background}: light-dark(hsl(0 0% 96%), hsl(0 0% 4%));
+        ${cssGlobalVars.foreground}: light-dark(hsl(0 0% 4%), hsl(0 0% 96%));
+        ${cssGlobalVars.muted}: light-dark(hsl(0 0% 88%), hsl(0 0% 18%));
+      }
+    }
+    @supports not (color: light-dark(#fff, #000)) {
+      :host {
+        ${cssGlobalVars.background}: hsl(0 0% 4%);
+        ${cssGlobalVars.foreground}: hsl(0 0% 96%);
+        ${cssGlobalVars.muted}: hsl(0 0% 18%);
+      }
+    }
+  `,
+  css`
+    :host {
+      ${cssGlobalVars.primaryBackground}: ${cssGlobalVars.foreground.toVar()};
+      ${cssGlobalVars.primaryForeground}:${cssGlobalVars.background.toVar()};
+      ${cssGlobalVars.active}: ${cssGlobalVars.primaryBackground.toVar()};
+      ${cssGlobalVars.passive}: ${cssGlobalVars.muted.toVar()};
+      ${cssGlobalVars.ringColor}: ${cssGlobalVars.passive.toVar()};
+      ${cssGlobalVars.ringWidth}: .1em;
+      ${cssGlobalVars.radius}: .25em;
+      ${cssGlobalVars.backgroundClip}: linear-gradient(to bottom, ${cssGlobalVars.foreground.toVar()}, ${cssGlobalVars.muted.toVar()});
+    }
+  `,
   css`
     :host([contents]) {
       display: contents;
@@ -97,7 +101,7 @@ GlobalStyle.styles = [
   `,
   css`
     :host {
-      border-radius: var(${cssGlobalVars.radius});
+      border-radius: ${cssGlobalVars.radius.toVar()};
       border-style: none;
       outline-style: none;
     }

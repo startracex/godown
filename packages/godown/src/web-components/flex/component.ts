@@ -1,4 +1,4 @@
-import { attr, godown, htmlSlot, htmlStyle, joinRules, styles } from "@godown/element";
+import { attr, godown, htmlSlot, StyleController, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -54,26 +54,30 @@ class Flex extends GlobalStyle {
   @property({ type: Boolean })
   vertical = false;
 
+  constructor() {
+    super();
+    new StyleController(
+      this,
+      () => ({
+        ":host": {
+          gap: this.gap,
+          "flex-flow": this.flexFlow,
+          "flex-direction": this.vertical && "column",
+          "align-items": this.items,
+          "justify-content": this.content,
+        },
+      }),
+      () => [this.gap, this.flexFlow, this.vertical, this.items, this.content],
+    );
+  }
+
   protected render(): TemplateResult<1> {
     return html`
       <div
         part="root"
         ${attr(this.observedRecord)}
       >
-        ${[
-          htmlSlot(),
-          htmlStyle(
-            joinRules({
-              ":host": {
-                gap: this.gap,
-                "flex-flow": this.flexFlow,
-                "flex-direction": this.vertical && "column",
-                "align-items": this.items,
-                "justify-content": this.content,
-              },
-            }),
-          ),
-        ]}
+        ${htmlSlot()}
       </div>
     `;
   }

@@ -1,4 +1,4 @@
-import { attr, godown, htmlStyle, styles } from "@godown/element";
+import { attr, godown, StyleController, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -108,6 +108,11 @@ class Breath extends GlobalStyle {
   @property({ type: Number })
   duration: number;
 
+  constructor() {
+    super();
+    new StyleController(this, () => this._computeStyle(this.getTexts().length));
+  }
+
   protected render(): TemplateResult<1> {
     const texts = this.getTexts();
     return html`
@@ -115,7 +120,7 @@ class Breath extends GlobalStyle {
         part="root"
         ${attr(this.observedRecord)}
       >
-        ${[texts.map(this._renderText), htmlStyle(this._computeStyle(texts.length))]}
+        ${texts.map(this._renderText)}
       </div>
     `;
   }

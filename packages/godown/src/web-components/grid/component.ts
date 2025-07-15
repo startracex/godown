@@ -1,4 +1,4 @@
-import { attr, godown, htmlSlot, htmlStyle, joinRules, styles } from "@godown/element";
+import { attr, godown, htmlSlot, StyleController, styles } from "@godown/element";
 import { type TemplateResult, css, html } from "lit";
 import { property } from "lit/decorators.js";
 import { isNumerical } from "sharekit";
@@ -61,26 +61,30 @@ class Grid extends GlobalStyle {
   @property()
   items: string;
 
+  constructor() {
+    super();
+    new StyleController(
+      this,
+      () => ({
+        ":host": {
+          gap: this.gap,
+          "grid-template-columns": toTemplate(this.columns),
+          "grid-template-rows": toTemplate(this.rows),
+          "place-content": this.content,
+          "place-items": this.items,
+        },
+      }),
+      () => [this.gap, this.columns, this.rows, this.content, this.items],
+    );
+  }
+
   protected render(): TemplateResult<1> {
     return html`
       <div
         part="root"
         ${attr(this.observedRecord)}
       >
-        ${[
-          htmlSlot(),
-          htmlStyle(
-            joinRules({
-              ":host": {
-                gap: this.gap,
-                "grid-template-columns": toTemplate(this.columns),
-                "grid-template-rows": toTemplate(this.rows),
-                "place-content": this.content,
-                "place-items": this.items,
-              },
-            }),
-          ),
-        ]}
+        ${htmlSlot()}
       </div>
     `;
   }
