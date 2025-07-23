@@ -352,6 +352,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
     this.createMousedownListener(set)(e);
     this.focusHandle(index);
   }
+
   /**
    * Creates a mouse down event handler that focuses the handle at the given index and sets the value of the range.
    * @param index - The index of the handle to focus.

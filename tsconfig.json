@@ -1,12 +1,5 @@
 {
-  "extends": "@godown/tsconfig/base.json",
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "noEmit": true,
-    "allowImportingTsExtensions": true,
-    "allowSyntheticDefaultImports": true
-  },
-  "exclude": ["./legacy", "**/*.d.ts"]
+  "extends": "@startracex/dev-config/tsconfig/app.json",
+  "include": ["**/*.tsx", "**/*.ts", "build/x", "build/_xx"],
+  "exclude": ["**/*.d.ts", "**/src/**"]
 }

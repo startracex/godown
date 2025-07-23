@@ -1,5 +1,18 @@
-import { createSourceFile, forEachChild, isTaggedTemplateExpression, isTemplateExpression, isTemplateSpan, type Node, ScriptTarget } from "typescript";
-import { type ExtractResult, TaggedTemplateExpressionResult, TemplateExpressionResult, TemplateSpanResult } from "./classes.js";
+import {
+  createSourceFile,
+  forEachChild,
+  isTaggedTemplateExpression,
+  isTemplateExpression,
+  isTemplateSpan,
+  type Node,
+  ScriptTarget,
+} from "typescript";
+import {
+  type ExtractResult,
+  TaggedTemplateExpressionResult,
+  TemplateExpressionResult,
+  TemplateSpanResult,
+} from "./classes.js";
 
 export function extractSourceFile(input: string): (TaggedTemplateExpressionResult | TemplateExpressionResult)[] {
   const sourceFile = createSourceFile("", input, ScriptTarget.Latest, true);

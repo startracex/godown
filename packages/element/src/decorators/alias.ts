@@ -77,6 +77,9 @@ export const alias = <T, K extends keyof T = any>(
   aliasForKey: K,
   descriptor: AliasDecorator<T, K> = {},
 ): ExperimentalDecorator<T> & StandardDecorator<T> =>
-  createDecorator<T>((proto, propertyKey) => {
-    Object.defineProperty(proto, aliasForKey, getAliasDescriptor(propertyKey, descriptor as PropertyDescriptor));
-  }, () => getAliasDescriptor(aliasForKey, descriptor as PropertyDescriptor));
+  createDecorator<T>(
+    (proto, propertyKey) => {
+      Object.defineProperty(proto, aliasForKey, getAliasDescriptor(propertyKey, descriptor as PropertyDescriptor));
+    },
+    () => getAliasDescriptor(aliasForKey, descriptor as PropertyDescriptor),
+  );

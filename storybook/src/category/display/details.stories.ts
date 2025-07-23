@@ -25,10 +25,9 @@ export default {
 type Story = StoryVariants<Details>;
 
 export const Primary: Story = {
-  render: (args: Details) =>
-    html`
-<godown-details ${attr(args)}>
-  <div>Details expanded</div>
-</godown-details>
+  render: (args: Details) => html`
+    <godown-details ${attr(args)}>
+      <div>Details expanded</div>
+    </godown-details>
   `,
 };

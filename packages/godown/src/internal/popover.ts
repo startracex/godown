@@ -2,7 +2,7 @@ import { memoize } from "./utils.js";
 
 const POPOVER = "popover";
 
-const supportPopover = () => Object.hasOwn(HTMLElement.prototype, POPOVER);
+const supportPopover = memoize(() => Object.hasOwn(HTMLElement.prototype, POPOVER));
 
 const getPopoverAttribute = (element: HTMLElement) => element.getAttribute(POPOVER);
 

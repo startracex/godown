@@ -2,8 +2,8 @@ import type { Preview } from "@storybook/web-components-vite";
 import { ArgHelper } from "../src/lib/args.js";
 import "godown";
 import "iconify-icon";
-import { Container } from "./tools/container";
-import { comparisonDecorator } from "./tools/theme-comparison";
+import { Container } from "./tools/container.js";
+import { comparisonDecorator } from "./tools/theme-comparison.js";
 import "../styl/preview.styl";
 
 export default {

@@ -1,5 +1,7 @@
 import { html, nothing, type TemplateResult } from "lit";
 
+const h = html;
+
 /**
  * Slot element directive.
  *
@@ -8,4 +10,4 @@ import { html, nothing, type TemplateResult } from "lit";
  * @returns TemplateResult or nothing.
  */
 export const htmlSlot = (name?: string, placeholder?: any): TemplateResult<1> =>
-  html`<slot name="${name || nothing}">${placeholder || nothing}</slot>`;
+  h`<slot name="${name || nothing}">${placeholder || nothing}</slot>`;

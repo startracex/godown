@@ -1,6 +1,6 @@
 import { DocsContainer } from "@storybook/addon-docs/blocks";
 import { useEffect, useState } from "react";
-import { themes } from "../themes";
+import { themes } from "../themes/index.js";
 import React from "react";
 
 export const Container = ({ children, context }) => {

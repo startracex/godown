@@ -1,6 +1,3 @@
 {
-  "extends": "@godown/tsconfig/plugin.json",
-  "compilerOptions": {
-    "types": []
-  }
+  "extends": "@startracex/dev-config/tsconfig/lib.json"
 }

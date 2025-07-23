@@ -1,4 +1,13 @@
-import { type Expression, type LeftHandSideExpression, SyntaxKind, type TaggedTemplateExpression, type TemplateExpression, type TemplateLiteral, type TemplateLiteralLikeNode, type TemplateSpan } from "typescript";
+import {
+  type Expression,
+  type LeftHandSideExpression,
+  SyntaxKind,
+  type TaggedTemplateExpression,
+  type TemplateExpression,
+  type TemplateLiteral,
+  type TemplateLiteralLikeNode,
+  type TemplateSpan,
+} from "typescript";
 import { getTemplateParts, getTextRange, type TextRange } from "./utils.js";
 
 type TaggedTemplateExpressionNode = {
@@ -85,17 +94,15 @@ export class TaggedTemplateExpressionResult extends BaseResult<TaggedTemplateExp
     this.values = values;
   }
 
-  toJSON():
-    & {
-      tag: TextRange;
-      template: TextRange;
-      type: TaggedTemplateExpressionNode["type"];
-      kind: TaggedTemplateExpressionNode["kind"];
-      children: ToJSON<TemplateSpanResult>[];
-      strings: string[];
-      values: string[];
-    }
-    & TextRange {
+  toJSON(): {
+    tag: TextRange;
+    template: TextRange;
+    type: TaggedTemplateExpressionNode["type"];
+    kind: TaggedTemplateExpressionNode["kind"];
+    children: ToJSON<TemplateSpanResult>[];
+    strings: string[];
+    values: string[];
+  } & TextRange {
     return {
       ...super.toJSON(),
       tag: getTextRange(this.tag),
@@ -121,16 +128,14 @@ export class TemplateExpressionResult extends BaseResult<TemplateExpressionNode>
     this.values = values;
   }
 
-  toJSON():
-    & {
-      template: TextRange;
-      type: TemplateExpressionNode["type"];
-      kind: TemplateExpressionNode["kind"];
-      children: ToJSON<TemplateSpanResult>[];
-      strings: string[];
-      values: string[];
-    }
-    & TextRange {
+  toJSON(): {
+    template: TextRange;
+    type: TemplateExpressionNode["type"];
+    kind: TemplateExpressionNode["kind"];
+    children: ToJSON<TemplateSpanResult>[];
+    strings: string[];
+    values: string[];
+  } & TextRange {
     return {
       ...super.toJSON(),
       template: getTextRange(this.template),
@@ -170,14 +175,12 @@ export class TemplateSpanResult extends BaseResult<TemplateSpanNode> {
     return this.node.expression.getEnd();
   }
 
-  toJSON():
-    & {
-      span: TextRange;
-      type: TemplateSpanNode["type"];
-      kind: TemplateSpanNode["kind"];
-      children: (ToJSON<TaggedTemplateExpressionResult> | ToJSON<TemplateExpressionResult>)[];
-    }
-    & TextRange {
+  toJSON(): {
+    span: TextRange;
+    type: TemplateSpanNode["type"];
+    kind: TemplateSpanNode["kind"];
+    children: (ToJSON<TaggedTemplateExpressionResult> | ToJSON<TemplateExpressionResult>)[];
+  } & TextRange {
     return {
       ...super.toJSON(),
       span: this.span,

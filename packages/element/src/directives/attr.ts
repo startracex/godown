@@ -50,7 +50,8 @@ const svgInitials = {
 };
 
 export const withInitials =
-  (attrDirective: (a: DirectiveParams) => any, i: DirectiveParams) => (a: DirectiveParams): any =>
+  (attrDirective: (a: DirectiveParams) => any, i: DirectiveParams) =>
+  (a: DirectiveParams): any =>
     attrDirective({
       ...i,
       ...a,

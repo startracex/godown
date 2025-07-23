@@ -3,7 +3,7 @@ import { SideBySideIcon } from "@storybook/icons";
 import { addons } from "storybook/internal/manager-api";
 import { html } from "lit";
 import { memo, useEffect, useState } from "react";
-import { requestFresh } from "./fresh-styles";
+import { requestFresh } from "./fresh-styles.js";
 import React from "react";
 
 export const comparisonDecorator = (storyFn, context) => {
@@ -13,11 +13,7 @@ export const comparisonDecorator = (storyFn, context) => {
   }
   return html`
     <div id="compare-root">
-      <div
-        id="compare-source"
-      >
-        ${storyFn()}
-      </div>
+      <div id="compare-source">${storyFn()}</div>
       <div
         id="compare-target"
         data-theme-reverse

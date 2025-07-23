@@ -149,9 +149,7 @@ class Breath extends GlobalStyle {
       const defaultNumber = ((number - 1) % 3) + 1;
       style1 += `.rel:nth-child(${number}) .colorful{animation-delay:${delay}ms;background:var(${cssScope}--${number},var(${cssScope}--${defaultNumber}));}`;
     }
-    return `.colorful{animation-duration:${duration}ms;}@keyframes colorfulN{0%,${gap * 3}%{opacity:0;}${gap}%,${
-      gap * 2
-    }%{opacity:1;}}${style1}`;
+    return `.colorful{animation-duration:${duration}ms;}@keyframes colorfulN{0%,${gap * 3}%{opacity:0;}${gap}%,${gap * 2}%{opacity:1;}}${style1}`;
   }
 }
 

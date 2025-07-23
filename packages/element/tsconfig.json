@@ -1,33 +1,42 @@
 {
   "compilerOptions": {
     "target": "ES2021",
+    "moduleDetection": "force",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "customConditions": [
       "development",
       "import",
-      "default"
+      "module"
     ],
     "lib": [
       "DOM",
       "DOM.Iterable",
       "ESNext"
     ],
-    "types": [],
-    "allowJs": false,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "useDefineForClassFields": false,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "resolvePackageJsonImports": true,
+    "resolvePackageJsonExports": true,
+    "isolatedModules": true,
+    "allowJs": false,
+    "noImplicitThis": true,
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "importHelpers": true,
-    "noImplicitThis": true,
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
-    "isolatedDeclarations": true,
+    "erasableSyntaxOnly": true,
+    "types": [],
     "rootDir": "src",
     "outDir": "build"
   },
-  "include": ["src"],
+  "include": ["src/**/*.ts"],
   "exclude": []
 }

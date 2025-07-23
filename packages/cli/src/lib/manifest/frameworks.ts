@@ -8,7 +8,9 @@ function isBelowV2(v: string): boolean {
   return intersects(v, "<2.0.0");
 }
 
-export const getFrameworks = (dependencies: Record<string, string> = {}): {
+export const getFrameworks = (
+  dependencies: Record<string, string> = {},
+): {
   litelement?: boolean;
   stencil?: boolean;
   fast?: boolean;

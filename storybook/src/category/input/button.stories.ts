@@ -24,9 +24,8 @@ export default {
 type Story = StoryVariants<Button>;
 
 export const Primary: Story = {
-  render: (args: Button) =>
-    html`
-<godown-button ${attr(args)}>Click me</godown-button>
+  render: (args: Button) => html`
+    <godown-button ${attr(args)}>Click me</godown-button>
   `,
 };
 
@@ -38,15 +37,17 @@ export const WithCustomColor: Story = {
 };
 
 export const Sharps: Story = {
-  render: () =>
-    html`
-<godown-flex gap=".5em">
-  <godown-button style="width: 2em;height: 2em;">
-    <iconify-icon icon="ion:logo-web-component"></iconify-icon>
-  </godown-button>
-  <godown-button style="width: 2em;height: 2em;" round>
-    <iconify-icon icon="ion:logo-web-component"></iconify-icon>
-  </godown-button>
-</godown-flex>
+  render: () => html`
+    <godown-flex gap=".5em">
+      <godown-button style="width: 2em;height: 2em;">
+        <iconify-icon icon="ion:logo-web-component"></iconify-icon>
+      </godown-button>
+      <godown-button
+        style="width: 2em;height: 2em;"
+        round
+      >
+        <iconify-icon icon="ion:logo-web-component"></iconify-icon>
+      </godown-button>
+    </godown-flex>
   `,
 };

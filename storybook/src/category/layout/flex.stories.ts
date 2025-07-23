@@ -24,17 +24,18 @@ export default {
 type Story = StoryVariants<Flex>;
 
 export const Primary: Story = {
-  render: (args: Flex) =>
-    html`
-<godown-flex ${attr(args)}>
-
-${[
-      ...loop(5, () =>
-        html`  <div style="width: 5em;height: 2em;background: gray;"></div>
-`),
-    ]}
-</godown-flex>
-`,
+  render: (args: Flex) => html`
+    <godown-flex ${attr(args)}>
+      ${[
+        ...loop(
+          5,
+          () => html`
+            <div style="width: 5em;height: 2em;background: gray;"></div>
+          `,
+        ),
+      ]}
+    </godown-flex>
+  `,
 };
 
 export const Vertical: Story = {

@@ -3,12 +3,14 @@ import { html, svg, type TemplateResult } from "lit";
 import { svgAttr } from "./attr.js";
 import { isString } from "sharekit/is.js";
 
+const h = html;
+
 export const icon =
   (viewBox: string | (string | number)[]) =>
   <A extends IconAttributesParams>(strings: TemplateStringsArray, ...values: any[]): IconRenderer<A> => {
     const body = svg(strings, values);
     const s = isString(viewBox) ? viewBox : viewBox.join(" ");
-    const renderer = (attributes?: A) => html`<svg viewBox="${s}" ${svgAttr(attributes)}>${body}</svg>`;
+    const renderer = (attributes?: A) => h`<svg viewBox="${s}"${svgAttr(attributes)}>${body}</svg>`;
     renderer.body = body;
     renderer.viewBox = s;
     return renderer;

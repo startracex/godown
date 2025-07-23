@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "lit": "catalog:",
-    "sharekit": "^1.1.0",
+    "sharekit": "^1.1.1",
     "tslib": "catalog:"
   },
   "publishConfig": {

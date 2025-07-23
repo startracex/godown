@@ -94,6 +94,7 @@ class Popover extends GlobalStyle {
       };
     });
   }
+
   protected render(): TemplateResult<1> {
     return html`
       <div part="root">

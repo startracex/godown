@@ -1,20 +1,11 @@
 {
+  "extends": "@startracex/dev-config/tsconfig/lib.json",
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "verbatimModuleSyntax": true,
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    "isolatedDeclarations": true,
     "rootDir": "src",
     "noEmit": true
   },
   "include": [
-    "src"
+    "src/**/*.ts"
   ]
 }

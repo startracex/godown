@@ -24,15 +24,12 @@ export default {
 type Story = StoryVariants<Text>;
 
 export const Primary: Story = {
-  render: (args: Text) =>
-    html`
-<godown-text ${attr(args)}>
-
-  <div>
-    Reason has always existed, but not always in a reasonable form. 
-    <!-- From a certain communist -->
-  </div>
-
-</godown-text>
+  render: (args: Text) => html`
+    <godown-text ${attr(args)}>
+      <div>
+        Reason has always existed, but not always in a reasonable form.
+        <!-- From a certain communist -->
+      </div>
+    </godown-text>
   `,
 };

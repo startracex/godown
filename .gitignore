@@ -19,3 +19,4 @@ vscode.html-custom-data.json
 custom-elements.json
 
 !prepare.cjs
+!eslint.config.js

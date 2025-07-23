@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
   "extends": ["@startracex/dev-config/biome"],
   "vcs": {
     "enabled": true,
@@ -10,21 +10,7 @@
     "ignoreUnknown": false,
     "includes": ["**/*.ts", "**/*.tsx"]
   },
-  "formatter": {
-    "enabled": false
-  },
   "linter": {
-    "enabled": true,
-    "rules": {
-      "suspicious": {
-        "noConsole": {
-          "level": "error",
-          "fix": "none",
-          "options": {
-            "allow": ["info", "warn", "error"]
-          }
-        }
-      }
-    }
+    "enabled": true
   }
 }

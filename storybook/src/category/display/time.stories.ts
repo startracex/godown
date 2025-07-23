@@ -28,8 +28,8 @@ export const Primary: Story = {
       args.time = new Date(args.time);
     }
     return html`
-<godown-time ${attr(args)}></godown-time>
-  `;
+      <godown-time ${attr(args)}></godown-time>
+    `;
   },
 };
 

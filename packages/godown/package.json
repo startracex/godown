@@ -7,14 +7,14 @@
     "dev": "tsc --watch",
     "check-types": "tsc --noEmit",
     "clean": "tsc --build --clean",
-    "build": "godown b --manifest --minify && godown b index.js --mode app --name Godown -o build/godown.iife.js --format iife -o build/godown.umd.js --format umd"
+    "build": "godown b -c .godownrc.json"
   },
   "dependencies": {
     "@godown/element": "workspace:^",
     "@oxc-project/runtime": "^0.76.0",
     "fmtime": "^0.0.3",
     "lit": "catalog:",
-    "sharekit": "^1.1.0"
+    "sharekit": "^1.1.1"
   },
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,8 @@
     "./src/*": "./src/*",
     "./*.json": "./*.json",
     "./*.js": "./build/*.js",
-    "./*": "./build/*.js"
+    "./*": "./build/*.js",
+    "./*.md": "./*.md"
   },
   "files": [
     "**/*.{js,d.ts}+(|.map)",

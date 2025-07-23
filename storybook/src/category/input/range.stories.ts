@@ -26,11 +26,14 @@ export default {
 type Story = StoryVariants<Range>;
 
 export const Primary: Story = {
-  render: (args: Range) =>
-    html`
-<godown-flex content=center items=center style="height: ${args.vertical ? "100%" : "auto"};">
-  <godown-range ${attr(args)}></godown-range>
-</godown-flex>
+  render: (args: Range) => html`
+    <godown-flex
+      content="center"
+      items="center"
+      style="height: ${args.vertical ? "100%" : "auto"};"
+    >
+      <godown-range ${attr(args)}></godown-range>
+    </godown-flex>
   `,
 };
 

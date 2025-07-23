@@ -29,9 +29,7 @@ export default defineConfig({
           }
           const replace = readFileSync(resolvedPath).toString();
           const replaceStart = start ? replace.indexOf(start) : 0;
-          const replaceEnd = end
-            ? replace.lastIndexOf(end) + end.length
-            : replace.length;
+          const replaceEnd = end ? replace.lastIndexOf(end) + end.length : replace.length;
           return raw.slice(0, match.index) + replace.slice(replaceStart, replaceEnd);
         }
       },

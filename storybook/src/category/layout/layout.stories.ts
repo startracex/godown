@@ -21,19 +21,24 @@ type Story = StoryVariants<Layout>;
 export const Primary: Story = {
   render: (args: Layout) => {
     return html`
-<div style="overflow-y: scroll;height: 20em;">
-  <godown-layout ${attr(args)}>
-    <header slot="header" style="padding: 1em 0;text-align: center;border-bottom: dotted 2px gray;">
-      Header (${args.sticky ? "sticky" : "static"})
-    </header>
-    <main style="height: 100%;display: grid;place-items: center;min-height: 30em;">
-      Main content
-    </main>
-    <footer slot="footer" style="padding: 1em 0;text-align: center;border-top: dotted 2px gray;">
-      Footer
-    </footer>
-  </godown-layout>
-</div>`;
+      <div style="overflow-y: scroll;height: 20em;">
+        <godown-layout ${attr(args)}>
+          <header
+            slot="header"
+            style="padding: 1em 0;text-align: center;border-bottom: dotted 2px gray;"
+          >
+            Header (${args.sticky ? "sticky" : "static"})
+          </header>
+          <main style="height: 100%;display: grid;place-items: center;min-height: 30em;">Main content</main>
+          <footer
+            slot="footer"
+            style="padding: 1em 0;text-align: center;border-top: dotted 2px gray;"
+          >
+            Footer
+          </footer>
+        </godown-layout>
+      </div>
+    `;
   },
 };
 

@@ -1,7 +1,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const dir = `packages/cli`;
+const dir = "packages/cli";
 const pkg = require(path.join(__dirname, dir, "package.json"));
 
 const getBinFiles = (bin) => {

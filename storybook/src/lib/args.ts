@@ -89,6 +89,7 @@ export class ArgHelper {
 
 export const ringTypeArgs = () =>
   new ArgHelper().options([
+    //
     "border",
     "outline",
     "shadow",

@@ -23,11 +23,9 @@ export const Primary: Story = {
     dot: false,
     value: 5,
   },
-  render: (args: Chip) =>
-    html`
-<godown-chip ${attr(args)}>
-  ${args.position || "top-right"} ${args.dot ? "with dot" : ""}
-</godown-chip> `,
+  render: (args: Chip) => html`
+    <godown-chip ${attr(args)}>${args.position || "top-right"} ${args.dot ? "with dot" : ""}</godown-chip>
+  `,
 };
 
 export const Dot: Story = {
@@ -58,8 +56,13 @@ export const WithOffset: Story = {
     dot: true,
     stylex: "--godown-chip--offset: 12.5%;",
   },
-  render: (args: Chip) =>
-    html`<godown-chip ${attr(args)}>
-    <godown-avatar name="S" round stylex="background-color: #12a1a1;"></godown-avatar>
-  </godown-chip> `,
+  render: (args: Chip) => html`
+    <godown-chip ${attr(args)}>
+      <godown-avatar
+        name="S"
+        round
+        stylex="background-color: #12a1a1;"
+      ></godown-avatar>
+    </godown-chip>
+  `,
 };

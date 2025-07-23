@@ -19,17 +19,17 @@ export default {
 type Story = StoryVariants<Divider>;
 
 export const Primary: Story = {
-  render: (args: Divider) =>
-    html`<godown-flex
-  ?vertical="${!args.vertical}"
-  content="space-evenly"
-  items="center"
-  style="height: 15em;"
->
-  A
-  <godown-divider ${attr(args)}></godown-divider>
-  B
-</godown-flex>
+  render: (args: Divider) => html`
+    <godown-flex
+      ?vertical="${!args.vertical}"
+      content="space-evenly"
+      items="center"
+      style="height: 15em;"
+    >
+      A
+      <godown-divider ${attr(args)}></godown-divider>
+      B
+    </godown-flex>
   `,
 };
 

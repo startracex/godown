@@ -18,19 +18,20 @@ interface Options {
  * @param param0.registry custom element registry.
  * @returns Decorator.
  */
-export const component = ({ tagName, styles: s, autoDefine = false, registry = customElements }: Options) =>
-(
-  constructor: typeof HTMLElement & {
-    elementTagName?: string;
-    styles?: Options["styles"];
-  },
-): void => {
-  constructor.elementTagName = tagName;
+export const component =
+  ({ tagName, styles: s, autoDefine = false, registry = customElements }: Options) =>
+  (
+    constructor: typeof HTMLElement & {
+      elementTagName?: string;
+      styles?: Options["styles"];
+    },
+  ): void => {
+    constructor.elementTagName = tagName;
 
-  if (s) {
-    styles(s)(constructor);
-  }
-  if (autoDefine && !registry.get(tagName)) {
-    registry.define(tagName, constructor);
-  }
-};
+    if (s) {
+      styles(s)(constructor);
+    }
+    if (autoDefine && !registry.get(tagName)) {
+      registry.define(tagName, constructor);
+    }
+  };

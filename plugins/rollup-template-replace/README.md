@@ -24,7 +24,7 @@ Example, use a CSS preprocessor to process css literals.
 ```js
 replace({
   match: (tag) => tag === "css",
-  callback: (input) => postcss(/* postcss plugins */).process(input).css.trim(),
+  callback: async (input) => await postcss(/* postcss plugins */).process(input).css,
   replace: (_, index) => `--__REPLACE__${index}__`,
 });
 ```

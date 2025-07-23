@@ -1,0 +1,14 @@
+{
+  "build": {
+    "minify": true,
+    "globals": {},
+    "outputs": {
+      "./src/*.ts": "./build/*.js",
+      "./build/index.js": {
+        "umd": "./build/godown.umd.js",
+        "iife": "./build/godown.iife.js"
+      }
+    }
+  },
+  "manifest": true
+}

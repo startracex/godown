@@ -155,10 +155,10 @@ export class GodownElement extends LitElement {
   getBoundingClientRect(): DOMRect {
     let root: Element | null | undefined;
     return this.contents &&
-        // root is contentsRoot or first Element of shadowRoot
-        (root = this.contentsRoot || this.shadowRoot?.firstElementChild) &&
-        // root is not the element itself
-        root !== this
+      // root is contentsRoot or first Element of shadowRoot
+      (root = this.contentsRoot || this.shadowRoot?.firstElementChild) &&
+      // root is not the element itself
+      root !== this
       ? root.getBoundingClientRect()
       : super.getBoundingClientRect();
   }
@@ -171,10 +171,10 @@ export class GodownElement extends LitElement {
   getClientRects(): DOMRectList {
     let root: Element | null | undefined;
     return this.contents &&
-        // root is contentsRoot or first Element of shadowRoot
-        (root = this.contentsRoot || this.shadowRoot?.firstElementChild) &&
-        // root is not the element itself
-        root !== this
+      // root is contentsRoot or first Element of shadowRoot
+      (root = this.contentsRoot || this.shadowRoot?.firstElementChild) &&
+      // root is not the element itself
+      root !== this
       ? root.getClientRects()
       : super.getClientRects();
   }

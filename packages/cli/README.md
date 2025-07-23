@@ -1,62 +1,167 @@
 # @godown/cli
 
-A CLI for building package.
+A low-configuration bundler powered by `Rollup + OXC` or `Rolldown`.
 
-This package is used for building both Web Components and standard TypeScript packages.
-
-## Example
+By default, it treats the `dependencies` and `peerDependencies` in the `package.json` as external dependencies, applies TypeScript transformation options from `tsconfig.json`, and respects its `rootDir`, `outDir`, `includes`, and `excludes` when generating outputs.
 
 ```sh
-pnpm godown build --mode lib -d dist/module -d dist/node --format cjs --map --dts --tsconfig tsconfig.dev.json --minify
+npm i -D @godown/cli rollup # if using Rollup
+npm i -D @godown/cli rolldown # if using Rolldown
+npm i -g @godown/cli # if using the CLI globally
 ```
 
-## Commands
+## CLI
 
-`build`
+### `build`
 
-alias `b`
+```sh
+pnpm godown build
 
-```plain
-godown build|b [options]      build the package
-
-# Repeatable options are aligned to the right according to the output.
-
-Options:
-  --root                      root directory path
-  -d, --out-dir <output-path> output directory path (repeatable)
-  -o, --out <output-path>     output file path (repeatable)
-  -f, --format <format>       output format (repeatable, aligned to the right according to the output)
-  --globals <globals>         global name (repeatable)
-  --external <external>       external (repeatable)
-  --name <name>               output global name
-  --manifest                  generate custom element manifest
-  --mode <mode>               library (lib) or application (app) mode
-  --map                       emit source map
-  --dts                       emit declaration
-  --dry-run                   dry-run
-  --minify                    minify output
-  -h, --help                  display help for command
+pnpm godown build -d dist/module -d dist/node --format cjs --map --dts --tsconfig tsconfig.json --minify
 ```
 
-`manifest`
+_When using multiple -d flags, please add the -f flag promptly, as they are end-aligned._
 
-```plain
-godown manifest               generate custom element manifest
+```sh
+# Incorrect (may cause unexpected output):
+pnpm godown build  -d dist/node  --format cjs  -d dist/module
+#                     ^^^^^^^^^            └──────^^^^^^^^^^^
+#                  no format match                   cjs
+
+# Correct:
+pnpm godown build  -d dist/node  --format cjs -d dist/module  --format esm
+#                     ^^^^^^^^^────────────┘     ^^^^^^^^^^^────────────┘
+#                        cjs                        esm
 ```
 
-## Built-in plugins
+You can pass `--bundler` to specify the bundler.
 
-Rollup, CEM plugins are built-in. PostCSS plugins auto-load if found; otherwise, built-in ones are used.
+```sh
+pnpm godown build --bundler rollup
 
-If you need to add more plugins or modify internal configurations, you should use Rollup or other build tools.
+pnpm godown build --bundler rolldown
+```
+
+Pass the repeatable `--globals` option to specify globals.
+Key-value pairs can be separated using either `=` or `:`.
+
+Pass the repeatable `--external` option to specify external IDs.
+If the globals options is provided, external defaults to the keys of globals;
+otherwise, it defaults to the keys of `dependencies` and `peerDependencies` in `package.json`.
+
+To remove externals, pass a non-existent id.
+
+### `compile`
+
+The compile command compiles only TypeScript to JavaScript.
+
+```sh
+# automatically detects tsconfig.json
+pnpm godown compile
+# compile signal file
+pnpm godown compile some-ts-file.ts -o some-js-file.js
+# compile multiple files
+pnpm godown compile src-dir -o out-dir --dts --map
+```
+
+### `manifest`
+
+The manifest command will generate web components manifests
+
+Infer the framework from the `dependencies`, `peerDependencies` in `package.json`.
+
+```sh
+pnpm godown manifest
+```
+
+This command will generate:
+
+- `custom-elements.json`
+
+- `vscode.css-custom-data.json`
+
+- `vscode.html-custom-data.json`
+
+- `web-types.json`
+
+### `help`
+
+Run `godown help`, `godown help [command]` to display help.
+
+## Runtime Config
+
+Set the runtime configuration using a JSON or JSONC format.
+
+```json
+{
+  "build": {
+    "bundler": "rollup",
+    "minify": false,
+    "map": true,
+    "dts": true,
+    "name": "MyLibrary",
+    "globals": {
+      "deps": "Deps"
+    },
+    "outputs": {
+      "./src/tests/*": null,
+      "./src/*.ts": {
+        "esm": "./build/*.js",
+        "cjs": "./build/*.cjs"
+      },
+      "./build/index.js": {
+        "umd": "./build/bundle.js"
+      }
+    }
+  },
+  "manifest": false,
+  "tsconfig": "tsconfig.json"
+}
+```
+
+```sh
+pnpm godown build -c path_to_json_file
+```
+
+### Build outputs
+
+Use formatting as the key and the output location as the value.
+
+Use `*` as a wildcard for file names to match multiple path levels.
+
+An output ending with `/` is treated as a directory
+
+The portion before the `*` is treated as the directory path, while the `*` itself serves as a file name wildcard placeholder.
+
+Otherwise, it's treated as single-file output, in this case the input must also be a single file.
+
+In this example, the `build` command will:
+
+- Ignore `./src/tests/*`, because it's vale is `null`.
+
+- Bundle `./src/*.ts` to `./build/*.js` with ESM format and `./build/*.cjs` with CJS format.
+
+- Bundle `./build/index.js` to `./build/bundle.js` with UMD format after `./src/*.ts` is bundled.
+
+## Plugins
 
 The list of built-in plugins is as follows:
 
-- autoprefixer
+For manifest:
+
 - cem-plugin-define
 - custom-element-jet-brains-integration
 - custom-element-vs-code-integration
+
+For build:
+
+- @rollup/plugin-commonjs
+- @web/rollup-plugin-html
 - rollup-plugin-minify-html-parts
 - rollup-plugin-oxc
 - rollup-plugin-template-replace
+
+Postcss:
+
+- autoprefixer
 - postcss-csso

@@ -28,57 +28,55 @@ export default {
 type Story = StoryVariants<Tabs>;
 
 export const Primary: Story = {
-  render: (args: Tabs) =>
-    html`
-<godown-tabs ${attr(args)}></godown-tabs>
+  render: (args: Tabs) => html`
+    <godown-tabs ${attr(args)}></godown-tabs>
   `,
 };
 
 export const Slotted: Story = {
-  render: (args: Tabs) =>
-    html`
-<godown-tabs ${attr(args)}>
-  ${
-      args.tabs.map((tab) =>
-        html`
-      <div
-        slot="${tab}"
-        style="padding: 0 .5em;white-space: nowrap;"
-      >
-        Slot ${tab}
-      </div>
-    `
-      )
-    }
-</godown-tabs>
-    `,
+  render: (args: Tabs) => html`
+    <godown-tabs ${attr(args)}>
+      ${args.tabs.map(
+        (tab) => html`
+          <div
+            slot="${tab}"
+            style="padding: 0 .5em;white-space: nowrap;"
+          >
+            Slot ${tab}
+          </div>
+        `,
+      )}
+    </godown-tabs>
+  `,
 };
 
 export const Indicator: Story = {
-  render: (args: Tabs) =>
-    html`
-<godown-flex gap=".5em" vertical>
-    ${
-      ["background", "underline"].map((indicator) =>
-        html`
-  <godown-tabs ${attr({ ...args, indicator })}></godown-tabs>`
-      )
-    }
-</godown-flex>
+  render: (args: Tabs) => html`
+    <godown-flex
+      gap=".5em"
+      vertical
+    >
+      ${["background", "underline"].map(
+        (indicator) => html`
+          <godown-tabs ${attr({ ...args, indicator })}></godown-tabs>
+        `,
+      )}
+    </godown-flex>
   `,
 };
 
 export const Beginning: Story = {
-  render: (args: Tabs) =>
-    html`
-<godown-flex gap=".5em" vertical>
-    ${
-      ["selected", "previous", "none"].map((beginning) =>
-        html`
-  <godown-tabs ${attr({ ...args, beginning })}></godown-tabs>`
-      )
-    }
-</godown-flex>
+  render: (args: Tabs) => html`
+    <godown-flex
+      gap=".5em"
+      vertical
+    >
+      ${["selected", "previous", "none"].map(
+        (beginning) => html`
+          <godown-tabs ${attr({ ...args, beginning })}></godown-tabs>
+        `,
+      )}
+    </godown-flex>
   `,
 };
 

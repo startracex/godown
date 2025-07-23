@@ -1,5 +1,5 @@
 {
-  "extends": "@godown/tsconfig/base.json",
+  "extends": "@startracex/dev-config/tsconfig/lib.json",
   "compilerOptions": {
     "outDir": "build",
     "rootDir": "src",

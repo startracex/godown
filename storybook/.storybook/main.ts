@@ -6,10 +6,7 @@ const require = createRequire(import.meta.url);
 
 export default {
   stories: ["../**/*.stories.ts", "../src/content/*.mdx"],
-  addons: [
-    getAbsolutePath("@storybook/addon-docs"),
-    getAbsolutePath("@storybook/addon-a11y"),
-  ],
+  addons: [getAbsolutePath("@storybook/addon-docs"), getAbsolutePath("@storybook/addon-a11y")],
   framework: {
     name: getAbsolutePath("@storybook/web-components-vite"),
     options: {},

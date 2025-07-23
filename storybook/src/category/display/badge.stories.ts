@@ -22,8 +22,7 @@ export default {
 type Story = StoryVariants<Badge>;
 
 export const Primary: Story = {
-  render: (args: Badge) =>
-    html`
-<godown-badge ${attr(args)}>Badge</godown-badge>
+  render: (args: Badge) => html`
+    <godown-badge ${attr(args)}>Badge</godown-badge>
   `,
 };

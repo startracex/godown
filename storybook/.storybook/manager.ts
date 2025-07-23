@@ -1,13 +1,13 @@
 import { addons, types } from "storybook/internal/manager-api";
-import { DirectionSwitcher } from "./tools/direction-switcher";
-import { FreshStyles } from "./tools/fresh-styles";
-import { SourceLink } from "./tools/source-link";
-import { ThemeSwitcher } from "./tools/theme-switcher";
-import { ThemeComparison } from "./tools/theme-comparison";
-import { GridSwitcher } from "./tools/grid-switcher";
+import { DirectionSwitcher } from "./tools/direction-switcher.js";
+import { FreshStyles } from "./tools/fresh-styles.js";
+import { SourceLink } from "./tools/source-link.js";
+import { ThemeSwitcher } from "./tools/theme-switcher.js";
+import { ThemeComparison } from "./tools/theme-comparison.js";
+import { GridSwitcher } from "./tools/grid-switcher.js";
 import "../styl/manager.css";
 
-import { CompatibilityHint } from "./tools/compatibility-hint";
+import { CompatibilityHint } from "./tools/compatibility-hint.js";
 
 document.body.appendChild(new CompatibilityHint());
 

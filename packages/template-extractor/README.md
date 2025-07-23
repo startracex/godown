@@ -57,13 +57,8 @@ Output (to JSON)
       "end": 32,
       "text": "`\nTemplate \n${`Template Span`}\n`"
     },
-    "strings": [
-      "\nTemplate \n",
-      "\n"
-    ],
-    "values": [
-      "`Template Span`"
-    ]
+    "strings": ["\nTemplate \n", "\n"],
+    "values": ["`Template Span`"]
   },
   {
     "type": "TaggedTemplateExpression",
@@ -91,13 +86,8 @@ Output (to JSON)
       "end": 79,
       "text": "`\nTagged Template\n${`Template Span`}\n`"
     },
-    "strings": [
-      "\nTagged Template\n",
-      "\n"
-    ],
-    "values": [
-      "`Template Span`"
-    ]
+    "strings": ["\nTagged Template\n", "\n"],
+    "values": ["`Template Span`"]
   }
 ]
 ```

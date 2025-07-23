@@ -1,4 +1,11 @@
-import { type Expression, isTemplateExpression, isTemplateTail, type Node, type TemplateLiteral, type TemplateLiteralLikeNode } from "typescript";
+import {
+  type Expression,
+  isTemplateExpression,
+  isTemplateTail,
+  type Node,
+  type TemplateLiteral,
+  type TemplateLiteralLikeNode,
+} from "typescript";
 
 export type TextRange = {
   start: number;

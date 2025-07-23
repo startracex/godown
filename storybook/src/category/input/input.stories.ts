@@ -24,6 +24,7 @@ export default {
       "week",
     ]).arg,
     variant: new ArgHelper().options([
+      //
       "default",
       "outline",
     ]).arg,

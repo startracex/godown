@@ -1,15 +1,15 @@
 {
+  "extends": "@startracex/dev-config/tsconfig/lib.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "skipLibCheck": true,
-    "noImplicitThis": true,
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
-    "noEmit": true
+    "noEmit": true,
+    "jsx": "react",
+    "sourceMap": false,
+    "declaration": false,
+    "declarationMap": false
   },
   "include": [
+    "./.storybook/**/*.ts",
+    "./.storybook/**/*.tsx",
     "./src/**/*.ts"
   ]
 }

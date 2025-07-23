@@ -11,6 +11,7 @@ export default {
   argTypes: {
     pathname: new ArgHelper().type("string").default("").arg,
     type: new ArgHelper().options([
+      //
       "united",
       "slotted",
       "field",
@@ -26,16 +27,15 @@ export default {
 type Story = StoryVariants<Router>;
 
 export const Primary: Story = {
-  render: (args: Router) =>
-    html`
-Current pathname: ${args.pathname}
-<godown-card>
-  <godown-router ${attr(args)}>
-    <div slot="/">Strict match ( / => / )</div>
-    <div slot="/:dynamic">Dynamic match ( ${args.pathname} => /:dynamic )</div>
-    <div slot="/*wild_dynamic">Wild dynamic match ( ${args.pathname} => /*wild_dynamic )</div>
-    <div>No slotted</div>
-  </godown-router>
-</godown-card>
+  render: (args: Router) => html`
+    Current pathname: ${args.pathname}
+    <godown-card>
+      <godown-router ${attr(args)}>
+        <div slot="/">Strict match ( / => / )</div>
+        <div slot="/:dynamic">Dynamic match ( ${args.pathname} => /:dynamic )</div>
+        <div slot="/*wild_dynamic">Wild dynamic match ( ${args.pathname} => /*wild_dynamic )</div>
+        <div>No slotted</div>
+      </godown-router>
+    </godown-card>
   `,
 };

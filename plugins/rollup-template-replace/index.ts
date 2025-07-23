@@ -1,6 +1,11 @@
 import MagicString from "magic-string";
 import { createFilter, type FilterPattern } from "@rollup/pluginutils";
-import { extractSourceFile, getTemplateTextRange, getTextRange, type TaggedTemplateExpressionResult } from "template-extractor";
+import {
+  extractSourceFile,
+  getTemplateTextRange,
+  getTextRange,
+  type TaggedTemplateExpressionResult,
+} from "template-extractor";
 import type { Plugin } from "rollup";
 
 export interface ReplacementOptions {
@@ -9,41 +14,45 @@ export interface ReplacementOptions {
   callback?: (input: string) => string | Promise<string>;
 }
 
-export default function (
-  {
-    tags,
-    include,
-    exclude,
-    match,
-    replace,
-    callback,
-  }:
-    & {
-      tags?: string[];
-      include?: FilterPattern;
-      exclude?: FilterPattern;
-    }
-    & ReplacementOptions,
-): Plugin {
+export default function ({
+  tags,
+  include,
+  exclude,
+  match,
+  replace,
+  callback,
+}: {
+  tags?: string[];
+  include?: FilterPattern;
+  exclude?: FilterPattern;
+} & ReplacementOptions): Plugin {
   const filter = createFilter(include, exclude);
   return {
     name: "template-replace",
     async transform(code: string, id: string) {
-      const ms = new MagicString(code);
-
       if (!filter(id)) {
         return;
       }
 
-      await doReplace(
-        code,
-        {
-          match: match || ((tag) => tags?.includes(tag)),
-          replace: replace || ((_, i) => `__REPLACE__${i}__`),
-          callback: callback,
-        },
-        ms,
-      );
+      const ms = new MagicString(code);
+
+      try {
+        await doReplace(
+          code,
+          {
+            match: match || ((tag) => tags?.includes(tag)),
+            replace: replace || ((_, i) => `__REPLACE__${i}__`),
+            callback: callback,
+          },
+          ms,
+        );
+      } catch {
+        return null;
+      }
+
+      if (!ms.hasChanged()) {
+        return null;
+      }
 
       return {
         code: ms.toString(),
@@ -60,8 +69,8 @@ export async function doReplace(
   { match, replace, callback }: ReplacementOptions,
   ms: MagicString,
 ): Promise<MagicString> {
-  const templates = extractSourceFile(raw).filter((r) =>
-    "tag" in r && match?.(r.tag.getText())
+  const templates = extractSourceFile(raw).filter(
+    (r) => "tag" in r && match?.(r.tag.getText()),
   ) as TaggedTemplateExpressionResult[];
 
   let replaceIndex = 0;
@@ -95,7 +104,7 @@ export async function doReplace(
       }
     }
 
-    /* If the callback has just changed the sequence of replacement values, the accuracy of the original mapping will be reduced. */
+    /* If the callback changes the order of the replacement values, the accuracy of the source mapping will be reduced. */
 
     if (isSortedAscending(replacedMatchArray.map((r) => r.pos))) {
       offset = 0;

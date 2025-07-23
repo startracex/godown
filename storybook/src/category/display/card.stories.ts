@@ -21,26 +21,25 @@ export default {
 type Story = StoryVariants<Card>;
 
 export const Primary: Story = {
-  render: (args: Card) =>
-    html`
-<godown-card ${attr(args)}>
-${[
-      args.header
-        ? html`
-  <div slot="header">Header</div>
-      `
-        : "",
-      html`
-  <div>Main content</div>
+  render: (args: Card) => html`
+    <godown-card ${attr(args)}>
+      ${[
+        args.header
+          ? html`
+              <div slot="header">Header</div>
+            `
+          : "",
+        html`
+          <div>Main content</div>
+        `,
+        args.footer
+          ? html`
+              <div slot="footer">Footer</div>
+            `
+          : "",
+      ]}
+    </godown-card>
   `,
-      args.footer
-        ? html`
-  <div slot="footer">Footer</div>
-      `
-        : "",
-    ]}
-</godown-card>
-    `,
 };
 
 export const WithHeader: Story = {

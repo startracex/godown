@@ -25,8 +25,8 @@ export const normalizeObserver = <
     case MutationObserver:
     case ResizeObserver:
       observer = new type(callback);
-      observeFunc =
-        ((target: Node & Element) => (observer as MutationObserver | ResizeObserver).observe(target, options)) as F;
+      observeFunc = ((target: Node & Element) =>
+        (observer as MutationObserver | ResizeObserver).observe(target, options)) as F;
       break;
     case IntersectionObserver:
       observer = new type(callback, options);

@@ -1,14 +1,11 @@
 {
+  "extends": "@startracex/dev-config/tsconfig/lib.json",
   "compilerOptions": {
-    "target": "ES2019",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
     "outDir": ".",
     "rootDir": "src"
   },
-  "include": ["src"],
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": []
 }

@@ -22,8 +22,10 @@ type Story = StoryVariants<Breath>;
 
 export const Primary: Story = {
   render: (args: Breath) => {
-    return html`<godown-breath ${attr(args)}>
-  <!-- From a certain website slogan -->
-</godown-breath>`;
+    return html`
+      <godown-breath ${attr(args)}>
+        <!-- From a certain website slogan -->
+      </godown-breath>
+    `;
   },
 };

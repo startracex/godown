@@ -1,4 +1,7 @@
-import extractSourceFile, { type TaggedTemplateExpressionResult, type TemplateExpressionResult } from "template-extractor";
+import extractSourceFile, {
+  type TaggedTemplateExpressionResult,
+  type TemplateExpressionResult,
+} from "template-extractor";
 import { getTemplateTextRange, type TemplateParts } from "template-extractor/utils.js";
 import { parsePart } from "./parse-part.js";
 import MagicString from "magic-string";
@@ -79,10 +82,10 @@ const minifyPartsArray = (parts: string[], options: MinifyOptions): string[] => 
         }
         text = minifyInTagPart(text, options);
         if (options.removeAttributeQuotes) {
-          if (prevEndsWithEqualQuote && text.startsWith("\"")) {
+          if (prevEndsWithEqualQuote && text.startsWith('"')) {
             text = text.slice(1);
           }
-          prevEndsWithEqualQuote = text.endsWith("=\"");
+          prevEndsWithEqualQuote = text.endsWith('="');
           if (prevEndsWithEqualQuote) {
             text = text.slice(0, -1);
           }
