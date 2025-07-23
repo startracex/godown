@@ -38,24 +38,15 @@ importers:
       '@startracex/dev-config':
         specifier: ^0.4.1
         version: 0.4.1
-      '@stylistic/eslint-plugin':
-        specifier: ^5.2.1
-        version: 5.2.1(eslint@9.31.0)
       '@types/node':
         specifier: ^24.1.0
         version: 24.1.0
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
-      '@typescript-eslint/parser':
-        specifier: ^8.38.0
-        version: 8.38.0(eslint@9.31.0)(typescript@5.8.3)
       dprint:
         specifier: ^0.50.1
         version: 0.50.1
-      eslint:
-        specifier: ^9.31.0
-        version: 9.31.0
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -77,6 +68,16 @@ importers:
       vite:
         specifier: npm:rolldown-vite@^7.0.10
         version: rolldown-vite@7.0.10(@types/node@24.1.0)(esbuild@0.25.8)(terser@5.43.1)(tsx@4.19.3)
+    optionalDependencies:
+      '@stylistic/eslint-plugin':
+        specifier: ^5.2.1
+        version: 5.2.1(eslint@9.31.0)
+      '@typescript-eslint/parser':
+        specifier: ^8.38.0
+        version: 8.38.0(eslint@9.31.0)(typescript@5.8.3)
+      eslint:
+        specifier: ^9.31.0
+        version: 9.31.0
 
   packages/cli:
     dependencies:
@@ -3511,8 +3512,10 @@ snapshots:
     dependencies:
       eslint: 9.31.0
       eslint-visitor-keys: 3.4.3
+    optional: true
 
-  '@eslint-community/regexpp@4.12.1': {}
+  '@eslint-community/regexpp@4.12.1':
+    optional: true
 
   '@eslint/config-array@0.21.0':
     dependencies:
@@ -3521,12 +3524,15 @@ snapshots:
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
-  '@eslint/config-helpers@0.3.0': {}
+  '@eslint/config-helpers@0.3.0':
+    optional: true
 
   '@eslint/core@0.15.1':
     dependencies:
       '@types/json-schema': 7.0.15
+    optional: true
 
   '@eslint/eslintrc@3.3.1':
     dependencies:
@@ -3541,30 +3547,39 @@ snapshots:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
-  '@eslint/js@9.31.0': {}
+  '@eslint/js@9.31.0':
+    optional: true
 
-  '@eslint/object-schema@2.1.6': {}
+  '@eslint/object-schema@2.1.6':
+    optional: true
 
   '@eslint/plugin-kit@0.3.4':
     dependencies:
       '@eslint/core': 0.15.1
       levn: 0.4.1
+    optional: true
 
   '@github/catalyst@1.7.0': {}
 
-  '@humanfs/core@0.19.1': {}
+  '@humanfs/core@0.19.1':
+    optional: true
 
   '@humanfs/node@0.16.6':
     dependencies:
       '@humanfs/core': 0.19.1
       '@humanwhocodes/retry': 0.3.1
+    optional: true
 
-  '@humanwhocodes/module-importer@1.0.1': {}
+  '@humanwhocodes/module-importer@1.0.1':
+    optional: true
 
-  '@humanwhocodes/retry@0.3.1': {}
+  '@humanwhocodes/retry@0.3.1':
+    optional: true
 
-  '@humanwhocodes/retry@0.4.3': {}
+  '@humanwhocodes/retry@0.4.3':
+    optional: true
 
   '@iconify/types@2.0.0': {}
 
@@ -4110,6 +4125,7 @@ snapshots:
       espree: 10.4.0
       estraverse: 5.3.0
       picomatch: 4.0.3
+    optional: true
 
   '@testing-library/dom@10.4.0':
     dependencies:
@@ -4151,7 +4167,8 @@ snapshots:
 
   '@types/estree@1.0.8': {}
 
-  '@types/json-schema@7.0.15': {}
+  '@types/json-schema@7.0.15':
+    optional: true
 
   '@types/mdx@2.0.13': {}
 
@@ -4180,6 +4197,7 @@ snapshots:
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   '@typescript-eslint/project-service@8.38.0(typescript@5.8.3)':
     dependencies:
@@ -4189,17 +4207,21 @@ snapshots:
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   '@typescript-eslint/scope-manager@8.38.0':
     dependencies:
       '@typescript-eslint/types': 8.38.0
       '@typescript-eslint/visitor-keys': 8.38.0
+    optional: true
 
   '@typescript-eslint/tsconfig-utils@8.38.0(typescript@5.8.3)':
     dependencies:
       typescript: 5.8.3
+    optional: true
 
-  '@typescript-eslint/types@8.38.0': {}
+  '@typescript-eslint/types@8.38.0':
+    optional: true
 
   '@typescript-eslint/typescript-estree@8.38.0(typescript@5.8.3)':
     dependencies:
@@ -4216,11 +4238,13 @@ snapshots:
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   '@typescript-eslint/visitor-keys@8.38.0':
     dependencies:
       '@typescript-eslint/types': 8.38.0
       eslint-visitor-keys: 4.2.1
+    optional: true
 
   '@vitest/expect@3.2.4':
     dependencies:
@@ -4265,6 +4289,7 @@ snapshots:
   acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:
       acorn: 8.15.0
+    optional: true
 
   acorn@8.15.0: {}
 
@@ -4274,6 +4299,7 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
+    optional: true
 
   ansi-colors@4.1.3: {}
 
@@ -4300,7 +4326,8 @@ snapshots:
     dependencies:
       sprintf-js: 1.0.3
 
-  argparse@2.0.1: {}
+  argparse@2.0.1:
+    optional: true
 
   aria-query@5.3.0:
     dependencies:
@@ -4348,6 +4375,7 @@ snapshots:
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
+    optional: true
 
   brace-expansion@2.0.2:
     dependencies:
@@ -4366,7 +4394,8 @@ snapshots:
 
   buffer-from@1.1.2: {}
 
-  callsites@3.1.0: {}
+  callsites@3.1.0:
+    optional: true
 
   camel-case@4.1.2:
     dependencies:
@@ -4438,7 +4467,8 @@ snapshots:
 
   commondir@1.0.1: {}
 
-  concat-map@0.0.1: {}
+  concat-map@0.0.1:
+    optional: true
 
   cross-spawn@7.0.6:
     dependencies:
@@ -4481,7 +4511,8 @@ snapshots:
 
   deep-eql@5.0.2: {}
 
-  deep-is@0.1.4: {}
+  deep-is@0.1.4:
+    optional: true
 
   define-lazy-prop@2.0.0: {}
 
@@ -4600,16 +4631,20 @@ snapshots:
 
   escalade@3.2.0: {}
 
-  escape-string-regexp@4.0.0: {}
+  escape-string-regexp@4.0.0:
+    optional: true
 
   eslint-scope@8.4.0:
     dependencies:
       esrecurse: 4.3.0
       estraverse: 5.3.0
+    optional: true
 
-  eslint-visitor-keys@3.4.3: {}
+  eslint-visitor-keys@3.4.3:
+    optional: true
 
-  eslint-visitor-keys@4.2.1: {}
+  eslint-visitor-keys@4.2.1:
+    optional: true
 
   eslint@9.31.0:
     dependencies:
@@ -4650,28 +4685,34 @@ snapshots:
       optionator: 0.9.4
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   espree@10.4.0:
     dependencies:
       acorn: 8.15.0
       acorn-jsx: 5.3.2(acorn@8.15.0)
       eslint-visitor-keys: 4.2.1
+    optional: true
 
   esprima@4.0.1: {}
 
   esquery@1.6.0:
     dependencies:
       estraverse: 5.3.0
+    optional: true
 
   esrecurse@4.3.0:
     dependencies:
       estraverse: 5.3.0
+    optional: true
 
-  estraverse@5.3.0: {}
+  estraverse@5.3.0:
+    optional: true
 
   estree-walker@2.0.2: {}
 
-  esutils@2.0.3: {}
+  esutils@2.0.3:
+    optional: true
 
   extendable-error@0.1.7: {}
 
@@ -4681,7 +4722,8 @@ snapshots:
       iconv-lite: 0.4.24
       tmp: 0.0.33
 
-  fast-deep-equal@3.1.3: {}
+  fast-deep-equal@3.1.3:
+    optional: true
 
   fast-glob@3.3.3:
     dependencies:
@@ -4691,9 +4733,11 @@ snapshots:
       merge2: 1.4.1
       micromatch: 4.0.8
 
-  fast-json-stable-stringify@2.1.0: {}
+  fast-json-stable-stringify@2.1.0:
+    optional: true
 
-  fast-levenshtein@2.0.6: {}
+  fast-levenshtein@2.0.6:
+    optional: true
 
   fastq@1.19.1:
     dependencies:
@@ -4706,6 +4750,7 @@ snapshots:
   file-entry-cache@8.0.0:
     dependencies:
       flat-cache: 4.0.1
+    optional: true
 
   fill-range@7.1.1:
     dependencies:
@@ -4724,13 +4769,16 @@ snapshots:
     dependencies:
       locate-path: 6.0.0
       path-exists: 4.0.0
+    optional: true
 
   flat-cache@4.0.1:
     dependencies:
       flatted: 3.3.3
       keyv: 4.5.4
+    optional: true
 
-  flatted@3.3.3: {}
+  flatted@3.3.3:
+    optional: true
 
   fmtime@0.0.3: {}
 
@@ -4768,6 +4816,7 @@ snapshots:
   glob-parent@6.0.2:
     dependencies:
       is-glob: 4.0.3
+    optional: true
 
   glob@10.4.5:
     dependencies:
@@ -4778,7 +4827,8 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  globals@14.0.0: {}
+  globals@14.0.0:
+    optional: true
 
   globby@11.0.4:
     dependencies:
@@ -4839,8 +4889,10 @@ snapshots:
     dependencies:
       parent-module: 1.0.1
       resolve-from: 4.0.0
+    optional: true
 
-  imurmurhash@0.1.4: {}
+  imurmurhash@0.1.4:
+    optional: true
 
   indent-string@4.0.0: {}
 
@@ -4892,12 +4944,16 @@ snapshots:
   js-yaml@4.1.0:
     dependencies:
       argparse: 2.0.1
+    optional: true
 
-  json-buffer@3.0.1: {}
+  json-buffer@3.0.1:
+    optional: true
 
-  json-schema-traverse@0.4.1: {}
+  json-schema-traverse@0.4.1:
+    optional: true
 
-  json-stable-stringify-without-jsonify@1.0.1: {}
+  json-stable-stringify-without-jsonify@1.0.1:
+    optional: true
 
   jsonc-parser@3.3.1: {}
 
@@ -4908,11 +4964,13 @@ snapshots:
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
+    optional: true
 
   levn@0.4.1:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+    optional: true
 
   lightningcss-darwin-arm64@1.30.1:
     optional: true
@@ -4984,10 +5042,12 @@ snapshots:
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
+    optional: true
 
   lodash.camelcase@4.3.0: {}
 
-  lodash.merge@4.6.2: {}
+  lodash.merge@4.6.2:
+    optional: true
 
   lodash.startcase@4.4.0: {}
 
@@ -5023,6 +5083,7 @@ snapshots:
   minimatch@3.1.2:
     dependencies:
       brace-expansion: 1.1.12
+    optional: true
 
   minimatch@9.0.5:
     dependencies:
@@ -5038,7 +5099,8 @@ snapshots:
 
   napi-postinstall@0.3.2: {}
 
-  natural-compare@1.4.0: {}
+  natural-compare@1.4.0:
+    optional: true
 
   no-case@3.0.4:
     dependencies:
@@ -5065,6 +5127,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
       word-wrap: 1.2.5
+    optional: true
 
   os-tmpdir@1.0.2: {}
 
@@ -5141,6 +5204,7 @@ snapshots:
   p-limit@3.1.0:
     dependencies:
       yocto-queue: 0.1.0
+    optional: true
 
   p-locate@4.1.0:
     dependencies:
@@ -5149,6 +5213,7 @@ snapshots:
   p-locate@5.0.0:
     dependencies:
       p-limit: 3.1.0
+    optional: true
 
   p-map@2.1.0: {}
 
@@ -5168,6 +5233,7 @@ snapshots:
   parent-module@1.0.1:
     dependencies:
       callsites: 3.1.0
+    optional: true
 
   parse5@6.0.1: {}
 
@@ -5221,7 +5287,8 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prelude-ls@1.2.1: {}
+  prelude-ls@1.2.1:
+    optional: true
 
   prettier@2.8.8: {}
 
@@ -5233,7 +5300,8 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 17.0.2
 
-  punycode@2.3.1: {}
+  punycode@2.3.1:
+    optional: true
 
   quansync@0.2.10: {}
 
@@ -5274,7 +5342,8 @@ snapshots:
 
   relateurl@0.2.7: {}
 
-  resolve-from@4.0.0: {}
+  resolve-from@4.0.0:
+    optional: true
 
   resolve-from@5.0.0: {}
 
@@ -5449,7 +5518,8 @@ snapshots:
     dependencies:
       min-indent: 1.0.1
 
-  strip-json-comments@3.1.1: {}
+  strip-json-comments@3.1.1:
+    optional: true
 
   supports-color@7.2.0:
     dependencies:
@@ -5486,6 +5556,7 @@ snapshots:
   ts-api-utils@2.1.0(typescript@5.8.3):
     dependencies:
       typescript: 5.8.3
+    optional: true
 
   ts-dedent@2.2.0: {}
 
@@ -5535,6 +5606,7 @@ snapshots:
   type-check@0.4.0:
     dependencies:
       prelude-ls: 1.2.1
+    optional: true
 
   type-fest@2.19.0: {}
 
@@ -5564,6 +5636,7 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+    optional: true
 
   vite@7.0.5(@startracex/stylus@0.64.0)(@types/node@24.1.0)(lightningcss@1.30.1)(terser@5.43.1)(tsx@4.19.3):
     dependencies:
@@ -5587,7 +5660,8 @@ snapshots:
     dependencies:
       isexe: 2.0.0
 
-  word-wrap@1.2.5: {}
+  word-wrap@1.2.5:
+    optional: true
 
   wrap-ansi@7.0.0:
     dependencies:
@@ -5603,4 +5677,5 @@ snapshots:
 
   ws@8.18.3: {}
 
-  yocto-queue@0.1.0: {}
+  yocto-queue@0.1.0:
+    optional: true
