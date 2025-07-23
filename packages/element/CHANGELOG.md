@@ -1,5 +1,28 @@
 # @godown/element
 
+## 2.0.0
+
+### Major Changes
+
+- df7487c: remove exports from sharekit
+- 9e0f46d: remove mount/unmount/remount lifecycle aliases
+- a8264bf: remove CSS tools
+- 6305b19: reduce default exports
+- bde417b: remove attrToString, svgAttrToString from attr
+- c498062: remove part decorator
+- faf639e: remove clean from token-list
+
+### Minor Changes
+
+- eb83e6d: remove this from deep query functions
+- b9e0a79: remove this from updateAttribute function
+- f5999ce: remove constructor of GodownConfig
+- 904879f: add StyleController recompute optimization
+
+### Patch Changes
+
+- 76be572: fix missing exports for PortalController
+
 ## 1.11.0
 
 ### Minor Changes
