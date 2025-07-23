@@ -17,9 +17,9 @@
   },
   "dependencies": {
     "@godown/element": "workspace:^",
+    "stylus": "npm:@startracex/stylus@^0.64.0",
     "godown": "workspace:^",
-    "iconify-icon": "^3.0.0",
-    "stylus": "^0.64.0"
+    "iconify-icon": "^3.0.0"
   },
   "name": "@godown/storybook",
   "version": "0.0.0",
