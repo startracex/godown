@@ -47,7 +47,7 @@ addons.register("startracex", () => {
   const wrapper = document.querySelector("#storybook-preview-wrapper");
   const iframe = wrapper.querySelector("iframe");
 
-  const getIframeDocument = () => iframe.contentDocument.documentElement;
+  const getIframeDocument = () => iframe.contentDocument?.documentElement;
 
   addons.getChannel().on("compare-change", (e) => {
     const doc = getIframeDocument();
