@@ -19,10 +19,11 @@
     "godown": "workspace:^"
   },
   "exports": {
-    ".": "./index.js",
+    ".": "./build/index.js",
     "./package.json": "./package.json",
-    "./*.js": "./*.js",
-    "./*": "./*.js"
+    "./src/*": "./src/*",
+    "./*.js": "./build/*.js",
+    "./*": "./build/*.js"
   },
   "files": [
     "**/*.{js,d.ts}+(|.map)",
