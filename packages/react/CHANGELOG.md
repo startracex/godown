@@ -1,5 +1,12 @@
 # @godown/react
 
+## 3.13.4
+
+### Patch Changes
+
+- 2765b92: fix package exports
+  - godown@3.13.4
+
 ## 3.13.3
 
 ### Patch Changes
