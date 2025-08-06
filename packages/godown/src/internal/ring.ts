@@ -9,7 +9,9 @@ type OutlineOptions = {
 };
 
 const outlineRing = ({ width, color, inset }) =>
-  `outline-style:solid;outline-color:${color};outline-width:${width};${inset ? `outline-offset:calc(-1 * ${width});` : ""}`;
+  `outline-style:solid;outline-color:${color};outline-width:${width};${
+    inset ? `outline-offset:calc(-1 * ${width});` : ""
+  }`;
 
 const borderRing = ({ width, color }) => `border-style:solid;border-color:${color};border-width:${width};`;
 

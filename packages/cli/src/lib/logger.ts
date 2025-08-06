@@ -26,7 +26,9 @@ const createLogger = (level: number, callback: typeof console.log, format?: Styl
 const style = (format: StyleFormat) => {
   return (strings: TemplateStringsArray, ...values: any[]): string => {
     return strings.reduce((pre, cur, index) => {
-      return `${pre}${styleText(format, cur)}${String(index === values.length ? "" : styleText(format, String(values[index])))}`;
+      return `${pre}${styleText(format, cur)}${String(
+        index === values.length ? "" : styleText(format, String(values[index])),
+      )}`;
     }, "");
   };
 };

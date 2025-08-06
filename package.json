@@ -17,7 +17,7 @@
     "@godown/cli": "workspace:^",
     "@oxc-node/cli": "^0.0.30",
     "@oxc-node/core": "^0.0.30",
-    "@startracex/dev-config": "^0.4.2",
+    "@startracex/dev-config": "^0.5.0",
     "@types/node": "^24.2.0",
     "@types/react": "^19.1.9",
     "dprint": "^0.50.1",

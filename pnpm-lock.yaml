@@ -36,8 +36,8 @@ importers:
         specifier: ^0.0.30
         version: 0.0.30
       '@startracex/dev-config':
-        specifier: ^0.4.2
-        version: 0.4.2
+        specifier: ^0.5.0
+        version: 0.5.0
       '@types/node':
         specifier: ^24.2.0
         version: 24.2.0
@@ -1559,8 +1559,8 @@ packages:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
 
-  '@startracex/dev-config@0.4.2':
-    resolution: {integrity: sha512-y5jLCBRdJbb+j0ENnWKiP4jOgmYyhka1zKHpwEUa95Ez7TKqwjZ55HngRjD4mHcpP8+8LK6RMifjgPy0Pe4izw==}
+  '@startracex/dev-config@0.5.0':
+    resolution: {integrity: sha512-T5dWvXmKjNJaJx2r1XdO/ZnrRavG93m1TZ8vOKGnZtz4fkVyKRogmFYYDjUQnPCTHsmJXCOSDfgAEnjBM3MIvA==}
 
   '@startracex/stylus@0.64.0':
     resolution: {integrity: sha512-1liBILDoMdfdSj6AGZbbW0ZSKLB8N73dmVotSbfBBGS2jjmDc7pqlQjG2AtOi59DhR8gw9mfo+fkI6Jo5D9x9A==}
@@ -4084,7 +4084,7 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@startracex/dev-config@0.4.2': {}
+  '@startracex/dev-config@0.5.0': {}
 
   '@startracex/stylus@0.64.0':
     dependencies:
