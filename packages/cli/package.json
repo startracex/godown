@@ -24,7 +24,7 @@
     "fast-glob": "^3.3.3",
     "globby": "^14.1.0",
     "jsonc-parser": "^3.3.1",
-    "oxc-transform": "^0.77.3",
+    "oxc-transform": "^0.80.0",
     "postcss": "^8.5.6",
     "postcss-csso": "^6.0.1",
     "postcss-load-config": "^6.0.1",
@@ -37,9 +37,8 @@
     "typescript545": "npm:typescript@5.4.5"
   },
   "devDependencies": {
-    "rolldown": "^1.0.0-0",
-    "rollup": "^4.45.1",
-    "typescript": "5.8.3"
+    "rolldown": "1.0.0-beta.31",
+    "rollup": "^4.46.2"
   },
   "peerDependencies": {
     "rolldown": "^1.0.0-0",
