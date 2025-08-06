@@ -225,7 +225,7 @@ export const runBuild = async (
       output,
       postcss: postcssResult,
       external: getExternal(
-        externals.map((ss) => trimQuotes(ss)),
+        externals?.map((ss) => trimQuotes(ss)),
         output.some((o) => o.globals) ? globals : undefined,
         packageJSON,
       ),
