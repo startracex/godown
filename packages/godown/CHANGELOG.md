@@ -1,5 +1,11 @@
 # godown
 
+## 3.14.0
+
+### Minor Changes
+
+- 9fae2a7: add ending property for Tabs
+
 ## 3.13.4
 
 ## 3.13.3
