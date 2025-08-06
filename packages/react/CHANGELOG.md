@@ -1,5 +1,12 @@
 # @godown/react
 
+## 3.14.0
+
+### Patch Changes
+
+- Updated dependencies [9fae2a7]
+  - godown@3.14.0
+
 ## 3.13.4
 
 ### Patch Changes
