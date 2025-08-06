@@ -93,14 +93,22 @@ class Tabs extends GlobalStyle {
   ringType: RingType = "border";
 
   /**
-   * If it is "select", the indicator moves from the selected content to the hover position.
+   * If "select", the indicator moves from the selected content to the hover position.
    *
-   * If it is "previous", the indicator moves from the last moved position to the hover position.
+   * If "previous", the indicator moves from the last moved position to the hover position.
    *
-   * If "none", the indicator will not move.
+   * If "none", the indicator does not move.
    */
   @property()
   beginning: "selected" | "previous" | "none" = "selected";
+
+  /**
+   * If "remain", the indicator remain on the selected item.
+   *
+   * If "none", the indicator dose not display.
+   */
+  @property()
+  ending: "remain" | "none" = "remain";
 
   /**
    * The behavior of the indicator:
@@ -138,6 +146,7 @@ class Tabs extends GlobalStyle {
   }
 
   render(): TemplateResult<1> {
+    const isRemain = this.ending === "remain";
     return html`
       <ul
         part="root"
@@ -147,7 +156,7 @@ class Tabs extends GlobalStyle {
         ${this.tabs?.map(
           (tab, index) => html`
             <li
-              part="${tokenList("item", this.index === index && "selected")}"
+              part="${tokenList("item", isRemain && this.index === index && "selected")}"
               @mouseenter=${() => {
                 this.move(this.previousIndex, index);
                 this.previousIndex = index;
@@ -163,9 +172,13 @@ class Tabs extends GlobalStyle {
     `;
   }
 
+  protected get _finalIndex() {
+    return this.ending === "none" && this.beginning === "selected" ? this.index : -1;
+  }
+
   connectedCallback(): void {
     super.connectedCallback();
-    this.previousIndex = this.beginning === "selected" ? this.index : -1;
+    this.previousIndex = this._finalIndex;
   }
 
   protected _handleMouseLeave(): void {
@@ -173,7 +186,7 @@ class Tabs extends GlobalStyle {
     if (lastItem) {
       lastItem.part.remove(hoverToken);
     }
-    this.previousIndex = this.beginning === "selected" ? this.index : -1;
+    this.previousIndex = this._finalIndex;
   }
 
   move(sourceIndex: number, targetIndex: number): void {
