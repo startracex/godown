@@ -8,3 +8,4 @@ catalog:
   '@lit/react': ^1.0.8
   lit: ^3.3.1
   tslib: ^2.8.1
+  typescript545: npm:typescript@5.4.5
