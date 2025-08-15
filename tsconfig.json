@@ -1,5 +1,5 @@
 {
   "extends": "@startracex/dev-config/tsconfig/app.json",
-  "include": ["**/*.tsx", "**/*.ts", "build/x", "build/_xx"],
+  "include": ["**/*.tsx", "**/*.ts"],
   "exclude": ["**/*.d.ts", "**/src/**"]
 }
