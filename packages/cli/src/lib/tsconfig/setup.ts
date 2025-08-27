@@ -8,26 +8,24 @@ import type { CompilerOptions } from "typescript";
 import { getExts } from "../utils.ts";
 
 type MergeExclusive<A extends object, B extends object> = A & Omit<B, keyof A>;
+type TSConfig = {
+  compilerOptions: MergeExclusive<CompilerOptions, CompilerOptionsMigrate>;
+  include: string[];
+  exclude: string[];
+};
+
 export const setupTsconfig = async (
   fileName = "tsconfig.json",
 ): Promise<{
-  tsconfig: {
-    compilerOptions: MergeExclusive<
-      CompilerOptionsMigrate & {
-        rootDir?: string;
-        outDir?: string;
-      },
-      CompilerOptions
-    >;
-    include: string[];
-    exclude: string[];
-  };
+  tsconfig: TSConfig;
   path: string | undefined;
   dir: string | undefined;
   fileNames: string[];
 }> => {
   try {
-    const { tsconfig, tsconfigFile } = (await parse(fileName)) as TSConfckParseNativeResult;
+    const { tsconfig, tsconfigFile } = (await parse(fileName)) as Omit<TSConfckParseNativeResult, "tsconfig"> & {
+      tsconfig: TSConfig;
+    };
     const dir = dirname(tsconfigFile);
     tsconfig.compilerOptions ??= {};
     const { rootDir, rootDirs, outDir, outFile } = tsconfig.compilerOptions;
@@ -46,8 +44,9 @@ export const setupTsconfig = async (
       tsconfig.exclude ??= [outFile];
     }
     const { jsx, allowJs } = tsconfig.compilerOptions;
-    const exts = getExts(allowJs, jsx);
-    const fileNames = await globby(tsconfig.include ?? [`**/*{${exts.join(",")}}`], {
+    const exts = getExts(allowJs, !!jsx);
+    tsconfig.include ??= [`**/*{${exts.join(",")}}`];
+    const fileNames = await globby(tsconfig.include, {
       ignore: [...(tsconfig.exclude ?? []), "**/node_modules"],
       absolute: true,
       cwd: dir,
