@@ -1,5 +1,11 @@
 # godown
 
+## 3.14.1
+
+### Patch Changes
+
+- 38ce768: fix Popovers and tooltips cannot be opened and closed correctly
+
 ## 3.14.0
 
 ### Minor Changes
