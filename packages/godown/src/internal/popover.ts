@@ -18,12 +18,10 @@ const standardHide = (element: HTMLElement) => {
   }
 };
 
-export const hidePopover: (element: HTMLElement) => void = memoize((element: HTMLElement) => {
-  if (supportPopover()) {
-    return standardHide(element);
-  }
-  return shimHide(element);
-});
+export const hidePopover: (this: void | HTMLElement, element: HTMLElement) => void = function (this, element) {
+  const hideFn = supportPopover() ? standardHide : shimHide;
+  hideFn.call(this, element);
+};
 
 const shimShow = (element: HTMLElement) => {
   element.style.display = "block";
@@ -56,9 +54,7 @@ const standardShow = (element: HTMLElement) => {
   }
 };
 
-export const showPopover: (this: void | HTMLElement, element: HTMLElement) => void = memoize(function (this, element) {
-  if (supportPopover()) {
-    return standardShow(element);
-  }
-  return shimShow(element);
-});
+export const showPopover: (this: void | HTMLElement, element: HTMLElement) => void = function (this, element) {
+  const showFn = supportPopover() ? standardShow : shimShow;
+  showFn.call(this, element);
+};
