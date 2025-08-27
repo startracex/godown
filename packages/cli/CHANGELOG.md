@@ -1,5 +1,12 @@
 # @godown/cli
 
+## 0.0.3
+
+### Patch Changes
+
+- c7b1ff5: set "include" when parsing tsconfig
+- ef5a952: enable hoistTransitiveImports output option
+
 ## 0.0.2
 
 ### Patch Changes
