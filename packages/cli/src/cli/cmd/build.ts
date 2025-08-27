@@ -136,6 +136,7 @@ export const runBuild = async (
               name: output.file ? (output.name ?? packageName) : undefined,
               sourcemap: tsconfigResult.tsconfig.compilerOptions.sourceMap,
               format: output.format ?? packageFormat,
+              hoistTransitiveImports: false,
             };
           }),
         };
@@ -210,6 +211,7 @@ export const runBuild = async (
         globals: o.file ? globals : undefined,
         name: o.file ? name || packageName : undefined,
         exports: o.format === "cjs" ? "named" : "auto",
+        hoistTransitiveImports: false,
       } as OutputOptions;
     });
 
