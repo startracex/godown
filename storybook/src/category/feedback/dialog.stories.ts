@@ -37,6 +37,7 @@ export const Primary: Story = {
             Like dialog, it listens for submit events and closes itself when the target method is "dialog".
           </div>
           <div>Dialog requires using slot="trigger" as the trigger instead of an element without a slot name.</div>
+          <div>Or trigger dialog by "open" property.</div>
           <godown-flex
             slot="footer"
             content="end"
