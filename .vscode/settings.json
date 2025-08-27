@@ -1,21 +1,20 @@
 {
   "npm.packageManager": "pnpm",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.js": "$(capture).js.map, $(capture).d.ts, $(capture).d.ts.map",
+    "*.ts": "$(capture).js, $(capture).d.ts.map, $(capture).js",
+    "package.json": ".npmrc, pnpm-lock.yaml, pnpm-workspace.yaml",
+    "README.md": "LICENSE, CHANGELOG.md",
+    "custom-elements.json": "web-types.json, vscode.css-custom-data.json, vscode.html-custom-data.json"
+  },
   "files.exclude": {
-    ".editorconfig": true,
     ".idea": true,
     ".git": true,
-    ".npmrc": true,
     ".vercel": true,
-    "vercel.json": true,
-    "pnpm-lock.yaml": true,
     "**/.turbo": true,
-    "**/LICENSE": true,
-    "**/*.map": {
-      "when": "$(basename)"
-    },
-    "**/*.js": {
-      "when": "$(basename).d.ts"
-    }
+    "**/node_modules": true
   },
   "[typescript]": {
     "editor.defaultFormatter": "dprint.dprint"
