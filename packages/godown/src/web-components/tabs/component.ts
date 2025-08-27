@@ -172,7 +172,7 @@ class Tabs extends GlobalStyle {
     `;
   }
 
-  protected get _finalIndex() {
+  protected get _finalIndex(): number {
     return this.ending === "none" && this.beginning === "selected" ? this.index : -1;
   }
 
