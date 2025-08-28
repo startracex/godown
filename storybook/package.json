@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "pnpm build:manager && storybook dev -p 6006",
     "build": "pnpm build:manager && storybook build -o build",
-    "build:manager": "stylus styl/manager.styl && pnpm godown c .storybook/manager.ts -o .storybook/manager.js",
+    "build:manager": "stylus styl/manager.styl",
     "preview": "vite preview --port 6006 --outDir build"
   },
   "devDependencies": {
