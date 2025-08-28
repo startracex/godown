@@ -37,14 +37,23 @@ export const WithCustomColor: Story = {
 };
 
 export const Sharps: Story = {
-  render: () => html`
+  render: (args: Button) => html`
     <godown-flex gap=".5em">
-      <godown-button style="width: 2em;height: 2em;">
+      <godown-button
+        ${attr({
+          ...args,
+          round: false,
+        })}
+        style="width: 2em;height: 2em;"
+      >
         <iconify-icon icon="ion:logo-web-component"></iconify-icon>
       </godown-button>
       <godown-button
+        ${attr({
+          ...args,
+          round: true,
+        })}
         style="width: 2em;height: 2em;"
-        round
       >
         <iconify-icon icon="ion:logo-web-component"></iconify-icon>
       </godown-button>
