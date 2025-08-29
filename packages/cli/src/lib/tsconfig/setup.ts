@@ -9,7 +9,16 @@ import { getExts } from "../utils.ts";
 
 type MergeExclusive<A extends object, B extends object> = A & Omit<B, keyof A>;
 type TSConfig = {
-  compilerOptions: MergeExclusive<CompilerOptions, CompilerOptionsMigrate>;
+  compilerOptions: MergeExclusive<
+    CompilerOptionsMigrate & {
+      rootDir?: string;
+      rootDirs?: string[];
+      outDir?: string;
+      outFile?: string;
+      allowJs?: boolean;
+    },
+    CompilerOptions
+  >;
   include: string[];
   exclude: string[];
 };

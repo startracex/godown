@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "pnpm run-main b -c .godownrc.json",
+    "check-types": "node ./node_modules/typescript/bin/tsc",
     "run-main": "tscute src/cli/godown.ts",
     "run-dist": "node build/cli/godown.js"
   },
