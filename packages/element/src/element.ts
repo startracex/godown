@@ -17,6 +17,8 @@ export const attributeName = (property: PropertyKey, { attribute }: PropertyDecl
 
 const withSelectorRegex = /^[\s\S]*{[\s\S]*}$/;
 
+const SLOT = "slot";
+
 export class GodownElement extends LitElement {
   static godownConfig: GodownConfig = new GodownConfig();
 
@@ -76,7 +78,7 @@ export class GodownElement extends LitElement {
    * @returns The unnamed slot element, or `null` if not found.
    */
   protected get _slot(): HTMLSlotElement | null {
-    return this.shadowRoot ? this.shadowRoot.querySelector<HTMLSlotElement>("slot:not([name])") : null;
+    return this.shadowRoot ? this.shadowRoot.querySelector<HTMLSlotElement>(`${SLOT}:not([name])`) : null;
   }
 
   /**
@@ -84,7 +86,7 @@ export class GodownElement extends LitElement {
    * @returns An array of all slot elements in the shadow root.
    */
   protected get _slotAll(): HTMLSlotElement[] {
-    return this.shadowRoot ? [...this.shadowRoot.querySelectorAll<HTMLSlotElement>("slot")] : [];
+    return this.shadowRoot ? [...this.shadowRoot.querySelectorAll<HTMLSlotElement>(SLOT)] : [];
   }
 
   /**
@@ -92,7 +94,7 @@ export class GodownElement extends LitElement {
    * @returns An array of all slotted elements.
    */
   protected get _slottedAll(): HTMLSlotElement[] {
-    return [...this.querySelectorAll<HTMLSlotElement>("[slot]")];
+    return [...this.querySelectorAll<HTMLSlotElement>(`[${SLOT}]`)];
   }
 
   /**
@@ -100,7 +102,7 @@ export class GodownElement extends LitElement {
    * @returns An array of slot names.
    */
   protected get _slottedNames(): string[] {
-    return this._slottedAll.map((c) => c.getAttribute("slot")).filter((v) => v);
+    return this._slottedAll.map((c) => c.getAttribute(SLOT)).filter((v) => v);
   }
 
   /**
