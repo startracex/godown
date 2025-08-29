@@ -1,7 +1,7 @@
 {
   "name": "godown",
   "version": "3.14.1",
-  "description": "Web Components Library",
+  "description": "Atomic Web Component Library.",
   "type": "module",
   "scripts": {
     "dev": "tsc --watch",

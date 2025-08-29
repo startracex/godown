@@ -1,6 +1,6 @@
 # godown
 
-The Web Components Library.
+Atomic Web Component Library.
 
 ## Install
 

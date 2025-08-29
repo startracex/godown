@@ -1,73 +1,49 @@
 # godown
 
-Web Components Library.
+Atomic Web Component Library.
 
-<a href="https://godown.js.org" target="_blank"><img src="https://raw.githubusercontent.com/storybookjs/brand/main/badge/badge-storybook.svg" alt="Components documentation"></a>
+[![Storybook documentation](https://raw.githubusercontent.com/storybookjs/brand/main/badge/badge-storybook.svg)](https://godown.js.org)
+[![NPM Version](https://img.shields.io/npm/v/godown)](https://www.npmjs.com/package/godown)
+[![NPM Downloads](https://img.shields.io/npm/dm/godown)](https://www.npmjs.com/package/godown)
+[![License MIT](https://img.shields.io/badge/license%20MIT-black)](https://github.com/startracex/godown/blob/main/LICENSE)
 
 ## Features
 
-- 🌙 Dark mode first
-- 🎨 High customization
-- 📐 Similar standard
+- 🌙 Follow color schemes: Use "color-scheme" to switch between light/dark themes.
+- 🎨 Highly customizable: Easily customize styles through CSS variables and the part pseudo-selector.
+- 🌉 Framework agnostic: Suitable for any UI framework or vanilla JavaScript via web components.
+- 💫 Atomic components: Each component is self-contained, without introducing other component definitions or requiring use with other components.
 
 ## Development
 
-Install dependencies
+Install dependencies.
 
 ```sh
 node prepare.cjs && pnpm i
 ```
 
-Start development server
+Start development server.
 
 ```sh
 pnpm run dev
 ```
 
-Format
+Format.
 
 ```sh
 pnpm run fmt
+pnpm run fmt:check
 ```
 
-Lint
+Lint.
 
 ```sh
 pnpm run lint
+pnpm run lint:check
 ```
 
-Build packages
+Build packages.
 
 ```sh
 pnpm run build
 ```
-
-## Packages
-
-### CLI
-
-- `@godown/cli` CLI for building package.
-
-### Libraries
-
-- `godown` Web components library.
-
-- `@godown/element` Component base class for godown.
-
-- `@godown/react` React components for godown.
-
-- `sharekit` Shareable utility toolkit.
-
-- `template-extractor` Extract strings templates in TypeScript source file.
-
-- `minify-html-parts` Minify HTML parts in TypeScript source file.
-
-### Plugins
-
-- `cem-define` Enhance custom-element-manifest's custom-element-definition exports.
-
-- `cem-fix-module` Fix custom-element-manifest's module paths.
-
-- `rollup-plugin-template-replace` Rollup plugin with template-extractor.
-
-- `rollup-plugin-minify-html-parts` Rollup plugin with minify-html-parts.

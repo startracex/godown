@@ -36,11 +36,6 @@
   "engines": {
     "node": ">=22"
   },
-  "name": "@godown/workspace",
-  "version": "0.0.0",
   "private": true,
-  "type": "module",
-  "author": "startracex",
-  "license": "MIT",
-  "description": "Simple, stylized, semantic web components"
+  "type": "module"
 }
