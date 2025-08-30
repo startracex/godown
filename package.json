@@ -19,13 +19,13 @@
     "@types/node": "^24.3.0",
     "@types/react": "^19.1.12",
     "dprint": "^0.50.1",
+    "rolldown-vite": "^7.1.5",
     "rollup": "^4.49.0",
     "tscute": "^0.2.0",
     "tslib": "catalog:",
     "turbo": "^2.5.6",
     "typescript": "^5.9.2",
-    "typescript545": "catalog:",
-    "vite": "npm:rolldown-vite@^7.1.5"
+    "typescript545": "catalog:"
   },
   "optionalDependencies": {
     "@stylistic/eslint-plugin": "^5.2.3",

@@ -3,7 +3,7 @@ import migrate from "rollup-plugin-oxc/migrate.js";
 import type { Options } from "rollup-plugin-oxc";
 import { isArray } from "sharekit";
 
-import { json, oxc } from "./plugins.ts";
+import { json, oxc, terser } from "./plugins.ts";
 import { commonjs } from "./plugins.ts";
 
 type EmitOptions = Omit<Options, "tsconfig"> & { tsconfig?: Exclude<Options["tsconfig"], string> };
@@ -18,15 +18,22 @@ export const setupOptions = (
 } => {
   const plugins = isArray(inputs.plugins) ? inputs.plugins : [inputs.plugins || []];
 
+  const emitPlugins = emitOptions.minify
+    ? [
+        oxc({
+          ...emitOptions,
+          minify: false,
+        }),
+        terser(),
+      ]
+    : [oxc(emitOptions)];
+
   if (type === "rolldown") {
     inputs.plugins = [
       json({
         extensions: [".jsonc"],
       }),
-      oxc({
-        ...emitOptions,
-        transform: false,
-      }),
+      ...emitPlugins,
       ...plugins,
     ];
     Object.assign(inputs, {
@@ -37,7 +44,7 @@ export const setupOptions = (
       resolve: emitOptions.resolve || undefined,
     });
   } else {
-    inputs.plugins = [json(), oxc(emitOptions), commonjs(), ...plugins];
+    inputs.plugins = [json(), commonjs(), ...emitPlugins, ...plugins];
   }
 
   return inputs;

@@ -7,6 +7,7 @@ import templateReplace from "rollup-plugin-template-replace";
 import minifyHtmlParts from "rollup-plugin-minify-html-parts";
 import oxc from "rollup-plugin-oxc";
 import { extname } from "sharekit/path/filepath.js";
+import { minify, type MinifyOptions } from "terser";
 
 export function json(options?: { extensions?: string[] }): Plugin {
   const exts = new Set(options?.extensions ?? [".json", ".jsonc"]);
@@ -25,6 +26,21 @@ export function json(options?: { extensions?: string[] }): Plugin {
         };
       }
       return null;
+    },
+  };
+}
+
+export function terser(options: MinifyOptions = {}): Plugin {
+  return {
+    name: "terser",
+    renderChunk(_code: string) {
+      return minify(_code, {
+        sourceMap: true,
+        ...options,
+      }) as Promise<{
+        code: string;
+        map: any;
+      }>;
     },
   };
 }
