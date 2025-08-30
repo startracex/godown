@@ -19,20 +19,20 @@
     "@types/node": "^24.3.0",
     "@types/react": "^19.1.12",
     "dprint": "^0.50.1",
-    "rolldown-vite": "^7.1.5",
     "rollup": "^4.49.0",
     "tscute": "^0.2.0",
     "tslib": "catalog:",
     "turbo": "^2.5.6",
     "typescript": "^5.9.2",
-    "typescript545": "catalog:"
+    "typescript545": "catalog:",
+    "vite": "npm:rolldown-vite@^7.1.5"
   },
   "optionalDependencies": {
     "@stylistic/eslint-plugin": "^5.2.3",
     "@typescript-eslint/parser": "^8.41.0",
     "eslint": "^9.34.0"
   },
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.14.0",
   "engines": {
     "node": ">=22"
   },
