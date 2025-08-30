@@ -1,5 +1,15 @@
 # @godown/cli
 
+## 0.1.0
+
+### Minor Changes
+
+- 403a7e2: use terser instead of oxc for compression
+
+### Patch Changes
+
+- e5abd78: fix types error
+
 ## 0.0.3
 
 ### Patch Changes
