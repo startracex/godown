@@ -9,7 +9,7 @@ export default createReact(Form);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-form": IntrinsicElement<Form>;
+      "godown-form": IntrinsicElement<InstanceType<typeof Form>>;
     }
   }
 }

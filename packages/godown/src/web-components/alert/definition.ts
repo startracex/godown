@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Alert from "./component.js";
 
-Alert.define();
-
-export default Alert;
+export default define(Alert) as typeof Alert;
 
 declare global {
   interface HTMLElementTagNameMap {

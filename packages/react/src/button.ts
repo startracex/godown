@@ -9,7 +9,7 @@ export default createReact(Button);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-button": IntrinsicElement<Button>;
+      "godown-button": IntrinsicElement<InstanceType<typeof Button>>;
     }
   }
 }

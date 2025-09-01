@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Time from "./component.js";
 
-Time.define();
-
-export default Time;
+export default define(Time) as typeof Time;
 
 declare global {
   interface HTMLElementTagNameMap {

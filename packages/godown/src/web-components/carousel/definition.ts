@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Carousel from "./component.js";
 
-Carousel.define();
-
-export default Carousel;
+export default define(Carousel) as typeof Carousel;
 
 declare global {
   interface HTMLElementTagNameMap {

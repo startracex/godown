@@ -9,7 +9,7 @@ export default createReact(Progress);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-progress": IntrinsicElement<Progress>;
+      "godown-progress": IntrinsicElement<InstanceType<typeof Progress>>;
     }
   }
 }

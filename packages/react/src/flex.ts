@@ -9,7 +9,7 @@ export default createReact(Flex);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-flex": IntrinsicElement<Flex>;
+      "godown-flex": IntrinsicElement<InstanceType<typeof Flex>>;
     }
   }
 }

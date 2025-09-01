@@ -7,8 +7,8 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 export default createReact(
   Input,
   eventMap<{
-    onChange: TargetedCustomEvent<string, Input>;
-    onInput: TargetedCustomEvent<string, Input>;
+    onChange: TargetedCustomEvent<string, InstanceType<typeof Input>>;
+    onInput: TargetedCustomEvent<string, InstanceType<typeof Input>>;
   }>({
     onChange: "change",
     onInput: "input",
@@ -18,7 +18,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-input": IntrinsicElement<Input>;
+      "godown-input": IntrinsicElement<InstanceType<typeof Input>>;
     }
   }
 }

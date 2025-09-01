@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Avatar from "./component.js";
 
-Avatar.define();
-
-export default Avatar;
+export default define(Avatar) as typeof Avatar;
 
 declare global {
   interface HTMLElementTagNameMap {

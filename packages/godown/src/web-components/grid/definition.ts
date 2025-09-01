@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Grid from "./component.js";
 
-Grid.define();
-
-export default Grid;
+export default define(Grid) as typeof Grid;
 
 declare global {
   interface HTMLElementTagNameMap {

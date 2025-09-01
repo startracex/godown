@@ -7,9 +7,9 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 export default createReact(
   Select,
   eventMap<{
-    onChange: TargetedCustomEvent<string, Select>;
-    onInput: TargetedCustomEvent<string, Select>;
-    onSelect: TargetedCustomEvent<string | string[], Select>;
+    onChange: TargetedCustomEvent<string, InstanceType<typeof Select>>;
+    onInput: TargetedCustomEvent<string, InstanceType<typeof Select>>;
+    onSelect: TargetedCustomEvent<string | string[], InstanceType<typeof Select>>;
   }>({
     onInput: "input",
     onChange: "change",
@@ -20,7 +20,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-select": IntrinsicElement<Select>;
+      "godown-select": IntrinsicElement<InstanceType<typeof Select>>;
     }
   }
 }

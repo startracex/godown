@@ -9,7 +9,7 @@ export default createReact(Badge);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-badge": IntrinsicElement<Badge>;
+      "godown-badge": IntrinsicElement<InstanceType<typeof Badge>>;
     }
   }
 }

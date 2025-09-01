@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Select from "./component.js";
 
-Select.define();
-
-export default Select;
+export default define(Select) as typeof Select;
 
 declare global {
   interface HTMLElementTagNameMap {

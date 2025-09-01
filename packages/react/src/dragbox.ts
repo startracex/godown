@@ -9,7 +9,7 @@ export default createReact(Dragbox);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-dragbox": IntrinsicElement<Dragbox>;
+      "godown-dragbox": IntrinsicElement<InstanceType<typeof Dragbox>>;
     }
   }
 }

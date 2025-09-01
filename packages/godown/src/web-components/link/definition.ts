@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Link from "./component.js";
 
-Link.define();
-
-export default Link;
+export default define(Link) as typeof Link;
 
 declare global {
   interface HTMLElementTagNameMap {

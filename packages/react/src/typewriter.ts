@@ -7,8 +7,8 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 export default createReact(
   Typewriter,
   eventMap<{
-    onWrite: TargetedCustomEvent<string, Typewriter>;
-    onDone: TargetedCustomEvent<string, Typewriter>;
+    onWrite: TargetedCustomEvent<string, InstanceType<typeof Typewriter>>;
+    onDone: TargetedCustomEvent<string, InstanceType<typeof Typewriter>>;
   }>({
     onWrite: "write",
     onDone: "done",
@@ -18,7 +18,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-typewriter": IntrinsicElement<Typewriter>;
+      "godown-typewriter": IntrinsicElement<InstanceType<typeof Typewriter>>;
     }
   }
 }

@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Breath from "./component.js";
 
-Breath.define();
-
-export default Breath;
+export default define(Breath) as typeof Breath;
 
 declare global {
   interface HTMLElementTagNameMap {

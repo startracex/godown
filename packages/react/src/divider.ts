@@ -9,7 +9,7 @@ export default createReact(Divider);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-divider": IntrinsicElement<Divider>;
+      "godown-divider": IntrinsicElement<InstanceType<typeof Divider>>;
     }
   }
 }

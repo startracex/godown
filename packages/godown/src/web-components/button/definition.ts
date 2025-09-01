@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Button from "./component.js";
 
-Button.define();
-
-export default Button;
+export default define(Button) as typeof Button;
 
 declare global {
   interface HTMLElementTagNameMap {

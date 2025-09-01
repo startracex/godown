@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Layout from "./component.js";
 
-Layout.define();
-
-export default Layout;
+export default define(Layout) as typeof Layout;
 
 declare global {
   interface HTMLElementTagNameMap {

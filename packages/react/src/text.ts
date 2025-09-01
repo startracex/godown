@@ -9,7 +9,7 @@ export default createReact(Text);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-text": IntrinsicElement<Text>;
+      "godown-text": IntrinsicElement<InstanceType<typeof Text>>;
     }
   }
 }

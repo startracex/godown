@@ -9,7 +9,7 @@ export default createReact(Layout);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-layout": IntrinsicElement<Layout>;
+      "godown-layout": IntrinsicElement<InstanceType<typeof Layout>>;
     }
   }
 }

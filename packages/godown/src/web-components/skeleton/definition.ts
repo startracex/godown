@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Skeleton from "./component.js";
 
-Skeleton.define();
-
-export default Skeleton;
+export default define(Skeleton) as typeof Skeleton;
 
 declare global {
   interface HTMLElementTagNameMap {

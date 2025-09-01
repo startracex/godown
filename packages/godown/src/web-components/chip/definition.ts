@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Chip from "./component.js";
 
-Chip.define();
-
-export default Chip;
+export default define(Chip) as typeof Chip;
 
 declare global {
   interface HTMLElementTagNameMap {

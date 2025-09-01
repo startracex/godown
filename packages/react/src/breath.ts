@@ -9,7 +9,7 @@ export default createReact(Breath);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-breath": IntrinsicElement<Breath>;
+      "godown-breath": IntrinsicElement<InstanceType<typeof Breath>>;
     }
   }
 }

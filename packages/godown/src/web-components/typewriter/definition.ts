@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Typewriter from "./component.js";
 
-Typewriter.define();
-
-export default Typewriter;
+export default define(Typewriter) as typeof Typewriter;
 
 declare global {
   interface HTMLElementTagNameMap {

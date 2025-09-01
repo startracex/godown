@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Tooltip from "./component.js";
 
-Tooltip.define();
-
-export default Tooltip;
+export default define(Tooltip) as typeof Tooltip;
 
 declare global {
   interface HTMLElementTagNameMap {

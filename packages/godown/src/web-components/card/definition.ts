@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Card from "./component.js";
 
-Card.define();
-
-export default Card;
+export default define(Card) as typeof Card;
 
 declare global {
   interface HTMLElementTagNameMap {

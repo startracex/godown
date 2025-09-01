@@ -7,7 +7,7 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 export default createReact(
   Details,
   eventMap<{
-    onChange: TargetedCustomEvent<boolean, Details>;
+    onChange: TargetedCustomEvent<boolean, InstanceType<typeof Details>>;
   }>({
     onChange: "change",
   }),
@@ -16,7 +16,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-details": IntrinsicElement<Details>;
+      "godown-details": IntrinsicElement<InstanceType<typeof Details>>;
     }
   }
 }

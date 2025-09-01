@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Progress from "./component.js";
 
-Progress.define();
-
-export default Progress;
+export default define(Progress) as typeof Progress;
 
 declare global {
   interface HTMLElementTagNameMap {

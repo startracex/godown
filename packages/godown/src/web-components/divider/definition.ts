@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Divider from "./component.js";
 
-Divider.define();
-
-export default Divider;
+export default define(Divider) as typeof Divider;
 
 declare global {
   interface HTMLElementTagNameMap {

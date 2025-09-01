@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Range from "./component.js";
 
-Range.define();
-
-export default Range;
+export default define(Range) as typeof Range;
 
 declare global {
   interface HTMLElementTagNameMap {

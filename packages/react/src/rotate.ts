@@ -9,7 +9,7 @@ export default createReact(Rotate);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-rotate": IntrinsicElement<Rotate>;
+      "godown-rotate": IntrinsicElement<InstanceType<typeof Rotate>>;
     }
   }
 }

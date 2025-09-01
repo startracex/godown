@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Dragbox from "./component.js";
 
-Dragbox.define();
-
-export default Dragbox;
+export default define(Dragbox) as typeof Dragbox;
 
 declare global {
   interface HTMLElementTagNameMap {

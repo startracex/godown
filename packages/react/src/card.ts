@@ -9,7 +9,7 @@ export default createReact(Card);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-card": IntrinsicElement<Card>;
+      "godown-card": IntrinsicElement<InstanceType<typeof Card>>;
     }
   }
 }

@@ -12,7 +12,7 @@ export default createReact(
         state: object;
         pathname: string;
       },
-      Link
+      InstanceType<typeof Link>
     >;
   }>({
     onNavigate: "navigate",
@@ -22,7 +22,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-link": IntrinsicElement<Link>;
+      "godown-link": IntrinsicElement<InstanceType<typeof Link>>;
     }
   }
 }

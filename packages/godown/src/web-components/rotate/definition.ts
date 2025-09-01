@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Rotate from "./component.js";
 
-Rotate.define();
-
-export default Rotate;
+export default define(Rotate) as typeof Rotate;
 
 declare global {
   interface HTMLElementTagNameMap {

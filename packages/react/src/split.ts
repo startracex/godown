@@ -7,8 +7,8 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 export default createReact(
   Split,
   eventMap<{
-    onChange: TargetedCustomEvent<string, Split>;
-    onInput: TargetedCustomEvent<string, Split>;
+    onChange: TargetedCustomEvent<string, InstanceType<typeof Split>>;
+    onInput: TargetedCustomEvent<string, InstanceType<typeof Split>>;
   }>({
     onChange: "change",
     onInput: "input",
@@ -18,7 +18,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-split": IntrinsicElement<Split>;
+      "godown-split": IntrinsicElement<InstanceType<typeof Split>>;
     }
   }
 }

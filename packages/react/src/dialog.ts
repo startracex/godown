@@ -7,7 +7,7 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 export default createReact(
   Dialog,
   eventMap<{
-    onChange: TargetedCustomEvent<boolean, Dialog>;
+    onChange: TargetedCustomEvent<boolean, InstanceType<typeof Dialog>>;
   }>({
     onChange: "change",
   }),
@@ -16,7 +16,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-dialog": IntrinsicElement<Dialog>;
+      "godown-dialog": IntrinsicElement<InstanceType<typeof Dialog>>;
     }
   }
 }

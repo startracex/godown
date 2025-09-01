@@ -9,7 +9,7 @@ export default createReact(Popover);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-popover": IntrinsicElement<Popover>;
+      "godown-popover": IntrinsicElement<InstanceType<typeof Popover>>;
     }
   }
 }

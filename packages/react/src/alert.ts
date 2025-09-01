@@ -9,7 +9,7 @@ export default createReact(Alert);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-alert": IntrinsicElement<Alert>;
+      "godown-alert": IntrinsicElement<InstanceType<typeof Alert>>;
     }
   }
 }

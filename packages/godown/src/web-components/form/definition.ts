@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Form from "./component.js";
 
-Form.define();
-
-export default Form;
+export default define(Form) as typeof Form;
 
 declare global {
   interface HTMLElementTagNameMap {

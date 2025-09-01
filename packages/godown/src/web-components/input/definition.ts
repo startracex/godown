@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Input from "./component.js";
 
-Input.define();
-
-export default Input;
+export default define(Input) as typeof Input;
 
 declare global {
   interface HTMLElementTagNameMap {

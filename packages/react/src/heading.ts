@@ -9,7 +9,7 @@ export default createReact(Heading);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-heading": IntrinsicElement<Heading>;
+      "godown-heading": IntrinsicElement<InstanceType<typeof Heading>>;
     }
   }
 }

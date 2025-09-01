@@ -9,7 +9,7 @@ export default createReact(Avatar);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-avatar": IntrinsicElement<Avatar>;
+      "godown-avatar": IntrinsicElement<InstanceType<typeof Avatar>>;
     }
   }
 }

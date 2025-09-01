@@ -9,7 +9,7 @@ export default createReact(Grid);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-grid": IntrinsicElement<Grid>;
+      "godown-grid": IntrinsicElement<InstanceType<typeof Grid>>;
     }
   }
 }

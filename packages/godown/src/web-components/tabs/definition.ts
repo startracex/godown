@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Tabs from "./component.js";
 
-Tabs.define();
-
-export default Tabs;
+export default define(Tabs) as typeof Tabs;
 
 declare global {
   interface HTMLElementTagNameMap {

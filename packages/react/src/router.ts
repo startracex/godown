@@ -14,7 +14,7 @@ export default createReact(
         path: string;
         component: unknown;
       },
-      Router
+      InstanceType<typeof Router>
     >;
   }>({
     onChange: "change",
@@ -24,7 +24,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-router": IntrinsicElement<Router>;
+      "godown-router": IntrinsicElement<InstanceType<typeof Router>>;
     }
   }
 }

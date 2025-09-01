@@ -7,7 +7,7 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 export default createReact(
   Carousel,
   eventMap<{
-    onChange: TargetedCustomEvent<number, Carousel>;
+    onChange: TargetedCustomEvent<number, InstanceType<typeof Carousel>>;
   }>({
     onChange: "change",
   }),
@@ -16,7 +16,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-carousel": IntrinsicElement<Carousel>;
+      "godown-carousel": IntrinsicElement<InstanceType<typeof Carousel>>;
     }
   }
 }

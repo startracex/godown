@@ -7,7 +7,7 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 export default createReact(
   Time,
   eventMap<{
-    onTime: TargetedCustomEvent<Date, Time>;
+    onTime: TargetedCustomEvent<Date, InstanceType<typeof Time>>;
   }>({
     onTime: "time",
   }),
@@ -16,7 +16,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-time": IntrinsicElement<Time>;
+      "godown-time": IntrinsicElement<InstanceType<typeof Time>>;
     }
   }
 }

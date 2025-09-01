@@ -7,7 +7,7 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 export default createReact(
   Tabs,
   eventMap<{
-    onSelect: TargetedCustomEvent<number, Tabs>;
+    onSelect: TargetedCustomEvent<number, InstanceType<typeof Tabs>>;
   }>({
     onSelect: "select",
   }),
@@ -16,7 +16,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-tabs": IntrinsicElement<Tabs>;
+      "godown-tabs": IntrinsicElement<InstanceType<typeof Tabs>>;
     }
   }
 }

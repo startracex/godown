@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Popover from "./component.js";
 
-Popover.define();
-
-export default Popover;
+export default define(Popover) as typeof Popover;
 
 declare global {
   interface HTMLElementTagNameMap {

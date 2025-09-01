@@ -7,7 +7,7 @@ import type { IntrinsicElement } from "./lib/intrinsic.js";
 export default createReact(
   Switch,
   eventMap<{
-    onChange: TargetedCustomEvent<boolean, Switch>;
+    onChange: TargetedCustomEvent<boolean, InstanceType<typeof Switch>>;
   }>({
     onChange: "change",
   }),
@@ -16,7 +16,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-switch": IntrinsicElement<Switch>;
+      "godown-switch": IntrinsicElement<InstanceType<typeof Switch>>;
     }
   }
 }

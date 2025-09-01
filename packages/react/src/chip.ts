@@ -9,7 +9,7 @@ export default createReact(Chip);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-chip": IntrinsicElement<Chip>;
+      "godown-chip": IntrinsicElement<InstanceType<typeof Chip>>;
     }
   }
 }

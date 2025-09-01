@@ -9,7 +9,7 @@ export default createReact(Tooltip);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-tooltip": IntrinsicElement<Tooltip>;
+      "godown-tooltip": IntrinsicElement<InstanceType<typeof Tooltip>>;
     }
   }
 }

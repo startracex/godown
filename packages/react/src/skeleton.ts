@@ -9,7 +9,7 @@ export default createReact(Skeleton);
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-skeleton": IntrinsicElement<Skeleton>;
+      "godown-skeleton": IntrinsicElement<InstanceType<typeof Skeleton>>;
     }
   }
 }

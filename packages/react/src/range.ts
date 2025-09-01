@@ -16,7 +16,7 @@ export default createReact(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "godown-range": IntrinsicElement<Range>;
+      "godown-range": IntrinsicElement<InstanceType<typeof Range>>;
     }
   }
 }

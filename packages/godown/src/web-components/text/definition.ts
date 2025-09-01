@@ -1,8 +1,7 @@
+import { define } from "../../internal/call-define.js";
 import Text from "./component.js";
 
-Text.define();
-
-export default Text;
+export default define(Text) as typeof Text;
 
 declare global {
   interface HTMLElementTagNameMap {
