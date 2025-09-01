@@ -1,8 +1,8 @@
 import { html } from "lit";
+import { attr } from "@godown/element";
 import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
-import { attr } from "@godown/element";
-import type { Text } from "godown";
+import type Text from "godown/web-components/text/component.js";
 
 export default {
   title: "display/Text",

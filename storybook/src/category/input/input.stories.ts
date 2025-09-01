@@ -1,7 +1,7 @@
-import type { Input } from "godown";
+import type Input from "godown/web-components/input/component.js";
+import { ringTypeAttribute } from "godown/internal/ring.js";
 import { ArgHelper, ringTypeArgs } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
-import { ringTypeAttribute } from "godown/internal/ring.js";
 
 export default {
   title: "input/Input",

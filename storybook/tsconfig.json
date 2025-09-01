@@ -5,7 +5,8 @@
     "jsx": "react",
     "sourceMap": false,
     "declaration": false,
-    "declarationMap": false
+    "declarationMap": false,
+    "verbatimModuleSyntax": true
   },
   "include": [
     "./.storybook/**/*.ts",

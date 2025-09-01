@@ -1,8 +1,6 @@
-import type { Progress } from "godown";
+import type Progress from "godown/web-components/progress/component.js";
 import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
-import { html } from "lit";
-import { attr } from "@godown/element";
 
 export default {
   title: "feedback/Progress",

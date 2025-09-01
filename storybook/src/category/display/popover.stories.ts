@@ -1,9 +1,9 @@
-import type { Popover } from "godown";
 import { html } from "lit";
+import { attr } from "@godown/element";
 import { ArgHelper } from "../../lib/args.js";
 import { gridPositions } from "../../lib/grid-positions.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
-import { attr } from "@godown/element";
+import type Popover from "godown/web-components/popover/component.js";
 
 export default {
   title: "display/Popover",

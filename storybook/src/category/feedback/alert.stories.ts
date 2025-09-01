@@ -1,8 +1,8 @@
-import { attr } from "@godown/element";
-import type { Alert } from "godown";
 import { html } from "lit";
+import { attr } from "@godown/element";
 import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
+import type Alert from "godown/web-components/alert/component.js";
 
 export default {
   title: "feedback/Alert",

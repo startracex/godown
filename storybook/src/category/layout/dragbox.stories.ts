@@ -1,7 +1,7 @@
-import type { Dragbox } from "godown";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 import { html } from "lit";
 import { attr } from "@godown/element";
+import type Dragbox from "godown/web-components/dragbox/component.js";
 
 export default {
   title: "layout/Dragbox",

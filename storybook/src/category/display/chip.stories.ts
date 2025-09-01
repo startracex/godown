@@ -1,8 +1,8 @@
 import { html } from "lit";
-import { ArgHelper } from "../../lib/args.js";
 import { attr } from "@godown/element";
-import type { Chip } from "godown";
+import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
+import type Chip from "godown/web-components/chip/component.js";
 
 export default {
   title: "display/Chip",

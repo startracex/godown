@@ -1,8 +1,8 @@
 import { html } from "lit";
+import { attr } from "@godown/element";
 import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
-import { attr } from "@godown/element";
-import type { Range } from "godown";
+import type Range from "godown/web-components/range/component.js";
 
 export default {
   title: "input/Range",

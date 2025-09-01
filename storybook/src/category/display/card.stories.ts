@@ -1,8 +1,8 @@
-import { attr } from "@godown/element";
-import type { Card } from "godown";
 import { html } from "lit";
+import { attr } from "@godown/element";
 import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
+import type Card from "godown/web-components/card/component.js";
 
 export default {
   title: "display/Card",

@@ -1,9 +1,9 @@
-import { attr } from "@godown/element";
-import type { Dialog } from "godown";
 import { html } from "lit";
-import { ArgHelper } from "../../lib/args.js";
 import { createRef, ref } from "lit/directives/ref.js";
+import { attr } from "@godown/element";
+import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
+import type Dialog from "godown/web-components/dialog/component.js";
 
 export default {
   title: "feedback/Dialog",

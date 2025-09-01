@@ -1,8 +1,8 @@
-import type { Grid } from "godown";
+import { html } from "lit";
+import { attr, loop } from "@godown/element";
 import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
-import { attr, loop } from "@godown/element";
-import { html } from "lit";
+import type Grid from "godown/web-components/grid/component.js";
 
 export default {
   title: "layout/Grid",

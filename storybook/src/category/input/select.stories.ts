@@ -1,9 +1,9 @@
-import type { Select } from "godown";
-import { ArgHelper, ringTypeArgs } from "../../lib/args.js";
-import type { StoryMeta, StoryVariants } from "../../lib/types.js";
+import { ringTypeAttribute } from "godown/internal/ring.js";
 import { html } from "lit";
 import { attr } from "@godown/element";
-import { ringTypeAttribute } from "godown/internal/ring.js";
+import { ArgHelper, ringTypeArgs } from "../../lib/args.js";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
+import type Select from "godown/web-components/select/component.js";
 
 export default {
   title: "input/Select",

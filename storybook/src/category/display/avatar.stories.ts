@@ -1,6 +1,6 @@
 import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
-import type { Avatar } from "godown";
+import type { Avatar } from "godown/web-components/avatar/component.js";
 
 export default {
   title: "display/Avatar",

@@ -1,8 +1,8 @@
 import { html } from "lit";
+import { attr } from "@godown/element";
 import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
-import { attr } from "@godown/element";
-import type { Button } from "godown";
+import type Button from "godown/web-components/button/component.js";
 
 export default {
   title: "input/Button",

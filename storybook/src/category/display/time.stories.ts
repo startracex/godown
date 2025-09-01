@@ -1,8 +1,8 @@
-import type { Time } from "godown";
-import { ArgHelper } from "../../lib/args.js";
-import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 import { html } from "lit";
 import { attr } from "@godown/element";
+import { ArgHelper } from "../../lib/args.js";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
+import type Time from "godown/web-components/time/component.js";
 
 export default {
   title: "display/Time",

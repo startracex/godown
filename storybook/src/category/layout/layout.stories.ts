@@ -1,8 +1,8 @@
-import type { Layout } from "godown";
-import { ArgHelper } from "../../lib/args.js";
-import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 import { html } from "lit";
 import { attr } from "@godown/element";
+import { ArgHelper } from "../../lib/args.js";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
+import type Layout from "godown/web-components/layout/component.js";
 
 export default {
   title: "layout/Layout",

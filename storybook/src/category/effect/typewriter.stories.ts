@@ -1,8 +1,6 @@
-import type { Breath, Typewriter } from "godown";
+import type Breath from "godown/web-components/breath/component.js";
 import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta } from "../../lib/types.js";
-import { attr } from "@godown/element";
-import { html } from "lit";
 
 export default {
   title: "effect/Typewriter",

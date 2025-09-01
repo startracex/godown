@@ -1,9 +1,9 @@
-import { attr } from "@godown/element";
-import type { Tooltip } from "godown";
 import { html } from "lit";
+import { attr } from "@godown/element";
 import { ArgHelper } from "../../lib/args.js";
-import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 import { gridPositions } from "../../lib/grid-positions.js";
+import type { StoryMeta, StoryVariants } from "../../lib/types.js";
+import type Tooltip from "godown/web-components/tooltip/component.js";
 
 export default {
   title: "feedback/Tooltip",

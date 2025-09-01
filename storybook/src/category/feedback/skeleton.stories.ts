@@ -1,4 +1,4 @@
-import type { Skeleton } from "godown";
+import type Skeleton from "godown/web-components/skeleton/component.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 
 export default {

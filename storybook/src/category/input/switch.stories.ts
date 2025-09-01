@@ -1,4 +1,4 @@
-import type { Switch } from "godown";
+import type Switch from "godown/web-components/switch/component.js";
 import { ArgHelper } from "../../lib/args.js";
 import type { StoryMeta, StoryVariants } from "../../lib/types.js";
 
