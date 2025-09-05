@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@godown/element": "workspace:^",
-    "@oxc-project/runtime": "^0.82.3",
     "fmtime": "^0.1.0",
     "lit": "catalog:",
-    "sharekit": "^1.1.1"
+    "sharekit": "^1.1.1",
+    "tslib": "catalog:"
   },
   "publishConfig": {
     "access": "public"
