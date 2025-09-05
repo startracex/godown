@@ -34,7 +34,6 @@
     "rollup-plugin-template-replace": "workspace:^",
     "semver": "^7.7.2",
     "sharekit": "^1.1.1",
-    "terser": "^5.43.1",
     "tsconfck": "^3.1.6",
     "typescript": "^5.9.2",
     "typescript545": "catalog:"
