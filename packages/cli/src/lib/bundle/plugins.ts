@@ -8,6 +8,9 @@ import minifyHtmlParts from "rollup-plugin-minify-html-parts";
 import oxc from "rollup-plugin-oxc";
 import { extname } from "sharekit/path/filepath.js";
 import { minify, type MinifyOptions } from "terser";
+import { isTsExt } from "../utils.ts";
+import { transpileModule, type CompilerOptions } from "typescript";
+import { isNumber, isString } from "sharekit";
 
 export function json(options?: { extensions?: string[] }): Plugin {
   const exts = new Set(options?.extensions ?? [".json", ".jsonc"]);
@@ -41,6 +44,41 @@ export function terser(options: MinifyOptions = {}): Plugin {
         code: string;
         map: any;
       }>;
+    },
+  };
+}
+
+const isNodeModule = (m?: string | number) => {
+  if (!m) {
+    return false;
+  }
+  if (isNumber(m) && m >= 100) {
+    return true;
+  }
+  if (isString(m) && m.toLowerCase().startsWith("node")) {
+    return true;
+  }
+  return false;
+};
+
+export function typescript(options: Record<keyof CompilerOptions, any>): Plugin {
+  const transpileCompilerOptions = {
+    ...options,
+    module: isNodeModule(options.module) ? 99 : options.module,
+  };
+  return {
+    name: "typescript",
+    transform(code, id) {
+      if (isTsExt(extname(id))) {
+        const result = transpileModule(code, {
+          compilerOptions: transpileCompilerOptions,
+          fileName: id,
+        });
+        return {
+          code: result.outputText,
+          map: result.sourceMapText,
+        };
+      }
     },
   };
 }
