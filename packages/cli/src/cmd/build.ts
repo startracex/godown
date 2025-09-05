@@ -15,16 +15,16 @@ import {
   packageExternal,
   stringsExternal,
   trimQuotes,
-} from "../../lib/utils.ts";
-import { build } from "../../lib/bundle/build-bundle.ts";
-import { log, style } from "../../lib/logger.ts";
-import { BuildEntry } from "../../lib/build-entry.ts";
-import { setupTsconfig } from "../../lib/tsconfig/setup.ts";
-import { setupPostcss } from "../../lib/postcss/setup.ts";
-import { getBundlerSync } from "../../lib/bundle/get-bundler.ts";
-import { buildManifest } from "../../lib/manifest/build-manifest.ts";
-import type { RuntimeConfig } from "../../lib/rc/types.ts";
-import { rcBundleOptions } from "../../lib/rc/bundle.ts";
+} from "../lib/utils.ts";
+import { build } from "../lib/bundle/build-bundle.ts";
+import { log, style } from "../lib/logger.ts";
+import { BuildEntry } from "../lib/build-entry.ts";
+import { setupTsconfig } from "../lib/tsconfig/setup.ts";
+import { setupPostcss } from "../lib/postcss/setup.ts";
+import { getBundlerSync } from "../lib/bundle/get-bundler.ts";
+import { buildManifest } from "../lib/manifest/build-manifest.ts";
+import type { RuntimeConfig } from "../lib/rc/types.ts";
+import { rcBundleOptions } from "../lib/rc/bundle.ts";
 
 const globalSplitRe = /[:=]/;
 const getGlobals = (globals?: string[]): Record<string, string> | undefined => {

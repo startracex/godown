@@ -6,9 +6,9 @@ import migrate from "rollup-plugin-oxc/migrate.js";
 import { basename, dirname, extname, relative } from "sharekit/path/filepath.js";
 import { isNullable, join } from "sharekit";
 
-import { filterAssign, toDtsExt, toJsExt } from "../../lib/utils.ts";
-import { setupTsconfig } from "../../lib/tsconfig/setup.ts";
-import { BuildEntry } from "../../lib/build-entry.ts";
+import { filterAssign, toDtsExt, toJsExt } from "../lib/utils.ts";
+import { setupTsconfig } from "../lib/tsconfig/setup.ts";
+import { BuildEntry } from "../lib/build-entry.ts";
 
 const emitFile = (path: string, code: string, map?: SourceMap) => {
   const promises: Promise<void>[] = [writeFile(path, code)];

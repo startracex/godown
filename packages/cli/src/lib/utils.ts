@@ -344,3 +344,8 @@ export const wrapThrowable = <T extends (...args: any[]) => any>(
     return [undefined, error];
   }
 };
+
+export const booleanOption = (v: any): boolean => {
+  v = v + "";
+  return v !== "0" && v !== "false";
+};

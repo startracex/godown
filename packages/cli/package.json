@@ -4,13 +4,13 @@
   "description": "A CLI for building package",
   "type": "module",
   "bin": {
-    "godown": "build/cli/godown.js"
+    "godown": "build/main.js"
   },
   "scripts": {
     "build": "pnpm run-main b -c .godownrc.json",
     "check-types": "node ./node_modules/typescript/bin/tsc",
-    "run-main": "tscute src/cli/godown.ts",
-    "run-dist": "node build/cli/godown.js"
+    "run-main": "tscute src/main.ts",
+    "run-dist": "node build/main.js"
   },
   "dependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.5",

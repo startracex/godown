@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 
-import thisPackage from "../../package.json" with { type: "json" };
+import thisPackage from "../package.json" with { type: "json" };
+import { booleanOption } from "./lib/utils.ts";
 
 const program = new Command();
 
@@ -17,10 +18,6 @@ const repeatableOption = <T = string>(
     arr.unshift(toValue(value));
     return arr;
   };
-};
-
-const booleanOption = (v: string): boolean => {
-  return v !== "0" && v !== "false";
 };
 
 const dirOrFileOutputs: { dir?: string; file?: string }[] = [];
