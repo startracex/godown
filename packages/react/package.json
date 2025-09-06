@@ -1,6 +1,6 @@
 {
   "name": "@godown/react",
-  "version": "3.14.1",
+  "version": "3.14.2",
   "description": "React components for godown",
   "type": "module",
   "scripts": {

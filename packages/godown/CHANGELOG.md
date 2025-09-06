@@ -1,5 +1,12 @@
 # godown
 
+## 3.14.2
+
+### Patch Changes
+
+- ea6f738: optimize definition exports
+- 0f1f9cf: revert to using tslib as emit helpers
+
 ## 3.14.1
 
 ### Patch Changes

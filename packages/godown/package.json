@@ -1,6 +1,6 @@
 {
   "name": "godown",
-  "version": "3.14.1",
+  "version": "3.14.2",
   "description": "Atomic Web Component Library.",
   "type": "module",
   "scripts": {
