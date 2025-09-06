@@ -1,5 +1,12 @@
 # @godown/cli
 
+## 0.2.0
+
+### Minor Changes
+
+- b0b17ba: revert 403a7e2
+- 7623a0b: use TypeScript for transpilation by default
+
 ## 0.1.0
 
 ### Minor Changes

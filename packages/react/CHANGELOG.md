@@ -1,5 +1,14 @@
 # @godown/react
 
+## 3.14.2
+
+### Patch Changes
+
+- ea6f738: optimize definition exports
+- Updated dependencies [ea6f738]
+- Updated dependencies [0f1f9cf]
+  - godown@3.14.2
+
 ## 3.14.1
 
 ### Patch Changes
