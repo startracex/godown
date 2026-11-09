@@ -3,14 +3,18 @@
   "version": "0.1.0",
   "description": "Minify HTML in (tagged) template expressions",
   "type": "module",
-  "main": "index.js",
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^5.2.0",
+    "@rollup/pluginutils": "^5.5.1",
     "minify-html-parts": "workspace:^"
   },
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "keywords": [
     "rollup",
     "minify",
@@ -19,15 +23,11 @@
     "template",
     "tagged"
   ],
-  "author": "startracex",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/startracex/godown.git",
     "directory": "plugins/rollup-minify-html-parts"
   },
-  "files": [
-    "index.js",
-    "index.d.ts"
-  ]
+  "author": "startracex",
+  "license": "MIT"
 }

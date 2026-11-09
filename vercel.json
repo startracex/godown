@@ -1,5 +1,5 @@
 {
-  "installCommand": "node prepare.cjs && pnpm i",
+  "installCommand": "node prepare.cjs && pnpm install --frozen-lockfile",
   "buildCommand": "pnpm run build",
   "outputDirectory": "storybook/build"
 }

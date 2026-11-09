@@ -8,15 +8,15 @@
     "clean": "tsc --build --clean",
     "build": "tsc"
   },
+  "dependencies": {
+    "@lit/react": "^1.0.8",
+    "godown": "workspace:^"
+  },
   "devDependencies": {
-    "react": "^19.1.1"
+    "react": "^19.3.1"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
-  },
-  "dependencies": {
-    "@lit/react": "catalog:",
-    "godown": "workspace:^"
   },
   "exports": {
     ".": "./build/index.js",
@@ -40,8 +40,5 @@
     "directory": "packages/react"
   },
   "author": "startracex",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  }
+  "license": "MIT"
 }

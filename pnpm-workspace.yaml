@@ -4,8 +4,12 @@ packages:
   - tsconfig
   - storybook
 
-catalog:
-  '@lit/react': ^1.0.8
-  lit: ^3.3.1
-  tslib: ^2.8.1
-  typescript545: npm:typescript@5.4.5
+minimumReleaseAge: 0
+gitChecks: false
+ignoreWorkspaceRootCheck: true
+linkWorkspacePackages: true
+preferWorkspacePackages: true
+
+allowBuilds:
+  esbuild: true
+  rs-module-lexer: true

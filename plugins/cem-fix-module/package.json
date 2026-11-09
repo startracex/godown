@@ -3,23 +3,23 @@
   "version": "0.0.1",
   "description": "Fix module paths",
   "type": "module",
-  "main": "index.js",
   "scripts": {
     "build": "tsc"
   },
+  "main": "index.js",
+  "files": [
+    "index.{js,ts,d.ts}"
+  ],
   "keywords": [
     "custom-elements-manifest",
     "cem",
     "plugin"
   ],
-  "author": "startracex",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/startracex/godown.git",
     "directory": "plugins/cem-fix-module"
   },
-  "files": [
-    "index.{js,ts,d.ts}"
-  ]
+  "author": "startracex",
+  "license": "MIT"
 }

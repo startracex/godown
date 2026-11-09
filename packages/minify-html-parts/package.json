@@ -3,14 +3,18 @@
   "version": "0.1.0",
   "description": "Minify HTML in (tagged) template expressions",
   "type": "module",
-  "main": "index.js",
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
-    "magic-string": "^0.30.18",
+    "magic-string": "^1.4.5",
     "template-extractor": "workspace:^"
   },
+  "main": "index.js",
+  "files": [
+    "**/*.{js,d.ts}+(|.map)",
+    "src"
+  ],
   "keywords": [
     "minify",
     "html",
@@ -19,15 +23,11 @@
     "tagged",
     "lit-html"
   ],
-  "author": "startracex",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/startracex/godown.git",
     "directory": "packages/minify-html-parts"
   },
-  "files": [
-    "**/*.{js,d.ts}+(|.map)",
-    "src"
-  ]
+  "author": "startracex",
+  "license": "MIT"
 }

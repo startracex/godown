@@ -1,40 +1,33 @@
 {
+  "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo run build --output-logs=new-only",
-    "check": "biome lint && dprint check",
+    "check": "oxfmt --check && oxlint",
     "check-types": "turbo run check-types --output-logs=errors-only",
     "clean": "turbo run clean",
     "dev": "turbo run dev",
-    "fmt": "dprint fmt",
-    "fmt:check": "dprint check",
-    "lint": "biome lint --fix",
-    "lint:check": "biome lint",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint --fix",
+    "lint:check": "oxlint",
     "version": "changeset version"
   },
   "dependencies": {
-    "@biomejs/biome": "^2.2.2",
-    "@changesets/cli": "^2.29.6",
+    "@changesets/cli": "^3.0.3",
     "@godown/cli": "workspace:^",
-    "@startracex/dev-config": "^0.5.0",
-    "@types/node": "^24.3.0",
-    "@types/react": "^19.1.12",
-    "dprint": "^0.50.1",
-    "rollup": "^4.49.0",
-    "tscute": "^0.2.0",
-    "turbo": "^2.5.6",
-    "typescript": "^5.9.2",
-    "typescript545": "catalog:",
-    "vite": "npm:rolldown-vite@^7.1.5"
+    "@startracex/dev-config": "^0.7.0",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "oxfmt": "^0.78.0",
+    "oxlint": "^1.93.0",
+    "rollup": "^4.68.2",
+    "turbo": "^2.11.10",
+    "typescript": "^6.0.3",
+    "typescript545": "npm:typescript@5.4.5"
   },
-  "optionalDependencies": {
-    "@stylistic/eslint-plugin": "^5.2.3",
-    "@typescript-eslint/parser": "^8.41.0",
-    "eslint": "^9.34.0"
-  },
-  "packageManager": "pnpm@10.17.1",
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
-  "private": true,
-  "type": "module"
+  "packageManager": "pnpm@12.18.0"
 }

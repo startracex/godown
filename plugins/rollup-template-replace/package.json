@@ -3,27 +3,27 @@
   "version": "0.3.0",
   "description": "Replace the template expressions and restore them",
   "type": "module",
-  "main": "index.js",
   "scripts": {
     "build": "tsc"
   },
+  "dependencies": {
+    "@rollup/pluginutils": "^5.5.1",
+    "magic-string": "^1.4.5",
+    "template-extractor": "workspace:^"
+  },
+  "main": "index.js",
+  "files": [
+    "index.{js,ts,d.ts}"
+  ],
   "keywords": [
     "rollup",
     "plugin"
   ],
-  "author": "startracex",
-  "license": "MIT",
-  "dependencies": {
-    "@rollup/pluginutils": "^5.2.0",
-    "magic-string": "^0.30.18",
-    "template-extractor": "workspace:^"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/startracex/godown.git",
     "directory": "plugins/rollup-template-replace"
   },
-  "files": [
-    "index.{js,ts,d.ts}"
-  ]
+  "author": "startracex",
+  "license": "MIT"
 }
