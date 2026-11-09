@@ -23,7 +23,7 @@
     "oxlint": "^1.93.0",
     "rollup": "^4.68.2",
     "turbo": "^2.11.10",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "typescript545": "npm:typescript@5.4.5"
   },
   "engines": {
