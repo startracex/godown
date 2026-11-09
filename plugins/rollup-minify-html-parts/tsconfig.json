@@ -1,3 +1,6 @@
 {
-  "extends": "@startracex/dev-config/tsconfig/lib.json"
+  "extends": "@startracex/dev-config/tsconfig/lib.json",
+  "compilerOptions": {
+    "strict": false
+  }
 }

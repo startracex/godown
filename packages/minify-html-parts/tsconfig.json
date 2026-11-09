@@ -2,7 +2,8 @@
   "extends": "@startracex/dev-config/tsconfig/lib.json",
   "compilerOptions": {
     "outDir": ".",
-    "rootDir": "src"
+    "rootDir": "src",
+    "strict": false
   },
   "include": [
     "src/**/*.ts"

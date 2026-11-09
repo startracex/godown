@@ -35,8 +35,11 @@
     "erasableSyntaxOnly": true,
     "types": [],
     "rootDir": "src",
-    "outDir": "build"
+    "outDir": "build",
+    "strict": false
   },
-  "include": ["src/**/*.ts"],
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": []
 }

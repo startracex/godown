@@ -236,7 +236,7 @@ export class GodownElement extends LitElement {
     this.timeouts = new Timeouts();
     this.__stylex = {};
     this.assign = {
-      ...(GodownElement.godownConfig?.assign || {}),
+      ...GodownElement.godownConfig?.assign,
       ...init,
     };
   }
@@ -287,7 +287,7 @@ export class GodownElement extends LitElement {
    * @returns The index of the injected style sheet, or `undefined` if there is no shadow root or no styles were provided.
    */
   adoptStyles(...styles: { toString(): string }[]): number | undefined {
-    if (!this.shadowRoot || !styles.length) {
+    if (!(this.shadowRoot && styles.length)) {
       return;
     }
     const stack = this.shadowRoot.adoptedStyleSheets;

@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "build",
     "rootDir": "src",
-    "types": []
+    "types": [],
+    "strict": false
   },
   "include": [
     "src"

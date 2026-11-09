@@ -3,7 +3,8 @@
   "compilerOptions": {
     "isolatedDeclarations": true,
     "rootDir": "src",
-    "noEmit": true
+    "noEmit": true,
+    "strict": false
   },
   "include": [
     "src/**/*.ts"

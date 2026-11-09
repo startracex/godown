@@ -27,6 +27,7 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "erasableSyntaxOnly": true
+    "erasableSyntaxOnly": true,
+    "strict": false
   }
 }

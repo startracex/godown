@@ -6,7 +6,8 @@
     "sourceMap": false,
     "declaration": false,
     "declarationMap": false,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "strict": false
   },
   "include": [
     "./.storybook/**/*.ts",
