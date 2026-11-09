@@ -8,6 +8,8 @@
   background none !important
   color currentColor !important
 
+.sidebar-item button
+  box-shadow: none !important
 .sidebar-item:hover
   [data-theme="dark"] &
     background hsl(0deg 0% 10%)
@@ -31,9 +33,6 @@
     &::before
       content none
 
-#storybook-explorer-tree [data-action="collapse-root"]
-  flex 1
-
 #list-item-about,
 #list-item-whats-new,
 #list-item-documentation,
@@ -54,4 +53,20 @@ iframe
 
 textarea
   max-height 120px !important
+
+[data-theme="dark"]
+  .docblock-code-toggle,
+  .sbdocs button,
+  .sidebar-container button,
+  [role="main"] button
+    color hsl(0 0% 78%)
+
+  .rejt-name,
+  .rejt-value,
+  .rejt-collapsed,
+  .rejt-not-collapsed-list-item,
+  .rejt-not-collapsed-content,
+  [class*="ObjectInspector"],
+  [class*="objectInspector"]
+    color hsl(0 0% 78%) !important
 

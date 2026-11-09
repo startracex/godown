@@ -1,4 +1,4 @@
-import type { Renderer, StoryAnnotations } from "@storybook/csf";
+import type { Renderer, StoryAnnotations } from "storybook/internal/csf";
 import type { TemplateResult } from "lit";
 
 export type StoryMeta<T extends HTMLElement> = StoryAnnotations<Renderer, T>;

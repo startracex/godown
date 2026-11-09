@@ -72,7 +72,7 @@ export const Positions: Story = {
       columns="repeat(5, 2.5em)"
       content="center"
       items="center"
-      style="margin: 2em;"
+      style="margin: 2.5em;"
     >
       ${gridPositions.map((i) => {
         const { position, row, icon, column } = i;

@@ -1,8 +1,7 @@
 import { IconButton } from "storybook/internal/components";
 import { GithubIcon } from "@storybook/icons";
-import { useStorybookState } from "storybook/internal/manager-api";
-import { memo } from "react";
-import React from "react";
+import { useStorybookState } from "storybook/manager-api";
+import React, { memo } from "react";
 
 export const SourceLink = memo(() => {
   const { storyId, index } = useStorybookState();
@@ -12,7 +11,7 @@ export const SourceLink = memo(() => {
   if (path) {
     href += "/storybook" + path;
     return (
-      <IconButton asChild>
+      <IconButton asChild={true}>
         <a
           href={href}
           title="Open in GitHub"

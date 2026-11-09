@@ -1,9 +1,12 @@
 import { IconButton } from "storybook/internal/components";
 import { ReduxIcon } from "@storybook/icons";
-import { memo } from "react";
-import React from "react";
+import React, { memo } from "react";
+import { getPreviewIframe } from "./preview-dom.ts";
 
-export const requestFresh = (e: HTMLElement) => {
+export const requestFresh = (e: HTMLElement | null | undefined) => {
+  if (!e) {
+    return;
+  }
   e.style.display = "none";
   requestAnimationFrame(() => {
     e.style.display = "";
@@ -11,9 +14,8 @@ export const requestFresh = (e: HTMLElement) => {
 };
 
 export const FreshStyles = memo(() => {
-  const iframe = document.querySelector("iframe");
   const requestFrame = () => {
-    requestFresh(iframe);
+    requestFresh(getPreviewIframe());
   };
 
   return (

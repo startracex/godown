@@ -1,8 +1,7 @@
-import { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { IconButton } from "storybook/internal/components";
-import { addons } from "storybook/internal/manager-api";
+import { addons } from "storybook/manager-api";
 import { themes } from "../themes/index.js";
-import React from "react";
 
 const IconAuto = memo(() => (
   <svg
@@ -82,7 +81,7 @@ export const ThemeSwitcher = memo(() => {
 
   useEffect(() => {
     applyTheme(currentTheme);
-  }, []);
+  }, [applyTheme, currentTheme]);
 
   return (
     <IconButton

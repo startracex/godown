@@ -1,10 +1,10 @@
 import { IconButton } from "storybook/internal/components";
 import { SideBySideIcon } from "@storybook/icons";
-import { addons } from "storybook/internal/manager-api";
+import { addons } from "storybook/manager-api";
 import { html } from "lit";
-import { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { requestFresh } from "./fresh-styles.js";
-import React from "react";
+import { getPreviewIframe } from "./preview-dom.js";
 
 export const comparisonDecorator = (storyFn, context) => {
   const displayCompare = context.viewMode === "story";
@@ -25,18 +25,17 @@ export const comparisonDecorator = (storyFn, context) => {
 };
 
 export const ThemeComparison = memo(() => {
-  const [compare, setCompare] = useState(localStorage.getItem("compare") === "false" ? false : true);
-  const iframe = document.querySelector("iframe");
+  const [compare, setCompare] = useState(localStorage.getItem("compare") !== "false");
 
-  const updateIframe = (compare: boolean) => {
-    addons.setConfig({ compare });
-    addons.getChannel().emit("compare-change", compare);
-    requestFresh(iframe);
+  const updateIframe = (nextCompare: boolean) => {
+    addons.setConfig({ compare: nextCompare });
+    addons.getChannel().emit("compare-change", nextCompare);
+    requestFresh(getPreviewIframe());
   };
 
   useEffect(() => {
     updateIframe(compare);
-  }, []);
+  }, [compare]);
 
   const toggleCompare = () => {
     const newValue = !compare;

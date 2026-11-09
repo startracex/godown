@@ -1,4 +1,4 @@
-import type { InputType } from "@storybook/csf";
+import type { InputType } from "storybook/internal/csf";
 
 export class ArgHelper {
   arg: InputType = {

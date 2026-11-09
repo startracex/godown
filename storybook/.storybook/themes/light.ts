@@ -1,4 +1,4 @@
-import { create } from "storybook/internal/theming";
+import { create } from "storybook/theming";
 
 const background = "hsl(0 0% 100%)";
 const controlsBackground = "hsl(0 0% 94%)";
@@ -13,8 +13,11 @@ export default create({
   brandImage: "/godown-text.svg",
 
   textColor: "hsl(0 0% 8%)",
+  textMutedColor: "hsl(0 0% 38%)",
+  textInverseColor: "hsl(0 0% 94%)",
   colorSecondary: "hsl(0 0% 44%)",
   colorPrimary: "hsl(0 0% 44%)",
+  inputTextColor: "hsl(0 0% 8%)",
 
   appBg: background,
   appContentBg: background,

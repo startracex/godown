@@ -1,14 +1,14 @@
 import type { Preview } from "@storybook/web-components-vite";
-import { ArgHelper } from "../src/lib/args.js";
+import { ArgHelper } from "../src/lib/args.ts";
 import "godown";
 import "iconify-icon";
-import { Container } from "./tools/container.js";
-import { comparisonDecorator } from "./tools/theme-comparison.js";
+import { Container } from "./tools/container.tsx";
+import { comparisonDecorator } from "./tools/theme-comparison.tsx";
 import "../styl/preview.styl";
 
 export default {
   parameters: {
-    backgrounds: { disable: true },
+    backgrounds: { disabled: true },
     docs: {
       codePanel: true,
       container: Container,

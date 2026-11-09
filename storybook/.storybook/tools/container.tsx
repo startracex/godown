@@ -1,7 +1,6 @@
 import { DocsContainer } from "@storybook/addon-docs/blocks";
-import { useEffect, useState } from "react";
-import { themes } from "../themes/index.js";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { themes } from "../themes/index.ts";
 
 export const Container = ({ children, context }) => {
   const topDocument = window.top.document;
@@ -15,7 +14,7 @@ export const Container = ({ children, context }) => {
     return () => {
       topDocument.removeEventListener("theme-change", handleChange);
     };
-  }, []);
+  }, [topDocument.addEventListener, topDocument.removeEventListener]);
 
   const theme = themes[currentTheme];
   return (

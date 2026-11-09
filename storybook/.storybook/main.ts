@@ -1,11 +1,14 @@
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
 import type { StorybookConfig } from "@storybook/web-components-vite";
+import { renderManagerCss } from "./manager-styles.ts";
 
 const require = createRequire(import.meta.url);
+const managerCss = renderManagerCss();
 
 export default {
   stories: ["../**/*.stories.ts", "../src/content/*.mdx"],
+  staticDirs: ["../public"],
   addons: [getAbsolutePath("@storybook/addon-docs"), getAbsolutePath("@storybook/addon-a11y")],
   framework: {
     name: getAbsolutePath("@storybook/web-components-vite"),
@@ -13,7 +16,7 @@ export default {
   },
   managerHead: (head) =>
     `${head}
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">`,
+<style data-godown-manager>${managerCss}</style>`,
 } satisfies StorybookConfig;
 
 function getAbsolutePath(value: string): any {
