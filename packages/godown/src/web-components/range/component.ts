@@ -27,7 +27,7 @@ type RangeValue = number | number[];
 @styles(
   css`
     :host {
-      ${cssScope}--track-width: .5em;
+      ${cssScope}--track-width: 0.5em;
       ${cssScope}--handle-scale: 1;
       ${cssScope}--track-background: var(${cssGlobalVars.active});
       background: var(${cssGlobalVars.passive});
@@ -80,7 +80,7 @@ type RangeValue = number | number[];
       border-style: solid;
       border-width: 0.1em;
       transform: scale(var(${cssScope}--handle-scale)) translate(-50%, -25%);
-      background: var(${cssGlobalVars.background});
+      background: var(${cssGlobalVars.elevated});
       border-color: currentColor;
     }
   `,
@@ -182,7 +182,7 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
     const { rangeValue } = this;
     const miss = len - rangeValue.length;
     if (miss > 0) {
-      return new Array(miss).fill(value).concat(rangeValue);
+      return Array.from<number>({ length: miss }).fill(value).concat(rangeValue);
     }
     return rangeValue;
   }
@@ -392,10 +392,10 @@ class Range<V extends RangeValue = RangeValue> extends SuperInput<RangeValue> {
     const gap = this._ranger.diff;
     this.step ||= gap / 100;
     if (isNullable(this.value)) {
-      if (!isNullable(this.default)) {
-        this.value = this.default;
-      } else {
+      if (isNullable(this.default)) {
         (this.value as number) = Math.round(gap / 2 / this.step) * this.step;
+      } else {
+        this.value = this.default;
       }
     }
     this.default ??= this.value;

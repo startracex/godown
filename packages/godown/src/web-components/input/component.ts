@@ -39,7 +39,7 @@ const protoName = "input";
 @styles(css`
   :host {
     display: block;
-    ${cssGlobalVars.input}-icon-color: hsl(0, 0%, 50%);
+    ${cssGlobalVars.input}-icon-color: var(${cssGlobalVars.accent});
   }
 
   :host(:focus-within),

@@ -37,8 +37,8 @@ const cssScope = scopePrefix(protoName);
     user-select: none;
     border-radius: calc(infinity * 1px);
     transform: translate(-50%, -50%);
-    color: var(${cssGlobalVars.primaryForeground});
-    background: var(${cssGlobalVars.primaryBackground});
+    color: var(${cssGlobalVars.background});
+    background: var(${cssGlobalVars.inverse});
   }
 
   [part="chip"]:empty {
@@ -99,11 +99,13 @@ class Chip extends GlobalStyle {
         ${attr(this.observedRecord)}
       >
         ${htmlSlot()}
-        ${this.value || this.dot
-          ? html`
-              <div part="chip">${this.dot ? "" : this.formatValue(this.value)}</div>
-            `
-          : ""}
+        ${
+          this.value || this.dot
+            ? html`
+                <div part="chip">${this.dot ? "" : this.formatValue(this.value)}</div>
+              `
+            : ""
+        }
       </div>
     `;
   }

@@ -58,7 +58,7 @@ const cssScope = scopePrefix(protoName);
     top: 50%;
     pointer-events: none;
     border-radius: 100%;
-    background: var(${cssGlobalVars.background});
+    background: var(${cssGlobalVars.elevated});
     width: var(${cssScope}-handle-size);
     height: var(${cssScope}-handle-size);
     transform: translateY(-50%) translateX(var(${cssScope}-handle-space));
@@ -75,12 +75,12 @@ const cssScope = scopePrefix(protoName);
   }
 `)
 class Switch extends SuperInput<boolean> {
-  set checked(v: boolean) {
-    this.value = v;
-  }
-
   get checked(): boolean {
     return this.value;
+  }
+
+  set checked(v: boolean) {
+    this.value = v;
   }
 
   /**
@@ -126,11 +126,9 @@ class Switch extends SuperInput<boolean> {
   protected _connectedInit(): void {
     if (this.default) {
       this.value = true;
-    } else {
-      if (this.value) {
-        this.value = true;
-        this.default = true;
-      }
+    } else if (this.value) {
+      this.value = true;
+      this.default = true;
     }
   }
 

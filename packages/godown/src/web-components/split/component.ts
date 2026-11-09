@@ -30,7 +30,7 @@ const cssScope = scopePrefix(protoName);
     border-radius: 0.1em;
     width: fit-content;
     ${cssScope}--size: 2em;
-    ${cssScope}--gap: .25em;
+    ${cssScope}--gap: 0.25em;
   }
 
   [part="root"] {
@@ -180,7 +180,7 @@ class Split extends SuperInput {
 
         this.currentValue[this.current - 1] = null;
         const lastNotNull = this.currentValue.findLastIndex((a) => a !== null);
-        this.current = this.current - 1 < 0 ? (lastNotNull < 0 ? 0 : lastNotNull) : this.current - 1;
+        this.current = this.current - 1 < 0 ? Math.max(lastNotNull, 0) : this.current - 1;
       }
       return;
     }
@@ -229,7 +229,7 @@ class Split extends SuperInput {
   reset(): void {
     this.current = -1;
     this.value = this.default;
-    this.currentValue = this.value.split("").concat(Array(this.len - this.value.length).fill(null));
+    this.currentValue = this.value.split("").concat(new Array(this.len - this.value.length).fill(null));
     if (this.index > -1) {
       this.current = this.index;
     }

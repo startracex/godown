@@ -18,8 +18,8 @@ const hoverToken = "hover";
 @godown(protoName)
 @styles(css`
   :host {
-    ${cssScope}--indicator-background: var(${cssGlobalVars.passive});
-    ${cssScope}--selected-background: var(${cssGlobalVars.passive});
+    ${cssScope}--indicator-background: var(${cssGlobalVars.muted});
+    ${cssScope}--selected-background: var(${cssGlobalVars.muted});
     transition: 0.2s ease-in-out;
     display: flex;
     cursor: default;
@@ -209,7 +209,7 @@ class Tabs extends GlobalStyle {
     }
     const targetIndicator = _indicators[targetIndex];
     const sourceIndicator = _indicators[sourceIndex];
-    if (!targetIndicator || !sourceIndicator) {
+    if (!(targetIndicator && sourceIndicator)) {
       return;
     }
     const { x: sourceX, y: sourceY, width: sourceWidth } = sourceIndicator.getBoundingClientRect();

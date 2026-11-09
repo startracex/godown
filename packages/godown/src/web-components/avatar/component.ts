@@ -20,7 +20,7 @@ const protoName = "avatar";
 @styles(css`
   :host {
     color: var(${cssGlobalVars.foreground});
-    background: var(${cssGlobalVars.passive});
+    background: var(${cssGlobalVars.muted});
     vertical-align: bottom;
     overflow: hidden;
     width: 2em;

@@ -1,4 +1,4 @@
-import { ColorPalette, ColorItem } from "@storybook/addon-docs/blocks";
+import { ColorItem } from "@storybook/addon-docs/blocks";
 
 # Colors
 
@@ -18,25 +18,42 @@ Set color-scheme for the document root or element to override scheme.
 
 ## Values and Variables
 
+Surface ladder (quiet → strong): `background` → `elevated` → `muted` → `accent` → `foreground` / `inverse`.
+
 <godown-layout stylex="display: contents">
   <ColorItem
-    title="Foreground"
-    colors={["var(--godown--foreground)"]}
-  />
-  <ColorItem
     title="Background"
+    subtitle="Default canvas"
     colors={["var(--godown--background)"]}
   />
   <ColorItem
-    title="Primary foreground"
-    colors={["var(--godown--primary-foreground)"]}
-  />
-  <ColorItem
-    title="Primary background"
-    colors={["var(--godown--primary)"]}
+    title="Elevated"
+    subtitle="Raised surface on background"
+    colors={["var(--godown--elevated)"]}
   />
   <ColorItem
     title="Muted"
+    subtitle="Quiet / recessed fill"
     colors={["var(--godown--muted)"]}
+  />
+  <ColorItem
+    title="Accent"
+    subtitle="Emphasis fill / edge"
+    colors={["var(--godown--accent)"]}
+  />
+  <ColorItem
+    title="Foreground"
+    subtitle="Default text and icon"
+    colors={["var(--godown--foreground)"]}
+  />
+  <ColorItem
+    title="Inverse"
+    subtitle="Inverted surface"
+    colors={["var(--godown--inverse)"]}
+  />
+  <ColorItem
+    title="Primary"
+    subtitle="Aliases of foreground / background"
+    colors={["var(--godown--primary)", "var(--godown--primary-foreground)"]}
   />
 </godown-layout>

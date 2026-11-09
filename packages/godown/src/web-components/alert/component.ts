@@ -19,7 +19,7 @@ const protoName = "alert";
 @godown(protoName)
 @styles(css`
   :host {
-    background: var(${cssGlobalVars.background});
+    background: var(${cssGlobalVars.elevated});
     color: var(${cssGlobalVars.foreground});
   }
 

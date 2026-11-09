@@ -16,7 +16,7 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(css`
   :host {
-    ${cssScope}--cursor-width: .05em;
+    ${cssScope}--cursor-width: 0.05em;
   }
 
   :host,

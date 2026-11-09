@@ -18,7 +18,7 @@ const protoName = "divider";
     height: 0.05em;
     display: block;
     background: currentColor;
-    color: var(${cssGlobalVars.passive});
+    color: var(${cssGlobalVars.accent});
   }
 
   :host([vertical]) {

@@ -39,10 +39,10 @@ const cssScope = scopePrefix(protoName);
   css`
     :host {
       ${cssScope}--modal-animation-duration: 1.5s;
-      ${cssScope}--focus-scale: .97;
+      ${cssScope}--focus-scale: 0.97;
       ${cssScope}--deg: 45deg;
-      color: var(${cssGlobalVars.primaryForeground});
-      background: var(${cssGlobalVars.primaryBackground});
+      color: var(${cssGlobalVars.background});
+      background: var(${cssGlobalVars.inverse});
       display: inline-block;
       overflow: hidden;
       text-align: center;

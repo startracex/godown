@@ -7,7 +7,6 @@ import type Layout from "../layout/component.js";
 import { RingBuilder, ringTypeAttribute, type RingType } from "../../internal/ring.js";
 
 const protoName = "card";
-const cssScope = scopePrefix(protoName);
 
 /**
  * {@linkcode Card} renders a card.
@@ -23,7 +22,7 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(css`
   :host {
-    background: var(${cssGlobalVars.background});
+    background: var(${cssGlobalVars.elevated});
     color: var(${cssGlobalVars.foreground});
     display: block;
     flex-shrink: 0;

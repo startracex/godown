@@ -18,7 +18,7 @@ const cssScope = scopePrefix(protoName);
     display: block;
     width: fit-content;
     transition: all 0.5s ease-in-out;
-    ${cssScope}--offset: .5em;
+    ${cssScope}--offset: 0.5em;
   }
 
   div {

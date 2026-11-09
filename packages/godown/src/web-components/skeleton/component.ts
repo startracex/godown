@@ -17,8 +17,8 @@ const cssScope = scopePrefix(protoName);
 @godown(protoName)
 @styles(css`
   :host {
-    ${cssScope}--from: var(${cssGlobalVars.background});
-    ${cssScope}--to: var(${cssGlobalVars.passive});
+    ${cssScope}--from: var(${cssGlobalVars.elevated});
+    ${cssScope}--to: var(${cssGlobalVars.muted});
     ${cssScope}--deg: 95deg;
     ${cssScope}--duration: 2s;
     height: 2em;
