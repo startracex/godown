@@ -1,5 +1,12 @@
 # @godown/react
 
+## 3.15.0
+
+### Patch Changes
+
+- Updated dependencies [b259482]
+  - godown@3.15.0
+
 ## 3.14.2
 
 ### Patch Changes

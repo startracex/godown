@@ -1,5 +1,16 @@
 # @godown/cli
 
+## 0.3.0
+
+### Minor Changes
+
+- 0cee4fc: replace tsconfck with get-tsconfig
+
+### Patch Changes
+
+- Updated dependencies [2a4f3ed]
+  - cem-plugin-define@0.1.2
+
 ## 0.2.0
 
 ### Minor Changes
