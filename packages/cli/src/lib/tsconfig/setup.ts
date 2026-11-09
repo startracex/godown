@@ -1,8 +1,8 @@
 import { globby } from "globby";
 import { resolve } from "node:path";
+import { getTsconfig } from "get-tsconfig";
 import type { CompilerOptions as CompilerOptionsMigrate } from "rollup-plugin-oxc/migrate.js";
 import { dirname } from "sharekit/path/filepath.js";
-import { parse, type TSConfckParseNativeResult } from "tsconfck";
 import type { CompilerOptions } from "typescript";
 
 import { getExts } from "../utils.ts";
@@ -32,9 +32,12 @@ export const setupTsconfig = async (
   fileNames: string[];
 }> => {
   try {
-    const { tsconfig, tsconfigFile } = (await parse(fileName)) as Omit<TSConfckParseNativeResult, "tsconfig"> & {
-      tsconfig: TSConfig;
-    };
+    const result = getTsconfig(fileName);
+    if (!result) {
+      throw new Error(`tsconfig not found: ${fileName}`);
+    }
+    const tsconfigFile = result.path;
+    const tsconfig = result.config as TSConfig;
     const dir = dirname(tsconfigFile);
     tsconfig.compilerOptions ??= {};
     const { rootDir, rootDirs, outDir, outFile } = tsconfig.compilerOptions;
