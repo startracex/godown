@@ -1,5 +1,11 @@
 # godown
 
+## 3.15.0
+
+### Minor Changes
+
+- b259482: add elevated, muted, accent, and inverse color variables and apply them across components
+
 ## 3.14.2
 
 ### Patch Changes
