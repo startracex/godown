@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "./node_modules/@startracex/dev-config/oxlint.json"
+  ]
+}

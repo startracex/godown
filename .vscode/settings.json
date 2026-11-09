@@ -16,15 +16,6 @@
     "**/.turbo": true,
     "**/node_modules": true
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "dprint.dprint"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "dprint.dprint"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "dprint.dprint"
-  },
   "color-highlight.markerType": "underline",
   "lit-plugin.rules.no-invalid-css": "off",
   "lit-plugin.rules.no-incompatible-type-binding": "off"
