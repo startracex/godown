@@ -1,7 +1,7 @@
 import type { Plugin } from "@custom-elements-manifest/analyzer";
 
-import { analyzeJSDoc } from "./lib/jsdoc.js";
-import { analyzeModuleDeclaration } from "./lib/module-declaration.js";
+import { analyzeJSDoc } from "./jsdoc.js";
+import { analyzeModuleDeclaration } from "./module-declaration.js";
 
 export function jsDocDefine(match = "define"): Plugin {
   return {
