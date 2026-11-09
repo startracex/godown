@@ -2,6 +2,7 @@ import type { AnalyzePhaseParams } from "@custom-elements-manifest/analyzer";
 import type { JSDoc } from "typescript545";
 
 import { exports } from "./exports.js";
+
 function visitNode(
   match: string,
   {
@@ -22,22 +23,23 @@ function visitNode(
           const key = tag.tagName.getText();
           if (key === match) {
             const comments = tag.comment;
-            let elementTag: string, elementClass: string;
-            if (typeof comments !== "string") {
-              if (comments.length >= 2) {
-                const [c1, c2] = comments;
+            let elementTag: string | undefined;
+            let elementClass: string | undefined;
+            if (typeof comments !== "string" && comments && comments.length >= 2) {
+              const [c1, c2] = comments;
 
-                elementTag = c1.getText().trim();
+              elementTag = c1.getText().trim();
 
-                if (ts.isJSDocLinkLike(c2)) {
-                  elementClass = c2.name.getText();
-                }
+              if (ts.isJSDocLinkLike(c2) && c2.name) {
+                elementClass = c2.name.getText();
               }
             }
-            exports(elementTag, elementClass, {
-              moduleDoc,
-              context,
-            });
+            if (elementTag && elementClass) {
+              exports(elementTag, elementClass, {
+                moduleDoc,
+                context,
+              });
+            }
           }
         }
       }
