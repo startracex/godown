@@ -29,7 +29,7 @@ export async function analyze(
     }),
   );
 
-  let thirdPartyCEMs = [];
+  const thirdPartyCEMs = [];
 
   let plugins: any[] = await addFrameworkPlugins(frameworks);
   plugins = [...plugins, ...(config.plugins || [])];

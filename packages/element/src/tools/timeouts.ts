@@ -1,4 +1,4 @@
-type TimeoutId = undefined | number | { [Symbol.toPrimitive](): number };
+type TimeoutId = undefined | number | { [Symbol.toPrimitive]: () => number };
 
 export class Timeouts {
   private inner = new Set<number>();

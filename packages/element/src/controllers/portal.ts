@@ -13,7 +13,7 @@ import { type ReactiveController, type ReactiveControllerHost, render } from "li
  *     );
  *   }
  *
- *   *@property({ type: Boolean })*
+ *   @property({ type: Boolean })
  *   open = false;
  *
  *   render() {

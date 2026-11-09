@@ -8,7 +8,7 @@ export const postcssPlugins: Plugin[] = [autoprefixer(["since 2021"]), csso({ re
 export const setupPostcss = async (): Promise<Result> => {
   try {
     return await postcssLoadConfig();
-  } catch (error) {
+  } catch {
     return {
       file: undefined,
       plugins: postcssPlugins,

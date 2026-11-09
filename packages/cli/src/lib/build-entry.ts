@@ -32,7 +32,11 @@ const normalizeRootExt = (path: string, root: string, ext = true): string => {
   return path;
 };
 
-type BuildEntryInit = { outDir?: string; rootDir?: string; files?: string[] };
+interface BuildEntryInit {
+  outDir?: string;
+  rootDir?: string;
+  files?: string[];
+}
 
 export class BuildEntry {
   rootDir: string;

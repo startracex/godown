@@ -83,7 +83,7 @@ export class TaggedTemplateExpressionResult extends BaseResult<TaggedTemplateExp
   template: TemplateLiteral;
   strings: TemplateLiteralLikeNode[];
   values: Expression[];
-  children: TemplateSpanResult[];
+  declare children: TemplateSpanResult[];
 
   constructor(node: TaggedTemplateExpression) {
     super(node);
@@ -118,7 +118,7 @@ export class TemplateExpressionResult extends BaseResult<TemplateExpressionNode>
   template: TemplateLiteral;
   strings: TemplateLiteralLikeNode[];
   values: Expression[];
-  children: TemplateSpanResult[];
+  declare children: TemplateSpanResult[];
 
   constructor(node: TemplateExpression) {
     super(node);
@@ -148,7 +148,7 @@ export class TemplateExpressionResult extends BaseResult<TemplateExpressionNode>
 
 export class TemplateSpanResult extends BaseResult<TemplateSpanNode> {
   span: TextRange;
-  children: (TaggedTemplateExpressionResult | TemplateExpressionResult)[];
+  declare children: (TaggedTemplateExpressionResult | TemplateExpressionResult)[];
 
   constructor(node: TemplateSpan) {
     super(node);

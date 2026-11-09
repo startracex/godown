@@ -91,7 +91,7 @@ class SuperInput<V = string> extends GlobalStyle {
     this.dispatchCustomEvent("input", this.value, { bubbles: true });
   }
 
-  protected _handleChange(e: HandlerEvent<HTMLInputElement>): void {
+  protected _handleChange(_e: HandlerEvent<HTMLInputElement>): void {
     this.dispatchCustomEvent("change", this.value);
   }
 

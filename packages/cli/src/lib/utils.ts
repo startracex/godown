@@ -72,7 +72,7 @@ export const writeBundle = async (
   output: OutputOptions | OutputOptions[],
   close?: boolean,
 ): Promise<void> => {
-  let outputs = Array.isArray(output) ? output : [output];
+  const outputs = Array.isArray(output) ? output : [output];
   await Promise.all(outputs.map(async (output) => await bundle.write(output)));
   if (close) {
     await bundle.close();
@@ -138,10 +138,10 @@ export const expandArray = <T = any>(
   callFn: (...items: T[]) => number = Array.prototype.push,
 ): T[] => {
   if (!arr) {
-    return Array(len).fill(val);
+    return new Array(len).fill(val);
   }
   if (arr.length < len) {
-    callFn.call(arr, ...Array(len - arr.length).fill(val));
+    callFn.call(arr, ...new Array(len - arr.length).fill(val));
   }
   return arr;
 };

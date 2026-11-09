@@ -273,7 +273,7 @@ class Router extends GlobalStyle {
     return this.__fieldRoute.search(pathname) || this.__slottedRoute.search(pathname);
   }
 
-  handlePopstate: () => void = this.events.add(window, "popstate", () => {
+  handlePopstate: () => void = this.events.add(globalThis, "popstate", () => {
     this.pathname = location.pathname;
   });
 }

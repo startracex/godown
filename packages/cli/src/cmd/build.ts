@@ -67,7 +67,7 @@ const printBuildSummary = (time: number, dryRun: boolean, output: OutputOptions[
   }`;
 };
 
-type BuildCliOptions = {
+interface BuildCliOptions {
   tsconfig?: string;
   config: string;
   format?: string[];
@@ -81,7 +81,7 @@ type BuildCliOptions = {
   dts?: boolean;
   name?: string;
   bundler?: "rollup" | "rolldown";
-};
+}
 
 export const runBuild = async (
   pattern: string[],

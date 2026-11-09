@@ -21,8 +21,8 @@ interface ManifestModule {
 export default function (fn: (old: string) => string) {
   return {
     name: "fix-module",
-    packageLinkPhase({ customElementsManifest }) {
-      customElementsManifest.modules.forEach((mod: ManifestModule) => {
+    packageLinkPhase({ customElementsManifest }: { customElementsManifest: { modules: ManifestModule[] } }) {
+      customElementsManifest.modules.forEach((mod) => {
         if (mod.path) {
           mod.path = fn(mod.path);
         }

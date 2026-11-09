@@ -18,7 +18,7 @@ export class Events {
     F extends EventListenerFunc<T> = EventListenerFunc<T>,
     N extends string = EventNames,
   >(src: T, type: N, listener: F, options?: EventAddOptions): F {
-    if (!src || !listener) {
+    if (!(src && listener)) {
       return;
     }
 
@@ -39,7 +39,7 @@ export class Events {
     listener: EventListenerFunc,
     option?: EventListenerOptions,
   ): undefined {
-    if (!src || !listener) {
+    if (!(src && listener)) {
       return;
     }
 

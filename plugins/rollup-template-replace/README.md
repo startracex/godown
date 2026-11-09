@@ -11,11 +11,7 @@ export default {
     dir: "output",
     format: "esm",
   },
-  plugins: [
-    replace({
-      /* options */
-    }),
-  ],
+  plugins: [replace({/* options */})],
 };
 ```
 

@@ -13,6 +13,7 @@ const createLiteral = (format?: StyleFormat) => {
   };
 };
 
+// oxlint-disable-next-line
 export let logLevel = 99;
 
 const createLogger = (level: number, callback: typeof console.log, format?: StyleFormat) => {

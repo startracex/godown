@@ -1,5 +1,5 @@
 import { CSSResult, type ReactiveController, type ReactiveControllerHost } from "lit";
-import { isArray, isBoolean, isNullable, isPlainObject, isString } from "sharekit";
+import { isArray, isNullable, isPlainObject, isString } from "sharekit";
 
 type LikeString = string | {};
 type ComplexStyleValue = string | CSSStyleSheet | CSSResult | Record<string, LikeString> | null | undefined;

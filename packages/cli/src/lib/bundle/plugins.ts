@@ -15,7 +15,7 @@ export function json(options?: { extensions?: string[] }): Plugin {
   const exts = new Set(options?.extensions ?? [".json", ".jsonc"]);
   return {
     name: "json",
-    transform: function transform(code: string, id: string) {
+    transform(code: string, id: string) {
       if (!exts.size) {
         return null;
       }

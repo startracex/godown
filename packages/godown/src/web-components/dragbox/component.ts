@@ -33,10 +33,10 @@ class Dragbox extends GlobalStyle {
   }
 
   private __drag = false;
-  private __t: number;
-  private __l: number;
-  private __x: number;
-  private __y: number;
+  private __x = 0;
+  private __y = 0;
+  private __t = 0;
+  private __l = 0;
 
   /**
    * Position x.

@@ -42,7 +42,7 @@ export default function ({
           {
             match: match || ((tag) => tags?.includes(tag)),
             replace: replace || ((_, i) => `__REPLACE__${i}__`),
-            callback: callback,
+            callback,
           },
           ms,
         );
@@ -124,18 +124,16 @@ export async function doReplace(
           }
         }
       }
+    } else if (replaceSegments.length === 1) {
+      const segment = replaceSegments[0];
+      ms.overwrite(segment.start, segment.end, transformed);
     } else {
-      if (replaceSegments.length === 1) {
-        const segment = replaceSegments[0];
-        ms.overwrite(segment.start, segment.end, transformed);
-      } else {
-        let s = transformed;
-        replacedMatchArray.forEach(({ segment }) => {
-          s = s.replace(segment.replaced, `\${${segment.text}}`);
-        });
+      let s = transformed;
+      replacedMatchArray.forEach(({ segment }) => {
+        s = s.replace(segment.replaced, `\${${segment.text}}`);
+      });
 
-        ms.overwrite(t.template.getStart() + 1, t.template.getEnd() - 1, s);
-      }
+      ms.overwrite(t.template.getStart() + 1, t.template.getEnd() - 1, s);
     }
   }
 
@@ -151,14 +149,14 @@ function isSortedAscending(arr) {
   return true;
 }
 
-type Segment = {
+interface Segment {
   type: "string" | "value";
   text: string;
   start: number;
   end: number;
   padStart?: number;
   padEnd?: number;
-};
+}
 
 function getSegments(strings, values): Segment[] {
   const segments: Segment[] = [];

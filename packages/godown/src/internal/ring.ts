@@ -1,12 +1,12 @@
 import { cssGlobalVars } from "./global-style.js";
 import { unsafeCSS, type CSSResult } from "lit";
 
-type OutlineOptions = {
+interface OutlineOptions {
   width?: string | CSSResult;
   color?: string | CSSResult;
   selector?: string;
   type?: RingType;
-};
+}
 
 const outlineRing = ({ width, color, inset }) =>
   `outline-style:solid;outline-color:${color};outline-width:${width};${

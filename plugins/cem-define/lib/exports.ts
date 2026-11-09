@@ -6,7 +6,7 @@ export function exports(
   className: string,
   { moduleDoc, context }: Pick<AnalyzePhaseParams, "context" | "moduleDoc">,
 ) {
-  if (!tagName || !className) {
+  if (!(tagName && className)) {
     return;
   }
   const exports = moduleDoc.exports || [];

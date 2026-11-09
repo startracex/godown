@@ -71,13 +71,13 @@ const extractPath = (matchPattern: string, fullPath: string): string | null => {
 
   const [prefix, suffix] = matchPatternParts;
 
-  if (!fullPath.startsWith(prefix) || !fullPath.endsWith(suffix)) {
+  if (!(fullPath.startsWith(prefix) && fullPath.endsWith(suffix))) {
     return null;
   }
 
   const startIndex = prefix.length;
   const endIndex = fullPath.length - suffix.length;
-  const extracted = fullPath.substring(startIndex, endIndex);
+  const extracted = fullPath.slice(startIndex, endIndex);
 
   return extracted;
 };
@@ -122,10 +122,9 @@ export const getEntryDir = (pattern: string): string => {
   if (starIndex !== -1) {
     const lastSlashIndex = pattern.lastIndexOf("/", starIndex);
     if (lastSlashIndex !== -1) {
-      return pattern.substring(0, lastSlashIndex);
-    } else {
-      return "";
+      return pattern.slice(0, lastSlashIndex);
     }
+    return "";
   }
 
   if (pattern.endsWith("/")) {

@@ -1,5 +1,5 @@
 export const deepQuerySelectorAll = <E extends Element = HTMLElement>(selectors: string, root: ParentNode): E[] => {
-  if (!root || !selectors) {
+  if (!(root && selectors)) {
     return [];
   }
 
@@ -18,7 +18,7 @@ export const deepQuerySelectorAll = <E extends Element = HTMLElement>(selectors:
 };
 
 export const deepQuerySelector = <E extends Element = HTMLElement>(selectors: string, root: ParentNode): E | null => {
-  if (!root || !selectors) {
+  if (!(root && selectors)) {
     return null;
   }
 

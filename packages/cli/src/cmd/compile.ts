@@ -77,7 +77,7 @@ export const runCompile = async (
     const jsOutputPath = resolve(out);
     const fullPath = buildEntry.getFiles()[0];
     const text = await readFile(fullPath, "utf-8");
-    const { code, map } = transform(relative(jsOutputPath, fullPath), text, oxcOptions);
+    const { code, map } = await transform(relative(jsOutputPath, fullPath), text, oxcOptions);
     await emitFile(jsOutputPath, code, map);
     return;
   }
@@ -87,7 +87,11 @@ export const runCompile = async (
     const jsName = `${name}${toJsExt(ext, preserveJsx)}`;
     const jsOutputPath = join(outDir, jsName);
     const text = await readFile(fullPath, "utf-8");
-    const { code, map, declaration, declarationMap } = transform(relative(jsOutputPath, fullPath), text, oxcOptions);
+    const { code, map, declaration, declarationMap } = await transform(
+      relative(jsOutputPath, fullPath),
+      text,
+      oxcOptions,
+    );
     await mkdirAll(dirname(jsOutputPath));
     const emitJsPromise = emitFile(jsOutputPath, code, map);
     if (declaration) {
@@ -96,9 +100,8 @@ export const runCompile = async (
       const emitDtsPromise = emitFile(dtsOutputPath, declaration, declarationMap);
 
       return Promise.all([emitJsPromise, emitDtsPromise]);
-    } else {
-      return emitJsPromise;
     }
+    return emitJsPromise;
   });
 
   await Promise.all(emitPromises);

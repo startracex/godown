@@ -7,16 +7,16 @@ import {
   type TemplateLiteralLikeNode,
 } from "typescript";
 
-export type TextRange = {
+export interface TextRange {
   start: number;
   end: number;
   text: string;
-};
+}
 
-export type TemplateParts = {
+export interface TemplateParts {
   strings: TemplateLiteralLikeNode[];
   values: Expression[];
-};
+}
 
 export function getTemplateParts(node: TemplateLiteral): TemplateParts {
   const strings = [];

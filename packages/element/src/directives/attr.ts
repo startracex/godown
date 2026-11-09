@@ -19,7 +19,7 @@ export const updateAttribute = (el: Element, name: string, value: any): void => 
 type DirectiveParams = Record<string, any>;
 
 class AttrDirective extends Directive {
-  render(value: DirectiveParams, caller?: (element: Element, name: string, value: any) => void): void {}
+  render(_value: DirectiveParams, _caller?: (element: Element, name: string, value: any) => void): void {}
 
   update(part: ElementPart, [value, fn = updateAttribute]: Parameters<this["render"]>): symbol {
     if (value && part.type === PartType.ELEMENT) {

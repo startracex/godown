@@ -8,7 +8,7 @@ import type { CompilerOptions } from "typescript";
 import { getExts } from "../utils.ts";
 
 type MergeExclusive<A extends object, B extends object> = A & Omit<B, keyof A>;
-type TSConfig = {
+interface TSConfig {
   compilerOptions: MergeExclusive<
     CompilerOptionsMigrate & {
       rootDir?: string;
@@ -21,7 +21,7 @@ type TSConfig = {
   >;
   include: string[];
   exclude: string[];
-};
+}
 
 export const setupTsconfig = async (
   fileName = "tsconfig.json",
